@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Desil</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Desil</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Dari tabel distribusi frekuensi berikut, tentukan nilai desil ke-6 (\(D_6\)) dan persentil ke-20 (\(P_{20}\))!
+                <div class="table-responsive" style="margin: 15px 0;">
+                    <table style="margin: 0 auto; border-collapse: collapse; text-align: center; width: 60%; max-width: 320px;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid currentColor;">
+                                <th style="padding: 8px;">Data</th>
+                                <th style="padding: 8px;">Frekuensi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding: 6px;">41 – 45</td><td style="padding: 6px;">4</td></tr>
+                            <tr><td style="padding: 6px;">46 – 50</td><td style="padding: 6px;">6</td></tr>
+                            <tr><td style="padding: 6px;">51 – 55</td><td style="padding: 6px;">5</td></tr>
+                            <tr><td style="padding: 6px;">56 – 60</td><td style="padding: 6px;">15</td></tr>
+                            <tr><td style="padding: 6px;">61 – 65</td><td style="padding: 6px;">20</td></tr>
+                            <tr><td style="padding: 6px;">66 – 70</td><td style="padding: 6px;">2</td></tr>
+                            <tr><td style="padding: 6px;">71 – 75</td><td style="padding: 6px;">8</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="soal-sumber"><a href="#" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Langkah pertama adalah membuat tabel frekuensi kumulatif (\(F_k\)):
+                    <div class="table-responsive" style="margin: 15px 0;">
+                        <table style="margin: 0 auto; border-collapse: collapse; text-align: center; width: 70%; max-width: 380px;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid currentColor;">
+                                    <th style="padding: 8px;">Data</th>
+                                    <th style="padding: 8px;">Frekuensi (\(f\))</th>
+                                    <th style="padding: 8px;">\(F_k\)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td style="padding: 6px;">41 – 45</td><td style="padding: 6px;">4</td><td style="padding: 6px;">4</td></tr>
+                                <tr><td style="padding: 6px;">46 – 50</td><td style="padding: 6px;">6</td><td style="padding: 6px;">10</td></tr>
+                                <tr><td style="padding: 6px;">51 – 55</td><td style="padding: 6px;">5</td><td style="padding: 6px;">15</td></tr>
+                                <tr><td style="padding: 6px;">56 – 60</td><td style="padding: 6px;">15</td><td style="padding: 6px;">30</td></tr>
+                                <tr style="background-color: rgba(76, 175, 80, 0.15); font-weight: bold;"><td style="padding: 6px;">61 – 65</td><td style="padding: 6px;">20</td><td style="padding: 6px;">50</td></tr>
+                                <tr><td style="padding: 6px;">66 – 70</td><td style="padding: 6px;">2</td><td style="padding: 6px;">52</td></tr>
+                                <tr><td style="padding: 6px;">71 – 75</td><td style="padding: 6px;">8</td><td style="padding: 6px;">60</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    Total frekuensi \(n = 60\) dan panjang kelas \(p = 45 - 41 + 1 = 5\).
+                    <br><br>
+
+                    <p><b>1. Menentukan Desil ke-6 (\(D_6\)):</b></p>
+                    Letak kelas desil ke-6:
+                    \[\text{Letak } D_6 = \dfrac{6n}{10} = \dfrac{6 \times 60}{10} = 36\]
+                    Data ke-36 berada pada kelas interval ke-5 (\(61 - 65\)) karena \(F_k\) sebelumnya adalah 30 dan \(F_k\) kelas tersebut adalah 50.
+                    <ul>
+                        <li>Tepi bawah kelas: \(T_b = 61 - 0{,}5 = 60{,}5\)</li>
+                        <li>Frekuensi kumulatif sebelum kelas desil: \(F_k = 30\)</li>
+                        <li>Frekuensi kelas desil: \(f = 20\)</li>
+                        <li>Panjang kelas: \(p = 5\)</li>
+                    </ul>
+                    Nilai desil ke-6:
+                    \[
+                    \begin{aligned}
+                    D_6 &= T_b + \left(\dfrac{\dfrac{6n}{10} - F_k}{f}\right) p \\[6pt]
+                    &= 60{,}5 + \left(\dfrac{36 - 30}{20}\right) \times 5 \\[6pt]
+                    &= 60{,}5 + \left(\dfrac{6}{20}\right) \times 5 \\[6pt]
+                    &= 60{,}5 + \dfrac{30}{20} \\[6pt]
+                    &= 60{,}5 + 1{,}5 = 62
+                    \end{aligned}
+                    \]
+
+                    <p><b>2. Menentukan Persentil ke-20 (\(P_{20}\)):</b></p>
+                    Letak kelas persentil ke-20:
+                    \[\text{Letak } P_{20} = \dfrac{20n}{100} = \dfrac{20 \times 60}{100} = 12\]
+                    Data ke-12 berada pada kelas interval ke-3 (\(51 - 55\)) karena \(F_k\) sebelumnya adalah 10 dan \(F_k\) kelas tersebut adalah 15.
+                    <ul>
+                        <li>Tepi bawah kelas: \(T_b = 51 - 0{,}5 = 50{,}5\)</li>
+                        <li>Frekuensi kumulatif sebelum kelas persentil: \(F_k = 10\)</li>
+                        <li>Frekuensi kelas persentil: \(f = 5\)</li>
+                        <li>Panjang kelas: \(p = 5\)</li>
+                    </ul>
+                    Nilai persentil ke-20:
+                    \[
+                    \begin{aligned}
+                    P_{20} &= T_b + \left(\dfrac{\dfrac{20n}{100} - F_k}{f}\right) p \\[6pt]
+                    &= 50{,}5 + \left(\dfrac{12 - 10}{5}\right) \times 5 \\[6pt]
+                    &= 50{,}5 + 2 = 52{,}5
+                    \end{aligned}
+                    \]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai desil ke-6 (\(D_6\)) adalah <b>62</b> dan persentil ke-20 (\(P_{20}\)) adalah <b>52,5</b>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

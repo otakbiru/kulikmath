@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Fungsi Naik Dan Fungsi Turun</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Fungsi Naik Dan Fungsi Turun</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Kemonotonan Fungsi (Naik dan Turun)</h2>
+            <p>
+                Secara visual pada bidang koordinat Kartesius, grafik suatu fungsi $y = f(x)$ yang dibaca dari <strong>kiri ke kanan</strong> (nilai $x$ semakin membesar) dapat bergerak menanjak ke atas, menurun ke bawah, atau mendatar. Sifat perilaku grafik fungsi pada suatu selang (interval) ini disebut sebagai <strong>kemonotonan fungsi</strong>.
+            </p>
+            <p>
+                Misalkan fungsi $f$ terdefinisi pada suatu interval $I$. Ambil sembarang dua bilangan $x_1, x_2 \in I$ dengan $x_1 < x_2$, maka berlaku definisi formal berikut:
+            </p>
+            <ul>
+                <li>
+                    <strong>Fungsi Naik Murni (Strictly Increasing):</strong><br>
+                    Fungsi $f$ dikatakan <strong>naik</strong> pada interval $I$ jika untuk setiap $x_1 < x_2$ berlaku:
+                    $$f(x_1) < f(x_2)$$
+                    Artinya, semakin besar nilai $x$, maka nilai fungsi $f(x)$ juga semakin besar (grafik bergerak menanjak dari kiri ke kanan).
+                </li>
+                <li>
+                    <strong>Fungsi Turun Murni (Strictly Decreasing):</strong><br>
+                    Fungsi $f$ dikatakan <strong>turun</strong> pada interval $I$ jika untuk setiap $x_1 < x_2$ berlaku:
+                    $$f(x_1) > f(x_2)$$
+                    Artinya, semakin besar nilai $x$, maka nilai fungsi $f(x)$ justru semakin kecil (grafik bergerak menurun dari kiri ke kanan).
+                </li>
+                <li>
+                    <strong>Fungsi Tidak Pernah Turun & Tidak Pernah Naik:</strong><br>
+                    - Fungsi dikatakan <strong>tidak pernah turun</strong> (monoton naik) jika untuk $x_1 < x_2$ berlaku $f(x_1) \le f(x_2)$.<br>
+                    - Fungsi dikatakan <strong>tidak pernah naik</strong> (monoton turun) jika untuk $x_1 < x_2$ berlaku $f(x_1) \ge f(x_2)$.
+                </li>
+            </ul>
+
+            <h2>2. Uji Turunan Pertama untuk Fungsi Naik dan Turun</h2>
+            <p>
+                Dalam kalkulus diferensial, turunan pertama $f'(x)$ menyatakan <strong>gradien (kemiringan) garis singgung</strong> kurva $y = f(x)$ di titik berabsis $x$. Jika garis singgung miring ke kanan atas ($m > 0$), kurva sedang naik. Sebaliknya, jika garis singgung miring ke kanan bawah ($m < 0$), kurva sedang turun.
+            </p>
+            <p>
+                Misalkan fungsi $f(x)$ kontinu dan dapat diturunkan (diferensiabel) pada setiap titik di dalam interval $I$, maka berlaku teorema kemonotonan berikut:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kondisi Turunan Pertama</th>
+                            <th>Status Grafik Fungsi $f(x)$</th>
+                            <th>Arah Garis Singgung Kurva</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$$f'(x) > 0$$</td>
+                            <td class="text-left"><strong>Fungsi Naik</strong> pada interval tersebut</td>
+                            <td class="text-left">Miring ke kanan atas (gradien positif, $m > 0$)</td>
+                        </tr>
+                        <tr>
+                            <td>$$f'(x) < 0$$</td>
+                            <td class="text-left"><strong>Fungsi Turun</strong> pada interval tersebut</td>
+                            <td class="text-left">Miring ke kanan bawah (gradien negatif, $m < 0$)</td>
+                        </tr>
+                        <tr>
+                            <td>$$f'(x) = 0$$</td>
+                            <td class="text-left"><strong>Titik Stasioner</strong> (fungsi tidak naik dan tidak turun sesaat)</td>
+                            <td class="text-left">Mendatar / sejajar sumbu-$X$ (gradien nol, $m = 0$)</td>
+                        </tr>
+                        <tr>
+                            <td>$$f'(x) \ge 0$$</td>
+                            <td class="text-left"><strong>Fungsi Tidak Pernah Turun</strong></td>
+                            <td class="text-left">Gradien positif atau nol ($m \ge 0$)</td>
+                        </tr>
+                        <tr>
+                            <td>$$f'(x) \le 0$$</td>
+                            <td class="text-left"><strong>Fungsi Tidak Pernah Naik</strong></td>
+                            <td class="text-left">Gradien negatif atau nol ($m \le 0$)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-monoton" style="width: 100%; max-width: 540px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Langkah-Langkah Menentukan Interval Fungsi Naik dan Turun</h2>
+            <p>
+                Untuk mencari batas-batas interval nilai $x$ di mana suatu fungsi $f(x)$ naik atau turun, ikuti prosedur sistematis berikut:
+            </p>
+            <ol>
+                <li><strong>Tentukan Domain:</strong> Perhatikan daerah asal fungsi $f(x)$ terlebih dahulu (terutama jika memuat pecahan atau akar).</li>
+                <li><strong>Cari Turunan Pertama:</strong> Tentukan rumus turunan pertama $f'(x)$.</li>
+                <li><strong>Cari Pembuat Nol / Titik Kritis:</strong> Selesaikan persamaan stasioner $f'(x) = 0$ (serta titik di mana $f'(x)$ tidak terdefinisi) untuk mendapatkan titik-titik batas pada garis bilangan.</li>
+                <li><strong>Uji Tanda pada Garis Bilangan:</strong> Plot titik-titik stasioner pada garis bilangan, lalu uji tanda positif ($+$) atau negatif ($-$) dari nilai $f'(x)$ pada masing-masing daerah interval:
+                    <ul>
+                        <li>Daerah bertanda <strong>positif ($+$)</strong> merupakan interval <strong>fungsi naik</strong>.</li>
+                        <li>Daerah bertanda <strong>negatif ($-$)</strong> merupakan interval <strong>fungsi turun</strong>.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-garisbilangan" style="width: 100%; max-width: 540px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Syarat Fungsi Selalu Naik atau Selalu Turun pada $\mathbb{R}$</h2>
+            <p>
+                Dalam soal-soal seleksi seperti SNBT dan ujian mandiri, sering ditanyakan syarat parameter agar suatu fungsi polinomial berderajat tiga (kubik) $f(x) = ax^3 + bx^2 + cx + d$ (dengan $a \neq 0$) <strong>selalu naik</strong> atau <strong>selalu turun</strong> untuk semua bilangan real $x \in \mathbb{R}$.
+            </p>
+            <p>
+                Perhatikan bahwa turunan pertama dari fungsi kubik $f(x) = ax^3 + bx^2 + cx + d$ adalah fungsi kuadrat:
+                $$f'(x) = 3ax^2 + 2bx + c = Ax^2 + Bx + C$$
+                dengan $A = 3a$, $B = 2b$, dan $C = c$. Agar $f(x)$ selalu naik atau selalu turun pada seluruh $x \in \mathbb{R}$, kita gunakan konsep <strong>definit</strong> pada fungsi kuadrat $f'(x)$ (dengan diskriminan $D_{f'} = B^2 - 4AC = (2b)^2 - 4(3a)(c)$):
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kondisi pada Seluruh $x \in \mathbb{R}$</th>
+                            <th>Syarat Turunan $f'(x)$</th>
+                            <th>Syarat Koefisien & Diskriminan $f'(x)$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Selalu Naik / Tidak Pernah Turun</strong></td>
+                            <td>$$f'(x) \ge 0$$</td>
+                            <td>$$a > 0 \quad \text{dan} \quad D_{f'} \le 0$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Selalu Turun / Tidak Pernah Naik</strong></td>
+                            <td>$$f'(x) \le 0$$</td>
+                            <td>$$a < 0 \quad \text{dan} \quad D_{f'} \le 0$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Catatan Penting: Mengapa syarat diskriminan pada fungsi kubik yang selalu naik/turun boleh menggunakan $D_{f'} \le 0$ (tidak hanya $D_{f'} < 0$)? Karena ketika $D_{f'} = 0$, nilai $f'(x) = 0$ hanya terjadi di <strong>satu titik belok horizontal tunggal</strong> (misalnya pada $f(x) = x^3$ di titik $x = 0$), sehingga secara keseluruhan fungsi tetap naik murni untuk setiap $x_1 < x_2$. Namun, jika soal secara eksplisit meminta <em>"grafik tidak memiliki titik stasioner"</em>, gunakan syarat tegas $D_{f'} < 0$.
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memahami penerapan uji turunan pertama pada fungsi polinomial, fungsi trigonometri, serta penentuan batas parameter fungsi yang selalu naik/turun. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka langkah pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Diketahui fungsi polinomial derajat tiga $f(x) = x^3 - 3x^2 - 9x + 12$. Tentukan:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Interval nilai $x$ agar fungsi $f(x)$ naik.</li>
+                        <li>Interval nilai $x$ agar fungsi $f(x)$ turun.</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Langkah pertama, kita tentukan turunan pertama $f'(x)$ dari fungsi $f(x) = x^3 - 3x^2 - 9x + 12$:
+                        $$f'(x) = 3x^2 - 6x - 9$$
+                    </p>
+                    <p>
+                        Cari pembuat nol (titik stasioner) dengan menyelesaikan $f'(x) = 0$:
+                        $$3x^2 - 6x - 9 = 0 \quad (\text{bagi kedua ruas dengan } 3)$$
+                        $$x^2 - 2x - 3 = 0$$
+                        $$(x + 1)(x - 3) = 0$$
+                        Diperoleh titik batas stasioner $x = -1$ atau $x = 3$.
+                    </p>
+                    <p>
+                        Uji tanda $f'(x) = 3(x + 1)(x - 3)$ pada tiga interval yang terbentuk di garis bilangan:
+                        <ul>
+                            <li>Untuk $x < -1$ (ambil $x = -2$): $f'(-2) = 3(-1)(-5) = +15 > 0$ <strong>(Positif / Naik)</strong></li>
+                            <li>Untuk $-1 < x < 3$ (ambil $x = 0$): $f'(0) = 3(1)(-3) = -9 < 0$ <strong>(Negatif / Turun)</strong></li>
+                            <li>Untuk $x > 3$ (ambil $x = 4$): $f'(4) = 3(5)(1) = +15 > 0$ <strong>(Positif / Naik)</strong></li>
+                        </ul>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, fungsi $f(x)$ naik pada interval $x < -1$ atau $x > 3$, dan fungsi $f(x)$ turun pada interval $-1 < x < 3$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Tentukan batas-batas nilai parameter $p$ agar fungsi $f(x) = -\frac{1}{3}x^3 + px^2 - px + 5$ <strong>tidak pernah naik</strong> untuk setiap bilangan real $x \in \mathbb{R}$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Agar fungsi $f(x)$ <strong>tidak pernah naik</strong> untuk setiap $x \in \mathbb{R}$, maka turunan pertamanya harus selalu bernilai non-positif:
+                        $$f'(x) \le 0 \quad \text{untuk semua } x \in \mathbb{R}$$
+                    </p>
+                    <p>
+                        Kita cari turunan pertama dari $f(x) = -\frac{1}{3}x^3 + px^2 - px + 5$:
+                        $$f'(x) = -x^2 + 2px - p$$
+                        Dari bentuk kuadrat $f'(x) = Ax^2 + Bx + C$, diperoleh koefisien $A = -1$, $B = 2p$, dan $C = -p$.
+                    </p>
+                    <p>
+                        Karena koefisien $A = -1 < 0$ sudah memenuhi syarat terbuka ke bawah, maka agar $f'(x) \le 0$ untuk semua $x \in \mathbb{R}$, diskriminan dari $f'(x)$ harus memenuhi $D_{f'} \le 0$:
+                        $$B^2 - 4AC \le 0$$
+                        $$(2p)^2 - 4(-1)(-p) \le 0$$
+                        $$4p^2 - 4p \le 0$$
+                        $$4p(p - 1) \le 0$$
+                    </p>
+                    <p>
+                        Pembuat nol pertidaksamaan kuadrat tersebut adalah $p = 0$ dan $p = 1$. Karena tanda pertidaksamaan adalah $\le 0$ dengan koefisien $p^2$ positif, maka penyelesaiannya berada di antara kedua akar.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, batas nilai $p$ agar fungsi tersebut tidak pernah naik untuk setiap $x \in \mathbb{R}$ adalah $0 \le p \le 1$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Diketahui fungsi trigonometri $f(x) = \sin(2x) - x$ pada interval tertutup $0 \le x \le \pi$. Tentukan pada interval mana fungsi $f(x)$ tersebut turun!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Ingat bahwa turunan dari $\sin(ax)$ adalah $a\cos(ax)$. Maka turunan pertama dari fungsi $f(x) = \sin(2x) - x$ adalah:
+                        $$f'(x) = 2\cos(2x) - 1$$
+                    </p>
+                    <p>
+                        Cari titik stasioner dengan menyamakan $f'(x) = 0$ pada domain $0 \le x \le \pi$ ($0 \le 2x \le 2\pi$):
+                        $$2\cos(2x) - 1 = 0 \implies \cos(2x) = \frac{1}{2}$$
+                        Nilai sudut $2x$ di kuadran I dan IV yang memiliki nilai cosinus $\frac{1}{2}$ adalah:
+                        $$2x = \frac{\pi}{3} \implies x = \frac{\pi}{6}$$
+                        $$2x = \frac{5\pi}{3} \implies x = \frac{5\pi}{6}$$
+                    </p>
+                    <p>
+                        Selanjutnya, uji tanda $f'(x) = 2\cos(2x) - 1$ pada ketiga sub-interval di dalam $[0, \pi]$:
+                        <ul>
+                            <li>Pada $0 < x < \frac{\pi}{6}$ (uji $x = 0$): $f'(0) = 2\cos(0) - 1 = 1 > 0$ <strong>(Naik)</strong></li>
+                            <li>Pada $\frac{\pi}{6} < x < \frac{5\pi}{6}$ (uji $x = \frac{\pi}{2}$): $f'\left(\frac{\pi}{2}\right) = 2\cos(\pi) - 1 = 2(-1) - 1 = -3 < 0$ <strong>(Turun)</strong></li>
+                            <li>Pada $\frac{5\pi}{6} < x < \pi$ (uji $x = \pi$): $f'(\pi) = 2\cos(2\pi) - 1 = 1 > 0$ <strong>(Naik)</strong></li>
+                        </ul>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, pada domain $0 \le x \le \pi$, fungsi $f(x) = \sin(2x) - x$ turun pada interval $\dfrac{\pi}{6} < x < \dfrac{5\pi}{6}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiMonoton() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const subtleBg = isDark ? '#132a2e' : '#f0fdfa';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const redColor = isDark ? '#f87171' : '#ef4444';
+
+            /* -------------------------------------------------------------
+               1. GRAFIK KEMONOTONAN & GARIS SINGGUNG f(x) = x^3 - 3x^2 - 9x + 12
+               ------------------------------------------------------------- */
+            const geoGraf = new GeoSVG('geosvg-monoton', 540, 310, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Fungsi contoh: f(x) = x^3 - 3x^2 - 9x + 12
+            // Puncak maksimum lokal di x = -1 -> f(-1) = 17
+            // Puncak minimum lokal di x = 3  -> f(3) = -15
+            const f = x => x * x * x - 3 * x * x - 9 * x + 12;
+
+            // Transformasi koordinat matematika (x, y) ke layar (px, py)
+            // Pusat O(0, 0) di (215, 165), skalaX = 48 px/satuan, skalaY = 5.5 px/satuan
+            const ox = 215, oy = 165, sx = 48, sy = 5.5;
+            const toPt = (x, y) => [ox + x * sx, oy - y * sy];
+
+            const [xStas1, yStas1] = toPt(-1, f(-1)); // (-1, 17)
+            const [xStas2, yStas2] = toPt(3, f(3));   // (3, -15)
+
+            // Latar highlight zona Naik | Turun | Naik
+            geoGraf.buatPersegiPanjang(35, 25, xStas1 - 35, 245, { fill: subtleBg, stroke: 'none', fillOpacity: 0.65 });
+            geoGraf.buatPersegiPanjang(xStas1, 25, xStas2 - xStas1, 245, { fill: isDark ? 'rgba(248,113,113,0.08)' : 'rgba(239,68,68,0.06)', stroke: 'none' });
+            geoGraf.buatPersegiPanjang(xStas2, 25, 505 - xStas2, 245, { fill: subtleBg, stroke: 'none', fillOpacity: 0.65 });
+
+            // Sumbu Koordinat X dan Y
+            geoGraf.buatVektor([25, oy], [515, oy], { stroke: mutedColor, strokeWidth: 1.4, label: 'X', labelPosisi: 'akhir', labelJarak: 10, labelColor: textColor, bold: true });
+            geoGraf.buatVektor([ox, 280], [ox, 18], { stroke: mutedColor, strokeWidth: 1.4, label: 'Y', labelPosisi: 'akhir', labelJarak: 10, labelColor: textColor, bold: true });
+
+            // Garis Pembatas Vertikal di x = -1 dan x = 3
+            geoGraf.buatSegmen([xStas1, 25], [xStas1, 275], { stroke: amberColor, strokeWidth: 1.4, dashed: '5 4' });
+            geoGraf.buatSegmen([xStas2, 25], [xStas2, 275], { stroke: amberColor, strokeWidth: 1.4, dashed: '5 4' });
+
+            // Label Zona di Bagian Atas
+            geoGraf.buatTeks((35 + xStas1) / 2, 40, "NAIK", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor });
+            geoGraf.buatTeks((35 + xStas1) / 2, 55, "f'(x) > 0", { position: 'middle-center', fontSize: '11px', fill: tealColor });
+
+            geoGraf.buatTeks((xStas1 + xStas2) / 2, 40, "TURUN", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: redColor });
+            geoGraf.buatTeks((xStas1 + xStas2) / 2, 55, "f'(x) < 0", { position: 'middle-center', fontSize: '11px', fill: redColor });
+
+            geoGraf.buatTeks((xStas2 + 505) / 2, 40, "NAIK", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor });
+            geoGraf.buatTeks((xStas2 + 505) / 2, 55, "f'(x) > 0", { position: 'middle-center', fontSize: '11px', fill: tealColor });
+
+            // Gambar Kurva dalam 3 Segmen Berbeda Warna (Naik = Teal, Turun = Merah)
+            const ptsNaikKiri = [];
+            for (let x = -3.1; x <= -1.0; x += 0.1) ptsNaikKiri.push(toPt(x, f(x)));
+            geoGraf.buatPolyline(ptsNaikKiri, { stroke: tealColor, strokeWidth: 2.8 });
+
+            const ptsTurunTengah = [];
+            for (let x = -1.0; x <= 3.0; x += 0.1) ptsTurunTengah.push(toPt(x, f(x)));
+            geoGraf.buatPolyline(ptsTurunTengah, { stroke: redColor, strokeWidth: 2.8 });
+
+            const ptsNaikKanan = [];
+            for (let x = 3.0; x <= 5.1; x += 0.1) ptsNaikKanan.push(toPt(x, f(x)));
+            geoGraf.buatPolyline(ptsNaikKanan, { stroke: tealColor, strokeWidth: 2.8 });
+
+            // Garis Singgung Mendatar di Titik Stasioner (f'(x) = 0)
+            geoGraf.buatSegmen([xStas1 - 28, yStas1], [xStas1 + 28, yStas1], { stroke: amberColor, strokeWidth: 2.2 });
+            geoGraf.buatSegmen([xStas2 - 28, yStas2], [xStas2 + 28, yStas2], { stroke: amberColor, strokeWidth: 2.2 });
+
+            // Titik Stasioner & Labelnya
+            geoGraf.buatTitik([xStas1, yStas1], { size: 5, color: amberColor });
+            geoGraf.buatTeks(xStas1, yStas1 - 14, "Stasioner f'(-1) = 0", { position: 'middle-center', fontSize: '11px', fontWeight: 'bold', fill: amberColor });
+
+            geoGraf.buatTitik([xStas2, yStas2], { size: 5, color: amberColor });
+            geoGraf.buatTeks(xStas2, yStas2 + 16, "Stasioner f'(3) = 0", { position: 'middle-center', fontSize: '11px', fontWeight: 'bold', fill: amberColor });
+
+            // Label Absis x = -1 dan x = 3 pada Sumbu-X
+            geoGraf.buatTeks(xStas1 - 6, oy + 14, "-1", { position: 'middle-right', fontSize: '11.5px', fontWeight: 'bold', fill: textColor });
+            geoGraf.buatTeks(xStas2 + 6, oy + 14, "3", { position: 'middle-left', fontSize: '11.5px', fontWeight: 'bold', fill: textColor });
+
+            /* -------------------------------------------------------------
+               2. DIAGRAM GARIS BILANGAN UJI TANDA TURUNAN PERTAMA f'(x)
+               ------------------------------------------------------------- */
+            const geoLine = new GeoSVG('geosvg-garisbilangan', 540, 155, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Judul Diagram Garis Bilangan
+            geoLine.buatTeks(270, 20, "Diagram Garis Bilangan Uji Tanda f'(x) = 3(x + 1)(x - 3)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: textColor
+            });
+
+            const lineY = 85;
+            const xNode1 = 185, xNode2 = 355;
+
+            // Garis Bilangan Utama dengan Panah di Kiri dan Kanan
+            geoLine.buatVektor([270, lineY], [45, lineY], { stroke: textColor, strokeWidth: 2 });
+            geoLine.buatVektor([270, lineY], [495, lineY], { stroke: textColor, strokeWidth: 2 });
+
+            // Kotak Tanda + / - / + di Atas Garis Bilangan
+            // Daerah Kiri (x < -1) -> Positif (+)
+            geoLine.buatPersegiPanjang(75, 42, 80, 26, { radius: 6, fill: subtleBg, stroke: tealColor, strokeWidth: 1.5 });
+            geoLine.buatTeks(115, 55, "+ + +", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: tealColor });
+            geoLine.buatVektor([95, 118], [135, 98], { stroke: tealColor, strokeWidth: 2 });
+            geoLine.buatTeks(115, 134, "Naik (x < -1)", { position: 'middle-center', fontSize: '11.5px', fontWeight: 'bold', fill: tealColor });
+
+            // Daerah Tengah (-1 < x < 3) -> Negatif (-)
+            geoLine.buatPersegiPanjang(230, 42, 80, 26, { radius: 6, fill: isDark ? '#2d1a1e' : '#fef2f2', stroke: redColor, strokeWidth: 1.5 });
+            geoLine.buatTeks(270, 55, "- - -", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: redColor });
+            geoLine.buatVektor([250, 98], [290, 118], { stroke: redColor, strokeWidth: 2 });
+            geoLine.buatTeks(270, 134, "Turun (-1 < x < 3)", { position: 'middle-center', fontSize: '11.5px', fontWeight: 'bold', fill: redColor });
+
+            // Daerah Kanan (x > 3) -> Positif (+)
+            geoLine.buatPersegiPanjang(385, 42, 80, 26, { radius: 6, fill: subtleBg, stroke: tealColor, strokeWidth: 1.5 });
+            geoLine.buatTeks(425, 55, "+ + +", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: tealColor });
+            geoLine.buatVektor([405, 118], [445, 98], { stroke: tealColor, strokeWidth: 2 });
+            geoLine.buatTeks(425, 134, "Naik (x > 3)", { position: 'middle-center', fontSize: '11.5px', fontWeight: 'bold', fill: tealColor });
+
+            // Titik Batas Stasioner pada Garis Bilangan
+            geoLine.buatLingkaran([xNode1, lineY], 6, { fill: cardBg, stroke: amberColor, strokeWidth: 2.5 });
+            geoLine.buatTeks(xNode1, lineY + 22, "x = -1", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor });
+
+            geoLine.buatLingkaran([xNode2, lineY], 6, { fill: cardBg, stroke: amberColor, strokeWidth: 2.5 });
+            geoLine.buatTeks(xNode2, lineY + 22, "x = 3", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiMonoton();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiMonoton, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

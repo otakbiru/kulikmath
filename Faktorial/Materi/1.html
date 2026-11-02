@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Faktorial</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Faktorial</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Faktorial & Sifat Rekursif</h2>
+            <p>
+                Untuk setiap bilangan bulat positif $n$, <strong>$n$ faktorial</strong> (dilambangkan dengan $n!$) didefinisikan sebagai hasil kali dari seluruh bilangan asli berurutan mulai dari $1$ sampai dengan $n$:
+                $$n! = n \times (n - 1) \times (n - 2) \times \dots \times 3 \times 2 \times 1$$
+                Secara khusus, untuk bilangan cacah $n = 0$, didefinisikan bahwa:
+                $$0! = 1$$
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Sifat Rekursif Faktorial:</strong><br>
+                        Setiap bentuk faktorial selalu dapat diuraikan menjadi perkalian bilangan itu sendiri dengan faktorial bilangan sebelumnya:
+                        $$n! = n \cdot (n - 1)! = n(n - 1)(n - 2)!$$
+                    </p>
+                    <p>
+                        <strong>Mengapa $0! = 1$?</strong>
+                    </p>
+                    <ol>
+                        <li>
+                            <em>Dari Pola Rekursif:</em> Karena $n! = n \cdot (n-1)!$, maka $(n-1)! = \frac{n!}{n}$. Jika kita substitusikan $n = 1$, diperoleh:
+                            $$0! = \frac{1!}{1} = \frac{1}{1} = 1$$
+                        </li>
+                        <li>
+                            <em>Makna Kombinatorika:</em> $n!$ menyatakan banyaknya cara menyusun $n$ objek berbeda secara berjajar (lihat pohon permutasi $3! = 6$ di samping). Untuk menyusun $0$ objek (himpunan kosong), tepat ada $1$ cara, yaitu tidak menyusun apa pun.
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-perm-tree" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <p>
+                <strong>Tabel Nilai Faktorial Dasar ($0!$ sampai $10!$):</strong><br>
+                Menghafal nilai faktorial hingga $7!$ atau $8!$ akan sangat menghemat waktu saat mengerjakan soal ujian:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>$n!$</th>
+                            <th>Jabaran Perkalian</th>
+                            <th>Nilai</th>
+                            <th>$n!$</th>
+                            <th>Jabaran Perkalian</th>
+                            <th>Nilai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$0!$</td>
+                            <td>Definisi dasar</td>
+                            <td>$1$</td>
+                            <td>$6!$</td>
+                            <td>$6 \times 5!$</td>
+                            <td>$720$</td>
+                        </tr>
+                        <tr>
+                            <td>$1!$</td>
+                            <td>$1$</td>
+                            <td>$1$</td>
+                            <td>$7!$</td>
+                            <td>$7 \times 6!$</td>
+                            <td>$5.040$</td>
+                        </tr>
+                        <tr>
+                            <td>$2!$</td>
+                            <td>$2 \times 1$</td>
+                            <td>$2$</td>
+                            <td>$8!$</td>
+                            <td>$8 \times 7!$</td>
+                            <td>$40.320$</td>
+                        </tr>
+                        <tr>
+                            <td>$3!$</td>
+                            <td>$3 \times 2 \times 1$</td>
+                            <td>$6$</td>
+                            <td>$9!$</td>
+                            <td>$9 \times 8!$</td>
+                            <td>$362.880$</td>
+                        </tr>
+                        <tr>
+                            <td>$4!$</td>
+                            <td>$4 \times 3 \times 2 \times 1$</td>
+                            <td>$24$</td>
+                            <td>$10!$</td>
+                            <td>$10 \times 9!$</td>
+                            <td>$3.628.800$</td>
+                        </tr>
+                        <tr>
+                            <td>$5!$</td>
+                            <td>$5 \times 4!$</td>
+                            <td>$120$</td>
+                            <td colspan="3" class="text-left" style="font-size: 0.85rem; color: var(--text-muted);">
+                                <em>Catatan: Untuk $n \ge 5$, digit satuan dari $n!$ selalu $0$ karena memuat faktor $2 \times 5 = 10$.</em>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>2. Operasi Aljabar & Penyederhanaan Bentuk Faktorial</h2>
+            <p>
+                Perlu diingat bahwa tanda seru faktorial <strong>tidak bersifat distributif</strong> terhadap penjumlahan, pengurangan, maupun perkalian:
+                $$(a + b)! \neq a! + b! \quad \text{dan} \quad (a \cdot b)! \neq a! \cdot b!$$
+                Untuk menyederhanakan pecahan atau penjumlahan yang memuat faktorial, gunakan prinsip <strong>menguraikan faktorial yang lebih besar hingga mencapai bentuk faktorial yang paling kecil</strong>, lalu keluarkan faktor persekutuannya:
+            </p>
+            <ul>
+                <li>
+                    <strong>Penyederhanaan Pembagian:</strong>
+                    $$\frac{(n + 2)!}{n!} = \frac{(n + 2)(n + 1) \cdot n!}{n!} = (n + 2)(n + 1) = n^2 + 3n + 2$$
+                </li>
+                <li>
+                    <strong>Penjumlahan / Pengurangan Suku Faktorial:</strong>
+                    $$(n + 1)! + n! = (n + 1)\cdot n! + 1 \cdot n! = n! \cdot (n + 1 + 1) = (n + 2)\cdot n!$$
+                </li>
+                <li>
+                    <strong>Mengubah Perkalian Berurutan Menjadi Pecahan Faktorial:</strong><br>
+                    Kalikan dan bagi dengan bagian ekor yang hilang:
+                    $$9 \times 8 \times 7 \times 6 = \frac{9 \times 8 \times 7 \times 6 \times 5!}{5!} = \frac{9!}{5!}$$
+                </li>
+            </ul>
+
+            <h2>3. Identitas Teleskopik Faktorial (Sering Keluar di Olimpiade/SNBT)</h2>
+            <p>
+                Terdapat dua identitas manipulasi aljabar pada faktorial yang mengubah penjumlahan panjang menjadi deret teleskopik (suku-sukunya saling menghilangkan):
+            </p>
+            <ol>
+                <li>
+                    <strong>Deret $k \cdot k!$:</strong><br>
+                    Perhatikan bahwa $k \cdot k! = [(k + 1) - 1] \cdot k! = (k + 1)k! - k! = (k + 1)! - k!$.<br>
+                    Jika dijumlahkan untuk $k = 1$ sampai $n$:
+                    $$\sum_{k=1}^{n} k \cdot k! = 1 \cdot 1! + 2 \cdot 2! + 3 \cdot 3! + \dots + n \cdot n!$$
+                    $$= (2! - 1!) + (3! - 2!) + (4! - 3!) + \dots + ((n + 1)! - n!) = (n + 1)! - 1$$
+                </li>
+                <li>
+                    <strong>Deret Pecahan $\frac{k}{(k + 1)!}$:</strong><br>
+                    Perhatikan bahwa $\frac{k}{(k + 1)!} = \frac{(k + 1) - 1}{(k + 1)!} = \frac{k + 1}{(k + 1)!} - \frac{1}{(k + 1)!} = \frac{1}{k!} - \frac{1}{(k + 1)!}$.<br>
+                    Jika dijumlahkan untuk $k = 1$ sampai $n$:
+                    $$\sum_{k=1}^{n} \frac{k}{(k + 1)!} = \frac{1}{2!} + \frac{2}{3!} + \frac{3}{4!} + \dots + \frac{n}{(n + 1)!} = 1 - \frac{1}{(n + 1)!}$$
+                </li>
+            </ol>
+
+            <div class="kesimpulan">
+                💡 Rumus Cepat Deret Teleskopik Faktorial:<br>
+                1. $1 \cdot 1! + 2 \cdot 2! + 3 \cdot 3! + \dots + n \cdot n! = (n + 1)! - 1$<br>
+                2. $\frac{1}{2!} + \frac{2}{3!} + \frac{3}{4!} + \dots + \frac{n}{(n + 1)!} = 1 - \frac{1}{(n + 1)!}$
+            </div>
+
+            <h2>4. Rumus Legendre & Banyaknya Angka Nol di Akhir $n!$</h2>
+            <p>
+                Dalam teori bilangan, kita sering diminta mencari pangkat tertinggi dari suatu bilangan prima $p$ yang habis membagi $n!$ (dilambangkan dengan $v_p(n!)$). Menurut <strong>Rumus Legendre (De Polignac)</strong>:
+                $$v_p(n!) = \left\lfloor \frac{n}{p} \right\rfloor + \left\lfloor \frac{n}{p^2} \right\rfloor + \left\lfloor \frac{n}{p^3} \right\rfloor + \dots = \sum_{k=1}^{\infty} \left\lfloor \frac{n}{p^k} \right\rfloor$$
+                di mana $\lfloor x \rfloor$ adalah fungsi lantai (pembulatan ke bawah ke bilangan bulat terdekat).
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Mengapa Rumus Legendre Menjumlahkan $\lfloor n/p^k \rfloor$?</strong><br>
+                        Perhatikan diagram faktor $p = 2$ pada $8! = 1 \times 2 \times \dots \times 8$ di samping:
+                    </p>
+                    <ul>
+                        <li>Lapis ke-1 ($\lfloor 8/2 \rfloor = 4$): Setiap kelipatan $2$ ($2, 4, 6, 8$) menyumbang <em>minimal satu</em> faktor $2$.</li>
+                        <li>Lapis ke-2 ($\lfloor 8/4 \rfloor = 2$): Kelipatan $4$ ($4, 8$) menyumbang <em>satu faktor $2$ tambahan</em>.</li>
+                        <li>Lapis ke-3 ($\lfloor 8/8 \rfloor = 1$): Kelipatan $8$ ($8$) menyumbang <em>satu faktor $2$ tambahan lagi</em>.</li>
+                    </ul>
+                    <p>
+                        Total pangkat dari $2$ di dalam $8!$ adalah $4 + 2 + 1 = 7$ (sehingga $2^7 \mid 8!$).
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-legendre" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <p>
+                <strong>Menghitung Banyaknya Angka Nol Berurutan di Akhir $n!$ (Trailing Zeros):</strong><br>
+                Angka nol di akhir suatu bilangan terbentuk dari perkalian $10 = 2 \times 5$. Karena di dalam $n!$ banyaknya faktor prima $2$ selalu lebih melimpah daripada faktor prima $5$, maka banyaknya angka $0$ tanpa putus di bagian akhir $n!$ ditentukan sepenuhnya oleh <strong>pangkat tertinggi dari $5$ di dalam $n!$</strong>:
+                $$\text{Banyak angka } 0 \text{ di akhir } n! = v_5(n!) = \left\lfloor \frac{n}{5} \right\rfloor + \left\lfloor \frac{n}{25} \right\rfloor + \left\lfloor \frac{n}{125} \right\rfloor + \dots$$
+            </p>
+
+            <h2>5. Faktorial Ganda ($n!!$) & Hubungannya dengan Kombinatorika</h2>
+            <p>
+                <strong>a. Faktorial Ganda / Semifaktorial ($n!!$)</strong><br>
+                Hati-hati! Notasi $n!!$ <strong>bukan</strong> berarti $(n!)!$, melainkan perkalian bilangan asli dari $n$ yang melompat dua-dua (memiliki paritas ganjil/genap yang sama):
+            </p>
+            <ul>
+                <li>
+                    Jika $n$ <strong>genap</strong> ($n = 2k$):
+                    $$n!! = n \times (n - 2) \times (n - 4) \times \dots \times 4 \times 2 = 2^k \cdot k!$$
+                    Contoh: $8!! = 8 \times 6 \times 4 \times 2 = 384$.
+                </li>
+                <li>
+                    Jika $n$ <strong>ganjil</strong> ($n = 2k - 1$):
+                    $$n!! = n \times (n - 2) \times (n - 4) \times \dots \times 3 \times 1$$
+                    Contoh: $7!! = 7 \times 5 \times 3 \times 1 = 105$.
+                </li>
+                <li>
+                    Berlaku identitas penghubung: $n! = n!! \times (n - 1)!!$.
+                </li>
+            </ul>
+
+            <p>
+                <strong>b. Peran Faktorial pada Rumus Permutasi dan Kombinasi</strong><br>
+                Faktorial merupakan fondasi utama dalam penulisan rumus pencacahan:
+                $$P_r^n = \frac{n!}{(n - r)!} \quad \text{dan} \quad C_r^n = \binom{n}{r} = \frac{n!}{r!(n - r)!}$$
+            </p>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Jika bilangan asli $n$ memenuhi persamaan $\frac{(n + 2)! - (n + 1)!}{n!} = 49$, maka nilai dari $n$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$5$</li>
+                    <li>$6$</li>
+                    <li>$7$</li>
+                    <li>$8$</li>
+                    <li>$9$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Uraikan semua bentuk faktorial pada pembilang hingga memuat faktorial terkecil, yaitu $n!$:
+                    $$(n + 2)! = (n + 2)(n + 1) \cdot n!$$
+                    $$(n + 1)! = (n + 1) \cdot n!$$
+                </p>
+                <p>
+                    2. Substitusikan ke dalam persamaan dan keluarkan faktor persekutuan $(n + 1) \cdot n!$:
+                    $$\frac{(n + 2)(n + 1)\cdot n! - (n + 1)\cdot n!}{n!} = 49$$
+                    $$\frac{n! \cdot (n + 1)\big[(n + 2) - 1\big]}{n!} = 49$$
+                </p>
+                <p>
+                    3. Coret $n!$ pada pembilang dan penyebut:
+                    $$(n + 1)(n + 1) = 49 \iff (n + 1)^2 = 49$$
+                    Karena $n$ adalah bilangan asli ($n > 0$), maka:
+                    $$n + 1 = 7 \implies n = 6$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $n$ yang memenuhi persamaan tersebut adalah $6$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Banyaknya angka nol berurutan tanpa putus di bagian paling akhir (sebelah kanan) dari hasil penjabaran bilangan $2026!$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$405$</li>
+                    <li>$486$</li>
+                    <li>$502$</li>
+                    <li>$505$</li>
+                    <li>$506$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Banyaknya angka nol berurutan di akhir $2026!$ sama dengan pangkat tertinggi dari faktor prima $5$ di dalam $2026!$. Kita gunakan <strong>Rumus Legendre</strong>:
+                    $$v_5(2026!) = \left\lfloor \frac{2026}{5} \right\rfloor + \left\lfloor \frac{2026}{25} \right\rfloor + \left\lfloor \frac{2026}{125} \right\rfloor + \left\lfloor \frac{2026}{625} \right\rfloor$$
+                    <em>(Pangkat berikutnya adalah $5^5 = 3125 > 2026$, sehingga hasil baginya $0$).</em>
+                </p>
+                <p>
+                    2. Hitung masing-masing suku pembagian bulat ke bawah:
+                </p>
+                <ul>
+                    <li>$\left\lfloor \frac{2026}{5} \right\rfloor = 405$</li>
+                    <li>$\left\lfloor \frac{2026}{25} \right\rfloor = \left\lfloor \frac{405}{5} \right\rfloor = 81$</li>
+                    <li>$\left\lfloor \frac{2026}{125} \right\rfloor = \left\lfloor \frac{81}{5} \right\rfloor = 16$</li>
+                    <li>$\left\lfloor \frac{2026}{625} \right\rfloor = \left\lfloor \frac{16}{5} \right\rfloor = 3$</li>
+                </ul>
+                <p>
+                    3. Jumlahkan seluruh hasilnya:
+                    $$v_5(2026!) = 405 + 81 + 16 + 3 = 505$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, banyaknya angka nol berurutan di akhir $2026!$ adalah $505$ (Jawaban D).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Digit satuan (angka terakhir) dari hasil penjumlahan deret $S = 1 \cdot 1! + 2 \cdot 2! + 3 \cdot 3! + \dots + 2025 \cdot 2025!$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$0$</li>
+                    <li>$1$</li>
+                    <li>$3$</li>
+                    <li>$8$</li>
+                    <li>$9$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Gunakan identitas teleskopik faktorial $k \cdot k! = (k + 1)! - k!$:
+                    $$S = (2! - 1!) + (3! - 2!) + (4! - 3!) + \dots + (2026! - 2025!)$$
+                    Seluruh suku tengah saling menghilangkan, sehingga menyisakan:
+                    $$S = 2026! - 1! = 2026! - 1$$
+                </p>
+                <p>
+                    2. Karena $2026 \ge 5$, bilangan $2026!$ memuat faktor $2 \times 5 = 10$ (bahkan berakhiran $505$ angka nol), sehingga digit satuan dari $2026!$ adalah $0$ ($\dots 000$).
+                </p>
+                <p>
+                    3. Ketika bilangan yang berakhiran angka $0$ dikurangi dengan $1$, maka digit satuannya menjadi:
+                    $$\dots 000 - 1 = \dots 999 \implies \text{digit satuannya adalah } 9$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, digit satuan dari hasil penjumlahan deret tersebut adalah $9$ (Jawaban E).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Jika $n$ adalah bilangan bulat non-negatif terbesar sehingga $3^n$ habis membagi $30!$, maka nilai dari $n$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$10$</li>
+                    <li>$12$</li>
+                    <li>$13$</li>
+                    <li>$14$</li>
+                    <li>$15$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Karena $p = 3$ adalah bilangan prima, pangkat tertinggi dari $3$ yang habis membagi $30!$ dapat langsung dihitung dengan <strong>Rumus Legendre</strong>:
+                    $$n = v_3(30!) = \left\lfloor \frac{30}{3} \right\rfloor + \left\lfloor \frac{30}{3^2} \right\rfloor + \left\lfloor \frac{30}{3^3} \right\rfloor$$
+                </p>
+                <p>
+                    2. Hitung nilai masing-masing suku:
+                </p>
+                <ul>
+                    <li>$\left\lfloor \frac{30}{3} \right\rfloor = 10$</li>
+                    <li>$\left\lfloor \frac{30}{9} \right\rfloor = \lfloor 3{,}33 \rfloor = 3$</li>
+                    <li>$\left\lfloor \frac{30}{27} \right\rfloor = \lfloor 1{,}11 \rfloor = 1$</li>
+                </ul>
+                <p>
+                    3. Jumlahkan hasilnya:
+                    $$n = 10 + 3 + 1 = 14$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai bilangan bulat terbesar $n$ adalah $14$ (Jawaban D).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Pohon Rekursif Permutasi 3! = 3 x 2 x 1 = 6 menggunakan GeoSVG.js
+            const containerPerm = document.getElementById("geosvg-perm-tree");
+            if (containerPerm && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerPerm, 320, 235, {
+                    viewBox: "0 0 320 235",
+                    clearContainer: true,
+                    title: "Pohon Permutasi 3 Faktorial",
+                    description: "Diagram pohon yang menunjukkan 3! = 3 x 2 x 1 = 6 susunan dari huruf A, B, C"
+                });
+
+                geo1.buatTeks(160, 14, "Pohon Pencacahan 3! = 3 × 2 × 1 = 6", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    position: "middle-center"
+                });
+
+                const root = [18, 125];
+                const lv1 = [
+                    { pt: [88, 55], label: "A" },
+                    { pt: [88, 125], label: "B" },
+                    { pt: [88, 195], label: "C" }
+                ];
+                const lv2 = [
+                    { parent: 0, pt: [165, 38], label: "B", end: "C", res: "ABC" },
+                    { parent: 0, pt: [165, 72], label: "C", end: "B", res: "ACB" },
+                    { parent: 1, pt: [165, 108], label: "A", end: "C", res: "BAC" },
+                    { parent: 1, pt: [165, 142], label: "C", end: "A", res: "BCA" },
+                    { parent: 2, pt: [165, 178], label: "A", end: "B", res: "CAB" },
+                    { parent: 2, pt: [165, 212], label: "B", end: "A", res: "CBA" }
+                ];
+
+                // Header tahapan
+                geo1.buatTeks(88, 28, "Pilih ke-1 (3)", { fill: "var(--text-muted)", fontSize: "9.5px", position: "middle-center" });
+                geo1.buatTeks(165, 28, "Pilih ke-2 (2)", { fill: "var(--text-muted)", fontSize: "9.5px", position: "middle-center" });
+                geo1.buatTeks(232, 28, "Sisa (1)", { fill: "var(--text-muted)", fontSize: "9.5px", position: "middle-center" });
+                geo1.buatTeks(288, 28, "Urutan", { fill: "var(--text-muted)", fontSize: "9.5px", position: "middle-center" });
+
+                // Garis dari root ke level 1
+                lv1.forEach(n1 => {
+                    geo1.buatSegmen(root, n1.pt, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                });
+
+                // Garis dari level 1 ke level 2 & level 3
+                lv2.forEach(n2 => {
+                    const p1 = lv1[n2.parent].pt;
+                    const p3 = [232, n2.pt[1]];
+                    geo1.buatSegmen(p1, n2.pt, { stroke: "#d97706", strokeWidth: 1.5 });
+                    geo1.buatSegmen(n2.pt, p3, { stroke: "var(--text-muted)", strokeWidth: 1.3, dashed: "3 2" });
+
+                    geo1.buatTitik(n2.pt, {
+                        size: 3.5,
+                        color: "#d97706",
+                        label: n2.label,
+                        labelPosition: "top-center",
+                        labelDistance: 4,
+                        bold: true
+                    });
+                    geo1.buatTitik(p3, {
+                        size: 3.5,
+                        color: "var(--text-main)",
+                        label: n2.end,
+                        labelPosition: "top-center",
+                        labelDistance: 4
+                    });
+
+                    // Kotak hasil urutan
+                    geo1.buatPersegiPanjang(262, n2.pt[1] - 10, 48, 20, {
+                        radius: 4,
+                        fill: "rgba(13, 148, 136, 0.14)",
+                        stroke: "var(--teal-primary)",
+                        strokeWidth: 1.2
+                    });
+                    geo1.buatTeks(286, n2.pt[1], n2.res, {
+                        fill: "var(--text-main)",
+                        fontSize: "10.5px",
+                        fontWeight: "bold",
+                        position: "middle-center"
+                    });
+                });
+
+                geo1.buatTitik(root, { size: 4, color: "var(--text-main)" });
+                lv1.forEach(n1 => {
+                    geo1.buatTitik(n1.pt, {
+                        size: 4.5,
+                        color: "var(--teal-primary)",
+                        label: n1.label,
+                        labelPosition: "top-left",
+                        labelDistance: 5,
+                        bold: true
+                    });
+                });
+            }
+
+            // 2. Visualisasi Rumus Legendre v_2(8!) = 4 + 2 + 1 = 7 menggunakan GeoSVG.js
+            const containerLegendre = document.getElementById("geosvg-legendre");
+            if (containerLegendre && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerLegendre, 330, 210, {
+                    viewBox: "0 0 330 210",
+                    clearContainer: true,
+                    title: "Visualisasi Rumus Legendre untuk 2 pada 8 Faktorial",
+                    description: "Diagram blok faktor prima 2 pada bilangan 1 sampai 8 yang dijumlahkan per lapisan"
+                });
+
+                geo2.buatTeks(165, 15, "Lapisan Faktor Prima 2 pada 8!", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    position: "middle-center"
+                });
+
+                const startX = 18;
+                const colW = 28;
+                const gapX = 4;
+                const baseY = 152;
+                const boxH = 26;
+                const gapY = 4;
+
+                // Banyak faktor 2 untuk angka 1..8
+                const exp2 = [0, 1, 0, 2, 0, 1, 0, 3];
+
+                for (let i = 0; i < 8; i++) {
+                    const num = i + 1;
+                    const x = startX + i * (colW + gapX);
+                    const cx = x + colW / 2;
+
+                    // Label angka 1..8 di bawah
+                    geo2.buatPersegiPanjang(x, baseY + 6, colW, 24, {
+                        radius: 4,
+                        fill: exp2[i] > 0 ? "rgba(13, 148, 136, 0.12)" : "var(--bg-body)",
+                        stroke: exp2[i] > 0 ? "var(--teal-primary)" : "var(--border-color)",
+                        strokeWidth: 1.2
+                    });
+                    geo2.buatTeks(cx, baseY + 18, String(num), {
+                        fill: "var(--text-main)",
+                        fontWeight: "bold",
+                        fontSize: "11.5px",
+                        position: "middle-center"
+                    });
+
+                    // Tumpukan blok faktor "x2" ke atas
+                    for (let lv = 0; lv < exp2[i]; lv++) {
+                        const by = baseY - (lv + 1) * (boxH + gapY);
+                        const isTopLayer = lv === 2;
+                        const isMidLayer = lv === 1;
+
+                        const fillCol = isTopLayer
+                            ? "rgba(239, 68, 68, 0.2)"
+                            : (isMidLayer ? "rgba(217, 119, 6, 0.22)" : "rgba(13, 148, 136, 0.22)");
+                        const strokeCol = isTopLayer ? "#ef4444" : (isMidLayer ? "#d97706" : "var(--teal-primary)");
+
+                        geo2.buatPersegiPanjang(x, by, colW, boxH, {
+                            radius: 4,
+                            fill: fillCol,
+                            stroke: strokeCol,
+                            strokeWidth: 1.5
+                        });
+                        geo2.buatTeks(cx, by + boxH / 2, "×2", {
+                            fill: strokeCol,
+                            fontWeight: "bold",
+                            fontSize: "10.5px",
+                            position: "middle-center"
+                        });
+                    }
+                }
+
+                // Keterangan jumlah tiap lapisan di sisi kanan
+                const labelX = 276;
+                geo2.buatTeks(labelX, baseY - 1 * (boxH + gapY) + boxH / 2, "⌊8/2⌋ = 4", {
+                    fill: "var(--teal-primary)", fontWeight: "bold", fontSize: "11px", position: "middle-center"
+                });
+                geo2.buatTeks(labelX, baseY - 2 * (boxH + gapY) + boxH / 2, "⌊8/4⌋ = 2", {
+                    fill: "#d97706", fontWeight: "bold", fontSize: "11px", position: "middle-center"
+                });
+                geo2.buatTeks(labelX, baseY - 3 * (boxH + gapY) + boxH / 2, "⌊8/8⌋ = 1", {
+                    fill: "#ef4444", fontWeight: "bold", fontSize: "11px", position: "middle-center"
+                });
+
+                geo2.buatTeks(165, 196, "Total Pangkat 2 dalam 8! :  v₂(8!) = 4 + 2 + 1 = 7", {
+                    fill: "var(--text-main)",
+                    fontWeight: "bold",
+                    fontSize: "11px",
+                    position: "middle-center"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Fungsi Kuadrat</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Fungsi Kuadrat</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Bentuk Umum Fungsi Kuadrat</h2>
+            <p>
+                <strong>Fungsi Kuadrat</strong> adalah suatu fungsi polinomial (suku banyak) yang memiliki pangkat tertinggi variabelnya sama dengan dua. Grafik dari fungsi kuadrat pada bidang koordinat Kartesius selalu berbentuk kurva mulus yang disebut <strong>parabola</strong>.
+            </p>
+            <p>
+                Bentuk umum fungsi kuadrat dalam variabel $x$ dinyatakan sebagai:
+                $$f(x) = ax^2 + bx + c \quad \text{atau} \quad y = ax^2 + bx + c$$
+                dengan keterangan:
+            </p>
+            <ul>
+                <li>$a, b, c \in \mathbb{R}$ dan syarat mutlak <strong>$a \neq 0$</strong> (jika $a = 0$, maka fungsinya menjadi fungsi linear).</li>
+                <li>$a$ disebut koefisien $x^2$, $b$ disebut koefisien $x$, dan $c$ disebut suku tetapan (konstanta).</li>
+                <li>Daerah asal alami (domain) fungsi kuadrat adalah seluruh bilangan real, yaitu $D_f = \{x \mid x \in \mathbb{R}\}$.</li>
+            </ul>
+
+            <h2>2. Unsur-Unsur Penting Grafik Fungsi Kuadrat (Parabola)</h2>
+            <p>
+                Untuk menggambar atau menganalisis sketsa grafik fungsi kuadrat $y = ax^2 + bx + c$, terdapat empat unsur geometri utama pada parabola yang perlu ditentukan:
+            </p>
+            <ol>
+                <li>
+                    <strong>Titik Potong terhadap Sumbu-$Y$:</strong><br>
+                    Diperoleh saat nilai absis $x = 0$. Substitusi $x = 0$ menghasilkan $y = a(0)^2 + b(0) + c = c$, sehingga titik potong sumbu-$Y$ selalu berada di koordinat:
+                    $$(0, c)$$
+                </li>
+                <li>
+                    <strong>Titik Potong terhadap Sumbu-$X$ (Jika Ada):</strong><br>
+                    Diperoleh saat nilai ordinat $y = 0$, sehingga kita mencari akar-akar persamaan kuadrat $ax^2 + bx + c = 0$ (dengan pemfaktoran, melengkapkan kuadrat sempurna, atau rumus ABC). Jika akar-akarnya adalah $x_1$ dan $x_2$, maka titik potongnya adalah:
+                    $$(x_1, 0) \quad \text{dan} \quad (x_2, 0)$$
+                </li>
+                <li>
+                    <strong>Garis Sumbu Simetri ($x_p$):</strong><br>
+                    Merupakan garis vertikal yang membagi parabola menjadi dua bagian yang tepat setangkup (simetris). Persamaan garis sumbu simetri berada tepat di tengah-tengah kedua akar $x_1$ dan $x_2$:
+                    $$x_p = \frac{x_1 + x_2}{2} = -\frac{b}{2a}$$
+                </li>
+                <li>
+                    <strong>Titik Puncak / Titik Ekstrem / Titik Balik $(x_p, y_p)$:</strong><br>
+                    Merupakan titik terendah (minimum) jika parabola terbuka ke atas, atau titik tertinggi (maksimum) jika parabola terbuka ke bawah. Nilai ekstrem $y_p = f(x_p)$ dirumuskan sebagai:
+                    $$y_p = -\frac{D}{4a} = -\frac{b^2 - 4ac}{4a}$$
+                    Sehingga koordinat titik puncak parabola adalah:
+                    $$P(x_p, y_p) = \left(-\frac{b}{2a}, \; -\frac{D}{4a}\right)$$
+                </li>
+            </ol>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-parabola" style="width: 100%; max-width: 520px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Pengaruh Koefisien $a, b, c$ dan Diskriminan $D$ pada Grafik</h2>
+            <p>
+                Bentuk bukaan, posisi sumbu simetri, serta kedudukan parabola terhadap sumbu-$X$ dapat langsung dikenali hanya dengan melihat tanda positif/negatif dari $a$, $b$, $c$, dan nilai diskriminan $D = b^2 - 4ac$:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Komponen</th>
+                            <th>Kondisi Nilai</th>
+                            <th>Arti Geometri pada Grafik Parabola</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2"><strong>Koefisien $a$</strong><br>(Arah Bukaan)</td>
+                            <td>$a > 0$</td>
+                            <td class="text-left">Parabola <strong>terbuka ke atas</strong> $\cup$, memiliki nilai balik <strong>minimum</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td>$a < 0$</td>
+                            <td class="text-left">Parabola <strong>terbuka ke bawah</strong> $\cap$, memiliki nilai balik <strong>maksimum</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"><strong>Koefisien $b$</strong><br>(Posisi Puncak terhadap Sumbu-$Y$)</td>
+                            <td>$a$ dan $b$ bertanda sama<br>($a \cdot b > 0$)</td>
+                            <td class="text-left">Sumbu simetri $x_p = -\frac{b}{2a} < 0$, puncak berada di <strong>sebelah kiri</strong> sumbu-$Y$.</td>
+                        </tr>
+                        <tr>
+                            <td>$b = 0$</td>
+                            <td class="text-left">Sumbu simetri $x_p = 0$, puncak berada <strong>tepat pada</strong> sumbu-$Y$.</td>
+                        </tr>
+                        <tr>
+                            <td>$a$ dan $b$ beda tanda<br>($a \cdot b < 0$)</td>
+                            <td class="text-left">Sumbu simetri $x_p = -\frac{b}{2a} > 0$, puncak berada di <strong>sebelah kanan</strong> sumbu-$Y$.</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"><strong>Konstanta $c$</strong><br>(Perpotongan Sumbu-$Y$)</td>
+                            <td>$c > 0$</td>
+                            <td class="text-left">Memotong sumbu-$Y$ positif (di atas titik asal $O$).</td>
+                        </tr>
+                        <tr>
+                            <td>$c = 0$</td>
+                            <td class="text-left">Memotong sumbu-$Y$ tepat di titik asal $O(0,0)$.</td>
+                        </tr>
+                        <tr>
+                            <td>$c < 0$</td>
+                            <td class="text-left">Memotong sumbu-$Y$ negatif (di bawah titik asal $O$).</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"><strong>Diskriminan</strong><br>$D = b^2 - 4ac$<br>(Kedudukan thd Sumbu-$X$)</td>
+                            <td>$D > 0$</td>
+                            <td class="text-left">Memotong sumbu-$X$ di <strong>dua titik berbeda</strong> $(x_1, 0)$ dan $(x_2, 0)$.</td>
+                        </tr>
+                        <tr>
+                            <td>$D = 0$</td>
+                            <td class="text-left"><strong>Menyinggung</strong> sumbu-$X$ tepat di satu titik $(x_p, 0)$.</td>
+                        </tr>
+                        <tr>
+                            <td>$D < 0$</td>
+                            <td class="text-left"><strong>Tidak memotong maupun menyinggung</strong> sumbu-$X$ (melayang).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. Sifat Definit Positif dan Definit Negatif</h2>
+            <p>
+                Ketika nilai diskriminan $D < 0$, grafik parabola sama sekali tidak menyentuh sumbu-$X$. Hal ini memunculkan dua kondisi khusus yang sangat sering diujikan:
+            </p>
+            <ul>
+                <li>
+                    <strong>Definit Positif:</strong> Nilai fungsi $f(x) > 0$ untuk setiap $x \in \mathbb{R}$ (seluruh grafik parabola melayang di <strong>atas</strong> sumbu-$X$). Syaratnya:
+                    $$a > 0 \quad \text{dan} \quad D < 0$$
+                </li>
+                <li>
+                    <strong>Definit Negatif:</strong> Nilai fungsi $f(x) < 0$ untuk setiap $x \in \mathbb{R}$ (seluruh grafik parabola berada di <strong>bawah</strong> sumbu-$X$). Syaratnya:
+                    $$a < 0 \quad \text{dan} \quad D < 0$$
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-diskriminan" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Menyusun Persamaan Fungsi Kuadrat</h2>
+            <p>
+                Jika grafik atau ciri-ciri suatu parabola diketahui, kita dapat menyusun kembali rumus fungsi kuadratnya menggunakan salah satu dari tiga rumus berikut sesuai informasi yang diberikan pada soal:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Informasi yang Diketahui</th>
+                            <th>Rumus Menyusun Fungsi Kuadrat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>1. Diketahui Titik Puncak $(x_p, y_p)$</strong> dan satu titik sembarang $(x, y)$</td>
+                            <td>$$y = a(x - x_p)^2 + y_p$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>2. Diketahui Dua Titik Potong Sumbu-$X$ $(x_1, 0)$ dan $(x_2, 0)$</strong> serta satu titik sembarang $(x, y)$</td>
+                            <td>$$y = a(x - x_1)(x - x_2)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>3. Diketahui Tiga Titik Sembarang</strong> $(x_1, y_1)$, $(x_2, y_2)$, dan $(x_3, y_3)$</td>
+                            <td>Substitusikan ketiga titik ke $y = ax^2 + bx + c$, lalu selesaikan <strong>SPLTV</strong> untuk mencari $a, b, c$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Tips Cepat Range Fungsi Kuadrat: Jika $a > 0$, maka daerah hasil (range) fungsi kuadrat adalah $R_f = \{y \mid y \ge y_p\}$. Sebaliknya, jika $a < 0$, maka daerah hasilnya adalah $R_f = \{y \mid y \le y_p\}$.
+            </div>
+
+            <h2>6. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk mendalami cara menentukan titik puncak, menyusun persamaan fungsi kuadrat dari grafik, serta menerapkan syarat definit. Klik tombol <strong>Lihat Penyelesaian</strong> untuk melihat langkah pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Diketahui fungsi kuadrat $f(x) = x^2 - 4x - 5$. Tentukan:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Titik potong grafik terhadap sumbu-$X$ dan sumbu-$Y$.</li>
+                        <li>Persamaan sumbu simetri, koordinat titik puncak, serta daerah hasil (range) fungsi $f$.</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Dari fungsi $f(x) = x^2 - 4x - 5$, diperoleh nilai koefisien $a = 1$, $b = -4$, dan $c = -5$.
+                    </p>
+                    <p>
+                        <strong>1. Titik potong terhadap sumbu-$X$ dan sumbu-$Y$:</strong><br>
+                        - Memotong sumbu-$Y$ ($x = 0$): $y = (0)^2 - 4(0) - 5 = -5 \implies$ Titik potong sumbu-$Y$ adalah $(0, -5)$.<br>
+                        - Memotong sumbu-$X$ ($y = 0$):
+                        $$x^2 - 4x - 5 = 0 \implies (x + 1)(x - 5) = 0$$
+                        Diperoleh $x_1 = -1$ atau $x_2 = 5$. Maka titik potong terhadap sumbu-$X$ adalah $(-1, 0)$ dan $(5, 0)$.
+                    </p>
+                    <p>
+                        <strong>2. Sumbu simetri, titik puncak, dan range:</strong><br>
+                        - Persamaan sumbu simetri ($x_p$):
+                        $$x_p = -\frac{b}{2a} = -\frac{-4}{2(1)} = 2$$
+                        - Nilai ekstrem ($y_p$) diperoleh dengan mensubstitusikan $x_p = 2$ ke $f(x)$:
+                        $$y_p = f(2) = (2)^2 - 4(2) - 5 = 4 - 8 - 5 = -9$$
+                        Sehingga koordinat titik puncaknya adalah $P(2, -9)$.<br>
+                        - Karena $a = 1 > 0$ (parabola terbuka ke atas), maka $y_p = -9$ adalah nilai minimum, sehingga daerah hasilnya adalah $R_f = \{y \mid y \ge -9, \; y \in \mathbb{R}\}$.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, titik potong sumbu-$X$ di $(-1,0)$ dan $(5,0)$, titik potong sumbu-$Y$ di $(0,-5)$, titik puncak di $(2,-9)$, serta range $R_f = \{y \mid y \ge -9\}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Suatu parabola memiliki titik puncak di koordinat $(3, -1)$ dan grafik tersebut melalui titik $(1, 7)$. Tentukan persamaan fungsi kuadrat tersebut dalam bentuk umum $f(x) = ax^2 + bx + c$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Karena diketahui titik puncak $(x_p, y_p) = (3, -1)$, kita gunakan rumus penyusunan fungsi kuadrat:
+                        $$y = a(x - x_p)^2 + y_p$$
+                        $$y = a(x - 3)^2 - 1$$
+                    </p>
+                    <p>
+                        Selanjutnya, karena grafik melalui titik $(1, 7)$, kita substitusikan $x = 1$ dan $y = 7$ untuk mencari nilai $a$:
+                        $$7 = a(1 - 3)^2 - 1$$
+                        $$7 + 1 = a(-2)^2 \implies 8 = 4a \implies a = 2$$
+                    </p>
+                    <p>
+                        Substitusikan kembali nilai $a = 2$ lalu jabarkan ke bentuk umum:
+                        $$f(x) = 2(x - 3)^2 - 1$$
+                        $$f(x) = 2(x^2 - 6x + 9) - 1 = 2x^2 - 12x + 18 - 1 = 2x^2 - 12x + 17$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, persamaan fungsi kuadrat tersebut adalah $f(x) = 2x^2 - 12x + 17$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Agar grafik fungsi kuadrat $f(x) = (m - 1)x^2 - 2mx + (m + 3)$ seluruhnya berada di atas sumbu-$X$ (definit positif), tentukan batas-batas nilai $m$ yang memenuhi!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Dari fungsi kuadrat $f(x) = (m - 1)x^2 - 2mx + (m + 3)$, kita identifikasi:
+                        $$a = m - 1, \quad b = -2m, \quad c = m + 3$$
+                        Agar grafik seluruhnya berada di atas sumbu-$X$ (<strong>definit positif</strong>), harus memenuhi dua syarat sekaligus, yaitu $a > 0$ dan $D < 0$:
+                    </p>
+                    <p>
+                        <strong>Syarat 1 ($a > 0$):</strong>
+                        $$m - 1 > 0 \implies m > 1 \quad \dots (1)$$
+                    </p>
+                    <p>
+                        <strong>Syarat 2 ($D < 0$):</strong>
+                        $$b^2 - 4ac < 0$$
+                        $$(-2m)^2 - 4(m - 1)(m + 3) < 0$$
+                        $$4m^2 - 4(m^2 + 2m - 3) < 0$$
+                        $$4m^2 - 4m^2 - 8m + 12 < 0$$
+                        $$-8m + 12 < 0 \implies -8m < -12 \implies m > \frac{12}{8} \implies m > \frac{3}{2} \quad \dots (2)$$
+                    </p>
+                    <p>
+                        Irisan dari syarat $(1)$ yaitu $m > 1$ dan syarat $(2)$ yaitu $m > \dfrac{3}{2}$ adalah $m > \dfrac{3}{2}$.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, batas nilai $m$ agar fungsi kuadrat tersebut definit positif adalah $m > \dfrac{3}{2}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiKuadrat() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const gridColor = isDark ? '#334155' : '#e2e8f0';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const redColor = isDark ? '#f87171' : '#ef4444';
+
+            /* -------------------------------------------------------------
+               1. ANATOMI GRAFIK PARABOLA f(x) = x^2 - 4x - 5
+               ------------------------------------------------------------- */
+            const geoPara = new GeoSVG('geosvg-parabola', 500, 310, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Transformasi koordinat matematika (x, y) ke piksel layar (px, py)
+            // Pusat O(0,0) di (160, 95), skalaX = 36 px/satuan, skalaY = 18 px/satuan
+            const ox = 160, oy = 95, sx = 36, sy = 18;
+            const toScreen = (x, y) => [ox + x * sx, oy - y * sy];
+
+            // Sumbu X dan Sumbu Y
+            geoPara.buatVektor([30, oy], [460, oy], { stroke: mutedColor, strokeWidth: 1.5, label: 'X', labelPosisi: 'akhir', labelJarak: 12, labelColor: textColor, bold: true });
+            geoPara.buatVektor([ox, 285], [ox, 20], { stroke: mutedColor, strokeWidth: 1.5, label: 'Y', labelPosisi: 'akhir', labelJarak: 12, labelColor: textColor, bold: true });
+            geoPara.buatTeks(ox - 10, oy + 12, "O", { fontSize: '11px', fill: mutedColor });
+
+            // Garis Sumbu Simetri x = 2
+            const [symX] = toScreen(2, 0);
+            geoPara.buatSegmen([symX, 25], [symX, 280], { stroke: amberColor, strokeWidth: 1.6, dashed: '5 4' });
+            geoPara.buatTeks(symX + 6, 36, "Sumbu Simetri x = 2", { position: 'middle-left', fontSize: '11.5px', fontWeight: 'bold', fill: amberColor });
+
+            // Garis bantu ordinat puncak y = -9
+            const [pxPuncak, pyPuncak] = toScreen(2, -9);
+            geoPara.buatSegmen([ox, pyPuncak], [pxPuncak, pyPuncak], { stroke: gridColor, strokeWidth: 1.3, dashed: '4 4' });
+
+            // Kurva Parabola y = x^2 - 4x - 5 untuk x dari -2 sampai 6
+            const ptsParabola = [];
+            for (let x = -1.9; x <= 5.9; x += 0.2) {
+                const y = x * x - 4 * x - 5;
+                ptsParabola.push(toScreen(x, y));
+            }
+            geoPara.buatPolyline(ptsParabola, { stroke: tealColor, strokeWidth: 2.6 });
+
+            // Titik-Titik Penting pada Parabola
+            // 1. Titik Potong Sumbu-X: (-1, 0) dan (5, 0)
+            geoPara.buatTitik(toScreen(-1, 0), { size: 4.5, color: tealColor, label: '(-1, 0)', labelPosition: 'top-left', labelDistance: 7, labelColor: textColor, bold: true });
+            geoPara.buatTitik(toScreen(5, 0), { size: 4.5, color: tealColor, label: '(5, 0)', labelPosition: 'top-right', labelDistance: 7, labelColor: textColor, bold: true });
+
+            // 2. Titik Potong Sumbu-Y: (0, -5)
+            geoPara.buatTitik(toScreen(0, -5), { size: 4.5, color: amberColor, label: '(0, -5)', labelPosition: 'middle-left', labelDistance: 8, labelColor: textColor, bold: true });
+
+            // 3. Titik Puncak / Balik Minimum: P(2, -9)
+            geoPara.buatTitik([pxPuncak, pyPuncak], { size: 5, color: redColor, label: 'Puncak P(2, -9)', labelPosition: 'bottom-center', labelDistance: 10, labelColor: redColor, bold: true });
+
+            /* -------------------------------------------------------------
+               2. PERBANDINGAN NILAI DISKRIMINAN D > 0, D = 0, D < 0 (a > 0)
+               ------------------------------------------------------------- */
+            const geoDisk = new GeoSVG('geosvg-diskriminan', 560, 210, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Tiga Panel Sumbu-X untuk membandingkan D > 0, D = 0, dan D < 0
+            const panels = [
+                { cx: 95, title: "D > 0 (a > 0)", desc: "Memotong 2 Titik", shiftY: 32, color: tealColor, roots: [-28, 28] },
+                { cx: 280, title: "D = 0 (a > 0)", desc: "Menyinggung 1 Titik", shiftY: 0, color: amberColor, roots: [0] },
+                { cx: 465, title: "D < 0 (a > 0)", desc: "Definit Positif", shiftY: -28, color: redColor, roots: [] }
+            ];
+
+            const axisY = 135;
+            panels.forEach(p => {
+                // Judul Panel
+                geoDisk.buatTeks(p.cx, 22, p.title, { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: p.color });
+                geoDisk.buatTeks(p.cx, 40, p.desc, { position: 'middle-center', fontSize: '11.5px', fill: mutedColor });
+
+                // Garis Sumbu-X tiap panel
+                geoDisk.buatVektor([p.cx - 72, axisY], [p.cx + 72, axisY], { stroke: mutedColor, strokeWidth: 1.5 });
+                geoDisk.buatTeks(p.cx + 68, axisY + 14, "X", { position: 'middle-center', fontSize: '10.5px', fill: mutedColor });
+
+                // Kurva Parabola
+                const curvePts = [];
+                for (let dx = -50; dx <= 50; dx += 4) {
+                    const dy = -(dx * dx) / 24.5 + p.shiftY;
+                    curvePts.push([p.cx + dx, axisY + dy]);
+                }
+                geoDisk.buatPolyline(curvePts, { stroke: p.color, strokeWidth: 2.3 });
+
+                // Titik potong dengan Sumbu-X
+                p.roots.forEach(rx => {
+                    geoDisk.buatTitik([p.cx + rx, axisY], { size: 4, color: p.color });
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiKuadrat();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiKuadrat, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

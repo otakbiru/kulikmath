@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Fungsi Komposisi</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Fungsi Komposisi</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Konsep Dasar Fungsi Komposisi</h2>
+            <p>
+                <strong>Fungsi Komposisi</strong> adalah penggabungan dua fungsi atau lebih secara berurutan sehingga menghasilkan sebuah fungsi baru. Operasi komposisi dilambangkan dengan simbol bundaran $\circ$ (dibaca: <em>"komposisi"</em> atau <em>"bundaran"</em>).
+            </p>
+            <p>
+                Misalkan fungsi $g: A \to B$ memetakan $x \in A$ ke $y = g(x) \in B$, kemudian dilanjutkan oleh fungsi $f: B \to C$ yang memetakan $y = g(x) \in B$ ke $z = f(g(x)) \in C$. Maka fungsi komposisi yang memetakan langsung anggota himpunan $A$ ke himpunan $C$ ditulis sebagai $(f \circ g)(x)$:
+                $$(f \circ g)(x) = f(g(x))$$
+                Sebaliknya, jika fungsi $f$ dikerjakan terlebih dahulu baru dilanjutkan dengan fungsi $g$, maka notasinya adalah:
+                $$(g \circ f)(x) = g(f(x))$$
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-komposisi" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Ingat Urutan Pengerjaan: Pada bentuk $(f \circ g)(x) = f(g(x))$, fungsi yang berada di sebelah <strong>kanan (di dalam)</strong> yaitu $g(x)$ dikerjakan terlebih dahulu, kemudian hasilnya dimasukkan ke dalam fungsi di sebelah <strong>kiri (di luar)</strong> yaitu $f(x)$.
+            </div>
+
+            <h2>2. Analogi Mesin Fungsi & Syarat Terbentuknya Komposisi</h2>
+            <p>
+                Proses komposisi $(f \circ g)(x)$ dapat dibayangkan seperti dua mesin produksi yang bekerja secara berantai. Input awal $x$ masuk ke <strong>Mesin I ($g$)</strong> menghasilkan output antara $g(x)$, lalu output tersebut langsung menjadi bahan baku (input) bagi <strong>Mesin II ($f$)</strong> hingga menghasilkan produk akhir $f(g(x))$.
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-mesin" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <p>
+                Tidak semua pasangan dua fungsi dapat dikomposisikan. Agar fungsi komposisi $(f \circ g)(x) = f(g(x))$ terdefinisi (dapat dibentuk), hasil keluaran dari fungsi pertama ($R_g$) harus ada yang termasuk ke dalam daerah asal fungsi kedua ($D_f$).
+            </p>
+            <ul>
+                <li><strong>Syarat terdefinisi $(f \circ g)(x)$:</strong> Irisan antara range fungsi $g$ dan domain fungsi $f$ tidak boleh kosong:
+                    $$R_g \cap D_f \neq \emptyset$$
+                </li>
+                <li><strong>Domain Fungsi Komposisi $(D_{f \circ g})$:</strong> Himpunan semua nilai $x$ di domain $g$ yang hasil pemetaannya $g(x)$ berada di dalam domain $f$:
+                    $$D_{f \circ g} = \{x \in D_g \mid g(x) \in D_f\}$$
+                </li>
+                <li><strong>Syarat terdefinisi $(g \circ f)(x)$:</strong> Irisan antara range fungsi $f$ dan domain fungsi $g$ tidak boleh kosong ($R_f \cap D_g \neq \emptyset$), dengan domain $D_{g \circ f} = \{x \in D_f \mid f(x) \in D_g\}$.</li>
+            </ul>
+
+            <h2>3. Sifat-Sifat Operasi Fungsi Komposisi</h2>
+            <p>
+                Misalkan $f$, $g$, dan $h$ adalah fungsi-fungsi yang dapat dikomposisikan, serta $I(x) = x$ adalah fungsi identitas. Operasi komposisi fungsi memiliki tiga sifat utama:
+            </p>
+            <ol>
+                <li>
+                    <strong>Tidak Berlaku Sifat Komutatif (Pertukaran):</strong><br>
+                    Secara umum, urutan komposisi tidak boleh dibalik karena menghasilkan fungsi yang berbeda:
+                    $$(f \circ g)(x) \neq (g \circ f)(x)$$
+                </li>
+                <li>
+                    <strong>Berlaku Sifat Asosiatif (Pengelompokan):</strong><br>
+                    Untuk komposisi tiga fungsi atau lebih, pengelompokan urutan operasi tidak mengubah hasil akhir selama urutan kiri-ke-kanannya tetap:
+                    $$((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x) = f(g(h(x)))$$
+                </li>
+                <li>
+                    <strong>Memiliki Unsur Identitas $I(x) = x$:</strong><br>
+                    Jika suatu fungsi dikomposisikan dengan fungsi identitas $I(x) = x$ dari kiri maupun dari kanan, hasilnya adalah fungsi itu sendiri:
+                    $$(f \circ I)(x) = (I \circ f)(x) = f(x)$$
+                </li>
+            </ol>
+
+            <h2>4. Menentukan Fungsi Pembentuk dari Fungsi Komposisi</h2>
+            <p>
+                Dalam banyak persoalan, rumus fungsi komposisi $(f \circ g)(x)$ sudah diketahui beserta salah satu fungsi pembentuknya ($f(x)$ atau $g(x)$), lalu kita diminta menentukan fungsi yang satunya lagi. Terdapat dua kasus utama yang harus dibedakan dengan cermat:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kasus yang Diketahui</th>
+                            <th>Fungsi yang Dicari</th>
+                            <th>Strategi & Langkah Penyelesaian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Diketahui $(f \circ g)(x)$ dan <strong>fungsi luar $f(x)$</strong></td>
+                            <td><strong>Fungsi Dalam</strong><br>$g(x) = \dots$</td>
+                            <td class="text-left">
+                                1. Gunakan definisi $f(g(x)) = (f \circ g)(x)$.<br>
+                                2. Substitusikan variabel $x$ pada rumus $f(x)$ dengan $g(x)$.<br>
+                                3. Selesaikan persamaan aljabarnya untuk mendapatkan $g(x)$.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Diketahui $(f \circ g)(x)$ dan <strong>fungsi dalam $g(x)$</strong></td>
+                            <td><strong>Fungsi Luar</strong><br>$f(x) = \dots$</td>
+                            <td class="text-left">
+                                1. Misalkan fungsi dalam $u = g(x)$.<br>
+                                2. Nyatakan variabel $x$ dalam suku $u$ (cari invers dari $g$).<br>
+                                3. Substitusikan bentuk $x$ tersebut ke ruas kanan $f(g(x))$ hingga diperoleh $f(u)$, lalu ganti $u$ kembali menjadi $x$.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal di bawah ini untuk menguasai perhitungan fungsi komposisi, pencarian fungsi komponen yang belum diketahui, hingga komposisi tiga fungsi. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasan lengkap.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Diketahui fungsi $f: \mathbb{R} \to \mathbb{R}$ dan $g: \mathbb{R} \to \mathbb{R}$ dengan rumus $f(x) = 2x - 3$ dan $g(x) = x^2 + 4x + 1$. Tentukan:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Rumus fungsi komposisi $(f \circ g)(x)$ dan $(g \circ f)(x)$.</li>
+                        <li>Nilai dari $(f \circ g)(-2)$.</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>1. Menentukan rumus $(f \circ g)(x)$ dan $(g \circ f)(x)$:</strong><br>
+                        Untuk mencari $(f \circ g)(x)$, kita substitusikan $g(x) = x^2 + 4x + 1$ ke dalam $x$ pada fungsi $f(x) = 2x - 3$:
+                        $$(f \circ g)(x) = f(g(x)) = 2(x^2 + 4x + 1) - 3$$
+                        $$(f \circ g)(x) = 2x^2 + 8x + 2 - 3 = 2x^2 + 8x - 1$$
+                    </p>
+                    <p>
+                        Sebaliknya, untuk mencari $(g \circ f)(x)$, kita substitusikan $f(x) = 2x - 3$ ke dalam $x$ pada fungsi $g(x) = x^2 + 4x + 1$:
+                        $$(g \circ f)(x) = g(f(x)) = (2x - 3)^2 + 4(2x - 3) + 1$$
+                        $$(g \circ f)(x) = (4x^2 - 12x + 9) + (8x - 12) + 1$$
+                        $$(g \circ f)(x) = 4x^2 - 4x - 2$$
+                        <em>(Terlihat jelas bahwa $(f \circ g)(x) \neq (g \circ f)(x)$, membuktikan sifat tidak komutatif).</em>
+                    </p>
+                    <p>
+                        <strong>2. Menentukan nilai $(f \circ g)(-2)$:</strong><br>
+                        Kita dapat langsung mensubstitusikan $x = -2$ ke rumus $(f \circ g)(x) = 2x^2 + 8x - 1$:
+                        $$(f \circ g)(-2) = 2(-2)^2 + 8(-2) - 1 = 2(4) - 16 - 1 = 8 - 17 = -9$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, $(f \circ g)(x) = 2x^2 + 8x - 1$, $(g \circ f)(x) = 4x^2 - 4x - 2$, dan nilai $(f \circ g)(-2) = -9$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Diketahui fungsi komposisi $(f \circ g)(x) = \dfrac{6x - 4}{3x + 5}$ untuk $x \neq -\dfrac{5}{3}$. Jika diketahui fungsi dalam $g(x) = 3x + 2$, tentukan rumus fungsi $f(x)$ dan nilai dari $f(1)$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Pada soal ini diketahui $(f \circ g)(x) = f(g(x))$ dan fungsi dalam $g(x) = 3x + 2$. Kita gunakan metode pemisalan:
+                        $$u = g(x) = 3x + 2 \implies 3x = u - 2$$
+                    </p>
+                    <p>
+                        Perhatikan bentuk pada pembilang dan penyebut $(f \circ g)(x)$ dapat dinyatakan langsung dalam $3x$:
+                        $$f(3x + 2) = \frac{2(3x) - 4}{(3x) + 5}$$
+                    </p>
+                    <p>
+                        Substitusikan $3x + 2 = u$ dan $3x = u - 2$ ke persamaan di atas:
+                        $$f(u) = \frac{2(u - 2) - 4}{(u - 2) + 5} = \frac{2u - 4 - 4}{u + 3} = \frac{2u - 8}{u + 3}$$
+                    </p>
+                    <p>
+                        Dengan mengganti variabel $u$ kembali menjadi $x$, diperoleh:
+                        $$f(x) = \frac{2x - 8}{x + 3}, \quad x \neq -3$$
+                        Selanjutnya, untuk mencari nilai $f(1)$, substitusikan $x = 1$:
+                        $$f(1) = \frac{2(1) - 8}{1 + 3} = \frac{-6}{4} = -\frac{3}{2}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, rumus fungsi luar adalah $f(x) = \dfrac{2x - 8}{x + 3}$ dengan $x \neq -3$, dan nilai $f(1) = -\dfrac{3}{2}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Diketahui fungsi $f(x) = \sqrt{x - 2}$ dan $g(x) = x^2 - 6$. Tentukan rumus fungsi komposisi $(f \circ g)(x)$ beserta daerah asal alami (domain) dari $(f \circ g)(x)$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Menentukan rumus $(f \circ g)(x)$</strong><br>
+                        Substitusikan $g(x) = x^2 - 6$ ke dalam $f(x) = \sqrt{x - 2}$:
+                        $$(f \circ g)(x) = f(g(x)) = \sqrt{(x^2 - 6) - 2} = \sqrt{x^2 - 8}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menentukan domain $D_{f \circ g}$</strong><br>
+                        Diketahui domain fungsi dalam $g(x) = x^2 - 6$ adalah $D_g = \mathbb{R}$, sedangkan domain fungsi luar $f(x) = \sqrt{x - 2}$ mensyaratkan inputnya harus $\ge 2$, yaitu $D_f = \{x \mid x \ge 2\}$.<br>
+                        Berdasarkan rumus $D_{f \circ g} = \{x \in D_g \mid g(x) \in D_f\}$, maka haruslah:
+                        $$g(x) \ge 2 \implies x^2 - 6 \ge 2 \implies x^2 - 8 \ge 0$$
+                        $$(x + 2\sqrt{2})(x - 2\sqrt{2}) \ge 0$$
+                    </p>
+                    <p>
+                        Pembuat nol pertidaksamaan kuadrat tersebut adalah $x = -2\sqrt{2}$ dan $x = 2\sqrt{2}$. Karena tanda pertidaksamaan adalah $\ge 0$ dengan koefisien $x^2$ positif, maka penyelesaiannya berada di sebelah kiri $-2\sqrt{2}$ atau di sebelah kanan $2\sqrt{2}$:
+                        $$x \le -2\sqrt{2} \quad \text{atau} \quad x \ge 2\sqrt{2}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, $(f \circ g)(x) = \sqrt{x^2 - 8}$ dengan domain $D_{f \circ g} = \{x \mid x \le -2\sqrt{2} \text{ atau } x \ge 2\sqrt{2}, \; x \in \mathbb{R}\}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiKomposisi() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const subtleFill = isDark ? 'rgba(20, 184, 166, 0.12)' : 'rgba(13, 148, 136, 0.08)';
+            const amberFill = isDark ? 'rgba(251, 191, 36, 0.15)' : 'rgba(217, 119, 6, 0.10)';
+
+            /* -------------------------------------------------------------
+               1. DIAGRAM PEMETAAN BERANTAI HIMPUNAN A -> B -> C
+               ------------------------------------------------------------- */
+            const geoKomp = new GeoSVG('geosvg-komposisi', 540, 260, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Label Nama Himpunan
+            geoKomp.buatTeks(90, 20, "Himpunan A", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: tealColor });
+            geoKomp.buatTeks(270, 20, "Himpunan B", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: tealColor });
+            geoKomp.buatTeks(450, 20, "Himpunan C", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: tealColor });
+
+            // Tiga Elips Himpunan A, B, C
+            geoKomp.buatElips(90, 115, 48, 72, { fill: subtleFill, stroke: tealColor, strokeWidth: 2 });
+            geoKomp.buatElips(270, 115, 52, 72, { fill: subtleFill, stroke: tealColor, strokeWidth: 2 });
+            geoKomp.buatElips(450, 115, 56, 72, { fill: subtleFill, stroke: tealColor, strokeWidth: 2 });
+
+            // Titik Anggota di A, B, C
+            geoKomp.buatTitik([90, 115], { size: 4.5, color: tealColor, label: 'x', labelPosition: 'top-center', labelDistance: 10, labelColor: textColor, bold: true });
+            geoKomp.buatTitik([270, 115], { size: 4.5, color: tealColor, label: 'y = g(x)', labelPosition: 'top-center', labelDistance: 10, labelColor: textColor, bold: true });
+            geoKomp.buatTitik([450, 115], { size: 4.5, color: amberColor, label: 'z = f(g(x))', labelPosition: 'top-center', labelDistance: 10, labelColor: textColor, bold: true });
+
+            // Panah g: A -> B dan f: B -> C
+            geoKomp.buatVektor([100, 115], [258, 115], { stroke: tealColor, strokeWidth: 2, label: 'g', labelPosisi: 'tengah', labelSisi: 'kiri', labelJarak: 10, labelColor: tealColor, bold: true });
+            geoKomp.buatVektor([282, 115], [438, 115], { stroke: tealColor, strokeWidth: 2, label: 'f', labelPosisi: 'tengah', labelSisi: 'kiri', labelJarak: 10, labelColor: tealColor, bold: true });
+
+            // Kurva Panah Langsung (f o g): A -> C di bagian bawah
+            geoKomp.buatKurvaBezier([[90, 130], [270, 245], [442, 132]], { stroke: amberColor, strokeWidth: 2.2, dashed: '6 4' });
+            // Ujung panah kecil menuju titik C
+            geoKomp.buatVektor([428, 143], [444, 126], { stroke: amberColor, strokeWidth: 2.2 });
+            geoKomp.buatTeks(270, 232, "(f ∘ g)(x) = f(g(x))", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: amberColor });
+
+            /* -------------------------------------------------------------
+               2. DIAGRAM ANALOGI MESIN FUNGSI BERANTAI
+               ------------------------------------------------------------- */
+            const geoMesin = new GeoSVG('geosvg-mesin', 540, 150, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Input x
+            geoMesin.buatTeks(32, 60, "Input", { position: 'middle-center', fontSize: '11px', fill: mutedColor });
+            geoMesin.buatTeks(32, 78, "x", { position: 'middle-center', fontWeight: 'bold', fontSize: '15px', fill: textColor });
+            geoMesin.buatVektor([55, 75], [105, 75], { stroke: tealColor, strokeWidth: 2 });
+
+            // Kotak Mesin I: Fungsi g
+            geoMesin.buatPersegiPanjang(110, 42, 110, 66, { radius: 10, fill: subtleFill, stroke: tealColor, strokeWidth: 2 });
+            geoMesin.buatTeks(165, 65, "MESIN I", { position: 'middle-center', fontSize: '11px', fontWeight: 'bold', fill: mutedColor });
+            geoMesin.buatTeks(165, 85, "Fungsi g", { position: 'middle-center', fontSize: '13.5px', fontWeight: 'bold', fill: tealColor });
+
+            // Output Antara g(x)
+            geoMesin.buatVektor([220, 75], [310, 75], { stroke: amberColor, strokeWidth: 2, label: 'g(x)', labelPosisi: 'tengah', labelSisi: 'kiri', labelJarak: 10, labelColor: amberColor, bold: true });
+
+            // Kotak Mesin II: Fungsi f
+            geoMesin.buatPersegiPanjang(315, 42, 110, 66, { radius: 10, fill: amberFill, stroke: amberColor, strokeWidth: 2 });
+            geoMesin.buatTeks(370, 65, "MESIN II", { position: 'middle-center', fontSize: '11px', fontWeight: 'bold', fill: mutedColor });
+            geoMesin.buatTeks(370, 85, "Fungsi f", { position: 'middle-center', fontSize: '13.5px', fontWeight: 'bold', fill: amberColor });
+
+            // Output Akhir f(g(x))
+            geoMesin.buatVektor([425, 75], [472, 75], { stroke: amberColor, strokeWidth: 2 });
+            geoMesin.buatTeks(505, 60, "Output", { position: 'middle-center', fontSize: '11px', fill: mutedColor });
+            geoMesin.buatTeks(505, 80, "f(g(x))", { position: 'middle-center', fontWeight: 'bold', fontSize: '14px', fill: amberColor });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiKomposisi();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiKomposisi, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

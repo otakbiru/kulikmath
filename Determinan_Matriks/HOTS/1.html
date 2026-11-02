@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Determinan Matriks</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Determinan Matriks</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan matriks \(A\) berordo \(3 \times 3\) yang elemen-elemennya memuat variabel real \(x\):
+                \[A = \begin{pmatrix} x + 1 & 2 & 3 \\ 1 & x + 2 & 3 \\ 1 & 2 & x + 3 \end{pmatrix}\]
+                Jika diketahui nilai determinan dari matriks tersebut adalah \(\det(A) = 32\), maka himpunan semua nilai real \(x\) yang memenuhi adalah ....
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>\(\{-4, 2\}\)</li>
+                        <li>\(\{-2, 4\}\)</li>
+                        <li>\(\{-4, 4\}\)</li>
+                        <li>\(\{2, 4\}\)</li>
+                        <li>\(\{-2, 2\}\)</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">Olimpiade / HOTS</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Kita akan menghitung determinan matriks \(A\) dengan metode yang efisien.
+
+                    <b>Metode 1: Operasi Kolom dan Baris Elementer (Sifat Determinan)</b>
+                    <p>
+                        <b>Langkah 1:</b> Jumlahkan kolom kedua (\(K_2\)) dan kolom ketiga (\(K_3\)) ke kolom pertama (\(K_1\)), yaitu \(K_1 \leftarrow K_1 + K_2 + K_3\):
+                        <br>
+                        Perhatikan bahwa jumlah elemen sebaris pada setiap baris adalah:
+                        <ul>
+                            <li>Baris 1: \((x + 1) + 2 + 3 = x + 6\)</li>
+                            <li>Baris 2: \(1 + (x + 2) + 3 = x + 6\)</li>
+                            <li>Baris 3: \(1 + 2 + (x + 3) = x + 6\)</li>
+                        </ul>
+                        Maka:
+                        \[\det(A) = \begin{vmatrix} x + 6 & 2 & 3 \\ x + 6 & x + 2 & 3 \\ x + 6 & 2 & x + 3 \end{vmatrix}\]
+                        Keluarkan faktor skalar \((x + 6)\) dari kolom pertama:
+                        \[\det(A) = (x + 6) \begin{vmatrix} 1 & 2 & 3 \\ 1 & x + 2 & 3 \\ 1 & 2 & x + 3 \end{vmatrix}\]
+                    </p>
+                    <p>
+                        <b>Langkah 2:</b> Lakukan reduksi baris untuk membuat nol pada kolom pertama di bawah baris 1:
+                        \[B_2 \leftarrow B_2 - B_1\]
+                        \[B_3 \leftarrow B_3 - B_1\]
+                        Sehingga diperoleh:
+                        \[\det(A) = (x + 6) \begin{vmatrix} 1 & 2 & 3 \\ 0 & x & 0 \\ 0 & 0 & x \end{vmatrix}\]
+                        Matriks di atas merupakan <b>matriks segitiga atas</b>. Nilai determinan dari matriks segitiga atas sama dengan hasil kali seluruh elemen pada diagonal utamanya:
+                        \[\det(A) = (x + 6) \cdot (1 \cdot x \cdot x) = x^2(x + 6)\]
+                    </p>
+
+                    <b>Metode 2: Ekspansi Sarrus (Verifikasi Aljabar)</b>
+                    <p>
+                        \[\begin{aligned}
+                        \det(A) &= (x + 1)(x + 2)(x + 3) + (2)(3)(1) + (3)(1)(2) \\
+                        &\quad - (3)(x + 2)(1) - (x + 1)(3)(2) - (2)(1)(x + 3) \\[6pt]
+                        &= (x^3 + 6x^2 + 11x + 6) + 6 + 6 - (3x + 6) - (6x + 6) - (2x + 6) \\[6pt]
+                        &= x^3 + 6x^2 + 11x + 18 - 11x - 18 \\
+                        &= x^3 + 6x^2 = x^2(x + 6)
+                        \end{aligned}\]
+                    </p>
+
+                    <b>Langkah 3: Menyelesaikan Persamaan Nilai Determinan</b>
+                    <p>
+                        Diketahui bahwa \(\det(A) = 32\):
+                        \[\begin{aligned}
+                        x^2(x + 6) &= 32 \\
+                        x^3 + 6x^2 - 32 &= 0
+                        \end{aligned}\]
+                        Uji faktor dari \(-32\):
+                        <br>
+                        Untuk \(x = 2\):
+                        \[2^3 + 6(2^2) - 32 = 8 + 24 - 32 = 0 \quad (\text{memenuhi!})\]
+                        Faktorkan polinomial tersebut dengan pembagian Horner atau aljabar:
+                        \[(x - 2)(x^2 + 8x + 16) = 0\]
+                        \[(x - 2)(x + 4)^2 = 0\]
+                        Akar-akar real dari persamaan tersebut adalah:
+                        \[x = 2 \quad \text{atau} \quad x = -4\]
+                    </p>
+                    <div class="kesimpulan">Jadi, himpunan semua nilai real \(x\) yang memenuhi adalah \(\{-4, 2\}\).<br><b>JAWAB: A</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-2 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-2 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 3 
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-3 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-3 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 4 
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-4 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-4 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 5 
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-5 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-5 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 6 
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-6 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-6 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-7 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-7 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-8 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-8 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-9 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-9 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-10 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-10 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

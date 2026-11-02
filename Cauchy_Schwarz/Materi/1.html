@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Cauchy-Schwarz</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+    <style>
+        .geosvg-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: auto;
+        }
+
+        .geosvg-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .caption-diagram {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .rumus-box {
+            background-color: var(--bg-subtle);
+            border-left: 4px solid var(--teal-primary);
+            padding: 1.1rem 1.35rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .sub-heading {
+            font-weight: 700;
+            color: var(--teal-primary);
+            margin: 1.2rem 0 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan komprehensif materi <span class="topic-highlight">Ketaksamaan
+                    Cauchy-Schwarz</span> (Aljabar & Olimpiade Matematika)
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengantar dan Pernyataan Teorema</h2>
+            <p>
+                <strong>Ketaksamaan Cauchy-Schwarz</strong> (sering disingkat <strong>CS Inequality</strong> atau
+                <em>Cauchy-Bunyakovsky-Schwarz</em>) adalah salah satu ketaksamaan paling penting dan mendasar dalam
+                seluruh cabang matematika—mulai dari aljabar dasar, geometri vektor, analisis riil, hingga mekanika
+                kuantum.
+            </p>
+            <p>
+                Ketaksamaan ini menyatakan bahwa untuk sembarang bilangan riil $a_1, a_2, \dots, a_n$ dan $b_1, b_2,
+                \dots, b_n$, berlaku:
+            </p>
+
+            <div class="rumus-box">
+                $$(a_1 b_1 + a_2 b_2 + \dots + a_n b_n)^2 \le (a_1^2 + a_2^2 + \dots + a_n^2)(b_1^2 + b_2^2 + \dots +
+                b_n^2)$$
+                <p style="margin-top: 0.5rem; margin-bottom: 0;">Atau dalam notasi sigma ($\Sigma$):</p>
+                $$\left( \sum_{i=1}^n a_i b_i \right)^2 \le \left( \sum_{i=1}^n a_i^2 \right) \left( \sum_{i=1}^n b_i^2
+                \right)$$
+            </div>
+
+            <div class="kesimpulan">
+                <strong>Syarat Kesamaan (Equality Case):</strong> Kesamaan terjadi jika dan hanya jika kedua deretan
+                bilangan tersebut berbanding lurus (proporsional), yaitu:
+                $$\frac{a_1}{b_1} = \frac{a_2}{b_2} = \dots = \frac{a_n}{b_n} = k \quad (k \in \mathbb{R})$$
+                (dengan asumsi penyebut tidak bernilai nol, atau salah satu vektor adalah kelipatan skalar dari yang
+                lain).
+            </div>
+
+            <h2>2. Interpretasi Geometris & Vektor</h2>
+            <p>
+                Dalam aljabar linier dan geometri analitik, misalkan $\vec{u} = (a_1, a_2, \dots, a_n)$ dan $\vec{v} =
+                (b_1, b_2, \dots, b_n)$ adalah dua vektor di ruang Euklides $\mathbb{R}^n$. Perkalian titik (<em>dot
+                    product</em>) dan panjang vektor (norma) didefinisikan sebagai:
+            </p>
+            $$\vec{u} \cdot \vec{v} = \sum_{i=1}^n a_i b_i, \quad \Vert{}\vec{u}\Vert{} = \sqrt{\sum_{i=1}^n a_i^2},
+            \quad \Vert{}\vec{v}\Vert{} = \sqrt{\sum_{i=1}^n b_i^2}$$
+            <p>
+                Berdasarkan hubungan geometri perkalian titik dengan sudut apit $\theta$ di antara kedua vektor:
+            </p>
+            <div class="rumus-box">
+                $$\vec{u} \cdot \vec{v} = \Vert{}\vec{u}\Vert{} \Vert{}\vec{v}\Vert{} \cos \theta$$
+                Karena nilai $\vert{}\cos \theta\vert{} \le 1$ untuk setiap sudut riil $\theta$, maka kuadrat dari kedua
+                ruas menghasilkan:
+                $$\vert{}\vec{u} \cdot \vec{v}\vert{} \le \Vert{}\vec{u}\Vert{} \Vert{}\vec{v}\Vert{} \implies (\vec{u}
+                \cdot \vec{v})^2 \le \Vert{}\vec{u}\Vert{}^2 \Vert{}\vec{v}\Vert{}^2$$
+            </div>
+            <p>
+                Kesamaan terjadi ketika $\vert{}\cos \theta\vert{} = 1 \iff \theta = 0^\circ \text{ atau } 180^\circ$,
+                yang berarti vektor $\vec{u}$ dan $\vec{v}$ <strong>kolinear (sejajar atau berimpit)</strong>.
+            </p>
+
+            <!-- Visualisasi Vektor dengan GeoSVG -->
+            <div class="geosvg-box">
+                <div id="diagram-vektor-cs"></div>
+                <p class="caption-diagram">Gambar 1: Interpretasi vektor Ketaksamaan Cauchy-Schwarz melalui proyeksi
+                    ortogonal $\vec{u}$ terhadap $\vec{v}$. Nilai $\Vert{}\vec{u}\Vert{} \cos\theta \le
+                    \Vert{}\vec{u}\Vert{}$.</p>
+            </div>
+
+            <h2>3. Bukti Aljabar Menggunakan Polinomial Kuadratik</h2>
+            <p>
+                Salah satu metode pembuktian paling elegan untuk dimensi sembarang adalah dengan mengonstruksi sebuah
+                fungsi polinomial kuadratik riil satu variabel $f(t)$ yang dijamin non-negatif:
+            </p>
+            <p>
+                Misalkan $t \in \mathbb{R}$. Tinjau jumlahan kuadrat berikut:
+            </p>
+            $$f(t) = \sum_{i=1}^n (a_i t - b_i)^2$$
+            <p>
+                Karena setiap suku $(a_i t - b_i)^2 \ge 0$, maka jelas bahwa $f(t) \ge 0$ untuk seluruh nilai $t \in
+                \mathbb{R}$. Jabarkan persamaan di atas:
+            </p>
+            $$\begin{aligned} f(t) &= \sum_{i=1}^n (a_i^2 t^2 - 2 a_i b_i t + b_i^2) \\ &= \left( \sum_{i=1}^n a_i^2
+            \right) t^2 - 2 \left( \sum_{i=1}^n a_i b_i \right) t + \left( \sum_{i=1}^n b_i^2 \right) \end{aligned}$$
+            <p>
+                Bentuk ini adalah fungsi kuadrat $f(t) = A t^2 + B t + C$ dengan:
+            </p>
+            $$A = \sum_{i=1}^n a_i^2, \quad B = -2 \sum_{i=1}^n a_i b_i, \quad C = \sum_{i=1}^n b_i^2$$
+            <p>
+                Karena kurva parabola $f(t)$ selalu berada di atas atau menyinggung sumbu-$t$ ($f(t) \ge 0$), maka
+                persamaan kuadrat $f(t) = 0$ maksimal hanya memiliki <strong>paling banyak satu akar riil</strong>
+                (akarnya kembar atau imajiner). Dengan demikian, nilai <strong>Diskriminan ($D$)</strong> tidak boleh
+                positif:
+            </p>
+            <div class="rumus-box">
+                $$D = B^2 - 4AC \le 0$$
+                $$\left(-2 \sum_{i=1}^n a_i b_i\right)^2 - 4 \left( \sum_{i=1}^n a_i^2 \right) \left( \sum_{i=1}^n b_i^2
+                \right) \le 0$$
+                $$4 \left( \sum_{i=1}^n a_i b_i \right)^2 \le 4 \left( \sum_{i=1}^n a_i^2 \right) \left( \sum_{i=1}^n
+                b_i^2 \right)$$
+                $$\left( \sum_{i=1}^n a_i b_i \right)^2 \le \left( \sum_{i=1}^n a_i^2 \right) \left( \sum_{i=1}^n b_i^2
+                \right) \quad \blacksquare$$
+            </div>
+
+            <!-- Visualisasi Parabola Definit Positif -->
+            <div class="geosvg-box">
+                <div id="diagram-parabola-cs"></div>
+                <p class="caption-diagram">Gambar 2: Karakteristik kurva $f(t) \ge 0$ dengan diskriminan $D \le 0$ yang
+                    mendasari bukti Cauchy-Schwarz.</p>
+            </div>
+
+            <h2>4. Bentuk Khusus: Titu's Lemma (Bentuk Engel)</h2>
+            <p>
+                Dalam kompetisi olimpiade matematika (OSN/IMO), bentuk pecahan dari Cauchy-Schwarz sangat populer dan
+                dikenal luas sebagai <strong>Titu's Lemma</strong>, <strong>Ketaksamaan Engel</strong>, atau
+                <strong>Sedrakyan's Inequality</strong>.
+            </p>
+
+            <div class="rumus-box">
+                <p>Untuk setiap bilangan riil $x_1, x_2, \dots, x_n$ dan bilangan riil positif $y_1, y_2, \dots, y_n >
+                    0$, berlaku:</p>
+                $$\frac{x_1^2}{y_1} + \frac{x_2^2}{y_2} + \dots + \frac{x_n^2}{y_n} \ge \frac{(x_1 + x_2 + \dots +
+                x_n)^2}{y_1 + y_2 + \dots + y_n}$$
+                <p style="margin-top: 0.5rem; margin-bottom: 0;">Atau:</p>
+                $$\sum_{i=1}^n \frac{x_i^2}{y_i} \ge \frac{\left( \sum_{i=1}^n x_i \right)^2}{\sum_{i=1}^n y_i}$$
+            </div>
+
+            <p><strong>Bukti Singkat Titu's Lemma:</strong></p>
+            <p>
+                Terapkan Cauchy-Schwarz bentuk standar pada dua barisan $a_i = \dfrac{x_i}{\sqrt{y_i}}$ dan $b_i =
+                \sqrt{y_i}$:
+            </p>
+            $$\left( \sum_{i=1}^n a_i b_i \right)^2 \le \left( \sum_{i=1}^n a_i^2 \right) \left( \sum_{i=1}^n b_i^2
+            \right)$$
+            $$\left( \sum_{i=1}^n \frac{x_i}{\sqrt{y_i}} \cdot \sqrt{y_i} \right)^2 \le \left( \sum_{i=1}^n
+            \frac{x_i^2}{y_i} \right) \left( \sum_{i=1}^n y_i \right)$$
+            $$\left( \sum_{i=1}^n x_i \right)^2 \le \left( \sum_{i=1}^n \frac{x_i^2}{y_i} \right) \left( \sum_{i=1}^n
+            y_i \right)$$
+            <p>
+                Dengan membagi kedua ruas dengan $\sum y_i > 0$, teorema langsung terbukti.
+            </p>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 1</span>
+                <div class="soal-teks">
+                    Jika $x, y \in \mathbb{R}$ memenuhi persamaan $x^2 + y^2 = 5$, tentukan nilai maksimum dan minimum
+                    yang mungkin dari bentuk $3x + 4y$!
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Gunakan Ketaksamaan Cauchy-Schwarz untuk 2 variabel dengan pasangan bilangan $(a_1, a_2) = (3,
+                        4)$ dan $(b_1, b_2) = (x, y)$:</p>
+                    $$(a_1 b_1 + a_2 b_2)^2 \le (a_1^2 + a_2^2)(b_1^2 + b_2^2)$$
+                    $$(3x + 4y)^2 \le (3^2 + 4^2)(x^2 + y^2)$$
+                    <p>Substitusikan nilai yang diketahui:</p>
+                    $$(3x + 4y)^2 \le (9 + 16)(5)$$
+                    $$(3x + 4y)^2 \le 25 \times 5 = 125$$
+                    <p>Akarkan kedua ruas:</p>
+                    $$-\sqrt{125} \le 3x + 4y \le \sqrt{125}$$
+                    $$-5\sqrt{5} \le 3x + 4y \le 5\sqrt{5}$$
+                    <p>Syarat kesamaan maksimum tercapai saat $\dfrac{x}{3} = \dfrac{y}{4} = k > 0 \implies x =
+                        \dfrac{3}{\sqrt{5}}, y = \dfrac{4}{\sqrt{5}}$.</p>
+                    <div class="kesimpulan">
+                        Jadi, nilai <strong>maksimum</strong> dari $3x + 4y$ adalah $5\sqrt{5}$ dan nilai
+                        <strong>minimum</strong>-nya adalah $-5\sqrt{5}$.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 2</span>
+                <div class="soal-teks">
+                    Diberikan tiga bilangan riil positif $a, b, c > 0$ sedemikian sehingga $a + b + c = 1$. Buktikan
+                    bahwa:
+                    $$\frac{1}{a} + \frac{1}{b} + \frac{1}{c} \ge 9$$
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Metode 1: Menggunakan Cauchy-Schwarz Standar</strong></p>
+                    <p>Pilih barisan $u = (\sqrt{a}, \sqrt{b}, \sqrt{c})$ dan $v = \left(\dfrac{1}{\sqrt{a}},
+                        \dfrac{1}{\sqrt{b}}, \dfrac{1}{\sqrt{c}}\right)$:</p>
+                    $$(u \cdot v)^2 \le \Vert{}u\Vert{}^2 \Vert{}v\Vert{}^2$$
+                    $$\left(\sqrt{a} \cdot \frac{1}{\sqrt{a}} + \sqrt{b} \cdot \frac{1}{\sqrt{b}} + \sqrt{c} \cdot
+                    \frac{1}{\sqrt{c}}\right)^2 \le (a + b + c) \left(\frac{1}{a} + \frac{1}{b} + \frac{1}{c}\right)$$
+                    $$(1 + 1 + 1)^2 \le 1 \cdot \left(\frac{1}{a} + \frac{1}{b} + \frac{1}{c}\right)$$
+                    $$3^2 \le \frac{1}{a} + \frac{1}{b} + \frac{1}{c} \implies \frac{1}{a} + \frac{1}{b} + \frac{1}{c}
+                    \ge 9$$
+
+                    <p><strong>Metode 2: Menggunakan Titu's Lemma</strong></p>
+                    $$\frac{1^2}{a} + \frac{1^2}{b} + \frac{1^2}{c} \ge \frac{(1 + 1 + 1)^2}{a + b + c} = \frac{3^2}{1}
+                    = 9$$
+                    <p>Kesamaan tercapai jika $a = b = c = \dfrac{1}{3}$.</p>
+                    <div class="kesimpulan">
+                        Terbukti bahwa $\dfrac{1}{a} + \dfrac{1}{b} + \dfrac{1}{c} \ge 9$ dengan nilai minimum tepat
+                        $9$.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 3</span>
+                <div class="soal-teks">
+                    Untuk setiap bilangan riil positif $a, b, c > 0$, buktikan ketaksamaan Nesbitt berikut:
+                    $$\frac{a}{b + c} + \frac{b}{c + a} + \frac{c}{a + b} \ge \frac{3}{2}$$
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Ubah bentuk pembilang menjadi bentuk kuadrat agar Titu's Lemma dapat langsung diaplikasikan:</p>
+                    $$S = \frac{a^2}{a(b + c)} + \frac{b^2}{b(c + a)} + \frac{c^2}{c(a + b)}$$
+                    <p>Berdasarkan Titu's Lemma:</p>
+                    $$S \ge \frac{(a + b + c)^2}{a(b + c) + b(c + a) + c(a + b)} = \frac{(a + b + c)^2}{2(ab + bc +
+                    ca)}$$
+                    <p>Ingat identitas aljabar dasar:</p>
+                    $$(a + b + c)^2 = a^2 + b^2 + c^2 + 2(ab + bc + ca)$$
+                    <p>Karena selalu berlaku $a^2 + b^2 + c^2 \ge ab + bc + ca$, maka:</p>
+                    $$(a + b + c)^2 \ge (ab + bc + ca) + 2(ab + bc + ca) = 3(ab + bc + ca)$$
+                    <p>Akibatnya:</p>
+                    $$S \ge \frac{3(ab + bc + ca)}{2(ab + bc + ca)} = \frac{3}{2}$$
+                    <div class="kesimpulan">
+                        Terbukti bahwa $\dfrac{a}{b + c} + \dfrac{b}{c + a} + \dfrac{c}{a + b} \ge \dfrac{3}{2}$, dengan
+                        kesamaan terjadi saat $a = b = c$.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Visualisasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // ==========================================
+            // Diagram 1: Proyeksi Vektor Ortogonal
+            // ==========================================
+            const cont1 = document.getElementById("diagram-vektor-cs");
+            if (cont1 && typeof GeoSVG !== 'undefined') {
+                const geo1 = new GeoSVG(cont1, 540, 260, {
+                    viewBox: "0 0 540 260",
+                    background: "transparent"
+                });
+
+                const O = [80, 200];
+                const V = [440, 200]; // Vektor v horizontal
+                const U = [300, 70];  // Vektor u dengan sudut theta
+
+                // Garis acuan horizontal
+                geo1.buatSegmen(O[0] - 20, O[1], 470, O[1], { stroke: "var(--border-color)", strokeWidth: 1 });
+
+                // Proyeksi titik U ke garis V
+                const P = [U[0], O[1]]; // Kaki proyeksi tegak lurus
+                geo1.buatSegmen(U[0], U[1], P[0], P[1], { stroke: "#e11d48", strokeWidth: 1.5, dashed: "4 3" });
+                geo1.buatSiku(U, P, O, { size: 12, stroke: "#e11d48" });
+
+                // Garis segmen proyeksi p = ||u|| cos θ
+                geo1.buatSegmen(O[0], O[1] + 16, P[0], P[1] + 16, { stroke: "var(--teal-primary)", strokeWidth: 2 });
+                geo1.buatTitik(O[0], O[1] + 16, { size: 3, color: "var(--teal-primary)" });
+                geo1.buatTitik(P[0], P[1] + 16, { size: 3, color: "var(--teal-primary)" });
+                geo1.buatTeks((O[0] + P[0]) / 2, O[1] + 32, "proy_v(u) = ||u|| cos θ ≤ ||u||", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "var(--teal-primary)"
+                });
+
+                // Sudut theta
+                geo1.buatSudut(V, O, U, { radius: 36, stroke: "#d97706", fill: "rgba(217, 119, 6, 0.15)", label: "θ" });
+
+                // Vektor v
+                geo1.buatVektor(O[0], O[1], V[0], V[1], { stroke: "#2563eb", strokeWidth: 3 });
+                geo1.buatTeks(V[0] + 10, V[1], "v", { position: "middle-left", fontSize: "14px", fontWeight: "bold", fill: "#2563eb" });
+
+                // Vektor u
+                geo1.buatVektor(O[0], O[1], U[0], U[1], { stroke: "var(--teal-primary)", strokeWidth: 3 });
+                geo1.buatTeks(U[0] - 12, U[1] - 10, "u", { position: "middle-right", fontSize: "14px", fontWeight: "bold", fill: "var(--teal-primary)" });
+
+                // Titik Asal O
+                geo1.buatTitik(O[0], O[1], { size: 4, color: "var(--text-main)", label: "O", labelPosition: "bottom-left" });
+
+                // Hipotenusa vs Sisi Samping
+                geo1.buatTeks((O[0] + U[0]) / 2 - 18, (O[1] + U[1]) / 2 - 8, "||u||", {
+                    position: "middle-center",
+                    fontSize: "12px",
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold"
+                });
+            }
+
+            // ==========================================
+            // Diagram 2: Kurva Definit Positif f(t) >= 0
+            // ==========================================
+            const cont2 = document.getElementById("diagram-parabola-cs");
+            if (cont2 && typeof GeoSVG !== 'undefined') {
+                const geo2 = new GeoSVG(cont2, 540, 240, {
+                    viewBox: "0 0 540 240",
+                    background: "transparent"
+                });
+
+                const ox = 60, oy = 190;
+                const maxX = 480, maxY = 30;
+
+                // Sumbu t dan sumbu f(t)
+                geo2.buatVektor(ox, oy, maxX, oy, { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo2.buatVektor(ox, oy + 20, ox, maxY, { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+
+                geo2.buatTeks(maxX + 5, oy, "t", { position: "middle-left", fontSize: "12px", fill: "var(--text-muted)", fontWeight: "bold" });
+                geo2.buatTeks(ox, maxY - 12, "f(t)", { position: "middle-center", fontSize: "12px", fill: "var(--text-muted)", fontWeight: "bold" });
+
+                // Kurva Parabola 1: Kasus D < 0 (Melayang di atas sumbu t)
+                const ptsDNeg = [];
+                for (let x = 120; x <= 340; x += 10) {
+                    const tVal = (x - 230) / 45;
+                    const yVal = 0.8 * Math.pow(tVal, 2) + 0.6; // vertex di yVal = 0.6
+                    const py = oy - (yVal * 65);
+                    ptsDNeg.push([x, py]);
+                }
+                geo2.buatKurvaHalus(ptsDNeg, { stroke: "var(--teal-primary)", strokeWidth: 2.5 });
+                geo2.buatTeks(330, 75, "D < 0 (Tanpa Akar Riil)", { position: "middle-left", fontSize: "11px", fontWeight: "bold", fill: "var(--teal-primary)" });
+
+                // Kurva Parabola 2: Kasus D = 0 (Menyinggung sumbu t di satu titik)
+                const ptsDZero = [];
+                for (let x = 230; x <= 450; x += 10) {
+                    const tVal = (x - 340) / 45;
+                    const yVal = 0.8 * Math.pow(tVal, 2); // vertex di yVal = 0 (tepat di sumbu t)
+                    const py = oy - (yVal * 65);
+                    ptsDZero.push([x, py]);
+                }
+                geo2.buatKurvaHalus(ptsDZero, { stroke: "#d97706", strokeWidth: 2, dashed: "4 3" });
+                geo2.buatTitik(340, oy, { size: 4, color: "#d97706" });
+                geo2.buatTeks(400, 140, "D = 0 (Kesamaan Terjadi)", { position: "middle-left", fontSize: "11px", fontWeight: "bold", fill: "#d97706" });
+
+                // Anotasi f(t) >= 0
+                geo2.buatTeks(140, 140, "f(t) = ∑(aᵢt - bᵢ)² ≥ 0", {
+                    position: "middle-center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    fill: "var(--teal-primary)"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

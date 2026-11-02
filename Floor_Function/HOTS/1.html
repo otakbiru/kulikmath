@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Floor Function</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Floor Function</span>
+            </p>
+            <!-- Tombol Tingkat dirender otomatis oleh script.js -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Jika \(a > 1\) suatu bilangan asli sehingga hasil penjumlahan semua bilangan real \(x\) yang memenuhi persamaan:</p>
+                \[
+                \lfloor x \rfloor^2 - 2ax + a = 0
+                \]
+                <p>adalah \(51\), maka \(a\) adalah ....<br>
+                <em>(Catatan: \(\lfloor x \rfloor\) menyatakan bilangan bulat terbesar yang tidak lebih dari \(x\))</em></p>
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan \(p = \{x\}\) adalah bagian pecahan dari \(x\), sehingga \(x = \lfloor x \rfloor + p\) atau \(\lfloor x \rfloor = x - p\) dengan \(0 \le p < 1\).</p>
+                    <p>Substitusikan \(\lfloor x \rfloor = x - p\) ke persamaan semula:</p>
+                    \[
+                    \begin{aligned}
+                    \lfloor x \rfloor^2 - 2ax + a &= 0 \\
+                    (x - p)^2 - 2ax + a &= 0 \\
+                    x^2 - 2px + p^2 - 2ax + a &= 0 \\
+                    x^2 - (2p + 2a)x + (p^2 + a) &= 0
+                    \end{aligned}
+                    \]
+                    <p>Berdasarkan rumus penjumlahan akar-akar persamaan kuadrat (teorema Vieta):</p>
+                    \[
+                    x_1 + x_2 = 2p + 2a
+                    \]
+                    <p>Diketahui bahwa hasil penjumlahan semua solusi real \(x\) adalah \(51\), maka:</p>
+                    \[
+                    2p + 2a = 51
+                    \]
+                    <p>Karena \(a\) adalah bilangan bulat asli, maka \(2a\) bernilai genap. Agar hasil penjumlahan bernilai \(51\) (ganjil), maka nilai \(2p\) harus berupa bilangan ganjil.</p>
+                    <p>Mengingat \(0 \le p < 1 \implies 0 \le 2p < 2\), satu-satunya bilangan bulat ganjil yang mungkin adalah \(2p = 1 \implies p = \dfrac{1}{2}\).</p>
+                    <p>Dengan demikian:</p>
+                    \[
+                    1 + 2a = 51 \implies 2a = 50 \implies a = 25
+                    \]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai \(a\) adalah <strong>25</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Didefinisikan \(\lfloor a \rfloor\) menyatakan bilangan bulat terbesar yang lebih kecil atau sama dengan \(a\). Perhatikan persamaan berikut:</p>
+                \[
+                \left\lfloor\dfrac{b}{1!}\right\rfloor + \left\lfloor\dfrac{b}{2!}\right\rfloor + \left\lfloor\dfrac{b}{3!}\right\rfloor + \dots + \left\lfloor\dfrac{b}{2023!}\right\rfloor = 999, \quad b \in \mathbb{Z}^+
+                \]
+                <p>Tentukan faktor prima terbesar dari \(b\)!</p>
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Definisikan fungsi \(f(x) = \sum_{k=1}^{2023} \left\lfloor\dfrac{x}{k!}\right\rfloor\). Kita amati nilai \(f(x)\) pada beberapa nilai faktorial:</p>
+                    \[
+                    \begin{aligned}
+                    f(6!) &= \left\lfloor\dfrac{720}{1!}\right\rfloor + \left\lfloor\dfrac{720}{2!}\right\rfloor + \dots = 720 + 360 + \dots = 1080 > 999 \\[6pt]
+                    f(5!) &= \left\lfloor\dfrac{120}{1!}\right\rfloor + \left\lfloor\dfrac{120}{2!}\right\rfloor + \left\lfloor\dfrac{120}{3!}\right\rfloor + \left\lfloor\dfrac{120}{4!}\right\rfloor + \left\lfloor\dfrac{120}{5!}\right\rfloor \\
+                    &= 120 + 60 + 20 + 5 + 1 = 206
+                    \end{aligned}
+                    \]
+                    <p>Karena \(f(5!) = 206\) dan \(f(6!) > 999\), maka \(5! < b < 6!\). Kita uraikan \(b\) menggunakan basis faktorial:</p>
+                    \[
+                    999 = 4 \times 206 + 175 = 4 \times f(5!) + 175 \implies b = 4 \cdot 5! + x_1 \quad (x_1 < 5!)
+                    \]
+                    <p>Selanjutnya untuk sisa \(175\), kita hitung nilai \(f(4!)\):</p>
+                    \[
+                    f(4!) = 24 + 12 + 4 + 1 = 41
+                    \]
+                    \[
+                    175 = 4 \times 41 + 11 = 4 \times f(4!) + 11 \implies x_1 = 4 \cdot 4! + x_2 \quad (x_2 < 4!)
+                    \]
+                    <p>Untuk sisa \(11\), kita hitung \(f(3!)\):</p>
+                    \[
+                    f(3!) = 6 + 3 + 1 = 10
+                    \]
+                    \[
+                    11 = 1 \times 10 + 1 = 1 \times f(3!) + f(1) \implies x_2 = 1 \cdot 3! + 1
+                    \]
+                    <p>Maka nilai \(b\) adalah:</p>
+                    \[
+                    \begin{aligned}
+                    b &= 4 \cdot 5! + 4 \cdot 4! + 1 \cdot 3! + 1 \\
+                    &= 4(120) + 4(24) + 6 + 1 \\
+                    &= 480 + 96 + 6 + 1 \\
+                    &= 583
+                    \end{aligned}
+                    \]
+                    <p>Faktorisasi prima dari bilangan \(583\):</p>
+                    \[
+                    583 = 11 \times 53
+                    \]
+
+                    <div class="kesimpulan">
+                        Jadi, faktor prima terbesar dari \(b\) adalah <strong>53</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Tentukan hasil dari penjumlahan:</p>
+                \[
+                \left\lfloor\dfrac{7}{9}\right\rfloor + \left\lfloor\dfrac{14}{9}\right\rfloor + \left\lfloor\dfrac{21}{9}\right\rfloor + \dots + \left\lfloor\dfrac{273}{9}\right\rfloor + \left\lfloor\dfrac{280}{9}\right\rfloor
+                \]
+            </div>
+            <div class="soal-sumber"><a href="https://ktomm-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM April 2023</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Penjumlahan tersebut dapat dituliskan dalam notasi sigma sebagai:</p>
+                    \[
+                    S = \sum_{k=1}^{40} \left\lfloor\dfrac{7k}{9}\right\rfloor
+                    \]
+                    <p>Perhatikan sifat periodik untuk setiap kelipatan \(9\). Untuk sembarang bilangan bulat \(m \ge 0\):</p>
+                    \[
+                    \sum_{j=1}^9 \left\lfloor\dfrac{7(9m + j)}{9}\right\rfloor = \sum_{j=1}^9 \left(7m + \left\lfloor\dfrac{7j}{9}\right\rfloor\right) = 63m + \sum_{j=1}^9 \left\lfloor\dfrac{7j}{9}\right\rfloor
+                    \]
+                    <p>Hitung nilai dasar untuk blok pertama (\(m = 0\)):</p>
+                    \[
+                    \begin{aligned}
+                    \sum_{j=1}^9 \left\lfloor\dfrac{7j}{9}\right\rfloor &= \left\lfloor\dfrac{7}{9}\right\rfloor + \left\lfloor\dfrac{14}{9}\right\rfloor + \left\lfloor\dfrac{21}{9}\right\rfloor + \left\lfloor\dfrac{28}{9}\right\rfloor + \left\lfloor\dfrac{35}{9}\right\rfloor + \left\lfloor\dfrac{42}{9}\right\rfloor + \left\lfloor\dfrac{49}{9}\right\rfloor + \left\lfloor\dfrac{56}{9}\right\rfloor + \left\lfloor\dfrac{63}{9}\right\rfloor \\[6pt]
+                    &= 0 + 1 + 2 + 3 + 3 + 4 + 5 + 6 + 7 \\
+                    &= 31
+                    \end{aligned}
+                    \]
+                    <p>Dengan demikian, untuk 4 blok penuh (\(m = 0, 1, 2, 3\)), yaitu dari suku ke-1 hingga suku ke-36:</p>
+                    \[
+                    \sum_{m=0}^3 (63m + 31) = 63(0 + 1 + 2 + 3) + 31 \times 4 = 63(6) + 124 = 378 + 124 = 502
+                    \]
+                    <p>Selanjutnya, hitung 4 suku terakhir (\(k = 37, 38, 39, 40\)), yang berkorespondensi dengan \(m = 4\):</p>
+                    \[
+                    \begin{aligned}
+                    \left\lfloor\dfrac{7 \cdot 37}{9}\right\rfloor &= 28 + \left\lfloor\dfrac{7}{9}\right\rfloor = 28 + 0 = 28 \\[4pt]
+                    \left\lfloor\dfrac{7 \cdot 38}{9}\right\rfloor &= 28 + \left\lfloor\dfrac{14}{9}\right\rfloor = 28 + 1 = 29 \\[4pt]
+                    \left\lfloor\dfrac{7 \cdot 39}{9}\right\rfloor &= 28 + \left\lfloor\dfrac{21}{9}\right\rfloor = 28 + 2 = 30 \\[4pt]
+                    \left\lfloor\dfrac{7 \cdot 40}{9}\right\rfloor &= 28 + \left\lfloor\dfrac{28}{9}\right\rfloor = 28 + 3 = 31
+                    \end{aligned}
+                    \]
+                    <p>Jumlah 4 suku sisa: \(28 + 29 + 30 + 31 = 118\).</p>
+                    <p>Total hasil penjumlahan:</p>
+                    \[
+                    S = 502 + 118 = 620
+                    \]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil dari penjumlahan tersebut adalah <strong>620</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diberikan fungsi \(f(n) = 1 + \sum_{k=1}^n \left\lfloor{^3\log k}\right\rfloor\) yang terdefinisi pada bilangan asli \(n\). Jika \(p\) adalah suatu bilangan sehingga \(f(p) = 2023\), nilai \(p\) yang memenuhi berada pada interval ....</p>
+                <ol type="A" class="pilihan-ganda">
+                    <li>\(440 \le p < 450\)</li>
+                    <li>\(450 \le p < 460\)</li>
+                    <li>\(460 \le p < 470\)</li>
+                    <li>\(470 \le p < 480\)</li>
+                    <li>\(480 \le p < 490\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Untuk bilangan bulat non-negatif \(a\), jika \(3^a \le k \le 3^{a+1} - 1\), maka:</p>
+                    \[
+                    \left\lfloor{^3\log k}\right\rfloor = a
+                    \]
+                    <p>Banyaknya bilangan \(k\) pada rentang tersebut adalah \((3^{a+1} - 1) - 3^a + 1 = 2 \cdot 3^a\). Sehingga jumlah suku pada rentang tersebut adalah:</p>
+                    \[
+                    \sum_{k=3^a}^{3^{a+1}-1} \left\lfloor{^3\log k}\right\rfloor = a \cdot (2 \cdot 3^a) = 2a \cdot 3^a
+                    \]
+                    <p>Hitung jumlah suku per rentang pangkat:</p>
+                    <ul>
+                        <li>\(a = 0\) (\(k = 1 \dots 2\)): \(2(0) \cdot 3^0 = 0\)</li>
+                        <li>\(a = 1\) (\(k = 3 \dots 8\)): \(2(1) \cdot 3^1 = 6\)</li>
+                        <li>\(a = 2\) (\(k = 9 \dots 26\)): \(2(2) \cdot 3^2 = 36\)</li>
+                        <li>\(a = 3\) (\(k = 27 \dots 80\)): \(2(3) \cdot 3^3 = 162\)</li>
+                        <li>\(a = 4\) (\(k = 81 \dots 242\)): \(2(4) \cdot 3^4 = 648\)</li>
+                    </ul>
+                    <p>Jumlah kumulatif dari \(k = 1\) sampai \(k = 242 = 3^5 - 1\):</p>
+                    \[
+                    \sum_{k=1}^{242} \left\lfloor{^3\log k}\right\rfloor = 0 + 6 + 36 + 162 + 648 = 852
+                    \]
+                    <p>Diketahui bahwa:</p>
+                    \[
+                    f(p) = 1 + \sum_{k=1}^p \left\lfloor{^3\log k}\right\rfloor = 2023 \implies \sum_{k=1}^p \left\lfloor{^3\log k}\right\rfloor = 2022
+                    \]
+                    <p>Untuk \(k \ge 243 = 3^5\), nilai \(\left\lfloor{^3\log k}\right\rfloor = 5\). Maka:</p>
+                    \[
+                    \begin{aligned}
+                    852 + 5(p - 243 + 1) &= 2022 \\
+                    5(p - 242) &= 1170 \\
+                    p - 242 &= 234 \\
+                    p &= 476
+                    \end{aligned}
+                    \]
+                    <p>Nilai \(p = 476\) berada pada interval \(470 \le p < 480\).</p>
+
+                    <div class="kesimpulan">
+                        Jadi, nilai \(p\) yang memenuhi berada pada interval <strong>\(470 \le p < 480\)</strong>.
+                        <br><strong>Jawaban: D</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diberikan sistem persamaan berikut:</p>
+                \[
+                \begin{aligned}
+                \lfloor x \rfloor + \lfloor y \rfloor + y &= 43{,}8 \\
+                x + y - \lfloor y \rfloor &= 18{,}4
+                \end{aligned}
+                \]
+                <p>dengan \(x, y\) adalah bilangan real. Nilai \(10x + 10y\) yang memenuhi sistem persamaan di atas adalah ....</p>
+            </div>
+            <div class="soal-sumber">Evaluasi GMOM Februari 2024 tingkat SMA</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Nyatakan setiap bilangan real sebagai penjumlahan bagian bulat dan bagian pecahan: \(x = \lfloor x \rfloor + \{x\}\) dan \(y = \lfloor y \rfloor + \{y\}\) dengan \(0 \le \{x\}, \{y\} < 1\).</p>
+                    <p>Dari persamaan pertama:</p>
+                    \[
+                    \begin{aligned}
+                    \lfloor x \rfloor + \lfloor y \rfloor + y &= 43{,}8 \\
+                    \lfloor x \rfloor + \lfloor y \rfloor + \lfloor y \rfloor + \{y\} &= 43{,}8 \\
+                    (\lfloor x \rfloor + 2\lfloor y \rfloor) + \{y\} &= 43{,}8
+                    \end{aligned}
+                    \]
+                    <p>Karena \((\lfloor x \rfloor + 2\lfloor y \rfloor) \in \mathbb{Z}\) dan \(0 \le \{y\} < 1\), maka diperoleh:</p>
+                    \[
+                    \{y\} = 0{,}8 \quad \text{dan} \quad \lfloor x \rfloor + 2\lfloor y \rfloor = 43
+                    \]
+                    <p>Dari persamaan kedua:</p>
+                    \[
+                    \begin{aligned}
+                    x + y - \lfloor y \rfloor &= 18{,}4 \\
+                    x + \{y\} &= 18{,}4 \\
+                    x + 0{,}8 &= 18{,}4 \\
+                    x &= 17{,}6
+                    \end{aligned}
+                    \]
+                    <p>Dari \(x = 17{,}6\), diperoleh bagian bulatnya adalah \(\lfloor x \rfloor = 17\).</p>
+                    <p>Substitusikan \(\lfloor x \rfloor = 17\) ke dalam persamaan \(\lfloor x \rfloor + 2\lfloor y \rfloor = 43\):</p>
+                    \[
+                    17 + 2\lfloor y \rfloor = 43 \implies 2\lfloor y \rfloor = 26 \implies \lfloor y \rfloor = 13
+                    \]
+                    <p>Sehingga nilai \(y = \lfloor y \rfloor + \{y\} = 13 + 0{,}8 = 13{,}8\).</p>
+                    <p>Nilai \(10x + 10y\):</p>
+                    \[
+                    10x + 10y = 10(17{,}6) + 10(13{,}8) = 176 + 138 = 314
+                    \]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai \(10x + 10y\) yang memenuhi sistem persamaan tersebut adalah <strong>314</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Jika penyelesaian dari persamaan berikut:</p>
+                \[
+                176x - 4\lfloor x \rfloor^2 - 88\{x\}^2 = 2023
+                \]
+                <p>dapat dinyatakan dalam bentuk \(a - \dfrac{1}{\sqrt{b}}\) dengan \(a\) dan \(b\) bilangan bulat positif, maka nilai \(a + b = \dots.\)</p>
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan substitusi \(x = \lfloor x \rfloor + \{x\}\):</p>
+                    \[
+                    \begin{aligned}
+                    176(\lfloor x \rfloor + \{x\}) - 4\lfloor x \rfloor^2 - 88\{x\}^2 &= 2023 \\
+                    176\lfloor x \rfloor + 176\{x\} - 4\lfloor x \rfloor^2 - 88\{x\}^2 &= 2023 \\
+                    4\lfloor x \rfloor^2 - 176\lfloor x \rfloor + 88\{x\}^2 - 176\{x\} &= -2023
+                    \end{aligned}
+                    \]
+                    <p>Lengkapi bentuk kuadrat sempurna:</p>
+                    \[
+                    \begin{aligned}
+                    4\left(\lfloor x \rfloor^2 - 44\lfloor x \rfloor + 484\right) + 88\left(\{x\}^2 - 2\{x\} + 1\right) &= -2023 + 4(484) + 88(1) \\
+                    4(\lfloor x \rfloor - 22)^2 + 88(1 - \{x\})^2 &= -2023 + 1936 + 88 \\
+                    4(\lfloor x \rfloor - 22)^2 + 88(1 - \{x\})^2 &= 1
+                    \end{aligned}
+                    \]
+                    <p>Karena \(0 \le \{x\} < 1\), maka \(0 < 1 - \{x\} \le 1\), yang berarti \(88(1 - \{x\})^2 > 0\).</p>
+                    <p>Jika \(|\lfloor x \rfloor - 22| \ge 1\), maka \(4(\lfloor x \rfloor - 22)^2 \ge 4 > 1\), hal ini tidak mungkin karena sisi kiri akan melebihi 1.</p>
+                    <p>Oleh karena itu, satu-satunya nilai bulat yang memenuhi adalah:</p>
+                    \[
+                    \lfloor x \rfloor - 22 = 0 \implies \lfloor x \rfloor = 22
+                    \]
+                    <p>Substitusikan kembali untuk mencari \(\{x\}\):</p>
+                    \[
+                    \begin{aligned}
+                    88(1 - \{x\})^2 &= 1 \\
+                    (1 - \{x\})^2 &= \dfrac{1}{88} \\
+                    1 - \{x\} &= \dfrac{1}{\sqrt{88}} \\
+                    \{x\} &= 1 - \dfrac{1}{\sqrt{88}}
+                    \end{aligned}
+                    \]
+                    <p>Maka solusi untuk \(x\) adalah:</p>
+                    \[
+                    x = \lfloor x \rfloor + \{x\} = 22 + 1 - \dfrac{1}{\sqrt{88}} = 23 - \dfrac{1}{\sqrt{88}}
+                    \]
+                    <p>Bentuk ini sesuai dengan \(a - \dfrac{1}{\sqrt{b}}\), sehingga diperoleh \(a = 23\) dan \(b = 88\).</p>
+                    \[
+                    a + b = 23 + 88 = 111
+                    \]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(a + b\) adalah <strong>111</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diberikan himpunan:</p>
+                \[
+                S = \left\{\left\lfloor\dfrac{1^3}{6211}\right\rfloor, \left\lfloor\dfrac{2^3}{6211}\right\rfloor, \left\lfloor\dfrac{3^3}{6211}\right\rfloor, \dots, \left\lfloor\dfrac{6211^3}{6211}\right\rfloor\right\}
+                \]
+                <p>Banyaknya anggota berbeda dari \(S\) adalah ....</p>
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan \(f(n) = \dfrac{n^3}{6211}\). Selisih antara dua suku berurutan adalah:</p>
+                    \[
+                    f(n) - f(n-1) = \dfrac{n^3 - (n-1)^3}{6211} = \dfrac{3n^2 - 3n + 1}{6211}
+                    \]
+                    <p>Nilai \(\lfloor f(n) \rfloor\) dipastikan menghasilkan bilangan bulat yang berbeda pada setiap kenaikan \(n\) jika selisihnya bernilai \(\ge 1\):</p>
+                    \[
+                    \begin{aligned}
+                    3n^2 - 3n + 1 &\ge 6211 \\
+                    3n^2 - 3n - 6210 &\ge 0 \\
+                    n^2 - n - 2070 &\ge 0 \\
+                    (n - 46)(n + 45) &\ge 0
+                    \end{aligned}
+                    \]
+                    <p>Karena \(n\) adalah bilangan bulat positif, maka pertidaksamaan terpenuhi untuk \(n \ge 46\).</p>
+                    <p>Artinya, untuk \(n = 46, 47, \dots, 6211\), seluruh nilai \(\lfloor f(n) \rfloor\) berbeda satu sama lain. Banyak bilangan berbeda pada bagian ini adalah:</p>
+                    \[
+                    6211 - 46 + 1 = 6166 \text{ bilangan}
+                    \]
+                    <p>Untuk \(n = 1\) hingga \(n = 45\), karena selisih \(f(n) - f(n-1) < 1\), fungsi mengambil setiap bilangan bulat di antara nilai minimum dan maksimumnya tanpa ada bilangan bulat yang terlewat:</p>
+                    <ul>
+                        <li>Untuk \(n = 1\): \(\left\lfloor\dfrac{1^3}{6211}\right\rfloor = 0\)</li>
+                        <li>Untuk \(n = 45\): \(\left\lfloor\dfrac{45^3}{6211}\right\rfloor = \left\lfloor\dfrac{91125}{6211}\right\rfloor = 14\)</li>
+                    </ul>
+                    <p>Maka pada bagian ini dihasilkan seluruh bilangan bulat dari \(0\) sampai \(14\), yaitu sebanyak \(14 - 0 + 1 = 15\) bilangan berbeda.</p>
+                    <p>Perhatikan bahwa untuk \(n = 46\), nilainya adalah \(\left\lfloor\dfrac{46^3}{6211}\right\rfloor = \left\lfloor\dfrac{97336}{6211}\right\rfloor = 15 > 14\), sehingga tidak ada nilai yang beririsan di antara kedua rentang.</p>
+                    <p>Total banyaknya anggota berbeda dari \(S\) adalah:</p>
+                    \[
+                    6166 + 15 = 6181
+                    \]
+
+                    <div class="kesimpulan">
+                        Jadi, banyaknya anggota berbeda dari \(S\) adalah <strong>6181</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diketahui \(k\) adalah bilangan bulat positif sehingga \(5^k\) adalah faktor dari \(125! - 124 \times 124! - 123 \times 123!\). Nilai terbesar \(k\) yang memenuhi adalah ....</p>
+                <ol type="A" class="pilihan-ganda">
+                    <li>40</li>
+                    <li>35</li>
+                    <li>32</li>
+                    <li>30</li>
+                    <li>28</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">Penyisihan OGM 10 Tingkat SMA</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Sederhanakan bentuk pengurangan faktorial:</p>
+                    \[
+                    \begin{aligned}
+                    125! - 124 \times 124! - 123 \times 123! &= 125 \times 124! - 124 \times 124! - 123 \times 123! \\
+                    &= (125 - 124) \times 124! - 123 \times 123! \\
+                    &= 124! - 123 \times 123! \\
+                    &= 124 \times 123! - 123 \times 123! \\
+                    &= (124 - 123) \times 123! \\
+                    &= 123!
+                    \end{aligned}
+                    \]
+                    <p>Untuk mencari pangkat tertinggi dari \(5\) yang membagi \(123!\), gunakan rumus Legendre (\(E_5(123!)\)):</p>
+                    \[
+                    \begin{aligned}
+                    k_{\text{maks}} &= \left\lfloor\dfrac{123}{5}\right\rfloor + \left\lfloor\dfrac{123}{5^2}\right\rfloor + \left\lfloor\dfrac{123}{5^3}\right\rfloor + \dots \\[8pt]
+                    &= \left\lfloor\dfrac{123}{5}\right\rfloor + \left\lfloor\dfrac{123}{25}\right\rfloor + \left\lfloor\dfrac{123}{125}\right\rfloor \\[8pt]
+                    &= 24 + 4 + 0 \\[6pt]
+                    &= 28
+                    \end{aligned}
+                    \]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai terbesar \(k\) yang memenuhi adalah <strong>28</strong>.
+                        <br><strong>Jawaban: E</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

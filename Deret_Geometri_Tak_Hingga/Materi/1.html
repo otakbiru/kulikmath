@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Deret Geometri Tak Hingga</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Deret Geometri Tak Hingga</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Syarat Konvergensi Deret Geometri Tak Hingga</h2>
+            <p>
+                <strong>Deret Geometri Tak Hingga</strong> adalah deret geometri yang penjumlahan suku-sukunya berlangsung terus-menerus tanpa batas ($n \to \infty$). Bentuk umumnya dinyatakan sebagai:
+                $$S_\infty = U_1 + U_2 + U_3 + U_4 + \dots = \sum_{n=1}^{\infty} a r^{n-1} = a + ar + ar^2 + ar^3 + \dots$$
+            </p>
+            <p>
+                Untuk menghitung nilai $S_\infty$, kita mengambil nilai limit jumlah $n$ suku pertama ($S_n$) saat $n$ mendekati tak hingga ($n \to \infty$):
+                $$S_\infty = \lim_{n \to \infty} S_n = \lim_{n \to \infty} \frac{a(1 - r^n)}{1 - r} = \frac{a}{1 - r} - \frac{a}{1 - r} \lim_{n \to \infty} r^n$$
+            </p>
+            <p>
+                Perilaku nilai $\lim_{n \to \infty} r^n$ sangat bergantung pada besar rasio $r$, sehingga deret geometri tak hingga dibagi menjadi dua jenis utama:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Deret</th>
+                            <th>Syarat Rasio ($r$)</th>
+                            <th>Perilaku $\lim_{n \to \infty} r^n$</th>
+                            <th>Nilai Jumlah Tak Hingga ($S_\infty$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Konvergen (Memusat)</strong></td>
+                            <td>$$|r| < 1 \iff -1 < r < 1$$<br><small>(dengan $r \neq 0$)</small></td>
+                            <td>$$\lim_{n \to \infty} r^n = 0$$</td>
+                            <td>$$S_\infty = \frac{a}{1 - r}$$<br><small>Memiliki nilai jumlah tertentu (berhingga).</small></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Divergen (Menyebar)</strong></td>
+                            <td>$$|r| \ge 1 \iff r \le -1 \text{ atau } r \ge 1$$</td>
+                            <td>$$\pm\infty \text{ atau berayun}$$</td>
+                            <td>$$\pm\infty \text{ (Tidak Terdefinisi)}$$<br><small>Suku-sukunya makin membesar atau berganti tanda tanpa menuju satu nilai.</small></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Bukti Visual Geometris:</strong><br>
+                        Perhatikan sebuah persegi berukuran $1 \times 1$ (luas total $= 1$). Jika kita membagi persegi tersebut secara terus-menerus menjadi separuh bagian dari sisa luas sebelumnya, kita memperoleh deret geometri tak hingga dengan $a = \frac{1}{2}$ dan $r = \frac{1}{2}$:
+                        $$\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \dots = \frac{\frac{1}{2}}{1 - \frac{1}{2}} = 1$$
+                        Secara visual tampak jelas bahwa gabungan seluruh potongan persegi tersebut tepat memenuhi persegi satuan.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-konvergensi-persegi" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Pemisahan Suku Berindeks Ganjil dan Genap</h2>
+            <p>
+                Pada suatu deret geometri tak hingga yang konvergen ($U_1 + U_2 + U_3 + U_4 + \dots$), kita dapat mengelompokkan suku-sukunya menjadi dua deret bagian berdasarkan paritas nomor urut (indeks) sukunya:
+            </p>
+            <ul>
+                <li>
+                    <strong>Jumlah Suku Berindeks Ganjil ($S_{\text{ganjil}}$):</strong><br>
+                    $$S_{\text{ganjil}} = U_1 + U_3 + U_5 + U_7 + \dots = a + ar^2 + ar^4 + ar^6 + \dots$$
+                    Deret ini merupakan deret geometri tak hingga baru dengan suku pertama $a_{\text{ganjil}} = a$ dan rasio $r_{\text{ganjil}} = r^2$, sehingga jumlahnya adalah:
+                    $$S_{\text{ganjil}} = \frac{a}{1 - r^2}$$
+                </li>
+                <li>
+                    <strong>Jumlah Suku Berindeks Genap ($S_{\text{genap}}$):</strong><br>
+                    $$S_{\text{genap}} = U_2 + U_4 + U_6 + U_8 + \dots = ar + ar^3 + ar^5 + ar^7 + \dots$$
+                    Deret ini merupakan deret geometri tak hingga baru dengan suku pertama $a_{\text{genap}} = ar$ dan rasio $r_{\text{genap}} = r^2$, sehingga jumlahnya adalah:
+                    $$S_{\text{genap}} = \frac{ar}{1 - r^2}$$
+                </li>
+            </ul>
+            <p>
+                Dari kedua rumus di atas, diperoleh tiga identitas penting yang sangat sering digunakan dalam soal seleksi masuk perguruan tinggi (SNBT/Mandiri):
+                $$1) \quad S_\infty = S_{\text{ganjil}} + S_{\text{genap}} = \frac{a}{1 - r} \qquad\qquad 2) \quad r = \frac{S_{\text{genap}}}{S_{\text{ganjil}}} \qquad\qquad 3) \quad S_{\text{ganjil}} - S_{\text{genap}} = \frac{a}{1 + r}$$
+            </p>
+
+            <h2>3. Sifat Ekor Deret & Deret dari Pangkat Suku-Sukunya</h2>
+            <p>
+                <strong>a) Hubungan Suku ke-$n$ dengan Jumlah Seluruh Suku Setelahnya (Ekor Deret):</strong><br>
+                Misalkan $R_n = U_{n+1} + U_{n+2} + U_{n+3} + \dots$ adalah jumlah tak hingga dari suku-suku setelah suku ke-$n$. Karena $U_{n+1} = ar^n$, maka:
+                $$R_n = \frac{U_{n+1}}{1 - r} = \frac{ar^n}{1 - r} = r^n \cdot S_\infty \quad \text{dan} \quad \frac{U_n}{R_n} = \frac{ar^{n-1}}{\frac{ar^n}{1 - r}} = \frac{1 - r}{r}$$
+                Artinya, perbandingan antara suatu suku ($U_n$) dengan jumlah seluruh suku di belakangnya ($R_n$) selalu konstan untuk setiap $n$.
+            </p>
+            <p>
+                <strong>b) Deret Tak Hingga dari Kuadrat atau Pangkat-$k$ Suku-Sukunya:</strong><br>
+                Jika tiap suku pada deret geometri tak hingga dipangkatkan $k$ ($U_1^k + U_2^k + U_3^k + \dots$), maka terbentuk deret geometri tak hingga baru dengan suku pertama $a^k$ dan rasio $r^k$:
+                $$\sum_{n=1}^{\infty} (U_n)^k = a^k + a^k r^k + a^k r^{2k} + \dots = \frac{a^k}{1 - r^k}$$
+                Khusus untuk jumlah kuadrat suku-sukunya ($k = 2$):
+                $$U_1^2 + U_2^2 + U_3^2 + \dots = \frac{a^2}{1 - r^2} = \frac{a}{1 - r} \cdot \frac{a}{1 + r} = S_\infty \cdot \frac{a}{1 + r}$$
+            </p>
+
+            <h2>4. Aplikasi Fisis, Bilangan Desimal Berulang, & Geometri Fraktal</h2>
+
+            <h3>4.1. Lintasan Bola Memantul (Bouncing Ball)</h3>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Sebuah bola dijatuhkan (dilepas tanpa kecepatan awal) dari ketinggian $h_0$, lalu setiap kali menyentuh lantai bola memantul kembali setinggi $r = \frac{p}{q}$ kali tinggi sebelumnya ($0 < r < 1$).
+                    </p>
+                    <ul>
+                        <li><strong>Lintasan Turun ($S_{\text{turun}}$):</strong> Terjadi mulai dari tinggi awal $h_0, \, h_0 r, \, h_0 r^2, \, \dots$ sehingga:
+                            $$S_{\text{turun}} = \frac{h_0}{1 - r}$$
+                        </li>
+                        <li><strong>Lintasan Naik ($S_{\text{naik}}$):</strong> Baru terjadi setelah pantulan pertama setinggi $h_1 = h_0 r, \, h_0 r^2, \, \dots$ sehingga:
+                            $$S_{\text{naik}} = \frac{h_0 r}{1 - r}$$
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-bola-pantul" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kasus Gerak Bola</th>
+                            <th>Rumus Panjang Lintasan Total ($S_{\text{total}}$)</th>
+                            <th>Rumus Cepat (Rasio $r = \frac{p}{q}$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Bola Dijatuhkan dari Atas</strong><br><small>(Hanya melewati $h_0$ satu kali saat turun)</small></td>
+                            <td>$$S_{\text{total}} = S_{\text{turun}} + S_{\text{naik}} = h_0 \left(\frac{1 + r}{1 - r}\right)$$</td>
+                            <td>$$S_{\text{total}} = h_0 \left(\frac{q + p}{q - p}\right)$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bola Dilempar Tegak Lurus dari Bawah</strong><br><small>(Melewati $h_0$ dua kali: saat naik awal & turun)</small></td>
+                            <td>$$S_{\text{total}} = 2 \cdot S_{\text{turun}} = \frac{2h_0}{1 - r}$$</td>
+                            <td>$$S_{\text{total}} = h_0 \left(\frac{2q}{q - p}\right)$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>4.2. Mengubah Desimal Berulang Menjadi Pecahan Rasional</h3>
+            <p>
+                Bilangan desimal berulang tak hingga dapat dinyatakan sebagai deret geometri tak hingga dengan rasio $r = 10^{-k}$ (di mana $k$ adalah banyaknya digit yang berulang):
+            </p>
+            <ul>
+                <li><strong>Berulang 1 digit:</strong> $0,\overline{a} = 0,aaa\dots = \frac{a}{10} + \frac{a}{100} + \frac{a}{1000} + \dots = \frac{a/10}{1 - 1/10} = \frac{a}{9}$</li>
+                <li><strong>Berulang 2 digit:</strong> $0,\overline{ab} = 0,abab\dots = \frac{ab}{100} + \frac{ab}{10000} + \dots = \frac{ab/100}{1 - 1/100} = \frac{ab}{99}$</li>
+                <li><strong>Berulang $k$ digit:</strong> $0,\overline{d_1 d_2 \dots d_k} = \frac{d_1 d_2 \dots d_k}{\underbrace{99\dots9}_{k \text{ angka } 9}}$</li>
+            </ul>
+
+            <h3>4.3. Geometri Bersarang Tak Hingga (Nested Polygons)</h3>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Apabila di dalam suatu bangun datar (misalnya persegi atau segitiga sama sisi) dibuat bangun datar baru yang sebangun secara terus-menerus dengan menghubungkan titik-titik tengah sisinya, maka:
+                    </p>
+                    <ul>
+                        <li>Perbandingan panjang sisi bangun ke-$(n+1)$ terhadap bangun ke-$n$ membentuk barisan geometri dengan rasio panjang sisi $r_{\text{sisi}} = k$.</li>
+                        <li><strong>Rasio Keliling:</strong> Sama dengan rasio panjang sisi, yaitu $r_K = k$.</li>
+                        <li><strong>Rasio Luas:</strong> Sama dengan kuadrat dari rasio panjang sisi, yaitu $r_L = k^2$.</li>
+                    </ul>
+                    <p>
+                        Khusus untuk <strong>persegi bersarang</strong> yang menghubungkan titik tengah sisi-sisinya, berlaku $r_K = \frac{1}{2}\sqrt{2}$ dan $r_L = \left(\frac{1}{2}\sqrt{2}\right)^2 = \frac{1}{2}$. Sedangkan untuk <strong>segitiga sama sisi bersarang</strong> di titik tengah sisinya, berlaku $r_K = \frac{1}{2}$ dan $r_L = \frac{1}{4}$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-persegi-bersarang" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berjenjang berikut untuk menguasai berbagai tipe soal Deret Geometri Tak Hingga dari tingkat dasar hingga analisis fungsi dan aplikasi:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Suatu deret geometri tak hingga diketahui memiliki jumlah seluruh suku sebesar $36$. Jika jumlah semua suku yang berindeks genap ($U_2 + U_4 + U_6 + \dots$) adalah $12$, tentukan rasio ($r$), suku pertama ($a$), dan nilai suku ke-$4$ ($U_4$)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Menentukan jumlah suku berindeks ganjil ($S_{\text{ganjil}}$) dan rasio ($r$)</strong></p>
+                    <p>
+                        Diketahui $S_\infty = 36$ dan $S_{\text{genap}} = 12$. Karena $S_\infty = S_{\text{ganjil}} + S_{\text{genap}}$, maka:
+                        $$S_{\text{ganjil}} = S_\infty - S_{\text{genap}} = 36 - 12 = 24$$
+                        Gunakan rumus perbandingan suku genap dan suku ganjil untuk memperoleh rasio:
+                        $$r = \frac{S_{\text{genap}}}{S_{\text{ganjil}}} = \frac{12}{24} = \frac{1}{2}$$
+                    </p>
+                    <p><strong>Langkah 2: Menentukan suku pertama ($a$) dan suku ke-$4$ ($U_4$)</strong></p>
+                    <p>
+                        Substitusikan $r = \frac{1}{2}$ ke dalam rumus $S_\infty = \frac{a}{1 - r} = 36$:
+                        $$\frac{a}{1 - \frac{1}{2}} = 36 \implies \frac{a}{\frac{1}{2}} = 36 \implies a = 36 \times \frac{1}{2} = 18$$
+                        Maka nilai suku ke-$4$ ($U_4$) adalah:
+                        $$U_4 = a \cdot r^3 = 18 \cdot \left(\frac{1}{2}\right)^3 = 18 \cdot \frac{1}{8} = \frac{9}{4} = 2\text{,25}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, rasio deret tersebut adalah $r = \frac{1}{2}$, suku pertama $a = 18$, dan nilai suku ke-$4$ adalah $\frac{9}{4}$ (atau $2\text{,25}$).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Diketahui deret geometri tak hingga: $(2x - 3) + (2x - 3)^2 + (2x - 3)^3 + \dots$
+                    <br>a) Tentukan batas-batas nilai $x$ agar deret tersebut bersifat <strong>konvergen</strong> (mempunyai jumlah)!
+                    <br>b) Jika jumlah tak hingga deret tersebut sama dengan $-\frac{1}{3}$, tentukan nilai $x$ yang memenuhi!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menentukan interval nilai $x$ agar deret konvergen:</strong></p>
+                    <p>
+                        Dari bentuk deret $(2x - 3) + (2x - 3)^2 + (2x - 3)^3 + \dots$, tampak bahwa suku pertama dan rasionya bernilai sama, yaitu $a = r = 2x - 3$.<br>
+                        Syarat deret geometri tak hingga konvergen (dengan suku tak nol) adalah $-1 < r < 1$ dan $r \neq 0$:
+                        $$-1 < 2x - 3 < 1 \quad \text{dengan} \quad 2x - 3 \neq 0$$
+                        Tambahkan ketiga ruas dengan $3$, lalu bagi dengan $2$:
+                        $$2 < 2x < 4 \implies 1 < x < 2 \quad \text{dan} \quad x \neq \frac{3}{2}$$
+                    </p>
+                    <p><strong>b) Menentukan nilai $x$ jika $S_\infty = -\frac{1}{3}$:</strong></p>
+                    <p>
+                        $$S_\infty = \frac{a}{1 - r} = -\frac{1}{3} \implies \frac{2x - 3}{1 - (2x - 3)} = -\frac{1}{3}$$
+                        $$\frac{2x - 3}{4 - 2x} = -\frac{1}{3} \implies 3(2x - 3) = -1(4 - 2x)$$
+                        $$6x - 9 = -4 + 2x \implies 4x = 5 \implies x = \frac{5}{4} = 1\text{,25}$$
+                        Karena $x = \frac{5}{4}$ berada di dalam interval konvergensi $1 < x < 2$, maka nilai tersebut memenuhi.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, batas nilai $x$ agar deret konvergen adalah $1 < x < 2$ ($x \neq \frac{3}{2}$), dan untuk $S_\infty = -\frac{1}{3}$ diperoleh $x = \frac{5}{4}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Sebuah bola elastis dijatuhkan dari ketinggian $15\text{ meter}$ di atas lantai mendatar. Setiap kali bola memantul di lantai, bola mencapai ketinggian $\frac{3}{5}$ dari ketinggian sebelumnya. Tentukan:
+                    <br>a) Total panjang lintasan yang ditempuh bola saat sedang bergerak turun saja hingga berhenti!
+                    <br>b) Total seluruh panjang lintasan bola dari awal dijatuhkan hingga berhenti!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menghitung total lintasan turun ($S_{\text{turun}}$):</strong></p>
+                    <p>
+                        Diketahui tinggi awal $h_0 = 15\text{ m}$ dan rasio pantulan $r = \frac{p}{q} = \frac{3}{5}$. Lintasan turun membentuk deret geometri tak hingga dengan suku awal $a = 15$ dan $r = \frac{3}{5}$:
+                        $$S_{\text{turun}} = \frac{h_0}{1 - r} = \frac{15}{1 - \frac{3}{5}} = \frac{15}{\frac{2}{5}} = 15 \times \frac{5}{2} = 37\text{,5 meter}$$
+                    </p>
+                    <p><strong>b) Menghitung total seluruh lintasan bola ($S_{\text{total}}$):</strong></p>
+                    <p>
+                        Karena bola dijatuhkan dari atas, gunakan rumus $S_{\text{total}} = h_0 \left(\frac{q + p}{q - p}\right)$ dengan $p = 3$ dan $q = 5$:
+                        $$S_{\text{total}} = 15 \left(\frac{5 + 3}{5 - 3}\right) = 15 \left(\frac{8}{2}\right) = 15 \times 4 = 60\text{ meter}$$
+                        <em>(Atau melalui $S_{\text{naik}} = r \cdot S_{\text{turun}} = \frac{3}{5} \times 37\text{,5} = 22\text{,5 m}$, sehingga $S_{\text{total}} = 37\text{,5} + 22\text{,5} = 60\text{ m}$).</em>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, total panjang lintasan turun adalah $37\text{,5 meter}$ dan total seluruh panjang lintasan bola hingga berhenti adalah $60\text{ meter}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Diketahui sebuah persegi $P_1$ memiliki panjang sisi $12\text{ cm}$. Di dalam persegi $P_1$ dibuat persegi kedua $P_2$ dengan menghubungkan titik-titik tengah keempat sisi $P_1$. Demikian seterusnya dibuat persegi $P_3, P_4, \dots$ tanpa henti. Tentukan:
+                    <br>a) Jumlah luas seluruh persegi yang terbentuk ($L_1 + L_2 + L_3 + \dots$)!
+                    <br>b) Jumlah keliling seluruh persegi yang terbentuk ($K_1 + K_2 + K_3 + \dots$)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Menentukan panjang sisi dan rasio antara persegi ke-$1$ dan ke-$2$</strong></p>
+                    <p>
+                        Panjang sisi persegi pertama adalah $s_1 = 12\text{ cm}$. Titik tengah sisi-sisi $P_1$ membagi tiap sisi menjadi segmen sepanjang $6\text{ cm}$. Dengan Teorema Pythagoras, panjang sisi persegi kedua ($s_2$) adalah:
+                        $$s_2 = \sqrt{6^2 + 6^2} = 6\sqrt{2}\text{ cm} \implies r_{\text{sisi}} = \frac{s_2}{s_1} = \frac{6\sqrt{2}}{12} = \frac{1}{2}\sqrt{2}$$
+                    </p>
+                    <p><strong>a) Menghitung jumlah luas seluruh persegi ($S_{L\infty}$):</strong></p>
+                    <p>
+                        Luas persegi pertama adalah $L_1 = s_1^2 = 12^2 = 144\text{ cm}^2$, dan rasio luas adalah $r_L = (r_{\text{sisi}})^2 = \left(\frac{1}{2}\sqrt{2}\right)^2 = \frac{1}{2}$:
+                        $$S_{L\infty} = \frac{L_1}{1 - r_L} = \frac{144}{1 - \frac{1}{2}} = \frac{144}{\frac{1}{2}} = 288\text{ cm}^2$$
+                    </p>
+                    <p><strong>b) Menghitung jumlah keliling seluruh persegi ($S_{K\infty}$):</strong></p>
+                    <p>
+                        Keliling persegi pertama adalah $K_1 = 4 \times 12 = 48\text{ cm}$, dan rasio keliling sama dengan rasio sisi $r_K = \frac{1}{2}\sqrt{2}$:
+                        $$S_{K\infty} = \frac{K_1}{1 - r_K} = \frac{48}{1 - \frac{1}{2}\sqrt{2}} = \frac{96}{2 - \sqrt{2}} \times \frac{2 + \sqrt{2}}{2 + \sqrt{2}} = \frac{96(2 + \sqrt{2})}{4 - 2} = 48\left(2 + \sqrt{2}\right)\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, jumlah luas seluruh persegi adalah $288\text{ cm}^2$ dan jumlah keliling seluruh persegi adalah $48\left(2 + \sqrt{2}\right)\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 5 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 5</div>
+                <div class="soal-teks">
+                    Suatu deret geometri tak hingga dengan suku-suku positif memiliki jumlah $S_\infty = 6$, sedangkan jumlah dari kuadrat seluruh sukunya ($U_1^2 + U_2^2 + U_3^2 + \dots$) adalah $18$. Tentukan suku pertama ($a$) dan rasio ($r$) deret tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Nyatakan informasi soal ke dalam rumus $a$ dan $r$</strong></p>
+                    <ul>
+                        <li>Jumlah deret asli: $S_\infty = \dfrac{a}{1 - r} = 6 \implies a = 6(1 - r)$</li>
+                        <li>Jumlah kuadrat suku-sukunya: $\sum U_n^2 = \dfrac{a^2}{1 - r^2} = 18$</li>
+                    </ul>
+                    <p><strong>Langkah 2: Faktorkan penyebut $1 - r^2 = (1 - r)(1 + r)$</strong></p>
+                    <p>
+                        $$\frac{a^2}{1 - r^2} = \left(\frac{a}{1 - r}\right) \cdot \left(\frac{a}{1 + r}\right) = 18$$
+                        Substitusikan $\frac{a}{1 - r} = 6$:
+                        $$6 \cdot \left(\frac{a}{1 + r}\right) = 18 \implies \frac{a}{1 + r} = 3 \implies a = 3(1 + r)$$
+                    </p>
+                    <p><strong>Langkah 3: Samakan kedua persamaan $a$ untuk mencari $r$ dan $a$</strong></p>
+                    <p>
+                        $$6(1 - r) = 3(1 + r) \implies 2(1 - r) = 1 + r \implies 2 - 2r = 1 + r$$
+                        $$3r = 1 \implies r = \frac{1}{3}$$
+                        Substitusikan $r = \frac{1}{3}$ ke $a = 3(1 + r)$:
+                        $$a = 3\left(1 + \frac{1}{3}\right) = 3\left(\frac{4}{3}\right) = 4$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, suku pertama deret tersebut adalah $a = 4$ dan rasionya adalah $r = \frac{1}{3}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Ilustrasi Geometris Pembagian Persegi Satuan: 1/2 + 1/4 + 1/8 + 1/16 + ... = 1
+            const elPersegi = document.getElementById("svg-konvergensi-persegi");
+            if (elPersegi && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elPersegi, 340, 215, {
+                    viewBox: "0 0 340 215",
+                    title: "Bukti Visual Geometris 1/2 + 1/4 + 1/8 + 1/16 + ... = 1"
+                });
+
+                geo1.buatTeks(170, 15, "Bukti Visual: 1/2 + 1/4 + 1/8 + 1/16 + ... = 1", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Persegi utama berukuran 160 x 160 di tengah (x: 90..250, y: 30..190)
+                const x0 = 90, y0 = 30, S = 160;
+
+                // 1/2 (Separuh Kiri: 80 x 160)
+                geo1.buatPersegiPanjang(x0, y0, S / 2, S, {
+                    fill: "rgba(13, 148, 136, 0.28)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.6
+                });
+                geo1.buatTeks(x0 + 40, y0 + 80, "1/2", {
+                    position: "middle-center",
+                    fontSize: "15px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // 1/4 (Kanan Atas: 80 x 80)
+                geo1.buatPersegiPanjang(x0 + 80, y0, 80, 80, {
+                    fill: "rgba(217, 119, 6, 0.24)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.6
+                });
+                geo1.buatTeks(x0 + 120, y0 + 40, "1/4", {
+                    position: "middle-center",
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    fill: "#b45309"
+                });
+
+                // 1/8 (Kanan Bawah - Separuh Kiri: 40 x 80)
+                geo1.buatPersegiPanjang(x0 + 80, y0 + 80, 40, 80, {
+                    fill: "rgba(13, 148, 136, 0.18)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.5
+                });
+                geo1.buatTeks(x0 + 100, y0 + 120, "1/8", {
+                    position: "middle-center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // 1/16 (Sisa Kanan Atas: 40 x 40)
+                geo1.buatPersegiPanjang(x0 + 120, y0 + 80, 40, 40, {
+                    fill: "rgba(217, 119, 6, 0.16)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.4
+                });
+                geo1.buatTeks(x0 + 140, y0 + 100, "1/16", {
+                    position: "middle-center",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    fill: "#b45309"
+                });
+
+                // 1/32 (20 x 40)
+                geo1.buatPersegiPanjang(x0 + 120, y0 + 120, 20, 40, {
+                    fill: "rgba(13, 148, 136, 0.12)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.2
+                });
+                geo1.buatTeks(x0 + 130, y0 + 140, "1/32", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // 1/64 dan "..." di sudut kanan bawah (20 x 20)
+                geo1.buatPersegiPanjang(x0 + 140, y0 + 120, 20, 20, {
+                    fill: "rgba(217, 119, 6, 0.12)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.2
+                });
+                geo1.buatPersegiPanjang(x0 + 140, y0 + 140, 20, 20, {
+                    fill: "rgba(13, 148, 136, 0.08)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.2
+                });
+                geo1.buatTeks(x0 + 150, y0 + 150, "...", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#334155"
+                });
+
+                // Keterangan di bawah persegi
+                geo1.buatTeks(170, 204, "Total Luas Persegi = 1 × 1 = 1 Satuan Luas", {
+                    position: "middle-center",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    fill: "#475569"
+                });
+            }
+
+            // 2. Ilustrasi Lintasan Bola Memantul (Bouncing Ball)
+            const elBola = document.getElementById("svg-bola-pantul");
+            if (elBola && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elBola, 370, 195, {
+                    viewBox: "0 0 370 195",
+                    title: "Skema Lintasan Bola Memantul Tak Hingga"
+                });
+
+                geo2.buatTeks(185, 15, "Lintasan Bola Dijatuhkan: S_total = S_turun + S_naik", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const yFloor = 172;
+                // Garis lantai
+                geo2.buatSegmen(20, yFloor, 350, yFloor, { stroke: "#475569", strokeWidth: 2 });
+
+                // Titik puncak dan pantulan: h0=130, h1=84, h2=54, h3=35, h4=22
+                const peaks = [
+                    { x: 45, h: 130, label: "h₀" },
+                    { x: 125, h: 85, label: "h₁ = h₀r" },
+                    { x: 195, h: 55, label: "h₂ = h₀r²" },
+                    { x: 255, h: 35, label: "h₃" },
+                    { x: 305, h: 22, label: "..." }
+                ];
+                const bounces = [85, 160, 225, 280, 325];
+
+                // Gambar lintasan turun (Teal solid) dan naik (Amber dashed)
+                for (let i = 0; i < peaks.length; i++) {
+                    const p = peaks[i];
+                    const yPeak = yFloor - p.h;
+                    const xBounce = bounces[i];
+
+                    // Garis bantu vertikal tinggi puncak
+                    geo2.buatSegmen(p.x, yFloor, p.x, yPeak, {
+                        stroke: "#cbd5e1",
+                        strokeWidth: 1.2,
+                        dashed: "3 2"
+                    });
+
+                    // Kurva Turun (dari puncak ke lantai)
+                    geo2.buatKurvaBezier(
+                        [[p.x, yPeak], [(p.x + xBounce) / 2 + 6, yPeak + p.h * 0.25], [xBounce, yFloor]],
+                        { stroke: "#0f766e", strokeWidth: 2 }
+                    );
+
+                    // Kurva Naik (dari lantai ke puncak berikutnya)
+                    if (i < peaks.length - 1) {
+                        const nextP = peaks[i + 1];
+                        const yNext = yFloor - nextP.h;
+                        geo2.buatKurvaBezier(
+                            [[xBounce, yFloor], [(xBounce + nextP.x) / 2 - 6, yNext + nextP.h * 0.25], [nextP.x, yNext]],
+                            { stroke: "#d97706", strokeWidth: 1.8, dashed: "4 2" }
+                        );
+                    }
+
+                    // Bola di puncak
+                    geo2.buatLingkaran(p.x, yPeak, i === 0 ? 6 : 4.5, {
+                        fill: i === 0 ? "#0f766e" : "#f59e0b",
+                        stroke: "#ffffff",
+                        strokeWidth: 1.2
+                    });
+
+                    geo2.buatTeks(p.x, yPeak - 10, p.label, {
+                        position: "top-center",
+                        fontSize: "10px",
+                        fontWeight: "bold",
+                        fill: i === 0 ? "#0f766e" : "#b45309"
+                    });
+                }
+
+                // Legenda bawah
+                geo2.buatTeks(110, 185, "── Turun (h₀, h₁, h₂, ...)", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+                geo2.buatTeks(265, 185, "- - - Naik (h₁, h₂, ...)", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#b45309"
+                });
+            }
+
+            // 3. Ilustrasi Persegi Bersarang Tak Hingga (Nested Squares)
+            const elSarang = document.getElementById("svg-persegi-bersarang");
+            if (elSarang && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elSarang, 320, 205, {
+                    viewBox: "0 0 320 205",
+                    title: "Visualisasi Persegi Bersarang Tak Hingga di Titik Tengah Sisi"
+                });
+
+                geo3.buatTeks(160, 15, "Persegi Bersarang: r_sisi = ½√2 , r_luas = ½", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Titik sudut persegi pertama (berpusat di 160, 108 dengan sisi 144)
+                let pts = [
+                    [88, 36],
+                    [232, 36],
+                    [232, 180],
+                    [88, 180]
+                ];
+
+                for (let level = 0; level < 6; level++) {
+                    const isEven = level % 2 === 0;
+                    geo3.buatPoligon(pts, {
+                        fill: isEven ? "rgba(13, 148, 136, 0.12)" : "rgba(217, 119, 6, 0.14)",
+                        stroke: isEven ? "#0f766e" : "#d97706",
+                        strokeWidth: level === 0 ? 2 : 1.5
+                    });
+
+                    // Hitung titik tengah tiap sisi untuk persegi berikutnya
+                    const nextPts = [];
+                    for (let i = 0; i < 4; i++) {
+                        const p1 = pts[i];
+                        const p2 = pts[(i + 1) % 4];
+                        nextPts.push([(p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2]);
+                    }
+                    pts = nextPts;
+                }
+
+                // Label P1, P2, P3
+                geo3.buatTeks(102, 47, "P₁", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#0f766e" });
+                geo3.buatTeks(160, 50, "P₂", { position: "middle-center", fontSize: "10.5px", fontWeight: "bold", fill: "#b45309" });
+                geo3.buatTeks(134, 80, "P₃", { position: "middle-center", fontSize: "10px", fontWeight: "bold", fill: "#0f766e" });
+                geo3.buatTeks(160, 108, "...", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: "#334155" });
+
+                geo3.buatTeks(160, 194, "S_Luas = L₁ / (1 - 1/2) = 2 · L₁", {
+                    position: "middle-center",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

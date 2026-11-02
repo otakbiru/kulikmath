@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Faktorial</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Faktorial</span>
+            </p>
+            <!-- Tombol Tingkat dirender otomatis oleh script.js -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Tentukan hasil dari:</p>
+                \[
+                \dfrac{(6! + 5!) \times (4! + 3!) \times (2! + 1!)}{(6! - 5!) \times (4! - 3!) \times (2! - 1!)}
+                \]
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorkan setiap suku menggunakan faktorial terkecil:</p>
+                    <ul>
+                        <li>\(6! + 5! = 5!(6 + 1) = 5! \times 7\)</li>
+                        <li>\(6! - 5! = 5!(6 - 1) = 5! \times 5\)</li>
+                        <li>\(4! + 3! = 3!(4 + 1) = 3! \times 5\)</li>
+                        <li>\(4! - 3! = 3!(4 - 1) = 3! \times 3\)</li>
+                        <li>\(2! + 1! = 1!(2 + 1) = 1! \times 3\)</li>
+                        <li>\(2! - 1! = 1!(2 - 1) = 1! \times 1\)</li>
+                    </ul>
+                    <p>Substitusikan ke bentuk pecahan awal:</p>
+                    \[
+                    \begin{aligned}
+                    \dfrac{(6! + 5!) \times (4! + 3!) \times (2! + 1!)}{(6! - 5!) \times (4! - 3!) \times (2! - 1!)} &= \dfrac{5!(6 + 1) \times 3!(4 + 1) \times 1!(2 + 1)}{5!(6 - 1) \times 3!(4 - 1) \times 1!(2 - 1)} \\[8pt]
+                    &= \dfrac{5!(7) \times 3!(5) \times 1!(3)}{5!(5) \times 3!(3) \times 1!(1)} \\[8pt]
+                    &= \dfrac{7 \times 5 \times 3}{5 \times 3 \times 1} \\[8pt]
+                    &= 7
+                    \end{aligned}
+                    \]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil dari perhitungan tersebut adalah <strong>7</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diketahui persamaan \(a! + b! + c! = d!\) dengan \(a, b, c, d\) adalah bilangan bulat positif. Berapa banyak pasangan solusi \((a, b, c, d)\) yang mungkin?</p>
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena \(a, b, c \ge 1\), maka:</p>
+                    \[
+                    d! = a! + b! + c! \ge 1! + 1! + 1! = 3 \implies d \ge 3
+                    \]
+                    <p>Tanpa mengurangi keumuman (WLOG), asumsikan \(1 \le a \le b \le c\). Maka:</p>
+                    \[
+                    \begin{aligned}
+                    d! &= a! + b! + c! \\
+                    &\le c! + c! + c! = 3c! \\[6pt]
+                    \dfrac{d!}{c!} &\le 3
+                    \end{aligned}
+                    \]
+                    <p>Karena \(d! = a! + b! + c! > c!\), maka haruslah \(d > c\), yang berarti \(d \ge c + 1\).</p>
+                    <p>Jika \(d \ge c + 2\), maka:</p>
+                    \[
+                    \dfrac{d!}{c!} = d(d - 1) \ge 3 \times 2 = 6 > 3 \quad (\text{tidak memenuhi})
+                    \]
+                    <p>Sehingga haruslah \(d = c + 1\). Maka:</p>
+                    \[
+                    \dfrac{d!}{c!} = d \le 3
+                    \]
+                    <p>Karena disyaratkan \(d \ge 3\), maka satu-satunya nilai \(d\) yang mungkin adalah \(d = 3\).</p>
+                    <p>Untuk \(d = 3\), kita peroleh \(c = d - 1 = 2\). Substitusikan ke persamaan:</p>
+                    \[
+                    \begin{aligned}
+                    a! + b! + 2! &= 3! \\
+                    a! + b! + 2 &= 6 \\
+                    a! + b! &= 4
+                    \end{aligned}
+                    \]
+                    <p>Karena \(1 \le a \le b \le c = 2\), satu-satunya pasangan yang menghasilkan \(a! + b! = 4\) adalah \(a = 2\) dan \(b = 2\) (karena \(2! + 2! = 2 + 2 = 4\)).</p>
+                    <p>Sehingga pasangan terurut yang memenuhi adalah \((a, b, c, d) = (2, 2, 2, 3)\).</p>
+
+                    <div class="kesimpulan">
+                        Jadi, hanya ada <strong>1 solusi</strong> pasangan bilangan bulat positif yang mungkin, yaitu \((a, b, c, d) = (2, 2, 2, 3)\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Tentukan bentuk sederhana dari:</p>
+                \[
+                \dfrac{\sqrt{3}\left(n^2 - 1\right)!}{\left(n^2 - 3\right)!}
+                \]
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Uraikan faktorial pada pembilang hingga memuat \((n^2 - 3)!\):</p>
+                    \[
+                    \left(n^2 - 1\right)! = \left(n^2 - 1\right)\left(n^2 - 2\right)\left(n^2 - 3\right)!
+                    \]
+                    <p>Substitusikan ke dalam pecahan:</p>
+                    \[
+                    \begin{aligned}
+                    \dfrac{\sqrt{3}\left(n^2 - 1\right)!}{\left(n^2 - 3\right)!} &= \dfrac{\sqrt{3}\left(n^2 - 1\right)\left(n^2 - 2\right)\left(n^2 - 3\right)!}{\left(n^2 - 3\right)!} \\[8pt]
+                    &= \sqrt{3}\left(n^2 - 1\right)\left(n^2 - 2\right) \\[8pt]
+                    &= \sqrt{3}\left(n^4 - 3n^2 + 2\right) \\[8pt]
+                    &= \sqrt{3}n^4 - 3\sqrt{3}n^2 + 2\sqrt{3}
+                    \end{aligned}
+                    \]
+
+                    <div class="kesimpulan">
+                        Jadi, bentuk sederhananya adalah \(\sqrt{3}\left(n^2 - 1\right)\left(n^2 - 2\right) = \sqrt{3}n^4 - 3\sqrt{3}n^2 + 2\sqrt{3}\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diketahui:</p>
+                \[
+                \dfrac{1}{0!10!} + \dfrac{1}{1!9!} + \dfrac{1}{2!8!} + \dots + \dfrac{1}{9!1!} + \dfrac{1}{10!0!} = \dfrac{m}{n}
+                \]
+                <p>Jika \(m\) dan \(n\) adalah bilangan bulat positif yang saling relatif prima (\(\operatorname{FPB}(m, n) = 1\)), maka nilai dari \(10m\) adalah ....</p>
+            </div>
+            <div class="soal-sumber"><a href="https://www.pendidikmatematika.com/" target="_blank" rel="noopener noreferrer">Tryout OSN-K Matematika SMA 2023</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kalikan persamaan dengan \(\dfrac{10!}{10!}\):</p>
+                    \[
+                    \begin{aligned}
+                    \sum_{k=0}^{10} \dfrac{1}{k!(10-k)!} &= \dfrac{1}{10!} \sum_{k=0}^{10} \dfrac{10!}{k!(10-k)!} \\[8pt]
+                    &= \dfrac{1}{10!} \left[\binom{10}{0} + \binom{10}{1} + \binom{10}{2} + \dots + \binom{10}{9} + \binom{10}{10}\right]
+                    \end{aligned}
+                    \]
+                    <p>Berdasarkan sifat penjumlahan koefisien binomial, \(\sum_{k=0}^{n} \binom{n}{k} = 2^n\), sehingga:</p>
+                    \[
+                    \sum_{k=0}^{10} \binom{10}{k} = 2^{10} = 1024
+                    \]
+                    <p>Maka bentuk pecahan menjadi:</p>
+                    \[
+                    \dfrac{m}{n} = \dfrac{2^{10}}{10!}
+                    \]
+                    <p>Kita tentukan faktorisasi prima dari \(10!\):</p>
+                    \[
+                    10! = 10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 2^8 \times 3^4 \times 5^2 \times 7
+                    \]
+                    <p>Sederhanakan pecahan tersebut dengan membagi pembilang dan penyebut dengan faktor persekutuan terbesar \(2^8\):</p>
+                    \[
+                    \begin{aligned}
+                    \dfrac{m}{n} &= \dfrac{2^{10}}{2^8 \times 3^4 \times 5^2 \times 7} \\[8pt]
+                    &= \dfrac{2^2}{3^4 \times 5^2 \times 7} \\[8pt]
+                    &= \dfrac{4}{81 \times 25 \times 7} \\[8pt]
+                    &= \dfrac{4}{14175}
+                    \end{aligned}
+                    \]
+                    <p>Karena \(\operatorname{FPB}(4, 14175) = 1\), maka \(m = 4\) dan \(n = 14175\).</p>
+                    <p>Nilai yang dicari adalah \(10m\):</p>
+                    \[
+                    10m = 10 \times 4 = 40
+                    \]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(10m\) adalah <strong>40</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Bentuk sederhana dari:</p>
+                \[
+                2 \cdot 1! + 4 \cdot 2! + 6 \cdot 3! + \dots + 200 \cdot 100!
+                \]
+                <p>adalah ....</p>
+                <ol type="A" class="pilihan-ganda">
+                    <li>\(100! - 2\)</li>
+                    <li>\(101! - 2\)</li>
+                    <li>\(2(100! - 1)\)</li>
+                    <li>\(2(101! - 1)\)</li>
+                    <li>\(2(101! + 1)\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Keluarkan faktor \(2\) dari setiap suku:</p>
+                    \[
+                    S = 2 \cdot 1! + 4 \cdot 2! + 6 \cdot 3! + \dots + 200 \cdot 100! = 2 \left(1 \cdot 1! + 2 \cdot 2! + 3 \cdot 3! + \dots + 100 \cdot 100!\right)
+                    \]
+                    <p>Perhatikan bahwa suku umum \(k \cdot k!\) dapat dinyatakan dalam bentuk teleskopik:</p>
+                    \[
+                    k \cdot k! = (k + 1 - 1) \cdot k! = (k + 1) \cdot k! - k! = (k + 1)! - k!
+                    \]
+                    <p>Terapkan rumus teleskopik pada deret di dalam kurung:</p>
+                    \[
+                    \begin{aligned}
+                    1 \cdot 1! &= 2! - 1! \\
+                    2 \cdot 2! &= 3! - 2! \\
+                    3 \cdot 3! &= 4! - 3! \\
+                    &\;\;\vdots \\
+                    100 \cdot 100! &= 101! - 100!
+                    \end{aligned}
+                    \]
+                    <p>Jumlahkan seluruh persamaan (suku-suku yang saling menghilangkan):</p>
+                    \[
+                    1 \cdot 1! + 2 \cdot 2! + \dots + 100 \cdot 100! = 101! - 1! = 101! - 1
+                    \]
+                    <p>Kalikan kembali dengan faktor \(2\):</p>
+                    \[
+                    S = 2(101! - 1)
+                    \]
+
+                    <div class="kesimpulan">
+                        Jadi, bentuk sederhana dari deret tersebut adalah <strong>\(2(101! - 1)\)</strong>.
+                        <br><strong>Jawaban: D</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

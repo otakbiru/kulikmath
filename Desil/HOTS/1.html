@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Desil</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Desil</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tabel berikut menyajikan data waktu tunggu (dalam menit) dari \(100\) nasabah di sebuah kantor pelayanan bank:
+                <div class="table-responsive" style="margin: 15px 0;">
+                    <table style="margin: 0 auto; border-collapse: collapse; text-align: center; width: 65%; max-width: 360px;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid currentColor;">
+                                <th style="padding: 8px;">Waktu Tunggu (menit)</th>
+                                <th style="padding: 8px;">Frekuensi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding: 6px;">1 – 5</td><td style="padding: 6px;">8</td></tr>
+                            <tr><td style="padding: 6px;">6 – 10</td><td style="padding: 6px;">\(a\)</td></tr>
+                            <tr><td style="padding: 6px;">11 – 15</td><td style="padding: 6px;">28</td></tr>
+                            <tr><td style="padding: 6px;">16 – 20</td><td style="padding: 6px;">\(b\)</td></tr>
+                            <tr><td style="padding: 6px;">21 – 25</td><td style="padding: 6px;">14</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                Jika diketahui nilai desil ke-3 (\(D_3\)) dari waktu tunggu nasabah tersebut adalah \(11{,}75\) menit, maka nilai dari \(b - a\) adalah ....
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>15</li>
+                        <li>18</li>
+                        <li>20</li>
+                        <li>24</li>
+                        <li>25</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">Olimpiade / HOTS</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <b>Langkah 1: Menyusun persamaan total frekuensi</b>
+                    <p>
+                        Total nasabah adalah \(N = 100\):
+                        \[\begin{aligned}
+                        8 + a + 28 + b + 14 &= 100 \\
+                        a + b + 50 &= 100 \\
+                        a + b &= 50 \quad \text{--- (Persamaan 1)}
+                        \end{aligned}\]
+                    </p>
+
+                    <b>Langkah 2: Menentukan letak kelas desil ke-3 (\(D_3\))</b>
+                    <p>
+                        Panjang kelas interval: \(p = 5 - 1 + 1 = 5\).
+                        <br>
+                        Letak posisi desil ke-3:
+                        \[\text{Letak } D_3 = \dfrac{3 \cdot N}{10} = \dfrac{3 \times 100}{10} = 30\]
+                        Diketahui nilai \(D_3 = 11{,}75\) menit, yang berada pada kelas interval <b>11 – 15</b>.
+                        <br>
+                        Unsur-unsur pada kelas desil ke-3:
+                        <ul>
+                            <li>Tepi bawah kelas: \(T_b = 11 - 0{,}5 = 10{,}5\)</li>
+                            <li>Frekuensi kelas desil: \(f_{D_3} = 28\)</li>
+                            <li>Frekuensi kumulatif sebelum kelas desil:
+                                \[F_k = 8 + a\]
+                            </li>
+                        </ul>
+                    </p>
+
+                    <b>Langkah 3: Menerapkan rumus desil untuk mencari nilai \(a\)</b>
+                    <p>
+                        \[\begin{aligned}
+                        D_3 &= T_b + \left(\dfrac{\dfrac{3N}{10} - F_k}{f_{D_3}}\right) \cdot p \\[6pt]
+                        11{,}75 &= 10{,}5 + \left(\dfrac{30 - (8 + a)}{28}\right) \times 5 \\[6pt]
+                        11{,}75 - 10{,}5 &= \left(\dfrac{22 - a}{28}\right) \times 5 \\[6pt]
+                        1{,}25 &= \dfrac{5(22 - a)}{28}
+                        \end{aligned}\]
+                        Bagi kedua ruas dengan 5:
+                        \[\begin{aligned}
+                        0{,}25 &= \dfrac{22 - a}{28} \\[4pt]
+                        22 - a &= 0{,}25 \times 28 \\
+                        22 - a &= 7 \\
+                        a &= 22 - 7 = 15
+                        \end{aligned}\]
+                    </p>
+
+                    <b>Langkah 4: Menentukan nilai \(b\) dan selisih \(b - a\)</b>
+                    <p>
+                        Substitusikan \(a = 15\) ke dalam Persamaan (1):
+                        \[b = 50 - a = 50 - 15 = 35\]
+                        Maka:
+                        \[b - a = 35 - 15 = 20\]
+                    </p>
+                    <div class="kesimpulan">Jadi, nilai dari \(b - a\) adalah 20.<br><b>JAWAB: C</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-2 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-2 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 3 
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-3 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-3 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 4 
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-4 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-4 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 5 
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-5 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-5 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 6 
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-6 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-6 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-7 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-7 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-8 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-8 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-9 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-9 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-10 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-10 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

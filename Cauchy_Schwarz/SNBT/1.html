@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNBT - Cauchy Schwarz</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Cauchy Schwarz</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika \(x, y,\) dan \(z\) adalah bilangan real positif yang memenuhi hubungan \(x + y + z = 6\), maka nilai minimum dari ekspresi:
+                \[\dfrac{1}{x} + \dfrac{4}{y} + \dfrac{9}{z}\]
+                adalah ....
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>4</li>
+                        <li>6</li>
+                        <li>8</li>
+                        <li>9</li>
+                        <li>12</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">SNBT / UTBK</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Soal ini dapat diselesaikan dengan memanfaatkan Ketaksamaan Cauchy-Schwarz.
+
+                    <b>Metode 1: Ketaksamaan Cauchy-Schwarz Bentuk Standar</b>
+                    <p>
+                        Berdasarkan ketaksamaan Cauchy-Schwarz untuk 3 variabel:
+                        \[(a_1^2 + a_2^2 + a_3^2)(b_1^2 + b_2^2 + b_3^2) \ge (a_1 b_1 + a_2 b_2 + a_3 b_3)^2\]
+                        Pilih barisan bilangan:
+                        \[(a_1, a_2, a_3) = \left(\sqrt{x}, \sqrt{y}, \sqrt{z}\right)\]
+                        \[(b_1, b_2, b_3) = \left(\dfrac{1}{\sqrt{x}}, \dfrac{2}{\sqrt{y}}, \dfrac{3}{\sqrt{z}}\right)\]
+                        Terapkan ketaksamaan tersebut:
+                        \[\begin{aligned}
+                        \left[(\sqrt{x})^2 + (\sqrt{y})^2 + (\sqrt{z})^2\right] \left[\left(\dfrac{1}{\sqrt{x}}\right)^2 + \left(\dfrac{2}{\sqrt{y}}\right)^2 + \left(\dfrac{3}{\sqrt{z}}\right)^2\right] &\ge \left(\sqrt{x} \cdot \dfrac{1}{\sqrt{x}} + \sqrt{y} \cdot \dfrac{2}{\sqrt{y}} + \sqrt{z} \cdot \dfrac{3}{\sqrt{z}}\right)^2 \\
+                        (x + y + z)\left(\dfrac{1}{x} + \dfrac{4}{y} + \dfrac{9}{z}\right) &\ge (1 + 2 + 3)^2 \\
+                        (x + y + z)\left(\dfrac{1}{x} + \dfrac{4}{y} + \dfrac{9}{z}\right) &\ge 6^2 = 36
+                        \end{aligned}\]
+                        Karena diketahui \(x + y + z = 6\), maka:
+                        \[\begin{aligned}
+                        6\left(\dfrac{1}{x} + \dfrac{4}{y} + \dfrac{9}{z}\right) &\ge 36 \\
+                        \dfrac{1}{x} + \dfrac{4}{y} + \dfrac{9}{z} &\ge \dfrac{36}{6} = 6
+                        \end{aligned}\]
+                    </p>
+
+                    <b>Metode 2: Cauchy-Schwarz Bentuk Engel (Titu's Lemma)</b>
+                    <p>
+                        Untuk bilangan real \(u_1, u_2, \dots, u_n\) dan bilangan real positif \(v_1, v_2, \dots, v_n\), berlaku:
+                        \[\dfrac{u_1^2}{v_1} + \dfrac{u_2^2}{v_2} + \dots + \dfrac{u_n^2}{v_n} \ge \dfrac{(u_1 + u_2 + \dots + u_n)^2}{v_1 + v_2 + \dots + v_n}\]
+                        Terapkan langsung pada soal:
+                        \[\begin{aligned}
+                        \dfrac{1^2}{x} + \dfrac{2^2}{y} + \dfrac{3^2}{z} &\ge \dfrac{(1 + 2 + 3)^2}{x + y + z} \\
+                        &= \dfrac{6^2}{6} = \dfrac{36}{6} = 6
+                        \end{aligned}\]
+                    </p>
+
+                    <b>Pemeriksaan Kesamaan (Equality Condition):</b>
+                    <p>
+                        Kesamaan tercapai ketika:
+                        \[\dfrac{1}{x} = \dfrac{2}{y} = \dfrac{3}{z} = k \implies x = \dfrac{1}{k}, \quad y = \dfrac{2}{k}, \quad z = \dfrac{3}{k}\]
+                        Karena \(x + y + z = 6\):
+                        \[\dfrac{1}{k} + \dfrac{2}{k} + \dfrac{3}{k} = 6 \implies \dfrac{6}{k} = 6 \implies k = 1\]
+                        Sehingga kesamaan tercapai pada titik \((x, y, z) = (1, 2, 3)\).
+                        <br>
+                        Nilai ekspresi saat \((1, 2, 3)\):
+                        \[\dfrac{1}{1} + \dfrac{4}{2} + \dfrac{9}{3} = 1 + 2 + 3 = 6\]
+                    </p>
+                    <div class="kesimpulan">Jadi, nilai minimum dari ekspresi tersebut adalah 6.<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-2 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-2 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 3 
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-3 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-3 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 4 
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-4 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-4 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 5 
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-5 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-5 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 6 
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-6 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-6 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-7 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-7 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-8 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-8 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-9 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-9 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-10 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-10 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

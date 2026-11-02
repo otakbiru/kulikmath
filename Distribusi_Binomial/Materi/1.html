@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Distribusi Binomial</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Distribusi Binomial</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Percobaan Bernoulli & Syarat Eksperimen Binomial</h2>
+            <p>
+                Dalam teori peluang dan statistika, <strong>Percobaan Bernoulli</strong> adalah suatu percobaan acak tunggal yang hanya memiliki tepat <strong>dua kemungkinan hasil</strong> yang saling lepas, yaitu <strong>Sukses ($S$)</strong> dengan peluang $p$ dan <strong>Gagal ($G$)</strong> dengan peluang $q = 1 - p$.
+            </p>
+            <p>
+                Ketika percobaan Bernoulli diulang sebanyak $n$ kali, rangkaian percobaan tersebut membentuk <strong>Eksperimen Binomial</strong> apabila memenuhi empat syarat mutlak berikut:
+            </p>
+            <ol>
+                <li>
+                    <strong>Banyaknya ulangan tetap ($n$):</strong> Percobaan dilakukan berulang kali sebanyak $n$ kali dengan $n$ bilangan asli tertentu.
+                </li>
+                <li>
+                    <strong>Hanya ada dua hasil per ulangan:</strong> Setiap ulangan hanya dikategorikan menjadi kejadian <em>Sukses</em> (kejadian yang diharapkan/ditanyakan soal) atau <em>Gagal</em> (komplemennya).
+                </li>
+                <li>
+                    <strong>Antar ulangan saling bebas (Independen):</strong> Hasil pada suatu ulangan tidak memengaruhi peluang hasil pada ulangan berikutnya (misalnya pengambilan bola dilakukan <em>dengan pengembalian</em>).
+                </li>
+                <li>
+                    <strong>Peluang sukses selalu konstan ($p$):</strong> Peluang sukses $p$ dan peluang gagal $q = 1 - p$ bernilai tetap pada setiap ulangan, dengan hubungan dasar:
+                    $$p + q = 1 \iff q = 1 - p$$
+                </li>
+            </ol>
+
+            <div class="kesimpulan">
+                💡 Kapan Suatu Kejadian BUKAN Distribusi Binomial?<br>
+                Jika pengambilan sampel dilakukan <strong>tanpa pengembalian</strong> dari populasi berukuran kecil yang terbatas, maka peluang sukses pada pengambilan kedua berubah (tidak saling bebas). Kejadian tersebut mengikuti <em>Distribusi Hipergeometrik</em>, bukan Binomial.
+            </div>
+
+            <h2>2. Rumus Fungsi Peluang Binomial & Ilustrasi Pohon</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Misalkan variabel acak diskrit $X$ menyatakan banyaknya kejadian <strong>Sukses</strong> dalam $n$ kali percobaan yang bebas (ditulis $X \sim B(n, p)$). Mengapa muncul koefisien kombinasi $\binom{n}{x}$ pada rumusnya?
+                    </p>
+                    <p>
+                        Perhatikan diagram pohon untuk $n = 2$ ulangan di samping:
+                    </p>
+                    <ul>
+                        <li>Untuk mendapatkan $x = 2$ sukses ($SS$), hanya ada $\binom{2}{2} = 1$ jalur dengan peluang $p \cdot p = p^2$.</li>
+                        <li>Untuk mendapatkan $x = 1$ sukses, terdapat $\binom{2}{1} = 2$ jalur berbeda, yaitu <strong>$SG$</strong> (peluang $pq$) dan <strong>$GS$</strong> (peluang $qp$), sehingga total peluangnya adalah $2pq$.</li>
+                        <li>Untuk mendapatkan $x = 0$ sukses ($GG$), hanya ada $\binom{2}{0} = 1$ jalur dengan peluang $q \cdot q = q^2$.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-tree" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <p>
+                Secara umum, untuk memilih $x$ posisi sukses dari $n$ ulangan terdapat $\binom{n}{x}$ cara yang saling lepas, dan masing-masing urutan memiliki peluang $p^x \cdot q^{n-x}$. Oleh karena itu, <strong>Fungsi Massa Peluang (PMF) Distribusi Binomial</strong> untuk mendapatkan <strong>tepat $x$ kali sukses</strong> dari $n$ percobaan adalah:
+                $$P(X = x) = b(x; n, p) = \binom{n}{x} \cdot p^x \cdot q^{n-x} \quad \text{untuk } x = 0, 1, 2, \dots, n$$
+                dengan koefisien binomial (kombinasi):
+                $$\binom{n}{x} = C_x^n = \frac{n!}{x!(n - x)!}$$
+            </p>
+            <p>
+                <strong>Hubungan dengan Ekspansi Binomial Newton:</strong><br>
+                Jumlah seluruh peluang untuk semua kemungkinan nilai $x$ dari $0$ sampai $n$ selalu sama dengan $1$:
+                $$\sum_{x=0}^{n} P(X = x) = \sum_{x=0}^{n} \binom{n}{x} p^x q^{n-x} = (p + q)^n = 1^n = 1$$
+            </p>
+
+            <h2>3. Peluang Binomial Kumulatif & Kata Kunci Soal</h2>
+            <p>
+                Dalam soal ujian, pertanyaan sering kali tidak menanyakan "tepat $x$ sukses", melainkan menggunakan kata kunci pertidaksamaan (kumulatif). Fungsi Distribusi Kumulatif (CDF) didefinisikan sebagai:
+                $$F(k) = P(X \le k) = \sum_{x=0}^{k} \binom{n}{x} p^x q^{n-x}$$
+                Berikut adalah panduan menerjemahkan kalimat soal cerita ke dalam notasi matematika beserta trik komplemennya:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kata Kunci pada Soal</th>
+                            <th>Notasi Peluang</th>
+                            <th>Cara Hitung / Trik Komplemen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Tepat</strong> $k$ sukses</td>
+                            <td>$P(X = k)$</td>
+                            <td>$\binom{n}{k} p^k q^{n-k}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Paling banyak</strong> $k$ sukses (maksimal $k$)</td>
+                            <td>$P(X \le k)$</td>
+                            <td>$P(0) + P(1) + \dots + P(k)$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Kurang dari</strong> $k$ sukses</td>
+                            <td>$P(X < k) = P(X \le k - 1)$</td>
+                            <td>$P(0) + P(1) + \dots + P(k - 1)$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Paling sedikit</strong> $k$ sukses (minimal $k$)</td>
+                            <td>$P(X \ge k)$</td>
+                            <td>$1 - P(X \le k - 1)$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Sedikitnya 1</strong> sukses (minimal 1 kali)</td>
+                            <td>$P(X \ge 1)$</td>
+                            <td>$$1 - P(X = 0) = 1 - q^n$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. Nilai Harapan (Rata-Rata), Varians, Simpangan Baku & Modus</h2>
+            <p>
+                Untuk variabel acak berdistribusi binomial $X \sim B(n, p)$, nilai parameter pemusatan dan penyebarannya dapat dihitung secara langsung tanpa perlu menjabarkan tabel distribusi peluangnya:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ukuran Statistik</th>
+                            <th>Simbol</th>
+                            <th>Rumus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Rata-Rata / Nilai Harapan (Mean)</strong></td>
+                            <td>$\mu$ atau $E(X)$</td>
+                            <td>$$\mu = n \cdot p$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Ragam (Varians)</strong></td>
+                            <td>$\sigma^2$ atau $\text{Var}(X)$</td>
+                            <td>$$\sigma^2 = n \cdot p \cdot q = n p (1 - p)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Simpangan Baku (Standar Deviasi)</strong></td>
+                            <td>$\sigma$ atau $SD$</td>
+                            <td>$$\sigma = \sqrt{n \cdot p \cdot q}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Modus (Nilai dengan Peluang Terbesar)</strong></td>
+                            <td>$M_o$</td>
+                            <td>
+                                Jika $(n+1)p \notin \mathbb{Z}$, maka $M_o = \lfloor (n + 1)p \rfloor$.<br>
+                                Jika $(n+1)p = m \in \mathbb{Z}$, ada 2 modus: $m$ dan $m - 1$.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Hubungan Penting Rata-Rata dan Varians Binomial:<br>
+                Karena $\mu = np$ dan $\sigma^2 = npq$, maka pada setiap distribusi binomial selalu berlaku:
+                $$\frac{\sigma^2}{\mu} = \frac{npq}{np} = q \quad \text{dan} \quad \sigma^2 < \mu \quad (\text{varians selalu lebih kecil dari rata-ratanya!})$$
+            </div>
+
+            <h2>5. Visualisasi Grafik Histogram Distribusi Binomial</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Bentuk kurva/histogram dari distribusi binomial $B(n, p)$ sangat bergantung pada nilai peluang sukses $p$:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Jika $p = 0{,}5$ (Simetris):</strong> Grafik berbentuk lonceng yang simetris sempurna terhadap $\mu = \frac{n}{2}$, seperti tampak pada histogram $X \sim B(6, 0{,}5)$ di samping. Berlaku $P(X = x) = P(X = n - x)$.
+                        </li>
+                        <li>
+                            <strong>Jika $p < 0{,}5$ (Miring ke Kanan / Positif):</strong> Puncak grafik berada di sebelah kiri dan ekornya memanjang ke kanan.
+                        </li>
+                        <li>
+                            <strong>Jika $p > 0{,}5$ (Miring ke Kiri / Negatif):</strong> Puncak grafik berada di sebelah kanan dan ekornya memanjang ke kiri.
+                        </li>
+                        <li>
+                            Untuk $n$ yang besar ($n \to \infty$), grafik distribusi binomial akan mendekati kurva mulus <strong>Distribusi Normal</strong> $\mathcal{N}(\mu = np, \sigma^2 = npq)$.
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-hist" style="width: 100%; max-width: 350px;"></div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Seorang pemanah memiliki peluang tepat mengenai sasaran sebesar $\frac{2}{3}$ pada setiap tembakan. Jika ia melepaskan $5$ anak panah secara independen, maka peluang ia mengenai sasaran <strong>tepat $3$ kali</strong> adalah ....
+                <ol class="pilgan">
+                    <li>$\frac{40}{243}$</li>
+                    <li>$\frac{80}{243}$</li>
+                    <li>$\frac{100}{243}$</li>
+                    <li>$\frac{112}{243}$</li>
+                    <li>$\frac{160}{243}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Identifikasi parameter distribusi binomial dari soal:
+                </p>
+                <ul>
+                    <li>Banyak percobaan: $n = 5$</li>
+                    <li>Banyak sukses yang ditanyakan: $x = 3$</li>
+                    <li>Peluang sukses (mengenai sasaran): $p = \frac{2}{3}$</li>
+                    <li>Peluang gagal (meleset): $q = 1 - \frac{2}{3} = \frac{1}{3}$</li>
+                </ul>
+                <p>
+                    2. Substitusikan ke dalam rumus fungsi peluang binomial $P(X = 3)$:
+                    $$P(X = 3) = \binom{5}{3} \cdot \left(\frac{2}{3}\right)^3 \cdot \left(\frac{1}{3}\right)^{5-3}$$
+                    $$P(X = 3) = \frac{5!}{3! \, 2!} \cdot \left(\frac{8}{27}\right) \cdot \left(\frac{1}{9}\right)$$
+                    $$P(X = 3) = 10 \cdot \frac{8}{243} = \frac{80}{243}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, peluang pemanah mengenai sasaran tepat $3$ kali adalah $\frac{80}{243}$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Sebuah dadu bersisi enam yang seimbang dilempar sebanyak $4$ kali. Peluang munculnya mata dadu kelipatan $3$ <strong>paling sedikit satu kali</strong> adalah ....
+                <ol class="pilgan">
+                    <li>$\frac{16}{81}$</li>
+                    <li>$\frac{32}{81}$</li>
+                    <li>$\frac{49}{81}$</li>
+                    <li>$\frac{65}{81}$</li>
+                    <li>$\frac{80}{81}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Pada satu kali pelemparan dadu bersisi enam $\{1, 2, 3, 4, 5, 6\}$, kejadian sukses adalah muncul mata dadu kelipatan $3$, yaitu $\{3, 6\}$:
+                    $$p = \frac{2}{6} = \frac{1}{3} \implies q = 1 - \frac{1}{3} = \frac{2}{3}$$
+                </p>
+                <p>
+                    2. Banyaknya pelemparan adalah $n = 4$. Kejadian muncul "paling sedikit satu kali" ($X \ge 1$) jauh lebih cepat dihitung menggunakan <strong>komplemennya</strong>, yaitu tidak pernah muncul sama sekali ($X = 0$):
+                    $$P(X \ge 1) = 1 - P(X = 0)$$
+                    $$P(X \ge 1) = 1 - \binom{4}{0} \left(\frac{1}{3}\right)^0 \left(\frac{2}{3}\right)^4$$
+                    $$P(X \ge 1) = 1 - 1 \cdot 1 \cdot \frac{16}{81} = \frac{65}{81}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, peluang muncul mata dadu kelipatan $3$ paling sedikit satu kali adalah $\frac{65}{81}$ (Jawaban D).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Suatu variabel acak binomial $X \sim B(n, p)$ diketahui memiliki nilai harapan (rata-rata) $\mu = 12$ dan simpangan baku $\sigma = 2\sqrt{2}$. Nilai dari $n + 6p$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$32$</li>
+                    <li>$36$</li>
+                    <li>$38$</li>
+                    <li>$40$</li>
+                    <li>$42$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Dari simpangan baku $\sigma = 2\sqrt{2}$, kita peroleh variansnya:
+                    $$\sigma^2 = (2\sqrt{2})^2 = 8$$
+                </p>
+                <p>
+                    2. Gunakan perbandingan antara varians ($\sigma^2 = npq$) dan rata-rata ($\mu = np$) untuk mendapatkan nilai $q$ dan $p$:
+                    $$\frac{\sigma^2}{\mu} = \frac{npq}{np} = q \implies q = \frac{8}{12} = \frac{2}{3}$$
+                    Karena $p + q = 1$, maka:
+                    $$p = 1 - \frac{2}{3} = \frac{1}{3}$$
+                </p>
+                <p>
+                    3. Substitusikan nilai $p = \frac{1}{3}$ ke rumus rata-rata $\mu = np = 12$:
+                    $$n \cdot \left(\frac{1}{3}\right) = 12 \implies n = 36$$
+                </p>
+                <p>
+                    4. Hitung nilai dari $n + 6p$:
+                    $$n + 6p = 36 + 6\left(\frac{1}{3}\right) = 36 + 2 = 38$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $n + 6p$ adalah $38$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Diketahui variabel acak $X \sim B(6, p)$ dengan $0 < p < 1$. Jika $9 \cdot P(X = 4) = 4 \cdot P(X = 2)$, maka nilai dari peluang sukses $p$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$\frac{1}{5}$</li>
+                    <li>$\frac{1}{4}$</li>
+                    <li>$\frac{2}{5}$</li>
+                    <li>$\frac{3}{5}$</li>
+                    <li>$\frac{3}{4}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Jabarkan rumus peluang untuk $P(X = 4)$ dan $P(X = 2)$ dengan $n = 6$:
+                    $$P(X = 4) = \binom{6}{4} p^4 q^2 = 15 p^4 q^2$$
+                    $$P(X = 2) = \binom{6}{2} p^2 q^4 = 15 p^2 q^4$$
+                    <em>(Ingat sifat simetri kombinasi: $\binom{6}{4} = \binom{6}{2} = 15$).</em>
+                </p>
+                <p>
+                    2. Substitusikan ke dalam persamaan $9 \cdot P(X = 4) = 4 \cdot P(X = 2)$:
+                    $$9 \cdot (15 p^4 q^2) = 4 \cdot (15 p^2 q^4)$$
+                    Karena $0 < p < 1$, maka $p \neq 0$ dan $q \neq 0$. Bagi kedua ruas dengan $15 p^2 q^2$:
+                    $$9 p^2 = 4 q^2$$
+                </p>
+                <p>
+                    3. Tarik akar kuadrat pada kedua ruas (karena $p, q > 0$):
+                    $$3p = 2q$$
+                    Substitusikan $q = 1 - p$:
+                    $$3p = 2(1 - p) \implies 3p = 2 - 2p \implies 5p = 2 \implies p = \frac{2}{5}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari peluang sukses $p$ adalah $\frac{2}{5}$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Diagram Pohon 2 Ulangan Bernoulli menggunakan GeoSVG.js
+            const containerTree = document.getElementById("geosvg-tree");
+            if (containerTree && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerTree, 320, 235, {
+                    viewBox: "0 0 320 235",
+                    clearContainer: true,
+                    title: "Diagram Pohon 2 Percobaan Bernoulli",
+                    description: "Diagram pohon yang menunjukkan hasil SS, SG, GS, dan GG beserta peluangnya"
+                });
+
+                const root = [22, 120];
+                const u1S = [110, 65];
+                const u1G = [110, 175];
+
+                const u2SS = [205, 38];
+                const u2SG = [205, 92];
+                const u2GS = [205, 148];
+                const u2GG = [205, 202];
+
+                // Judul Kolom
+                geo1.buatTeks(110, 14, "Ulangan 1", { fill: "var(--text-muted)", fontSize: "10.5px", fontWeight: "bold", position: "middle-center" });
+                geo1.buatTeks(205, 14, "Ulangan 2", { fill: "var(--text-muted)", fontSize: "10.5px", fontWeight: "bold", position: "middle-center" });
+                geo1.buatTeks(276, 14, "Hasil (Peluang)", { fill: "var(--text-muted)", fontSize: "10.5px", fontWeight: "bold", position: "middle-center" });
+
+                // Cabang Ulangan 1
+                geo1.buatSegmen(root, u1S, {
+                    stroke: "var(--teal-primary)", strokeWidth: 2,
+                    label: "p", labelPosisi: 0.5, labelSisi: "kiri", labelJarak: 8, labelColor: "var(--teal-primary)", bold: true
+                });
+                geo1.buatSegmen(root, u1G, {
+                    stroke: "#d97706", strokeWidth: 2,
+                    label: "q", labelPosisi: 0.5, labelSisi: "kanan", labelJarak: 8, labelColor: "#d97706", bold: true
+                });
+
+                // Cabang Ulangan 2 dari S
+                geo1.buatSegmen(u1S, u2SS, {
+                    stroke: "var(--teal-primary)", strokeWidth: 1.8,
+                    label: "p", labelPosisi: 0.5, labelSisi: "kiri", labelJarak: 7, labelColor: "var(--teal-primary)"
+                });
+                geo1.buatSegmen(u1S, u2SG, {
+                    stroke: "#d97706", strokeWidth: 1.8,
+                    label: "q", labelPosisi: 0.5, labelSisi: "kanan", labelJarak: 7, labelColor: "#d97706"
+                });
+
+                // Cabang Ulangan 2 dari G
+                geo1.buatSegmen(u1G, u2GS, {
+                    stroke: "var(--teal-primary)", strokeWidth: 1.8,
+                    label: "p", labelPosisi: 0.5, labelSisi: "kiri", labelJarak: 7, labelColor: "var(--teal-primary)"
+                });
+                geo1.buatSegmen(u1G, u2GG, {
+                    stroke: "#d97706", strokeWidth: 1.8,
+                    label: "q", labelPosisi: 0.5, labelSisi: "kanan", labelJarak: 7, labelColor: "#d97706"
+                });
+
+                // Titik Simpul
+                geo1.buatTitik(root, { size: 4, color: "var(--text-main)" });
+                geo1.buatTitik(u1S, { size: 4.5, color: "var(--teal-primary)", label: "S", labelPosition: "top-left", bold: true });
+                geo1.buatTitik(u1G, { size: 4.5, color: "#d97706", label: "G", labelPosition: "bottom-left", bold: true });
+
+                geo1.buatTitik(u2SS, { size: 4, color: "var(--teal-primary)", label: "S", labelPosition: "top-left", bold: true });
+                geo1.buatTitik(u2SG, { size: 4, color: "#d97706", label: "G", labelPosition: "bottom-left", bold: true });
+                geo1.buatTitik(u2GS, { size: 4, color: "var(--teal-primary)", label: "S", labelPosition: "top-left", bold: true });
+                geo1.buatTitik(u2GG, { size: 4, color: "#d97706", label: "G", labelPosition: "bottom-left", bold: true });
+
+                // Kotak highlight untuk x = 1 sukses (SG dan GS -> 2pq)
+                geo1.buatPersegiPanjang(222, 76, 94, 90, {
+                    radius: 6,
+                    fill: "rgba(13, 148, 136, 0.1)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 1.2,
+                    dashed: "4 3"
+                });
+
+                // Teks Hasil Akhir
+                geo1.buatTeks(228, 38, "SS → p² (x=2)", { fill: "var(--text-main)", fontSize: "11px", fontWeight: "bold", position: "middle-right" });
+                geo1.buatTeks(228, 92, "SG → pq (x=1)", { fill: "var(--teal-primary)", fontSize: "11px", fontWeight: "bold", position: "middle-right" });
+                geo1.buatTeks(228, 120, "Total x=1 : 2pq", { fill: "var(--teal-primary)", fontSize: "10px", position: "middle-right" });
+                geo1.buatTeks(228, 148, "GS → qp (x=1)", { fill: "var(--teal-primary)", fontSize: "11px", fontWeight: "bold", position: "middle-right" });
+                geo1.buatTeks(228, 202, "GG → q² (x=0)", { fill: "var(--text-main)", fontSize: "11px", fontWeight: "bold", position: "middle-right" });
+            }
+
+            // 2. Visualisasi Histogram Distribusi Binomial B(6, 0.5) menggunakan GeoSVG.js
+            const containerHist = document.getElementById("geosvg-hist");
+            if (containerHist && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerHist, 330, 230, {
+                    viewBox: "0 0 330 230",
+                    clearContainer: true,
+                    title: "Histogram Distribusi Binomial n=6, p=0.5",
+                    description: "Diagram batang peluang binomial untuk n=6 dan p=0.5 yang berbentuk lonceng simetris"
+                });
+
+                const baseY = 192;
+                const startX = 42;
+                const barW = 32;
+                const gap = 6;
+                const maxH = 135; // Tinggi untuk peluang tertinggi 20/64
+
+                // Judul grafik
+                geo2.buatTeks(175, 16, "Distribusi Binomial X ~ B(6, 0,5)", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    position: "middle-center"
+                });
+
+                // Data koefisien C(6, x) untuk x = 0..6 (penyebut 64)
+                const comb = [1, 6, 15, 20, 15, 6, 1];
+                const curvePts = [];
+
+                for (let x = 0; x <= 6; x++) {
+                    const h = (comb[x] / 20) * maxH;
+                    const bx = startX + x * (barW + gap);
+                    const by = baseY - h;
+                    const isModus = x === 3;
+
+                    geo2.buatPersegiPanjang(bx, by, barW, h, {
+                        radius: 3,
+                        fill: isModus ? "rgba(217, 119, 6, 0.25)" : "rgba(13, 148, 136, 0.2)",
+                        stroke: isModus ? "#d97706" : "var(--teal-primary)",
+                        strokeWidth: 1.6
+                    });
+
+                    // Label pecahan peluang di atas batang
+                    geo2.buatTeks(bx + barW / 2, by - 9, `${comb[x]}/64`, {
+                        fill: isModus ? "#d97706" : "var(--text-main)",
+                        fontSize: "9.5px",
+                        fontWeight: isModus ? "bold" : "normal",
+                        position: "middle-center"
+                    });
+
+                    // Label nilai x di bawah sumbu
+                    geo2.buatTeks(bx + barW / 2, baseY + 15, String(x), {
+                        fill: "var(--text-main)",
+                        fontSize: "11px",
+                        fontWeight: "bold",
+                        position: "middle-center"
+                    });
+
+                    curvePts.push([bx + barW / 2, by]);
+                }
+
+                // Kurva Lonceng Halus (Pendekatan Normal) melewati puncak batang
+                geo2.buatKurvaHalus(curvePts, {
+                    stroke: "#d97706",
+                    strokeWidth: 1.8,
+                    dashed: "4 3",
+                    tension: 0.25
+                });
+
+                // Sumbu X dan Y
+                geo2.buatVektor([30, baseY], [318, baseY], { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                geo2.buatVektor([30, baseY], [30, 28], { stroke: "var(--text-main)", strokeWidth: 1.5 });
+
+                geo2.buatTeks(175, 222, "Banyaknya Sukses (x)   [Rata-rata μ = Modus = 3]", {
+                    fill: "var(--text-muted)",
+                    fontSize: "10.5px",
+                    position: "middle-center"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

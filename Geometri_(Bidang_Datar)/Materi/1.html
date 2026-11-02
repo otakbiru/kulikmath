@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Geometri (Bidang Datar)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Geometri (Bidang Datar)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Hubungan Sudut dan Garis Sejajar (Transversal)</h2>
+            <p>
+                <strong>Geometri Bidang Datar (Planimetri)</strong> mempelajari sifat-sifat titik, garis, sudut, dan bangun datar dua dimensi. Fondasi pertama dalam menyelesaikan soal geometri datar adalah memahami hubungan antar sudut:
+            </p>
+            <ul>
+                <li>
+                    <strong>Sudut Berpenyiku (Komplemen):</strong> Dua sudut yang jumlahnya $90^\circ$ ($\alpha + \beta = 90^\circ$).
+                </li>
+                <li>
+                    <strong>Sudut Berpelurus (Suplemen):</strong> Dua sudut yang jumlahnya $180^\circ$ ($\alpha + \beta = 180^\circ$).
+                </li>
+                <li>
+                    <strong>Sudut Bertolak Belakang:</strong> Dua sudut yang saling membelakangi pada perpotongan dua garis lurus selalu <strong>sama besar</strong>.
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Dua Garis Sejajar Dipotong Garis Transversal:</strong><br>
+                        Jika dua garis sejajar ($g_1 \parallel g_2$) dipotong oleh sebuah garis lurus $l$, maka terbentuk 8 sudut dengan sifat:
+                    </p>
+                    <ol>
+                        <li><strong>Sehadap (Sama Besar):</strong> Contoh $\angle A_1 = \angle B_1$.</li>
+                        <li><strong>Dalam Berseberangan (Sama Besar):</strong> Sudut pada pola huruf "Z" selalu sama besar, contoh $\angle A_3 = \angle B_1$ dan $\angle A_4 = \angle B_2$.</li>
+                        <li><strong>Luar Berseberangan (Sama Besar):</strong> Contoh $\angle A_1 = \angle B_3$.</li>
+                        <li><strong>Dalam Sepihak (Jumlahnya $180^\circ$):</strong> Contoh $\angle A_4 + \angle B_1 = 180^\circ$.</li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-parallel" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Segitiga: Sifat Dasar, Luas, Garis Istimewa & Lingkaran</h2>
+            <p>
+                Untuk sembarang segitiga $\triangle ABC$ dengan panjang sisi $a, b, c$ di hadapan titik sudut $A, B, C$:
+            </p>
+            <ul>
+                <li>
+                    <strong>Jumlah Sudut Dalam & Sudut Luar:</strong> Jumlah ketiga sudut dalam segitiga selalu $\angle A + \angle B + \angle C = 180^\circ$. Besar <em>sudut luar</em> pada salah satu titik sudut sama dengan jumlah dua sudut dalam yang tidak bersisian dengannya ($\angle C_{\text{luar}} = \angle A + \angle B$).
+                </li>
+                <li>
+                    <strong>Ketaksamaan Segitiga:</strong> Agar tiga ruas garis $a, b, c$ dapat membentuk segitiga, jumlah panjang dua sisi mana pun harus lebih besar dari sisi ketiganya:
+                    $$|a - b| < c < a + b$$
+                </li>
+                <li>
+                    <strong>Klasifikasi Jenis Segitiga dari Panjang Sisi ($c$ sisi terpanjang):</strong>
+                    <ul>
+                        <li>Jika $c^2 = a^2 + b^2 \implies$ Segitiga <strong>Siku-Siku</strong> (Teorema Pythagoras).</li>
+                        <li>Jika $c^2 < a^2 + b^2 \implies$ Segitiga <strong>Lancip</strong>.</li>
+                        <li>Jika $c^2 > a^2 + b^2 \implies$ Segitiga <strong>Tumpul</strong>.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p>
+                <strong>Lima Rumus Luas Segitiga ($L$) & Jari-Jari Lingkaran Segitiga:</strong><br>
+                Misalkan setengah keliling segitiga adalah $s = \frac{1}{2}(a + b + c)$, jari-jari lingkaran dalam adalah $r$, dan jari-jari lingkaran luar adalah $R$:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kondisi yang Diketahui</th>
+                            <th>Rumus Luas Segitiga ($L$) / Jari-Jari</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Diketahui alas ($a$) dan tinggi ($t$)</td>
+                            <td>$$L = \frac{1}{2} \cdot a \cdot t$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Diketahui ketiga sisi $a, b, c$ (<strong>Rumus Heron</strong>)</td>
+                            <td>$$L = \sqrt{s(s - a)(s - b)(s - c)} \quad \text{dengan } s = \frac{a+b+c}{2}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Diketahui dua sisi dan satu sudut apit</td>
+                            <td>$$L = \frac{1}{2} ab \sin C = \frac{1}{2} bc \sin A = \frac{1}{2} ac \sin B$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Jari-Jari Lingkaran Dalam ($r$)</strong> — titik potong ketiga garis bagi</td>
+                            <td>$$r = \frac{L}{s} \iff L = r \cdot s$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Jari-Jari Lingkaran Luar ($R$)</strong> — titik potong ketiga garis sumbu</td>
+                            <td>$$R = \frac{a \cdot b \cdot c}{4L} \iff L = \frac{abc}{4R}$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Empat Garis Istimewa pada Segitiga:</strong>
+                    </p>
+                    <ol>
+                        <li><strong>Garis Tinggi (Altitude):</strong> Ditarik dari titik sudut tegak lurus ke sisi di hadapannya (berpotongan di <em>Titik Tinggi / Orthocenter</em>).</li>
+                        <li><strong>Garis Bagi (Angle Bisector):</strong> Membagi sudut menjadi dua sama besar (berpotongan di pusat lingkaran dalam $I$). Berlaku <strong>Teorema Garis Bagi</strong>: jika garis bagi $\angle A$ memotong $BC$ di $E$, maka $\frac{BE}{EC} = \frac{AB}{AC}$.</li>
+                        <li><strong>Garis Berat (Median):</strong> Menghubungkan titik sudut ke titik tengah sisi di hadapannya (berpotongan di <em>Titik Berat / Centroid $G$</em> dengan perbandingan $2 : 1$ dari titik sudut).</li>
+                        <li><strong>Garis Sumbu (Perpendicular Bisector):</strong> Garis yang tegak lurus tepat di titik tengah sisi (berpotongan di pusat lingkaran luar $O$).</li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-triangle-circles" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Kesebangunan & Proyeksi pada Segitiga Siku-Siku</h2>
+            <p>
+                Dua bangun datar dikatakan <strong>sebangun ($\sim$)</strong> jika sudut-sudut yang bersesuaian sama besar dan sisi-sisi yang bersesuaian memiliki perbandingan yang sama. Jika rasio kesebangunan panjang sisi dua bangun adalah $k = \frac{s_1}{s_2}$, maka <strong>rasio luasnya adalah kuadrat dari rasio sisinya</strong>:
+                $$\frac{L_1}{L_2} = \left(\frac{s_1}{s_2}\right)^2 = k^2$$
+            </p>
+            <div class="kesimpulan">
+                💡 Rumus Cepat Kesebangunan pada Segitiga Siku-Siku (Garis Tinggi ke Hipotenusa):<br>
+                Jika $\triangle ABC$ siku-siku di $C$ dan ditarik garis tinggi $CD \perp AB$ (sehingga membagi sisi miring $AB$ menjadi $AD$ dan $DB$), maka berlaku 3 rumus emas (Teorema Proyeksi / Air Mancur):<br>
+                1. $CD^2 = AD \cdot DB$ &nbsp;&nbsp; 2. $AC^2 = AD \cdot AB$ &nbsp;&nbsp; 3. $BC^2 = BD \cdot BA$<br>
+                serta dari kesamaan luas segitiga berlaku: $CD = \frac{AC \cdot BC}{AB}$.
+            </div>
+
+            <h2>4. Rumus Lengkap Bangun Datar Segiempat & Poligon</h2>
+            <p>
+                Tabel berikut merangkum sifat utama, rumus luas ($L$), dan keliling ($K$) dari enam bangun datar segiempat standar:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bangun Segiempat</th>
+                            <th>Rumus Luas ($L$)</th>
+                            <th>Rumus Keliling ($K$) & Sifat Kunci</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Persegi</strong> (sisi $s$, diagonal $d$)</td>
+                            <td>$$L = s^2 = \frac{1}{2} d^2$$</td>
+                            <td>$K = 4s$, dengan panjang diagonal $d = s\sqrt{2}$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Persegi Panjang</strong> ($p \times l$)</td>
+                            <td>$$L = p \times l$$</td>
+                            <td>$K = 2(p + l)$, dengan panjang diagonal $d = \sqrt{p^2 + l^2}$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Jajargenjang</strong> (alas $a$, tinggi $t$, sisi miring $b$)</td>
+                            <td>$$L = a \times t$$</td>
+                            <td>$K = 2(a + b)$. Sudut berdekatan berjumlah $180^\circ$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Trapesium</strong> (sisi sejajar $a, b$ dan tinggi $t$)</td>
+                            <td>$$L = \frac{a + b}{2} \times t$$</td>
+                            <td>Panjang garis tengah (median) trapesium: $m = \frac{a + b}{2}$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Belah Ketupat</strong> (sisi $s$, diagonal $d_1, d_2$)</td>
+                            <td>$$L = \frac{1}{2} \cdot d_1 \cdot d_2$$</td>
+                            <td>$K = 4s$. Kedua diagonal saling membagi dua tegak lurus: $s^2 = \left(\frac{d_1}{2}\right)^2 + \left(\frac{d_2}{2}\right)^2$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Layang-Layang</strong> (sisi $a, b$, diagonal $d_1, d_2$)</td>
+                            <td>$$L = \frac{1}{2} \cdot d_1 \cdot d_2$$</td>
+                            <td>$K = 2(a + b)$. Salah satu diagonal membagi dua tegak lurus diagonal lainnya.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                <strong>Sifat Sudut pada Poligon Segi-$n$ ($n \ge 3$):</strong>
+            </p>
+            <ul>
+                <li>Jumlah seluruh sudut dalam poligon segi-$n$: $S_n = (n - 2) \times 180^\circ$.</li>
+                <li>Besar satu sudut dalam pada <strong>segi-$n$ beraturan</strong>: $\alpha = \frac{(n - 2) \times 180^\circ}{n} = 180^\circ - \frac{360^\circ}{n}$.</li>
+                <li>Banyaknya diagonal pada poligon segi-$n$: $D_n = \frac{1}{2}n(n - 3)$.</li>
+            </ul>
+
+            <h2>5. Geometri Lingkaran: Sudut, Juring, Tembereng & Segiempat Tali Busur</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Pada lingkaran berjari-jari $r$, kelilingnya adalah $K = 2\pi r$ dan luasnya adalah $L = \pi r^2$. Beberapa teorema lingkaran yang wajib dikuasai:
+                    </p>
+                    <ol>
+                        <li>
+                            <strong>Sudut Pusat dan Sudut Keliling:</strong> Jika menghadap busur yang sama, besar sudut pusat selalu <strong>dua kali</strong> besar sudut keliling ($\angle AOB = 2 \times \angle ACB$).
+                        </li>
+                        <li>
+                            <strong>Teorema Thales:</strong> Sudut keliling yang menghadap diameter lingkaran selalu merupakan <strong>sudut siku-siku ($90^\circ$)</strong>.
+                        </li>
+                        <li>
+                            <strong>Panjang Busur, Luas Juring & Luas Tembereng:</strong> Untuk sudut pusat $\theta$ (dalam derajat):
+                            $$\text{Busur } AB = \frac{\theta}{360^\circ} \cdot 2\pi r, \quad L_{\text{juring}} = \frac{\theta}{360^\circ} \cdot \pi r^2$$
+                            $$L_{\text{tembereng}} = L_{\text{juring } AOB} - L_{\triangle AOB} = \frac{\theta}{360^\circ}\pi r^2 - \frac{1}{2}r^2 \sin\theta$$
+                        </li>
+                        <li>
+                            <strong>Segiempat Tali Busur (Siklik):</strong> Segiempat yang keempat titik sudutnya terletak pada keliling lingkaran memiliki sifat:
+                            <ul>
+                                <li>Jumlah sudut-sudut yang berhadapan selalu $180^\circ$ ($\angle A + \angle C = 180^\circ$).</li>
+                                <li><strong>Teorema Ptolemy:</strong> Hasil kali kedua diagonalnya sama dengan jumlah hasil kali sisi-sisi yang berhadapan ($AC \cdot BD = AB \cdot CD + BC \cdot AD$).</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-circle-geom" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Pada segitiga siku-siku $\triangle ABC$ yang siku-siku di $C$, ditarik garis tinggi $CD$ tegak lurus terhadap sisi miring $AB$ (dengan titik $D$ terletak pada $AB$). Jika panjang $AC = 15\text{ cm}$ dan $BC = 20\text{ cm}$, maka selisih panjang $BD$ dan $AD$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$5\text{ cm}$</li>
+                    <li>$6\text{ cm}$</li>
+                    <li>$7\text{ cm}$</li>
+                    <li>$8\text{ cm}$</li>
+                    <li>$9\text{ cm}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Hitung panjang sisi miring $AB$ menggunakan Teorema Pythagoras pada $\triangle ABC$:
+                    $$AB = \sqrt{AC^2 + BC^2} = \sqrt{15^2 + 20^2} = \sqrt{225 + 400} = \sqrt{625} = 25\text{ cm}$$
+                </p>
+                <p>
+                    2. Gunakan rumus kesebangunan proyeksi pada segitiga siku-siku ($AC^2 = AD \cdot AB$ dan $BC^2 = BD \cdot AB$):
+                </p>
+                <ul>
+                    <li>$AD = \frac{AC^2}{AB} = \frac{15^2}{25} = \frac{225}{25} = 9\text{ cm}$</li>
+                    <li>$BD = \frac{BC^2}{AB} = \frac{20^2}{25} = \frac{400}{25} = 16\text{ cm}$</li>
+                </ul>
+                <p>
+                    3. Hitung selisih panjang $BD$ dan $AD$:
+                    $$BD - AD = 16 - 9 = 7\text{ cm}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, selisih panjang $BD$ dan $AD$ adalah $7\text{ cm}$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Sebuah segitiga memiliki panjang sisi-sisi $13\text{ cm}$, $14\text{ cm}$, dan $15\text{ cm}$. Panjang jari-jari lingkaran dalam ($r$) dan jari-jari lingkaran luar ($R$) dari segitiga tersebut berturut-turut adalah ....
+                <ol class="pilgan">
+                    <li>$r = 4\text{ cm}$ dan $R = \frac{65}{8}\text{ cm}$</li>
+                    <li>$r = 4\text{ cm}$ dan $R = \frac{65}{4}\text{ cm}$</li>
+                    <li>$r = 6\text{ cm}$ dan $R = \frac{65}{8}\text{ cm}$</li>
+                    <li>$r = 6\text{ cm}$ dan $R = \frac{65}{4}\text{ cm}$</li>
+                    <li>$r = 8\text{ cm}$ dan $R = \frac{65}{8}\text{ cm}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Hitung setengah keliling segitiga ($s$) untuk sisi $a = 13, b = 14, c = 15$:
+                    $$s = \frac{13 + 14 + 15}{2} = \frac{42}{2} = 21\text{ cm}$$
+                </p>
+                <p>
+                    2. Hitung luas segitiga ($L$) menggunakan <strong>Rumus Heron</strong>:
+                    $$L = \sqrt{s(s - a)(s - b)(s - c)} = \sqrt{21(21 - 13)(21 - 14)(21 - 15)}$$
+                    $$L = \sqrt{21 \times 8 \times 7 \times 6} = \sqrt{(3 \times 7) \times (4 \times 2) \times 7 \times (3 \times 2)} = 3 \times 7 \times 4 = 84\text{ cm}^2$$
+                </p>
+                <p>
+                    3. Hitung jari-jari lingkaran dalam ($r$) dan jari-jari lingkaran luar ($R$):
+                </p>
+                <ul>
+                    <li>$r = \frac{L}{s} = \frac{84}{21} = 4\text{ cm}$</li>
+                    <li>$R = \frac{a \cdot b \cdot c}{4L} = \frac{13 \times 14 \times 15}{4 \times 84} = \frac{13 \times 14 \times 15}{336} = \frac{13 \times 15}{24} = \frac{65}{8}\text{ cm}$</li>
+                </ul>
+                <div class="kesimpulan">
+                    Jadi, jari-jari lingkaran dalam dan luarnya adalah $r = 4\text{ cm}$ dan $R = \frac{65}{8}\text{ cm}$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Pada trapesium $ABCD$ dengan $AB \parallel DC$, diketahui panjang sisi sejajar $DC = 8\text{ cm}$ dan $AB = 18\text{ cm}$. Titik $E$ pada $AD$ dan titik $F$ pada $BC$ sedemikian sehingga $EF \parallel AB$. Jika perbandingan $DE : EA = 2 : 3$, maka panjang ruas garis $EF$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$11\text{ cm}$</li>
+                    <li>$12\text{ cm}$</li>
+                    <li>$13\text{ cm}$</li>
+                    <li>$14\text{ cm}$</li>
+                    <li>$15\text{ cm}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Untuk garis sejajar $EF$ yang membagi kaki trapesium dengan perbandingan $DE : EA = m : n$, berlaku rumus kesebangunan trapesium (rata-rata tertimbang silang):
+                    $$EF = \frac{m \cdot AB + n \cdot DC}{m + n}$$
+                </p>
+                <p>
+                    2. Substitusikan nilai $m = 2$, $n = 3$, $AB = 18\text{ cm}$, dan $DC = 8\text{ cm}$:
+                    $$EF = \frac{2(18) + 3(8)}{2 + 3} = \frac{36 + 24}{5} = \frac{60}{5} = 12\text{ cm}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, panjang ruas garis $EF$ adalah $12\text{ cm}$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Sebuah lingkaran berpusat di $O$ memiliki jari-jari $r = 12\text{ cm}$. Jika titik $A$ dan $B$ terletak pada keliling lingkaran sehingga besar sudut pusat $\angle AOB = 60^\circ$, maka luas tembereng kecil yang dibatasi oleh busur $AB$ dan tali busur $AB$ adalah ....
+                <ol class="pilgan">
+                    <li>$(24\pi - 36\sqrt{3})\text{ cm}^2$</li>
+                    <li>$(24\pi - 72\sqrt{3})\text{ cm}^2$</li>
+                    <li>$(12\pi - 36\sqrt{3})\text{ cm}^2$</li>
+                    <li>$(36\pi - 36\sqrt{3})\text{ cm}^2$</li>
+                    <li>$(24\pi - 18\sqrt{3})\text{ cm}^2$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. <strong>Hitung Luas Juring $AOB$:</strong><br>
+                    Dengan sudut pusat $\theta = 60^\circ$ dan jari-jari $r = 12\text{ cm}$:
+                    $$L_{\text{juring}} = \frac{60^\circ}{360^\circ} \times \pi r^2 = \frac{1}{6} \times \pi (12)^2 = \frac{144\pi}{6} = 24\pi\text{ cm}^2$$
+                </p>
+                <p>
+                    2. <strong>Hitung Luas Segitiga $\triangle AOB$:</strong><br>
+                    Gunakan rumus luas segitiga dengan dua sisi dan satu sudut apit:
+                    $$L_{\triangle AOB} = \frac{1}{2} \cdot r^2 \cdot \sin 60^\circ = \frac{1}{2} \times 144 \times \frac{1}{2}\sqrt{3} = 36\sqrt{3}\text{ cm}^2$$
+                </p>
+                <p>
+                    3. <strong>Hitung Luas Tembereng:</strong>
+                    $$L_{\text{tembereng}} = L_{\text{juring}} - L_{\triangle AOB} = (24\pi - 36\sqrt{3})\text{ cm}^2$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, luas tembereng kecil $AB$ adalah $(24\pi - 36\sqrt{3})\text{ cm}^2$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Garis Sejajar & Sudut Transversal menggunakan GeoSVG.js
+            const containerParallel = document.getElementById("geosvg-parallel");
+            if (containerParallel && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerParallel, 330, 210, {
+                    viewBox: "0 0 330 210",
+                    clearContainer: true,
+                    title: "Dua Garis Sejajar Dipotong Garis Transversal",
+                    description: "Visualisasi sudut sehadap dan sudut dalam berseberangan pada dua garis sejajar"
+                });
+
+                const A = [195, 65];
+                const B = [125, 155];
+
+                // Dua garis sejajar g1 dan g2
+                geo1.buatSegmen([25, 65], [305, 65], {
+                    stroke: "var(--teal-primary)", strokeWidth: 2.2,
+                    label: "g₁", labelPosisi: 0.94, labelSisi: "kiri", labelJarak: 12, labelColor: "var(--teal-primary)", bold: true
+                });
+                geo1.buatSegmen([25, 155], [305, 155], {
+                    stroke: "var(--teal-primary)", strokeWidth: 2.2,
+                    label: "g₂", labelPosisi: 0.94, labelSisi: "kiri", labelJarak: 12, labelColor: "var(--teal-primary)", bold: true
+                });
+
+                // Tanda panah sejajar pada g1 dan g2
+                geo1.buatVektor([65, 65], [95, 65], { stroke: "var(--teal-primary)", strokeWidth: 2 });
+                geo1.buatVektor([65, 155], [95, 155], { stroke: "var(--teal-primary)", strokeWidth: 2 });
+
+                // Garis transversal l melewati A dan B
+                geo1.buatGaris(A, B, {
+                    stroke: "var(--text-main)", strokeWidth: 2,
+                    clipPad: -12
+                });
+
+                // Busur sudut sehadap & dalam berseberangan (warna mustard = sama besar)
+                // Sudut A1 (kanan atas di A)
+                geo1.buatSudut([260, 65], A, [230, 20], {
+                    radius: 26, fill: "rgba(217, 119, 6, 0.22)", stroke: "#d97706",
+                    label: "A₁", labelRadius: 38, labelColor: "#d97706", fontSize: "11px", bold: true
+                });
+                // Sudut A3 (kiri bawah di A - dalam berseberangan dengan B1)
+                geo1.buatSudut([130, 65], A, B, {
+                    radius: 26, fill: "rgba(217, 119, 6, 0.22)", stroke: "#d97706",
+                    label: "A₃", labelRadius: 38, labelColor: "#d97706", fontSize: "11px", bold: true
+                });
+                // Sudut B1 (kanan atas di B - sehadap dengan A1 & dalam berseberangan dengan A3)
+                geo1.buatSudut([190, 155], B, A, {
+                    radius: 26, fill: "rgba(217, 119, 6, 0.22)", stroke: "#d97706",
+                    label: "B₁", labelRadius: 38, labelColor: "#d97706", fontSize: "11px", bold: true
+                });
+
+                // Sudut A4 (kanan bawah di A - dalam sepihak dengan B1)
+                geo1.buatSudut(B, A, [260, 65], {
+                    radius: 24, fill: "rgba(13, 148, 136, 0.2)", stroke: "var(--teal-primary)",
+                    label: "A₄", labelRadius: 36, labelColor: "var(--teal-primary)", fontSize: "11px", bold: true
+                });
+
+                geo1.buatTitik(A, { size: 3.5, color: "var(--text-main)" });
+                geo1.buatTitik(B, { size: 3.5, color: "var(--text-main)" });
+
+                geo1.buatTeks(165, 198, "∠A₁ = ∠A₃ = ∠B₁   dan   ∠A₄ + ∠B₁ = 180°", {
+                    fill: "var(--text-muted)", fontSize: "11px", fontWeight: "bold", position: "middle-center"
+                });
+            }
+
+            // 2. Visualisasi Segitiga, Garis Tinggi, Lingkaran Dalam & Lingkaran Luar menggunakan GeoSVG.js
+            const containerTri = document.getElementById("geosvg-triangle-circles");
+            if (containerTri && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerTri, 330, 250, {
+                    viewBox: "0 0 330 250",
+                    clearContainer: true,
+                    title: "Segitiga dengan Lingkaran Dalam, Lingkaran Luar, dan Garis Tinggi",
+                    description: "Visualisasi segitiga ABC beserta lingkaran luar R, lingkaran dalam r, dan garis tinggi CD"
+                });
+
+                const A = [52, 182];
+                const B = [268, 182];
+                const C = [130, 42];
+
+                // Lingkaran Luar menggunakan buatLingkaranLuar bawaan GeoSVG.js
+                geo2.buatLingkaranLuar(A, B, C, {
+                    stroke: "var(--text-muted)",
+                    strokeWidth: 1.3,
+                    dashed: "5 4",
+                    fill: "rgba(13, 148, 136, 0.04)"
+                });
+
+                // Segitiga ABC
+                geo2.buatSegitiga(A, B, C, {
+                    fill: "rgba(13, 148, 136, 0.12)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.2
+                });
+
+                // Garis Tinggi dari C tegak lurus ke AB menggunakan hitungKakiTegakLurus bawaan GeoSVG.js
+                const D = geo2.hitungKakiTegakLurus(C, A, B);
+                geo2.buatSiku(C, D, B, { size: 10, stroke: "var(--teal-primary)" });
+                geo2.buatSegmen(C, D, {
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 1.6,
+                    dashed: "4 3",
+                    label: "t",
+                    labelPosisi: 0.45,
+                    labelSisi: "kiri",
+                    labelJarak: 8,
+                    labelColor: "var(--teal-primary)",
+                    bold: true
+                });
+
+                // Lingkaran Dalam menggunakan hitungLingkaranDalam & buatLingkaranDalam bawaan GeoSVG.js
+                const incircle = geo2.hitungLingkaranDalam(A, B, C);
+                geo2.buatLingkaranDalam(A, B, C, {
+                    fill: "rgba(217, 119, 6, 0.16)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.8
+                });
+
+                // Jari-jari lingkaran dalam r (tegak lurus ke AB)
+                const I = incircle.pusat;
+                const K = [I[0], A[1]];
+                geo2.buatSegmen(I, K, {
+                    stroke: "#d97706",
+                    strokeWidth: 1.8,
+                    label: "r",
+                    labelPosisi: 0.5,
+                    labelSisi: "kanan",
+                    labelJarak: 7,
+                    labelColor: "#d97706",
+                    bold: true
+                });
+                geo2.buatTitik(I, { size: 3.5, color: "#d97706", label: "I", labelPosition: "top-right", labelDistance: 4, bold: true });
+
+                // Titik sudut A, B, C, D
+                geo2.buatTitik(A, { size: 4, color: "var(--text-main)", label: "A", labelPosition: "bottom-left", bold: true });
+                geo2.buatTitik(B, { size: 4, color: "var(--text-main)", label: "B", labelPosition: "bottom-right", bold: true });
+                geo2.buatTitik(C, { size: 4, color: "var(--text-main)", label: "C", labelPosition: "top-center", bold: true });
+                geo2.buatTitik(D, { size: 3.5, color: "var(--teal-primary)", label: "D", labelPosition: "bottom-center", labelDistance: 5 });
+
+                geo2.buatTeks(165, 238, "Lingkaran Dalam (r = L/s) & Lingkaran Luar (R = abc/4L)", {
+                    fill: "var(--text-muted)", fontSize: "10.5px", fontWeight: "bold", position: "middle-center"
+                });
+            }
+
+            // 3. Visualisasi Sudut Pusat, Sudut Keliling & Tembereng Lingkaran menggunakan GeoSVG.js
+            const containerCircle = document.getElementById("geosvg-circle-geom");
+            if (containerCircle && typeof GeoSVG !== "undefined") {
+                const geo3 = new GeoSVG(containerCircle, 330, 245, {
+                    viewBox: "0 0 330 245",
+                    clearContainer: true,
+                    title: "Sudut Pusat, Sudut Keliling, dan Tembereng Lingkaran",
+                    description: "Visualisasi hubungan sudut pusat 2 theta dengan sudut keliling theta yang menghadap busur AB serta daerah tembereng"
+                });
+
+                const O = [165, 118];
+                const r = 88;
+
+                // Lingkaran utama
+                geo3.buatLingkaran(O, r, {
+                    fill: "var(--bg-subtle)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2
+                });
+
+                // Juring & Tembereng di bagian bawah (antara sudut 35 derajat dan 145 derajat)
+                const angA = 145;
+                const angB = 35;
+                const A = [O[0] + r * Math.cos(angA * Math.PI / 180), O[1] + r * Math.sin(angA * Math.PI / 180)];
+                const B = [O[0] + r * Math.cos(angB * Math.PI / 180), O[1] + r * Math.sin(angB * Math.PI / 180)];
+                const C = [O[0] + r * Math.cos(-100 * Math.PI / 180), O[1] + r * Math.sin(-100 * Math.PI / 180)];
+
+                // Arsir Tembereng AB menggunakan buatTembereng bawaan GeoSVG.js
+                geo3.buatTembereng(O, r, angB, angA, {
+                    fill: "rgba(217, 119, 6, 0.25)",
+                    stroke: "#d97706",
+                    strokeWidth: 2
+                });
+
+                // Tali busur AC dan BC (membentuk sudut keliling ACB)
+                geo3.buatSegmen(C, A, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                geo3.buatSegmen(C, B, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+
+                // Jari-jari OA dan OB (membentuk sudut pusat AOB)
+                geo3.buatSegmen(O, A, { stroke: "var(--text-main)", strokeWidth: 1.8 });
+                geo3.buatSegmen(O, B, { stroke: "var(--text-main)", strokeWidth: 1.8 });
+
+                // Busur sudut keliling theta di C
+                geo3.buatSudut(A, C, B, {
+                    radius: 26,
+                    fill: "rgba(13, 148, 136, 0.2)",
+                    stroke: "var(--teal-primary)",
+                    label: "θ",
+                    labelRadius: 38,
+                    labelColor: "var(--teal-primary)",
+                    bold: true
+                });
+
+                // Busur sudut pusat 2*theta di O
+                geo3.buatSudut(B, O, A, {
+                    radius: 22,
+                    fill: "rgba(217, 119, 6, 0.2)",
+                    stroke: "#d97706",
+                    label: "2θ",
+                    labelRadius: 35,
+                    labelColor: "#d97706",
+                    bold: true
+                });
+
+                // Label Tembereng
+                geo3.buatTeks(165, 192, "Tembereng", {
+                    fill: "#d97706",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    position: "middle-center"
+                });
+
+                // Titik O, A, B, C
+                geo3.buatTitik(O, { size: 4, color: "var(--text-main)", label: "O", labelPosition: "top-center", labelDistance: 6, bold: true });
+                geo3.buatTitik(A, { size: 4, color: "#d97706", label: "A", labelPosition: "bottom-left", bold: true });
+                geo3.buatTitik(B, { size: 4, color: "#d97706", label: "B", labelPosition: "bottom-right", bold: true });
+                geo3.buatTitik(C, { size: 4, color: "var(--teal-primary)", label: "C (Sudut Keliling)", labelPosition: "top-center", labelDistance: 7, bold: true });
+
+                geo3.buatTeks(165, 232, "Sudut Pusat ∠AOB = 2 × Sudut Keliling ∠ACB", {
+                    fill: "var(--text-muted)", fontSize: "11px", fontWeight: "bold", position: "middle-center"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

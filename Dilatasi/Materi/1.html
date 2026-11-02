@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Aturan Cosinus</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+    <style>
+        .geosvg-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: auto;
+        }
+
+        .geosvg-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .caption-diagram {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .rumus-box {
+            background-color: var(--bg-subtle);
+            border-left: 4px solid var(--teal-primary);
+            padding: 1.1rem 1.35rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan komprehensif materi <span class="topic-highlight">Dilatasi</span> (Transformasi
+                Geometri)
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Dilatasi</h2>
+            <p>
+                <strong>Dilatasi (Perkalian Geometris)</strong> adalah jenis transformasi geometri yang mengubah ukuran
+                suatu objek (memperbesar atau memperkecil) tanpa mengubah bentuk dasar objek tersebut. Berbeda dengan
+                translasi, refleksi, atau rotasi yang merupakan <em>transformasi isometri</em> (mempertahankan ukuran
+                dan jarak), dilatasi adalah <strong>transformasi non-isometri</strong> (kecuali untuk faktor skala $k =
+                1$ atau $k = -1$).
+            </p>
+            <p>
+                Sebuah dilatasi ditentukan secara unik oleh dua komponen utama:
+            </p>
+            <ul>
+                <li><strong>Titik Pusat Dilatasi ($P$):</strong> Titik acuan diam tempat pengukuran perbesaran atau
+                    pengecilan dilakukan. Dilambangkan $[O, k]$ untuk pusat di titik asal $O(0,0)$ atau $[P(a,b), k]$
+                    untuk pusat di sembarang titik.</li>
+                <li><strong>Faktor Skala ($k$):</strong> Bilangan riil ($k \ne 0$) yang menentukan rasio perbesaran
+                    jarak bayangan terhadap jarak objek asli dari titik pusat.</li>
+            </ul>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nilai Faktor Skala ($k$)</th>
+                            <th>Pengaruh Terhadap Ukuran</th>
+                            <th>Posisi / Orientasi Bayangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$k > 1$</td>
+                            <td>Diperbesar</td>
+                            <td class="text-left">Searah dengan objek semula terhadap titik pusat.</td>
+                        </tr>
+                        <tr>
+                            <td>$0 < k < 1$</td>
+                            <td>Diperkecil</td>
+                            <td class="text-left">Searah dengan objek semula, berada di antara objek dan titik pusat.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>$-1 < k < 0$</td>
+                            <td>Diperkecil</td>
+                            <td class="text-left">Berlawanan arah (terbalik/diputar $180^\circ$) terhadap titik pusat.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>$k < -1$</td>
+                            <td>Diperbesar</td>
+                            <td class="text-left">Berlawanan arah (terbalik/diputar $180^\circ$) terhadap titik pusat.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>$k = -1$</td>
+                            <td>Ukuran Tetap</td>
+                            <td class="text-left">Sama persis dengan pencerminan (refleksi) terhadap titik pusat.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Visualisasi Dilatasi Pusat O(0,0) dengan GeoSVG -->
+            <div class="geosvg-box">
+                <div id="diagram-dilatasi-pusat-o"></div>
+                <p class="caption-diagram">Gambar 1: Dilatasi segitiga $ABC$ terhadap titik pusat $O(0,0)$ dengan faktor
+                    skala $k = 2$. Garis proyeksi putus-putus membentang dari pusat $O$ melalui setiap titik sudut.</p>
+            </div>
+
+            <h2>2. Formula Dilatasi Titik</h2>
+
+            <h3>A. Dilatasi Berpusat di Titik Asal $O(0,0)$</h3>
+            <p>
+                Jika titik $A(x, y)$ didilatasikan terhadap pusat $O(0,0)$ dengan faktor skala $k$, notasinya adalah
+                $[O, k]$. Koordinat bayangan $A'(x', y')$ adalah:
+            </p>
+            <div class="rumus-box">
+                $$x' = k \cdot x$$
+                $$y' = k \cdot y$$
+                <p style="margin-top: 0.5rem; margin-bottom: 0;">Dalam bentuk persamaan matriks:</p>
+                $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix} \begin{pmatrix}
+                x \\ y \end{pmatrix}$$
+            </div>
+
+            <h3>B. Dilatasi Berpusat di Sembarang Titik $P(a, b)$</h3>
+            <p>
+                Jika titik $A(x, y)$ didilatasikan terhadap pusat $P(a, b)$ dengan faktor skala $k$, notasinya adalah
+                $[P(a,b), k]$. Koordinat bayangan diperoleh dengan mentranslasikan pusat ke titik asal, mendilatasikan,
+                lalu mengembalikannya:
+            </p>
+            <div class="rumus-box">
+                $$x' - a = k(x - a) \implies x' = a + k(x - a)$$
+                $$y' - b = k(y - b) \implies y' = b + k(y - b)$$
+                <p style="margin-top: 0.5rem; margin-bottom: 0;">Dalam bentuk persamaan matriks:</p>
+                $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix} \begin{pmatrix}
+                x - a \\ y - b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}$$
+            </div>
+
+            <!-- Visualisasi Dilatasi dengan Faktor Skala Negatif -->
+            <div class="geosvg-box">
+                <div id="diagram-dilatasi-negatif"></div>
+                <p class="caption-diagram">Gambar 2: Karakteristik dilatasi dengan faktor skala negatif ($k = -1{,}5$).
+                    Bayangan terletak di seberang titik pusat dengan orientasi terbalik ($180^\circ$).</p>
+            </div>
+
+            <h2>3. Dilatasi Garis dan Kurva</h2>
+            <p>
+                Untuk mendilatasikan sebuah kurva $f(x, y) = 0$ dengan dilatasi $[O, k]$, kita gunakan substitusi balik
+                dari variabel bayangannya:
+            </p>
+            $$x' = kx \implies x = \frac{x'}{k}, \qquad y' = ky \implies y = \frac{y'}{k}$$
+            <p>
+                Substitusikan nilai $x$ dan $y$ ke persamaan asli kurva:
+            </p>
+            <div class="rumus-box">
+                $$f\left(\frac{x}{k}, \frac{y}{k}\right) = 0$$
+            </div>
+
+            <h2>4. Pengaruh Dilatasi Terhadap Luas dan Volume Bangun</h2>
+            <p>
+                Karena setiap dimensi panjang sisi dikalikan dengan faktor skala $\vert k \vert$, maka:
+            </p>
+            <ul>
+                <li><strong>Panjang Garis / Keliling Bangun Datar:</strong>
+                    $$K' = \vert k \vert \times K$$
+                </li>
+                <li><strong>Luas Bangun Datar ($L$):</strong> Karena luas melibatkan dua dimensi panjang
+                    ($\text{panjang} \times \text{lebar}$):
+                    $$L' = k^2 \times L$$
+                    <p>Secara matriks transformasi, faktor pengali luas adalah nilai mutlak dari determinan matriks
+                        dilatasi: $\vert \det(M) \vert = \begin{vmatrix} k & 0 \\ 0 & k \end{vmatrix} = k^2$.</p>
+                </li>
+                <li><strong>Volume Bangun Ruang ($V$):</strong> Melibatkan perkalian tiga dimensi:
+                    $$V' = \vert k \vert^3 \times V$$
+                </li>
+            </ul>
+
+            <div class="kesimpulan">
+                <strong>Ingat:</strong> Luas bayangan selalu bernilai positif meskipun faktor skalanya negatif, karena
+                pengalinya adalah kuadrat faktor skala ($k^2$).
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 1</span>
+                <div class="soal-teks">
+                    Tentukan bayangan dari titik $K(3, -5)$ oleh dilatasi dengan pusat $P(1, 2)$ dan faktor skala $k =
+                    -3$!
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Diketahui:</p>
+                    <ul>
+                        <li>Titik asal: $(x, y) = (3, -5)$</li>
+                        <li>Titik pusat: $(a, b) = (1, 2)$</li>
+                        <li>Faktor skala: $k = -3$</li>
+                    </ul>
+                    <p>Gunakan rumus dilatasi terhadap pusat $P(a, b)$:</p>
+                    $$x' = a + k(x - a)$$
+                    $$x' = 1 + (-3)(3 - 1) = 1 + (-3)(2) = 1 - 6 = -5$$
+                    <br>
+                    $$y' = b + k(y - b)$$
+                    $$y' = 2 + (-3)(-5 - 2) = 2 + (-3)(-7) = 2 + 21 = 23$$
+                    <div class="kesimpulan">
+                        Jadi, koordinat bayangan titik $K$ adalah <strong>$K'(-5, 23)$</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 2</span>
+                <div class="soal-teks">
+                    Tentukan persamaan bayangan garis $g \equiv 2x - 3y + 6 = 0$ setelah didilatasikan oleh $[O, 2]$
+                    yang berpusat di titik asal $O(0,0)$!
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Transformasi dilatasi terhadap $[O, 2]$ memberikan hubungan:</p>
+                    $$x' = 2x \implies x = \frac{x'}{2}$$
+                    $$y' = 2y \implies y = \frac{y'}{2}$$
+                    <p>Substitusikan $x$ dan $y$ ke dalam persamaan garis $g$:</p>
+                    $$2x - 3y + 6 = 0$$
+                    $$2\left(\frac{x'}{2}\right) - 3\left(\frac{y'}{2}\right) + 6 = 0$$
+                    $$x' - \frac{3}{2}y' + 6 = 0$$
+                    <p>Kalikan kedua ruas dengan $2$ untuk menghilangkan pecahan:</p>
+                    $$2x' - 3y' + 12 = 0$$
+                    <p><em>Catatan Geometris:</em> Gradien garis hasil dilatasi selalu sama dengan garis semula ($m =
+                        \frac{2}{3}$), sehingga garis bayangan sejajar dengan garis asalnya.</p>
+                    <div class="kesimpulan">
+                        Jadi, persamaan bayangan garis tersebut adalah <strong>$2x - 3y + 12 = 0$</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 3</span>
+                <div class="soal-teks">
+                    Sebuah lingkaran memiliki persamaan $L \equiv (x - 2)^2 + (y + 1)^2 = 9$. Lingkaran tersebut
+                    didilatasikan dengan pusat $O(0,0)$ dan faktor skala $k = 3$. Tentukan persamaan bayangan lingkaran
+                    serta perbandingan luas antara lingkaran bayangan dan lingkaran semula!
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Mengidentifikasi karakteristik lingkaran awal</strong></p>
+                    <p>Persamaan $(x - 2)^2 + (y + 1)^2 = 9$ memiliki:</p>
+                    <ul>
+                        <li>Titik pusat $A(2, -1)$</li>
+                        <li>Jari-jari $r = \sqrt{9} = 3$</li>
+                    </ul>
+
+                    <p><strong>Langkah 2: Menentukan bayangan pusat dan jari-jari</strong></p>
+                    <p>Pusat baru $A'$ hasil dilatasi $[O, 3]$:</p>
+                    $$A'(x', y') = (3 \times 2, 3 \times (-1)) = (6, -3)$$
+                    <p>Jari-jari lingkaran baru $r'$:</p>
+                    $$r' = \vert k \vert \times r = 3 \times 3 = 9$$
+
+                    <p><strong>Langkah 3: Menuliskan persamaan lingkaran bayangan</strong></p>
+                    $$(x - 6)^2 + (y - (-3))^2 = (r')^2$$
+                    $$(x - 6)^2 + (y + 3)^2 = 81$$
+
+                    <p><strong>Langkah 4: Menghitung rasio luas</strong></p>
+                    $$\frac{\text{Luas}'}{\text{Luas}} = k^2 = 3^2 = 9$$
+                    <div class="kesimpulan">
+                        Persamaan bayangan lingkaran adalah <strong>$(x - 6)^2 + (y + 3)^2 = 81$</strong> dan luasnya
+                        menjadi <strong>$9$ kali lipat</strong> dari luas semula.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Visualisasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // ==========================================
+            // Diagram 1: Dilatasi Pusat O(0,0) Faktor k = 2
+            // ==========================================
+            const cont1 = document.getElementById("diagram-dilatasi-pusat-o");
+            if (cont1 && typeof GeoSVG !== 'undefined') {
+                const geo1 = new GeoSVG(cont1, 560, 280, {
+                    viewBox: "0 0 560 280",
+                    background: "transparent"
+                });
+
+                // Titik pusat O
+                const O = [80, 220];
+
+                // Segitiga asli ABC
+                const A = [160, 190];
+                const B = [220, 200];
+                const C = [190, 130];
+
+                // Segitiga bayangan A'B'C' dengan k = 2:
+                // P' = O + 2*(P - O)
+                const A_prime = [O[0] + 2 * (A[0] - O[0]), O[1] + 2 * (A[1] - O[1])]; // [240, 160]
+                const B_prime = [O[0] + 2 * (B[0] - O[0]), O[1] + 2 * (B[1] - O[1])]; // [360, 180]
+                const C_prime = [O[0] + 2 * (C[0] - O[0]), O[1] + 2 * (C[1] - O[1])]; // [300, 40]
+
+                // Garis pancaran sinar/proyeksi putus-putus dari O melewati titik sudut
+                geo1.buatSinar(O, A_prime, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: "4 3" });
+                geo1.buatSinar(O, B_prime, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: "4 3" });
+                geo1.buatSinar(O, C_prime, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: "4 3" });
+
+                // Segitiga Bayangan (Besar)
+                geo1.buatPoligon([A_prime, B_prime, C_prime], {
+                    fill: "rgba(13, 148, 136, 0.20)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.5
+                });
+
+                // Segitiga Asli (Kecil)
+                geo1.buatPoligon([A, B, C], {
+                    fill: "rgba(37, 99, 235, 0.25)",
+                    stroke: "#2563eb",
+                    strokeWidth: 2
+                });
+
+                // Titik Pusat O
+                geo1.buatTitik(O, { size: 5, color: "var(--text-main)", label: "O(0,0)", labelPosition: "bottom-left" });
+
+                // Titik Sudut Asli
+                geo1.buatTitik(A, { size: 3.5, color: "#2563eb", label: "A", labelPosition: "top-left" });
+                geo1.buatTitik(B, { size: 3.5, color: "#2563eb", label: "B", labelPosition: "bottom-right" });
+                geo1.buatTitik(C, { size: 3.5, color: "#2563eb", label: "C", labelPosition: "top-center" });
+
+                // Titik Sudut Bayangan
+                geo1.buatTitik(A_prime, { size: 4, color: "var(--teal-primary)", label: "A' (k=2)", labelPosition: "bottom-left" });
+                geo1.buatTitik(B_prime, { size: 4, color: "var(--teal-primary)", label: "B'", labelPosition: "bottom-right" });
+                geo1.buatTitik(C_prime, { size: 4, color: "var(--teal-primary)", label: "C'", labelPosition: "top-center" });
+
+                // Label Keterangan Luas
+                geo1.buatTeks(190, 180, "Luas = L", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#2563eb" });
+                geo1.buatTeks(300, 135, "Luas = 4L (k² = 4)", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: "var(--teal-primary)" });
+            }
+
+            // ==========================================
+            // Diagram 2: Dilatasi Negatif (k = -1.5)
+            // ==========================================
+            const cont2 = document.getElementById("diagram-dilatasi-negatif");
+            if (cont2 && typeof GeoSVG !== 'undefined') {
+                const geo2 = new GeoSVG(cont2, 560, 240, {
+                    viewBox: "0 0 560 240",
+                    background: "transparent"
+                });
+
+                // Titik Pusat P di tengah kanvas
+                const P = [260, 120];
+
+                // Segitiga asli di kanan P
+                const A = [370, 75];
+                const B = [430, 95];
+                const C = [390, 140];
+
+                // Segitiga bayangan di kiri P dengan faktor k = -1.3:
+                // P' = P + k * (X - P)
+                const k = -1.3;
+                const A_neg = [P[0] + k * (A[0] - P[0]), P[1] + k * (A[1] - P[1])];
+                const B_neg = [P[0] + k * (B[0] - P[0]), P[1] + k * (B[1] - P[1])];
+                const C_neg = [P[0] + k * (C[0] - P[0]), P[1] + k * (C[1] - P[1])];
+
+                // Garis penghubung proyeksi melewati titik pusat
+                geo2.buatSegmen(A, A_neg, { stroke: "var(--border-color)", strokeWidth: 1.2, dashed: "3 2" });
+                geo2.buatSegmen(B, B_neg, { stroke: "var(--border-color)", strokeWidth: 1.2, dashed: "3 2" });
+                geo2.buatSegmen(C, C_neg, { stroke: "var(--border-color)", strokeWidth: 1.2, dashed: "3 2" });
+
+                // Segitiga Asli (Kanan)
+                geo2.buatPoligon([A, B, C], {
+                    fill: "rgba(37, 99, 235, 0.20)",
+                    stroke: "#2563eb",
+                    strokeWidth: 2
+                });
+
+                // Segitiga Bayangan (Kiri, Terbalik)
+                geo2.buatPoligon([A_neg, B_neg, C_neg], {
+                    fill: "rgba(217, 119, 6, 0.20)",
+                    stroke: "#d97706",
+                    strokeWidth: 2.2
+                });
+
+                // Titik Pusat P
+                geo2.buatTitik(P, { size: 5, color: "var(--text-main)", label: "Pusat P", labelPosition: "bottom-center" });
+
+                // Titik-titik asli
+                geo2.buatTitik(A, { size: 3.5, color: "#2563eb", label: "A", labelPosition: "top-right" });
+                geo2.buatTitik(B, { size: 3.5, color: "#2563eb", label: "B", labelPosition: "bottom-right" });
+                geo2.buatTitik(C, { size: 3.5, color: "#2563eb", label: "C", labelPosition: "bottom-center" });
+
+                // Titik-titik bayangan
+                geo2.buatTitik(A_neg, { size: 4, color: "#d97706", label: "A'", labelPosition: "bottom-left" });
+                geo2.buatTitik(B_neg, { size: 4, color: "#d97706", label: "B'", labelPosition: "top-left" });
+                geo2.buatTitik(C_neg, { size: 4, color: "#d97706", label: "C'", labelPosition: "top-center" });
+
+                // Anotasi Orientasi
+                geo2.buatTeks(400, 165, "Objek Semula", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#2563eb" });
+                geo2.buatTeks(115, 60, "Bayangan Terbalik (k = -1,3)", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#d97706" });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

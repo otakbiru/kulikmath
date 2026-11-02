@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Deret Geometri Tak Hingga</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Deret Geometri Tak Hingga</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper pagsoal"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Suatu deret geometri tak hingga konvergen dengan suku-suku bernilai positif memiliki jumlah \(S = 9\).
+                Diketahui pula bahwa jumlah dari kuadrat seluruh suku-sukunya adalah:
+                \[\sum_{n=1}^\infty U_n^2 = U_1^2 + U_2^2 + U_3^2 + \dots = 27\]
+                Jika suku-suku yang berindeks genap dari deret tersebut dijumlahkan, yaitu \(U_2 + U_4 + U_6 + \dots\),
+                maka nilai dari jumlah suku-suku genap tersebut adalah ....
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>2</li>
+                        <li>3</li>
+                        <li>\(\dfrac{7}{2}\)</li>
+                        <li>4</li>
+                        <li>\(\dfrac{9}{2}\)</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">Olimpiade / HOTS</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan suku pertama deret adalah \(a > 0\) dan rasio deret adalah \(r\) dengan \(0 < r < 1\)
+                        (karena deret konvergen dan bersuku positif). <br><br>
+                        Rumus suku ke-\(n\) deret geometri adalah \(U_n = a \cdot r^{n-1}\).
+
+                        <b>Langkah 1: Menyusun persamaan dari informasi yang diketahui</b>
+                        <p>
+                            <b>1. Jumlah deret tak hingga (\(S\)):</b>
+                            \[S = \sum_{n=1}^\infty U_n = \dfrac{a}{1 - r} = 9 \implies a = 9(1 - r) \quad \text{---
+                            (Persamaan 1)}\]
+
+                            <b>2. Jumlah kuadrat dari suku-sukunya (\(S_{\text{kuadrat}}\)):</b>
+                            <br>
+                            Deret kuadrat adalah:
+                            \[U_1^2 + U_2^2 + U_3^2 + \dots = a^2 + (ar)^2 + (ar^2)^2 + \dots = a^2 + a^2 r^2 + a^2 r^4
+                            + \dots\]
+                            Ini merupakan deret geometri tak hingga baru dengan suku pertama \(a^2\) dan rasio \(r^2\).
+                            \[S_{\text{kuadrat}} = \dfrac{a^2}{1 - r^2} = 27 \quad \text{--- (Persamaan 2)}\]
+                        </p>
+
+                        <b>Langkah 2: Menentukan nilai rasio \(r\) dan suku pertama \(a\)</b>
+                        <p>
+                            Faktorkan penyebut pada Persamaan (2):
+                            \[\dfrac{a^2}{1 - r^2} = \dfrac{a}{1 - r} \times \dfrac{a}{1 + r} = 27\]
+                            Substitusikan nilai \(\dfrac{a}{1 - r} = 9\):
+                            \[\begin{aligned}
+                            9 \times \dfrac{a}{1 + r} &= 27 \\
+                            \dfrac{a}{1 + r} &= 3 \implies a = 3(1 + r) \quad \text{--- (Persamaan 3)}
+                            \end{aligned}\]
+                            Samakan nilai \(a\) dari Persamaan (1) dan Persamaan (3):
+                            \[\begin{aligned}
+                            9(1 - r) &= 3(1 + r) \\
+                            9 - 9r &= 3 + 3r \\
+                            12r &= 6 \\
+                            r &= \dfrac{6}{12} = \dfrac{1}{2}
+                            \end{aligned}\]
+                            Substitusikan nilai \(r = \dfrac{1}{2}\) ke Persamaan (1):
+                            \[a = 9\left(1 - \dfrac{1}{2}\right) = 9 \times \dfrac{1}{2} = \dfrac{9}{2}\]
+                        </p>
+
+                        <b>Langkah 3: Menghitung jumlah suku-suku berindeks genap (\(S_{\text{genap}}\))</b>
+                        <p>
+                            Deret suku-suku berindeks genap adalah:
+                            \[S_{\text{genap}} = U_2 + U_4 + U_6 + \dots = ar + ar^3 + ar^5 + \dots\]
+                            Deret ini memiliki:
+                        <ul>
+                            <li>Suku pertama: \(U_2 = ar = \dfrac{9}{2} \times \dfrac{1}{2} = \dfrac{9}{4}\)</li>
+                            <li>Rasio: \(R = \dfrac{U_4}{U_2} = r^2 = \left(\dfrac{1}{2}\right)^2 = \dfrac{1}{4}\)</li>
+                        </ul>
+                        Jumlah deret genap tersebut adalah:
+                        \[\begin{aligned}
+                        S_{\text{genap}} &= \dfrac{ar}{1 - r^2} \\
+                        &= \dfrac{\dfrac{9}{4}}{1 - \dfrac{1}{4}} \\
+                        &= \dfrac{\dfrac{9}{4}}{\dfrac{3}{4}} \\
+                        &= \dfrac{9}{3} = 3
+                        \end{aligned}\]
+                        <i>Cara Alternatif:</i>
+                        <br>
+                        Perhatikan bahwa setiap suku genap adalah \(r\) kali suku ganjil sebelumnya (\(U_{2k} = r \cdot
+                        U_{2k-1}\)), sehingga:
+                        \[S_{\text{genap}} = r \cdot S_{\text{ganjil}}\]
+                        Karena \(S_{\text{ganjil}} + S_{\text{genap}} = S = 9\), maka:
+                        \[\begin{aligned}
+                        \dfrac{S_{\text{genap}}}{r} + S_{\text{genap}} &= 9 \\
+                        \dfrac{S_{\text{genap}}}{\frac{1}{2}} + S_{\text{genap}} &= 9 \\
+                        2 S_{\text{genap}} + S_{\text{genap}} &= 9 \\
+                        3 S_{\text{genap}} &= 9 \implies S_{\text{genap}} = 3
+                        \end{aligned}\]
+                        </p>
+                        <div class="kesimpulan">Jadi, jumlah suku-suku yang berindeks genap adalah 3.<br><b>JAWAB: B</b>
+                        </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-2 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-2 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 3 
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-3 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-3 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 4 
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-4 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-4 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 5 
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-5 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-5 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 6 
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-6 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-6 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-7 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-7 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-8 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-8 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-9 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-9 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-10 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-10 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

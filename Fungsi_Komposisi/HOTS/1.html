@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Fungsi Komposisi</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="./scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Fungsi Komposisi</span>
+            </p>
+            <!-- Tombol Tingkat dirender otomatis oleh script.js -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diberikan fungsi kuadrat \(f(x) = x^2 - 3x + 1\). Jika \(x_1, x_2, x_3, x_4\) adalah semua akar-akar real dari persamaan fungsi komposisi:</p>
+                \[
+                (f \circ f)(x) = x
+                \]
+                <p>maka nilai dari \(x_1^2 + x_2^2 + x_3^2 + x_4^2\) adalah ....</p>
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>16</li>
+                        <li>18</li>
+                        <li>20</li>
+                        <li>22</li>
+                        <li>24</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">Olimpiade / HOTS</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Persamaan yang diberikan adalah persamaan komposisi dua kali:</p>
+                    \[
+                    f(f(x)) = x \iff f(f(x)) - x = 0
+                    \]
+
+                    <p><b>Prinsip Teoretis Penting (Fixed Point Property):</b></p>
+                    <p>Jika suatu bilangan real \(x\) memenuhi \(f(x) = x\) (disebut <i>titik tetap / fixed point</i>), maka secara otomatis:</p>
+                    \[
+                    f(f(x)) = f(x) = x
+                    \]
+                    <p>Artinya, setiap akar dari persamaan \(f(x) - x = 0\) pasti merupakan akar dari \(f(f(x)) - x = 0\). Oleh karena itu, polinomial \(f(f(x)) - x\) <b>habis dibagi</b> oleh polinomial \(f(x) - x\).</p>
+
+                    <p><b>Langkah 1: Menentukan faktor pertama dari titik tetap \(f(x) - x = 0\)</b></p>
+                    \[
+                    \begin{aligned}
+                    f(x) - x &= 0 \\
+                    (x^2 - 3x + 1) - x &= 0 \\
+                    x^2 - 4x + 1 &= 0
+                    \end{aligned}
+                    \]
+                    <p>Diskriminan persamaan ini adalah \(D_1 = (-4)^2 - 4(1)(1) = 16 - 4 = 12 > 0\), sehingga memiliki dua akar real yang berbeda, sebut \(x_1\) dan \(x_2\).</p>
+                    <p>Berdasarkan teorema Vieta:</p>
+                    \[
+                    x_1 + x_2 = 4 \quad \text{dan} \quad x_1 x_2 = 1
+                    \]
+                    <p>Jumlah kuadrat kedua akar ini:</p>
+                    \[
+                    x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1 x_2 = 4^2 - 2(1) = 16 - 2 = 14
+                    \]
+
+                    <p><b>Langkah 2: Menentukan faktor kedua melalui pembagian polinomial</b></p>
+                    <p>Ekspansikan bentuk \(f(f(x)) - x\):</p>
+                    \[
+                    \begin{aligned}
+                    f(f(x)) - x &= (x^2 - 3x + 1)^2 - 3(x^2 - 3x + 1) + 1 - x \\
+                    &= (x^4 - 6x^3 + 11x^2 - 6x + 1) - (3x^2 - 9x + 3) + 1 - x \\
+                    &= x^4 - 6x^3 + 8x^2 + 2x - 1
+                    \end{aligned}
+                    \]
+                    <p>Lakukan pembagian suku banyak \((x^4 - 6x^3 + 8x^2 + 2x - 1)\) oleh \((x^2 - 4x + 1)\):</p>
+                    \[
+                    x^4 - 6x^3 + 8x^2 + 2x - 1 = (x^2 - 4x + 1)(x^2 - 2x - 1)
+                    \]
+                    <p>Kita peroleh persamaan faktor kuadrat kedua:</p>
+                    \[
+                    x^2 - 2x - 1 = 0
+                    \]
+                    <p>Diskriminan persamaan ini adalah \(D_2 = (-2)^2 - 4(1)(-1) = 4 + 4 = 8 > 0\), sehingga memiliki dua akar real yang berbeda, sebut \(x_3\) dan \(x_4\).</p>
+                    <p>Berdasarkan teorema Vieta:</p>
+                    \[
+                    x_3 + x_4 = 2 \quad \text{dan} \quad x_3 x_4 = -1
+                    \]
+                    <p>Jumlah kuadrat kedua akar ini:</p>
+                    \[
+                    x_3^2 + x_4^2 = (x_3 + x_4)^2 - 2x_3 x_4 = 2^2 - 2(-1) = 4 + 2 = 6
+                    \]
+
+                    <p><b>Langkah 3: Menghitung jumlah kuadrat dari seluruh akar real</b></p>
+                    \[
+                    \begin{aligned}
+                    x_1^2 + x_2^2 + x_3^2 + x_4^2 &= (x_1^2 + x_2^2) + (x_3^2 + x_4^2) \\
+                    &= 14 + 6 \\
+                    &= 20
+                    \end{aligned}
+                    \]
+
+                    <p><i>(Alternatif menggunakan Teorema Vieta pada polinomial derajat 4 langsung: untuk \(x^4 - 6x^3 + 8x^2 + 2x - 1 = 0\), jumlah kuadrat akar adalah \(\sigma_1^2 - 2\sigma_2 = 6^2 - 2(8) = 36 - 16 = 20\)).</i></p>
+
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(x_1^2 + x_2^2 + x_3^2 + x_4^2\) adalah <b>20</b>.<br>
+                        <b>JAWAB: C</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-2 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-2 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 3 
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-3 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-3 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 4 
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-4 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-4 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 5 
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-5 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-5 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 6 
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-6 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-6 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-7 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-7 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-8 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-8 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-9 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-9 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-10 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-10 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

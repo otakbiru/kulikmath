@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Aturan Cosinus</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+    <style>
+        .geosvg-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: auto;
+        }
+
+        .geosvg-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .caption-diagram {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .rumus-box {
+            background-color: var(--bg-subtle);
+            border-left: 4px solid var(--teal-primary);
+            padding: 1.1rem 1.35rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan komprehensif materi <span class="topic-highlight">Desil</span> (Statistika -
+                Ukuran Letak Data)
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Desil</h2>
+            <p>
+                Dalam statistika deskriptif, <strong>Desil (<em>Decile</em>)</strong> adalah nilai-nilai batas yang
+                membagi sekumpulan data yang telah diurutkan (dari terkecil ke terbesar) menjadi <strong>sepuluh bagian
+                    yang sama besar</strong> (masing-masing bagian mencakup $10\%$ dari total pengamatan).
+            </p>
+            <p>
+                Karena data dibagi menjadi $10$ bagian yang sama banyak, maka terdapat <strong>$9$ buah nilai
+                    desil</strong> yang dilambangkan dengan:
+            </p>
+            $$D_1, D_2, D_3, D_4, D_5, D_6, D_7, D_8, D_9$$
+
+            <div class="kesimpulan">
+                <strong>Catatan Khusus:</strong> Desil ke-5 ($D_5$) membagi $50\%$ data di sebelah kiri dan $50\%$ data
+                di sebelah kanan. Dengan demikian, nilai <strong>$D_5$ tepat sama dengan Median ($Me$) dan Kuartil ke-2
+                    ($Q_2$)</strong>:
+                $$D_5 = Q_2 = \text{Median}$$
+            </div>
+
+            <!-- Visualisasi Partisi Data Menjadi 10 Bagian -->
+            <div class="geosvg-box">
+                <div id="diagram-desil-partisi"></div>
+                <p class="caption-diagram">Gambar 1: Garis letak 9 titik pemotong desil ($D_1$ hingga $D_9$) yang
+                    membagi populasi data menjadi 10 segmen seimbang ($10\%$ per segmen).</p>
+            </div>
+
+            <h2>2. Desil untuk Data Tunggal</h2>
+            <p>
+                Untuk menghitung nilai desil pada data tunggal berukuran $n$, langkah-langkah yang dilakukan adalah:
+            </p>
+            <ol>
+                <li>Urutkan data dari nilai terkecil hingga nilai terbesar ($x_1 \le x_2 \le \dots \le x_n$).</li>
+                <li>Tentukan letak posisi desil ke-$i$ ($L_{D_i}$) menggunakan rumus:</li>
+            </ol>
+
+            <div class="rumus-box">
+                $$\text{Letak } D_i = \frac{i(n + 1)}{10}, \quad i = 1, 2, 3, \dots, 9$$
+                <p style="margin-bottom: 0;"><strong>Keterangan:</strong></p>
+                <ul style="margin-bottom: 0;">
+                    <li>$D_i$ = Desil ke-$i$</li>
+                    <li>$n$ = Banyaknya data / ukuran sampel</li>
+                    <li>$i$ = Urutan desil ($1, 2, \dots, 9$)</li>
+                </ul>
+            </div>
+
+            <p>
+                Jika nilai $\text{Letak } D_i$ menghasilkan bilangan desimal berupa pecahan $k + d$ (di mana $k$
+                bilangan bulat dan $0 < d < 1$), maka nilai desil ditentukan dengan metode <strong>Interpolasi
+                    Linier</strong>:
+            </p>
+
+            <div class="rumus-box">
+                $$D_i = x_k + d \cdot (x_{k+1} - x_k)$$
+                <p style="margin-bottom: 0;">dengan $x_k$ adalah data pada urutan ke-$k$ dan $x_{k+1}$ adalah data pada
+                    urutan ke-$(k+1)$.</p>
+            </div>
+
+            <h2>3. Desil untuk Data Kelompok</h2>
+            <p>
+                Untuk data yang disajikan dalam bentuk tabel distribusi frekuensi bergolong, letak kelas desil ke-$i$
+                ditentukan berdasarkan frekuensi kumulatif data ke:
+            </p>
+            $$\text{Letak } D_i = \frac{i}{10} \cdot n$$
+            <p>
+                Setelah letak kelas interval desil ditemukan, nilai desil dihitung dengan rumus:
+            </p>
+
+            <div class="rumus-box">
+                $$D_i = T_b + \left( \frac{\dfrac{i}{10} \cdot n - \sum f_k}{f_{D_i}} \right) \cdot p$$
+                <p style="margin-bottom: 0;"><strong>Keterangan:</strong></p>
+                <ul style="margin-bottom: 0;">
+                    <li>$T_b$ = Tepi bawah kelas interval yang memuat desil ke-$i$ (batas bawah $- 0{,}5$)</li>
+                    <li>$n$ = Jumlah total frekuensi pengamatan ($\sum f$)</li>
+                    <li>$\sum f_k$ = Jumlah frekuensi kumulatif tepat sebelum kelas desil ke-$i$</li>
+                    <li>$f_{D_i}$ = Frekuensi absolut kelas yang memuat desil ke-$i$</li>
+                    <li>$p$ = Panjang interval kelas ($c$ atau panjang kelas)</li>
+                    <li>$i$ = Bilangan bulat $1, 2, \dots, 9$</li>
+                </ul>
+            </div>
+
+            <!-- Visualisasi Kurva Ogive Letak Desil -->
+            <div class="geosvg-box">
+                <div id="diagram-ogive-desil"></div>
+                <p class="caption-diagram">Gambar 2: Penentuan letak desil ($D_3$, $D_5$, $D_7$) pada Kurva Ogive
+                    Frekuensi Kumulatif Lebih Kecil.</p>
+            </div>
+
+            <h2>4. Jangkauan Desil (Desile Range)</h2>
+            <p>
+                Selain sebagai ukuran letak, desil juga dimanfaatkan dalam mengukur penyebaran data. <strong>Jangkauan
+                    Desil (<em>Decile Range</em> / $R_D$)</strong> atau Rentang 10–90 adalah selisih antara desil ke-9
+                dengan desil ke-1:
+            </p>
+            <div class="rumus-box">
+                $$R_D = D_9 - D_1$$
+            </div>
+            <p>
+                Ukuran ini membuang $10\%$ data ekstrem terbawah dan $10\%$ data ekstrem teratas, sehingga menjadi
+                ukuran penyebaran yang lebih tangguh terhadap pencilan (<em>outlier</em>) dibandingkan jangkauan total
+                ($X_{\max} - X_{\min}$).
+            </p>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 1</span>
+                <div class="soal-teks">
+                    Diberikan data hasil tes matematika 12 orang siswa sebagai berikut:<br>
+                    $$68, 72, 85, 60, 75, 90, 80, 65, 88, 70, 78, 82$$
+                    Tentukan nilai <strong>Desil ke-3 ($D_3$)</strong> dan <strong>Desil ke-7 ($D_7$)</strong> dari data
+                    tersebut!
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Urutkan data dari terkecil ke terbesar</strong></p>
+                    $$60, 65, 68, 70, 72, 75, 78, 80, 82, 85, 88, 90$$
+                    <p>Banyak data $n = 12$.</p>
+
+                    <p><strong>Langkah 2: Menghitung $D_3$</strong></p>
+                    $$\text{Letak } D_3 = \frac{3(12 + 1)}{10} = \frac{3 \times 13}{10} = 3{,}9$$
+                    <p>Karena bernilai $3{,}9$, maka nilai $D_3$ berada di antara data ke-$3$ ($x_3$) dan data ke-$4$
+                        ($x_4$):</p>
+                    <ul>
+                        <li>Data ke-3 ($x_3$) $= 68$</li>
+                        <li>Data ke-4 ($x_4$) $= 70$</li>
+                        <li>Nilai desimal pecahan $d = 0{,}9$</li>
+                    </ul>
+                    <p>Interpolasi linier:</p>
+                    $$D_3 = x_3 + 0{,}9(x_4 - x_3) = 68 + 0{,}9(70 - 68) = 68 + 0{,}9(2) = 68 + 1{,}8 = 69{,}8$$
+
+                    <p><strong>Langkah 3: Menghitung $D_7$</strong></p>
+                    $$\text{Letak } D_7 = \frac{7(12 + 1)}{10} = \frac{7 \times 13}{10} = \frac{91}{10} = 9{,}1$$
+                    <p>Nilai $D_7$ berada di antara data ke-$9$ ($x_9 = 82$) dan data ke-$10$ ($x_{10} = 85$):</p>
+                    $$D_7 = x_9 + 0{,}1(x_{10} - x_9) = 82 + 0{,}1(85 - 82) = 82 + 0{,}1(3) = 82 + 0{,}3 = 82{,}3$$
+
+                    <div class="kesimpulan">
+                        Jadi, nilai <strong>$D_3 = 69{,}8$</strong> dan nilai <strong>$D_7 = 82{,}3$</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 2</span>
+                <div class="soal-teks">
+                    Tabel berikut menyajikan data distribusi berat badan dari $40$ orang mahasiswa:
+                    <div class="table-wrapper">
+                        <table class="table-auto">
+                            <thead>
+                                <tr>
+                                    <th>Berat Badan (kg)</th>
+                                    <th>Frekuensi ($f$)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$41 - 45$</td>
+                                    <td>$4$</td>
+                                </tr>
+                                <tr>
+                                    <td>$46 - 50$</td>
+                                    <td>$7$</td>
+                                </tr>
+                                <tr>
+                                    <td>$51 - 55$</td>
+                                    <td>$12$</td>
+                                </tr>
+                                <tr>
+                                    <td>$56 - 60$</td>
+                                    <td>$9$</td>
+                                </tr>
+                                <tr>
+                                    <td>$61 - 65$</td>
+                                    <td>$5$</td>
+                                </tr>
+                                <tr>
+                                    <td>$66 - 70$</td>
+                                    <td>$3$</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    Hitunglah nilai <strong>Desil ke-6 ($D_6$)</strong> dari tabel distribusi tersebut!
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Susun tabel distribusi lengkap beserta frekuensi kumulatif ($F_k$):</p>
+                    <div class="table-wrapper">
+                        <table class="table-auto">
+                            <thead>
+                                <tr>
+                                    <th>Interval</th>
+                                    <th>Frekuensi ($f$)</th>
+                                    <th>$F_k$</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$41 - 45$</td>
+                                    <td>$4$</td>
+                                    <td>$4$</td>
+                                </tr>
+                                <tr>
+                                    <td>$46 - 50$</td>
+                                    <td>$7$</td>
+                                    <td>$11$</td>
+                                </tr>
+                                <tr style="background-color: var(--teal-light); font-weight: bold;">
+                                    <td>$51 - 55$</td>
+                                    <td>$12$</td>
+                                    <td>$23$</td>
+                                </tr>
+                                <tr style="background-color: var(--teal-light); font-weight: bold;">
+                                    <td>$56 - 60$</td>
+                                    <td>$9$</td>
+                                    <td>$32$ (Memuat $D_6$)</td>
+                                </tr>
+                                <tr>
+                                    <td>$61 - 65$</td>
+                                    <td>$5$</td>
+                                    <td>$37$</td>
+                                </tr>
+                                <tr>
+                                    <td>$66 - 70$</td>
+                                    <td>$3$</td>
+                                    <td>$40$</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p><strong>Langkah 1: Menentukan letak $D_6$</strong></p>
+                    $$\text{Letak } D_6 = \frac{6}{10} \times n = \frac{6}{10} \times 40 = 24$$
+                    <p>Data ke-24 terletak pada kelas interval <strong>$56 - 60$</strong> (karena kelas sebelumnya hanya
+                        memuat hingga data ke-23).</p>
+
+                    <p><strong>Langkah 2: Mengidentifikasi komponen rumus</strong></p>
+                    <ul>
+                        <li>Tepi bawah ($T_b$) $= 56 - 0{,}5 = 55{,}5$</li>
+                        <li>Panjang kelas ($p$) $= 60 - 56 + 1 = 5$</li>
+                        <li>Frekuensi kumulatif sebelum kelas $D_6$ ($\sum f_k$) $= 23$</li>
+                        <li>Frekuensi kelas $D_6$ ($f_{D_6}$) $= 9$</li>
+                    </ul>
+
+                    <p><strong>Langkah 3: Menghitung nilai $D_6$</strong></p>
+                    $$D_6 = T_b + \left( \frac{\dfrac{6}{10} \cdot n - \sum f_k}{f_{D_6}} \right) \cdot p$$
+                    $$D_6 = 55{,}5 + \left( \frac{24 - 23}{9} \right) \times 5$$
+                    $$D_6 = 55{,}5 + \left( \frac{1}{9} \right) \times 5 = 55{,}5 + 0{,}56 = 56{,}06\text{ kg}$$
+
+                    <div class="kesimpulan">
+                        Jadi, nilai <strong>Desil ke-6 ($D_6$)</strong> dari data tersebut adalah <strong>$56{,}06\text{
+                            kg}$</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 3</span>
+                <div class="soal-teks">
+                    Berdasarkan tabel pada Contoh 2 di atas, tentukan nilai <strong>Jangkauan Desil ($R_D = D_9 -
+                        D_1$)</strong>!
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>1. Menghitung Nilai Desil ke-1 ($D_1$):</strong></p>
+                    $$\text{Letak } D_1 = \frac{1}{10} \times 40 = 4$$
+                    <p>Data ke-4 terletak tepat di akhir kelas interval pertama <strong>$41 - 45$</strong>:</p>
+                    <ul>
+                        <li>$T_b = 40{,}5$, $p = 5$, $\sum f_k = 0$, $f_{D_1} = 4$</li>
+                    </ul>
+                    $$D_1 = 40{,}5 + \left( \frac{4 - 0}{4} \right) \times 5 = 40{,}5 + 5 = 45{,}5$$
+
+                    <p><strong>2. Menghitung Nilai Desil ke-9 ($D_9$):</strong></p>
+                    $$\text{Letak } D_9 = \frac{9}{10} \times 40 = 36$$
+                    <p>Data ke-36 terletak pada kelas interval <strong>$61 - 65$</strong> (frekuensi kumulatif $F_k =
+                        37$):</p>
+                    <ul>
+                        <li>$T_b = 60{,}5$, $p = 5$, $\sum f_k = 32$, $f_{D_9} = 5$</li>
+                    </ul>
+                    $$D_9 = 60{,}5 + \left( \frac{36 - 32}{5} \right) \times 5 = 60{,}5 + 4 = 64{,}5$$
+
+                    <p><strong>3. Menghitung Jangkauan Desil:</strong></p>
+                    $$R_D = D_9 - D_1 = 64{,}5 - 45{,}5 = 19$$
+
+                    <div class="kesimpulan">
+                        Jadi, nilai <strong>Jangkauan Desil ($R_D$)</strong> dari data tersebut adalah <strong>$19\text{
+                            kg}$</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Visualisasi Diagram Menggunakan GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // ==========================================
+            // Diagram 1: Garis Pembagian Partisi 10 Bagian Desil
+            // ==========================================
+            const cont1 = document.getElementById("diagram-desil-partisi");
+            if (cont1 && typeof GeoSVG !== 'undefined') {
+                const geo1 = new GeoSVG(cont1, 560, 150, {
+                    viewBox: "0 0 560 150",
+                    background: "transparent"
+                });
+
+                const startX = 40;
+                const totalW = 480;
+                const segW = totalW / 10;
+                const yPos = 65;
+
+                // Batang pita total data
+                geo1.buatPersegiPanjang(startX, yPos - 14, totalW, 28, {
+                    stroke: "var(--border-color)",
+                    strokeWidth: 2,
+                    fill: "var(--bg-subtle)",
+                    radius: 4
+                });
+
+                // Gambar 9 titik pembagi desil dan persentase
+                for (let k = 1; k <= 9; k++) {
+                    const xTick = startX + k * segW;
+
+                    // Garis penanda pemotong
+                    geo1.buatSegmen(xTick, yPos - 18, xTick, yPos + 18, {
+                        stroke: k === 5 ? "var(--teal-primary)" : "var(--text-muted)",
+                        strokeWidth: k === 5 ? 2.5 : 1.2,
+                        dashed: k === 5 ? false : "3 2"
+                    });
+
+                    // Label D1 .. D9
+                    geo1.buatTeks(xTick, yPos - 26, `D${k}`, {
+                        position: "bottom-center",
+                        fontSize: k === 5 ? "12px" : "11px",
+                        fontWeight: "bold",
+                        fill: k === 5 ? "var(--teal-primary)" : "var(--text-main)"
+                    });
+                }
+
+                // Teks 10% di setiap blok
+                for (let s = 0; s < 10; s++) {
+                    const centerSegX = startX + s * segW + segW / 2;
+                    geo1.buatTeks(centerSegX, yPos, "10%", {
+                        position: "middle-center",
+                        fontSize: "9.5px",
+                        fill: "var(--text-muted)"
+                    });
+                }
+
+                // Titik ujung Min dan Max
+                geo1.buatTeks(startX, yPos + 28, "X_min (0%)", { position: "top-center", fontSize: "10px", fill: "var(--text-muted)" });
+                geo1.buatTeks(startX + totalW, yPos + 28, "X_max (100%)", { position: "top-center", fontSize: "10px", fill: "var(--text-muted)" });
+
+                // Highlight D5 sebagai Median
+                const xD5 = startX + 5 * segW;
+                geo1.buatTeks(xD5, yPos + 32, "D₅ = Median (50%)", {
+                    position: "top-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "var(--teal-primary)"
+                });
+            }
+
+            // ==========================================
+            // Diagram 2: Penentuan Desil pada Kurva Ogive
+            // ==========================================
+            const cont2 = document.getElementById("diagram-ogive-desil");
+            if (cont2 && typeof GeoSVG !== 'undefined') {
+                const geo2 = new GeoSVG(cont2, 540, 260, {
+                    viewBox: "0 0 540 260",
+                    background: "transparent"
+                });
+
+                const ox = 70, oy = 210;
+                const maxX = 480, maxY = 35;
+
+                // Sumbu X dan Y
+                geo2.buatVektor(ox, oy, maxX, oy, { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo2.buatVektor(ox, oy, ox, maxY, { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+
+                // Label Sumbu
+                geo2.buatTeks(maxX + 5, oy, "Nilai Data (X)", { position: "middle-left", fontSize: "11px", fill: "var(--text-muted)" });
+                geo2.buatTeks(ox, maxY - 15, "Frekuensi Kumulatif (F_k)", { position: "middle-center", fontSize: "11px", fill: "var(--text-muted)", fontWeight: "bold" });
+
+                // Kurva Ogive S-shape menggunakan titik koordinat
+                const ogivePts = [
+                    [ox, oy],
+                    [120, 204],
+                    [170, 185],
+                    [220, 150],
+                    [280, 110],
+                    [350, 75],
+                    [410, 52],
+                    [460, 48]
+                ];
+
+                geo2.buatKurvaHalus(ogivePts, { stroke: "var(--teal-primary)", strokeWidth: 2.8 });
+
+                // Parameter desil yang ditandai: D3 (30%), D5 (50%), D7 (70%)
+                const samples = [
+                    { label: "0,3n (D₃)", y: 160, x: 206, color: "#2563eb", desilName: "D₃" },
+                    { label: "0,5n (D₅)", y: 110, x: 280, color: "var(--teal-primary)", desilName: "D₅ (Me)" },
+                    { label: "0,7n (D₇)", y: 75, x: 350, color: "#d97706", desilName: "D₇" }
+                ];
+
+                samples.forEach(s => {
+                    // Garis horizontal dari sumbu Y ke kurva
+                    geo2.buatSegmen(ox, s.y, s.x, s.y, { stroke: s.color, strokeWidth: 1.4, dashed: "3 2" });
+                    // Garis vertikal dari kurva ke sumbu X
+                    geo2.buatSegmen(s.x, s.y, s.x, oy, { stroke: s.color, strokeWidth: 1.4, dashed: "3 2" });
+
+                    // Titik potong pada kurva
+                    geo2.buatTitik(s.x, s.y, { size: 3.5, color: s.color });
+
+                    // Label pada sumbu Y
+                    geo2.buatTeks(ox - 6, s.y, s.label, { position: "middle-right", fontSize: "10px", fill: s.color, fontWeight: "bold" });
+
+                    // Label pada sumbu X
+                    geo2.buatTeks(s.x, oy + 15, s.desilName, { position: "middle-center", fontSize: "11px", fill: s.color, fontWeight: "bold" });
+                });
+
+                // Titik n total pada sumbu Y
+                geo2.buatSegmen(ox - 3, 48, ox + 3, 48, { stroke: "var(--text-muted)", strokeWidth: 1 });
+                geo2.buatTeks(ox - 8, 48, "n (100%)", { position: "middle-right", fontSize: "10px", fill: "var(--text-muted)" });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Faktor Positif</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Faktor Positif</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Faktor Positif & Pasangan Simetris</h2>
+            <p>
+                Suatu bilangan asli $d$ disebut sebagai <strong>faktor positif</strong> (atau <em>pembagi bulat positif</em>) dari bilangan asli $n$, ditulis $d \mid n$, jika terdapat bilangan asli $k$ sedemikian sehingga:
+                $$n = d \times k$$
+                Dengan kata lain, ketika $n$ dibagi oleh $d$, hasil baginya adalah bilangan bulat dan sisanya adalah nol.
+            </p>
+            <ul>
+                <li>
+                    <strong>Faktor Sejati (Proper Divisors):</strong> Semua faktor positif dari $n$ selain bilangan $n$ itu sendiri. Contoh: Faktor positif dari $12$ adalah $\{1, 2, 3, 4, 6, 12\}$, sedangkan faktor sejatinya adalah $\{1, 2, 3, 4, 6\}$.
+                </li>
+                <li>
+                    <strong>Faktor Prima vs Faktor Positif:</strong> Hati-hati membedakan istilah pada soal! Faktor positif dari $12$ ada $6$ buah, yaitu $\{1, 2, 3, 4, 6, 12\}$, sedangkan <em>faktor prima</em> dari $12$ hanya ada $2$ buah, yaitu $\{2, 3\}$.
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Sifat Pasangan Simetris terhadap $\sqrt{n}$:</strong><br>
+                        Setiap faktor positif $d$ selalu berpasangan dengan faktor komplementernya $\frac{n}{d}$ karena $d \times \left(\frac{n}{d}\right) = n$.
+                    </p>
+                    <p>
+                        Jika seluruh faktor positif dari $n$ diurutkan dari yang terkecil hingga terbesar:
+                        $$1 = d_1 < d_2 < d_3 < \dots < d_k = n$$
+                        maka hasil kali suku-suku yang berjarak sama dari ujung kiri dan ujung kanan selalu konstan sama dengan $n$:
+                        $$d_1 \cdot d_k = d_2 \cdot d_{k-1} = d_3 \cdot d_{k-2} = \dots = n$$
+                        Perhatikan diagram pelangi pasangan faktor dari $24$ di samping!
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-rainbow" style="width: 100%; max-width: 350px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Rumus Banyaknya Faktor Positif $\tau(n)$ atau $d(n)$</h2>
+            <p>
+                Untuk menentukan banyaknya faktor positif dari bilangan yang besar tanpa mendaftar satu per satu, ubah bilangan $n > 1$ ke dalam bentuk <strong>faktorisasi prima kanonik</strong>:
+                $$n = p_1^{a_1} \cdot p_2^{a_2} \cdots p_k^{a_k}$$
+                dengan $p_1, p_2, \dots, p_k$ adalah bilangan prima yang berbeda dan $a_1, a_2, \dots, a_k \in \mathbb{N}$.
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Setiap faktor positif $d$ dari $n$ pasti berbentuk:
+                        $$d = p_1^{x_1} \cdot p_2^{x_2} \cdots p_k^{x_k}$$
+                        di mana setiap pangkat $x_i$ dapat dipilih secara bebas dari himpunan $\{0, 1, 2, \dots, a_i\}$, sehingga terdapat $(a_i + 1)$ pilihan untuk pangkat dari $p_i$.
+                    </p>
+                    <p>
+                        Berdasarkan aturan perkalian kombinatorika (lihat tabel kisi faktor dari $12 = 2^2 \cdot 3^1$ di samping), <strong>banyaknya faktor bulat positif</strong> dari $n$ adalah:
+                        $$\tau(n) = d(n) = (a_1 + 1)(a_2 + 1)\cdots(a_k + 1)$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-grid-divisor" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Ciri Khusus Banyaknya Faktor Ganjil vs Genap:<br>
+                Suatu bilangan asli $n$ memiliki <strong>banyaknya faktor positif berjumlah GANJIL</strong> ($\tau(n)$ ganjil) <strong>jika dan hanya jika $n$ adalah bilangan kuadrat sempurna</strong> ($n = m^2$).<br>
+                <em>Alasan:</em> Agar $\tau(n) = (a_1 + 1)(a_2 + 1)\cdots(a_k + 1)$ bernilai ganjil, setiap $(a_i + 1)$ harus ganjil, yang berarti semua pangkat $a_i$ haruslah bilangan <strong>genap</strong> (contoh: $36 = 2^2 \cdot 3^2$ memiliki $(2+1)(2+1) = 9$ faktor positif).
+            </div>
+
+            <h2>3. Variasi Menghitung Faktor Positif dengan Syarat Tertentu</h2>
+            <p>
+                Misalkan suatu bilangan genap memiliki faktorisasi prima $n = 2^{a_1} \cdot p_2^{a_2} \cdot p_3^{a_3} \cdots p_k^{a_k}$ (dengan $p_2, \dots, p_k$ prima ganjil). Kita dapat menghitung banyaknya faktor positif dengan kriteria khusus sebagai berikut:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Faktor yang Ditanyakan</th>
+                            <th>Aturan Pemilihan Pangkat</th>
+                            <th>Rumus Banyaknya Faktor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Semua Faktor Positif</strong></td>
+                            <td class="text-left">Semua pangkat bebas: $x_i \in \{0, 1, \dots, a_i\}$</td>
+                            <td>$$(a_1 + 1)(a_2 + 1)\cdots(a_k + 1)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Faktor Positif Ganjil</strong></td>
+                            <td class="text-left">Tidak boleh memuat faktor $2$, sehingga pangkat dari $2$ wajib $0$ ($1$ pilihan).</td>
+                            <td>$$1 \times (a_2 + 1)(a_3 + 1)\cdots(a_k + 1)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Faktor Positif Genap</strong></td>
+                            <td class="text-left">Wajib memuat minimal satu faktor $2$, sehingga pangkat dari $2$ dipilih dari $\{1, 2, \dots, a_1\}$ ($a_1$ pilihan).</td>
+                            <td>$$a_1 \times (a_2 + 1)(a_3 + 1)\cdots(a_k + 1)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Faktor Kelipatan $m$</strong></td>
+                            <td class="text-left">Keluarkan $m$ dari $n$, lalu cari banyaknya faktor positif dari $\left(\frac{n}{m}\right)$.</td>
+                            <td>$$\tau\left(\frac{n}{m}\right)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Faktor Berupa Kuadrat Sempurna</strong></td>
+                            <td class="text-left">Semua pangkat $x_i$ harus genap ($0, 2, 4, \dots$).</td>
+                            <td>$$\left(\left\lfloor\frac{a_1}{2}\right\rfloor + 1\right)\cdots\left(\left\lfloor\frac{a_k}{2}\right\rfloor + 1\right)$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                <strong>Contoh Penerapan Cepat:</strong><br>
+                Berapa banyak faktor positif dari $720$ yang merupakan <strong>kelipatan $12$</strong>?<br>
+                Agar suatu faktor habis dibagi $12$, faktor tersebut harus berbentuk $12 \times k$ di mana $k$ membagi $\frac{720}{12} = 60$. Karena $60 = 2^2 \cdot 3^1 \cdot 5^1$, maka banyaknya faktor positif dari $720$ yang habis dibagi $12$ sama dengan $\tau(60) = (2+1)(1+1)(1+1) = 12$ faktor.
+            </p>
+
+            <h2>4. Jumlah Semua Faktor Positif $\sigma(n)$</h2>
+            <p>
+                Jika $n = p_1^{a_1} \cdot p_2^{a_2} \cdots p_k^{a_k}$, maka penjumlahan dari seluruh faktor positif $n$ (dilambangkan dengan $\sigma(n)$) diperoleh dengan mengalikan deret geometri dari masing-masing faktor prima:
+                $$\sigma(n) = (1 + p_1 + p_1^2 + \dots + p_1^{a_1})(1 + p_2 + p_2^2 + \dots + p_2^{a_2})\cdots(1 + p_k + p_k^2 + \dots + p_k^{a_k})$$
+                Dengan rumus jumlah deret geometri, bentuk di atas dapat diringkas menjadi:
+                $$\sigma(n) = \left(\frac{p_1^{a_1 + 1} - 1}{p_1 - 1}\right) \cdot \left(\frac{p_2^{a_2 + 1} - 1}{p_2 - 1}\right) \cdots \left(\frac{p_k^{a_k + 1} - 1}{p_k - 1}\right)$$
+            </p>
+            <ul>
+                <li>
+                    <strong>Contoh:</strong> Jumlah seluruh faktor positif dari $72 = 2^3 \cdot 3^2$ adalah:
+                    $$\sigma(72) = (1 + 2 + 4 + 8)(1 + 3 + 9) = \left(\frac{2^4 - 1}{2 - 1}\right)\left(\frac{3^3 - 1}{3 - 1}\right) = 15 \times 13 = 195$$
+                </li>
+                <li>
+                    <strong>Bilangan Sempurna (Perfect Number):</strong> Suatu bilangan asli $n$ disebut <em>bilangan sempurna</em> jika jumlah seluruh faktor sejatinya sama dengan $n$ itu sendiri, atau $\sigma(n) = 2n$. Contoh bilangan sempurna terkecil adalah $6$ ($1 + 2 + 3 = 6$) dan $28$ ($1 + 2 + 4 + 7 + 14 = 28$).
+                </li>
+            </ul>
+
+            <div class="kesimpulan">
+                💡 Rumus Jumlah Kebalikan Semua Faktor Positif:<br>
+                Jika $d_1, d_2, \dots, d_m$ adalah seluruh faktor positif dari $n$, maka jumlah kebalikannya adalah:
+                $$\frac{1}{d_1} + \frac{1}{d_2} + \dots + \frac{1}{d_m} = \frac{d_m + \dots + d_2 + d_1}{n} = \frac{\sigma(n)}{n}$$
+                <em>(Khusus untuk bilangan sempurna seperti $6$ dan $28$, jumlah kebalikan seluruh faktor positifnya selalu sama dengan $2$!).</em>
+            </div>
+
+            <h2>5. Hasil Kali Semua Faktor Positif $P(n)$</h2>
+            <p>
+                Misalkan $n$ memiliki sebanyak $\tau(n)$ faktor positif: $d_1 < d_2 < \dots < d_{\tau(n)}$. Jika kita kalikan barisan faktor dari depan ke belakang dengan barisan faktor dari belakang ke depan:
+                $$P(n) = d_1 \cdot d_2 \cdots d_{\tau(n)}$$
+                $$P(n) = d_{\tau(n)} \cdot d_{\tau(n)-1} \cdots d_1$$
+                Mengalikan kedua persamaan di atas secara bersesuaian menghasilkan:
+                $$[P(n)]^2 = (d_1 \cdot d_{\tau(n)})(d_2 \cdot d_{\tau(n)-1})\cdots(d_{\tau(n)} \cdot d_1) = \underbrace{n \cdot n \cdots n}_{\text{sebanyak } \tau(n) \text{ kali}} = n^{\tau(n)}$$
+                Dengan menarik akar kuadrat pada kedua ruas, diperoleh rumus <strong>hasil kali seluruh faktor positif</strong> dari $n$:
+                $$P(n) = n^{\frac{\tau(n)}{2}}$$
+            </p>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Banyaknya faktor bulat positif dari $3.600$ yang merupakan <strong>kelipatan $15$</strong> tetapi <strong>bukan kelipatan $2$</strong> (ganjil) adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$2$</li>
+                    <li>$4$</li>
+                    <li>$6$</li>
+                    <li>$9$</li>
+                    <li>$12$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Faktorkan bilangan $3.600$ ke dalam bentuk faktorisasi prima:
+                    $$3.600 = 36 \times 100 = (2^2 \cdot 3^2) \times (2^2 \cdot 5^2) = 2^4 \cdot 3^2 \cdot 5^2$$
+                </p>
+                <p>
+                    2. Setiap faktor positif $d$ dari $3.600$ berbentuk $d = 2^a \cdot 3^b \cdot 5^c$ dengan $a \in \{0,1,2,3,4\}$, $b \in \{0,1,2\}$, dan $c \in \{0,1,2\}$.
+                </p>
+                <p>
+                    3. Terapkan kedua syarat pada soal:
+                </p>
+                <ul>
+                    <li><strong>Bukan kelipatan $2$ (ganjil):</strong> Pangkat dari $2$ wajib bernilai $0$, sehingga $a = 0$ (hanya ada <strong>$1$ pilihan</strong>).</li>
+                    <li><strong>Kelipatan $15 = 3^1 \cdot 5^1$:</strong> Faktor $d$ wajib memuat minimal satu faktor $3$ dan satu faktor $5$, sehingga $b \ge 1 \implies b \in \{1, 2\}$ (ada <strong>$2$ pilihan</strong>) dan $c \ge 1 \implies c \in \{1, 2\}$ (ada <strong>$2$ pilihan</strong>).</li>
+                </ul>
+                <p>
+                    4. Banyaknya faktor positif yang memenuhi kedua syarat tersebut adalah:
+                    $$\text{Banyak faktor} = 1 \times 2 \times 2 = 4$$
+                    <em>(Keempat faktor tersebut adalah $15, 45, 75,$ dan $225$).</em>
+                </p>
+                <div class="kesimpulan">
+                    Jadi, banyaknya faktor bulat positif dari $3.600$ yang memenuhi syarat adalah $4$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Diketahui bilangan asli $N = 2^x \cdot 3^2 \cdot 5$ memiliki tepat $24$ faktor bulat positif. Jumlah dari seluruh faktor bulat positif dari $N$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$1.170$</li>
+                    <li>$1.872$</li>
+                    <li>$2.340$</li>
+                    <li>$3.510$</li>
+                    <li>$4.680$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Gunakan rumus banyaknya faktor positif $\tau(N) = 24$ untuk mencari nilai pangkat $x$:
+                    $$(x + 1)(2 + 1)(1 + 1) = 24$$
+                    $$(x + 1) \cdot 3 \cdot 2 = 24 \implies 6(x + 1) = 24 \implies x + 1 = 4 \implies x = 3$$
+                    Dengan demikian, faktorisasi prima dari $N$ adalah $N = 2^3 \cdot 3^2 \cdot 5^1$.
+                </p>
+                <p>
+                    2. Hitung jumlah seluruh faktor positif dari $N$ menggunakan rumus $\sigma(N)$:
+                    $$\sigma(N) = (1 + 2 + 2^2 + 2^3)(1 + 3 + 3^2)(1 + 5)$$
+                    $$\sigma(N) = (1 + 2 + 4 + 8)(1 + 3 + 9)(6)$$
+                    $$\sigma(N) = 15 \times 13 \times 6 = 90 \times 13 = 1.170$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, jumlah dari seluruh faktor bulat positif dari $N$ adalah $1.170$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Berapa banyak bilangan bulat positif $n \le 200$ yang memiliki <strong>tepat $3$ faktor bulat positif</strong>?
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$4$</li>
+                    <li>$5$</li>
+                    <li>$6$</li>
+                    <li>$7$</li>
+                    <li>$8$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Agar suatu bilangan asli $n$ memiliki tepat $3$ faktor positif ($\tau(n) = 3$), perhatikan bahwa $3$ adalah bilangan prima, sehingga $(a_1 + 1)(a_2 + 1)\cdots = 3$ hanya mungkin terjadi jika $n$ memiliki <strong>satu faktor prima</strong> dengan pangkat $a_1 + 1 = 3 \implies a_1 = 2$.
+                </p>
+                <p>
+                    2. Artinya, bilangan yang memiliki tepat $3$ faktor positif hanyalah bilangan yang berbentuk <strong>kuadrat dari bilangan prima</strong> ($n = p^2$, dengan faktor-faktornya adalah $1, p,$ dan $p^2$).
+                </p>
+                <p>
+                    3. Cari semua bilangan prima $p$ yang memenuhi $p^2 \le 200 \iff p \le \sqrt{200} \approx 14{,}14$:
+                </p>
+                <ul>
+                    <li>$p = 2 \implies 2^2 = 4$</li>
+                    <li>$p = 3 \implies 3^2 = 9$</li>
+                    <li>$p = 5 \implies 5^2 = 25$</li>
+                    <li>$p = 7 \implies 7^2 = 49$</li>
+                    <li>$p = 11 \implies 11^2 = 121$</li>
+                    <li>$p = 13 \implies 13^2 = 169$</li>
+                </ul>
+                <p>
+                    Terdapat $6$ bilangan prima ($2, 3, 5, 7, 11, 13$), sehingga ada $6$ bilangan bulat positif $n \le 200$ yang memiliki tepat $3$ faktor positif.
+                </p>
+                <div class="kesimpulan">
+                    Jadi, banyaknya bilangan bulat positif $n \le 200$ yang memiliki tepat $3$ faktor positif adalah $6$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Jika hasil kali dari seluruh faktor bulat positif dari $n = 18$ dinyatakan dalam bentuk $2^a \cdot 3^b$, maka nilai dari $a + b$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$6$</li>
+                    <li>$8$</li>
+                    <li>$9$</li>
+                    <li>$12$</li>
+                    <li>$15$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Faktorkan bilangan $n = 18$ ke dalam bentuk prima:
+                    $$18 = 2^1 \cdot 3^2$$
+                    Banyaknya faktor positif dari $18$ adalah:
+                    $$\tau(18) = (1 + 1)(2 + 1) = 2 \times 3 = 6$$
+                </p>
+                <p>
+                    2. Gunakan rumus hasil kali seluruh faktor positif $P(n) = n^{\frac{\tau(n)}{2}}$:
+                    $$P(18) = 18^{\frac{6}{2}} = 18^3$$
+                </p>
+                <p>
+                    3. Ubah $18^3$ ke dalam basis prima $2$ dan $3$:
+                    $$18^3 = (2^1 \cdot 3^2)^3 = 2^3 \cdot 3^6 = 2^a \cdot 3^b$$
+                    Diperoleh $a = 3$ dan $b = 6$, sehingga nilai dari $a + b = 3 + 6 = 9$.
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $a + b$ adalah $9$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Diagram Pelangi Pasangan Faktor Simetris dari 24 menggunakan GeoSVG.js
+            const containerRainbow = document.getElementById("geosvg-rainbow");
+            if (containerRainbow && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerRainbow, 330, 195, {
+                    viewBox: "0 0 330 195",
+                    clearContainer: true,
+                    title: "Diagram Pelangi Pasangan Faktor Positif 24",
+                    description: "Visualisasi lengkungan pasangan faktor dari 24: 1x24, 2x12, 3x8, dan 4x6"
+                });
+
+                geo1.buatTeks(165, 16, "Pasangan Simetris Faktor dari 24", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "12.5px",
+                    position: "middle-center"
+                });
+
+                const divs = [1, 2, 3, 4, 6, 8, 12, 24];
+                const startX = 24;
+                const stepX = 40;
+                const baseY = 160;
+                const xs = divs.map((_, idx) => startX + idx * stepX);
+
+                // Lengkungan pelangi (busur setengah lingkaran) yang menghubungkan pasangan d dan 24/d
+                const colors = ["var(--teal-primary)", "#d97706", "var(--teal-primary)", "#d97706"];
+                for (let i = 0; i < 4; i++) {
+                    const x1 = xs[i];
+                    const x2 = xs[7 - i];
+                    const midX = (x1 + x2) / 2;
+                    const r = (x2 - x1) / 2;
+
+                    // Busur atas dari x1 ke x2
+                    geo1.buatSetengahLingkaran([x1, baseY - 12], [x2, baseY - 12], {
+                        tutup: false,
+                        sisi: "kanan",
+                        stroke: colors[i],
+                        strokeWidth: 2,
+                        dashed: i % 2 === 1 ? "5 3" : false
+                    });
+
+                    // Label perkalian di puncak busur
+                    geo1.buatTeks(midX, baseY - 12 - r - 8, `${divs[i]} × ${divs[7 - i]} = 24`, {
+                        fill: colors[i],
+                        fontSize: "10px",
+                        fontWeight: "bold",
+                        position: "middle-center"
+                    });
+                }
+
+                // Titik dan angka faktor
+                divs.forEach((d, idx) => {
+                    const x = xs[idx];
+                    const isOuter = idx < 4 ? idx % 2 === 0 : (7 - idx) % 2 === 0;
+                    geo1.buatPersegi(x - 14, baseY - 12, 28, {
+                        radius: 6,
+                        fill: isOuter ? "rgba(13, 148, 136, 0.15)" : "rgba(217, 119, 6, 0.15)",
+                        stroke: isOuter ? "var(--teal-primary)" : "#d97706",
+                        strokeWidth: 1.5
+                    });
+                    geo1.buatTeks(x, baseY + 2, String(d), {
+                        fill: "var(--text-main)",
+                        fontWeight: "bold",
+                        fontSize: "12px",
+                        position: "middle-center"
+                    });
+                });
+
+                // Penanda batas akar kuadrat di tengah (antara 4 dan 6)
+                geo1.buatSegmen([165, baseY - 22], [165, baseY + 24], {
+                    stroke: "var(--text-muted)",
+                    strokeWidth: 1.3,
+                    dashed: "3 3"
+                });
+                geo1.buatTeks(165, baseY + 29, "√24 ≈ 4,9", {
+                    fill: "var(--text-muted)",
+                    fontSize: "10px",
+                    position: "middle-center"
+                });
+            }
+
+            // 2. Visualisasi Kisi Kombinatorika Faktor Positif dari 12 = 2^2 * 3^1 menggunakan GeoSVG.js
+            const containerGrid = document.getElementById("geosvg-grid-divisor");
+            if (containerGrid && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerGrid, 300, 210, {
+                    viewBox: "0 0 300 210",
+                    clearContainer: true,
+                    title: "Tabel Kombinasi Faktor dari 12",
+                    description: "Matriks 2x3 yang menampilkan kombinasi pangkat 2^a dan 3^b untuk membentuk 6 faktor dari 12"
+                });
+
+                geo2.buatTeks(165, 15, "Kombinasi Faktor 12 = 2² · 3¹", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    position: "middle-center"
+                });
+                geo2.buatTeks(165, 32, "(2 + 1) × (1 + 1) = 3 × 2 = 6 Faktor", {
+                    fill: "var(--text-muted)",
+                    fontSize: "10.5px",
+                    position: "middle-center"
+                });
+
+                const startX = 68;
+                const startY = 72;
+                const cellW = 70;
+                const cellH = 52;
+                const gap = 6;
+
+                const colHeaders = ["2⁰ = 1", "2¹ = 2", "2² = 4"];
+                const rowHeaders = ["3⁰ = 1", "3¹ = 3"];
+                const p2 = [1, 2, 4];
+                const p3 = [1, 3];
+
+                // Header Kolom (Pangkat 2)
+                for (let c = 0; c < 3; c++) {
+                    const cx = startX + c * (cellW + gap) + cellW / 2;
+                    geo2.buatTeks(cx, startY - 12, colHeaders[c], {
+                        fill: "var(--teal-primary)",
+                        fontWeight: "bold",
+                        fontSize: "11px",
+                        position: "middle-center"
+                    });
+                }
+
+                // Header Baris (Pangkat 3) & Isi Sel
+                for (let r = 0; r < 2; r++) {
+                    const cy = startY + r * (cellH + gap) + cellH / 2;
+                    geo2.buatTeks(startX - 10, cy, rowHeaders[r], {
+                        fill: "#d97706",
+                        fontWeight: "bold",
+                        fontSize: "11px",
+                        position: "middle-left"
+                    });
+
+                    for (let c = 0; c < 3; c++) {
+                        const x = startX + c * (cellW + gap);
+                        const y = startY + r * (cellH + gap);
+                        const val = p2[c] * p3[r];
+                        const isOdd = c === 0; // Kolom 2^0 menghasilkan faktor ganjil
+
+                        geo2.buatPersegiPanjang(x, y, cellW, cellH, {
+                            radius: 7,
+                            fill: isOdd ? "rgba(217, 119, 6, 0.14)" : "rgba(13, 148, 136, 0.14)",
+                            stroke: isOdd ? "#d97706" : "var(--teal-primary)",
+                            strokeWidth: 1.5
+                        });
+
+                        geo2.buatTeks(x + cellW / 2, y + 18, `${p2[c]} × ${p3[r]}`, {
+                            fill: "var(--text-muted)",
+                            fontSize: "10px",
+                            position: "middle-center"
+                        });
+
+                        geo2.buatTeks(x + cellW / 2, y + 36, `= ${val}`, {
+                            fill: "var(--text-main)",
+                            fontWeight: "bold",
+                            fontSize: "13px",
+                            position: "middle-center"
+                        });
+                    }
+                }
+
+                // Keterangan di bawah tabel
+                geo2.buatTeks(165, 196, "Kolom 2⁰: Faktor Ganjil (1, 3)   |   Kolom 2¹, 2²: Faktor Genap", {
+                    fill: "var(--text-muted)",
+                    fontSize: "10px",
+                    position: "middle-center"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

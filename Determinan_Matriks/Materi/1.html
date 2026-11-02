@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Determinan Matriks</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+    <style>
+        .geosvg-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: auto;
+        }
+
+        .geosvg-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .caption-diagram {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .rumus-box {
+            background-color: var(--bg-subtle);
+            border-left: 4px solid var(--teal-primary);
+            padding: 1.1rem 1.35rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .sarrus-guide {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan komprehensif materi <span class="topic-highlight">Determinan Matriks</span>
+                (Aljabar Linear & Matriks)
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Determinan Matriks</h2>
+            <p>
+                <strong>Determinan</strong> adalah sebuah nilai skalar (bilangan riil atau kompleks) khusus yang
+                diasosiasikan dengan sebuah <strong>matriks persegi</strong> (matriks dengan jumlah baris sama dengan
+                jumlah kolom, $n \times n$). Determinan dari sebuah matriks $A$ biasanya dinotasikan dengan:
+            </p>
+            $$\det(A) \quad \text{atau} \quad \vert{}A\vert{}$$
+            <p>
+                Secara fisis dan matematis, determinan memberikan informasi fundamental mengenai karakteristik matriks
+                tersebut, seperti apakah matriks memiliki invers, apakah suatu sistem persamaan linear memiliki solusi
+                tunggal, serta menggambarkan <em>faktor skala perubahan luas atau volume</em> dari transformasi
+                geometris yang diwakilinya.
+            </p>
+
+            <div class="kesimpulan">
+                <strong>Matriks Singular vs Non-Singular:</strong>
+                <ul>
+                    <li>Jika $\det(A) = 0$, maka $A$ disebut <strong>Matriks Singular</strong> (tidak memiliki invers /
+                        $A^{-1}$ tidak terdefinisi).</li>
+                    <li>Jika $\det(A) \ne 0$, maka $A$ disebut <strong>Matriks Non-Singular</strong> (memiliki invers
+                        $A^{-1}$).</li>
+                </ul>
+            </div>
+
+            <!-- Visualisasi Interpretasi Geometris Determinan -->
+            <div class="geosvg-box">
+                <div id="diagram-geometri-determinan"></div>
+                <p class="caption-diagram">Gambar 1: Makna geometris determinan matriks $2 \times 2$. Nilai
+                    $\vert{}\det(A)\vert{}$ sama dengan luas jajaran genjang yang direntang oleh vektor kolom $\vec{v}_1
+                    = \begin{pmatrix} a \\ c \end{pmatrix}$ dan $\vec{v}_2 = \begin{pmatrix} b \\ d \end{pmatrix}$.</p>
+            </div>
+
+            <h2>2. Determinan Matriks Ordo $2 \times 2$</h2>
+            <p>
+                Diberikan matriks persegi berordo $2 \times 2$:
+                $$A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$$
+                Determinan dari matriks $A$ dihitung dengan mengurangkan hasil kali elemen-elemen diagonal utama dengan
+                hasil kali elemen-elemen diagonal sekunder:
+            </p>
+
+            <div class="rumus-box">
+                $$\det(A) = \vert{}A\vert{} = \begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad - bc$$
+            </div>
+
+            <h2>3. Determinan Matriks Ordo $3 \times 3$</h2>
+            <p>
+                Untuk menghitung determinan matriks persegi berordo $3 \times 3$:
+                $$A = \begin{pmatrix} a & b & c \\ d & e & f \\ g & h & i \end{pmatrix}$$
+                terdapat dua metode utama yang umum digunakan:
+            </p>
+
+            <h3>A. Aturan Sarrus (Khusus Ordo $3 \times 3$)</h3>
+            <p>
+                Tuliskan kembali kolom ke-1 dan kolom ke-2 di sebelah kanan matriks, kemudian jumlahkan hasil kali
+                elemen-elemen diagonal yang mengarah ke kanan bawah (positif) dan kurangkan dengan hasil kali
+                elemen-elemen diagonal yang mengarah ke kiri bawah (negatif):
+            </p>
+
+            <div class="geosvg-box">
+                <div id="diagram-sarrus"></div>
+                <p class="caption-diagram">Gambar 2: Skema Aturan Sarrus untuk matriks $3 \times 3$. Garis biru bertanda
+                    positif ($+$) dan garis oranye bertanda negatif ($-$).</p>
+            </div>
+
+            <div class="rumus-box">
+                $$\det(A) = (aei + bfg + cdh) - (ceg + afh + bdi)$$
+            </div>
+
+            <h3>B. Metode Ekspansi Kofaktor (Laplace)</h3>
+            <p>
+                Metode ini berlaku untuk matriks persegi dengan ordo berapapun ($n \times n$).
+            </p>
+            <ul>
+                <li><strong>Minor ($M_{ij}$):</strong> Determinan submatriks yang diperoleh dengan cara mencoret baris
+                    ke-$i$ dan kolom ke-$j$ dari matriks $A$.</li>
+                <li><strong>Kofaktor ($C_{ij}$):</strong> Minor yang diberi tanda posisional:
+                    $$C_{ij} = (-1)^{i+j} M_{ij}$$
+                </li>
+            </ul>
+            <p>
+                Ekspansi sepanjang <strong>Baris ke-1</strong> matriks $3 \times 3$:
+            </p>
+            <div class="rumus-box">
+                $$\det(A) = a \cdot C_{11} + b \cdot C_{12} + c \cdot C_{13} = a \begin{vmatrix} e & f \\ h & i
+                \end{vmatrix} - b \begin{vmatrix} d & f \\ g & i \end{vmatrix} + c \begin{vmatrix} d & e \\ g & h
+                \end{vmatrix}$$
+            </div>
+
+            <h2>4. Sifat-Sifat Fundamental Determinan</h2>
+            <p>
+                Memahami sifat-sifat determinan sangat mempermudah proses perhitungan tanpa harus menghitung secara
+                manual suku demi suku:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Sifat Determinan</th>
+                            <th>Keterangan / Makna Aljabar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>$\det(A^T) = \det(A)$</td>
+                            <td class="text-left">Determinan matriks transpos sama dengan determinan matriks aslinya.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>$\det(A \cdot B) = \det(A) \cdot \det(B)$</td>
+                            <td class="text-left">Determinan dari hasil kali matriks sama dengan perkalian
+                                determinannya.</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>$\det(A^{-1}) = \dfrac{1}{\det(A)}$</td>
+                            <td class="text-left">Determinan dari invers matriks sama dengan kebalikan dari
+                                determinannya (syarat $\det(A) \ne 0$).</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>$\det(k \cdot A) = k^n \cdot \det(A)$</td>
+                            <td class="text-left">Untuk skalar $k$ dan matriks $A$ berordo $n \times n$, setiap baris
+                                dikalikan dengan $k$.</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Tukar Dua Baris / Kolom $\implies -\det(A)$</td>
+                            <td class="text-left">Menukar posisi dua baris (atau dua kolom) bertetangga membalikkan
+                                tanda determinan.</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Baris Nol / Dua Baris Sama $\implies \det(A) = 0$</td>
+                            <td class="text-left">Jika terdapat satu baris penuh angka $0$, atau ada dua baris yang
+                                identik/berkelipatan, determinannya pasti $0$.</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Matriks Segitiga / Diagonal</td>
+                            <td class="text-left">Determinan matriks segitiga atas, segitiga bawah, atau matriks
+                                diagonal adalah <em>hasil kali elemen-elemen diagonal utamanya</em>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>5. Aplikasi Determinan: Aturan Cramer</h2>
+            <p>
+                Determinan digunakan untuk menyelesaikan Sistem Persamaan Linear (SPL) $n$ variabel dengan matriks
+                koefisien persegi yang non-singular. Untuk SPL 2 variabel:
+            </p>
+            $$\begin{cases} a_1 x + b_1 y = c_1 \\ a_2 x + b_2 y = c_2 \end{cases}$$
+            <p>
+                Didefinisikan matriks determinan:
+            </p>
+            $$D = \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix}, \quad D_x = \begin{vmatrix} c_1 & b_1 \\ c_2 &
+            b_2 \end{vmatrix}, \quad D_y = \begin{vmatrix} a_1 & c_1 \\ a_2 & c_2 \end{vmatrix}$$
+            <div class="rumus-box">
+                $$x = \frac{D_x}{D}, \quad y = \frac{D_y}{D} \quad (\text{dengan syarat } D \ne 0)$$
+            </div>
+
+            <h2>6. Contoh Soal dan Pembahasan</h2>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 1</span>
+                <div class="soal-teks">
+                    Diketahui matriks $P = \begin{pmatrix} 2x & 3 \\ 4 & x-1 \end{pmatrix}$. Jika matriks $P$ merupakan
+                    matriks singular, tentukan nilai-nilai $x$ yang memenuhi!
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Karena matriks $P$ adalah matriks singular, maka nilai determinannya sama dengan nol ($\det(P) =
+                        0$):</p>
+                    $$\det(P) = \vert{}P\vert{} = 0$$
+                    $$\begin{vmatrix} 2x & 3 \\ 4 & x-1 \end{vmatrix} = 0$$
+                    <p>Gunakan rumus determinan matriks $2 \times 2$ ($ad - bc$):</p>
+                    $$(2x)(x - 1) - (3)(4) = 0$$
+                    $$2x^2 - 2x - 12 = 0$$
+                    <p>Bagi kedua ruas dengan 2:</p>
+                    $$x^2 - x - 6 = 0$$
+                    <p>Faktorkan persamaan kuadrat tersebut:</p>
+                    $$(x - 3)(x + 2) = 0$$
+                    $$x = 3 \quad \text{atau} \quad x = -2$$
+                    <div class="kesimpulan">
+                        Jadi, nilai-nilai $x$ yang memenuhi agar matriks $P$ singular adalah <strong>$x = 3$ atau $x =
+                            -2$</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 2</span>
+                <div class="soal-teks">
+                    Hitunglah nilai determinan dari matriks $A$ berordo $3 \times 3$ berikut menggunakan metode Sarrus:
+                    $$A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 4 \\ 3 & 1 & 2 \end{pmatrix}$$
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Tuliskan matriks beserta perluasan dua kolom pertamanya:</p>
+                    $$\det(A) = \begin{vmatrix} 1 & 2 & 3 \\ 2 & 1 & 4 \\ 3 & 1 & 2 \end{vmatrix} \begin{matrix} 1 & 2
+                    \\ 2 & 1 \\ 3 & 1 \end{matrix}$$
+                    <p><strong>Jumlah perkalian diagonal utama (kanan bawah):</strong></p>
+                    $$\text{Positif} = (1 \cdot 1 \cdot 2) + (2 \cdot 4 \cdot 3) + (3 \cdot 2 \cdot 1) = 2 + 24 + 6 =
+                    32$$
+                    <p><strong>Jumlah perkalian diagonal sekunder (kiri bawah):</strong></p>
+                    $$\text{Negatif} = (3 \cdot 1 \cdot 3) + (1 \cdot 4 \cdot 1) + (2 \cdot 2 \cdot 2) = 9 + 4 + 8 =
+                    21$$
+                    <p><strong>Kurangkan kedua nilai:</strong></p>
+                    $$\det(A) = 32 - 21 = 11$$
+                    <div class="kesimpulan">
+                        Jadi, nilai determinan matriks $A$ tersebut adalah <strong>$11$</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 3</span>
+                <div class="soal-teks">
+                    Diketahui matriks persegi $A$ dan $B$ berordo $3 \times 3$ dengan nilai $\det(A) = 4$ dan $\det(B) =
+                    -2$. Tentukan nilai dari determinan matriks $M = 2A^T \cdot B^{-1}$!
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Gunakan sifat-sifat determinan matriks:</p>
+                    <ol>
+                        <li>Untuk matriks berordo $3 \times 3$ ($n = 3$), perkalian skalar $k = 2$ mengeluarkan faktor
+                            $k^n = 2^3$:
+                            $$\det(2M') = 2^3 \det(M') = 8 \det(M')$$
+                        </li>
+                        <li>Sifat perkalian determinan: $\det(X \cdot Y) = \det(X) \cdot \det(Y)$.</li>
+                        <li>Sifat transpos: $\det(A^T) = \det(A) = 4$.</li>
+                        <li>Sifat invers: $\det(B^{-1}) = \dfrac{1}{\det(B)} = \dfrac{1}{-2} = -\dfrac{1}{2}$.</li>
+                    </ol>
+                    <p>Maka perhitungannya adalah:</p>
+                    $$\det(M) = \det(2A^T \cdot B^{-1}) = 2^3 \cdot \det(A^T) \cdot \det(B^{-1})$$
+                    $$\det(M) = 8 \cdot 4 \cdot \left(-\frac{1}{2}\right) = 32 \cdot \left(-\frac{1}{2}\right) = -16$$
+                    <div class="kesimpulan">
+                        Jadi, nilai determinan matriks $M$ adalah <strong>$-16$</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Visualisasi Diagram Menggunakan GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // ==========================================
+            // Diagram 1: Geometri Determinan Sebagai Luas Jajaran Genjang
+            // ==========================================
+            const cont1 = document.getElementById("diagram-geometri-determinan");
+            if (cont1 && typeof GeoSVG !== 'undefined') {
+                const geo1 = new GeoSVG(cont1, 560, 270, {
+                    viewBox: "0 0 560 270",
+                    background: "transparent"
+                });
+
+                const ox = 70, oy = 220;
+                const maxX = 500, maxY = 30;
+
+                // Sumbu X dan Y
+                geo1.buatVektor(ox, oy, maxX, oy, { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatVektor(ox, oy, ox, maxY, { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+
+                geo1.buatTeks(maxX + 8, oy, "x", { position: "middle-left", fontSize: "12px", fill: "var(--text-muted)", fontWeight: "bold" });
+                geo1.buatTeks(ox, maxY - 12, "y", { position: "middle-center", fontSize: "12px", fill: "var(--text-muted)", fontWeight: "bold" });
+
+                // Vektor v1 = (a, c) dan v2 = (b, d)
+                // v1 = (220, -50), v2 = (110, -140)
+                const P0 = [ox, oy];
+                const P1 = [ox + 230, oy - 45];   // Titik v1 (a, c)
+                const P2 = [ox + 100, oy - 145];  // Titik v2 (b, d)
+                const P3 = [P1[0] + 100, P1[1] - 145]; // Titik v1 + v2
+
+                // Jajaran Genjang yang direntang
+                geo1.buatPoligon([P0, P1, P3, P2], {
+                    fill: "rgba(13, 148, 136, 0.18)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2
+                });
+
+                // Pola arsir pada poligon luas
+                geo1.buatPolaArsir("arsir-det", "miring", { stroke: "var(--teal-primary)", strokeWidth: 0.8, size: 8 });
+                geo1.buatPoligon([P0, P1, P3, P2], { fill: "url(#arsir-det)", stroke: "none" });
+
+                // Vektor v1
+                geo1.buatVektor(P0[0], P0[1], P1[0], P1[1], { stroke: "#2563eb", strokeWidth: 2.8 });
+                geo1.buatTitik(P1[0], P1[1], { size: 3.5, color: "#2563eb" });
+                geo1.buatTeks(P1[0] + 8, P1[1] + 12, "v₁ = (a, c)ᵀ", { position: "middle-left", fontSize: "11.5px", fontWeight: "bold", fill: "#2563eb" });
+
+                // Vektor v2
+                geo1.buatVektor(P0[0], P0[1], P2[0], P2[1], { stroke: "#d97706", strokeWidth: 2.8 });
+                geo1.buatTitik(P2[0], P2[1], { size: 3.5, color: "#d97706" });
+                geo1.buatTeks(P2[0] - 12, P2[1] - 10, "v₂ = (b, d)ᵀ", { position: "middle-right", fontSize: "11.5px", fontWeight: "bold", fill: "#d97706" });
+
+                // Titik P3 (v1 + v2)
+                geo1.buatTitik(P3[0], P3[1], { size: 3.5, color: "var(--teal-primary)" });
+                geo1.buatTeks(P3[0] + 8, P3[1] - 8, "v₁ + v₂", { position: "middle-left", fontSize: "11px", fill: "var(--text-muted)" });
+
+                // Teks Penjelas Luas di dalam Jajaran Genjang
+                const centerParallelogram = [(P0[0] + P3[0]) / 2, (P0[1] + P3[1]) / 2];
+                geo1.buatTeks(centerParallelogram[0], centerParallelogram[1], "Luas = |ad - bc|", {
+                    position: "middle-center",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fill: "var(--teal-hover)"
+                });
+                geo1.buatTeks(centerParallelogram[0], centerParallelogram[1] + 18, "= |det(A)|", {
+                    position: "middle-center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    fill: "var(--teal-primary)"
+                });
+            }
+
+            // ==========================================
+            // Diagram 2: Skema Diagonal Aturan Sarrus
+            // ==========================================
+            const cont2 = document.getElementById("diagram-sarrus");
+            if (cont2 && typeof GeoSVG !== 'undefined') {
+                const geo2 = new GeoSVG(cont2, 540, 210, {
+                    viewBox: "0 0 540 210",
+                    background: "transparent"
+                });
+
+                // Posisi matriks 3 baris x 5 kolom (3 matriks asli + 2 kolom bantuan)
+                const startX = 75;
+                const colW = 68;
+                const startY = 45;
+                const rowH = 46;
+
+                const matriksElemen = [
+                    ["a₁₁", "a₁₂", "a₁₃", "a₁₁", "a₁₂"],
+                    ["a₂₁", "a₂₂", "a₂₃", "a₂₁", "a₂₂"],
+                    ["a₃₁", "a₃₂", "a₃₃", "a₃₁", "a₃₂"]
+                ];
+
+                // Garis pembatas kurung determinan
+                geo2.buatSegmen(startX - 22, startY - 14, startX - 22, startY + 2 * rowH + 14, { stroke: "var(--text-main)", strokeWidth: 2 });
+                geo2.buatSegmen(startX + 2 * colW + 28, startY - 14, startX + 2 * colW + 28, startY + 2 * rowH + 14, { stroke: "var(--text-main)", strokeWidth: 2 });
+                // Garis putus-putus pembatas kolom bantuan
+                geo2.buatSegmen(startX + 2 * colW + 28, startY - 14, startX + 2 * colW + 28, startY + 2 * rowH + 14, { stroke: "var(--teal-primary)", strokeWidth: 1.5, dashed: "4 3" });
+
+                // Gambar diagonal Sarrus POSITIF (Garis Biru Miring ke Kanan Bawah)
+                for (let k = 0; k < 3; k++) {
+                    const x1 = startX + k * colW;
+                    const y1 = startY;
+                    const x2 = startX + (k + 2) * colW;
+                    const y2 = startY + 2 * rowH;
+                    geo2.buatSegmen(x1 - 10, y1 - 12, x2 + 10, y2 + 12, { stroke: "#2563eb", strokeWidth: 2.2, opacity: 0.55 });
+                    geo2.buatTeks(x2 + 14, y2 + 20, "(+)", { position: "middle-center", fontSize: "10.5px", fontWeight: "bold", fill: "#2563eb" });
+                }
+
+                // Gambar diagonal Sarrus NEGATIF (Garis Oranye Miring ke Kiri Bawah)
+                for (let m = 0; m < 3; m++) {
+                    const xTop = startX + (m + 2) * colW;
+                    const yTop = startY;
+                    const xBot = startX + m * colW;
+                    const yBot = startY + 2 * rowH;
+                    geo2.buatSegmen(xTop + 10, yTop - 12, xBot - 10, yBot + 12, { stroke: "#d97706", strokeWidth: 2.2, dashed: "4 2", opacity: 0.65 });
+                    geo2.buatTeks(xBot - 14, yBot + 20, "(-)", { position: "middle-center", fontSize: "10.5px", fontWeight: "bold", fill: "#d97706" });
+                }
+
+                // Gambar teks elemen matriks
+                for (let r = 0; r < 3; r++) {
+                    for (let c = 0; c < 5; c++) {
+                        const posX = startX + c * colW;
+                        const posY = startY + r * rowH;
+                        const isBantuan = (c >= 3);
+
+                        // Titik latar penahan keterbacaan teks
+                        geo2.buatLingkaran(posX, posY, 15, {
+                            fill: "var(--bg-card)",
+                            stroke: "none"
+                        });
+
+                        geo2.buatTeks(posX, posY, matriksElemen[r][c], {
+                            position: "middle-center",
+                            fontSize: "12.5px",
+                            fontWeight: "bold",
+                            fill: isBantuan ? "var(--teal-primary)" : "var(--text-main)"
+                        });
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

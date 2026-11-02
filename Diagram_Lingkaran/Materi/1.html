@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Aturan Cosinus</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+    <style>
+        .geosvg-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: auto;
+        }
+
+        .geosvg-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .caption-diagram {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .rumus-box {
+            background-color: var(--bg-subtle);
+            border-left: 4px solid var(--teal-primary);
+            padding: 1.1rem 1.35rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .legend-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 0.75rem;
+        }
+
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan komprehensif materi <span class="topic-highlight">Diagram Lingkaran</span>
+                (Statistika - Penyajian Data)
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Diagram Lingkaran (Pie Chart)</h2>
+            <p>
+                <strong>Diagram Lingkaran (<em>Pie Chart</em>)</strong> adalah salah satu metode penyajian data
+                statistik berbentuk lingkaran utuh yang dibagi menjadi beberapa sektor atau <strong>juring
+                    lingkaran</strong>. Setiap juring merepresentasikan proporsi atau kontribusi dari suatu kategori
+                data relatif terhadap keseluruhan populasi ($100\%$ atau satu putaran penuh $360^\circ$).
+            </p>
+            <p>
+                Diagram ini sangat efektif digunakan ketika kita ingin memperlihatkan <em>komposisi bagian terhadap
+                    keseluruhan</em> (part-to-whole comparison), misalnya persentase alokasi anggaran, pangsa pasar
+                produk, atau sebaran pilihan hobi siswa.
+            </p>
+
+            <div class="kesimpulan">
+                <strong>Prinsip Proporsionalitas:</strong><br>
+                Luas juring, panjang busur, dan sudut pusat dari masing-masing kategori berbanding lurus secara
+                proporsional dengan frekuensi data kategori tersebut:
+                $$\frac{\text{Frekuensi Kategori}}{\text{Total Frekuensi}} = \frac{\text{Sudut Pusat}}{360^\circ} =
+                \frac{\text{Persentase}}{100\%}$$
+            </div>
+
+            <!-- Visualisasi Diagram Lingkaran Proporsi dengan GeoSVG -->
+            <div class="geosvg-box">
+                <div id="diagram-lingkaran-demo"></div>
+                <div class="legend-grid">
+                    <span class="legend-item"><span class="legend-color" style="background:#0d9488;"></span> IPA
+                        ($144^\circ$ / $40\%$)</span>
+                    <span class="legend-item"><span class="legend-color" style="background:#2563eb;"></span> IPS
+                        ($90^\circ$ / $25\%$)</span>
+                    <span class="legend-item"><span class="legend-color" style="background:#f59e0b;"></span> Bahasa
+                        ($72^\circ$ / $20\%$)</span>
+                    <span class="legend-item"><span class="legend-color" style="background:#ec4899;"></span> Seni
+                        ($54^\circ$ / $15\%$)</span>
+                </div>
+                <p class="caption-diagram">Gambar 1: Ilustrasi juring diagram lingkaran dengan pembagian proporsi sudut
+                    dan persentase.</p>
+            </div>
+
+            <h2>2. Formula Konversi Diagram Lingkaran</h2>
+            <p>
+                Penyajian diagram lingkaran umumnya disajikan dalam dua satuan kuantitas:
+            </p>
+
+            <h3>A. Diagram Lingkaran Berdasarkan Sudut Derajat ($^\circ$)</h3>
+            <p>
+                Karena satu lingkaran penuh bernilai $360^\circ$, maka besar sudut pusat $\alpha_i$ untuk kategori
+                ke-$i$ dirumuskan sebagai:
+            </p>
+            <div class="rumus-box">
+                $$\alpha_i = \frac{f_i}{\sum f} \times 360^\circ$$
+                <p style="margin-top: 0.5rem; margin-bottom: 0;">Dan sebaliknya, untuk mencari frekuensi kategori
+                    ($f_i$) jika sudut pusatnya diketahui:</p>
+                $$f_i = \frac{\alpha_i}{360^\circ} \times \text{Total Data}$$
+            </div>
+
+            <h3>B. Diagram Lingkaran Berdasarkan Persentase ($\%$)</h3>
+            <p>
+                Karena keseluruhan data bernilai $100\%$, persentase $P_i$ dari kategori ke-$i$ dirumuskan sebagai:
+            </p>
+            <div class="rumus-box">
+                $$P_i = \frac{f_i}{\sum f} \times 100\%$$
+                <p style="margin-top: 0.5rem; margin-bottom: 0;">Dan sebaliknya, untuk menghitung frekuensi nyata dari
+                    nilai persentase:</p>
+                $$f_i = \frac{P_i}{100\%} \times \text{Total Data}$$
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Karakteristik Juring</th>
+                            <th>Bentuk Derajat ($^\circ$)</th>
+                            <th>Bentuk Persentase ($\%$)</th>
+                            <th>Bentuk Pecahan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Satu Lingkaran Penuh</td>
+                            <td>$360^\circ$</td>
+                            <td>$100\%$</td>
+                            <td>$1$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Setengah Lingkaran (Garis Lurus)</td>
+                            <td>$180^\circ$</td>
+                            <td>$50\%$</td>
+                            <td>$\frac{1}{2}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Seperempat Lingkaran (Sudut Siku-Siku $\llcorner$)</td>
+                            <td>$90^\circ$</td>
+                            <td>$25\%$</td>
+                            <td>$\frac{1}{4}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Sepertiga Lingkaran</td>
+                            <td>$120^\circ$</td>
+                            <td>$33{,}33\%$</td>
+                            <td>$\frac{1}{3}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Seperdelapan Lingkaran</td>
+                            <td>$45^\circ$</td>
+                            <td>$12{,}5\%$</td>
+                            <td>$\frac{1}{8}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Hubungan Perbandingan Dua Juring</h2>
+            <p>
+                Jika total seluruh data tidak diketahui, frekuensi suatu kategori $f_A$ dapat langsung dihitung jika
+                diketahui frekuensi kategori lain $f_B$ menggunakan <strong>perbandingan senilai</strong>:
+            </p>
+            <div class="rumus-box">
+                $$\frac{f_A}{f_B} = \frac{\alpha_A}{\alpha_B} = \frac{P_A}{P_B} \implies f_A = \frac{\alpha_A}{\alpha_B}
+                \times f_B$$
+            </div>
+            <p>
+                Metode ini sangat berguna untuk menyelesaikan soal-soal seleksi (SNBT/UTBK atau ujian kedinasan) yang
+                menanyakan selisih atau perbandingan antar-kategori tanpa perlu mencari total frekuensi terlebih dahulu.
+            </p>
+
+            <!-- Visualisasi Variasi Diagram Donat -->
+            <div class="geosvg-box">
+                <div id="diagram-donat-demo"></div>
+                <p class="caption-diagram">Gambar 2: Diagram Donat (<em>Donut Chart</em>) dengan lingkaran tengah untuk
+                    menampilkan informasi ringkasan total data.</p>
+            </div>
+
+            <h2>4. Kelebihan dan Keterbatasan Diagram Lingkaran</h2>
+            <ul>
+                <li><strong>Kelebihan:</strong>
+                    <ul>
+                        <li>Sangat intuitif dan mudah dipahami oleh audiens umum untuk melihat perbandingan proporsi
+                            kelompok.</li>
+                        <li>Memvisualisasikan segmen dominan dan minoritas secara langsung.</li>
+                    </ul>
+                </li>
+                <li><strong>Keterbatasan:</strong>
+                    <ul>
+                        <li>Kurang efektif jika terdapat terlalu banyak kategori (lebih dari $6 - 7$ kategori), karena
+                            juring-juring kecil akan sulit dibedakan.</li>
+                        <li>Mata manusia kurang presisi dalam membedakan selisih sudut kecil dibandingkan dengan
+                            membandingkan tinggi batang pada diagram batang (*bar chart*).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 1</span>
+                <div class="soal-teks">
+                    Sebuah kelas memiliki $40$ orang siswa. Data jenis ekstrakurikuler yang dipilih siswa disajikan
+                    dalam tabel berikut:
+                    <div class="table-wrapper">
+                        <table class="table-auto">
+                            <thead>
+                                <tr>
+                                    <th>Ekstrakurikuler</th>
+                                    <th>Jumlah Siswa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Futsal</td>
+                                    <td>$14$</td>
+                                </tr>
+                                <tr>
+                                    <td>Basket</td>
+                                    <td>$10$</td>
+                                </tr>
+                                <tr>
+                                    <td>PMR</td>
+                                    <td>$8$</td>
+                                </tr>
+                                <tr>
+                                    <td>Pramuka</td>
+                                    <td>$8$</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    Tentukan besar sudut pusat masing-masing ekstrakurikuler jika disajikan ke dalam diagram lingkaran!
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Total data siswa: $\sum f = 14 + 10 + 8 + 8 = 40$ siswa.</p>
+                    <p>Hitung sudut pusat masing-masing kategori dengan rumus $\alpha_i = \dfrac{f_i}{40} \times
+                        360^\circ$:</p>
+                    <ul>
+                        <li><strong>Futsal:</strong>
+                            $$\alpha_{\text{Futsal}} = \frac{14}{40} \times 360^\circ = 14 \times 9^\circ = 126^\circ$$
+                        </li>
+                        <li><strong>Basket:</strong>
+                            $$\alpha_{\text{Basket}} = \frac{10}{40} \times 360^\circ = 10 \times 9^\circ = 90^\circ
+                            \quad (\text{siku-siku})$$
+                        </li>
+                        <li><strong>PMR:</strong>
+                            $$\alpha_{\text{PMR}} = \frac{8}{40} \times 360^\circ = 8 \times 9^\circ = 72^\circ$$
+                        </li>
+                        <li><strong>Pramuka:</strong>
+                            $$\alpha_{\text{Pramuka}} = \frac{8}{40} \times 360^\circ = 8 \times 9^\circ = 72^\circ$$
+                        </li>
+                    </ul>
+                    <p>Pemeriksaan total sudut:</p>
+                    $$126^\circ + 90^\circ + 72^\circ + 72^\circ = 360^\circ \quad (\text{Sesuai})$$
+                    <div class="kesimpulan">
+                        Jadi, sudut pusatnya adalah: Futsal = <strong>$126^\circ$</strong>, Basket =
+                        <strong>$90^\circ$</strong>, PMR = <strong>$72^\circ$</strong>, dan Pramuka =
+                        <strong>$72^\circ$</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 2</span>
+                <div class="soal-teks">
+                    Diagram lingkaran penjualan komoditas pertanian di suatu daerah menunjukkan persentase sebagai
+                    berikut:
+                    Padi $35\%$, Jagung $25\%$, Kedelai $15\%$, dan sisanya adalah Singkong. Jika hasil panen jagung
+                    adalah sebesar $60\text{ ton}$, berapakah berat hasil panen singkong?
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Menghitung persentase panen singkong</strong></p>
+                    <p>Karena total persentase seluruh komoditas adalah $100\%$, maka:</p>
+                    $$P_{\text{Singkong}} = 100\% - (35\% + 25\% + 15\%) = 100\% - 75\% = 25\%$$
+
+                    <p><strong>Langkah 2: Menghitung hasil panen singkong</strong></p>
+                    <p>Karena persentase Jagung dan Singkong sama-sama bernilai $25\%$, maka secara perbandingan
+                        langsung:</p>
+                    $$\text{Hasil Singkong} = \frac{P_{\text{Singkong}}}{P_{\text{Jagung}}} \times \text{Hasil Jagung} =
+                    \frac{25\%}{25\%} \times 60 = 60\text{ ton}$$
+                    <div class="kesimpulan">
+                        Jadi, hasil panen singkong di daerah tersebut adalah <strong>$60\text{ ton}$</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 3</span>
+                <div class="soal-teks">
+                    Diagram lingkaran mata pencaharian penduduk suatu desa disajikan dalam derajat. Juring Petani
+                    membentuk sudut $150^\circ$, Pedagang membentuk sudut siku-siku ($90^\circ$), Karyawan membentuk
+                    sudut $70^\circ$, dan sisanya adalah Wiraswasta. Jika diketahui selisih penduduk yang bekerja
+                    sebagai Petani dan Karyawan adalah $400$ orang, tentukan banyaknya penduduk yang bekerja sebagai
+                    Wiraswasta!
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Menentukan sudut untuk kategori Wiraswasta</strong></p>
+                    $$\alpha_{\text{Wiraswasta}} = 360^\circ - (150^\circ + 90^\circ + 70^\circ) = 360^\circ - 310^\circ
+                    = 50^\circ$$
+
+                    <p><strong>Langkah 2: Menghubungkan selisih frekuensi dengan selisih sudut</strong></p>
+                    <p>Selisih sudut Petani dan Karyawan:</p>
+                    $$\Delta \alpha = \alpha_{\text{Petani}} - \alpha_{\text{Karyawan}} = 150^\circ - 70^\circ =
+                    80^\circ$$
+                    <p>Diketahui bahwa $\Delta \alpha = 80^\circ$ mewakili selisih $400$ orang. Maka nilai per $1^\circ$
+                        sudut adalah:</p>
+                    $$\text{Nilai } 1^\circ = \frac{400\text{ orang}}{80^\circ} = 5\text{ orang per derajat}$$
+
+                    <p><strong>Langkah 3: Menghitung jumlah Wiraswasta</strong></p>
+                    $$\text{Banyak Wiraswasta} = \alpha_{\text{Wiraswasta}} \times 5\text{ orang} = 50^\circ \times 5 =
+                    250\text{ orang}$$
+
+                    <div class="kesimpulan">
+                        Jadi, banyaknya penduduk yang berprofesi sebagai wiraswasta adalah <strong>$250\text{
+                            orang}$</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Visualisasi Diagram Menggunakan GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // ==========================================
+            // Diagram 1: Diagram Lingkaran Proporsi Utuh
+            // ==========================================
+            const cont1 = document.getElementById("diagram-lingkaran-demo");
+            if (cont1 && typeof GeoSVG !== 'undefined') {
+                const geo1 = new GeoSVG(cont1, 400, 320, {
+                    viewBox: "0 0 400 320",
+                    background: "transparent"
+                });
+
+                const cx = 200, cy = 160, r = 120;
+
+                // Definisi 4 sektor juring:
+                // IPA: 40% (144 deg), IPS: 25% (90 deg), Bahasa: 20% (72 deg), Seni: 15% (54 deg)
+                const sectors = [
+                    { label: "IPA", val: "40%", deg: 144, fill: "#0d9488", stroke: "#0f766e" },
+                    { label: "IPS", val: "25%", deg: 90, fill: "#2563eb", stroke: "#1d4ed8" },
+                    { label: "Bahasa", val: "20%", deg: 72, fill: "#f59e0b", stroke: "#d97706" },
+                    { label: "Seni", val: "15%", deg: 54, fill: "#ec4899", stroke: "#db2777" }
+                ];
+
+                let currentAngle = -90; // Mulai dari arah jam 12 (-90 derajat)
+
+                sectors.forEach((s) => {
+                    const startA = currentAngle;
+                    const endA = currentAngle + s.deg;
+
+                    // Gambar juring lingkaran
+                    geo1.buatJuring(cx, cy, r, startA, endA, {
+                        fill: s.fill,
+                        stroke: "#ffffff",
+                        strokeWidth: 2,
+                        opacity: 0.92
+                    });
+
+                    // Posisi label teks di tengah juring
+                    const midA = (startA + endA) / 2;
+                    const midRad = midA * Math.PI / 180;
+                    const labelR = r * 0.65;
+                    const tx = cx + labelR * Math.cos(midRad);
+                    const ty = cy + labelR * Math.sin(midRad);
+
+                    // Teks kategori dan persentase
+                    geo1.buatTeks(tx, ty - 7, s.label, {
+                        position: "middle-center",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        fill: "#ffffff"
+                    });
+                    geo1.buatTeks(tx, ty + 9, s.val, {
+                        position: "middle-center",
+                        fontSize: "10.5px",
+                        fontWeight: "600",
+                        fill: "#ffffff"
+                    });
+
+                    currentAngle = endA;
+                });
+
+                // Titik pusat lingkaran
+                geo1.buatTitik(cx, cy, { size: 3.5, color: "#ffffff" });
+            }
+
+            // ==========================================
+            // Diagram 2: Diagram Donat (Donut Chart)
+            // ==========================================
+            const cont2 = document.getElementById("diagram-donat-demo");
+            if (cont2 && typeof GeoSVG !== 'undefined') {
+                const geo2 = new GeoSVG(cont2, 400, 300, {
+                    viewBox: "0 0 400 300",
+                    background: "transparent"
+                });
+
+                const cx = 200, cy = 150, outerR = 110, innerR = 60;
+
+                const donutSlices = [
+                    { label: "Padi", percent: "35%", deg: 126, fill: "#10b981" },
+                    { label: "Jagung", percent: "25%", deg: 90, fill: "#f59e0b" },
+                    { label: "Kedelai", percent: "15%", deg: 54, fill: "#3b82f6" },
+                    { label: "Singkong", percent: "25%", deg: 90, fill: "#8b5cf6" }
+                ];
+
+                let curA = -90;
+                donutSlices.forEach((slice) => {
+                    const stA = curA;
+                    const enA = curA + slice.deg;
+
+                    // Sektor juring luar
+                    geo2.buatJuring(cx, cy, outerR, stA, enA, {
+                        fill: slice.fill,
+                        stroke: "#ffffff",
+                        strokeWidth: 2,
+                        opacity: 0.95
+                    });
+
+                    // Posisi label di sabuk donat
+                    const midA = (stA + enA) / 2;
+                    const midRad = midA * Math.PI / 180;
+                    const beltR = (outerR + innerR) / 2;
+                    const lx = cx + beltR * Math.cos(midRad);
+                    const ly = cy + beltR * Math.sin(midRad);
+
+                    geo2.buatTeks(lx, ly - 6, slice.label, {
+                        position: "middle-center",
+                        fontSize: "11px",
+                        fontWeight: "bold",
+                        fill: "#ffffff"
+                    });
+                    geo2.buatTeks(lx, ly + 8, slice.percent, {
+                        position: "middle-center",
+                        fontSize: "10px",
+                        fontWeight: "bold",
+                        fill: "#ffffff"
+                    });
+
+                    curA = enA;
+                });
+
+                // Tutup bagian tengah dengan lingkaran warna card untuk efek donat
+                geo2.buatLingkaran(cx, cy, innerR, {
+                    fill: "var(--bg-card)",
+                    stroke: "#ffffff",
+                    strokeWidth: 2
+                });
+
+                // Keterangan di lubang tengah donat
+                geo2.buatTeks(cx, cy - 8, "TOTAL", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "var(--text-muted)"
+                });
+                geo2.buatTeks(cx, cy + 10, "100%", {
+                    position: "middle-center",
+                    fontSize: "15px",
+                    fontWeight: "bold",
+                    fill: "var(--teal-primary)"
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Frekuensi Harapan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Frekuensi Harapan</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Dasar Peluang dan Percobaan</h2>
+            <p>
+                Sebelum mempelajari <strong>Frekuensi Harapan</strong>, mari kita segarkan kembali ingatan tentang konsep dasar peluang teoretis:
+            </p>
+            <ul>
+                <li><strong>Percobaan (Eksperimen):</strong> Suatu kegiatan yang memberikan hasil yang dapat diamati namun tidak dapat dipastikan sebelumnya (contoh: melempar koin, melambungkan dadu, atau mengambil kartu).</li>
+                <li><strong>Ruang Sampel ($S$):</strong> Himpunan dari semua hasil yang mungkin muncul dalam suatu percobaan. Banyaknya anggota ruang sampel dinotasikan dengan $n(S)$.</li>
+                <li><strong>Titik Sampel:</strong> Setiap anggota tunggal di dalam ruang sampel $S$.</li>
+                <li><strong>Kejadian ($A$):</strong> Himpunan bagian dari ruang sampel yang memiliki karakteristik tertentu. Banyaknya anggota kejadian $A$ dinotasikan dengan $n(A)$.</li>
+            </ul>
+            <p>
+                Peluang munculnya suatu kejadian $A$ dalam satu kali percobaan dirumuskan sebagai:
+                $$P(A) = \frac{n(A)}{n(S)}$$
+                di mana nilai peluang selalu berada pada rentang $0 \le P(A) \le 1$.
+            </p>
+
+            <h2>2. Pengertian dan Rumus Frekuensi Harapan</h2>
+            <p>
+                <strong>Frekuensi Harapan</strong> dari suatu kejadian adalah <em>banyaknya kemunculan kejadian tersebut yang diharapkan (diprediksi secara teoretis)</em> apabila suatu percobaan dilakukan secara berulang-ulang sebanyak $N$ kali.
+            </p>
+            <p>
+                Jika suatu percobaan dilakukan sebanyak $N$ kali dan peluang kejadian $A$ pada setiap percobaan adalah $P(A)$, maka Frekuensi Harapan kejadian $A$ (biasa disimbolkan dengan $F_h(A)$ atau $E(A)$) dirumuskan sebagai:
+                $$F_h(A) = P(A) \times N$$
+                atau dapat dijabarkan menjadi:
+                $$F_h(A) = \frac{n(A)}{n(S)} \times N$$
+            </p>
+            <p>
+                <strong>Keterangan:</strong>
+            </p>
+            <ul>
+                <li>$F_h(A)$ = Frekuensi harapan munculnya kejadian $A$</li>
+                <li>$P(A)$ = Peluang munculnya kejadian $A$ pada satu kali percobaan</li>
+                <li>$n(A)$ = Banyaknya titik sampel kejadian $A$</li>
+                <li>$n(S)$ = Banyaknya anggota ruang sampel</li>
+                <li>$N$ = Banyaknya percobaan yang dilakukan ($N \in \text{bilangan asli}$)</li>
+            </ul>
+
+            <div class="kesimpulan">
+                💡 Catatan Penting: Nilai Frekuensi Harapan tidak harus selalu berupa bilangan bulat, melainkan dapat berupa bilangan desimal atau pecahan karena sifatnya merupakan nilai rata-rata ekspektasi secara matematis. Selain itu, $F_h(A)$ bukanlah kepastian mutlak, melainkan perkiraan teoretis.
+            </div>
+
+            <h2>3. Visualisasi dan Diagram Pohon Peluang</h2>
+            <p>
+                Untuk menentukan peluang $P(A)$ sebelum dikalikan dengan $N$, kita sering menggunakan bantuan <strong>Diagram Pohon</strong> atau <strong>Tabel Ruang Sampel</strong>. Berikut adalah visualisasi diagram pohon untuk percobaan pelemparan 2 koin setimbang sekaligus menggunakan <code>GeoSVG.js</code>:
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-pohon" style="width: 100%; max-width: 540px;"></div>
+                </div>
+            </div>
+
+            <p>
+                Dari diagram pohon di atas, ruang sampel pelemparan 2 koin adalah $S = \{AA, AG, GA, GG\}$ dengan $n(S) = 4$. Jika kita melempar 2 koin tersebut sebanyak $N = 120$ kali, maka:
+            </p>
+            <ul>
+                <li>Frekuensi harapan muncul keduanya Angka ($AA$): $F_h(AA) = \frac{1}{4} \times 120 = 30\text{ kali}$.</li>
+                <li>Frekuensi harapan muncul tepat satu Angka ($AG, GA$): $F_h(\text{1 Angka}) = \frac{2}{4} \times 120 = 60\text{ kali}$.</li>
+                <li>Frekuensi harapan muncul keduanya Gambar ($GG$): $F_h(GG) = \frac{1}{4} \times 120 = 30\text{ kali}$.</li>
+            </ul>
+
+            <h2>4. Hubungan Frekuensi Relatif dan Frekuensi Harapan</h2>
+            <p>
+                Dalam praktik nyata, jika kita melempar koin sebanyak $10$ kali, meskipun frekuensi harapan muncul sisi Angka adalah $\frac{1}{2} \times 10 = 5$ kali, bisa saja yang muncul sebenarnya adalah $7$ kali Angka dan $3$ kali Gambar.
+            </p>
+            <p>
+                Perbandingan antara banyaknya kejadian $A$ yang benar-benar muncul ($k$) dengan total percobaan ($N$) disebut <strong>Frekuensi Relatif ($F_r$)</strong> atau Peluang Empiris:
+                $$F_r(A) = \frac{k}{N}$$
+            </p>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Berdasarkan <strong>Hukum Bilangan Besar (<em>Law of Large Numbers</em>)</strong>, semakin banyak percobaan $N$ yang dilakukan ($N \to \infty$), maka nilai Frekuensi Relatif $F_r(A)$ akan semakin mendekati (konvergen ke) Peluang Teoretis $P(A)$. Dengan kata lain, hasil nyata di lapangan akan semakin mendekati nilai <strong>Frekuensi Harapan</strong>.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-konvergensi" style="width: 100%; max-width: 420px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Sifat-Sifat Frekuensi Harapan</h2>
+            <p>
+                Misalkan suatu percobaan dengan ruang sampel $S$ dilakukan sebanyak $N$ kali, maka berlaku sifat-sifat berikut:
+            </p>
+            <ol>
+                <li>
+                    <strong>Batas Nilai Frekuensi Harapan:</strong>
+                    $$0 \le F_h(A) \le N$$
+                    Jika $F_h(A) = 0$, maka kejadian $A$ mustahil terjadi. Jika $F_h(A) = N$, maka kejadian $A$ pasti terjadi di setiap percobaan.
+                </li>
+                <li>
+                    <strong>Frekuensi Harapan Komplemen Kejadian ($A^c$):</strong>
+                    Jika $A^c$ menyatakan kejadian "bukan $A$", maka jumlah frekuensi harapan kejadian $A$ dan bukan $A$ sama dengan total percobaan $N$:
+                    $$F_h(A) + F_h(A^c) = N \iff F_h(A^c) = N - F_h(A)$$
+                </li>
+                <li>
+                    <strong>Dua Kejadian Saling Lepas ($A \cap B = \emptyset$):</strong>
+                    Jika kejadian $A$ dan $B$ tidak mungkin terjadi bersamaan, maka:
+                    $$F_h(A \cup B) = F_h(A) + F_h(B)$$
+                </li>
+                <li>
+                    <strong>Dua Kejadian Tidak Saling Lepas ($A \cap B \neq \emptyset$):</strong>
+                    $$F_h(A \cup B) = F_h(A) + F_h(B) - F_h(A \cap B)$$
+                </li>
+            </ol>
+
+            <h2>6. Referensi Cepat Ruang Sampel Populer</h2>
+            <p>
+                Dalam soal-soal ujian (baik tingkat Dasar, SNBT, maupun HOTS), berikut adalah beberapa ruang sampel percobaan yang paling sering diujikan:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Alat Percobaan</th>
+                            <th>Banyaknya Alat ($k$)</th>
+                            <th>Rumus $n(S)$</th>
+                            <th>Total Titik Sampel $n(S)$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Uang Logam / Koin ($2$ sisi: $A, G$)</td>
+                            <td>$k$ koin</td>
+                            <td>$2^k$</td>
+                            <td>$1\text{ koin} = 2$, $2\text{ koin} = 4$, $3\text{ koin} = 8$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Dadu Enam Sisi ($1, 2, 3, 4, 5, 6$)</td>
+                            <td>$k$ dadu</td>
+                            <td>$6^k$</td>
+                            <td>$1\text{ dadu} = 6$, $2\text{ dadu} = 36$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Gabungan $1$ Koin dan $1$ Dadu</td>
+                            <td>$1$ koin & $1$ dadu</td>
+                            <td>$2 \times 6$</td>
+                            <td>$12$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Kartu Bridge / Remi (tanpa Joker)</td>
+                            <td>$1$ set kartu</td>
+                            <td>$4 \times 13$</td>
+                            <td>$52$ ($26$ Merah, $26$ Hitam, $4$ As, $12$ Kartu Wajah)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                Khusus untuk <strong>penjumlahan mata dadu pada pelemparan 2 buah dadu sekaligus</strong> ($n(S) = 36$), distribusi banyaknya kejadian $n(A)$ sangat berguna untuk dihafalkan:
+            </p>
+            <div class="table-wrapper">
+                <table class="table-auto">
+                    <thead>
+                        <tr>
+                            <th>Jumlah Mata Dadu</th>
+                            <th>$2$</th>
+                            <th>$3$</th>
+                            <th>$4$</th>
+                            <th>$5$</th>
+                            <th>$6$</th>
+                            <th>$7$</th>
+                            <th>$8$</th>
+                            <th>$9$</th>
+                            <th>$10$</th>
+                            <th>$11$</th>
+                            <th>$12$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Banyak Kejadian $n(A)$</th>
+                            <td>$1$</td>
+                            <td>$2$</td>
+                            <td>$3$</td>
+                            <td>$4$</td>
+                            <td>$5$</td>
+                            <td><strong>$6$</strong></td>
+                            <td>$5$</td>
+                            <td>$4$</td>
+                            <td>$3$</td>
+                            <td>$2$</td>
+                            <td>$1$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>7. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Simak beberapa contoh soal berikut untuk memperdalam pemahaman Anda mengenai penerapan rumus Frekuensi Harapan pada berbagai konteks masalah. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasan.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif (Mengikuti Struktur Soal Blog) -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Dua buah dadu bersisi enam yang setimbang dilambungkan secara bersamaan sebanyak $180$ kali. Berapakah frekuensi harapan munculnya pasangan mata dadu yang berjumlah $8$ atau berjumlah $11$?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Diketahui percobaan melambungkan $2$ buah dadu sebanyak $N = 180$ kali. Banyaknya anggota ruang sampel untuk $2$ dadu adalah:
+                        $$n(S) = 6^2 = 36$$
+                    </p>
+                    <p>
+                        Misalkan:
+                    </p>
+                    <ul>
+                        <li>$A$ = kejadian muncul mata dadu berjumlah $8$, yaitu $\{(2,6), (3,5), (4,4), (5,3), (6,2)\}$ sehingga $n(A) = 5$.</li>
+                        <li>$B$ = kejadian muncul mata dadu berjumlah $11$, yaitu $\{(5,6), (6,5)\}$ sehingga $n(B) = 2$.</li>
+                    </ul>
+                    <p>
+                        Karena kejadian $A$ dan $B$ saling lepas ($A \cap B = \emptyset$), maka peluang gabungan $P(A \cup B)$ adalah:
+                        $$P(A \cup B) = P(A) + P(B) = \frac{5}{36} + \frac{2}{36} = \frac{7}{36}$$
+                    </p>
+                    <p>
+                        Dengan demikian, frekuensi harapannya adalah:
+                        $$F_h(A \cup B) = P(A \cup B) \times N = \frac{7}{36} \times 180 = 7 \times 5 = 35\text{ kali}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, frekuensi harapan munculnya mata dadu berjumlah $8$ atau $11$ adalah $35$ kali.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Berdasarkan data pengujian kualitas di sebuah pabrik lampu LED, peluang sebuah lampu mengalami cacat produksi adalah $0{,}015$. Jika pada hari ini pabrik tersebut memproduksi $4.000$ unit lampu LED, berapa banyak lampu LED yang diharapkan <strong>lolos uji kualitas (tidak cacat)</strong>?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Diketahui:
+                    </p>
+                    <ul>
+                        <li>Peluang lampu cacat: $P(\text{Cacat}) = 0{,}015$</li>
+                        <li>Banyaknya produksi (percobaan): $N = 4.000$ unit</li>
+                    </ul>
+                    <p>
+                        <strong>Cara 1 (Menggunakan Peluang Komplemen):</strong><br>
+                        Peluang lampu tidak cacat (lolos uji) adalah komplemen dari peluang lampu cacat:
+                        $$P(\text{Lolos}) = 1 - P(\text{Cacat}) = 1 - 0{,}015 = 0{,}985$$
+                        Maka frekuensi harapan lampu yang lolos uji adalah:
+                        $$F_h(\text{Lolos}) = P(\text{Lolos}) \times N = 0{,}985 \times 4.000 = 3.940\text{ unit}$$
+                    </p>
+                    <p>
+                        <strong>Cara 2 (Menggunakan Selisih Frekuensi Harapan):</strong><br>
+                        Hitung terlebih dahulu frekuensi harapan lampu yang cacat:
+                        $$F_h(\text{Cacat}) = 0{,}015 \times 4.000 = 60\text{ unit}$$
+                        Sehingga banyaknya lampu yang diharapkan lolos uji adalah:
+                        $$F_h(\text{Lolos}) = N - F_h(\text{Cacat}) = 4.000 - 60 = 3.940\text{ unit}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, banyaknya lampu LED yang diharapkan lolos uji kualitas adalah $3.940$ unit.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Sebuah kantong berisi $5$ bola merah, $4$ bola biru, dan $3$ bola hijau. Dari dalam kantong diambil $2$ bola sekaligus secara acak, dicatat warnanya, lalu dikembalikan lagi ke dalam kantong. Jika pengambilan tersebut diulang sebanyak $132$ kali, tentukan frekuensi harapan terambilnya kedua bola berwarna sama!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Total bola di dalam kantong adalah $5 + 4 + 3 = 12$ bola. Karena diambil $2$ bola sekaligus, kita gunakan rumus kombinasi untuk menentukan banyaknya anggota ruang sampel $n(S)$:
+                        $$n(S) = C(12, 2) = \frac{12!}{2! \cdot 10!} = \frac{12 \times 11}{2 \times 1} = 66$$
+                    </p>
+                    <p>
+                        Kejadian $A$ adalah terambilnya $2$ bola berwarna sama (bisa $2$ Merah, $2$ Biru, atau $2$ Hijau):
+                    </p>
+                    <ul>
+                        <li>$2\text{ Merah}: C(5, 2) = \frac{5 \times 4}{2} = 10$ cara</li>
+                        <li>$2\text{ Biru}: C(4, 2) = \frac{4 \times 3}{2} = 6$ cara</li>
+                        <li>$2\text{ Hijau}: C(3, 2) = \frac{3 \times 2}{2} = 3$ cara</li>
+                    </ul>
+                    <p>
+                        Sehingga total titik sampel kejadian $A$ adalah $n(A) = 10 + 6 + 3 = 19$, dan peluangnya adalah:
+                        $$P(A) = \frac{n(A)}{n(S)} = \frac{19}{66}$$
+                    </p>
+                    <p>
+                        Karena percobaan diulang sebanyak $N = 132$ kali, maka frekuensi harapannya adalah:
+                        $$F_h(A) = P(A) \times N = \frac{19}{66} \times 132 = 19 \times 2 = 38\text{ kali}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, frekuensi harapan terambilnya kedua bola berwarna sama adalah $38$ kali.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiMateri() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const gridColor = isDark ? '#334155' : '#e2e8f0';
+
+            /* -------------------------------------------------------------
+               1. DIAGRAM POHON PELEMPARAN 2 KOIN
+               ------------------------------------------------------------- */
+            const geoPohon = new GeoSVG('geosvg-pohon', 520, 260, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Header Kolom
+            geoPohon.buatTeks(130, 20, "Koin 1", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: tealColor });
+            geoPohon.buatTeks(280, 20, "Koin 2", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: tealColor });
+            geoPohon.buatTeks(435, 20, "Hasil & Peluang", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: tealColor });
+
+            const startPt = [30, 140];
+            const k1_A = [130, 85];
+            const k1_G = [130, 195];
+
+            const k2_AA = [280, 55];
+            const k2_AG = [280, 115];
+            const k2_GA = [280, 165];
+            const k2_GG = [280, 225];
+
+            // Cabang Koin 1
+            geoPohon.buatVektor(startPt, [118, 90], { stroke: mutedColor, strokeWidth: 1.5, label: '1/2', labelSisi: 'kiri', fontSize: '11px', labelColor: mutedColor });
+            geoPohon.buatVektor(startPt, [118, 190], { stroke: mutedColor, strokeWidth: 1.5, label: '1/2', labelSisi: 'kanan', fontSize: '11px', labelColor: mutedColor });
+
+            // Cabang Koin 2 dari A
+            geoPohon.buatVektor([142, 82], [266, 57], { stroke: mutedColor, strokeWidth: 1.5, label: '1/2', labelSisi: 'kiri', fontSize: '11px', labelColor: mutedColor });
+            geoPohon.buatVektor([142, 88], [266, 113], { stroke: mutedColor, strokeWidth: 1.5, label: '1/2', labelSisi: 'kanan', fontSize: '11px', labelColor: mutedColor });
+
+            // Cabang Koin 2 dari G
+            geoPohon.buatVektor([142, 192], [266, 167], { stroke: mutedColor, strokeWidth: 1.5, label: '1/2', labelSisi: 'kiri', fontSize: '11px', labelColor: mutedColor });
+            geoPohon.buatVektor([142, 198], [266, 223], { stroke: mutedColor, strokeWidth: 1.5, label: '1/2', labelSisi: 'kanan', fontSize: '11px', labelColor: mutedColor });
+
+            // Titik Pangkal
+            geoPohon.buatTitik(startPt, { size: 4, color: tealColor, label: 'Mulai', labelPosition: 'top-center', labelColor: textColor, fontSize: '11px' });
+
+            // Simpul Koin 1
+            [
+                { pt: k1_A, teks: 'A' },
+                { pt: k1_G, teks: 'G' }
+            ].forEach(node => {
+                geoPohon.buatLingkaran(node.pt, 12, { fill: isDark ? '#1e293b' : '#f0fdfa', stroke: tealColor, strokeWidth: 2 });
+                geoPohon.buatTeks(node.pt[0], node.pt[1], node.teks, { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: textColor });
+            });
+
+            // Simpul Koin 2 & Hasil
+            [
+                { pt: k2_AA, teks: 'A', hasil: 'AA  →  P = 1/4' },
+                { pt: k2_AG, teks: 'G', hasil: 'AG  →  P = 1/4' },
+                { pt: k2_GA, teks: 'A', hasil: 'GA  →  P = 1/4' },
+                { pt: k2_GG, teks: 'G', hasil: 'GG  →  P = 1/4' }
+            ].forEach(node => {
+                geoPohon.buatLingkaran(node.pt, 12, { fill: isDark ? '#1e293b' : '#f0fdfa', stroke: amberColor, strokeWidth: 2 });
+                geoPohon.buatTeks(node.pt[0], node.pt[1], node.teks, { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: textColor });
+                geoPohon.buatSegmen([node.pt[0] + 15, node.pt[1]], [365, node.pt[1]], { stroke: gridColor, dashed: '4 3', strokeWidth: 1.5 });
+                geoPohon.buatTeks(375, node.pt[1], node.hasil, { position: 'middle-right', fontWeight: '600', fontSize: '12.5px', fill: textColor });
+            });
+
+            /* -------------------------------------------------------------
+               2. GRAFIK KONVERGENSI FREKUENSI RELATIF KE PELUANG TEORETIS
+               ------------------------------------------------------------- */
+            const geoGrafik = new GeoSVG('geosvg-konvergensi', 400, 230, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            const ox = 48, oy = 190, gxMax = 380, gyMin = 25;
+            const yHalf = 108; // Posisi untuk P(A) = 0,5
+
+            // Grid Horizontal
+            geoGrafik.buatSegmen(ox, 40, gxMax, 40, { stroke: gridColor, strokeWidth: 1 });
+            geoGrafik.buatSegmen(ox, yHalf, gxMax, yHalf, { stroke: amberColor, strokeWidth: 1.8, dashed: '6 4' });
+
+            // Sumbu X dan Y
+            geoGrafik.buatVektor(ox, oy, gxMax, oy, { stroke: textColor, strokeWidth: 1.5 });
+            geoGrafik.buatVektor(ox, oy, ox, gyMin, { stroke: textColor, strokeWidth: 1.5 });
+
+            // Label Sumbu
+            geoGrafik.buatTeks(ox - 8, oy, "0,0", { position: 'middle-left', fontSize: '11px', fill: mutedColor });
+            geoGrafik.buatTeks(ox - 8, yHalf, "0,5", { position: 'middle-left', fontSize: '11px', fontWeight: 'bold', fill: amberColor });
+            geoGrafik.buatTeks(ox - 8, 40, "1,0", { position: 'middle-left', fontSize: '11px', fill: mutedColor });
+
+            geoGrafik.buatTeks(215, 215, "Banyaknya Percobaan (N)", { position: 'middle-center', fontSize: '11.5px', fontWeight: '600', fill: textColor });
+            geoGrafik.buatTeks(ox + 6, 22, "Frekuensi Relatif (k/N)", { position: 'middle-right', fontSize: '11.5px', fontWeight: '600', fill: textColor });
+
+            // Kurva Simulasi Konvergensi
+            const titikSimulasi = [
+                [ox + 10, 40],
+                [ox + 35, 145],
+                [ox + 65, 78],
+                [ox + 95, 128],
+                [ox + 130, 92],
+                [ox + 165, 118],
+                [ox + 205, 101],
+                [ox + 245, 112],
+                [ox + 285, 106],
+                [ox + 320, 108]
+            ];
+
+            geoGrafik.buatKurvaHalus(titikSimulasi, { stroke: tealColor, strokeWidth: 2.2, tension: 0.22 });
+            titikSimulasi.forEach(pt => {
+                geoGrafik.buatTitik(pt, { size: 3, color: tealColor });
+            });
+
+            geoGrafik.buatTeks(gxMax - 5, yHalf - 10, "P(A) = 0,5 (Teoretis)", {
+                position: 'top-left',
+                fontSize: '11px',
+                fontWeight: 'bold',
+                fill: amberColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiMateri();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiMateri, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

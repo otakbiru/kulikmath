@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNBT - Deret Geometri Tak Hingga</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Deret Geometri Tak Hingga</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika suku ke-\(n\) suatu deret adalah \(U_n = 2^{2x - n}\), maka jumlah tak hingga deret tersebut adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>\(2^{2x - 2}\)</li>
+                    <li>\(2^{2x - 1}\)</li>
+                    <li>\(2^{2x}\)</li>
+                    <li>\(2^{2x + 1}\)</li>
+                    <li>\(2^{2x + 2}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tentukan suku pertama (\(a\)) dan rasio (\(r\)) deret:
+                    \[
+                    \begin{aligned}
+                    a &= U_1 = 2^{2x - 1} \\[4pt]
+                    U_2 &= 2^{2x - 2} \\[4pt]
+                    r &= \dfrac{U_2}{U_1} = \dfrac{2^{2x - 2}}{2^{2x - 1}} = 2^{(2x - 2) - (2x - 1)} = 2^{-1} = \dfrac{1}{2}
+                    \end{aligned}
+                    \]
+                    Karena \(|r| = \dfrac{1}{2} < 1\), jumlah tak hingga deret geometri tersebut adalah:
+                    \[
+                    \begin{aligned}
+                    S_{\infty} &= \dfrac{a}{1 - r} \\[6pt]
+                    &= \dfrac{2^{2x - 1}}{1 - \dfrac{1}{2}} \\[6pt]
+                    &= \dfrac{2^{2x - 1}}{\dfrac{1}{2}} \\[6pt]
+                    &= \dfrac{2^{2x - 1}}{2^{-1}} = 2^{2x - 1 - (-1)} = 2^{2x}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">
+                        Jadi, jumlah tak hingga deret tersebut adalah <b>\(2^{2x}\)</b>.<br>
+                        <b>Jawaban: C</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Agar deret geometri tak hingga dengan suku pertama \(a\) mempunyai jumlah 2, maka \(a\) memenuhi ....
+                <ol class="pilgan">
+                    <li>\(-2 < a < 0\)</li>
+                    <li>\(2 < a < 0\)</li>
+                    <li>\(0 < a < 2\)</li>
+                    <li>\(0 < a < 4\)</li>
+                    <li>\(-4 < a < 4\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Rumus deret geometri tak hingga:
+                    \[
+                    \begin{aligned}
+                    S_{\infty} &= 2 \\
+                    \dfrac{a}{1 - r} &= 2 \\
+                    a &= 2(1 - r) = 2 - 2r \\
+                    2r &= 2 - a \\
+                    r &= \dfrac{2 - a}{2}
+                    \end{aligned}
+                    \]
+                    Syarat suatu deret geometri tak hingga konvergen (mempunyai jumlah berhingga) adalah \(-1 < r < 1\):
+                    \[
+                    \begin{aligned}
+                    -1 &< r < 1 \\[4pt]
+                    -1 &< \dfrac{2 - a}{2} < 1 \quad (\times 2) \\[4pt]
+                    -2 &< 2 - a < 2 \quad (- 2) \\[4pt]
+                    -4 &< -a < 0 \quad (\times (-1)) \\[4pt]
+                    0 &< a < 4
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">
+                        Jadi, nilai \(a\) memenuhi <b>\(0 < a < 4\)</b>.<br>
+                        <b>Jawaban: D</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika \(\dfrac{1}{p}+\dfrac{1}{q}=1\), maka jumlah tak hingga \(\dfrac{1}{p}+\dfrac{1}{pq}+\dfrac{1}{pq^2}+\cdots\) adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>1</li>
+                    <li>\(\dfrac{3}{2}\)</li>
+                    <li>\(\dfrac{1}{2}\)</li>
+                    <li>\(\dfrac{q}{p}\)</li>
+                    <li>\(\dfrac{p}{q}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Dari hubungan yang diberikan pada soal:
+                    \[
+                    \begin{aligned}
+                    \dfrac{1}{p} + \dfrac{1}{q} &= 1 \\
+                    \dfrac{1}{p} &= 1 - \dfrac{1}{q}
+                    \end{aligned}
+                    \]
+                    Deret \(\dfrac{1}{p}+\dfrac{1}{pq}+\dfrac{1}{pq^2}+\cdots\) merupakan deret geometri tak hingga dengan:
+                    <ul>
+                        <li>Suku pertama: \(a = \dfrac{1}{p}\)</li>
+                        <li>Rasio: \(r = \dfrac{1}{q}\)</li>
+                    </ul>
+                    Jumlah tak hingga deret tersebut adalah:
+                    \[
+                    \begin{aligned}
+                    S_\infty &= \dfrac{a}{1 - r} \\[6pt]
+                    &= \dfrac{\dfrac{1}{p}}{1 - \dfrac{1}{q}}
+                    \end{aligned}
+                    \]
+                    Karena \(1 - \dfrac{1}{q} = \dfrac{1}{p}\), maka:
+                    \[
+                    S_\infty = \dfrac{\dfrac{1}{p}}{\dfrac{1}{p}} = 1
+                    \]
+                    <div class="kesimpulan">
+                        Jadi, jumlah tak hingga deret tersebut adalah <b>1</b>.<br>
+                        <b>Jawaban: A</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

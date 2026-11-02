@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Fungsi</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Fungsi</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Relasi dan Fungsi (Pemetaan)</h2>
+            <p>
+                <strong>Relasi</strong> dari himpunan $A$ ke himpunan $B$ adalah aturan yang memasangkan anggota-anggota himpunan $A$ dengan anggota-anggota himpunan $B$. Sedangkan <strong>Fungsi (Pemetaan)</strong> dari himpunan $A$ ke himpunan $B$ adalah relasi khusus yang memasangkan <em>setiap</em> anggota himpunan $A$ dengan <em>tepat satu</em> anggota himpunan $B$.
+            </p>
+            <p>
+                Dua syarat mutlak agar suatu relasi $f: A \to B$ disebut sebagai <strong>fungsi</strong> adalah:
+            </p>
+            <ul>
+                <li><strong>Semua anggota domain habis dipetakan:</strong> Tidak boleh ada anggota himpunan asal ($A$) yang tidak memiliki pasangan di $B$.</li>
+                <li><strong>Tidak bercabang dari domain:</strong> Setiap anggota himpunan asal ($A$) hanya boleh memiliki tepat satu pasangan di $B$ (tidak boleh memilih lebih dari satu pasangan).</li>
+            </ul>
+            <p>
+                Apabila banyaknya anggota himpunan $A$ adalah $n(A) = a$ dan banyaknya anggota himpunan $B$ adalah $n(B) = b$, maka:
+                $$\text{Banyaknya fungsi yang mungkin dari } A \text{ ke } B = b^a = [n(B)]^{n(A)}$$
+                $$\text{Banyaknya fungsi yang mungkin dari } B \text{ ke } A = a^b = [n(A)]^{n(B)}$$
+            </p>
+
+            <h2>2. Unsur-Unsur dan Notasi Fungsi</h2>
+            <p>
+                Suatu fungsi $f$ yang memetakan himpunan $A$ ke himpunan $B$ dinotasikan sebagai:
+                $$f : A \to B \quad \text{atau} \quad f : x \mapsto y = f(x)$$
+                di mana $x \in A$ disebut variabel bebas (input) dan $y = f(x) \in B$ disebut variabel terikat (output/bayangan/peta dari $x$).
+            </p>
+            <ul>
+                <li><strong>Domain / Daerah Asal ($D_f$):</strong> Seluruh anggota himpunan asal $A$. Pada diagram di bawah, $D_f = \{1, 2, 3\}$.</li>
+                <li><strong>Kodomain / Daerah Kawan ($K_f$):</strong> Seluruh anggota himpunan tujuan $B$. Pada diagram di bawah, $K_f = \{a, b, c, d\}$.</li>
+                <li><strong>Range / Daerah Hasil ($R_f$):</strong> Himpunan bagian dari kodomain $B$ yang benar-benar memiliki pasangan di domain $A$, atau dapat ditulis $R_f = \{y \in B \mid y = f(x) \text{ untuk suatu } x \in A\}$. Pada diagram di bawah, $R_f = \{a, b, c\}$.</li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-domain" style="width: 100%; max-width: 520px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Uji Garis Vertikal (Vertical Line Test)</h2>
+            <p>
+                Pada bidang koordinat Kartesius, suatu kurva atau grafik merepresentasikan fungsi $y = f(x)$ jika dan hanya jika <strong>setiap garis vertikal</strong> $x = k$ (garis yang sejajar sumbu-$Y$) memotong grafik tersebut <strong>paling banyak di satu titik</strong>.
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-uji-vertikal" style="width: 100%; max-width: 540px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Prinsip Uji Garis Vertikal: Jika ada garis vertikal yang memotong kurva di dua titik atau lebih, artinya satu nilai $x$ memiliki lebih dari satu nilai $y$, sehingga kurva tersebut BUKAN merupakan fungsi $y = f(x)$.
+            </div>
+
+            <h2>4. Menentukan Domain dan Range Alami Fungsi Real</h2>
+            <p>
+                Jika daerah asal suatu fungsi $y = f(x)$ tidak disebutkan secara spesifik, maka diasumsikan daerah asalnya adalah himpunan bilangan real terbesar yang membuat nilai $f(x)$ terdefinisi dan bernilai real (disebut <strong>Domain Alami</strong>).
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bentuk Fungsi $f(x)$</th>
+                            <th>Syarat Terdefinisi (Bernilai Real)</th>
+                            <th>Contoh Fungsi & Domain Alaminya</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Fungsi Polinomial / Suku Banyak<br>$f(x) = a_n x^n + \dots + a_1 x + a_0$</td>
+                            <td>Terdefinisi untuk semua $x \in \mathbb{R}$</td>
+                            <td class="text-left">$f(x) = x^2 - 4x + 3$<br>$D_f = \{x \mid x \in \mathbb{R}\}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Fungsi Rasional (Pecahan)<br>$f(x) = \dfrac{u(x)}{v(x)}$</td>
+                            <td>Penyebut tidak boleh nol:<br>$v(x) \neq 0$</td>
+                            <td class="text-left">$f(x) = \dfrac{2x+1}{x-3}$<br>$D_f = \{x \mid x \neq 3, x \in \mathbb{R}\}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Fungsi Irasional (Akar Pangkat Genap)<br>$f(x) = \sqrt{u(x)}$</td>
+                            <td>Di dalam akar harus tak negatif:<br>$u(x) \ge 0$</td>
+                            <td class="text-left">$f(x) = \sqrt{2x - 6}$<br>$2x - 6 \ge 0 \implies D_f = \{x \mid x \ge 3, x \in \mathbb{R}\}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Akar di Penyebut Pecahan<br>$f(x) = \dfrac{u(x)}{\sqrt{v(x)}}$</td>
+                            <td>Di dalam akar harus positif murni:<br>$v(x) > 0$</td>
+                            <td class="text-left">$f(x) = \dfrac{5}{\sqrt{4 - x}}$<br>$4 - x > 0 \implies D_f = \{x \mid x < 4, x \in \mathbb{R}\}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Fungsi Logaritma<br>$f(x) = {}^a\log(u(x))$</td>
+                            <td>Numerus positif & basis valid:<br>$u(x) > 0, \; a > 0, \; a \neq 1$</td>
+                            <td class="text-left">$f(x) = {}^2\log(x - 1)$<br>$x - 1 > 0 \implies D_f = \{x \mid x > 1, x \in \mathbb{R}\}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>5. Sifat-Sifat Khusus Fungsi</h2>
+            <p>
+                Berdasarkan cara pemasangan anggota domain $A$ ke kodomain $B$, fungsi dikelompokkan menjadi tiga sifat utama:
+            </p>
+            <ol>
+                <li>
+                    <strong>Fungsi Injektif (Satu-Satu / Into):</strong><br>
+                    Fungsi $f: A \to B$ disebut injektif jika setiap anggota yang berbeda di domain $A$ dipetakan ke anggota yang berbeda pula di kodomain $B$. Secara matematis:
+                    $$\text{Untuk setiap } x_1, x_2 \in A, \text{ jika } x_1 \neq x_2 \text{ maka } f(x_1) \neq f(x_2)$$
+                    (atau ekuivalen dengan: jika $f(x_1) = f(x_2)$ maka $x_1 = x_2$). Syarat ukuran himpunannya adalah $n(A) \le n(B)$.
+                </li>
+                <li>
+                    <strong>Fungsi Surjektif (Kepada / Onto):</strong><br>
+                    Fungsi $f: A \to B$ disebut surjektif jika setiap anggota di kodomain $B$ memiliki pasangan di domain $A$ (tidak ada anggota $B$ yang menganggur). Dengan kata lain, <strong>Range sama dengan Kodomain ($R_f = K_f$)</strong>. Syarat ukuran himpunannya adalah $n(A) \ge n(B)$.
+                </li>
+                <li>
+                    <strong>Fungsi Bijektif (Korespondensi Satu-Satu):</strong><br>
+                    Fungsi $f: A \to B$ disebut bijektif jika fungsi tersebut sekaligus bersifat <strong>injektif dan surjektif</strong>. Hanya fungsi bijektif yang memiliki <strong>fungsi invers ($f^{-1}$)</strong> yang juga merupakan fungsi. Syarat mutlaknya adalah $n(A) = n(B) = n$, dan banyaknya korespondensi satu-satu yang mungkin adalah $n! = n \times (n-1) \times \dots \times 1$.
+                </li>
+            </ol>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-sifat" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Fungsi Genap, Fungsi Ganjil, dan Operasi Aljabar Fungsi</h2>
+            <p>
+                <strong>A. Fungsi Genap dan Fungsi Ganjil:</strong>
+            </p>
+            <ul>
+                <li><strong>Fungsi Genap:</strong> Memenuhi $f(-x) = f(x)$ untuk setiap $x \in D_f$. Grafiknya simetris terhadap <strong>sumbu-$Y$</strong>. Contoh: $f(x) = x^2$, $f(x) = \cos x$, $f(x) = |x|$.</li>
+                <li><strong>Fungsi Ganjil:</strong> Memenuhi $f(-x) = -f(x)$ untuk setiap $x \in D_f$. Grafiknya simetris putar terhadap <strong>titik asal $O(0,0)$</strong>. Contoh: $f(x) = x^3$, $f(x) = \sin x$, $f(x) = 2x$.</li>
+            </ul>
+            <p>
+                <strong>B. Operasi Aljabar pada Fungsi:</strong><br>
+                Jika $f$ dan $g$ adalah dua fungsi dengan domain $D_f$ dan $D_g$, maka operasi aljabar pada kedua fungsi tersebut didefinisikan sebagai berikut:
+            </p>
+            <ul>
+                <li><strong>Penjumlahan:</strong> $(f + g)(x) = f(x) + g(x)$ dengan domain $D_{f+g} = D_f \cap D_g$.</li>
+                <li><strong>Pengurangan:</strong> $(f - g)(x) = f(x) - g(x)$ dengan domain $D_{f-g} = D_f \cap D_g$.</li>
+                <li><strong>Perkalian:</strong> $(f \cdot g)(x) = f(x) \cdot g(x)$ dengan domain $D_{f \cdot g} = D_f \cap D_g$.</li>
+                <li><strong>Pembagian:</strong> $\left(\dfrac{f}{g}\right)(x) = \dfrac{f(x)}{g(x)}$ dengan domain $D_{f/g} = (D_f \cap D_g) \setminus \{x \mid g(x) = 0\}$.</li>
+            </ul>
+
+            <h2>7. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal di bawah ini untuk memahami cara menyelesaikan persoalan fungsi mulai dari menentukan nilai fungsi, mencari domain dan range, hingga menghitung banyaknya pemetaan. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membaca pembahasan lengkap.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Diketahui himpunan $A = \{a, b, c\}$ dan himpunan $B = \{1, 2, 3, 4\}$. Tentukan:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Banyaknya semua fungsi yang mungkin dibentuk dari himpunan $A$ ke himpunan $B$.</li>
+                        <li>Banyaknya fungsi injektif (satu-satu) yang mungkin dibentuk dari himpunan $A$ ke himpunan $B$.</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Diketahui banyaknya anggota himpunan $A$ adalah $n(A) = 3$ dan banyaknya anggota himpunan $B$ adalah $n(B) = 4$.
+                    </p>
+                    <p>
+                        <strong>1. Banyaknya fungsi dari $A$ ke $B$:</strong><br>
+                        Setiap anggota dari $3$ anggota di $A$ bebas memilih $1$ dari $4$ pilihan pasangan di $B$:
+                        $$\text{Banyak fungsi } (A \to B) = [n(B)]^{n(A)} = 4^3 = 64\text{ fungsi}$$
+                    </p>
+                    <p>
+                        <strong>2. Banyaknya fungsi injektif (satu-satu) dari $A$ ke $B$:</strong><br>
+                        Agar bersifat satu-satu, anggota di $A$ tidak boleh memilih pasangan yang sama di $B$:
+                    </p>
+                    <ul>
+                        <li>Anggota pertama ($a$) memiliki $4$ pilihan di $B$.</li>
+                        <li>Anggota kedua ($b$) memiliki sisa $3$ pilihan di $B$.</li>
+                        <li>Anggota ketiga ($c$) memiliki sisa $2$ pilihan di $B$.</li>
+                    </ul>
+                    <p>
+                        Dengan aturan perkalian (permutasi $P(4,3)$), banyaknya fungsi injektif adalah:
+                        $$\text{Banyak fungsi injektif} = 4 \times 3 \times 2 = 24\text{ fungsi}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, banyaknya fungsi dari $A$ ke $B$ adalah $64$ fungsi, dan banyaknya fungsi injektif dari $A$ ke $B$ adalah $24$ fungsi.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Tentukan daerah asal alami (domain) dari fungsi real $f(x) = \dfrac{\sqrt{2x + 6}}{x^2 - x - 6}$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Fungsi $f(x) = \dfrac{\sqrt{2x + 6}}{x^2 - x - 6}$ memuat bentuk akar pada pembilang dan bentuk kuadrat pada penyebut. Agar $f(x)$ bernilai real dan terdefinisi, harus terpenuhi dua syarat sekaligus:
+                    </p>
+                    <p>
+                        <strong>Syarat 1 (Bilangan di dalam akar harus tak negatif):</strong>
+                        $$2x + 6 \ge 0 \implies 2x \ge -6 \implies x \ge -3$$
+                    </p>
+                    <p>
+                        <strong>Syarat 2 (Penyebut pecahan tidak boleh bernilai nol):</strong>
+                        $$x^2 - x - 6 \neq 0$$
+                        $$(x - 3)(x + 2) \neq 0$$
+                        $$x \neq 3 \quad \text{dan} \quad x \neq -2$$
+                    </p>
+                    <p>
+                        Kita iriskan kedua syarat tersebut: karena $-2$ dan $3$ berada di dalam rentang $x \ge -3$, maka kedua nilai tersebut harus dikecualikan dari himpunan penyelesaian.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, domain alami fungsi tersebut adalah $D_f = \{x \mid x \ge -3, \; x \neq -2, \; x \neq 3, \; x \in \mathbb{R}\}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Suatu fungsi $f: \mathbb{R} \to \mathbb{R}$ memenuhi persamaan $f(2x - 1) = 6x + 5$ untuk setiap bilangan real $x$. Tentukan rumus fungsi $f(x)$ dan nilai dari $f(-3)$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Diketahui $f(2x - 1) = 6x + 5$. Misalkan bentuk di dalam kurung sebagai variabel baru $u$:
+                        $$u = 2x - 1 \implies 2x = u + 1 \implies x = \frac{u + 1}{2}$$
+                    </p>
+                    <p>
+                        Substitusikan $x = \dfrac{u + 1}{2}$ ke dalam persamaan awal:
+                        $$f(u) = 6\left(\frac{u + 1}{2}\right) + 5$$
+                        $$f(u) = 3(u + 1) + 5 = 3u + 3 + 5 = 3u + 8$$
+                    </p>
+                    <p>
+                        Dengan mengganti kembali variabel $u$ menjadi $x$, kita peroleh rumus fungsi $f(x)$:
+                        $$f(x) = 3x + 8$$
+                    </p>
+                    <p>
+                        Selanjutnya, untuk mencari nilai $f(-3)$, substitusikan $x = -3$:
+                        $$f(-3) = 3(-3) + 8 = -9 + 8 = -1$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, rumus fungsi tersebut adalah $f(x) = 3x + 8$ dan nilai dari $f(-3) = -1$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiFungsi() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const redColor = isDark ? '#f87171' : '#ef4444';
+            const gridColor = isDark ? '#334155' : '#e2e8f0';
+            const subtleFill = isDark ? 'rgba(20, 184, 166, 0.12)' : 'rgba(13, 148, 136, 0.08)';
+            const amberFill = isDark ? 'rgba(251, 191, 36, 0.16)' : 'rgba(217, 119, 6, 0.12)';
+
+            /* -------------------------------------------------------------
+               1. DIAGRAM PANAH: DOMAIN, KODOMAIN, DAN RANGE
+               ------------------------------------------------------------- */
+            const geoDomain = new GeoSVG('geosvg-domain', 500, 260, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Judul Himpunan
+            geoDomain.buatTeks(120, 22, "Himpunan A (Domain)", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: tealColor });
+            geoDomain.buatTeks(370, 22, "Himpunan B (Kodomain)", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: tealColor });
+            geoDomain.buatTeks(245, 50, "f", { position: 'middle-center', fontWeight: 'bold', fontStyle: 'italic', fontSize: '16px', fill: amberColor });
+
+            // Elips Domain A dan Kodomain B
+            geoDomain.buatElips(120, 138, 52, 92, { fill: subtleFill, stroke: tealColor, strokeWidth: 2 });
+            geoDomain.buatElips(370, 138, 62, 98, { fill: subtleFill, stroke: tealColor, strokeWidth: 2 });
+
+            // Elips khusus Range di dalam B
+            geoDomain.buatElips(370, 118, 42, 65, { fill: amberFill, stroke: amberColor, strokeWidth: 1.5, dashed: '4 3' });
+            geoDomain.buatTeks(370, 172, "Range (Rf)", { position: 'middle-center', fontSize: '10.5px', fontWeight: 'bold', fill: amberColor });
+
+            // Titik-titik di A dan B
+            const ptsA = [
+                { pt: [120, 82], label: '1' },
+                { pt: [120, 138], label: '2' },
+                { pt: [120, 194], label: '3' }
+            ];
+            const ptsB = [
+                { pt: [370, 72], label: 'a' },
+                { pt: [370, 112], label: 'b' },
+                { pt: [370, 152], label: 'c' },
+                { pt: [370, 206], label: 'd' }
+            ];
+
+            // Panah Pemetaan: 1 -> a, 2 -> b, 3 -> c
+            geoDomain.buatVektor([132, 82], [355, 72], { stroke: amberColor, strokeWidth: 1.8 });
+            geoDomain.buatVektor([132, 138], [355, 112], { stroke: amberColor, strokeWidth: 1.8 });
+            geoDomain.buatVektor([132, 194], [355, 152], { stroke: amberColor, strokeWidth: 1.8 });
+
+            ptsA.forEach(item => {
+                geoDomain.buatTitik(item.pt, { size: 4.5, color: tealColor, label: item.label, labelPosition: 'middle-left', labelDistance: 12, labelColor: textColor, bold: true });
+            });
+            ptsB.forEach(item => {
+                geoDomain.buatTitik(item.pt, { size: 4.5, color: item.label === 'd' ? mutedColor : amberColor, label: item.label, labelPosition: 'middle-right', labelDistance: 12, labelColor: textColor, bold: true });
+            });
+
+            /* -------------------------------------------------------------
+               2. UJI GARIS VERTIKAL (VERTICAL LINE TEST)
+               ------------------------------------------------------------- */
+            const geoUji = new GeoSVG('geosvg-uji-vertikal', 520, 220, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Panel Kiri: Fungsi y = f(x)
+            geoUji.buatTeks(130, 18, "FUNGSI (1 Titik Potong)", { position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: tealColor });
+            geoUji.buatVektor(30, 165, 230, 165, { stroke: mutedColor, strokeWidth: 1.5, label: 'x', labelPosisi: 'akhir', labelSisi: 'kanan', labelColor: mutedColor });
+            geoUji.buatVektor(110, 195, 110, 35, { stroke: mutedColor, strokeWidth: 1.5, label: 'y', labelPosisi: 'akhir', labelSisi: 'kiri', labelColor: mutedColor });
+
+            // Kurva Parabola Terbuka ke Atas
+            const kurvaFungsi = [
+                [45, 65],
+                [80, 125],
+                [125, 150],
+                [170, 125],
+                [205, 65]
+            ];
+            geoUji.buatKurvaHalus(kurvaFungsi, { stroke: tealColor, strokeWidth: 2.5, tension: 0.25 });
+
+            // Garis Vertikal Uji pada x = 170
+            geoUji.buatSegmen(170, 42, 170, 190, { stroke: amberColor, strokeWidth: 1.8, dashed: '5 4' });
+            geoUji.buatTitik([170, 125], { size: 4.5, color: amberColor, label: 'P(x, y)', labelPosition: 'bottom-right', labelColor: amberColor, fontSize: '11px', bold: true });
+
+            // Panel Kanan: Bukan Fungsi (Parabola Menyamping)
+            geoUji.buatTeks(390, 18, "BUKAN FUNGSI (2 Titik Potong)", { position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: redColor });
+            geoUji.buatVektor(290, 115, 490, 115, { stroke: mutedColor, strokeWidth: 1.5, label: 'x', labelPosisi: 'akhir', labelSisi: 'kanan', labelColor: mutedColor });
+            geoUji.buatVektor(340, 195, 340, 35, { stroke: mutedColor, strokeWidth: 1.5, label: 'y', labelPosisi: 'akhir', labelSisi: 'kiri', labelColor: mutedColor });
+
+            const kurvaBukan = [
+                [455, 50],
+                [385, 72],
+                [340, 115],
+                [385, 158],
+                [455, 180]
+            ];
+            geoUji.buatKurvaHalus(kurvaBukan, { stroke: redColor, strokeWidth: 2.5, tension: 0.25 });
+
+            // Garis Vertikal Uji pada x = 415
+            geoUji.buatSegmen(415, 42, 415, 190, { stroke: amberColor, strokeWidth: 1.8, dashed: '5 4' });
+            geoUji.buatTitik([415, 62], { size: 4.5, color: redColor, label: '(x, y₁)', labelPosition: 'top-right', labelColor: redColor, fontSize: '11px', bold: true });
+            geoUji.buatTitik([415, 168], { size: 4.5, color: redColor, label: '(x, y₂)', labelPosition: 'bottom-right', labelColor: redColor, fontSize: '11px', bold: true });
+
+            /* -------------------------------------------------------------
+               3. SIFAT FUNGSI: INJEKTIF, SURJEKTIF, DAN BIJEKTIF
+               ------------------------------------------------------------- */
+            const geoSifat = new GeoSVG('geosvg-sifat', 560, 215, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            function gambarPasanganElips(offsetX, judul, yListA, yListB, panahIdx) {
+                const xA = offsetX + 42;
+                const xB = offsetX + 132;
+
+                geoSifat.buatTeks(offsetX + 87, 18, judul, { position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: tealColor });
+                geoSifat.buatElips(xA, 118, 26, 75, { fill: subtleFill, stroke: tealColor, strokeWidth: 1.8 });
+                geoSifat.buatElips(xB, 118, 26, 75, { fill: subtleFill, stroke: tealColor, strokeWidth: 1.8 });
+
+                panahIdx.forEach(([i, j]) => {
+                    geoSifat.buatVektor([xA + 6, yListA[i]], [xB - 8, yListB[j]], { stroke: amberColor, strokeWidth: 1.6 });
+                });
+
+                yListA.forEach(y => geoSifat.buatTitik([xA, y], { size: 3.8, color: tealColor }));
+                yListB.forEach(y => geoSifat.buatTitik([xB, y], { size: 3.8, color: amberColor }));
+            }
+
+            // 1. Injektif (3 di A -> 4 di B, satu-satu)
+            gambarPasanganElips(
+                5,
+                "1. Injektif (Satu-Satu)",
+                [78, 118, 158],
+                [68, 101, 135, 168],
+                [[0, 0], [1, 1], [2, 3]]
+            );
+
+            // 2. Surjektif (4 di A -> 3 di B, semua B punya pasangan)
+            gambarPasanganElips(
+                192,
+                "2. Surjektif (Onto)",
+                [68, 101, 135, 168],
+                [78, 118, 158],
+                [[0, 0], [1, 1], [2, 1], [3, 2]]
+            );
+
+            // 3. Bijektif (3 di A -> 3 di B, korespondensi satu-satu)
+            gambarPasanganElips(
+                380,
+                "3. Bijektif (1-1 & Onto)",
+                [78, 118, 158],
+                [78, 118, 158],
+                [[0, 1], [1, 0], [2, 2]]
+            );
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiFungsi();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiFungsi, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Cauchy Schwarz</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Cauchy Schwarz</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan bilangan real \(x\) dan \(y\) sehingga memenuhi persamaan:
+                \[4x^2 + y^2 = 4x - 2y + 7\]
+                Jika diketahui nilai maksimum dan minimum dari \(5x + 6y\) adalah berturut-turut \(A\) dan \(B\), maka carilah nilai \(|A| + |B|\) (\(|k|\) menyatakan nilai mutlak dari \(k\)).
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Ubah persamaan yang diberikan ke dalam bentuk kuadrat sempurna:
+                    \[
+                    \begin{aligned} 
+                    4x^2 - 4x + y^2 + 2y &= 7 \\
+                    (4x^2 - 4x + 1) + (y^2 + 2y + 1) &= 7 + 1 + 1 \\
+                    (2x - 1)^2 + (y + 1)^2 &= 9 = 3^2
+                    \end{aligned}
+                    \]
+                    Misalkan:
+                    \[a = 2x - 1 \implies x = \dfrac{a + 1}{2}\]
+                    \[b = y + 1 \implies y = b - 1\]
+                    sehingga diperoleh hubungan \(a^2 + b^2 = 3^2 = 9\).
+                    <br><br>
+                    Nyatakan bentuk \(5x + 6y\) dalam variabel \(a\) dan \(b\):
+                    \[
+                    \begin{aligned}
+                    5x + 6y &= 5\left(\dfrac{a + 1}{2}\right) + 6(b - 1) \\[4pt]
+                    &= \dfrac{5a + 5}{2} + \dfrac{12b - 12}{2} \\[4pt]
+                    &= \dfrac{5a + 12b - 7}{2}
+                    \end{aligned}
+                    \]
+                    Gunakan Pertidaksamaan Cauchy-Schwarz untuk bentuk \(5a + 12b\):
+                    \[
+                    \begin{aligned}
+                    (5a + 12b)^2 &\le (5^2 + 12^2)(a^2 + b^2) \\
+                    &\le (25 + 144)(9) \\
+                    &\le (169)(9) = 13^2 \times 3^2 = 39^2
+                    \end{aligned}
+                    \]
+                    Sehingga:
+                    \[
+                    \begin{aligned}
+                    -39 &\le 5a + 12b \le 39 \\
+                    -39 - 7 &\le 5a + 12b - 7 \le 39 - 7 \\
+                    -46 &\le 5a + 12b - 7 \le 32
+                    \end{aligned}
+                    \]
+                    Bagi ketiga ruas dengan 2:
+                    \[
+                    -23 \le \dfrac{5a + 12b - 7}{2} \le 16 \implies -23 \le 5x + 6y \le 16
+                    \]
+                    Diperoleh nilai maksimum \(A = 16\) dan nilai minimum \(B = -23\).
+                    <br><br>
+                    Maka:
+                    \[|A| + |B| = |16| + |-23| = 16 + 23 = 39\]
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(|A| + |B|\) adalah <b>39</b>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan \(m\) merupakan nilai terbesar dari \(z\) yang memenuhi:
+                \[x + y + z = 5 \quad \text{dan} \quad xy + xz + yz = 3\]
+                Jika \(m\) dapat dituliskan sebagai \(m = \dfrac{p}{q}\), dengan \(p\) dan \(q\) merupakan bilangan bulat positif yang relatif prima, nilai dari \(p + q\) adalah ....
+            </div>
+            <div class="soal-sumber"><a href="https://chat.whatsapp.com/InkIX04eRt24DcjBEPtxXE" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Hitung terlebih dahulu jumlah kuadrat \(x^2 + y^2 + z^2\):
+                    \[
+                    \begin{aligned}
+                    x^2 + y^2 + z^2 &= (x + y + z)^2 - 2(xy + xz + yz) \\
+                    &= 5^2 - 2(3) \\
+                    &= 25 - 6 = 19
+                    \end{aligned}
+                    \]
+                    Sehingga:
+                    \[x^2 + y^2 = 19 - z^2\]
+                    Dari persamaan pertama, kita juga memiliki:
+                    \[x + y = 5 - z\]
+                    Terapkan Pertidaksamaan Cauchy-Schwarz pada vektor \((x, y)\) dan \((1, 1)\):
+                    \[
+                    \begin{aligned}
+                    (x^2 + y^2)(1^2 + 1^2) &\ge (x \cdot 1 + y \cdot 1)^2 \\
+                    (19 - z^2)(2) &\ge (5 - z)^2 \\
+                    38 - 2z^2 &\ge 25 - 10z + z^2 \\
+                    3z^2 - 10z - 13 &\le 0 \\
+                    (3z - 13)(z + 1) &\le 0
+                    \end{aligned}
+                    \]
+                    Dari pertidaksamaan di atas, interval nilai \(z\) yang memenuhi adalah:
+                    \[-1 \le z \le \dfrac{13}{3}\]
+                    Nilai terbesar dari \(z\) adalah:
+                    \[m = \dfrac{13}{3}\]
+                    Karena \(p = 13\) dan \(q = 3\) merupakan bilangan bulat positif yang relatif prima (\(\text{FPB}(13, 3) = 1\)), maka:
+                    \[p + q = 13 + 3 = 16\]
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(p + q\) adalah <b>16</b>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
