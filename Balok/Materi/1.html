@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Balok</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Balok</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Unsur-Unsur Balok</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Balok (Cuboid / Rectangular Prism)</strong> adalah bangun ruang sisi datar berdimensi tiga yang dibatasi oleh tiga pasang sisi berbentuk persegi panjang (atau sepasang di antaranya berbentuk persegi) yang saling kongruen dan sejajar.
+                    </p>
+                    <p>
+                        Ukuran sebuah balok $ABCD.EFGH$ ditentukan oleh tiga dimensi utama yang saling tegak lurus di satu titik sudut, yaitu <strong>panjang ($p$)</strong>, <strong>lebar ($l$)</strong>, dan <strong>tinggi ($t$)</strong>.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-balok-dasar" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Unsur Balok</th>
+                            <th> Banyaknya </th>
+                            <th>Penjelasan dan Rincian pada Balok $ABCD.EFGH$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Titik Sudut</strong></td>
+                            <td>$8$ buah</td>
+                            <td class="text-left">Titik potong antara tiga rusuk: $A, B, C, D, E, F, G,$ dan $H$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rusuk</strong></td>
+                            <td>$12$ buah</td>
+                            <td class="text-left">
+                                Terdiri dari 3 kelompok rusuk sejajar yang sama panjang:<br>
+                                • $4$ rusuk panjang ($p$): $AB, DC, EF, HG$<br>
+                                • $4$ rusuk lebar ($l$): $BC, AD, FG, EH$<br>
+                                • $4$ rusuk tinggi ($t$): $AE, BF, CG, DH$
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sisi (Bidang)</strong></td>
+                            <td>$6$ buah</td>
+                            <td class="text-left">
+                                Terdiri dari 3 pasang persegi panjang yang kongruen:<br>
+                                • Sisi alas & atas ($p \times l$): $ABCD$ dan $EFGH$<br>
+                                • Sisi depan & belakang ($p \times t$): $ABFE$ dan $DCGH$<br>
+                                • Sisi kanan & kiri ($l \times t$): $BCGF$ dan $ADHE$
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diagonal Bidang (Sisi)</strong></td>
+                            <td>$12$ buah</td>
+                            <td class="text-left">Ruas garis yang menghubungkan dua titik sudut berhadapan pada satu sisi yang sama (masing-masing sisi memiliki $2$ diagonal).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diagonal Ruang</strong></td>
+                            <td>$4$ buah</td>
+                            <td class="text-left">Ruas garis yang menghubungkan dua titik sudut berhadapan di dalam ruang balok: $AG, BH, CE,$ dan $DF$ (keempatnya sama panjang).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bidang Diagonal</strong></td>
+                            <td>$6$ buah</td>
+                            <td class="text-left">Bidang di dalam balok yang melalui dua rusuk berhadapan: $ABGH, CDEF, BCHE, ADGF, ACGE,$ dan $BDHF$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>2. Panjang Kerangka, Luas Permukaan, dan Volume Balok</h2>
+            <p>
+                Berdasarkan ukuran panjang ($p$), lebar ($l$), dan tinggi ($t$) balok, kita dapat menurunkan rumus-rumus metrik utama sebagai berikut:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besaran</th>
+                            <th>Rumus Matematika</th>
+                            <th>Keterangan & Penurunan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Panjang Kerangka ($K$)</strong></td>
+                            <td>$$K = 4p + 4l + 4t = 4(p + l + t)$$</td>
+                            <td class="text-left">Jumlah seluruh panjang ke-$12$ rusuk pembentuk balok.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Luas Permukaan ($L_p$)</strong></td>
+                            <td>$$L_p = 2(pl + pt + lt)$$</td>
+                            <td class="text-left">Jumlah luas dari $3$ pasang persegi panjang pada jaring-jaring balok: $2(p \cdot l) + 2(p \cdot t) + 2(l \cdot t)$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Volume ($V$)</strong></td>
+                            <td>$$V = p \times l \times t$$</td>
+                            <td class="text-left">Hasil kali luas alas ($L_{\text{alas}} = p \times l$) dengan tinggi balok ($t$).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Hubungan Volume dengan Luas Tiga Sisi Berdampingan:</strong><br>
+                        Jika diketahui luas tiga buah sisi balok yang saling bertemu di satu titik sudut, yaitu $L_1 = p \cdot l$, $L_2 = p \cdot t$, dan $L_3 = l \cdot t$, maka hasil kali ketiganya adalah:
+                        $$L_1 \times L_2 \times L_3 = (pl)(pt)(lt) = p^2 l^2 t^2 = (plt)^2 = V^2$$
+                        Sehingga volume balok dapat dihitung langsung tanpa harus mencari nilai $p, l, t$ satu per satu:
+                        $$V = \sqrt{L_1 \times L_2 \times L_3}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-jaring-balok" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Diagonal Bidang, Diagonal Ruang, dan Bidang Diagonal</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Dengan menerapkan <strong>Teorema Pythagoras</strong> pada segitiga siku-siku yang terbentuk di setiap sisi maupun di dalam ruang balok, diperoleh rumus-rumus berikut:
+                    </p>
+                    <ol>
+                        <li>
+                            <strong>Panjang Diagonal Bidang (Diagonal Sisi):</strong><br>
+                            Terdapat 3 ukuran panjang diagonal bidang sesuai pasangan sisinya:
+                            <ul>
+                                <li>Pada sisi alas/atas ($ABCD / EFGH$): $d_{s1} = \sqrt{p^2 + l^2}$</li>
+                                <li>Pada sisi depan/belakang ($ABFE / DCGH$): $d_{s2} = \sqrt{p^2 + t^2}$</li>
+                                <li>Pada sisi samping ($BCGF / ADHE$): $d_{s3} = \sqrt{l^2 + t^2}$</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Panjang Diagonal Ruang ($d_r$):</strong><br>
+                            Perhatikan $\triangle ACG$ yang siku-siku di $C$, dengan $AC = \sqrt{p^2 + l^2}$ dan $CG = t$:
+                            $$d_r = AG = \sqrt{AC^2 + CG^2} = \sqrt{p^2 + l^2 + t^2}$$
+                        </li>
+                        <li>
+                            <strong>Luas Bidang Diagonal ($L_{bd}$):</strong><br>
+                            Setiap bidang diagonal berbentuk persegi panjang dengan salah satu sisinya merupakan rusuk balok dan sisi lainnya merupakan diagonal bidang:
+                            <ul>
+                                <li>Bidang $ACGE$ dan $BDHF$: $L = t \sqrt{p^2 + l^2}$</li>
+                                <li>Bidang $ABGH$ dan $CDEF$: $L = p \sqrt{l^2 + t^2}$</li>
+                                <li>Bidang $BCHE$ dan $ADGF$: $L = l \sqrt{p^2 + t^2}$</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-diagonal-balok" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Identitas Aljabar pada Balok (Rumus Cepat SNBT & Olimpiade)</h2>
+            <p>
+                Berdasarkan bentuk ekspresi aljabar kuadrat dari penjumlahan tiga variabel $(p + l + t)^2$, terdapat identitas sangat penting yang menghubungkan <strong>panjang kerangka ($K$)</strong>, <strong>panjang diagonal ruang ($d_r$)</strong>, dan <strong>luas permukaan ($L_p$)</strong>:
+                $$(p + l + t)^2 = (p^2 + l^2 + t^2) + 2(pl + pt + lt)$$
+                Dengan mensubstitusikan $p + l + t = \frac{K}{4}$, $p^2 + l^2 + t^2 = d_r^2$, dan $2(pl + pt + lt) = L_p$, diperoleh hubungan:
+                $$\left(\frac{K}{4}\right)^2 = d_r^2 + L_p \iff L_p = (p + l + t)^2 - d_r^2$$
+            </p>
+
+            <h2>5. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memahami penerapan konsep dan rumus balok pada berbagai variasi permasalahan:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Sebuah kawat dengan panjang $2\text{ meter}$ akan digunakan untuk membuat sebuah kerangka balok berukuran $20\text{ cm} \times 12\text{ cm} \times 9\text{ cm}$. Tentukan:
+                    <br>a) Panjang sisa kawat yang tidak terpakai!
+                    <br>b) Luas permukaan, volume, dan panjang diagonal ruang balok tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Diketahui ukuran balok: $p = 20\text{ cm}$, $l = 12\text{ cm}$, dan $t = 9\text{ cm}$.</p>
+                    <p><strong>a) Menghitung panjang kerangka dan sisa kawat:</strong></p>
+                    <p>
+                        $$K = 4(p + l + t) = 4(20 + 12 + 9) = 4(41) = 164\text{ cm}$$
+                        Karena panjang kawat tersedia adalah $2\text{ m} = 200\text{ cm}$, maka sisa kawat:
+                        $$\text{Sisa kawat} = 200\text{ cm} - 164\text{ cm} = 36\text{ cm}$$
+                    </p>
+                    <p><strong>b) Menghitung luas permukaan, volume, dan panjang diagonal ruang:</strong></p>
+                    <ul>
+                        <li>
+                            <strong>Luas Permukaan ($L_p$):</strong>
+                            $$L_p = 2(pl + pt + lt) = 2(20 \cdot 12 + 20 \cdot 9 + 12 \cdot 9)$$
+                            $$L_p = 2(240 + 180 + 108) = 2(528) = 1.056\text{ cm}^2$$
+                        </li>
+                        <li>
+                            <strong>Volume ($V$):</strong>
+                            $$V = p \times l \times t = 20 \times 12 \times 9 = 2.160\text{ cm}^3$$
+                        </li>
+                        <li>
+                            <strong>Panjang Diagonal Ruang ($d_r$):</strong>
+                            $$d_r = \sqrt{p^2 + l^2 + t^2} = \sqrt{20^2 + 12^2 + 9^2} = \sqrt{400 + 144 + 81} = \sqrt{625} = 25\text{ cm}$$
+                        </li>
+                    </ul>
+                    <div class="kesimpulan">
+                        Jadi, sisa kawat adalah $36\text{ cm}$, luas permukaan $1.056\text{ cm}^2$, volume $2.160\text{ cm}^3$, dan panjang diagonal ruang $25\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Perbandingan panjang, lebar, dan tinggi sebuah balok adalah $4 : 3 : 2$. Jika luas permukaan balok tersebut adalah $468\text{ cm}^2$, tentukan volume dan luas bidang diagonal terbesar dari balok tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Nyatakan ukuran balok dalam variabel pembanding $x$</strong></p>
+                    <p>
+                        Misalkan $p = 4x$, $l = 3x$, dan $t = 2x$ (dengan $x &gt; 0$). Substitusikan ke dalam rumus luas permukaan:
+                        $$L_p = 2(pl + pt + lt) = 468$$
+                        $$2\big((4x)(3x) + (4x)(2x) + (3x)(2x)\big) = 468$$
+                        $$2(12x^2 + 8x^2 + 6x^2) = 468 \iff 2(26x^2) = 468$$
+                        $$52x^2 = 468 \iff x^2 = \frac{468}{52} = 9 \implies x = 3$$
+                    </p>
+                    <p><strong>Langkah 2: Tentukan ukuran sebenarnya dan volume balok</strong></p>
+                    <p>
+                         diperoleh $p = 4(3) = 12\text{ cm}$, $l = 3(3) = 9\text{ cm}$, dan $t = 2(3) = 6\text{ cm}$. Maka volumenya:
+                        $$V = p \times l \times t = 12 \times 9 \times 6 = 648\text{ cm}^3$$
+                    </p>
+                    <p><strong>Langkah 3: Hitung luas bidang diagonal terbesar</strong></p>
+                    <p>
+                        Dari ketiga kemungkinan bidang diagonal, kita bandingkan kuadrat luasnya karena $\sqrt{(ab)^2 + (ac)^2}$ paling besar ketika hasil kali dua rusuk terbesarnya dijumlahkan:
+                    </p>
+                    <ul>
+                        <li>$L_1 = p\sqrt{l^2 + t^2} = 12\sqrt{9^2 + 6^2} = 12\sqrt{117} = 36\sqrt{13} = \sqrt{16.848}\text{ cm}^2$</li>
+                        <li>$L_2 = l\sqrt{p^2 + t^2} = 9\sqrt{12^2 + 6^2} = 9\sqrt{180} = 54\sqrt{5} = \sqrt{14.580}\text{ cm}^2$</li>
+                        <li>$L_3 = t\sqrt{p^2 + l^2} = 6\sqrt{12^2 + 9^2} = 6\sqrt{225} = 6 \times 15 = 90 = \sqrt{8.100}\text{ cm}^2$</li>
+                    </ul>
+                    <p>
+                        Terlihat bahwa bidang diagonal terbesar terjadi ketika rusuk terpanjang ($p = 12\text{ cm}$) dipasangkan dengan diagonal sisi samping ($\sqrt{l^2 + t^2}$), yaitu $36\sqrt{13}\text{ cm}^2$.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, volume balok adalah $648\text{ cm}^3$ dan luas bidang diagonal terbesarnya adalah $36\sqrt{13}\text{ cm}^2$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Diketahui sebuah balok memiliki luas sisi alas $48\text{ cm}^2$, luas sisi depan $60\text{ cm}^2$, dan luas sisi samping $80\text{ cm}^2$. Tentukan volume dan panjang diagonal ruang balok tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Hitung volume balok menggunakan rumus akar hasil kali luas tiga sisi</strong></p>
+                    <p>
+                        Diketahui $L_1 = pl = 48$, $L_2 = pt = 60$, dan $L_3 = lt = 80$.
+                        $$V = \sqrt{L_1 \times L_2 \times L_3} = \sqrt{48 \times 60 \times 80}$$
+                        Uraikan faktornya agar mudah diakarkan:
+                        $$V = \sqrt{(16 \times 3) \times (3 \times 20) \times (4 \times 20)} = \sqrt{16 \times 3^2 \times 20^2 \times 4}$$
+                        $$V = 4 \times 3 \times 20 \times 2 = 480\text{ cm}^3$$
+                    </p>
+                    <p><strong>Langkah 2: Tentukan masing-masing panjang $p, l,$ dan $t$</strong></p>
+                    <p>
+                        Karena $V = p \cdot l \cdot t = 480$, kita bagi $V$ dengan luas masing-masing sisi:
+                    </p>
+                    <ul>
+                        <li>$t = \dfrac{p \cdot l \cdot t}{p \cdot l} = \dfrac{480}{48} = 10\text{ cm}$</li>
+                        <li>$l = \dfrac{p \cdot l \cdot t}{p \cdot t} = \dfrac{480}{60} = 8\text{ cm}$</li>
+                        <li>$p = \dfrac{p \cdot l \cdot t}{l \cdot t} = \dfrac{480}{80} = 6\text{ cm}$</li>
+                    </ul>
+                    <p><strong>Langkah 3: Hitung panjang diagonal ruang ($d_r$)</strong></p>
+                    <p>
+                        $$d_r = \sqrt{p^2 + l^2 + t^2} = \sqrt{6^2 + 8^2 + 10^2} = \sqrt{36 + 64 + 100} = \sqrt{200} = 10\sqrt{2}\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, volume balok tersebut adalah $480\text{ cm}^3$ dan panjang diagonal ruangnya adalah $10\sqrt{2}\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Jumlah panjang seluruh rusuk sebuah balok adalah $96\text{ cm}$ dan panjang diagonal ruangnya adalah $14\text{ cm}$. Tanpa harus mencari ukuran panjang, lebar, dan tingginya satu per satu, tentukan luas permukaan balok tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Identifikasi besaran yang diketahui</strong></p>
+                    <ul>
+                        <li>Panjang kerangka: $K = 4(p + l + t) = 96\text{ cm} \implies p + l + t = \dfrac{96}{4} = 24\text{ cm}$.</li>
+                        <li>Panjang diagonal ruang: $d_r = \sqrt{p^2 + l^2 + t^2} = 14\text{ cm} \implies d_r^2 = p^2 + l^2 + t^2 = 196\text{ cm}^2$.</li>
+                    </ul>
+                    <p><strong>Langkah 2: Gunakan identitas aljabar balok</strong></p>
+                    <p>
+                        $$(p + l + t)^2 = (p^2 + l^2 + t^2) + 2(pl + pt + lt)$$
+                        $$(p + l + t)^2 = d_r^2 + L_p$$
+                        $$24^2 = 14^2 + L_p$$
+                        $$576 = 196 + L_p \iff L_p = 576 - 196 = 380\text{ cm}^2$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, luas permukaan balok tersebut adalah $380\text{ cm}^2$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Balok ABCD.EFGH dan Dimensi p, l, t
+            const elBalok = document.getElementById("svg-balok-dasar");
+            if (elBalok && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elBalok, 320, 215, {
+                    viewBox: "0 0 320 215",
+                    title: "Unsur-unsur Balok ABCD.EFGH"
+                });
+
+                const A = [35, 175], B = [215, 175];
+                const D = [90, 130], C = [270, 130];
+                const E = [35, 65],  F = [215, 65];
+                const H = [90, 20],  G = [270, 20];
+
+                // Bidang alas dan bidang depan transparan halus
+                geo1.buatPoligon([A, B, C, D], { fill: "rgba(13, 148, 136, 0.06)", stroke: "none" });
+                geo1.buatPoligon([A, B, F, E], { fill: "rgba(13, 148, 136, 0.04)", stroke: "none" });
+
+                // Rusuk tersembunyi (putus-putus)
+                geo1.buatSegmen(A, D, { stroke: "#64748b", strokeWidth: 1.5, dashed: true });
+                geo1.buatSegmen(D, C, { stroke: "#64748b", strokeWidth: 1.5, dashed: true });
+                geo1.buatSegmen(D, H, { stroke: "#64748b", strokeWidth: 1.5, dashed: true });
+
+                // Rusuk tampak (tebal)
+                geo1.buatSegmen(A, B, { stroke: "#0f766e", strokeWidth: 2 });
+                geo1.buatSegmen(B, C, { stroke: "#0f766e", strokeWidth: 2 });
+                geo1.buatSegmen(A, E, { stroke: "#0f766e", strokeWidth: 2 });
+                geo1.buatSegmen(B, F, { stroke: "#0f766e", strokeWidth: 2 });
+                geo1.buatSegmen(C, G, { stroke: "#0f766e", strokeWidth: 2 });
+                geo1.buatSegmen(E, F, { stroke: "#0f766e", strokeWidth: 2 });
+                geo1.buatSegmen(F, G, { stroke: "#0f766e", strokeWidth: 2 });
+                geo1.buatSegmen(G, H, { stroke: "#0f766e", strokeWidth: 2 });
+                geo1.buatSegmen(H, E, { stroke: "#0f766e", strokeWidth: 2 });
+
+                // Label Dimensi p, l, t
+                geo1.buatLabelSisi(A, B, "p", { jarak: 14, sisi: "kanan", color: "#dc2626", fontWeight: "bold", fontStyle: "italic", fontSize: "13px" });
+                geo1.buatLabelSisi(B, C, "l", { jarak: 13, sisi: "kanan", color: "#d97706", fontWeight: "bold", fontStyle: "italic", fontSize: "13px" });
+                geo1.buatLabelSisi(C, G, "t", { jarak: 13, sisi: "kanan", color: "#7c3aed", fontWeight: "bold", fontStyle: "italic", fontSize: "13px" });
+
+                // Titik Sudut
+                geo1.buatTitik(A, { size: 3, color: "#0f766e", label: "A", labelPosition: "bottom-left", bold: true });
+                geo1.buatTitik(B, { size: 3, color: "#0f766e", label: "B", labelPosition: "bottom-right", bold: true });
+                geo1.buatTitik(C, { size: 3, color: "#0f766e", label: "C", labelPosition: "middle-right", bold: true });
+                geo1.buatTitik(D, { size: 3, color: "#64748b", label: "D", labelPosition: "top-left", bold: true });
+                geo1.buatTitik(E, { size: 3, color: "#0f766e", label: "E", labelPosition: "middle-left", bold: true });
+                geo1.buatTitik(F, { size: 3, color: "#0f766e", label: "F", labelPosition: "top-left", bold: true });
+                geo1.buatTitik(G, { size: 3, color: "#0f766e", label: "G", labelPosition: "top-right", bold: true });
+                geo1.buatTitik(H, { size: 3, color: "#0f766e", label: "H", labelPosition: "top-left", bold: true });
+            }
+
+            // 2. Visualisasi Jaring-Jaring Balok (3 Pasang Sisi Kongruen)
+            const elJaring = document.getElementById("svg-jaring-balok");
+            if (elJaring && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elJaring, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    title: "Jaring-jaring Balok dengan 3 Pasang Sisi"
+                });
+
+                // Ukuran proporsional pada jaring-jaring: p = 80, l = 50, t = 35
+                const x0 = 95, y0 = 12;
+                const p = 80, l = 46, t = 34;
+
+                // Sisi Belakang (p x t)
+                geo2.buatPersegiPanjang(x0, y0, p, t, { fill: "rgba(217, 119, 6, 0.15)", stroke: "#0f766e", strokeWidth: 1.6 });
+                geo2.buatTeks(x0 + p / 2, y0 + t / 2, "p × t", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#b45309" });
+
+                // Sisi Alas (p x l)
+                const y1 = y0 + t;
+                geo2.buatPersegiPanjang(x0, y1, p, l, { fill: "rgba(13, 148, 136, 0.18)", stroke: "#0f766e", strokeWidth: 1.6 });
+                geo2.buatTeks(x0 + p / 2, y1 + l / 2, "p × l (Alas)", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#0f766e" });
+
+                // Sisi Kiri dan Kanan (t x l) menempel di samping Alas
+                geo2.buatPersegiPanjang(x0 - t, y1, t, l, { fill: "rgba(124, 58, 237, 0.15)", stroke: "#0f766e", strokeWidth: 1.6 });
+                geo2.buatTeks(x0 - t / 2, y1 + l / 2, "l×t", { position: "middle-center", fontSize: "10.5px", fontWeight: "bold", fill: "#6d28d9" });
+
+                geo2.buatPersegiPanjang(x0 + p, y1, t, l, { fill: "rgba(124, 58, 237, 0.15)", stroke: "#0f766e", strokeWidth: 1.6 });
+                geo2.buatTeks(x0 + p + t / 2, y1 + l / 2, "l×t", { position: "middle-center", fontSize: "10.5px", fontWeight: "bold", fill: "#6d28d9" });
+
+                // Sisi Depan (p x t)
+                const y2 = y1 + l;
+                geo2.buatPersegiPanjang(x0, y2, p, t, { fill: "rgba(217, 119, 6, 0.15)", stroke: "#0f766e", strokeWidth: 1.6 });
+                geo2.buatTeks(x0 + p / 2, y2 + t / 2, "p × t", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#b45309" });
+
+                // Sisi Atas (p x l)
+                const y3 = y2 + t;
+                geo2.buatPersegiPanjang(x0, y3, p, l, { fill: "rgba(13, 148, 136, 0.18)", stroke: "#0f766e", strokeWidth: 1.6 });
+                geo2.buatTeks(x0 + p / 2, y3 + l / 2, "p × l (Atas)", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#0f766e" });
+            }
+
+            // 3. Visualisasi Bidang Diagonal ACGE & Diagonal Ruang AG
+            const elDiag = document.getElementById("svg-diagonal-balok");
+            if (elDiag && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elDiag, 320, 215, {
+                    viewBox: "0 0 320 215",
+                    title: "Bidang Diagonal ACGE dan Diagonal Ruang AG"
+                });
+
+                const A = [35, 175], B = [215, 175];
+                const D = [90, 130], C = [270, 130];
+                const E = [35, 65],  F = [215, 65];
+                const H = [90, 20],  G = [270, 20];
+
+                // Bidang Diagonal ACGE (diarsir lembut)
+                geo3.buatPoligon([A, C, G, E], { fill: "rgba(217, 119, 6, 0.16)", stroke: "#d97706", strokeWidth: 1.5, dashed: true });
+
+                // Tanda siku-siku di C pada segitiga siku-siku ACG
+                geo3.buatSiku(A, C, G, { size: 11, stroke: "#dc2626" });
+
+                // Rusuk belakang putus-putus
+                geo3.buatSegmen(A, D, { stroke: "#94a3b8", strokeWidth: 1.3, dashed: true });
+                geo3.buatSegmen(D, C, { stroke: "#94a3b8", strokeWidth: 1.3, dashed: true });
+                geo3.buatSegmen(D, H, { stroke: "#94a3b8", strokeWidth: 1.3, dashed: true });
+
+                // Diagonal bidang AC dan Diagonal ruang AG
+                geo3.buatSegmen(A, C, { stroke: "#d97706", strokeWidth: 2, label: "ds", labelPosisi: 0.55, labelSisi: "kanan", labelJarak: 8, labelColor: "#b45309", bold: true });
+                geo3.buatSegmen(A, G, { stroke: "#dc2626", strokeWidth: 2.3, label: "dr = AG", labelPosisi: 0.48, labelSisi: "kiri", labelJarak: 9, labelColor: "#dc2626", bold: true });
+
+                // Rusuk luar balok
+                geo3.buatSegmen(A, B, { stroke: "#0f766e", strokeWidth: 1.8 });
+                geo3.buatSegmen(B, C, { stroke: "#0f766e", strokeWidth: 1.8 });
+                geo3.buatSegmen(A, E, { stroke: "#0f766e", strokeWidth: 1.8 });
+                geo3.buatSegmen(B, F, { stroke: "#0f766e", strokeWidth: 1.8 });
+                geo3.buatSegmen(C, G, { stroke: "#0f766e", strokeWidth: 1.8 });
+                geo3.buatSegmen(E, F, { stroke: "#0f766e", strokeWidth: 1.8 });
+                geo3.buatSegmen(F, G, { stroke: "#0f766e", strokeWidth: 1.8 });
+                geo3.buatSegmen(G, H, { stroke: "#0f766e", strokeWidth: 1.8 });
+                geo3.buatSegmen(H, E, { stroke: "#0f766e", strokeWidth: 1.8 });
+
+                // Titik Sudut
+                geo3.buatTitik(A, { size: 3.5, color: "#dc2626", label: "A", labelPosition: "bottom-left", bold: true });
+                geo3.buatTitik(B, { size: 3, color: "#0f766e", label: "B", labelPosition: "bottom-right", bold: true });
+                geo3.buatTitik(C, { size: 3.5, color: "#d97706", label: "C", labelPosition: "middle-right", bold: true });
+                geo3.buatTitik(D, { size: 3, color: "#64748b", label: "D", labelPosition: "top-left", bold: true });
+                geo3.buatTitik(E, { size: 3, color: "#0f766e", label: "E", labelPosition: "middle-left", bold: true });
+                geo3.buatTitik(F, { size: 3, color: "#0f766e", label: "F", labelPosition: "bottom-right", bold: true });
+                geo3.buatTitik(G, { size: 3.5, color: "#dc2626", label: "G", labelPosition: "top-right", bold: true });
+                geo3.buatTitik(H, { size: 3, color: "#0f766e", label: "H", labelPosition: "top-left", bold: true });
+            }
+        });
+    </script>
+</body>
+
+</html>

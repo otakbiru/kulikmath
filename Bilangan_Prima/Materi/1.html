@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Bilangan Prima</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Bilangan Prima</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Bilangan Prima dan Komposit</h2>
+            <p>
+                Dalam teori bilangan, setiap bilangan asli ($n \in \mathbb{N}$) dapat dikelompokkan berdasarkan banyaknya pembagi (faktor) bulat positif yang dimilikinya:
+            </p>
+            <ul>
+                <li>
+                    <strong>Bilangan Prima:</strong> Bilangan asli yang lebih besar dari $1$ dan memiliki <strong>tepat dua</strong> faktor positif berbeda, yaitu $1$ dan bilangan itu sendiri.<br>
+                    Contoh himpunan bilangan prima:
+                    $$\mathbb{P} = \{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, \dots\}$$
+                </li>
+                <li>
+                    <strong>Bilangan Komposit:</strong> Bilangan asli lebih dari $1$ yang bukan bilangan prima, artinya memiliki <strong>lebih dari dua</strong> faktor positif (dapat dinyatakan sebagai hasil kali dua bilangan asli yang lebih kecil).<br>
+                    Contoh: $\{4, 6, 8, 9, 10, 12, 14, 15, \dots\}$
+                </li>
+                <li>
+                    <strong>Bilangan $1$ (Unit):</strong> Angka $1$ <strong>bukan</strong> bilangan prima dan <strong>bukan</strong> pula bilangan komposit, karena hanya memiliki tepat satu faktor positif (yaitu dirinya sendiri).
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Interpretasi Geometri (Susunan Persegi Satuan):</strong><br>
+                        Secara geometris, suatu bilangan asli $n > 1$ adalah <em>bilangan komposit</em> jika sejumlah $n$ buah persegi satuan dapat disusun membentuk persegi panjang utuh dengan ukuran panjang dan lebar keduanya lebih dari $1$ (misalnya $6 = 2 \times 3$).
+                    </p>
+                    <p>
+                        Sebaliknya, bilangan $p$ adalah <strong>bilangan prima</strong> jika $p$ buah persegi satuan <em>hanya dapat</em> disusun menjadi satu baris memanjang berukuran $1 \times p$ (atau $p \times 1$) seperti ditunjukkan pada ilustrasi di samping.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-rect-prime" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Sifat-Sifat Penting Bilangan Prima (Sering Keluar di Ujian)</h2>
+            <p>
+                Penguasaan sifat-sifat berikut sangat sering menjadi kunci utama dalam menyelesaikan soal-soal penalaran matematika (SNBT) maupun Olimpiade:
+            </p>
+            <ol>
+                <li>
+                    <strong>Angka $2$ adalah Satu-Satunya Prima Genap:</strong><br>
+                    Semua bilangan prima selain $2$ pasti merupakan bilangan ganjil. Sifat ini sangat krusial:
+                    <ul>
+                        <li>Jika jumlah dua bilangan prima menghasilkan bilangan <strong>ganjil</strong> ($p + q = \text{ganjil}$), maka salah satu dari bilangan prima tersebut <strong>pasti sama dengan $2$</strong> (karena $\text{genap} + \text{ganjil} = \text{ganjil}$).</li>
+                        <li>Jika selisih dua bilangan prima menghasilkan bilangan <strong>ganjil</strong> ($p - q = \text{ganjil}$), maka pengurangnya ($q$) <strong>pasti sama dengan $2$</strong>.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Bentuk $6k \pm 1$ untuk Bilangan Prima $p > 3$:</strong><br>
+                    Setiap bilangan prima yang lebih besar dari $3$ selalu dapat dinyatakan dalam bentuk:
+                    $$p = 6k + 1 \quad \text{atau} \quad p = 6k - 1 \quad (\text{untuk suatu } k \in \mathbb{N})$$
+                    <em>Bukti singkat:</em> Saat dibagi $6$, bilangan bulat menyisakan $0, 1, 2, 3, 4,$ atau $5$. Bentuk $6k, 6k+2, 6k+4$ habis dibagi $2$, sedangkan $6k+3$ habis dibagi $3$. Maka bilangan prima $p > 3$ hanya mungkin berbentuk $6k+1$ atau $6k+5 \equiv 6k-1$.<br>
+                    <strong>Akibat penting:</strong> Untuk setiap bilangan prima $p > 3$, nilai $p^2 - 1 = (p-1)(p+1)$ <strong>selalu habis dibagi $24$</strong>.
+                </li>
+                <li>
+                    <strong>Lema Euclid (Sifat Keterbagian Prima):</strong><br>
+                    Jika suatu bilangan prima $p$ habis membagi hasil kali dua bilangan bulat $a \cdot b$ (ditulis $p \mid ab$), maka $p$ pasti habis membagi $a$ atau $p$ habis membagi $b$ ($p \mid a$ atau $p \mid b$).
+                </li>
+            </ol>
+
+            <div class="kesimpulan">
+                💡 Daftar 25 Bilangan Prima Pertama (di Bawah 100):<br>
+                $2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97$.<br>
+                <em>(Hati-hati jebakan soal: $51 = 3 \times 17$, $57 = 3 \times 19$, $87 = 3 \times 29$, dan $91 = 7 \times 13$ BUKAN bilangan prima!)</em>
+            </div>
+
+            <h2>3. Uji Keprimaan & Saringan Eratosthenes</h2>
+            <p>
+                Bagaimana cara memeriksa apakah suatu bilangan besar $n$ merupakan bilangan prima atau komposit secara efisien?
+            </p>
+            <p>
+                <strong>Teorema Uji Akar Kuadrat ($\sqrt{n}$):</strong><br>
+                Suatu bilangan asli $n > 1$ adalah bilangan prima <strong>jika dan hanya jika</strong> $n$ tidak habis dibagi oleh bilangan prima $p$ mana pun yang memenuhi:
+                $$p \le \sqrt{n}$$
+                <em>Alasan:</em> Jika $n$ adalah bilangan komposit ($n = a \times b$ dengan $1 < a \le b$), maka $a^2 \le a \cdot b = n \implies a \le \sqrt{n}$. Jadi, faktor terkecilnya tidak mungkin melebihi $\sqrt{n}$.
+            </p>
+            <p>
+                <strong>Contoh Uji Keprimaan:</strong> Apakah $173$ bilangan prima?<br>
+                Kita tahu $\sqrt{173} \approx 13{,}15$. Bilangan prima yang $\le 13$ hanyalah $2, 3, 5, 7, 11, 13$. Karena $173$ tidak habis dibagi oleh keenam bilangan prima tersebut, maka dapat dipastikan **$173$ adalah bilangan prima**.
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Saringan Eratosthenes (Sieve of Eratosthenes):</strong><br>
+                        Algoritma klasik untuk menemukan semua bilangan prima hingga batas $N$ (misalnya $N = 36$ pada gambar di samping):
+                    </p>
+                    <ol>
+                        <li>Coret angka $1$ karena bukan prima.</li>
+                        <li>Lingkari prima pertama ($2$), lalu coret semua kelipatan $2$ yang lebih besar ($4, 6, 8, \dots$).</li>
+                        <li>Lingkari angka berikutnya yang belum dicoret ($3$), lalu coret semua kelipatan $3$ ($9, 15, 21, \dots$).</li>
+                        <li>Ulangi untuk prima $5$ (cukup sampai $\sqrt{36} = 6$). Seluruh bilangan yang tersisa (berwarna <strong>hijau teal</strong>) adalah bilangan prima!</li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-sieve" style="width: 100%; max-width: 310px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Teorema Dasar Aritmetika & Faktorisasi Prima</h2>
+            <p>
+                <strong>Teorema Dasar Aritmetika (Fundamental Theorem of Arithmetic)</strong> menyatakan bahwa setiap bilangan bulat $n > 1$ dapat dinyatakan secara <strong>tunggal (unik)</strong> sebagai hasil kali bilangan-bilangan prima (tanpa memperhatikan urutan):
+                $$n = p_1^{a_1} \cdot p_2^{a_2} \cdots p_k^{a_k}$$
+                dengan $p_1 < p_2 < \dots < p_k$ adalah bilangan prima dan $a_1, a_2, \dots, a_k \in \mathbb{N}$. Bentuk ini disebut <em>bentuk kanonik (faktorisasi prima)</em> dari $n$.
+            </p>
+            <p>
+                Dari bentuk faktorisasi prima $n = p_1^{a_1} p_2^{a_2} \cdots p_k^{a_k}$, kita dapat menurunkan rumus-rumus penting berikut:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besaran yang Dicari</th>
+                            <th>Rumus Berdasarkan Faktorisasi Prima</th>
+                            <th>Contoh untuk $n = 72 = 2^3 \cdot 3^2$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Banyaknya Faktor Positif</strong> $\tau(n)$ atau $d(n)$</td>
+                            <td>$$\tau(n) = (a_1 + 1)(a_2 + 1)\cdots(a_k + 1)$$</td>
+                            <td>$$\tau(72) = (3 + 1)(2 + 1) = 4 \times 3 = 12 \text{ faktor}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Jumlah Semua Faktor Positif</strong> $\sigma(n)$</td>
+                            <td>$$\sigma(n) = \left(\frac{p_1^{a_1+1}-1}{p_1-1}\right)\cdots\left(\frac{p_k^{a_k+1}-1}{p_k-1}\right)$$</td>
+                            <td>$$\sigma(72) = \left(\frac{2^4-1}{2-1}\right)\left(\frac{3^3-1}{3-1}\right) = 15 \times 13 = 195$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Hasil Kali Semua Faktor Positif</strong> $P(n)$</td>
+                            <td>$$P(n) = n^{\frac{\tau(n)}{2}}$$</td>
+                            <td>$$P(72) = 72^{\frac{12}{2}} = 72^6$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                <strong>Menentukan FPB dan KPK dengan Faktorisasi Prima:</strong><br>
+                Misalkan diketahui faktorisasi prima dari dua bilangan $A$ dan $B$:
+            </p>
+            <ul>
+                <li><strong>FPB (Faktor Persekutuan Terbesar):</strong> Kalikan faktor-faktor prima yang <em>sama</em> dengan mengambil <strong>pangkat terkecil</strong>.</li>
+                <li><strong>KPK (Kelipatan Persekutuan Terkecil):</strong> Kalikan <em>semua</em> faktor prima yang ada dengan mengambil <strong>pangkat terbesar</strong>.</li>
+                <li><strong>Hubungan FPB dan KPK:</strong> Untuk sembarang dua bilangan asli $A$ dan $B$, selalu berlaku:
+                    $$\text{FPB}(A, B) \times \text{KPK}(A, B) = A \times B$$
+                </li>
+            </ul>
+
+            <h2>5. Relatif Prima (Koprima) & Teorema Tingkat Lanjut</h2>
+            <p>
+                <strong>a. Dua Bilangan Saling Prima (Relatif Prima / Koprima)</strong><br>
+                Dua bilangan bulat $a$ dan $b$ dikatakan <em>saling prima (koprima)</em> jika keduanya tidak memiliki faktor prima persekutuan, atau dengan kata lain:
+                $$\text{FPB}(a, b) = 1$$
+                <em>Catatan:</em> Dua bilangan yang saling prima belum tentu merupakan bilangan prima! Contohnya, $8$ dan $15$ keduanya adalah bilangan komposit, tetapi $\text{FPB}(8, 15) = 1$ sehingga $8$ dan $15$ saling prima.
+            </p>
+            <p>
+                <strong>b. Teorema Euclid (Ketakterhinggaan Bilangan Prima)</strong><br>
+                Banyaknya bilangan prima adalah <strong>tak berhingga</strong>. Euclid membuktikannya lewat kontradiksi: andaikan hanya ada berhingga bilangan prima $p_1, p_2, \dots, p_k$, maka bilangan $N = (p_1 \cdot p_2 \cdots p_k) + 1$ selalu bersisa $1$ saat dibagi oleh $p_i$ mana pun, sehingga $N$ pasti merupakan bilangan prima baru atau memuat faktor prima baru di luar daftar tersebut.
+            </p>
+            <p>
+                <strong>c. Teorema Kecil Fermat & Teorema Wilson (Bekal Olimpiade)</strong><br>
+                Untuk setiap bilangan prima $p$, berlaku dua teorema kongruensi modulo yang sangat terkenal:
+            </p>
+            <ul>
+                <li>
+                    <strong>Teorema Kecil Fermat (Fermat's Little Theorem):</strong> Jika $a$ adalah bilangan bulat yang tidak habis dibagi $p$, maka:
+                    $$a^{p-1} \equiv 1 \pmod{p} \quad \text{atau secara umum} \quad a^p \equiv a \pmod{p}$$
+                </li>
+                <li>
+                    <strong>Teorema Wilson:</strong> Bilangan bulat $p > 1$ adalah bilangan prima jika dan hanya jika:
+                    $$(p - 1)! \equiv -1 \pmod{p} \quad \text{serta} \quad (p - 2)! \equiv 1 \pmod{p}$$
+                </li>
+            </ul>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Diketahui $p, q,$ dan $r$ adalah bilangan prima yang memenuhi persamaan $p + q = r$ dan $p < q$. Jika $p + q + r = 62$, maka nilai dari $q - p$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$25$</li>
+                    <li>$27$</li>
+                    <li>$29$</li>
+                    <li>$31$</li>
+                    <li>$33$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Substitusikan $p + q = r$ ke dalam persamaan $p + q + r = 62$:
+                    $$r + r = 62 \implies 2r = 62 \implies r = 31$$
+                    (Terbukti $r = 31$ adalah bilangan prima).
+                </p>
+                <p>
+                    2. Karena $p + q = 31$ (hasil jumlah dua bilangan prima adalah bilangan <strong>ganjil</strong>), maka salah satu dari $p$ atau $q$ haruslah bilangan prima genap, yaitu $2$.
+                </p>
+                <p>
+                    3. Diketahui syarat $p < q$, sehingga pasti $p = 2$. Maka nilai $q$ adalah:
+                    $$2 + q = 31 \implies q = 29$$
+                    (Periksa: $29$ adalah bilangan prima). Dengan demikian, nilai dari $q - p = 29 - 2 = 27$.
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $q - p$ adalah $27$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Banyaknya faktor bulat positif dari bilangan $N = 1.800$ yang merupakan bilangan <strong>ganjil</strong> adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$6$</li>
+                    <li>$9$</li>
+                    <li>$12$</li>
+                    <li>$18$</li>
+                    <li>$36$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Ubah bilangan $N = 1.800$ ke dalam bentuk faktorisasi prima kanonik:
+                    $$1.800 = 18 \times 100 = (2 \times 3^2) \times (2^2 \times 5^2) = 2^3 \cdot 3^2 \cdot 5^2$$
+                </p>
+                <p>
+                    2. Setiap faktor positif dari $1.800$ berbentuk $2^a \cdot 3^b \cdot 5^c$ dengan:
+                </p>
+                <ul>
+                    <li>$a \in \{0, 1, 2, 3\}$ (ada $4$ pilihan)</li>
+                    <li>$b \in \{0, 1, 2\}$ (ada $3$ pilihan)</li>
+                    <li>$c \in \{0, 1, 2\}$ (ada $3$ pilihan)</li>
+                </ul>
+                <p>
+                    3. Agar faktor tersebut bernilai <strong>ganjil</strong>, faktor tersebut tidak boleh memuat faktor prima $2$, sehingga kita wajib memilih $a = 0$ (hanya $1$ pilihan). Maka banyaknya faktor ganjil adalah:
+                    $$\text{Banyak faktor ganjil} = 1 \times (2 + 1) \times (2 + 1) = 1 \times 3 \times 3 = 9$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, banyaknya faktor bulat positif ganjil dari $1.800$ adalah $9$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Jika $p$ adalah bilangan prima sehingga $p$, $p + 2$, dan $p + 4$ ketiganya merupakan bilangan prima, maka nilai dari $p^3 + 2p$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$12$</li>
+                    <li>$33$</li>
+                    <li>$135$</li>
+                    <li>$357$</li>
+                    <li>$1.353$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    Perhatikan sisa pembagian dari tiga bilangan berjarak dua ($p, p+2, p+4$) ketika dibagi oleh $3$:
+                </p>
+                <ul>
+                    <li>Jika $p$ habis dibagi $3$ ($p = 3k$), karena $p$ prima maka satu-satunya kemungkinan adalah $p = 3$. Uji untuk $p = 3$: diperoleh barisan $3, 5, 7$ yang ketiganya benar merupakan bilangan prima!</li>
+                    <li>Jika $p \equiv 1 \pmod{3}$, maka $p + 2 \equiv 3 \equiv 0 \pmod{3}$ (habis dibagi $3$ dan lebih dari $3$, sehingga komposit).</li>
+                    <li>Jika $p \equiv 2 \pmod{3}$, maka $p + 4 \equiv 6 \equiv 0 \pmod{3}$ (habis dibagi $3$ dan lebih dari $3$, sehingga komposit).</li>
+                </ul>
+                <p>
+                    Dengan demikian, $(3, 5, 7)$ adalah satu-satunya tripel bilangan prima berurutan dengan selisih $2$, sehingga pasti $p = 3$. Nilai dari $p^3 + 2p$ adalah:
+                    $$p^3 + 2p = 3^3 + 2(3) = 27 + 6 = 33$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $p^3 + 2p$ adalah $33$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Berapakah sisa pembagian dari $(28! + 2^{30})$ ketika dibagi oleh $31$?
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$1$</li>
+                    <li>$2$</li>
+                    <li>$15$</li>
+                    <li>$16$</li>
+                    <li>$30$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    Karena $p = 31$ adalah bilangan prima, kita dapat menerapkan <strong>Teorema Wilson</strong> dan <strong>Teorema Kecil Fermat</strong> secara terpisah:
+                </p>
+                <p>
+                    1. <strong>Suku Pertama ($28! \bmod 31$):</strong><br>
+                    Berdasarkan Teorema Wilson, $(31 - 1)! = 30! \equiv -1 \equiv 30 \pmod{31}$. Jabarkan $30!$:
+                    $$30 \times 29 \times 28! \equiv -1 \pmod{31}$$
+                    $$(-1) \times (-2) \times 28! \equiv -1 \pmod{31}$$
+                    $$2 \cdot 28! \equiv 30 \pmod{31} \implies 28! \equiv 15 \pmod{31}$$
+                </p>
+                <p>
+                    2. <strong>Suku Kedua ($2^{30} \bmod 31$):</strong><br>
+                    Berdasarkan Teorema Kecil Fermat ($a^{p-1} \equiv 1 \pmod{p}$ dengan $a = 2, p = 31$):
+                    $$2^{30} \equiv 1 \pmod{31}$$
+                </p>
+                <p>
+                    3. <strong>Jumlahkan kedua sisa tersebut:</strong>
+                    $$28! + 2^{30} \equiv 15 + 1 = 16 \pmod{31}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, sisa pembagian $(28! + 2^{30})$ oleh $31$ adalah $16$ (Jawaban D).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Geometri Persegi Satuan: Komposit (6 = 2x3) vs Prima (5 = 1x5) dengan GeoSVG.js
+            const containerRect = document.getElementById("geosvg-rect-prime");
+            if (containerRect && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerRect, 300, 210, {
+                    viewBox: "0 0 300 210",
+                    clearContainer: true,
+                    title: "Representasi Persegi Bilangan Komposit dan Prima",
+                    description: "Bilangan komposit 6 dapat disusun menjadi persegi panjang 2x3, sedangkan bilangan prima 5 hanya bisa disusun 1x5"
+                });
+
+                const s = 28; // ukuran sisi persegi satuan
+
+                // Bagian Atas: Komposit 6 = 2 x 3
+                geo1.buatTeks(150, 16, "Komposit 6 = 2 × 3 (Bisa 2 Baris)", {
+                    fill: "var(--text-main)",
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    position: "middle-center"
+                });
+
+                const startX1 = 150 - (3 * s) / 2;
+                const startY1 = 30;
+                for (let r = 0; r < 2; r++) {
+                    for (let c = 0; c < 3; c++) {
+                        geo1.buatPersegi(startX1 + c * s, startY1 + r * s, s, {
+                            fill: "rgba(217, 119, 6, 0.18)",
+                            stroke: "#d97706",
+                            strokeWidth: 1.5,
+                            radius: 3
+                        });
+                    }
+                }
+                geo1.buatDimensi([startX1, startY1 + 2 * s], [startX1 + 3 * s, startY1 + 2 * s], 14, "3", {
+                    stroke: "#d97706",
+                    fontSize: "11px",
+                    fontWeight: "bold"
+                });
+                geo1.buatDimensi([startX1, startY1], [startX1, startY1 + 2 * s], -14, "2", {
+                    stroke: "#d97706",
+                    fontSize: "11px",
+                    fontWeight: "bold"
+                });
+
+                // Bagian Bawah: Prima 5 = 1 x 5
+                geo1.buatTeks(150, 128, "Prima 5 = 1 × 5 (Hanya 1 Baris)", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    position: "middle-center"
+                });
+
+                const startX2 = 150 - (5 * s) / 2;
+                const startY2 = 142;
+                for (let c = 0; c < 5; c++) {
+                    geo1.buatPersegi(startX2 + c * s, startY2, s, {
+                        fill: "rgba(13, 148, 136, 0.18)",
+                        stroke: "var(--teal-primary)",
+                        strokeWidth: 1.5,
+                        radius: 3
+                    });
+                }
+                geo1.buatDimensi([startX2, startY2 + s], [startX2 + 5 * s, startY2 + s], 14, "5", {
+                    stroke: "var(--teal-primary)",
+                    fontSize: "11px",
+                    fontWeight: "bold"
+                });
+                geo1.buatDimensi([startX2, startY2], [startX2, startY2 + s], -14, "1", {
+                    stroke: "var(--teal-primary)",
+                    fontSize: "11px",
+                    fontWeight: "bold"
+                });
+            }
+
+            // 2. Visualisasi Saringan Eratosthenes (1 s.d. 36) menggunakan GeoSVG.js
+            const containerSieve = document.getElementById("geosvg-sieve");
+            if (containerSieve && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerSieve, 270, 270, {
+                    viewBox: "0 0 270 270",
+                    clearContainer: true,
+                    title: "Saringan Eratosthenes 1 sampai 36",
+                    description: "Matriks 6x6 yang memperlihatkan penyaringan bilangan prima hingga 36"
+                });
+
+                const primes = new Set([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]);
+                const cell = 40;
+                const gap = 4;
+                const offset = 5;
+
+                geo2.batch(g => {
+                    for (let i = 0; i < 36; i++) {
+                        const num = i + 1;
+                        const row = Math.floor(i / 6);
+                        const col = i % 6;
+                        const x = offset + col * (cell + gap);
+                        const y = offset + row * (cell + gap);
+                        const cx = x + cell / 2;
+                        const cy = y + cell / 2;
+
+                        if (num === 1) {
+                            // Angka 1 (Unit - Bukan Prima & Bukan Komposit)
+                            g.buatPersegi(x, y, cell, {
+                                fill: "var(--bg-body)",
+                                stroke: "var(--border-color)",
+                                strokeWidth: 1.2,
+                                radius: 6
+                            });
+                            g.buatTeks(cx, cy, "1", {
+                                fill: "var(--text-muted)",
+                                fontSize: "13px",
+                                position: "middle-center"
+                            });
+                        } else if (primes.has(num)) {
+                            // Bilangan Prima (Ditandai lingkaran & kotak Teal)
+                            g.buatPersegi(x, y, cell, {
+                                fill: "rgba(13, 148, 136, 0.16)",
+                                stroke: "var(--teal-primary)",
+                                strokeWidth: 1.8,
+                                radius: 6
+                            });
+                            g.buatTeks(cx, cy, String(num), {
+                                fill: "var(--teal-primary)",
+                                fontWeight: "bold",
+                                fontSize: "14px",
+                                position: "middle-center"
+                            });
+                        } else {
+                            // Bilangan Komposit (Dicoret silang tipis)
+                            g.buatPersegi(x, y, cell, {
+                                fill: "var(--bg-card)",
+                                stroke: "var(--border-color)",
+                                strokeWidth: 1,
+                                radius: 6
+                            });
+                            g.buatTeks(cx, cy, String(num), {
+                                fill: "var(--text-muted)",
+                                fontSize: "12px",
+                                opacity: 0.65,
+                                position: "middle-center"
+                            });
+                            g.buatSegmen(x + 8, y + cell - 8, x + cell - 8, y + 8, {
+                                stroke: "#ef4444",
+                                strokeWidth: 1.3,
+                                opacity: 0.55
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

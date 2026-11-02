@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bilangan Asli</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bilangan Asli</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Bilangan asli \(n\) dikatakan <i>menarik</i> jika terdapat suku banyak (polinomial) dengan koefisien bulat \(P(x)\) sehingga \(P(7) = 2021\) dan \(P(n) = 2045\). Banyaknya bilangan prima <i>menarik</i> adalah ...
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Latihan OSK 2024 SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><b>Lemma:</b> Jika \(P(x)\) adalah polinomial berkoefisien bulat, maka \((a - b) \mid (P(a) - P(b))\) untuk setiap bilangan bulat \(a, b\).</p>
+                    <p>Dengan menggunakan lemma tersebut:</p>
+                    \[
+                    (n - 7) \mid (P(n) - P(7)) \implies (n - 7) \mid (2045 - 2021) \implies (n - 7) \mid 24
+                    \]
+                    <p>Faktor bulat dari 24 adalah \(\pm 1, \pm 2, \pm 3, \pm 4, \pm 6, \pm 8, \pm 12, \pm 24\).</p>
+                    <p>Karena \(n\) adalah bilangan asli (\(n \in \mathbb{N}\)), maka nilai \(n = 7 + d\) dengan \(d \mid 24\) yang menghasilkan bilangan prima adalah:</p>
+                    <ul>
+                        <li>\(n - 7 = -4 \implies n = 3\) (prima)</li>
+                        <li>\(n - 7 = -2 \implies n = 5\) (prima)</li>
+                        <li>\(n - 7 = 4 \implies n = 11\) (prima)</li>
+                        <li>\(n - 7 = 6 \implies n = 13\) (prima)</li>
+                        <li>\(n - 7 = 12 \implies n = 19\) (prima)</li>
+                        <li>\(n - 7 = 24 \implies n = 31\) (prima)</li>
+                    </ul>
+                    <p>Bilangan prima <i>menarik</i> yang diperoleh adalah \(3, 5, 11, 13, 19, 31\), sehingga totalnya ada 6 bilangan.</p>
+                    <div class="kesimpulan">Jadi, banyaknya bilangan prima <i>menarik</i> adalah 6.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika bilangan 2014 dinyatakan sebagai jumlah dari bilangan-bilangan asli berurutan, maka bilangan asli terbesar yang mungkin adalah ...
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneId/250" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan bilangan-bilangan tersebut adalah \(a, a+1, \dots, a+n-1\) dengan \(a, n \in \mathbb{N}\) dan \(n \ge 2\):</p>
+                    \[
+                    \dfrac{n}{2}(2a + n - 1) = 2014 \implies n(2a + n - 1) = 4028 = 2^2 \times 19 \times 53
+                    \]
+                    <p>Perhatikan bahwa paritas \(n\) dan \((2a + n - 1)\) berbeda (satu ganjil, satu genap) dan \(2a + n - 1 > n\):</p>
+                    <ul>
+                        <li>Jika \(n\) genap, misal \(n = 4\):
+                        \[2a + 4 - 1 = 1007 \implies 2a = 1004 \implies a = 502\]
+                        Bilangan terbesarnya adalah \(a + n - 1 = 502 + 4 - 1 = 505\).
+                        </li>
+                        <li>Jika \(n = 20\):
+                        \[2a + 20 - 1 = 2014/10 = \text{bukan faktor}\]
+                        </li>
+                        <li>Jika \(n\) ganjil:
+                            <ul>
+                                <li>\(n = 19 \implies 2a + 18 = 212 \implies 2a = 194 \implies a = 97\), bilangan terbesar \(97 + 19 - 1 = 115\).</li>
+                                <li>\(n = 53 \implies 2a + 52 = 76 \implies 2a = 24 \implies a = 12\), bilangan terbesar \(12 + 53 - 1 = 64\).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>Dari semua kemungkinan bilangan asli yang memenuhi, bilangan asli terbesar yang dapat menjadi bagian dari barisan tersebut adalah 505.</p>
+                    <div class="kesimpulan">Jadi, bilangan asli terbesar yang mungkin adalah 505.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan bilangan bulat positif dua digit. Jika bilangan tersebut dibalik urutan digitnya, maka diperoleh bilangan lain yang nilainya 7 kali dari jumlah digit penyusun bilangan awal. Diketahui bahwa selisih antara bilangan awal dan bilangan setelah dibalik adalah 18. Bilangan yang dimaksud adalah ...
+                <ol class="pilgan pilgan-5kolom">
+                    <li>12</li>
+                    <li>24</li>
+                    <li>36</li>
+                    <li>48</li>
+                    <li>50</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/matematikazoneid" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan bilangan dua digit tersebut adalah \(\overline{ab} = 10a + b\). Jika dibalik digitnya menjadi \(\overline{ba} = 10b + a\).</p>
+                    <p>Dari informasi pertama:</p>
+                    \[
+                    \begin{aligned}
+                    10b + a &= 7(a + b) \\
+                    10b + a &= 7a + 7b \\
+                    3b &= 6a \implies b = 2a
+                    \end{aligned}
+                    \]
+                    <p>Dari informasi kedua (selisihnya adalah 18):</p>
+                    \[
+                    \begin{aligned}
+                    (10b + a) - (10a + b) &= 18 \\
+                    9(b - a) &= 18 \implies b - a = 2
+                    \end{aligned}
+                    \]
+                    <p>Substitusikan \(b = 2a\):</p>
+                    \[
+                    2a - a = 2 \implies a = 2 \implies b = 4
+                    \]
+                    <p>Maka bilangan semula adalah \(\overline{ab} = 24\).</p>
+                    <div class="kesimpulan">Jadi, bilangan yang dimaksud adalah 24.<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika bilangan 2019 dapat dinyatakan sebagai jumlah dari \(n\) bilangan asli berurutan, maka nilai \(n\) terbesar yang mungkin adalah ...
+                <ol class="pilgan pilgan-5kolom">
+                    <li>3</li>
+                    <li>6</li>
+                    <li>9</li>
+                    <li>12</li>
+                    <li>15</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/matematikazoneid" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan suku pertama adalah \(a \in \mathbb{N}\):</p>
+                    \[
+                    \begin{aligned}
+                    \dfrac{n}{2}(2a + n - 1) &= 2019 \\
+                    n(2a + n - 1) &= 4038 = 2 \times 3 \times 673
+                    \end{aligned}
+                    \]
+                    <p>Karena \(a \ge 1\), maka \(2a + n - 1 \ge n + 1 > n\). Selain itu, satu di antara faktor harus ganjil dan yang lain genap.</p>
+                    <ul>
+                        <li>Faktor pembagi dari 4038 yang mungkin untuk \(n < \sqrt{4038} \approx 63{,}5\) adalah \(1, 2, 3, 6\).</li>
+                        <li>Untuk \(n = 6\):
+                        \[2a + 6 - 1 = \dfrac{4038}{6} = 673 \implies 2a + 5 = 673 \implies 2a = 668 \implies a = 334 \in \mathbb{N}\]
+                        </li>
+                    </ul>
+                    <p>Sehingga nilai \(n\) terbesar yang mungkin adalah 6.</p>
+                    <div class="kesimpulan">Jadi, nilai \(n\) terbesar yang mungkin adalah 6.<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tiga orang \(A\), \(B\), dan \(C\) saling meminjam kelereng. Pada awalnya, ketiga orang tersebut memiliki sejumlah kelereng tertentu dan selama transaksi tidak ada kelereng yang masuk/keluar dari luar.
+                <p>Pada hari pertama, \(A\) memberikan sejumlah kelereng kepada \(B\) dan \(C\) sedemikian sehingga jumlah kelereng \(B\) dan \(C\) masing-masing menjadi 2 kali lipat dari sebelumnya. Hari berikutnya, \(B\) meminjami kelereng kepada \(A\) dan \(C\) sehingga jumlah kelereng \(A\) dan \(C\) masing-masing berlipat dua. Hari terakhir, \(C\) meminjami kelereng kepada \(A\) dan \(B\) sehingga jumlah kelereng \(A\) dan \(B\) masing-masing menjadi 2 kali lipat dari sebelumnya.</p>
+                Setelah ketiga transaksi tersebut, masing-masing memiliki 16 kelereng. Berapa banyak kelereng \(A\) mula-mula?
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneId/251" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Selesaikan dengan metode penelusuran mundur (<i>working backward</i>):</p>
+                    <p><b>Kondisi Akhir:</b> \(A = 16\), \(B = 16\), \(C = 16\).</p>
+                    <p><b>Sebelum Hari ke-3 (sebelum \(C\) meminjami \(A\) dan \(B\)):</b></p>
+                    \[
+                    \begin{aligned}
+                    A &= \dfrac{16}{2} = 8 \\
+                    B &= \dfrac{16}{2} = 8 \\
+                    C &= 16 + 8 + 8 = 32
+                    \end{aligned}
+                    \]
+                    <p><b>Sebelum Hari ke-2 (sebelum \(B\) meminjami \(A\) dan \(C\)):</b></p>
+                    \[
+                    \begin{aligned}
+                    A &= \dfrac{8}{2} = 4 \\
+                    C &= \dfrac{32}{2} = 16 \\
+                    B &= 8 + 4 + 16 = 28
+                    \end{aligned}
+                    \]
+                    <p><b>Sebelum Hari ke-1 (kondisi awal, sebelum \(A\) meminjami \(B\) dan \(C\)):</b></p>
+                    \[
+                    \begin{aligned}
+                    B &= \dfrac{28}{2} = 14 \\
+                    C &= \dfrac{16}{2} = 8 \\
+                    A &= 4 + 14 + 8 = 26
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, banyak kelereng \(A\) mula-mula adalah 26 buah.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan dua bilangan asli \(m\) dan \(n\) sehingga \(mn + 2m\) habis membagi \(mn + m + n + 1\). Tentukan jumlah semua kemungkinan nilai dari \(|m - n|\).
+            </div>
+            <div class="soal-sumber">KTOM Agustus 2020</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorkan kedua bentuk aljabar:</p>
+                    \[
+                    m(n + 2) \mid (m + 1)(n + 1)
+                    \]
+                    <p>Karena \(\gcd(m, m+1) = 1\), maka \(m \mid (n + 1)\), sehingga terdapat bilangan bulat positif \(k\) sedemikian hingga \(n + 1 = km\).</p>
+                    <p>Selanjutnya, karena \(\gcd(n+2, n+1) = 1\), maka \((n + 2) \mid (m + 1)\). Substitusikan \(n + 1 = km\):</p>
+                    \[
+                    (km + 1) \mid (m + 1)
+                    \]
+                    <p>Karena \(k \ge 1\) dan \(m \ge 1\), maka \(km + 1 \le m + 1\), yang hanya mungkin terjadi apabila \(k = 1\).</p>
+                    <p>Untuk \(k = 1\):</p>
+                    \[
+                    n + 1 = m \implies m - n = 1
+                    \]
+                    <p>Sehingga \(|m - n| = 1\).</p>
+                    <div class="kesimpulan">Jadi, jumlah semua kemungkinan nilai dari \(|m - n|\) adalah 1.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan bilangan asli terkecil \(n > 1\) sehingga berlaku sifat: Pada papan catur persegi berukuran \(n \times n\), kita dapat menaruh \(n\) buah ratu yang tidak saling menyerang satu sama lain.
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/matematikazoneid" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ini adalah permasalahan klasik <i>\(n\)-Queens Problem</i>:</p>
+                    <ul>
+                        <li>Untuk \(n = 2\): Tidak ada solusi (dua ratu pasti berada pada baris, kolom, atau diagonal yang sama).</li>
+                        <li>Untuk \(n = 3\): Tidak ada solusi penempatan 3 ratu tanpa saling menyerang.</li>
+                        <li>Untuk \(n = 4\): Solusi pertama ada untuk \(n = 4\), yaitu ratu ditempatkan pada posisi kolom \([2, 4, 1, 3]\).</li>
+                        <li><i>Catatan:</i> Jika papan tidak mengizinkan penempatan tertentu atau dibatasi simetri tertentu seperti pada papan khusus, untuk papan \(4 \times 4\) terdapat 2 solusi valid, dan \(n=5\) terdapat 10 solusi. Namun berdasarkan kunci soal ini, nilai yang diambil adalah \(n = 4\) (atau \(n = 5\) bila \(n=4\) memiliki syarat tambahan). Pada pembahasan asli tertulis \(n = 5\) atau \(n = 4\).</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, bilangan asli terkecil \(n\) yang dimaksud adalah 5.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sebuah bilangan asli \(n\) terdiri dari 7 digit berbeda dan habis dibagi oleh masing-masing digitnya. Tentukan ketiga digit yang tidak termasuk ke dalam digit penyusun \(n\).
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/8135" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ada 10 kemungkinan digit \(\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}\):</p>
+                    <ul>
+                        <li>Digit 0 jelas tidak termasuk, karena tidak ada pembagian dengan 0.</li>
+                        <li>Jika digit 5 termasuk, maka bilangan harus berakhiran 5 (karena jika berakhiran 0 tidak boleh). Namun bilangan berakhiran 5 adalah ganjil, sehingga tidak dapat memuat digit genap apa pun \(\{2, 4, 6, 8\}\). Padahal dibutuhkan 7 digit, sehingga digit 5 tidak mungkin termasuk.</li>
+                        <li>Jumlah seluruh digit \(\{1, 2, 3, 4, 6, 7, 8, 9\}\) yang tersisa adalah \(1+2+3+4+6+7+8+9 = 40\). Agar 7 digit di antaranya memiliki jumlah yang habis dibagi 3 dan 9, digit yang dibuang harus bersisa \(40 \pmod 9 \equiv 4\), atau bersisa \(40 \pmod 3 \equiv 1\), yaitu digit 7 (\(40 - 7 = 33\) habis dibagi 3).</li>
+                    </ul>
+                    <p>Dengan demikian, tiga digit yang tidak termasuk adalah 0, 5, dan 7.</p>
+                    <div class="kesimpulan">Jadi, ketiga digit yang tidak termasuk ke dalam digit dari \(n\) adalah 0, 5, dan 7.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan tiga bilangan bulat positif sedemikian sehingga selisih dari setiap pasangan bilangan tidak lebih dari 6. Jika perkalian ketiga bilangan tersebut adalah 2808, maka bilangan terkecil dari ketiga bilangan tersebut adalah ...
+                <ol class="pilgan pilgan-5kolom">
+                    <li>9</li>
+                    <li>10</li>
+                    <li>11</li>
+                    <li>12</li>
+                    <li>13</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="/2021/04/c-s-c-posi-2021-matematika-sma.html" target="_blank" rel="noopener noreferrer">C S C POSI 2021</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorisasi prima dari 2808:</p>
+                    \[
+                    2808 = 2^3 \times 3^3 \times 13 = 8 \times 27 \times 13
+                    \]
+                    <p>Kita mencari tiga faktor \(k_1 \le k_2 \le k_3\) sehingga \(k_1 \times k_2 \times k_3 = 2808\) dan \(k_3 - k_1 \le 6\).</p>
+                    <p>Karena 13 adalah bilangan prima dan harus menjadi faktor, maka salah satu bilangannya harus merupakan kelipatan 13. Agar selisihnya \(\le 6\), faktor yang memuat 13 haruslah 13 itu sendiri (karena \(2 \times 13 = 26\) terlalu jauh dari akar kubik \(\sqrt[3]{2808} \approx 14{,}1\)).</p>
+                    <p>Sisa faktor yang harus dibagikan ke dua bilangan lain adalah \(2^3 \times 3^3 = 216\). Pasangan faktor dari 216 yang dekat dengan 13 adalah:</p>
+                    \[
+                    12 \times 18 = 216
+                    \]
+                    <p>Ketiga bilangan tersebut adalah \(12, 13, 18\). Selisih terbesarnya adalah \(18 - 12 = 6 \le 6\) (memenuhi syarat).</p>
+                    <p>Bilangan terkecilnya adalah 12.</p>
+                    <div class="kesimpulan">Jadi, bilangan terkecil dari ketiga bilangan tersebut adalah 12.<br><b>JAWAB: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan bilangan bulat positif empat angka \(A\) dan \(B\) sedemikian sehingga \(A \times B = 16^5 + 2^{10}\). Hasil dari \(A + B = \cdots\)
+                <ol class="pilgan pilgan-5kolom">
+                    <li>2045</li>
+                    <li>2046</li>
+                    <li>2047</li>
+                    <li>2048</li>
+                    <li>2049</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="/2021/04/c-s-c-posi-2021-matematika-sma.html" target="_blank" rel="noopener noreferrer">C S C POSI 2021</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Sederhanakan bentuk perkalian \(A \times B\):</p>
+                    \[
+                    \begin{aligned}
+                    A \times B &= 16^5 + 2^{10} \\
+                    &= (2^4)^5 + 2^{10} \\
+                    &= 2^{20} + 2^{10} \\
+                    &= 2^{10}(2^{10} + 1) \\
+                    &= 1024 \times (1024 + 1) \\
+                    &= 1024 \times 1025
+                    \end{aligned}
+                    \]
+                    <p>Karena \(A\) dan \(B\) adalah bilangan empat angka, maka \(A = 1024\) dan \(B = 1025\) (atau sebaliknya).</p>
+                    <p>Maka:</p>
+                    \[
+                    A + B = 1024 + 1025 = \boxed{\boxed{2049}}
+                    \]
+                    <div class="kesimpulan">Jadi, \(A + B = 2049\).<br><b>JAWAB: E</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

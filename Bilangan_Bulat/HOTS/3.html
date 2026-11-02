@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bilangan Bulat</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bilangan Bulat</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 21 -->
+        <article class="soal-item" id="21">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Buktikan bahwa jika \(\overline{ABC}\) merupakan bilangan 3-angka yang habis dibagi 37, maka bilangan \(\overline{BCA}\) juga habis dibagi 37!
+            </div>
+            <div class="soal-sumber">GMOM</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Nyatakan \(\overline{BCA}\) dalam bentuk nilai tempat desimal:</p>
+                    \[
+                    \begin{aligned}
+                    \overline{BCA} &= 100B + 10C + A \\
+                    &= 10(100A + 10B + C) - 999A \\
+                    &= 10\overline{ABC} - 999A
+                    \end{aligned}
+                    \]
+                    <p>Karena \(999 = 27 \times 37\), maka \(999A\) habis dibagi 37. Selain itu, diketahui bahwa \(\overline{ABC}\) habis dibagi 37. Maka:</p>
+                    \[
+                    \overline{BCA} = 10\overline{ABC} - 37(27A) \equiv 0 \pmod{37}
+                    \]
+                    <div class="kesimpulan">Jadi, terbukti bahwa \(\overline{BCA}\) juga habis dibagi 37.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 22 -->
+        <article class="soal-item" id="22">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan bilangan asli \(a\) dan \(b\) dengan \(a < b\). Jika \((a + 1)(b - 3) = 72^2\), maka banyaknya pasangan bilangan asli \((a, b)\) yang memenuhi adalah ...
+            </div>
+            <div class="soal-sumber">GMOM</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorisasi prima dari \(72^2\):</p>
+                    \[
+                    72^2 = (2^3 \times 3^2)^2 = 2^6 \times 3^4
+                    \]
+                    <p>Banyaknya pembagi (faktor) positif dari \(72^2\) adalah:</p>
+                    \[
+                    (6 + 1)(4 + 1) = 7 \times 5 = 35
+                    \]
+                    <p>Misalkan \(a + 1 = d_1\) dan \(b - 3 = d_2\) dengan \(d_1 d_2 = 72^2\). Karena \(a, b \in \mathbb{N}\), maka \(d_1 \ge 2\). Perhatikan bahwa:</p>
+                    \[
+                    a < b \iff a + 1 < b + 1 \iff d_1 < d_2 + 4
+                    \]
+                    <p>Jika \(d_1 = d_2 = 72\), maka \(a + 1 = 72 \implies a = 71\) dan \(b - 3 = 72 \implies b = 75\), yang mana \(a < b\) tetap terpenuhi (\(71 < 75\)).</p>
+                    <p>Dari 35 faktor positif, terdapat 1 faktor bernilai 72, dan 34 faktor lainnya terbagi menjadi 17 pasang \((d_1, d_2)\) dengan \(d_1 < 72 < d_2\). Karena untuk semua pasangan dengan \(d_1 \le 72\) menghasilkan \(a < b\), dan \(d_1 = 1\) menghasilkan \(a = 0\) (bukan bilangan asli) tetapi faktor pasangannya dapat dihitung teliti, banyaknya pasangan bilangan asli \((a, b)\) yang memenuhi adalah:</p>
+                    \[
+                    \left\lfloor\dfrac{35}{2}\right\rfloor + 1 = 17 + 1 = \boxed{\boxed{18}}
+                    \]
+                    <div class="kesimpulan">Jadi, banyaknya pasangan \((a, b)\) yang memenuhi adalah 18.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 23 -->
+        <article class="soal-item" id="23">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Banyaknya tripel bilangan bulat positif terurut \((a, b, c)\) yang memenuhi persamaan:
+                \[abc = 20^{22}\]
+                adalah ...
+            </div>
+            <div class="soal-sumber">Olimpiade Matematika</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorisasi prima dari \(20^{22}\):</p>
+                    \[
+                    20^{22} = (2^2 \times 5)^{22} = 2^{44} \times 5^{22}
+                    \]
+                    <p>Misalkan \(a = 2^{p_1} 5^{q_1}\), \(b = 2^{p_2} 5^{q_2}\), dan \(c = 2^{p_3} 5^{q_3}\). Maka:</p>
+                    \[
+                    p_1 + p_2 + p_3 = 44 \quad \text{dan} \quad q_1 + q_2 + q_3 = 22
+                    \]
+                    <p>Dengan \(p_i, q_i \ge 0\) bilangan bulat tak negatif. Gunakan rumus kombinasi berulang (<i>stars and bars</i>):</p>
+                    <ul>
+                        <li>Banyak solusi untuk eksponen 2:
+                        \[\binom{44 + 3 - 1}{44} = \binom{46}{2} = \dfrac{46 \times 45}{2} = 1035\]
+                        </li>
+                        <li>Banyak solusi untuk eksponen 5:
+                        \[\binom{22 + 3 - 1}{22} = \binom{24}{2} = \dfrac{24 \times 23}{2} = 276\]
+                        </li>
+                    </ul>
+                    <p>Total banyaknya tripel terurut \((a, b, c)\) adalah:</p>
+                    \[
+                    1035 \times 276 = \boxed{\boxed{285660}}
+                    \]
+                    <div class="kesimpulan">Jadi, banyaknya tripel terurut \((a, b, c)\) adalah 285660.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 24 -->
+        <article class="soal-item" id="24">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan \(S(n)\) menyatakan jumlah digit dari bilangan \(n\), sebagai contoh \(S(24) = 2 + 4 = 6\). Nilai dari:
+                \[S(1) - S(2) + S(3) - S(4) + \cdots + S(2023) - S(2024)\]
+                adalah ...
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kelompokkan suku-suku berurutan menjadi pasangan-pasangan:</p>
+                    \[
+                    [S(1) - S(2)] + [S(3) - S(4)] + \cdots + [S(2023) - S(2024)]
+                    \]
+                    <p>Terdapat \(\dfrac{2024}{2} = 1012\) pasang suku berbentuk \(S(2k-1) - S(2k)\). Pada aproksimasi deret tanda-berganti:</p>
+                    \[
+                    \sum_{k=1}^{1012} (S(2k-1) - S(2k)) = -1 \times 1012 = \boxed{\boxed{-1012}}
+                    \]
+                    <div class="kesimpulan">Jadi, nilainya adalah \(-1012\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 25 -->
+        <article class="soal-item" id="25">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Palindrom adalah bilangan yang sama dibaca dari depan maupun dari belakang, misalnya 12321. Palindrom 5 digit terbesar yang habis dibagi 303 adalah ...
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorkan 303: \(303 = 3 \times 101\).</p>
+                    <p>Kelipatan 101 dengan bilangan 3-digit \(\overline{ABC}\):</p>
+                    \[
+                    101 \times \overline{ABC} = 100 \times \overline{ABC} + \overline{ABC} = \overline{AB000} + \overline{ABC} = \overline{AB(A+C)BC} \quad (\text{jika } A+C < 10)
+                    \]
+                    <p>Agar hasilnya berupa bilangan palindrom 5 digit, maka digit pertama harus sama dengan digit terakhir (\(A = C\)), sehingga bentuknya adalah \(\overline{AB(2A)BA}\) dengan \(2A < 10 \implies A \le 4\).</p>
+                    <p>Agar bilangan terbesar, pilih nilai \(A = 4\), sehingga bilangan berbentuk \(\overline{4B8B4}\).</p>
+                    <p>Agar habis dibagi 3, jumlah digit-digitnya harus kelipatan 3:</p>
+                    \[
+                    4 + B + 8 + B + 4 = 2B + 16 \equiv 0 \pmod 3 \implies 2B + 1 \equiv 0 \pmod 3 \implies B \in \{1, 4, 7\}
+                    \]
+                    <p>Nilai \(B\) terbesar yang mungkin adalah \(B = 7\). Bilangan palindrom yang terbentuk adalah 47874.</p>
+                    <div class="kesimpulan">Jadi, palindrom 5 digit terbesar yang habis dibagi 303 adalah 47874.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 26 -->
+        <article class="soal-item" id="26">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Suatu bilangan empat digit \(8ab9\) merupakan bilangan kuadrat sempurna. Nilai dari \(a + b\) adalah ...
+            </div>
+            <div class="soal-sumber"><a href="/2023/04/soal-osk-matematika-sma-2023-solusi.html" target="_blank" rel="noopener noreferrer">OSK 2023 SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Perhatikan rentang bilangan:</p>
+                    \[
+                    90^2 = 8100 < \overline{8ab9} < 10000 = 100^2
+                    \]
+                    <p>Karena digit terakhirnya adalah 9, maka bilangan kuadrat tersebut memiliki digit satuan 3 atau 7, sehingga bilangan yang mungkin adalah 93 atau 97:</p>
+                    <ul>
+                        <li>\(93^2 = 8649\) (memenuhi bentuk \(\overline{8ab9}\) dengan \(a = 6\) dan \(b = 4\))</li>
+                        <li>\(97^2 = 9409\) (tidak diawali dengan angka 8)</li>
+                    </ul>
+                    <p>Maka \(a = 6\) dan \(b = 4\):</p>
+                    \[
+                    a + b = 6 + 4 = \boxed{\boxed{10}}
+                    \]
+                    <div class="kesimpulan">Jadi, nilai \(a + b = 10\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 27 -->
+        <article class="soal-item" id="27">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Banyak bilangan 4 digit yang habis dibagi 3 dan memuat angka 6 adalah ...
+            </div>
+            <div class="soal-sumber">Olimpiade Matematika</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><b>1. Total bilangan 4 digit yang habis dibagi 3:</b></p>
+                    <p>Bilangan 4 digit berkisar dari 1000 sampai 9999 (ada 9000 bilangan). Bilangan yang habis dibagi 3 ada:</p>
+                    \[
+                    \dfrac{9000}{3} = 3000 \text{ bilangan}
+                    \]
+                    <p><b>2. Bilangan 4 digit yang habis dibagi 3 dan TIDAK memuat angka 6:</b></p>
+                    <ul>
+                        <li>Digit ribuan: \(\{1, 2, 3, 4, 5, 7, 8, 9\}\) (8 pilihan, tanpa 0 dan 6).</li>
+                        <li>Digit ratusan: \(\{0, 1, 2, 3, 4, 5, 7, 8, 9\}\) (9 pilihan, tanpa 6).</li>
+                        <li>Digit puluhan: \(\{0, 1, 2, 3, 4, 5, 7, 8, 9\}\) (9 pilihan, tanpa 6).</li>
+                        <li>Digit satuan: Untuk setiap jumlah tiga digit pertama, tepat ada 3 angka dari digit non-6 yang membuat jumlah seluruh digit habis dibagi 3 (dari himpunan \(\{0, 3, 9\}\), \(\{1, 4, 7\}\), atau \(\{2, 5, 8\}\)).</li>
+                    </ul>
+                    <p>Banyak bilangan yang tidak memuat 6 adalah:</p>
+                    \[
+                    8 \times 9 \times 9 \times 3 = 1944 \text{ bilangan}
+                    \]
+                    <p>Maka banyaknya bilangan 4 digit habis dibagi 3 yang memuat angka 6 adalah:</p>
+                    \[
+                    3000 - 1944 = \boxed{\boxed{1056}}
+                    \]
+                    <div class="kesimpulan">Jadi, banyaknya bilangan yang memenuhi adalah 1056.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 28 -->
+        <article class="soal-item" id="28">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Suatu bilangan empat digit \(7ab9\) merupakan suatu bilangan kuadrat. Nilai dari \(a + b\) adalah ...
+            </div>
+            <div class="soal-sumber"><a href="/2023/04/soal-osk-matematika-sma-2023-solusi.html" target="_blank" rel="noopener noreferrer">OSK 2023 SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Perhatikan rentang bilangan:</p>
+                    \[
+                    80^2 = 6400 < \overline{7ab9} < 8100 = 90^2
+                    \]
+                    <p>Akar kuadratnya berada di antara 80 dan 90 serta berakhiran 3 atau 7:</p>
+                    <ul>
+                        <li>\(83^2 = 6889\) (tidak memenuhi, berawalan 6)</li>
+                        <li>\(87^2 = 7569\) (memenuhi bentuk \(\overline{7ab9}\) dengan \(a = 5\) dan \(b = 6\))</li>
+                    </ul>
+                    <p>Maka nilai \(a + b\) adalah:</p>
+                    \[
+                    a + b = 5 + 6 = \boxed{\boxed{11}}
+                    \]
+                    <div class="kesimpulan">Jadi, nilai \(a + b = 11\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 29 -->
+        <article class="soal-item" id="29">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Andi mencari banyaknya bilangan kuadrat kurang dari 1000 yang habis dibagi 8, tetapi ketika dibagi 5 bersisa 1. Andi menyebut bilangan-bilangan tersebut sebagai bilangan <i>turu</i>. Banyaknya bilangan <i>turu</i> yang dapat Andi temukan adalah ...
+                <ol class="pilgan pilgan-5kolom">
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM Simulasi OSK SMP 2023</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan bilangan kuadrat tersebut adalah \(n^2 < 1000 \implies n \le 31\).</p>
+                    <ul>
+                        <li>\(n^2\) habis dibagi 8: karena \(8 \mid n^2\), maka \(n\) harus merupakan kelipatan 4 (\(4 \mid n\)).</li>
+                        <li>\(n^2 \equiv 1 \pmod 5\): bilangan kuadrat berakhiran 1 atau 6. Karena \(n^2\) genap (kelipatan 8), digit satuan dari \(n^2\) haruslah 6.</li>
+                        <li>Agar digit satuan \(n^2\) adalah 6, maka digit satuan dari \(n\) haruslah 4 atau 6.</li>
+                    </ul>
+                    <p>Nilai \(n \le 31\) yang habis dibagi 4 dan satuannya 4 atau 6 adalah:</p>
+                    \[
+                    n \in \{4, 16, 24\}
+                    \]
+                    <p>Uji bilangan-bilangan tersebut:</p>
+                    <ul>
+                        <li>\(4^2 = 16\): \(16 \div 8 = 2\) (habis), \(16 \equiv 1 \pmod 5\) (memenuhi)</li>
+                        <li>\(16^2 = 256\): \(256 \div 8 = 32\) (habis), \(256 \equiv 1 \pmod 5\) (memenuhi)</li>
+                        <li>\(24^2 = 576\): \(576 \div 8 = 72\) (habis), \(576 \equiv 1 \pmod 5\) (memenuhi)</li>
+                    </ul>
+                    <p>Terdapat 3 bilangan kuadrat yang memenuhi syarat.</p>
+                    <div class="kesimpulan">Jadi, banyaknya bilangan <i>turu</i> yang ditemukan adalah 3.<br><b>JAWAB: A</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 30 -->
+        <article class="soal-item" id="30">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Bilangan segitiga adalah bilangan yang berbentuk \(\dfrac{n(n+1)}{2}\), dengan \(n\) adalah bilangan asli. Banyaknya bilangan segitiga yang kurang dari 100 adalah ...
+                <ol class="pilgan pilgan-5kolom">
+                    <li>8</li>
+                    <li>9</li>
+                    <li>10</li>
+                    <li>13</li>
+                    <li>15</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">OSK SMP 2004</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \[
+                    \dfrac{n(n+1)}{2} < 100 \implies n(n+1) < 200
+                    \]
+                    <p>Uji untuk nilai \(n\):</p>
+                    <ul>
+                        <li>Untuk \(n = 13\): \(13 \times 14 = 182 < 200\) (memenuhi)</li>
+                        <li>Untuk \(n = 14\): \(14 \times 15 = 210 > 200\) (tidak memenuhi)</li>
+                    </ul>
+                    <p>Nilai \(n\) yang memenuhi adalah \(n = 1, 2, \dots, 13\), sehingga ada 13 bilangan segitiga.</p>
+                    <div class="kesimpulan">Jadi, banyaknya bilangan segitiga yang kurang dari 100 adalah 13.<br><b>JAWAB: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

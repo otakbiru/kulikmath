@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Basis Bilangan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Basis Bilangan</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Sistem Nilai Tempat dan Basis Bilangan ($b$)</h2>
+            <p>
+                Dalam kehidupan sehari-hari, kita menggunakan sistem bilangan <strong>desimal (basis $10$)</strong> yang tersusun atas sepuluh lambang angka (digit), yaitu $\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$. Secara umum, untuk sembarang bilangan bulat $b \ge 2$, setiap bilangan bulat non-negatif $N$ dapat dinyatakan secara tunggal dalam <strong>basis $b$ (radiks $b$)</strong> dengan notasi posisi:
+                $$N = (a_k a_{k-1} \dots a_2 a_1 a_0)_b$$
+                di mana nilai numerik dari lambang tersebut didefinisikan sebagai penjumlahan perpangkatan basis $b$ (ekspansi polinomial):
+                $$(a_k a_{k-1} \dots a_2 a_1 a_0)_b = a_k \cdot b^k + a_{k-1} \cdot b^{k-1} + \dots + a_2 \cdot b^2 + a_1 \cdot b^1 + a_0 \cdot b^0 = \sum_{i=0}^{k} a_i b^i$$
+            </p>
+            <p>
+                <strong>Syarat Mutlak Digit dalam Basis $b$:</strong><br>
+                Setiap digit penyusun $a_i$ pada bilangan berbasis $b$ haruslah berupa bilangan bulat non-negatif yang <strong>lebih kecil daripada basisnya</strong>, serta digit paling depan (paling kiri) tidak boleh bernilai nol untuk $N > 0$:
+                $$0 \le a_i \le b - 1 \quad (\text{atau } 0 \le a_i < b) \quad \text{dan} \quad a_k \neq 0$$
+                Sebagai contoh, penulisan $(247)_6$ adalah <strong>tidak sah</strong> karena memuat angka $7$ yang tidak memenuhi syarat $a_i < 6$. Untuk basis yang lebih besar dari $10$ (seperti basis $12$ atau basis $16$), nilai digit $10, 11, 12, 13, 14, 15$ berturut-turut dilambangkan dengan huruf kapital $\text{A}, \text{B}, \text{C}, \text{D}, \text{E}, \text{F}$.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Sistem Bilangan</th>
+                            <th>Basis ($b$)</th>
+                            <th>Himpunan Digit yang Digunakan ($0 \le a_i < b$)</th>
+                            <th>Contoh Penulisan & Nilai Desimalnya</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Biner</strong></td>
+                            <td>$b = 2$</td>
+                            <td>$\{0, 1\}$</td>
+                            <td>$(1101)_2 = 1\cdot 2^3 + 1\cdot 2^2 + 0\cdot 2^1 + 1\cdot 2^0 = 13_{10}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Terner</strong></td>
+                            <td>$b = 3$</td>
+                            <td>$\{0, 1, 2\}$</td>
+                            <td>$(212)_3 = 2\cdot 3^2 + 1\cdot 3^1 + 2\cdot 3^0 = 23_{10}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Oktal</strong></td>
+                            <td>$b = 8$</td>
+                            <td>$\{0, 1, 2, 3, 4, 5, 6, 7\}$</td>
+                            <td>$(37)_8 = 3\cdot 8^1 + 7\cdot 8^0 = 31_{10}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Desimal</strong></td>
+                            <td>$b = 10$</td>
+                            <td>$\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$</td>
+                            <td>$(245)_{10} = 2\cdot 10^2 + 4\cdot 10^1 + 5\cdot 10^0 = 245_{10}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Heksadesimal</strong></td>
+                            <td>$b = 16$</td>
+                            <td>$\{0, 1, \dots, 9, \text{A}, \text{B}, \text{C}, \text{D}, \text{E}, \text{F}\}$<br><small>($\text{A}=10, \text{B}=11, \dots, \text{F}=15$)</small></td>
+                            <td>$(2\text{B})_{16} = 2\cdot 16^1 + 11\cdot 16^0 = 43_{10}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Bentuk Pecahan/Koma dalam Basis $b$ (Radix Point):</strong><br>
+                        Apabila suatu bilangan dalam basis $b$ memiliki angka di belakang tanda koma, maka pangkat dari basis $b$ di sebelah kanan koma bernilai negatif secara berurutan ($b^{-1}, b^{-2}, b^{-3}, \dots$):
+                        $$(a_k \dots a_1 a_0 \text{ , } c_1 c_2 c_3 \dots)_b = \sum_{i=0}^{k} a_i b^i + \frac{c_1}{b^1} + \frac{c_2}{b^2} + \frac{c_3}{b^3} + \dots$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-nilai-tempat" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Konversi Antar-Basis Bilangan</h2>
+
+            <h3>2.1. Konversi dari Basis $b$ ke Basis $10$ (Desimal)</h3>
+            <p>
+                Untuk mengubah bilangan $(a_k a_{k-1} \dots a_1 a_0)_b$ ke dalam basis $10$, kita cukup menjabarkan nilai tempatnya:
+            </p>
+            <ul>
+                <li><strong>Metode Ekspansi Perpangkatan:</strong> Kalikan tiap digit dengan pangkat basisnya dari kanan ke kiri ($b^0, b^1, b^2, \dots$), lalu jumlahkan.</li>
+                <li><strong>Skema Horner (Perkalian Beruntun):</strong> Sangat efisien untuk perhitungan cepat tanpa menghitung pangkat tinggi:
+                    $$(a_3 a_2 a_1 a_0)_b = ((a_3 \cdot b + a_2)b + a_1)b + a_0$$
+                </li>
+            </ul>
+
+            <h3>2.2. Konversi dari Basis $10$ ke Basis $b$</h3>
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li>
+                            <strong>Untuk Bagian Bilangan Bulat (Pembagian Berulang):</strong><br>
+                            Bagi bilangan desimal $N$ dengan basis tujuan $b$ secara berulang-ulang hingga hasil baginya menjadi $0$. Tuliskan <strong>sisa pembagiannya</strong> pada setiap tahap, lalu baca urutan sisa tersebut <strong>dari bawah ke atas</strong> (sisa terakhir menjadi digit paling kiri).
+                        </li>
+                        <li>
+                            <strong>Untuk Bagian Pecahan di Belakang Koma (Perkalian Berulang):</strong><br>
+                            Kalikan bagian desimal murni ($0,\dots$) dengan basis $b$. Ambil bagian bilangan bulat di depan koma sebagai digit hasil, lalu kalikan kembali sisa pecahannya dengan $b$ secara berulang. Baca bagian bulatnya <strong>dari atas ke bawah</strong>.
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-pembagian-berulang" style="width: 100%; max-width: 350px;"></div>
+                </div>
+            </div>
+
+            <h3>2.3. Konversi Cepat Antar-Basis Sekeluarga ($b$ dan $b^m$)</h3>
+            <p>
+                Jika basis asal dan basis tujuan merupakan perpangkatan dari bilangan pokok yang sama (misalnya Biner $2$, Kuartener $2^2=4$, Oktal $2^3=8$, dan Heksadesimal $2^4=16$), kita <strong>tidak perlu</strong> melewati basis $10$. Cukup kelompokkan digit-digitnya dari kanan (atau dari posisi tanda koma):
+            </p>
+            <ul>
+                <li><strong>Biner ($2$) $\leftrightarrow$ Oktal ($8 = 2^3$):</strong> Setiap <strong>$3$ digit biner</strong> tepat mewakili <strong>$1$ digit oktal</strong> (gunakan bobot $4\text{-}2\text{-}1$).</li>
+                <li><strong>Biner ($2$) $\leftrightarrow$ Heksadesimal ($16 = 2^4$):</strong> Setiap <strong>$4$ digit biner</strong> tepat mewakili <strong>$1$ digit heksadesimal</strong> (gunakan bobot $8\text{-}4\text{-}2\text{-}1$).</li>
+            </ul>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Contoh Konversi Cepat Biner ke Oktal dan Heksadesimal:</strong><br>
+                        Misalkan kita ingin mengubah $(10111011)_2$ ke basis $8$ dan basis $16$:
+                    </p>
+                    <ul>
+                        <li>Ke Oktal ($3$ bit dari kanan): $\underbrace{010}_{2}\,\underbrace{111}_{7}\,\underbrace{011}_{3} \implies (273)_8$</li>
+                        <li>Ke Heksadesimal ($4$ bit dari kanan): $\underbrace{1011}_{11=\text{B}}\,\underbrace{1011}_{11=\text{B}} \implies (\text{BB})_{16}$</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-konversi-cepat" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Operasi Aritmetika Langsung dalam Basis $b$</h2>
+            <p>
+                Operasi penjumlahan, pengurangan, dan perkalian bersusun pada basis $b$ dilakukan dengan prinsip yang persis sama seperti pada basis $10$, hanya saja patokan penyimpanan (<em>carry</em>) dan peminjaman (<em>borrow</em>) menggunakan nilai <strong>basis $b$</strong> (bukan $10$):
+            </p>
+            <ul>
+                <li>
+                    <strong>Penjumlahan dalam Basis $b$:</strong> Jumlahkan digit seletak dari kanan. Apabila hasil penjumlahan pada suatu kolom bernilai $S \ge b$, bagilah $S$ dengan $b$: tuliskan <strong>sisanya ($S \bmod b$)</strong> di kolom tersebut dan <strong>simpan hasil baginya ($\lfloor S/b \rfloor$)</strong> ke kolom di sebelah kirinya.
+                </li>
+                <li>
+                    <strong>Pengurangan dalam Basis $b$:</strong> Kurangkan digit seletak dari kanan. Apabila digit yang dikurangi lebih kecil daripada digit pengurangnya, pinjam $1$ satuan dari kolom di sebelah kirinya yang nilainya setara dengan <strong>menambahkan $+b$</strong> pada kolom saat ini.
+                </li>
+            </ul>
+
+            <h2>4. Sifat-Sifat Khusus & Teorema Basis Bilangan (SNBT / Olimpiade)</h2>
+            <p>
+                Berikut adalah sifat-sifat struktural basis bilangan yang sangat sering diujikan pada soal penalaran matematika dan kompetisi:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sifat / Teorema</th>
+                            <th>Rumus & Syarat Matematika</th>
+                            <th>Penjelasan & Aplikasi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Rentang Nilai & Banyak Digit</strong></td>
+                            <td>$$b^{k-1} \le N < b^k \iff k = \lfloor \log_b N \rfloor + 1$$</td>
+                            <td class="text-left">Bilangan bulat positif $N$ memiliki tepat $k$ digit ketika ditulis dalam basis $b$ jika dan hanya jika $N$ berada di antara $b^{k-1}$ dan $b^k - 1$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nilai Maksimum $k$ Digit</strong></td>
+                            <td>$$(\underbrace{d\,d\,\dots\,d}_{k \text{ digit}})_b = b^k - 1 \quad (\text{dengan } d = b - 1)$$</td>
+                            <td class="text-left">Bilangan terbesar dengan $k$ digit pada basis $b$ selalu bernilai $b^k - 1$. Contoh: $(1111)_2 = 2^4 - 1 = 15$ dan $(777)_8 = 8^3 - 1 = 511$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pergeseran Digit (Kali/Bagi $b^m$)</strong></td>
+                            <td>$$(a_k \dots a_0)_b \times b^m = (a_k \dots a_0 \underbrace{0\dots0}_{m \text{ nol}})_b$$</td>
+                            <td class="text-left">Mengalikan suatu bilangan dengan $b^m$ sama artinya dengan menambahkan $m$ buah angka $0$ di ujung kanan penulisannya dalam basis $b$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Uji Keterbagian oleh $(b - 1)$</strong></td>
+                            <td>$$(a_k \dots a_1 a_0)_b \equiv \sum_{i=0}^{k} a_i \pmod{b - 1}$$</td>
+                            <td class="text-left">Karena $b \equiv 1 \pmod{b-1}$, suatu bilangan dalam basis $b$ habis dibagi $(b-1)$ jika dan hanya jika <strong>jumlah seluruh digitnya</strong> habis dibagi $(b-1)$ (generalisasi uji habis dibagi $9$ pada basis $10$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Uji Keterbagian oleh $(b + 1)$</strong></td>
+                            <td>$$(a_k \dots a_1 a_0)_b \equiv \sum_{i=0}^{k} (-1)^i a_i \pmod{b + 1}$$</td>
+                            <td class="text-left">Karena $b \equiv -1 \pmod{b+1}$, keterbagian oleh $(b+1)$ ditentukan oleh <strong>jumlah selang-seling tanda</strong> digitnya dari kanan: $a_0 - a_1 + a_2 - a_3 + \dots$ (generalisasi uji habis dibagi $11$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Paritas Bilangan dalam Basis $b$</strong></td>
+                            <td>$$\text{Jika } b \text{ genap: ditentukan oleh } a_0$$$$\text{Jika } b \text{ ganjil: ditentukan oleh } \sum a_i$$</td>
+                            <td class="text-left">Pada basis genap, genap/ganjilnya bilangan hanya bergantung pada digit terakhir $a_0$. Pada basis ganjil, genap/ganjilnya bilangan bergantung pada genap/ganjilnya <strong>jumlah seluruh digitnya</strong>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berjenjang berikut untuk menguasai teknik konversi, operasi aritmetika basis, persamaan aljabar basis, hingga analisis banyaknya digit:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Lakukan konversi bilangan berikut:
+                    <br>a) Ubahlah bilangan $(1324)_5$ ke dalam sistem bilangan desimal (basis $10$), kemudian nyatakan hasilnya ke dalam sistem biner (basis $2$)!
+                    <br>b) Ubahlah bilangan pecahan biner $(110\text{,}101)_2$ ke dalam bentuk desimal!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Konversi $(1324)_5 \to$ Basis $10 \to$ Basis $2$:</strong></p>
+                    <p>
+                        Jabarkan nilai tempat dari $(1324)_5$:
+                        $$(1324)_5 = 1 \cdot 5^3 + 3 \cdot 5^2 + 2 \cdot 5^1 + 4 \cdot 5^0$$
+                        $$(1324)_5 = 1(125) + 3(25) + 2(5) + 4(1) = 125 + 75 + 10 + 4 = 214_{10}$$
+                        Selanjutnya, ubah $214_{10}$ ke basis $2$ dengan menjabarkan ke dalam jumlah perpangkatan $2$ ($128, 64, 32, 16, 8, 4, 2, 1$) atau pembagian berulang:
+                        $$214 = 128 + 64 + 0 + 16 + 0 + 4 + 2 + 0 = 1\cdot 2^7 + 1\cdot 2^6 + 0\cdot 2^5 + 1\cdot 2^4 + 0\cdot 2^3 + 1\cdot 2^2 + 1\cdot 2^1 + 0\cdot 2^0$$
+                        Sehingga $214_{10} = (11010110)_2$.
+                    </p>
+                    <p><strong>b) Konversi $(110\text{,}101)_2$ ke desimal:</strong></p>
+                    <p>
+                        $$(110\text{,}101)_2 = 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 + 1 \cdot 2^{-1} + 0 \cdot 2^{-2} + 1 \cdot 2^{-3}$$
+                        $$(110\text{,}101)_2 = 4 + 2 + 0 + \frac{1}{2} + 0 + \frac{1}{8} = 6 + 0\text{,}5 + 0\text{,}125 = 6\text{,}625_{10}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, $(1324)_5 = 214_{10} = (11010110)_2$, dan nilai desimal dari $(110\text{,}101)_2$ adalah $6\text{,}625$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Diketahui persamaan dalam basis $b$:
+                    $$(234)_b + (145)_b = (401)_b$$
+                    Tentukan nilai basis $b$ yang memenuhi persamaan tersebut, kemudian hitunglah hasil pengurangan $(401)_b - (256)_b$ langsung dalam basis $b$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Cara 1 (Analisis Kolom Satuan Secara Langsung):</strong></p>
+                    <p>
+                        Perhatikan penjumlahan digit paling kanan (nilai tempat satuan): $4 + 5 = 9$. Pada hasil penjumlahan $(401)_b$, angka satuannya tertulis $1$ dan menyimpan $1$ ke kolom puluhan. Artinya:
+                        $$9 = 1 \cdot b + 1 \implies b = 8$$
+                    </p>
+                    <p><strong>Cara 2 (Konversi ke Persamaan Aljabar Basis $10$):</strong></p>
+                    <p>
+                        $$(2b^2 + 3b + 4) + (1b^2 + 4b + 5) = 4b^2 + 0b + 1$$
+                        $$3b^2 + 7b + 9 = 4b^2 + 1 \implies b^2 - 7b - 8 = 0 \implies (b - 8)(b + 1) = 0$$
+                        Karena syarat basis adalah $b > 5$ (memuat digit $5$), maka diperoleh $b = 8$.
+                    </p>
+                    <p><strong>Menghitung $(401)_8 - (256)_8$ dalam basis $8$:</strong></p>
+                    <ul>
+                        <li><strong>Kolom satuan:</strong> $1 - 6$ tidak cukup, pinjam $1$ dari kolom depannya (bernilai $+8$), sehingga $(1 + 8) - 6 = 3$.</li>
+                        <li><strong>Kolom delapanan:</strong> Karena $0$ sudah meminjam dari $4$ (menjadi $8$) dan dipinjam $1$ oleh satuan, sisanya menjadi $7$. Maka $7 - 5 = 2$.</li>
+                        <li><strong>Kolom enam-puluh-empatan:</strong> Angka $4$ telah dipinjam $1$ sehingga tersisa $3$. Maka $3 - 2 = 1$.</li>
+                    </ul>
+                    <div class="kesimpulan">
+                        Jadi, nilai basis yang memenuhi adalah $b = 8$, dan hasil dari $(401)_8 - (256)_8$ adalah $(123)_8$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Sebuah bilangan bulat positif $N$ apabila dinyatakan dalam basis $7$ terdiri atas tiga digit dengan susunan $(abc)_7$, namun apabila dinyatakan dalam basis $9$ susunan digitnya terbalik menjadi $(cba)_9$. Tentukan ketiga digit $a, b, c$ dan nilai bilangan $N$ dalam basis $10$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Tentukan batas nilai digit $a, b, c$</strong></p>
+                    <p>
+                        Karena $(abc)_7$ adalah bilangan tiga digit dalam basis $7$ dan $(cba)_9$ adalah bilangan tiga digit dalam basis $9$, maka seluruh digitnya harus memenuhi syarat basis terkecil ($b = 7$) dan digit terdepan tidak boleh nol:
+                        $$1 \le a \le 6, \quad 0 \le b \le 6, \quad 1 \le c \le 6$$
+                    </p>
+                    <p><strong>Langkah 2: Samakan nilai ekspansi kedua basis</strong></p>
+                    <p>
+                        $$N = (abc)_7 = (cba)_9$$
+                        $$49a + 7b + c = 81c + 9b + a$$
+                        Kumpulkan suku-suku sejenis:
+                        $$48a = 80c + 2b \implies 24a = 40c + b \implies b = 8(3a - 5c)$$
+                    </p>
+                    <p><strong>Langkah 3: Analisis keterbagian nilai $b$</strong></p>
+                    <p>
+                        Karena $b$ adalah kelipatan $8$ dan harus memenuhi $0 \le b \le 6$, satu-satunya nilai yang mungkin untuk $b$ adalah:
+                        $$b = 0 \implies 3a - 5c = 0 \implies 3a = 5c$$
+                        Mengingat $\text{FPB}(3, 5) = 1$ serta $1 \le a, c \le 6$, maka diperoleh $a = 5$ dan $c = 3$.
+                    </p>
+                    <p><strong>Langkah 4: Hitung nilai $N$ dalam basis $10$</strong></p>
+                    <p>
+                        $$N = (503)_7 = 5 \cdot 7^2 + 0 \cdot 7^1 + 3 \cdot 7^0 = 5(49) + 3 = 245 + 3 = 248_{10}$$
+                        <em>(Uji pada basis $9$: $(305)_9 = 3(81) + 0 + 5 = 243 + 5 = 248_{10}$, terbukti benar).</em>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, digit-digit tersebut adalah $a = 5, b = 0, c = 3$, dan nilai bilangan $N$ dalam basis $10$ adalah $248$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Tentukan ada berapa banyak bilangan bulat positif $b$ ($b \ge 2$) sehingga bilangan $2026_{10}$ memiliki <strong>tepat $4$ digit</strong> ketika dituliskan dalam basis $b$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Gunakan syarat pertidaksamaan banyak digit dalam basis $b$</strong></p>
+                    <p>
+                        Suatu bilangan bulat positif $N$ memiliki tepat $k = 4$ digit ketika dinyatakan dalam basis $b$ jika dan hanya jika:
+                        $$b^{4-1} \le N < b^4 \iff b^3 \le 2026 < b^4$$
+                    </p>
+                    <p><strong>Langkah 2: Selesaikan kedua pertidaksamaan untuk bilangan bulat $b$</strong></p>
+                    <ul>
+                        <li>
+                            Dari $b^4 > 2026$:
+                            <br>Kita uji perpangkatan empat: $6^4 = 1296 \le 2026$ (tidak memenuhi), sedangkan $7^4 = 2401 > 2026$ (memenuhi). Maka diperoleh syarat bawah $b \ge 7$.
+                        </li>
+                        <li>
+                            Dari $b^3 \le 2026$:
+                            <br>Kita uji perpangkatan tiga: $12^3 = 1728 \le 2026$ (memenuhi), sedangkan $13^3 = 2197 > 2026$ (tidak memenuhi). Maka diperoleh syarat atas $b \le 12$.
+                        </li>
+                    </ul>
+                    <p><strong>Langkah 3: Hitung banyaknya nilai $b$ yang memenuhi</strong></p>
+                    <p>
+                        Irisan kedua syarat tersebut memberikan $7 \le b \le 12$, yaitu $b \in \{7, 8, 9, 10, 11, 12\}$. Banyaknya nilai basis $b$ adalah $12 - 7 + 1 = 6$ buah.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, terdapat $6$ nilai basis $b$ yang membuat $2026_{10}$ memiliki tepat $4$ digit, yaitu basis $7, 8, 9, 10, 11,$ dan $12$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 5 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 5</div>
+                <div class="soal-teks">
+                    Diketahui sebuah bilangan $7$-digit dalam basis $9$ berbentuk $M = (42x51y3)_9$. Jika bilangan $M$ habis dibagi oleh $8$ dan juga habis dibagi oleh $10$, tentukan semua pasangan digit $(x, y)$ yang memenuhi!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Gunakan sifat keterbagian oleh $(b - 1)$ dan $(b + 1)$ pada basis $b = 9$</strong></p>
+                    <p>
+                        Pada basis $b = 9$, pembagi $8 = b - 1$ dan pembagi $10 = b + 1$, dengan syarat digit $x, y \in \{0, 1, 2, 3, 4, 5, 6, 7, 8\}$:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Syarat habis dibagi $8$ ($b - 1$):</strong> Jumlah seluruh digitnya harus habis dibagi $8$:
+                            $$S = 4 + 2 + x + 5 + 1 + y + 3 = 15 + x + y \equiv 0 \pmod{8}$$
+                            Karena $15 \equiv -1 \pmod{8}$, maka $x + y - 1 \equiv 0 \pmod{8} \implies x + y \equiv 1 \pmod{8}$.
+                            <br>Mengingat $0 \le x + y \le 16$, kemungkinan nilai $x + y$ adalah $1$ atau $9$.
+                        </li>
+                        <li>
+                            <strong>Syarat habis dibagi $10$ ($b + 1$):</strong> Jumlah selang-seling tanda digitnya harus habis dibagi $10$:
+                            $$A = +3 - y + 1 - 5 + x - 2 + 4 = 1 + x - y \equiv 0 \pmod{10} \implies y - x \equiv 1 \pmod{10}$$
+                            Mengingat $-8 \le y - x \le 8$, satu-satunya nilai yang memenuhi adalah $y - x = 1 \iff y = x + 1$.
+                        </li>
+                    </ul>
+                    <p><strong>Langkah 2: Substitusikan $y = x + 1$ ke kedua kemungkinan nilai $x + y$</strong></p>
+                    <ul>
+                        <li>Jika $x + y = 1 \implies x + (x + 1) = 1 \implies 2x = 0 \implies x = 0$ dan $y = 1$.</li>
+                        <li>Jika $x + y = 9 \implies x + (x + 1) = 9 \implies 2x = 8 \implies x = 4$ dan $y = 5$.</li>
+                    </ul>
+                    <div class="kesimpulan">
+                        Jadi, pasangan digit $(x, y)$ yang memenuhi adalah $(0, 1)$ dan $(4, 5)$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Ilustrasi Anatomi Nilai Tempat Basis b: (1101,01)_2
+            const elTempat = document.getElementById("svg-nilai-tempat");
+            if (elTempat && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elTempat, 370, 195, {
+                    viewBox: "0 0 370 195",
+                    title: "Skema Nilai Tempat Bilangan Biner (1101,01)_2"
+                });
+
+                geo1.buatTeks(185, 16, "Nilai Tempat Basis 2: (1101,01)₂ = 13,25₁₀", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const boxes = [
+                    { d: "1", p: "2³", v: "8", x: 22, isFrac: false },
+                    { d: "1", p: "2²", v: "4", x: 74, isFrac: false },
+                    { d: "0", p: "2¹", v: "0", x: 126, isFrac: false },
+                    { d: "1", p: "2⁰", v: "1", x: 178, isFrac: false },
+                    { d: ",", p: "koma", v: "+", x: 226, isComma: true },
+                    { d: "0", p: "2⁻¹", v: "0", x: 254, isFrac: true },
+                    { d: "1", p: "2⁻²", v: "0,25", x: 306, isFrac: true }
+                ];
+
+                boxes.forEach(item => {
+                    if (item.isComma) {
+                        geo1.buatTeks(item.x + 10, 62, ",", {
+                            position: "middle-center",
+                            fontSize: "24px",
+                            fontWeight: "bold",
+                            fill: "#d97706"
+                        });
+                        return;
+                    }
+
+                    const w = 44, h = 42, yTop = 38;
+                    const cx = item.x + w / 2;
+
+                    // Kotak digit
+                    geo1.buatPersegiPanjang(item.x, yTop, w, h, {
+                        radius: 6,
+                        fill: item.isFrac ? "rgba(217, 119, 6, 0.16)" : "rgba(13, 148, 136, 0.16)",
+                        stroke: item.isFrac ? "#d97706" : "#0f766e",
+                        strokeWidth: 1.7
+                    });
+
+                    // Angka digit
+                    geo1.buatTeks(cx, yTop + h / 2, item.d, {
+                        position: "middle-center",
+                        fontSize: "15px",
+                        fontWeight: "bold",
+                        fill: item.isFrac ? "#b45309" : "#0f766e"
+                    });
+
+                    // Panah ke bobot pangkat
+                    geo1.buatVektor(cx, yTop + h + 3, cx, 112, {
+                        stroke: item.isFrac ? "#d97706" : "#0f766e",
+                        strokeWidth: 1.3
+                    });
+
+                    // Label pangkat 2^k
+                    geo1.buatTeks(cx, 125, `× ${item.p}`, {
+                        position: "middle-center",
+                        fontSize: "10.5px",
+                        fontWeight: "bold",
+                        fill: "#334155"
+                    });
+
+                    // Nilai desimal per suku
+                    geo1.buatPersegiPanjang(item.x + 2, 142, w - 4, 24, {
+                        radius: 4,
+                        fill: "rgba(100, 116, 139, 0.10)",
+                        stroke: "#94a3b8",
+                        strokeWidth: 1
+                    });
+                    geo1.buatTeks(cx, 154, item.v, {
+                        position: "middle-center",
+                        fontSize: "10px",
+                        fontWeight: "bold",
+                        fill: item.isFrac ? "#b45309" : "#0f766e"
+                    });
+                });
+
+                geo1.buatTeks(185, 182, "Total = 8 + 4 + 0 + 1 + 0 + 0,25 = 13,25₁₀", {
+                    position: "middle-center",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+            }
+
+            // 2. Ilustrasi Skema Pembagian Berulang (45_10 ke Basis 2)
+            const elBagi = document.getElementById("svg-pembagian-berulang");
+            if (elBagi && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elBagi, 350, 215, {
+                    viewBox: "0 0 350 215",
+                    title: "Skema Pembagian Berulang Konversi 45_10 ke Biner"
+                });
+
+                geo2.buatTeks(175, 15, "Pembagian Berulang: 45₁₀ = (101101)₂", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const steps = [
+                    { op: "45 : 2 = 22", rem: "1", ket: "(LSB)" },
+                    { op: "22 : 2 = 11", rem: "0", ket: "" },
+                    { op: "11 : 2 = 5",  rem: "1", ket: "" },
+                    { op: " 5 : 2 = 2",  rem: "1", ket: "" },
+                    { op: " 2 : 2 = 1",  rem: "0", ket: "" },
+                    { op: " 1 : 2 = 0",  rem: "1", ket: "(MSB)" }
+                ];
+
+                steps.forEach((st, idx) => {
+                    const y = 38 + idx * 26;
+
+                    // Kotak operasi pembagian
+                    geo2.buatPersegiPanjang(22, y - 10, 128, 21, {
+                        radius: 4,
+                        fill: "rgba(13, 148, 136, 0.12)",
+                        stroke: "#0f766e",
+                        strokeWidth: 1.3
+                    });
+                    geo2.buatTeks(86, y, st.op, {
+                        position: "middle-center",
+                        fontSize: "10.5px",
+                        fontWeight: "bold",
+                        fill: "#0f766e"
+                    });
+
+                    // Panah menuju sisa
+                    geo2.buatVektor(155, y, 192, y, {
+                        stroke: "#64748b",
+                        strokeWidth: 1.2
+                    });
+                    geo2.buatTeks(173, y - 4, "sisa", {
+                        position: "top-center",
+                        fontSize: "8.5px",
+                        fill: "#64748b"
+                    });
+
+                    // Lingkaran sisa pembagian
+                    geo2.buatLingkaran(212, y, 10, {
+                        fill: "rgba(217, 119, 6, 0.22)",
+                        stroke: "#d97706",
+                        strokeWidth: 1.6
+                    });
+                    geo2.buatTeks(212, y, st.rem, {
+                        position: "middle-center",
+                        fontSize: "11px",
+                        fontWeight: "bold",
+                        fill: "#b45309"
+                    });
+
+                    if (st.ket) {
+                        geo2.buatTeks(230, y, st.ket, {
+                            position: "middle-right",
+                            fontSize: "9.5px",
+                            fontWeight: "bold",
+                            fill: "#64748b"
+                        });
+                    }
+                });
+
+                // Panah baca dari bawah ke atas di sisi kanan
+                geo2.buatVektor(292, 172, 292, 36, {
+                    stroke: "#d97706",
+                    strokeWidth: 2
+                });
+                geo2.buatTeks(302, 95, "Baca", {
+                    position: "middle-right",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#b45309"
+                });
+                geo2.buatTeks(302, 110, "ke Atas", {
+                    position: "middle-right",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#b45309"
+                });
+
+                geo2.buatTeks(175, 200, "Hasil: (101101)₂", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+            }
+
+            // 3. Ilustrasi Konversi Cepat Pengelompokan Bit (Biner -> Oktal & Heksadesimal)
+            const elCepat = document.getElementById("svg-konversi-cepat");
+            if (elCepat && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elCepat, 370, 190, {
+                    viewBox: "0 0 370 190",
+                    title: "Skema Konversi Cepat Biner ke Oktal dan Heksadesimal"
+                });
+
+                geo3.buatTeks(185, 16, "Pengelompokan Bit: (10111011)₂ = (273)₈ = (BB)₁₆", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Bagian 1: Blok 3-bit ke Oktal
+                const oktalGroups = [
+                    { bits: "0 1 0", val: "2", x: 35 },
+                    { bits: "1 1 1", val: "7", x: 140 },
+                    { bits: "0 1 1", val: "3", x: 245 }
+                ];
+
+                oktalGroups.forEach(g => {
+                    geo3.buatPersegiPanjang(g.x, 34, 90, 26, {
+                        radius: 5,
+                        fill: "rgba(13, 148, 136, 0.14)",
+                        stroke: "#0f766e",
+                        strokeWidth: 1.5
+                    });
+                    geo3.buatTeks(g.x + 45, 47, g.bits, {
+                        position: "middle-center",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        fill: "#0f766e"
+                    });
+                    geo3.buatVektor(g.x + 45, 62, g.x + 45, 78, { stroke: "#0f766e", strokeWidth: 1.4 });
+                    geo3.buatTeks(g.x + 45, 90, `${g.val}₈`, {
+                        position: "middle-center",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        fill: "#0f766e"
+                    });
+                });
+
+                // Garis pemisah tengah
+                geo3.buatSegmen(25, 108, 345, 108, { stroke: "#cbd5e1", strokeWidth: 1.2, dashed: "4 3" });
+
+                // Bagian 2: Blok 4-bit ke Heksadesimal
+                const hexGroups = [
+                    { bits: "1 0 1 1", val: "11 = B₁₆", x: 45 },
+                    { bits: "1 0 1 1", val: "11 = B₁₆", x: 195 }
+                ];
+
+                hexGroups.forEach(g => {
+                    geo3.buatPersegiPanjang(g.x, 118, 130, 26, {
+                        radius: 5,
+                        fill: "rgba(217, 119, 6, 0.16)",
+                        stroke: "#d97706",
+                        strokeWidth: 1.5
+                    });
+                    geo3.buatTeks(g.x + 65, 131, g.bits, {
+                        position: "middle-center",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        fill: "#b45309"
+                    });
+                    geo3.buatVektor(g.x + 65, 146, g.x + 65, 162, { stroke: "#d97706", strokeWidth: 1.4 });
+                    geo3.buatTeks(g.x + 65, 174, g.val, {
+                        position: "middle-center",
+                        fontSize: "11.5px",
+                        fontWeight: "bold",
+                        fill: "#b45309"
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

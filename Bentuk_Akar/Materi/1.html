@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Bentuk Akar</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Bentuk Akar</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Bentuk Akar dan Hubungannya dengan Eksponen</h2>
+            <p>
+                <strong>Bentuk Akar</strong> (atau <em>radikal</em>) adalah akar dari suatu bilangan rasional yang hasilnya merupakan <strong>bilangan irasional</strong> (bilangan real yang tidak dapat dinyatakan dalam bentuk pecahan $\frac{p}{q}$ dengan $p, q \in \mathbb{Z}$ dan $q \neq 0$, sehingga desimalnya tidak berulang dan tak berhingga).
+            </p>
+            <ul>
+                <li><strong>Contoh Bentuk Akar (Irasional):</strong> $\sqrt{2}, \, \sqrt{3}, \, \sqrt{5}, \, \sqrt[3]{4}, \, \sqrt{12}$.</li>
+                <li><strong>Bukan Bentuk Akar (Rasional):</strong> $\sqrt{4} = 2, \, \sqrt{9} = 3, \, \sqrt[3]{27} = 3, \, \sqrt{0\text{,}25} = 0\text{,}5$ (karena hasil akarnya berupa bilangan rasional).</li>
+            </ul>
+            <p>
+                Secara umum, bentuk akar pangkat-$n$ berkaitan langsung dengan bilangan berpangkat pecahan (eksponen rasional):
+                $$\sqrt[n]{a^m} = a^{\frac{m}{n}}$$
+                di mana $n$ disebut <strong>indeks akar</strong> ($n \in \mathbb{N}, n \ge 2$; khusus untuk $n = 2$ indeksnya tidak ditulis: $\sqrt[2]{a} = \sqrt{a}$), $a^m$ disebut <strong>radikan</strong> (bilangan di bawah tanda akar), dan $\sqrt{\phantom{x}}$ adalah tanda radikal.
+            </p>
+
+            <p>
+                <strong>Syarat Terdefinisinya Akar pada Bilangan Real ($\mathbb{R}$) & Konsep Akar Utama:</strong>
+            </p>
+            <ul>
+                <li>
+                    <strong>Indeks $n$ Genap ($n = 2, 4, 6, \dots$):</strong> Radikan wajib tak-negatif ($a \ge 0$) dan hasil akarnya selalu tak-negatif ($\sqrt[n]{a} \ge 0$). Oleh karena itu, berlaku identitas mutlak yang sangat krusial:
+                    $$\sqrt{x^2} = |x| = \begin{cases} x, & \text{jika } x \ge 0 \\ -x, & \text{jika } x < 0 \end{cases}$$
+                    <em>(Hati-hati: $\sqrt{9} = 3$, bukan $\pm 3$. Demikian pula $\sqrt{(-5)^2} = |-5| = 5$).</em>
+                </li>
+                <li>
+                    <strong>Indeks $n$ Ganjil ($n = 3, 5, 7, \dots$):</strong> Terdefinisi untuk semua bilangan real $a \in \mathbb{R}$ (boleh negatif), di mana $\sqrt[n]{-a} = -\sqrt[n]{a}$ dan $\sqrt[n]{x^n} = x$.
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Representasi Geometris Bentuk Akar (Spiral Theodorus):</strong><br>
+                        Meskipun $\sqrt{2}, \sqrt{3}, \sqrt{5}, \dots$ adalah bilangan irasional yang desimalnya tak berujung, panjangnya dapat dilukis secara eksak pada bidang datar menggunakan Teorema Pythagoras secara berantai dengan menyusun segitiga siku-siku yang salah satu sisi siku-sikunya selalu berukuran $1\text{ satuan}$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-spiral-akar" style="width: 100%; max-width: 350px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Sifat-Sifat Operasi Aljabar Bentuk Akar</h2>
+            <p>
+                Dua bentuk akar dikatakan <strong>sejenis</strong> apabila memiliki indeks akar ($n$) dan radikan pokok ($a$) yang persis sama, misalnya $3\sqrt{5}$ dan $-7\sqrt{5}$. Operasi penjumlahan dan pengurangan hanya dapat digabungkan pada bentuk akar yang sejenis.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Sifat / Operasi</th>
+                            <th>Rumus Matematika</th>
+                            <th>Contoh Penerapan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Penyederhanaan Bentuk Akar</strong></td>
+                            <td>$$\sqrt{a^2 \cdot b} = a\sqrt{b} \quad (a \ge 0, b \ge 0)$$</td>
+                            <td class="text-left">$\sqrt{72} = \sqrt{36 \times 2} = 6\sqrt{2}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Penjumlahan & Pengurangan</strong></td>
+                            <td>$$p\sqrt[n]{a} \pm q\sqrt[n]{a} = (p \pm q)\sqrt[n]{a}$$</td>
+                            <td class="text-left">$5\sqrt{3} + 2\sqrt{3} - \sqrt{3} = (5+2-1)\sqrt{3} = 6\sqrt{3}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Perkalian Seindeks</strong></td>
+                            <td>$$p\sqrt[n]{a} \cdot q\sqrt[n]{b} = (p \cdot q)\sqrt[n]{a \cdot b}$$</td>
+                            <td class="text-left">$2\sqrt{6} \times 3\sqrt{8} = 6\sqrt{48} = 6(4\sqrt{3}) = 24\sqrt{3}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pembagian Seindeks</strong></td>
+                            <td>$$\frac{\sqrt[n]{a}}{\sqrt[n]{b}} = \sqrt[n]{\frac{a}{b}} \quad (b \neq 0)$$</td>
+                            <td class="text-left">$\dfrac{\sqrt{54}}{\sqrt{6}} = \sqrt{\dfrac{54}{6}} = \sqrt{9} = 3$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Akar di Dalam Akar (Bersusun)</strong></td>
+                            <td>$$\sqrt[m]{\sqrt[n]{a}} = \sqrt[m \cdot n]{a}$$</td>
+                            <td class="text-left">$\sqrt[3]{\sqrt{64}} = \sqrt[6]{2^6} = 2$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Perkalian Beda Indeks</strong></td>
+                            <td>$$\sqrt[m]{a} \cdot \sqrt[n]{b} = \sqrt[mn]{a^n \cdot b^m}$$</td>
+                            <td class="text-left">$\sqrt{2} \cdot \sqrt[3]{3} = \sqrt[6]{2^3 \cdot 3^2} = \sqrt[6]{72}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Merasionalkan Penyebut Pecahan Bentuk Akar</h2>
+            <p>
+                <strong>Merasionalkan penyebut</strong> adalah proses mengubah pecahan yang memiliki penyebut berbentuk akar (irasional) menjadi pecahan ekuivalen dengan penyebut bilangan rasional, tanpa mengubah nilai pecahan tersebut. Prinsip utamanya adalah mengalikan pembilang dan penyebut dengan <strong>faktor sekawan (konjugat)</strong> yang bernilai $1$, memanfaatkan identitas selisih kuadrat $(x + y)(x - y) = x^2 - y^2$.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bentuk Pecahan Awal</th>
+                            <th>Pengali Sekawan</th>
+                            <th>Hasil Rasionalisasi Penyebut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$$\frac{c}{\sqrt{a}}$$</td>
+                            <td>$$\frac{\sqrt{a}}{\sqrt{a}}$$</td>
+                            <td>$$\frac{c}{\sqrt{a}} \cdot \frac{\sqrt{a}}{\sqrt{a}} = \frac{c}{a}\sqrt{a}$$</td>
+                        </tr>
+                        <tr>
+                            <td>$$\frac{c}{\sqrt[n]{a^m}} \quad (m < n)$$</td>
+                            <td>$$\frac{\sqrt[n]{a^{n-m}}}{\sqrt[n]{a^{n-m}}}$$</td>
+                            <td>$$\frac{c\sqrt[n]{a^{n-m}}}{a}$$</td>
+                        </tr>
+                        <tr>
+                            <td>$$\frac{c}{a \pm \sqrt{b}}$$</td>
+                            <td>$$\frac{a \mp \sqrt{b}}{a \mp \sqrt{b}}$$</td>
+                            <td>$$\frac{c\left(a \mp \sqrt{b}\right)}{a^2 - b}$$</td>
+                        </tr>
+                        <tr>
+                            <td>$$\frac{c}{\sqrt{a} \pm \sqrt{b}}$$</td>
+                            <td>$$\frac{\sqrt{a} \mp \sqrt{b}}{\sqrt{a} \mp \sqrt{b}}$$</td>
+                            <td>$$\frac{c\left(\sqrt{a} \mp \sqrt{b}\right)}{a - b}$$</td>
+                        </tr>
+                        <tr>
+                            <td>$$\frac{1}{\sqrt[3]{a} \pm \sqrt[3]{b}}$$</td>
+                            <td>$$\frac{\sqrt[3]{a^2} \mp \sqrt[3]{ab} + \sqrt[3]{b^2}}{\sqrt[3]{a^2} \mp \sqrt[3]{ab} + \sqrt[3]{b^2}}$$</td>
+                            <td>$$\frac{\sqrt[3]{a^2} \mp \sqrt[3]{ab} + \sqrt[3]{b^2}}{a \pm b}$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Trik Merasionalkan Penyebut Tiga Suku ($\sqrt{a} + \sqrt{b} + \sqrt{c}$):</strong><br>
+                        Apabila penyebut terdiri dari tiga suku akar, kelompokkan dua suku pertama menjadi satu kesatuan: $\left[(\sqrt{a} + \sqrt{b}) + \sqrt{c}\right]$, lalu kalikan dengan sekawan tahap pertama $\left[(\sqrt{a} + \sqrt{b}) - \sqrt{c}\right]$. Hasil penyebutnya akan berubah menjadi $(a + b - c) + 2\sqrt{ab}$, yang selanjutnya dapat dirasionalkan dengan sekawan tahap kedua seperti biasa.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-rasionalisasi" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Penarikan Akar di Dalam Akar ($\sqrt{(a+b) \pm 2\sqrt{ab}}$)</h2>
+            <p>
+                Dalam soal-soal seleksi masuk perguruan tinggi (SNBT/Mandiri) dan olimpiade, sering dijumpai bentuk akar rangkap $\sqrt{P \pm 2\sqrt{Q}}$. Bentuk ini berasal dari penguadratan dua suku bentuk akar $(\sqrt{a} \pm \sqrt{b})^2$:
+                $$\left(\sqrt{a} \pm \sqrt{b}\right)^2 = (\sqrt{a})^2 + (\sqrt{b})^2 \pm 2\sqrt{a}\sqrt{b} = (a + b) \pm 2\sqrt{ab}$$
+            </p>
+            <p>
+                Dengan menarik akar kuadrat pada kedua ruas dan mengingat bahwa hasil akar kuadrat wajib bernilai tak-negatif ($\sqrt{x^2} = |x|$), diperoleh rumus fundamental:
+                $$\sqrt{(a + b) + 2\sqrt{ab}} = \sqrt{a} + \sqrt{b}$$
+                $$\sqrt{(a + b) - 2\sqrt{ab}} = \sqrt{a} - \sqrt{b} \quad \text{dengan syarat mutlak } \mathbf{a \ge b \ge 0}$$
+            </p>
+            <p>
+                <strong>Tips Penting Jika Koefisien Akar Dalam Bukan Angka $2$:</strong><br>
+                Rumus di atas <strong>hanya berlaku jika koefisien di depan akar bagian dalam tepat bernilai $2$</strong>. Jika belum bernilai $2$, ubahlah terlebih dahulu:
+            </p>
+            <ul>
+                <li><strong>Jika koefisiennya genap ($2k$):</strong> Masukkan faktor $k$ ke dalam akar menjadi $k^2$. Contoh: $\sqrt{11 - 6\sqrt{2}} = \sqrt{11 - 2 \cdot 3\sqrt{2}} = \sqrt{11 - 2\sqrt{9 \times 2}} = \sqrt{(9+2) - 2\sqrt{9 \cdot 2}} = \sqrt{9} - \sqrt{2} = 3 - \sqrt{2}$.</li>
+                <li><strong>Jika koefisiennya ganjil (atau tidak ada angka $2$):</strong> Kalikan di dalam akar dengan $\frac{2}{2}$. Contoh: $\sqrt{4 + \sqrt{15}} = \sqrt{\frac{8 + 2\sqrt{15}}{2}} = \frac{\sqrt{5} + \sqrt{3}}{\sqrt{2}} = \frac{1}{2}(\sqrt{10} + \sqrt{6})$.</li>
+            </ul>
+
+            <h2>5. Bentuk Akar Berulang Tak Hingga & Perbandingan Bentuk Akar</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>a) Bentuk Akar Berulang Tak Hingga (Infinite Nested Radicals):</strong><br>
+                        Untuk $a > 0$, nilai konvergensi dari bentuk akar bersusun tak hingga dapat ditentukan dengan memisalkan nilainya sebagai $x > 0$:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Penjumlahan Berulang:</strong> $x = \sqrt{a + \sqrt{a + \sqrt{a + \dots}}} \implies x^2 - x - a = 0 \implies x = \dfrac{1 + \sqrt{1 + 4a}}{2}$.
+                            <br><em>Khusus jika $a = n(n+1)$ adalah hasil kali dua bilangan berurutan, hasilnya langsung bilangan yang lebih besar: $x = n + 1$.</em>
+                        </li>
+                        <li>
+                            <strong>Pengurangan Berulang:</strong> $x = \sqrt{a - \sqrt{a - \sqrt{a - \dots}}} \implies x^2 + x - a = 0 \implies x = \dfrac{-1 + \sqrt{1 + 4a}}{2}$.
+                            <br><em>Khusus jika $a = n(n+1)$, hasilnya langsung bilangan yang lebih kecil: $x = n$.</em>
+                        </li>
+                        <li>
+                            <strong>Perkalian Berulang:</strong> $x = \sqrt[n]{a \sqrt[n]{a \sqrt[n]{a \dots}}} \implies x^n = a \cdot x \implies x = \sqrt[n-1]{a}$ (untuk $n = 2$, $x = a$).
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-akar-berulang" style="width: 100%; max-width: 360px;"></div>
+                </div>
+            </div>
+
+            <p>
+                <strong>b) Teknik Membandingkan Urutan Nilai Bentuk Akar (Tanpa Kalkulator):</strong>
+            </p>
+            <ul>
+                <li><strong>Bentuk Akar Berbeda Indeks ($\sqrt[m]{a}$ vs $\sqrt[n]{b}$):</strong> Samakan indeks akarnya ke KPK dari $(m, n)$, atau pangkatkan keduanya dengan $\text{KPK}(m, n)$.</li>
+                <li><strong>Penjumlahan Dua Akar ($\sqrt{a} + \sqrt{b}$ vs $\sqrt{c} + \sqrt{d}$):</strong> Jika $a + b = c + d$, kuadratkan kedua bentuk sehingga diperoleh $(a+b) + 2\sqrt{ab}$ dan $(c+d) + 2\sqrt{cd}$, lalu bandingkan nilai hasil kali $ab$ terhadap $cd$.</li>
+                <li><strong>Pengurangan Dua Akar ($\sqrt{a} - \sqrt{b}$ vs $\sqrt{c} - \sqrt{d}$):</strong> Jika selisih $a - b = c - d$, kalikan dengan sekawan menjadi $\frac{a-b}{\sqrt{a}+\sqrt{b}}$ dan $\frac{c-d}{\sqrt{c}+\sqrt{d}}$; semakin besar penyebutnya, semakin kecil nilainya.</li>
+            </ul>
+
+            <h2>6. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berjenjang berikut untuk menguasai operasi penyederhanaan, rasionalisasi penyebut, akar rangkap, deret teleskopik bentuk akar, hingga perbandingan nilai akar:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Sederhanakan bentuk operasi akar berikut dan rasionalkan penyebutnya:
+                    $$\frac{3\sqrt{75} - 2\sqrt{48} + \sqrt{108}}{4\sqrt{3} - 3\sqrt{2}}$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Sederhanakan bagian pembilang ke dalam bentuk akar sejenis ($\sqrt{3}$)</strong></p>
+                    <p>
+                        $$\sqrt{75} = \sqrt{25 \times 3} = 5\sqrt{3}, \quad \sqrt{48} = \sqrt{16 \times 3} = 4\sqrt{3}, \quad \sqrt{108} = \sqrt{36 \times 3} = 6\sqrt{3}$$
+                        Maka nilai pembilangnya adalah:
+                        $$3(5\sqrt{3}) - 2(4\sqrt{3}) + 6\sqrt{3} = 15\sqrt{3} - 8\sqrt{3} + 6\sqrt{3} = 13\sqrt{3}$$
+                    </p>
+                    <p><strong>Langkah 2: Rasionalkan penyebut dengan mengalikan sekawan $(4\sqrt{3} + 3\sqrt{2})$</strong></p>
+                    <p>
+                        $$\frac{13\sqrt{3}}{4\sqrt{3} - 3\sqrt{2}} \times \frac{4\sqrt{3} + 3\sqrt{2}}{4\sqrt{3} + 3\sqrt{2}} = \frac{13\sqrt{3}\left(4\sqrt{3} + 3\sqrt{2}\right)}{(4\sqrt{3})^2 - (3\sqrt{2})^2}$$
+                        Perhatikan bahwa $(4\sqrt{3})^2 = 16 \times 3 = 48$ dan $(3\sqrt{2})^2 = 9 \times 2 = 18$, sehingga penyebutnya bernilai $48 - 18 = 30$:
+                        $$\frac{13(4 \times 3) + 13(3\sqrt{6})}{30} = \frac{156 + 39\sqrt{6}}{30}$$
+                        Sederhanakan dengan membagi pembilang dan penyebut dengan $3$:
+                        $$\frac{52 + 13\sqrt{6}}{10} = \frac{13\left(4 + \sqrt{6}\right)}{10}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, bentuk sederhana dari ekspresi tersebut adalah $\dfrac{52 + 13\sqrt{6}}{10}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Tentukan nilai eksak yang paling sederhana dari penjumlahan akar di dalam akar berikut:
+                    $$\sqrt{14 + 6\sqrt{5}} - \sqrt{9 - 4\sqrt{5}}$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Ubah kedua suku agar berbentuk baku $\sqrt{(a+b) \pm 2\sqrt{ab}}$ dengan $a > b$</strong></p>
+                    <ul>
+                        <li>
+                            <strong>Suku pertama:</strong> $\sqrt{14 + 6\sqrt{5}} = \sqrt{14 + 2 \cdot 3\sqrt{5}} = \sqrt{14 + 2\sqrt{9 \times 5}} = \sqrt{14 + 2\sqrt{45}}$.
+                            <br>Cari dua bilangan yang jumlahnya $14$ dan hasil kalinya $45$, yaitu $a = 9$ dan $b = 5$:
+                            $$\sqrt{(9 + 5) + 2\sqrt{9 \times 5}} = \sqrt{9} + \sqrt{5} = 3 + \sqrt{5}$$
+                        </li>
+                        <li>
+                            <strong>Suku kedua:</strong> $\sqrt{9 - 4\sqrt{5}} = \sqrt{9 - 2 \cdot 2\sqrt{5}} = \sqrt{9 - 2\sqrt{4 \times 5}} = \sqrt{9 - 2\sqrt{20}}$.
+                            <br>Cari dua bilangan yang jumlahnya $9$ dan hasil kalinya $20$ (dengan $a > b$), yaitu $a = 5$ dan $b = 4$:
+                            $$\sqrt{(5 + 4) - 2\sqrt{5 \times 4}} = \sqrt{5} - \sqrt{4} = \sqrt{5} - 2$$
+                        </li>
+                    </ul>
+                    <p><strong>Langkah 2: Kurangkan kedua hasil penyederhanaan</strong></p>
+                    <p>
+                        $$\left(3 + \sqrt{5}\right) - \left(\sqrt{5} - 2\right) = 3 + \sqrt{5} - \sqrt{5} + 2 = 5$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, hasil dari $\sqrt{14 + 6\sqrt{5}} - \sqrt{9 - 4\sqrt{5}}$ adalah $5$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Jika diketahui $x = 2 - \sqrt{3}$, tentukan nilai dari ekspresi aljabar berikut:
+                    <br>a) $x + \dfrac{1}{x}$
+                    <br>b) $x^2 + \dfrac{1}{x^2}$ dan $x^3 + \dfrac{1}{x^3}$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menentukan nilai $\frac{1}{x}$ dan $x + \frac{1}{x}$:</strong></p>
+                    <p>
+                        Rasionalkan bentuk $\frac{1}{x}$ dengan mengalikan sekawan $(2 + \sqrt{3})$:
+                        $$\frac{1}{x} = \frac{1}{2 - \sqrt{3}} \times \frac{2 + \sqrt{3}}{2 + \sqrt{3}} = \frac{2 + \sqrt{3}}{4 - 3} = 2 + \sqrt{3}$$
+                        Jumlahkan $x$ dengan $\frac{1}{x}$:
+                        $$x + \frac{1}{x} = \left(2 - \sqrt{3}\right) + \left(2 + \sqrt{3}\right) = 4$$
+                    </p>
+                    <p><strong>b) Menentukan nilai $x^2 + \frac{1}{x^2}$ dan $x^3 + \frac{1}{x^3}$:</strong></p>
+                    <p>
+                        Gunakan identitas aljabar simetris dari nilai $x + \frac{1}{x} = 4$:
+                        $$x^2 + \frac{1}{x^2} = \left(x + \frac{1}{x}\right)^2 - 2 = 4^2 - 2 = 16 - 2 = 14$$
+                        $$x^3 + \frac{1}{x^3} = \left(x + \frac{1}{x}\right)^3 - 3\left(x + \frac{1}{x}\right) = 4^3 - 3(4) = 64 - 12 = 52$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai $x + \frac{1}{x} = 4$, nilai $x^2 + \frac{1}{x^2} = 14$, dan nilai $x^3 + \frac{1}{x^3} = 52$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Hitunglah nilai dari deret pecahan bentuk akar berikut:
+                    $$S = \frac{1}{1 + \sqrt{2}} + \frac{1}{\sqrt{2} + \sqrt{3}} + \frac{1}{\sqrt{3} + \sqrt{4}} + \dots + \frac{1}{\sqrt{99} + \sqrt{100}}$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Rasionalkan bentuk umum suku ke-$k$ ($\frac{1}{\sqrt{k} + \sqrt{k+1}}$)</strong></p>
+                    <p>
+                        Kalikan pembilang dan penyebut suku ke-$k$ dengan sekawannya, yaitu $\sqrt{k+1} - \sqrt{k}$:
+                        $$U_k = \frac{1}{\sqrt{k+1} + \sqrt{k}} \times \frac{\sqrt{k+1} - \sqrt{k}}{\sqrt{k+1} - \sqrt{k}} = \frac{\sqrt{k+1} - \sqrt{k}}{(k + 1) - k} = \sqrt{k+1} - \sqrt{k}$$
+                    </p>
+                    <p><strong>Langkah 2: Jabarkan penjumlahan (Deret Teleskopik)</strong></p>
+                    <p>
+                        $$S = \left(\sqrt{2} - \sqrt{1}\right) + \left(\sqrt{3} - \sqrt{2}\right) + \left(\sqrt{4} - \sqrt{3}\right) + \dots + \left(\sqrt{100} - \sqrt{99}\right)$$
+                        Semua suku tengah saling menghilangkan, sehingga hanya menyisakan suku ujung awal dan ujung akhir:
+                        $$S = \sqrt{100} - \sqrt{1} = 10 - 1 = 9$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, hasil penjumlahan deret bentuk akar tersebut adalah $9$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 5 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 5</div>
+                <div class="soal-teks">
+                    Selesaikan kedua permasalahan bentuk akar berikut tanpa menggunakan kalkulator:
+                    <br>a) Tentukan nilai $x$ yang memenuhi persamaan $\sqrt{12 + \sqrt{12 + \sqrt{12 + \dots}}} + \sqrt{20 - \sqrt{20 - \sqrt{20 - \dots}}} = \sqrt{x\sqrt{x\sqrt{x\dots}}}$!
+                    <br>b) Urutkan ketiga bilangan $P = \sqrt{2}, \, Q = \sqrt[3]{3}, \, R = \sqrt[6]{6}$ dari yang terkecil hingga yang terbesar!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menyelesaikan persamaan akar berulang tak hingga:</strong></p>
+                    <ul>
+                        <li>Suku pertama (penjumlahan dengan $12 = 3 \times 4$): $\sqrt{12 + \sqrt{12 + \dots}} = 4$.</li>
+                        <li>Suku kedua (pengurangan dengan $20 = 4 \times 5$): $\sqrt{20 - \sqrt{20 - \dots}} = 4$.</li>
+                        <li>Ruas kanan (perkalian berulang indeks $2$): $\sqrt{x\sqrt{x\sqrt{x\dots}}} = x$.</li>
+                    </ul>
+                    <p>
+                        Maka diperoleh $4 + 4 = x \implies x = 8$.
+                    </p>
+                    <p><strong>b) Mengurutkan $P = \sqrt{2}, \, Q = \sqrt[3]{3}, \, R = \sqrt[6]{6}$:</strong></p>
+                    <p>
+                        Samakan indeks ketiga bentuk akar menjadi $\text{KPK}(2, 3, 6) = 6$:
+                        $$P = \sqrt[2]{2^1} = \sqrt[6]{2^3} = \sqrt[6]{8}$$
+                        $$Q = \sqrt[3]{3^1} = \sqrt[6]{3^2} = \sqrt[6]{9}$$
+                        $$R = \sqrt[6]{6}$$
+                        Karena $\sqrt[6]{6} < \sqrt[6]{8} < \sqrt[6]{9}$, maka urutan dari yang terkecil ke terbesar adalah $R < P < Q$.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai $x = 8$, dan urutan bilangan dari yang terkecil adalah $\sqrt[6]{6} < \sqrt{2} < \sqrt[3]{3}$ ($R < P < Q$).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Ilustrasi Spiral Theodorus (Konstruksi Geometris Akar Kuadrat)
+            const elSpiral = document.getElementById("svg-spiral-akar");
+            if (elSpiral && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elSpiral, 350, 215, {
+                    viewBox: "0 0 350 215",
+                    title: "Spiral Theodorus: Konstruksi Geometris Panjang Akar Kuadrat"
+                });
+
+                geo1.buatTeks(175, 16, "Spiral Theodorus: Konstruksi Eksak √2, √3, √4, √5", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const ox = 155, oy = 155;
+                const scale = 58; // 1 satuan = 58 px
+
+                // Hitung titik-titik sudut spiral dari n = 1 s.d. 5
+                const pts = [[ox + scale, oy]]; // P1: jarak 1
+                let angle = 0;
+
+                for (let n = 1; n <= 4; n++) {
+                    const prev = pts[pts.length - 1];
+                    const dx = prev[0] - ox;
+                    const dy = prev[1] - oy;
+                    const len = Math.hypot(dx, dy);
+                    // Vektor satuan tegak lurus berlawanan jarum jam di layar (ke atas/kiri)
+                    const nx = dy / len;
+                    const ny = -dx / len;
+                    const nextPt = [prev[0] + nx * scale, prev[1] + ny * scale];
+                    pts.push(nextPt);
+                }
+
+                const labelsHyp = ["1", "√2", "√3", "√4 = 2", "√5"];
+                for (let i = 0; i < 4; i++) {
+                    const pA = pts[i];
+                    const pB = pts[i + 1];
+                    const isEven = i % 2 === 0;
+
+                    geo1.buatPoligon([[ox, oy], pA, pB], {
+                        fill: isEven ? "rgba(13, 148, 136, 0.14)" : "rgba(217, 119, 6, 0.14)",
+                        stroke: isEven ? "#0f766e" : "#d97706",
+                        strokeWidth: 1.6
+                    });
+
+                    // Tanda siku-siku di pA
+                    geo1.buatSiku([ox, oy], pA, pB, {
+                        size: 9,
+                        stroke: isEven ? "#0f766e" : "#d97706",
+                        strokeWidth: 1.2
+                    });
+
+                    // Label sisi luar = 1
+                    const mxOut = (pA[0] + pB[0]) / 2;
+                    const myOut = (pA[1] + pB[1]) / 2;
+                    const vx = mxOut - ox, vy = myOut - oy;
+                    const vLen = Math.hypot(vx, vy);
+                    geo1.buatTeks(mxOut + (vx / vLen) * 13, myOut + (vy / vLen) * 13, "1", {
+                        position: "middle-center",
+                        fontSize: "10.5px",
+                        fontWeight: "bold",
+                        fill: "#475569"
+                    });
+                }
+
+                // Label jari-jari √n
+                geo1.buatTeks((ox + pts[0][0]) / 2, oy + 13, "1", {
+                    position: "middle-center", fontSize: "10.5px", fontWeight: "bold", fill: "#0f766e"
+                });
+                geo1.buatTeks(pts[1][0] + 16, pts[1][1] - 4, "√2", {
+                    position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#0f766e"
+                });
+                geo1.buatTeks(pts[2][0] + 2, pts[2][1] - 12, "√3", {
+                    position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#b45309"
+                });
+                geo1.buatTeks(pts[3][0] - 18, pts[3][1] - 6, "√4=2", {
+                    position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#0f766e"
+                });
+                geo1.buatTeks(pts[4][0] - 16, pts[4][1] + 10, "√5", {
+                    position: "middle-center", fontSize: "11.5px", fontWeight: "bold", fill: "#b45309"
+                });
+
+                geo1.buatTitik(ox, oy, { size: 4, color: "#0f172a", label: "O", labelPosition: "bottom-left" });
+                geo1.buatTeks(175, 198, "Sisi Miring ke-n = √( (√n)² + 1² ) = √(n + 1)", {
+                    position: "middle-center",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+            }
+
+            // 2. Ilustrasi Skema Perkalian Sekawan (Rasionalisasi Penyebut)
+            const elRasional = document.getElementById("svg-rasionalisasi");
+            if (elRasional && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elRasional, 370, 185, {
+                    viewBox: "0 0 370 185",
+                    title: "Skema Merasionalkan Penyebut dengan Sekawan"
+                });
+
+                geo2.buatTeks(185, 16, "Prinsip Sekawan: (√a + √b)(√a - √b) = a - b", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Kotak 1: Pecahan Awal
+                geo2.buatPersegiPanjang(16, 42, 86, 78, {
+                    radius: 7,
+                    fill: "rgba(13, 148, 136, 0.14)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.6
+                });
+                geo2.buatTeks(59, 62, "c", { position: "middle-center", fontSize: "13px", fontWeight: "bold", fill: "#0f766e" });
+                geo2.buatSegmen(30, 78, 88, 78, { stroke: "#0f766e", strokeWidth: 1.6 });
+                geo2.buatTeks(59, 98, "√a + √b", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: "#0f766e" });
+
+                // Tanda Kali
+                geo2.buatTeks(115, 80, "×", { position: "middle-center", fontSize: "16px", fontWeight: "bold", fill: "#475569" });
+
+                // Kotak 2: Pengali Sekawan (= 1)
+                geo2.buatPersegiPanjang(128, 42, 92, 78, {
+                    radius: 7,
+                    fill: "rgba(217, 119, 6, 0.16)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.6
+                });
+                geo2.buatTeks(174, 62, "√a - √b", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: "#b45309" });
+                geo2.buatSegmen(140, 78, 208, 78, { stroke: "#d97706", strokeWidth: 1.6 });
+                geo2.buatTeks(174, 98, "√a - √b", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: "#b45309" });
+
+                // Tanda Sama Dengan
+                geo2.buatTeks(233, 80, "=", { position: "middle-center", fontSize: "16px", fontWeight: "bold", fill: "#475569" });
+
+                // Kotak 3: Hasil Rasional
+                geo2.buatPersegiPanjang(246, 42, 108, 78, {
+                    radius: 7,
+                    fill: "rgba(13, 148, 136, 0.20)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.8
+                });
+                geo2.buatTeks(300, 62, "c(√a - √b)", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: "#0f766e" });
+                geo2.buatSegmen(258, 78, 342, 78, { stroke: "#0f766e", strokeWidth: 1.6 });
+                geo2.buatTeks(300, 98, "a - b (Rasional)", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#0f766e" });
+
+                // Keterangan bawah
+                geo2.buatTeks(174, 138, "Bernilai = 1 (Sekawan)", {
+                    position: "middle-center", fontSize: "10px", fontWeight: "bold", fill: "#b45309"
+                });
+                geo2.buatTeks(185, 165, "Tanda penghubung penyebut dibalik: (+) menjadi (-)", {
+                    position: "middle-center", fontSize: "10.5px", fontWeight: "bold", fill: "#475569"
+                });
+            }
+
+            // 3. Ilustrasi Pola Akar Berulang Tak Hingga: n(n+1)
+            const elBerulang = document.getElementById("svg-akar-berulang");
+            if (elBerulang && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elBerulang, 360, 185, {
+                    viewBox: "0 0 360 185",
+                    title: "Ringkasan Rumus Cepat Akar Berulang Tak Hingga"
+                });
+
+                geo3.buatTeks(180, 16, "Rumus Cepat Akar Berulang dengan a = n(n + 1)", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Blok 1: Penjumlahan -> n + 1
+                geo3.buatPersegiPanjang(18, 34, 324, 42, {
+                    radius: 6,
+                    fill: "rgba(13, 148, 136, 0.14)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.5
+                });
+                geo3.buatTeks(180, 55, "√( 6 + √(6 + √(6 + ...)) )   [6 = 2×3]  ➔  Hasil = 3 (Besar)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Blok 2: Pengurangan -> n
+                geo3.buatPersegiPanjang(18, 86, 324, 42, {
+                    radius: 6,
+                    fill: "rgba(217, 119, 6, 0.15)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.5
+                });
+                geo3.buatTeks(180, 107, "√( 6 - √(6 - √(6 - ...)) )   [6 = 2×3]  ➔  Hasil = 2 (Kecil)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#b45309"
+                });
+
+                // Blok 3: Perkalian -> a
+                geo3.buatPersegiPanjang(18, 138, 324, 36, {
+                    radius: 6,
+                    fill: "rgba(100, 116, 139, 0.12)",
+                    stroke: "#475569",
+                    strokeWidth: 1.4
+                });
+                geo3.buatTeks(180, 156, "√( a · √(a · √(a · ...)) )  ➔  Hasil = a", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#334155"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

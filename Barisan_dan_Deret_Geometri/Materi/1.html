@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Barisan Geometri</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Barisan Geometri</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Konsep Dasar Barisan Geometri</h2>
+            <p>
+                <strong>Barisan Geometri</strong> (atau sering disebut <em>barisan ukur</em>) adalah suatu barisan bilangan yang memiliki perbandingan (hasil bagi) antara dua suku yang berurutan selalu tetap (konstan). Perbandingan yang tetap ini dinamakan <strong>rasio</strong> dan dilambangkan dengan huruf $r$ (dengan syarat $a \neq 0$ dan $r \neq 0$).
+            </p>
+            <p>
+                Jika suku pertama dilambangkan dengan $a$ (atau $U_1$), maka susunan suku-suku pada barisan geometri mengikuti pola perkalian berulang dengan rasio $r$ sebagai berikut:
+                $$U_1, \, U_2, \, U_3, \, U_4, \, \dots, \, U_n$$
+                $$a, \, ar, \, ar^2, \, ar^3, \, \dots, \, ar^{n-1}$$
+            </p>
+            <p>
+                Secara matematis, syarat suatu barisan disebut barisan geometri adalah nilai rasio ($r$) yang selalu konstan untuk setiap bilangan asli $n \ge 2$:
+                $$r = \frac{U_n}{U_{n-1}} = \frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3}$$
+            </p>
+            <p>
+                Berdasarkan nilai suku pertama ($a$) dan rasio ($r$), karakteristik perilaku suku-suku barisan geometri dapat diklasifikasikan menjadi beberapa jenis:
+            </p>
+            <ul>
+                <li><strong>Pertumbuhan Eksponensial ($r > 1$):</strong> Nilai mutlak suku-sukunya semakin membesar secara eksponensial (contoh: $2, 6, 18, 54, \dots$ dengan $a = 2, r = 3$).</li>
+                <li><strong>Peluruhan Eksponensial ($0 < r < 1$):</strong> Nilai mutlak suku-sukunya semakin mengecil mendekati nol (contoh: $64, 32, 16, 8, \dots$ dengan $a = 64, r = \frac{1}{2}$).</li>
+                <li><strong>Barisan Konstan ($r = 1$):</strong> Semua sukunya bernilai sama dengan suku pertama ($a, a, a, a, \dots$).</li>
+                <li><strong>Barisan Berganti Tanda / Berayun ($r < 0$):</strong> Tanda positif dan negatif pada sukunya selalu bergantian (contoh: $3, -6, 12, -24, 48, \dots$ dengan $a = 3, r = -2$).</li>
+            </ul>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Karakteristik Kurva Eksponensial Barisan Geometri:</strong><br>
+                        Berbeda dengan barisan aritmetika yang titik-titik $(n, U_n)$-nya membentuk garis lurus, pada barisan geometri (dengan $a > 0$ dan $r > 0$), titik-titik $(n, U_n)$ terletak tepat pada satu <strong>kurva fungsi eksponensial</strong> $f(n) = a \cdot r^{n-1}$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-geometri-kurva" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Rumus Suku ke-$n$ ($U_n$) dan Sifat Eksponensialnya</h2>
+            <p>
+                Berdasarkan pola bentuk umum $U_1 = a \cdot r^0$, $U_2 = a \cdot r^1$, $U_3 = a \cdot r^2$, tampak bahwa pangkat dari rasio $r$ selalu berselisih $1$ lebih kecil daripada indeks sukunya. Dengan demikian, rumus umum suku ke-$n$ ($U_n$) barisan geometri adalah:
+                $$U_n = a \cdot r^{n-1}$$
+            </p>
+            <p>
+                Apabila dijabarkan dengan sifat eksponen, rumus $U_n$ dapat dituliskan sebagai:
+                $$U_n = \left(\frac{a}{r}\right) \cdot r^n$$
+                Dari bentuk ini diperoleh sifat penting: <strong>bilangan pokok (basis) yang berpangkat $n$ pada rumus eksplisit $U_n$ selalu menentukan nilai rasio ($r$)</strong>. Sebagai contoh, jika $U_n = 5 \cdot 2^{3n-1}$, maka kita dapat mengubahnya menjadi $U_n = \frac{5}{2} \cdot (2^3)^n = \frac{5}{2} \cdot 8^n$, sehingga langsung diketahui bahwa rasio $r = 8$ dan suku pertama $a = U_1 = 5 \cdot 2^{3(1)-1} = 20$.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hubungan / Sifat Suku</th>
+                            <th>Rumus Matematika</th>
+                            <th>Keterangan & Penggunaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Rumus Dasar Suku ke-$n$</strong></td>
+                            <td>$$U_n = a \cdot r^{n-1}$$</td>
+                            <td class="text-left">Menentukan nilai suku ke-$n$ jika diketahui suku pertama $a$ dan rasio $r$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hubungan Dua Suku Sembarang</strong></td>
+                            <td>$$U_p = U_q \cdot r^{p-q} \iff r^{p-q} = \frac{U_p}{U_q}$$</td>
+                            <td class="text-left">Menentukan rasio $r$ atau menghitung suku ke-$p$ secara langsung dari suku ke-$q$ tanpa mencari $a$ terlebih dahulu.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sifat Simetri Indeks (Hasil Kali)</strong></td>
+                            <td>$$p + q = k + l \implies U_p \cdot U_q = U_k \cdot U_l$$</td>
+                            <td class="text-left">Jika jumlah indeks dua suku sama dengan jumlah indeks dua suku lainnya, maka hasil kali nilai sukunya juga sama (contoh: $U_2 \cdot U_9 = U_5 \cdot U_6 = a^2 r^9$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Syarat Tiga Suku Berurutan</strong></td>
+                            <td>$$U_2^2 = U_1 \cdot U_3 \iff \frac{U_2}{U_1} = \frac{U_3}{U_2}$$</td>
+                            <td class="text-left">Tiga bilangan tak nol $x, y, z$ membentuk barisan geometri jika dan hanya jika kuadrat suku tengah sama dengan hasil kali kedua suku tepinya ($y^2 = xz$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kaitan dengan Logaritma</strong></td>
+                            <td>$$\log U_n = \log a + (n-1)\log r$$</td>
+                            <td class="text-left">Jika $U_1, U_2, U_3, \dots$ adalah barisan geometri dengan suku-suku positif, maka $\log U_1, \log U_2, \log U_3, \dots$ membentuk <strong>barisan aritmetika</strong> dengan beda $b = \log r$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                <strong>Catatan Penting tentang Tanda Rasio ($r$):</strong><br>
+                Saat mencari rasio dari persamaan $r^{p-q} = \frac{U_p}{U_q}$, perhatikan paritas selisih indeks $(p - q)$:
+            </p>
+            <ul>
+                <li>Jika $(p - q)$ adalah <strong>bilangan ganjil</strong>, maka nilai $r$ adalah tunggal (tanda positif/negatif mengikuti tanda $\frac{U_p}{U_q}$).</li>
+                <li>Jika $(p - q)$ adalah <strong>bilangan genap</strong> dan $\frac{U_p}{U_q} > 0$, maka terdapat <strong>dua kemungkinan nilai rasio</strong>, yaitu $r > 0$ atau $r < 0$ ($r = \pm \sqrt[p-q]{\frac{U_p}{U_q}}$), kecuali soal memberikan syarat tambahan (misalnya semua suku positif atau barisan naik).</li>
+            </ul>
+
+            <h2>3. Suku Tengah Barisan Geometri ($U_t$)</h2>
+            <p>
+                Jika suatu barisan geometri berhingga memiliki banyak suku ganjil ($n$ bilangan ganjil), maka terdapat tepat satu <strong>suku tengah</strong> ($U_t$) yang membagi banyak suku di sebelah kiri dan kanannya sama banyak.
+            </p>
+            <ul>
+                <li>
+                    <strong>Letak Indeks Suku Tengah ($t$):</strong>
+                    $$t = \frac{n + 1}{2} \quad \Longleftrightarrow \quad n = 2t - 1$$
+                </li>
+                <li>
+                    <strong>Nilai Suku Tengah ($U_t$):</strong> Kuadrat dari suku tengah sama dengan hasil kali suku pertama dan suku terakhir (rata-rata ukur / rataan geometris):
+                    $$U_t^2 = U_1 \cdot U_n = U_2 \cdot U_{n-1} = \dots \implies U_t = \pm\sqrt{a \cdot U_n} = a \cdot r^{t-1}$$
+                    <em>(Tanda positif atau negatif pada $U_t$ disesuaikan dengan tanda dari $a \cdot r^{t-1}$. Karena $n = 2t-1$, jika suku-suku barisan bernilai positif, maka $U_t = \sqrt{a \cdot U_n}$).</em>
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Sifat Hasil Kali $n$ Suku Pertama ($P_n$):</strong><br>
+                        Apabila seluruh suku pada barisan geometri dikalikan:
+                        $$P_n = U_1 \cdot U_2 \cdot U_3 \cdots U_n$$
+                        Karena $U_1 \cdot U_n = U_2 \cdot U_{n-1} = a^2 r^{n-1}$, maka berlaku rumus hasil kali $n$ suku pertama:
+                        $$P_n = (a \cdot U_n)^{n/2} = a^n \cdot r^{\frac{n(n-1)}{2}}$$
+                        Khusus untuk $n$ ganjil dengan suku tengah $U_t$, berlaku $P_n = (U_t)^n$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-suku-tengah" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Sisipan pada Barisan Geometri</h2>
+            <p>
+                Apabila di antara setiap dua suku yang berurutan pada suatu barisan geometri (atau di antara dua bilangan $x$ dan $y$) disisipkan sebanyak $k$ buah bilangan baru sehingga terbentuk sebuah barisan geometri yang baru, maka unsur-unsur barisan baru tersebut dapat ditentukan sebagai berikut:
+            </p>
+
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li>
+                            <strong>Rasio Baru ($r'$):</strong><br>
+                            Jika disisipkan $k$ bilangan di antara dua bilangan $x$ dan $y$ (yang memiliki rasio awal $r = \frac{y}{x}$), maka terbentuk $(k + 1)$ loncatan perkalian rasio baru, sehingga:
+                            $$(r')^{k+1} = \frac{y}{x} = r \iff r' = \sqrt[k+1]{\frac{y}{x}} = \sqrt[k+1]{r}$$
+                            <em>(Jika $k + 1$ bernilai genap, maka $r' = \pm \sqrt[k+1]{\frac{y}{x}}$ dengan syarat $\frac{y}{x} > 0$).</em>
+                        </li>
+                        <li>
+                            <strong>Banyak Suku Baru ($n'$):</strong><br>
+                            Jika barisan semula memiliki $n$ suku dan di antara <em>setiap</em> dua suku berurutan disisipkan $k$ bilangan, terdapat $(n - 1)$ celah penyisipan, sehingga:
+                            $$n' = n + (n - 1)k$$
+                            <em>(Khusus untuk penyisipan di antara $2$ bilangan awal dan akhir, $n = 2$, sehingga $n' = 2 + k$).</em>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-sisipan-geo" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Teknik Pemisalan Khusus & Aplikasi Pertumbuhan/Peluruhan</h2>
+            <p>
+                <strong>a) Pemisalan Simetris Suku Berurutan dalam Soal Cerita & Kompetisi:</strong><br>
+                Apabila di dalam soal diketahui <strong>hasil kali beberapa suku berurutan</strong> pada barisan geometri sekaligus jumlahnya, memisalkan suku-suku tersebut secara simetris akan membuat variabel rasio ($r$) saling menghilangkan (mencoret) saat dikalikan:
+            </p>
+            <ul>
+                <li><strong>3 Suku Berurutan:</strong> Misalkan sebagai $\dfrac{x}{r}, \, x, \, xr$ sehingga hasil kali ketiganya langsung $x^3$.</li>
+                <li><strong>4 Suku Berurutan:</strong> Misalkan sebagai $\dfrac{x}{q^3}, \, \dfrac{x}{q}, \, xq, \, xq^3$ dengan rasio barisan $r = q^2$.</li>
+                <li><strong>5 Suku Berurutan:</strong> Misalkan sebagai $\dfrac{x}{r^2}, \, \dfrac{x}{r}, \, x, \, xr, \, xr^2$ sehingga hasil kali kelimanya langsung $x^5$.</li>
+            </ul>
+
+            <p>
+                <strong>b) Aplikasi Pembelahan Sel, Pertumbuhan, dan Peluruhan:</strong><br>
+                Dalam masalah kontekstual (seperti bakteri yang membelah diri menjadi $r$ kali lipat setiap periode waktu $\Delta t$, atau zat radioaktif yang meluruh), perhatikan perbedaan antara <strong>keadaan awal ($M_0$)</strong> dan <strong>keadaan setelah periode ke-$k$ ($M_k$)</strong>:
+                $$M_k = M_0 \cdot r^k \quad \text{dengan} \quad k = \frac{T_{\text{total}}}{\Delta t}$$
+                Jika dikaitkan dengan notasi barisan geometri di mana keadaan mula-mula ($t = 0$) dianggap sebagai suku pertama ($U_1 = M_0$), maka keadaan setelah $k$ kali pembelahan merupakan suku ke-$(k + 1)$, yaitu $U_{k+1} = U_1 \cdot r^k$.
+            </p>
+
+            <h2>6. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berjenjang berikut untuk menguasai konsep, sifat aljabar, sisipan, dan penerapan barisan geometri:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Suatu barisan geometri dengan suku-suku positif memiliki suku ke-$3$ sebesar $12$ dan suku ke-$6$ sebesar $96$. Tentukan:
+                    <br>a) Rasio ($r$) dan suku pertama ($a$) barisan tersebut!
+                    <br>b) Rumus suku ke-$n$ ($U_n$) dan nilai suku ke-$10$ ($U_{10}$)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menentukan rasio ($r$) dan suku pertama ($a$):</strong></p>
+                    <p>
+                        Gunakan hubungan dua suku sembarang $U_6 = U_3 \cdot r^{6-3}$ dengan $U_6 = 96$ dan $U_3 = 12$:
+                        $$r^3 = \frac{U_6}{U_3} = \frac{96}{12} = 8 \implies r = \sqrt[3]{8} = 2$$
+                        Substitusikan $r = 2$ ke persamaan $U_3 = a \cdot r^2 = 12$:
+                        $$a \cdot (2)^2 = 12 \implies 4a = 12 \implies a = 3$$
+                    </p>
+                    <p><strong>b) Menentukan rumus $U_n$ dan nilai $U_{10}$:</strong></p>
+                    <p>
+                        $$U_n = a \cdot r^{n-1} = 3 \cdot 2^{n-1}$$
+                        Untuk mencari $U_{10}$, substitusikan $n = 10$ (atau gunakan $U_{10} = U_6 \cdot r^4$):
+                        $$U_{10} = 3 \cdot 2^{10-1} = 3 \cdot 2^9 = 3 \times 512 = 1.536$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, rasio barisan tersebut adalah $r = 2$, suku pertama $a = 3$, rumus suku ke-$n$ adalah $U_n = 3 \cdot 2^{n-1}$, dan nilai $U_{10} = 1.536$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Tiga bilangan $(k - 1), \, (2k - 2), \, (3k + 1)$ berurutan membentuk suatu barisan geometri. Jika ketiga bilangan tersebut merupakan barisan naik (rasio $r > 1$), tentukan nilai $k$, rasio barisan, serta nilai suku ke-$5$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Gunakan syarat tiga suku berurutan barisan geometri ($U_2^2 = U_1 \cdot U_3$)</strong></p>
+                    <p>
+                        $$(2k - 2)^2 = (k - 1)(3k + 1)$$
+                        $$4k^2 - 8k + 4 = 3k^2 - 2k - 1$$
+                        $$k^2 - 6k + 5 = 0 \implies (k - 1)(k - 5) = 0$$
+                        Diperoleh $k = 1$ atau $k = 5$.
+                    </p>
+                    <p><strong>Langkah 2: Uji nilai $k$ terhadap syarat barisan geometri naik ($a \neq 0, r > 1$)</strong></p>
+                    <ul>
+                        <li>Jika $k = 1$, maka suku-sukunya menjadi $0, 0, 4$ (tidak memenuhi syarat barisan geometri karena $U_1 = 0$).</li>
+                        <li>Jika $k = 5$, maka ketiga sukunya adalah:
+                            $$U_1 = 5 - 1 = 4, \quad U_2 = 2(5) - 2 = 8, \quad U_3 = 3(5) + 1 = 16$$
+                            Ketiga bilangan $4, 8, 16$ membentuk barisan geometri naik dengan $a = 4$ dan rasio $r = \frac{8}{4} = 2$.
+                        </li>
+                    </ul>
+                    <p><strong>Langkah 3: Menghitung nilai suku ke-$5$ ($U_5$)</strong></p>
+                    <p>
+                        $$U_5 = a \cdot r^4 = 4 \cdot 2^4 = 4 \times 16 = 64$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai $k = 5$, rasio barisan adalah $r = 2$, dan suku ke-$5$ bernilai $64$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Di antara bilangan $5$ dan $1.280$ disisipkan sebanyak $7$ buah bilangan positif sehingga membentuk sebuah barisan geometri yang baru. Tentukan:
+                    <br>a) Rasio baru ($r'$) dan banyak suku ($n'$) pada barisan geometri baru tersebut!
+                    <br>b) Suku tengah ($U_t$) dari barisan geometri baru tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menentukan rasio baru ($r'$) dan banyak suku baru ($n'$):</strong></p>
+                    <p>
+                        Diketahui bilangan awal $x = 5$, bilangan akhir $y = 1.280$, dan banyak sisipan $k = 7$. Karena semua bilangan yang disisipkan positif, maka $r' > 0$:
+                        $$r' = \sqrt[k+1]{\frac{y}{x}} = \sqrt[7+1]{\frac{1.280}{5}} = \sqrt[8]{256} = \sqrt[8]{2^8} = 2$$
+                        Banyaknya suku pada barisan baru setelah disisipkan $7$ bilangan di antara $2$ bilangan adalah:
+                        $$n' = 2 + k = 2 + 7 = 9 \text{ suku}$$
+                    </p>
+                    <p><strong>b) Menentukan suku tengah ($U_t$):</strong></p>
+                    <p>
+                        Karena $n' = 9$ (ganjil), suku tengah terletak pada urutan ke-$t = \frac{9+1}{2} = 5$ ($U_5$) dan nilainya adalah:
+                        $$U_t = \sqrt{U_1 \cdot U_9} = \sqrt{5 \times 1.280} = \sqrt{6.400} = 80$$
+                        <em>(Atau menggunakan rumus suku ke-$5$: $U_5 = a \cdot (r')^4 = 5 \cdot 2^4 = 5 \times 16 = 80$).</em>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, rasio barisan baru adalah $r' = 2$, banyak sukunya $9$, dan nilai suku tengahnya adalah $80$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Hasil kali tiga bilangan yang membentuk barisan geometri adalah $216$, sedangkan jumlah ketiga bilangan tersebut adalah $26$. Tentukan ketiga bilangan tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Gunakan pemisalan simetris 3 suku barisan geometri</strong></p>
+                    <p>
+                        Misalkan ketiga bilangan tersebut adalah $\dfrac{x}{r}, \, x, \, xr$. Karena hasil kali ketiganya adalah $216$, maka:
+                        $$\left(\frac{x}{r}\right) \cdot x \cdot (xr) = 216 \implies x^3 = 216 \implies x = \sqrt[3]{216} = 6$$
+                    </p>
+                    <p><strong>Langkah 2: Gunakan informasi jumlah ketiga suku untuk mencari rasio ($r$)</strong></p>
+                    <p>
+                        Substitusikan $x = 6$ ke dalam persamaan jumlah ketiga suku:
+                        $$\frac{6}{r} + 6 + 6r = 26 \implies \frac{6}{r} + 6r - 20 = 0$$
+                        Kalikan kedua ruas dengan $\frac{r}{2}$ (dengan $r \neq 0$):
+                        $$3r^2 - 10r + 3 = 0 \implies (3r - 1)(r - 3) = 0$$
+                        Diperoleh $r = \frac{1}{3}$ atau $r = 3$.
+                    </p>
+                    <ul>
+                        <li>Untuk $r = 3$, ketiga bilangannya adalah $\frac{6}{3}, \, 6, \, 6(3) \implies 2, \, 6, \, 18$.</li>
+                        <li>Untuk $r = \frac{1}{3}$, ketiga bilangannya adalah $\frac{6}{1/3}, \, 6, \, 6\left(\frac{1}{3}\right) \implies 18, \, 6, \, 2$.</li>
+                    </ul>
+                    <div class="kesimpulan">
+                        Jadi, ketiga bilangan yang membentuk barisan geometri tersebut adalah $2, \, 6, \text{ dan } 18$ (atau $18, \, 6, \text{ dan } 2$).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 5 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 5</div>
+                <div class="soal-teks">
+                    Diketahui $U_1, U_2, U_3, \dots, U_9$ adalah sembilan suku pertama dari suatu barisan geometri dengan suku-suku positif. Jika diketahui $U_2 \cdot U_8 = 36$, tentukan nilai dari:
+                    <br>a) Suku tengah ($U_5$)!
+                    <br>b) Hasil kali seluruh sembilan suku tersebut ($U_1 \cdot U_2 \cdot U_3 \cdots U_9$)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menentukan nilai suku tengah ($U_5$):</strong></p>
+                    <p>
+                        Berdasarkan sifat simetri indeks perkalian pada barisan geometri ($p + q = k + l \implies U_p \cdot U_q = U_k \cdot U_l$), karena $2 + 8 = 5 + 5 = 10$, maka:
+                        $$U_5 \cdot U_5 = U_2 \cdot U_8 \implies U_5^2 = 36$$
+                        Karena semua suku barisan bernilai positif, maka $U_5 = \sqrt{36} = 6$.
+                    </p>
+                    <p><strong>b) Menentukan hasil kali sembilan suku pertama ($P_9$):</strong></p>
+                    <p>
+                        Pasangkan suku-suku yang berjarak sama dari ujung awal dan ujung akhir:
+                        $$U_1 \cdot U_9 = U_2 \cdot U_8 = U_3 \cdot U_7 = U_4 \cdot U_6 = U_5^2 = 6^2$$
+                        Dengan demikian, hasil kali ke-$9$ suku tersebut adalah:
+                        $$P_9 = (U_1 U_9)(U_2 U_8)(U_3 U_7)(U_4 U_6) \cdot U_5 = (U_5)^9 = 6^9 = 10.077.696$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai suku tengah adalah $U_5 = 6$ dan hasil kali kesembilan sukunya adalah $6^9$ (atau $10.077.696$).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Ilustrasi Grafik Pertumbuhan Eksponensial Barisan Geometri
+            const elKurva = document.getElementById("svg-geometri-kurva");
+            if (elKurva && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elKurva, 370, 210, {
+                    viewBox: "0 0 370 210",
+                    title: "Grafik Pertumbuhan Eksponensial Barisan Geometri Un = 2^(n-1)"
+                });
+
+                geo1.buatTeks(185, 16, "Pertumbuhan Eksponensial: Un = 1 . 2^(n-1)", {
+                    position: "middle-center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Sumbu Koordinat
+                geo1.buatVektor(40, 176, 345, 176, { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor(52, 188, 52, 28, { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatTeks(348, 184, "n", { position: "top-right", fontSize: "11px", fontWeight: "bold", fill: "#64748b" });
+                geo1.buatTeks(38, 30, "Un", { position: "middle-left", fontSize: "11px", fontWeight: "bold", fill: "#64748b" });
+
+                // Data titik (n, Un) untuk a = 1, r = 2 -> 1, 2, 4, 8, 16
+                const titikData = [
+                    { n: 1, val: 1, cx: 88, cy: 168 },
+                    { n: 2, val: 2, cx: 142, cy: 159 },
+                    { n: 3, val: 4, cx: 196, cy: 141 },
+                    { n: 4, val: 8, cx: 250, cy: 105 },
+                    { n: 5, val: 16, cx: 304, cy: 33 }
+                ];
+
+                // Kurva halus eksponensial sebagai pemandu
+                geo1.buatKurvaHalus(
+                    titikData.map(p => [p.cx, p.cy]),
+                    { stroke: "#0d9488", strokeWidth: 2, dashed: "4 3", tension: 0.25 }
+                );
+
+                // Busur loncatan perkalian rasio x2
+                for (let i = 0; i < titikData.length - 1; i++) {
+                    const p1 = titikData[i];
+                    const p2 = titikData[i + 1];
+                    const xm = (p1.cx + p2.cx) / 2 + 8;
+                    const ym = (p1.cy + p2.cy) / 2 + 12;
+
+                    geo1.buatKurvaBezier(
+                        [[p1.cx + 3, p1.cy + 2], [xm, ym], [p2.cx - 2, p2.cy + 4]],
+                        { stroke: "#d97706", strokeWidth: 1.3 }
+                    );
+                    geo1.buatTeks(xm + 4, ym + 2, "×r", {
+                        position: "middle-right",
+                        fontSize: "9.5px",
+                        fontWeight: "bold",
+                        fill: "#b45309"
+                    });
+                }
+
+                // Titik data dan garis proyeksi vertikal
+                titikData.forEach(p => {
+                    geo1.buatSegmen(p.cx, 176, p.cx, p.cy, { stroke: "#cbd5e1", strokeWidth: 1.2, dashed: "2 2" });
+                    geo1.buatTeks(p.cx, 182, String(p.n), { position: "bottom-center", fontSize: "10.5px", fill: "#475569" });
+                    geo1.buatTitik(p.cx, p.cy, {
+                        size: 4.5,
+                        color: "#0f766e",
+                        label: `U${p.n}=${p.val}`,
+                        labelPosition: "top-left",
+                        labelDistance: 5,
+                        fontSize: "10.5px",
+                        bold: true
+                    });
+                });
+            }
+
+            // 2. Ilustrasi Sifat Simetri Hasil Kali & Suku Tengah Barisan Geometri
+            const elTengah = document.getElementById("svg-suku-tengah");
+            if (elTengah && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elTengah, 370, 185, {
+                    viewBox: "0 0 370 185",
+                    title: "Skema Simetri Hasil Kali Suku dan Suku Tengah Barisan Geometri"
+                });
+
+                geo2.buatTeks(185, 16, "Simetri Hasil Kali: U1·U5 = U2·U4 = (U3)² = 36", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const xPos = [42, 113.5, 185, 256.5, 328];
+                const yNode = 92;
+                const labels = ["U₁", "U₂", "U₃ (Ut)", "U₄", "U₅"];
+                const vals = ["2", "6", "18", "54", "162"];
+
+                // Koreksi label atas sesuai contoh barisan 2, 6, 18, 54, 162 -> Ut^2 = 324
+                geo2.clear();
+                geo2.buatTeks(185, 16, "Simetri Hasil Kali: U₁·U₅ = U₂·U₄ = (U₃)² = 324", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Busur pasangan dalam: U2 * U4
+                geo2.buatKurvaBezier(
+                    [[xPos[1], yNode + 17], [185, yNode + 52], [xPos[3], yNode + 17]],
+                    { stroke: "#d97706", strokeWidth: 1.5, dashed: "3 2" }
+                );
+                geo2.buatTeks(185, yNode + 44, "6 × 54 = 324", {
+                    position: "bottom-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#b45309"
+                });
+
+                // Busur pasangan luar: U1 * U5
+                geo2.buatKurvaBezier(
+                    [[xPos[0], yNode + 17], [185, yNode + 88], [xPos[4], yNode + 17]],
+                    { stroke: "#0d9488", strokeWidth: 1.5, dashed: "4 2" }
+                );
+                geo2.buatTeks(185, yNode + 76, "2 × 162 = 324 = 18²", {
+                    position: "bottom-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Lingkaran Suku
+                for (let i = 0; i < xPos.length; i++) {
+                    const isMid = (i === 2);
+                    geo2.buatLingkaran(xPos[i], yNode, 16, {
+                        fill: isMid ? "rgba(217, 119, 6, 0.22)" : "rgba(13, 148, 136, 0.14)",
+                        stroke: isMid ? "#d97706" : "#0f766e",
+                        strokeWidth: isMid ? 2.2 : 1.6
+                    });
+                    geo2.buatTeks(xPos[i], yNode, vals[i], {
+                        position: "middle-center",
+                        fontSize: "11.5px",
+                        fontWeight: "bold",
+                        fill: isMid ? "#b45309" : "#0f766e"
+                    });
+                    geo2.buatTeks(xPos[i], yNode - 22, labels[i], {
+                        position: "top-center",
+                        fontSize: "10px",
+                        fontWeight: isMid ? "bold" : "normal",
+                        fill: isMid ? "#b45309" : "#475569"
+                    });
+                }
+            }
+
+            // 3. Ilustrasi Skema Sisipan Barisan Geometri
+            const elSisipan = document.getElementById("svg-sisipan-geo");
+            if (elSisipan && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elSisipan, 370, 175, {
+                    viewBox: "0 0 370 175",
+                    title: "Skema Sisipan k = 3 Bilangan pada Barisan Geometri"
+                });
+
+                geo3.buatTeks(185, 18, "Sisipan k = 3 Bilangan (Terbentuk k + 1 = 4 Loncatan Rasio)", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const xNodes = [38, 111.5, 185, 258.5, 332];
+                const yNode = 88;
+                const labelsAtas = ["x (Awal)", "Sisipan 1", "Sisipan 2", "Sisipan 3", "y (Akhir)"];
+                const nilaiContoh = ["3", "6", "12", "24", "48"];
+
+                // Busur loncatan rasio baru r' di bagian bawah
+                for (let i = 0; i < xNodes.length - 1; i++) {
+                    const xm = (xNodes[i] + xNodes[i + 1]) / 2;
+                    geo3.buatKurvaBezier(
+                        [[xNodes[i] + 4, yNode + 16], [xm, yNode + 42], [xNodes[i + 1] - 4, yNode + 16]],
+                        { stroke: "#d97706", strokeWidth: 1.5, dashed: "3 2" }
+                    );
+                    geo3.buatTeks(xm, yNode + 38, "×r'", {
+                        position: "bottom-center",
+                        fontSize: "10.5px",
+                        fontWeight: "bold",
+                        fill: "#b45309"
+                    });
+                }
+
+                // Garis dimensi rasio awal (y / x) di atas
+                geo3.buatSegmen(xNodes[0], 44, xNodes[4], 44, { stroke: "#0d9488", strokeWidth: 1.4 });
+                geo3.buatSegmen(xNodes[0], 39, xNodes[0], 49, { stroke: "#0d9488", strokeWidth: 1.4 });
+                geo3.buatSegmen(xNodes[4], 39, xNodes[4], 49, { stroke: "#0d9488", strokeWidth: 1.4 });
+                geo3.buatTeks(185, 38, "Rasio Awal: r = y/x = 48/3 = 16  -->  (r')⁴ = 16  -->  r' = 2", {
+                    position: "top-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Lingkaran suku awal, sisipan, dan akhir
+                for (let i = 0; i < xNodes.length; i++) {
+                    const isUjung = (i === 0 || i === xNodes.length - 1);
+                    geo3.buatLingkaran(xNodes[i], yNode, 15, {
+                        fill: isUjung ? "rgba(13, 148, 136, 0.22)" : "rgba(217, 119, 6, 0.14)",
+                        stroke: isUjung ? "#0f766e" : "#d97706",
+                        strokeWidth: 1.8
+                    });
+                    geo3.buatTeks(xNodes[i], yNode, nilaiContoh[i], {
+                        position: "middle-center",
+                        fontSize: "11.5px",
+                        fontWeight: "bold",
+                        fill: isUjung ? "#0f766e" : "#b45309"
+                    });
+                    geo3.buatTeks(xNodes[i], yNode - 21, labelsAtas[i], {
+                        position: "top-center",
+                        fontSize: "9.5px",
+                        fontWeight: isUjung ? "bold" : "normal",
+                        fill: isUjung ? "#0f766e" : "#64748b"
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

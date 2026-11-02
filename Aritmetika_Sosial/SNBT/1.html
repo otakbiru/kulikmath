@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Aturan Cosinus</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Aritmetika Sosial</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Dina sedang berbelanja di sebuah online shop. Online shop tersebut memberikan beberapa pilihan voucher
+                diskon untuk pembelanjaan minimal Rp100.000. Berikut adalah pilihan voucher diskon yang dapat digunakan:
+                <br><br>
+                Voucher A → Diskon 20% (maksimal Rp20.000) <br>
+                Voucher B → Diskon 60% (maksimal Rp20.000) <br>
+                Voucher C → Diskon 10% <br>
+                Voucher D → Diskon 30% (maksimal Rp10.000) <br>
+                Voucher E → Diskon 15% <br><br>
+                Jika total belanja Dina adalah Rp150.000, manakah voucher diskon yang menghasilkan diskon terbanyak?
+            </div>
+            <div class="soal-sumber"><a href="https://app.cerebrum.id/" target="_blank"
+                    rel="noopener noreferrer">Cerebrum</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Untuk mengetahui voucher diskon mana yang menghasilkan diskon terbanyak, kita hitung nilai diskon
+                    untuk masing-masing voucher. <br>
+                    Total belanja Dina adalah Rp150.000. <br><br>
+
+                    <h4>Voucher A (Diskon 20%, maks Rp20.000):</h4>
+                    Diskon = 20% × Rp150.000 = Rp30.000 <br>
+                    Karena Rp30.000 > Rp20.000 (maksimum), maka diskon yang diperoleh adalah <b>Rp20.000</b>. <br><br>
+
+                    <h4>Voucher B (Diskon 60%, maks Rp20.000):</h4>
+                    Diskon = 60% × Rp150.000 = Rp90.000
+                    Karena Rp90.000 > Rp20.000 (maksimum), maka diskon yang diperoleh adalah <b>Rp20.000</b>. <br><br>
+
+                    <h4>Voucher C (Diskon 10%):</h4>
+                    Diskon = 10% × Rp150.000 = <b>Rp15.000</b>. <br><br>
+
+                    <h4>Voucher D (Diskon 30%, maks Rp10.000):</h4>
+                    Diskon = 30% × Rp150.000 = Rp45.000
+                    Karena Rp45.000 > Rp10.000 (maksimum), maka diskon yang diperoleh adalah <b>Rp10.000</b>. <br><br>
+
+                    <h4>Voucher E (Diskon 15%):</h4>
+                    Diskon = 15% × Rp150.000 = <b>Rp22.500</b>. <br><br>
+
+                    Berikut tabel perbandingan nilai diskonnya:
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Voucher</th>
+                                    <th>Nilai Diskon (Target)</th>
+                                    <th>Diskon Aktual</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>A</td>
+                                    <td>20% (Rp30.000)</td>
+                                    <td>Rp20.000</td>
+                                </tr>
+                                <tr>
+                                    <td>B</td>
+                                    <td>60% (Rp90.000)</td>
+                                    <td>Rp20.000</td>
+                                </tr>
+                                <tr>
+                                    <td>C</td>
+                                    <td>10% (Rp15.000)</td>
+                                    <td>Rp15.000</td>
+                                </tr>
+                                <tr>
+                                    <td>D</td>
+                                    <td>30% (Rp45.000)</td>
+                                    <td>Rp10.000</td>
+                                </tr>
+                                <tr>
+                                    <td>E</td>
+                                    <td>15% (Rp22.500)</td>
+                                    <td><strong>Rp22.500</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    Dari tabel tersebut, terlihat bahwa voucher yang memberikan diskon terbanyak adalah <b>Voucher E</b>
+                    dengan nilai diskon sebesar Rp22.500. <br>
+
+                    Jadi, jawaban yang benar adalah <b>E</b>.
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Dina sedang berbelanja di sebuah online shop. Online shop tersebut memberikan beberapa pilihan voucher
+                diskon untuk pembelanjaan minimal Rp100.000. Berikut adalah pilihan voucher diskon yang dapat digunakan:
+                <br><br>
+                Voucher A → Diskon 20% (maksimal Rp20.000) <br>
+                Voucher B → Diskon 60% (maksimal Rp20.000) <br>
+                Voucher C → Diskon 10% <br>
+                Voucher D → Diskon 30% (maksimal Rp10.000) <br>
+                Voucher E → Diskon 15% <br><br>
+                Jika total belanja Dina adalah Rp100.000 dan Ia menggunakan voucher diskon B, maka berapakah jumlah yang
+                harus dibayarkan Dina?
+                <ol class="pilgan">
+                    <li>Rp20.000</li>
+                    <li>Rp40.000</li>
+                    <li>Rp60.000</li>
+                    <li>Rp80.000</li>
+                    <li>Rp100.000</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <h4>Diketahui:</h4>
+                    Total belanja Dina = Rp100.000 <br>
+                    Voucher diskon yang digunakan = Voucher B
+                    <br><br>
+                    Berikut adalah pilihan voucher diskon:
+                    <br>
+                    <ul>
+                        <li>Voucher A → Diskon 20% (maksimal Rp20.000)</li>
+                        <li>Voucher B → Diskon 60% (maksimal Rp20.000)</li>
+                        <li>Voucher C → Diskon 10%</li>
+                        <li>Voucher D → Diskon 30% (maksimal Rp10.000)</li>
+                        <li>Voucher E → Diskon 15%</li>
+                    </ul>
+                    <br><br>
+                    <h4>Ditanya:</h4>
+                    Jumlah yang harus dibayarkan Dina jika menggunakan voucher diskon B?
+                    <br><br>
+                    <h4>Penyelesaian:</h4>
+                    Besar diskon yang diperoleh dengan menggunakan Voucher B adalah:
+                    <br>
+                    Diskon = 60% × Rp100.000 <br>
+                    Diskon = 0,60 × Rp100.000 <br>
+                    Diskon = Rp60.000 <br>
+                    <br><br>
+                    Karena Rp60.000 lebih besar dari Rp20.000 (maksimum), maka diskon yang diperoleh adalah Rp20.000.
+                    <br><br>
+                    Jadi, jumlah yang harus dibayarkan Dina adalah:
+                    <br>
+                    Jumlah yang harus dibayarkan = Total belanja - Diskon <br>
+                    Jumlah yang harus dibayarkan = Rp100.000 - Rp20.000 <br>
+                    Jumlah yang harus dibayarkan = Rp80.000 <br><br>
+
+                    Jadi, jawaban yang benar adalah <b>D</b>.
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 3
+        <article class="soal-item">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 4 
+        <article class="soal-item">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 5 
+        <article class="soal-item">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 6 
+        <article class="soal-item">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 7 
+        <article class="soal-item">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 8 
+        <article class="soal-item">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 9 
+        <article class="soal-item">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 10 
+        <article class="soal-item">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- Copy-paste blok <article class="soal-item">...</article> sampai 10 blok -->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

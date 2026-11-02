@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latihan Soal HOTS - Barisan dan Deret [2]</title>
+
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+  <!-- GeoSVG.js -->
+  <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+  <!-- Style Blog -->
+  <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="home-btn">🏠 HOME</a>
+      <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Header Soal -->
+    <div class="page-header">
+      <p class="intro-text">
+        Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+        materi <span class="topic-highlight">Barisan dan Deret</span>
+      </p>
+      <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+      <div id="level-nav" class="level-nav"></div>
+    </div>
+
+    <!-- Pagination Atas (Otomatis) -->
+    <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+    <!-- ================= DAFTAR 10 SOAL ================= -->
+
+    <!-- SOAL 11 -->
+    <article class="soal-item" id="11">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Barisan \(1, 2, 1, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, \dots\) memiliki kelompok angka yang berisi \(n\) buah angka pada kelompok ke-\(n\) dengan angka 1 sebagai angka terakhir tiap kelompok. Tentukan jumlah 1234 bilangan pertama.
+      </div>
+      <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">AHSME 1996</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Kita kelompokkan barisan tersebut sebagai berikut:
+          \[(1), \; (2, 1), \; (2, 2, 1), \; (2, 2, 2, 1), \; \dots\]
+          <div class="table-wrapper">
+            <table class="table-auto">
+              <thead>
+                <tr>
+                  <th>Kelompok ke-</th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>\(n\)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Barisan</strong></td>
+                  <td>\((1)\)</td>
+                  <td>\((2, 1)\)</td>
+                  <td>\((2, 2, 1)\)</td>
+                  <td>\((2, 2, 2, 1)\)</td>
+                  <td>\((\underbrace{2, 2, \dots, 2}_{(n-1)\text{ buah}}, 1)\)</td>
+                </tr>
+                <tr>
+                  <td><strong>Banyak bilangan</strong></td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>\(n\)</td>
+                </tr>
+                <tr>
+                  <td><strong>Jumlah bilangan</strong></td>
+                  <td>1</td>
+                  <td>\(2 + 1 = 3\)</td>
+                  <td>\(2\cdot 2 + 1 = 5\)</td>
+                  <td>\(2\cdot 3 + 1 = 7\)</td>
+                  <td>\(2(n - 1) + 1 = 2n - 1\)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          Banyak bilangan sampai kelompok ke-\(n\):
+          \[f(n) = 1 + 2 + 3 + \dots + n = \dfrac{n(n+1)}{2}\]
+          Jumlah seluruh bilangan sampai kelompok ke-\(n\):
+          \[g(n) = 1 + 3 + 5 + \dots + (2n-1) = n^2\]
+          Kita cari \(n\) sedemikian sehingga \(f(n)\) mendekati 1234:
+          \[\begin{aligned}
+          f(49) &= \dfrac{49 \cdot 50}{2} = 1225\\[4pt]
+          f(50) &= \dfrac{50 \cdot 51}{2} = 1275
+          \end{aligned}\]
+          Jadi, jumlah 1234 bilangan pertama sama dengan jumlah bilangan sampai kelompok ke-49 ditambah 9 buah bilangan pertama pada kelompok ke-50.<br>
+          Karena pada kelompok ke-50 terdapat 49 buah angka 2 dan diakhiri sebuah angka 1, maka 9 bilangan pertama pada kelompok tersebut semuanya adalah angka 2:
+          \[\begin{aligned}
+          S_{1234} &= g(49) + 9 \cdot 2\\[4pt]
+          &= 49^2 + 18\\[4pt]
+          &= 2401 + 18\\[4pt]
+          &= \color{blue}\boxed{\boxed{\color{black}2419}}
+          \end{aligned}\]
+          <div class="kesimpulan">Jadi, jumlah 1234 bilangan pertama adalah 2419.</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- SOAL 12 -->
+    <article class="soal-item" id="12">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Definisikan barisan \(\{a_n\}_{n \ge 1}\) sebagai \(a_1 = a_2 = 1\) dan \(a_n = 2a_{n-1} + 3a_{n-2}\) untuk setiap bilangan bulat \(n \ge 3\). Nilai dari
+        \[\sum_{i=1}^{\infty}\frac{a_i}{4^i}=\frac14+\frac1{16}+\frac5{64}+\frac{13}{256}+\cdots\]
+        adalah ....
+      </div>
+      <div class="soal-sumber"></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Misalkan \(S = \displaystyle\sum_{i=1}^{\infty}\dfrac{a_i}{4^i}\):
+          \[S = \frac14 + \frac1{16} + \frac5{64} + \frac{13}{256} + \frac{41}{1024} + \cdots\]
+          Gunakan relasi rekursif \(a_n = 2a_{n-1} + 3a_{n-2}\). Kalikan \(S\) masing-masing dengan \(\dfrac24\) dan \(\dfrac3{16}\):
+          \[\begin{aligned}
+          \frac24 S &= \frac2{16} + \frac2{64} + \frac{10}{256} + \frac{26}{1024} + \cdots\\[4pt]
+          \frac3{16} S &= \frac3{64} + \frac3{256} + \frac{15}{1024} + \cdots
+          \end{aligned}\]
+          Jumlahkan kedua baris di atas:
+          \[\begin{aligned}
+          \left(\frac24 + \frac3{16}\right)S &= \frac2{16} + \left(\frac2{64} + \frac3{64}\right) + \left(\frac{10}{256} + \frac3{256}\right) + \left(\frac{26}{1024} + \frac{15}{1024}\right) + \cdots\\[4pt]
+          \frac{11}{16}S &= \frac2{16} + \frac5{64} + \frac{13}{256} + \frac{41}{1024} + \cdots
+          \end{aligned}\]
+          Kurangkan \(S\) dengan deret di atas:
+          \[\begin{aligned}
+          S - \frac{11}{16}S &= \left(\frac14 + \frac1{16} + \frac5{64} + \frac{13}{256} + \cdots\right) - \left(\frac2{16} + \frac5{64} + \frac{13}{256} + \cdots\right)\\[4pt]
+          \frac{5}{16}S &= \frac14 + \frac1{16} - \frac2{16}\\[4pt]
+          \frac{5}{16}S &= \frac14 - \frac1{16}\\[4pt]
+          \frac{5}{16}S &= \frac{3}{16}\\[4pt]
+          5S &= 3\\[4pt]
+          S &= \color{blue}\boxed{\boxed{\color{black}\dfrac35}}
+          \end{aligned}\]
+          <div class="kesimpulan">Jadi, \(\displaystyle\sum_{i=1}^{\infty}\frac{a_i}{4^i} = \dfrac35\).</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- SOAL 13 -->
+    <article class="soal-item" id="13">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Misalkan
+        \[a = \frac{1^2}{1} + \frac{2^2}{3} + \frac{3^2}{5} + \dots + \frac{1001^2}{2001}\]
+        dan
+        \[b = \frac{1^2}{3} + \frac{2^2}{5} + \frac{3^2}{7} + \dots + \frac{1001^2}{2003}\]
+        Tentukan bilangan bulat yang nilainya paling dekat ke \(a - b\).
+      </div>
+      <div class="soal-sumber"><a href="https://forummatematika.freeforums.net/thread/16/soal" target="_blank" rel="noopener noreferrer">OSK SMA 2002</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Kurangkan deret \(a\) dan \(b\):
+          \[a - b = \frac{1^2}{1} + \left(\frac{2^2}{3} - \frac{1^2}{3}\right) + \left(\frac{3^2}{5} - \frac{2^2}{5}\right) + \dots + \left(\frac{1001^2}{2001} - \frac{1000^2}{2001}\right) - \frac{1001^2}{2003}\]
+          Tinjau bentuk selisih suku-suku dengan penyebut yang sama:
+          \[\begin{aligned}
+          \frac{n^2 - (n-1)^2}{2n - 1} &= \frac{(n + n - 1)(n - n + 1)}{2n - 1}\\[4pt]
+          &= \frac{(2n - 1)(1)}{2n - 1}\\[4pt]
+          &= 1
+          \end{aligned}\]
+          Karena terdapat 1000 pasangan suku bernilai 1 ditambah suku pertama \(\dfrac{1^2}{1} = 1\), maka:
+          \[\begin{aligned}
+          a - b &= \underbrace{1 + 1 + 1 + \dots + 1}_{1001 \text{ buah}} - \frac{1001^2}{2003}\\[4pt]
+          &= 1001 - \frac{1001^2}{2003}\\[4pt]
+          &= \frac{1001(2003 - 1001)}{2003}\\[4pt]
+          &= \frac{1001 \times 1002}{2003}\\[4pt]
+          &= \frac{1003002}{2003}\\[4pt]
+          &\approx 500{,}75 \approx \color{blue}\boxed{\boxed{\color{black}501}}
+          \end{aligned}\]
+          <div class="kesimpulan">Jadi, bilangan bulat yang nilainya paling dekat ke \(a - b\) adalah 501.</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- SOAL 14 -->
+    <article class="soal-item" id="14">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Misalkan \(a_0, a_1, a_2, \dots\) merupakan barisan bilangan asli dengan \(a_0 = 1\), \(a_1 = 11\), dan
+        \[a_{n+2} = a_{n+1} + 6a_n\]
+        untuk setiap \(n \ge 0\). Tentukan banyaknya bilangan cacah \(n\) yang kurang dari 2020 sehingga \(a_n\) habis dibagi 13.
+      </div>
+      <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Latihan OSK 2024 SMA</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Tinjau barisan dalam modulo 13:<br>
+          Diketahui \(a_0 = 1 \equiv 1 \pmod{13}\) dan \(a_1 = 11 \equiv -2 \pmod{13}\).<br>
+          Gunakan relasi \(a_{n+2} = a_{n+1} + 6a_n\):
+          \[\begin{aligned}
+          a_2 &= a_1 + 6a_0 \equiv -2 + 6(1) = 4 \pmod{13}\\
+          a_3 &= a_2 + 6a_1 \equiv 4 + 6(-2) = -8 \equiv 5 \pmod{13}\\
+          a_4 &= a_3 + 6a_2 \equiv 5 + 6(4) = 29 \equiv 3 \pmod{13}\\
+          a_5 &= a_4 + 6a_3 \equiv 3 + 6(5) = 33 \equiv -6 \pmod{13}\\
+          a_6 &= a_5 + 6a_4 \equiv -6 + 6(3) = 12 \equiv -1 \pmod{13}\\
+          a_7 &= a_6 + 6a_5 \equiv -1 + 6(-6) = -37 \equiv 2 \pmod{13}
+          \end{aligned}\]
+          Perhatikan bahwa:
+          \[a_6 \equiv -a_0 \pmod{13} \quad \text{dan} \quad a_7 \equiv -a_1 \pmod{13}\]
+          Akibatnya, secara umum berlaku:
+          \[a_{n+6} \equiv -a_n \pmod{13} \implies a_{n+12} \equiv a_n \pmod{13}\]
+          Barisan tersebut periodik modulo 13 dengan periode 12. Enam suku pertamanya adalah:
+          \[a_0, \dots, a_5 \equiv 1, -2, 4, 5, 3, -6 \pmod{13}\]
+          dan enam suku berikutnya adalah negasinya:
+          \[a_6, \dots, a_{11} \equiv -1, 2, -4, -5, -3, 6 \pmod{13}\]
+          Tidak ada satu pun suku yang kongruen dengan \(0 \pmod{13}\). Artinya, tidak ada suku pada barisan tersebut yang habis dibagi 13.
+          <div class="kesimpulan">Jadi, banyaknya bilangan cacah \(n\) yang kurang dari 2020 sehingga \(a_n\) habis dibagi 13 adalah 0.</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- SOAL 15 -->
+    <article class="soal-item" id="15">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Suatu barisan bilangan riil \(b_1, b_2, b_3, \dots\) didefinisikan oleh \(b_1 = 1\) dan \((b_{n+1})^{43} = 2021(b_n)^{43}\) untuk semua bilangan asli \(n \ge 1\). Maka \(b_{2022} =\) ....
+        <ol class="pilgan">
+          <li>\(2021^{47}\)</li>
+          <li>\(2021\)</li>
+          <li>\(2021^{2021}\)</li>
+          <li>\(2022\)</li>
+          <li>Tidak ada pilihan yang benar</li>
+        </ol>
+      </div>
+      <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Perhatikan pola dari persamaan rekursif:
+          \[\begin{aligned}
+          (b_2)^{43} &= 2021(b_1)^{43} = 2021(1)^{43} = 2021\\
+          (b_3)^{43} &= 2021(b_2)^{43} = 2021 \cdot 2021 = 2021^2\\
+          (b_4)^{43} &= 2021(b_3)^{43} = 2021 \cdot 2021^2 = 2021^3\\
+          &\;\;\vdots\\
+          (b_n)^{43} &= 2021^{n-1}
+          \end{aligned}\]
+          Untuk \(n = 2022\):
+          \[\begin{aligned}
+          (b_{2022})^{43} &= 2021^{2022 - 1}\\[4pt]
+          (b_{2022})^{43} &= 2021^{2021}\\[4pt]
+          (b_{2022})^{43} &= 2021^{47 \times 43}\\[4pt]
+          b_{2022} &= \color{blue}\boxed{\boxed{\color{black}2021^{47}}}
+          \end{aligned}\]
+          <div class="kesimpulan">Jadi, \(b_{2022} = 2021^{47}\).<br><b>JAWAB: A</b></div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- SOAL 16 -->
+    <article class="soal-item" id="16">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Bilangan bulat ganjil positif disusun seperti susunan di bawah ini:
+        \[\begin{matrix}
+        &&&& 1 &&&&\\
+        &&& 3 && 5 &&&\\
+        && 7 && 9 && 11 &&\\
+        & 13 && 15 && 17 && 19 &\\
+        21 && 23 && 25 && 27 && 29\\
+        31 & 33 & 35 & 37 & \dots & \dots & \dots
+        \end{matrix}\]
+        Pada susunan bilangan di atas, angka 15 terletak pada baris ke-4, kolom ke-2. Angka yang terletak pada baris ke-30, kolom ke-15 adalah ....
+      </div>
+      <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Evaluasi GMOM September 2024</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Perhatikan bahwa banyaknya bilangan pada baris ke-\(n\) adalah \(n\).<br>
+          Tinjau rata-rata (nilai tengah) dari masing-masing baris:
+          <ul>
+            <li>Baris 1: \(1 = 1^2\)</li>
+            <li>Baris 2: \(\dfrac{3 + 5}{2} = 4 = 2^2\)</li>
+            <li>Baris 3: \(9 = 3^2\)</li>
+            <li>Baris 4: \(\dfrac{15 + 17}{2} = 16 = 4^2\)</li>
+          </ul>
+          Secara umum, nilai rata-rata dari bilangan-bilangan pada baris ke-\(n\) adalah \(n^2\).<br><br>
+          Pada baris ke-30, terdapat 30 bilangan ganjil dengan nilai rata-rata:
+          \[30^2 = 900\]
+          Karena banyaknya bilangan genap (30 bilangan), maka nilai rata-rata 900 berada tepat di antara kolom ke-15 dan kolom ke-16.<br>
+          Bilangan ganjil di sebelah kiri 900 (kolom ke-15) adalah:
+          \[900 - 1 = \color{blue}\boxed{\boxed{\color{black}899}}\]
+          (dan bilangan di kolom ke-16 adalah \(900 + 1 = 901\)).
+          <div class="kesimpulan">Jadi, angka yang terletak pada baris ke-30, kolom ke-15 adalah 899.</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- SOAL 17 -->
+    <article class="soal-item" id="17">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Suatu barisan bilangan \(a_n\) didefinisikan sebagai berikut:
+        \[a_n = \begin{cases}4, & \text{jika } n \text{ habis dibagi 2 atau 17}\\2, & \text{untuk } n \text{ lainnya}\end{cases}\]
+        Nilai dari \(\displaystyle\sum_{n=1}^{2024} a_n\) adalah ....
+      </div>
+      <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Evaluasi GMOM September 2024</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Kita cari terlebih dahulu banyaknya bilangan asli dari 1 hingga 2024 yang habis dibagi 2 atau 17:
+          <ul>
+            <li>Habis dibagi 2:
+              \[\left\lfloor\dfrac{2024}{2}\right\rfloor = 1012\]
+            </li>
+            <li>Habis dibagi 17:
+              \[\left\lfloor\dfrac{2024}{17}\right\rfloor = 119\]
+            </li>
+            <li>Habis dibagi 2 dan 17 (habis dibagi \(\operatorname{KPK}(2, 17) = 34\)):
+              \[\left\lfloor\dfrac{2024}{34}\right\rfloor = 59\]
+            </li>
+          </ul>
+          Banyaknya bilangan yang habis dibagi 2 atau 17:
+          \[1012 + 119 - 59 = 1072\]
+          Banyaknya bilangan yang tidak habis dibagi 2 maupun 17:
+          \[2024 - 1072 = 952\]
+          Maka nilai penjumlahan deret tersebut adalah:
+          \[\begin{aligned}
+          \sum_{n=1}^{2024} a_n &= 4 \times 1072 + 2 \times 952\\[4pt]
+          &= 4288 + 1904\\[4pt]
+          &= \color{blue}\boxed{\boxed{\color{black}6192}}
+          \end{aligned}\]
+          <div class="kesimpulan">Jadi, \(\displaystyle\sum_{n=1}^{2024} a_n = 6192\).</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- SOAL 18 -->
+    <article class="soal-item" id="18">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Misalkan pasangan bilangan bulat \((x, y)\) memenuhi
+        \[x^3 + (x + 1)^3 + \dots + (x + 7)^3 = y^3\]
+        dan \(m\) merupakan jumlahan semua nilai \(x\) dan \(y\) yang mungkin. Nilai dari \(m\) adalah ....
+      </div>
+      <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Penyisihan LMNAS Ke-28 SMA</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Gunakan identitas jumlah kubik \(\sum_{k=1}^n k^3 = \left(\frac{n(n+1)}{2}\right)^2\):
+          \[\begin{aligned}
+          x^3 + (x+1)^3 + \dots + (x+7)^3 &= y^3\\[4pt]
+          \sum_{k=1}^{x+7} k^3 - \sum_{k=1}^{x-1} k^3 &= y^3\\[4pt]
+          \left(\dfrac{(x+7)(x+8)}{2}\right)^2 - \left(\dfrac{x(x-1)}{2}\right)^2 &= y^3\\[4pt]
+          \left(\dfrac{x^2+15x+56}{2}\right)^2 - \left(\dfrac{x^2-x}{2}\right)^2 &= y^3
+          \end{aligned}\]
+          Gunakan faktorisasi selisih kuadrat \(A^2 - B^2 = (A + B)(A - B)\):
+          \[\begin{aligned}
+          \left(\dfrac{2x^2+14x+56}{2}\right)\left(\dfrac{16x+56}{2}\right) &= y^3\\[4pt]
+          (x^2+7x+28)(8x+28) &= y^3\\[4pt]
+          4(x^2+7x+28)(2x+7) &= y^3
+          \end{aligned}\]
+          Misalkan \(t = 2x + 7\). Maka \(x = \dfrac{t-7}{2}\), dan:
+          \[x^2 + 7x + 28 = \frac{t^2+63}{4}\]
+          Sehingga persamaan menjadi:
+          \[\begin{aligned}
+          4 \left(\frac{t^2+63}{4}\right) t &= y^3\\[4pt]
+          t(t^2 + 63) &= y^3
+          \end{aligned}\]
+          Karena \(t \mid y^3\), kita misalkan \(y = nt\) untuk suatu bilangan bulat \(n\):
+          \[\begin{aligned}
+          t(t^2 + 63) &= n^3 t^3\\[4pt]
+          t^2 + 63 &= n^3 t^2\\[4pt]
+          (n^3 - 1)t^2 &= 63
+          \end{aligned}\]
+          Karena \(t\) dan \(n\) bulat serta \(t^2 \mid 63\), faktor kuadrat sempurna dari 63 hanyalah \(t^2 = 1\) atau \(t^2 = 9\):
+          <ul>
+            <li>
+              <strong>Untuk \(t^2 = 1\):</strong><br>
+              \(n^3 - 1 = 63 \implies n^3 = 64 \implies n = 4\).<br>
+              Nilai \(t = \pm 1\):
+              <ul>
+                <li>\(t = -1 \implies 2x + 7 = -1 \implies x = -4\), dan \(y = nt = 4(-1) = -4\). Pasangan: \((-4, -4)\).</li>
+                <li>\(t = 1 \implies 2x + 7 = 1 \implies x = -3\), dan \(y = nt = 4(1) = 4\). Pasangan: \((-3, 4)\).</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Untuk \(t^2 = 9\):</strong><br>
+              \(n^3 - 1 = \dfrac{63}{9} = 7 \implies n^3 = 8 \implies n = 2\).<br>
+              Nilai \(t = \pm 3\):
+              <ul>
+                <li>\(t = -3 \implies 2x + 7 = -3 \implies x = -5\), dan \(y = nt = 2(-3) = -6\). Pasangan: \((-5, -6)\).</li>
+                <li>\(t = 3 \implies 2x + 7 = 3 \implies x = -2\), dan \(y = nt = 2(3) = 6\). Pasangan: \((-2, 6)\).</li>
+              </ul>
+            </li>
+          </ul>
+          Jumlahkan semua nilai \(x\) dan \(y\) dari semua pasangan yang didapat:
+          \[\begin{aligned}
+          m &= (-4) + (-4) + (-3) + 4 + (-5) + (-6) + (-2) + 6\\[4pt]
+          &= \color{blue}\boxed{\boxed{\color{black}-14}}
+          \end{aligned}\]
+          <div class="kesimpulan">Jadi, \(m = -14\).</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- SOAL 19 -->
+    <article class="soal-item" id="19">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Tentukan nilai dari \(a_{2025}\) jika barisan \(a_1, a_2, a_3, \dots\) memenuhi \(a_1 = 1\) dan untuk setiap bilangan asli \(n\) berlaku:
+        \[a_{n+1} = \frac1{1 + \frac1{a_n}}\]
+      </div>
+      <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Balikkan kedua ruas persamaan:
+          \[\begin{aligned}
+          a_{n+1} &= \frac1{1 + \frac1{a_n}}\\[4pt]
+          \frac1{a_{n+1}} &= 1 + \frac1{a_n}
+          \end{aligned}\]
+          Ini membentuk barisan aritmetika untuk \(\dfrac1{a_n}\) dengan suku pertama \(\dfrac1{a_1} = 1\) dan beda \(b = 1\):
+          \[\begin{aligned}
+          \frac1{a_{2025}} &= 1 + \frac1{a_{2024}}\\[4pt]
+          &= 2 + \frac1{a_{2023}}\\[4pt]
+          &= \dots\\[4pt]
+          &= 2024 + \frac1{a_1}\\[4pt]
+          &= 2024 + 1\\[4pt]
+          &= 2025\\[4pt]
+          a_{2025} &= \color{blue}\boxed{\boxed{\color{black}\frac1{2025}}}
+          \end{aligned}\]
+          <div class="kesimpulan">Jadi, \(a_{2025} = \dfrac1{2025}\).</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- SOAL 20 -->
+    <article class="soal-item" id="20">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Tentukan banyaknya bilangan genap dari 2026 suku pertama dari barisan:
+        \[1, 2, 2, 3, 3, 3, 4, 4, 4, 4, \dots\]
+      </div>
+      <div class="soal-sumber"><a href="https://ktom-tomi.or.id/contests/155-kto-matematika-januari-2026" target="_blank" rel="noopener noreferrer">KTOM Januari 2026</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Barisan tersebut memiliki pola di mana bilangan \(k\) muncul sebanyak \(k\) kali.<br>
+          Banyaknya suku total dari kelompok bilangan 1 hingga \(n\) adalah jumlah deret aritmetika:
+          \[S_n = 1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}\]
+          Kita cari nilai \(n\) sehingga \(S_n\) mendekati dan tidak melebihi 2026:
+          \[\begin{aligned}
+          \frac{n(n+1)}{2} &\le 2026\\
+          n(n+1) &\le 4052
+          \end{aligned}\]
+          Karena \(\sqrt{4052} \approx 63{,}6\), kita coba untuk \(n = 63\):
+          \[S_{63} = \frac{63 \times 64}{2} = 63 \times 32 = 2016\]
+          Artinya, sampai suku ke-2016 barisan tepat berakhir pada kemunculan terakhir bilangan 63.<br><br>
+          Sisa suku yang dibutuhkan untuk mencapai suku ke-2026 adalah:
+          \[2026 - 2016 = 10 \text{ suku}\]
+          Kesepuluh suku berikutnya ini semuanya bernilai 64, dan 64 merupakan bilangan genap.<br><br>
+          Sekarang kita hitung total kemunculan bilangan genap dalam kelompok 1 hingga 63:
+          Bilangan genap yang muncul adalah \(2, 4, 6, \dots, 62\). Karena bilangan genap \(2k\) muncul sebanyak \(2k\) kali, maka total kemunculan bilangan genap sejauh ini adalah:
+          \[2 + 4 + 6 + \dots + 62\]
+          Deret tersebut merupakan deret aritmetika dengan suku pertama \(a = 2\), beda \(b = 2\), dan banyak suku \(m = \frac{62}{2} = 31\):
+          \[\begin{aligned}
+          \text{Jumlah} &= \frac{m}{2}(a + U_m)\\[4pt]
+          &= \frac{31}{2}(2 + 62)\\[4pt]
+          &= \frac{31}{2}(64)\\[4pt]
+          &= 31 \times 32\\[4pt]
+          &= 992
+          \end{aligned}\]
+          Terakhir, kita tambahkan dengan 10 buah bilangan 64 yang ada di akhir:
+          \[\text{Total bilangan genap} = 992 + 10 = \color{blue}\boxed{\boxed{\color{black}1002}}\]
+          <div class="kesimpulan">Jadi, banyaknya bilangan genap dari 2026 suku pertama dari barisan tersebut adalah 1002.</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- Pagination Bawah (Otomatis) -->
+    <div class="pagination-wrapper"></div>
+  </main>
+
+  <script src="../../scr/script.js"></script>
+</body>
+
+</html>

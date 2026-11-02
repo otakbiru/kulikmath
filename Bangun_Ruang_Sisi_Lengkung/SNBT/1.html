@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNBT - Bangun Ruang Sisi Lengkung</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bangun Ruang Sisi Lengkung</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sebuah wadah berbentuk tabung dengan jari-jari alas \(6\text{ cm}\) dan tinggi \(20\text{ cm}\) mula-mula terisi air setinggi \(10\text{ cm}\). Ke dalam tabung tersebut dimasukkan tiga buah bola besi pejal identik yang masing-masing berjari-jari \(3\text{ cm}\) sehingga seluruh bola tenggelam sempurna ke dasar tabung. Jika tidak ada air yang tumpah, maka tinggi permukaan air sekarang di dalam tabung adalah ....
+                
+                <div style="display: flex; justify-content: center; margin: 1rem 0;">
+                    <svg id="svg-snbt-1" width="300" height="240" viewBox="0 0 300 240"></svg>
+                </div>
+
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>\(12\text{ cm}\)</li>
+                        <li>\(13\text{ cm}\)</li>
+                        <li>\(14\text{ cm}\)</li>
+                        <li>\(15\text{ cm}\)</li>
+                        <li>\(16\text{ cm}\)</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">SNBT / UTBK</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Diketahui:
+                    <ul>
+                        <li>Jari-jari alas tabung: \(r_t = 6\text{ cm}\)</li>
+                        <li>Tinggi air mula-mula: \(t_0 = 10\text{ cm}\)</li>
+                        <li>Jari-jari masing-masing bola: \(r_b = 3\text{ cm}\)</li>
+                        <li>Banyak bola: \(n = 3\)</li>
+                    </ul>
+
+                    <b>Langkah 1: Menghitung total volume ketiga bola besi</b>
+                    <p>
+                        Volume satu bola pejal adalah \(V_b = \dfrac{4}{3}\pi r_b^3\).
+                        <br>
+                        Maka, total volume dari 3 bola besi adalah:
+                        \[\begin{aligned}
+                        V_{\text{total bola}} &= 3 \times \left(\dfrac{4}{3}\pi r_b^3\right) \\
+                        &= 4\pi (3^3) \\
+                        &= 4\pi \times 27 \\
+                        &= 108\pi\text{ cm}^3
+                        \end{aligned}\]
+                    </p>
+
+                    <b>Langkah 2: Menghitung pertambahan tinggi air (\(\Delta t\))</b>
+                    <p>
+                        Berdasarkan hukum perpindahan volume zat cair, volume air yang terdesak ke atas sama dengan volume seluruh benda yang tercelup:
+                        \[V_{\text{desakan air}} = V_{\text{total bola}}\]
+                        Bentuk desakan air pada tabung berupa silinder air dengan luas alas \(\pi r_t^2\) dan tinggi \(\Delta t\):
+                        \[\begin{aligned}
+                        \pi r_t^2 \cdot \Delta t &= 108\pi \\
+                        \pi (6^2) \cdot \Delta t &= 108\pi \\
+                        36\pi \cdot \Delta t &= 108\pi \\
+                        \Delta t &= \dfrac{108\pi}{36\pi} = 3\text{ cm}
+                        \end{aligned}\]
+                    </p>
+
+                    <b>Langkah 3: Menentukan tinggi permukaan air akhir (\(t_{\text{akhir}}\))</b>
+                    <p>
+                        \[\begin{aligned}
+                        t_{\text{akhir}} &= t_0 + \Delta t \\
+                        &= 10\text{ cm} + 3\text{ cm} \\
+                        &= 13\text{ cm}
+                        \end{aligned}\]
+                        Karena tinggi wadah tabung adalah \(20\text{ cm}\) dan \(13\text{ cm} \le 20\text{ cm}\), maka air tidak tumpah.
+                    </p>
+                    <div class="kesimpulan">Jadi, tinggi permukaan air sekarang di dalam tabung adalah \(13\text{ cm}\).<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-2 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-2 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 3 
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-3 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-3 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 4 
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-4 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-4 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 5 
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-5 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-5 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 6 
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-6 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-6 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-7 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-7 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-8 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-8 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-9 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-9 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-10 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-10 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const el = document.getElementById("svg-snbt-1");
+            if (el && typeof GeoSVG === "function") {
+                const geo = new GeoSVG(el, 300, 240, {
+                    viewBox: "0 0 300 240",
+                    title: "Tabung Berisi Air dan Tiga Bola Besi"
+                });
+
+                const cx = 145, rx = 65, ry = 17;
+                const yTop = 35, yBot = 205;
+                const yAirAwal = 120, yAirAkhir = 95;
+
+                // Tabung transparan
+                geo.buatPersegiPanjang(cx - rx, yTop, 2 * rx, yBot - yTop, {
+                    fill: "rgba(241, 245, 249, 0.4)",
+                    stroke: "none"
+                });
+
+                // Air di dalam tabung (dari level akhir ke dasar)
+                geo.buatPersegiPanjang(cx - rx, yAirAkhir, 2 * rx, yBot - yAirAkhir, {
+                    fill: "rgba(14, 165, 233, 0.22)",
+                    stroke: "none"
+                });
+
+                // Permukaan air awal (garis putus-putus)
+                geo.buatElips(cx, yAirAwal, rx, ry, {
+                    fill: "none",
+                    stroke: "#0284c7",
+                    strokeWidth: 1.4,
+                    dashed: true
+                });
+
+                // Permukaan air akhir
+                geo.buatElips(cx, yAirAkhir, rx, ry, {
+                    fill: "rgba(14, 165, 233, 0.35)",
+                    stroke: "#0284c7",
+                    strokeWidth: 2
+                });
+
+                // Dasar tabung
+                geo.buatElips(cx, yBot, rx, ry, {
+                    fill: "rgba(203, 213, 225, 0.5)",
+                    stroke: "#475569",
+                    strokeWidth: 1.5,
+                    dashed: true
+                });
+
+                // Dinding tabung
+                geo.buatSegmen(cx - rx, yTop, cx - rx, yBot, { stroke: "#334155", strokeWidth: 2 });
+                geo.buatSegmen(cx + rx, yTop, cx + rx, yBot, { stroke: "#334155", strokeWidth: 2 });
+
+                // Bibir tabung atas
+                geo.buatElips(cx, yTop, rx, ry, {
+                    fill: "rgba(241, 245, 249, 0.8)",
+                    stroke: "#334155",
+                    strokeWidth: 2
+                });
+
+                // 3 Bola besi pejal tenggelam di dasar
+                const rB = 18;
+                // Bola 1 (kiri bawah)
+                geo.buatElips(cx - 30, yBot - 24, rB, rB, {
+                    fill: "rgba(71, 85, 105, 0.65)",
+                    stroke: "#1e293b",
+                    strokeWidth: 1.5
+                });
+                // Bola 2 (kanan bawah)
+                geo.buatElips(cx + 30, yBot - 24, rB, rB, {
+                    fill: "rgba(71, 85, 105, 0.65)",
+                    stroke: "#1e293b",
+                    strokeWidth: 1.5
+                });
+                // Bola 3 (tengah sedikit lebih tinggi/di sela bola)
+                geo.buatElips(cx, yBot - 42, rB, rB, {
+                    fill: "rgba(100, 116, 139, 0.75)",
+                    stroke: "#0f172a",
+                    strokeWidth: 1.5
+                });
+
+                // Indikator panah kenaikan delta t
+                geo.buatSegmen(cx + rx + 16, yAirAwal, cx + rx + 16, yAirAkhir, {
+                    stroke: "#dc2626",
+                    strokeWidth: 2,
+                    label: "Δt",
+                    labelSisi: "kanan",
+                    labelColor: "#dc2626",
+                    bold: true
+                });
+                geo.buatSegmen(cx + rx + 8, yAirAwal, cx + rx + 24, yAirAwal, { stroke: "#dc2626", strokeWidth: 1.2 });
+                geo.buatSegmen(cx + rx + 8, yAirAkhir, cx + rx + 24, yAirAkhir, { stroke: "#dc2626", strokeWidth: 1.2 });
+
+                // Label jari-jari alas
+                geo.buatSegmen(cx, yBot, cx + rx, yBot, {
+                    stroke: "#0f172a",
+                    strokeWidth: 1.5,
+                    dashed: true,
+                    label: "r = 6 cm",
+                    labelSisi: "kanan",
+                    labelJarak: 6,
+                    labelColor: "#0f172a"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Barisan dan Deret Aritmetika</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Barisan dan Deret Aritmetika</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Konsep Dasar Barisan Aritmetika</h2>
+            <p>
+                <strong>Barisan Aritmetika</strong> (atau sering disebut <em>barisan hitung</em>) adalah suatu barisan bilangan yang memiliki selisih antara dua suku yang berurutan selalu tetap (konstan). Selisih yang tetap ini dinamakan <strong>beda</strong> dan dilambangkan dengan huruf $b$.
+            </p>
+            <p>
+                Jika suku pertama dilambangkan dengan $a$ (atau $U_1$), maka susunan suku-suku pada barisan aritmetika mengikuti pola penjumlahan berulang sebagai berikut:
+                $$U_1, \, U_2, \, U_3, \, U_4, \, \dots, \, U_n$$
+                $$a, \, (a + b), \, (a + 2b), \, (a + 3b), \, \dots, \, a + (n-1)b$$
+            </p>
+            <p>
+                Secara matematis, syarat suatu barisan disebut barisan aritmetika adalah nilai beda ($b$) yang selalu konstan untuk setiap bilangan asli $n \ge 2$:
+                $$b = U_n - U_{n-1} = U_2 - U_1 = U_3 - U_2 = U_4 - U_3$$
+            </p>
+            <ul>
+                <li>Jika $b > 0$, maka barisan disebut <strong>barisan aritmetika naik</strong> (nilai suku semakin membesar, contoh: $3, 7, 11, 15, \dots$ dengan $b = 4$).</li>
+                <li>Jika $b < 0$, maka barisan disebut <strong>barisan aritmetika turun</strong> (nilai suku semakin mengecil, contoh: $20, 15, 10, 5, \dots$ dengan $b = -5$).</li>
+                <li>Jika $b = 0$, maka barisan disebut <strong>barisan konstan</strong> (semua sukunya bernilai sama).</li>
+            </ul>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Karakteristik Linier Barisan Aritmetika:</strong><br>
+                        Perhatikan barisan $2, 5, 8, 11, 14, \dots$ dengan suku pertama $a = 2$ dan beda $b = +3$. Apabila setiap pasangan $(n, U_n)$ digambarkan pada bidang koordinat Kartesius, titik-titik tersebut akan terletak tepat pada satu <strong>garis lurus (fungsi linier)</strong> dengan kemiringan (gradien) sebesar beda $b$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-aritmetika" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Rumus Suku ke-$n$ ($U_n$) dan Sifat Aljabarnya</h2>
+            <p>
+                Berdasarkan pola bentuk umum $U_1 = a$, $U_2 = a + 1b$, $U_3 = a + 2b$, tampak bahwa koefisien dari $b$ selalu berselisih $1$ lebih kecil daripada indeks sukunya. Dengan demikian, rumus umum suku ke-$n$ ($U_n$) barisan aritmetika adalah:
+                $$U_n = a + (n - 1)b$$
+            </p>
+            <p>
+                Apabila dijabarkan secara aljabar, rumus $U_n$ dapat dituliskan sebagai fungsi linier terhadap $n$:
+                $$U_n = b \cdot n + (a - b)$$
+                Dari bentuk linier ini diperoleh sifat penting: <strong>koefisien dari variabel $n$ pada rumus eksplisit $U_n$ selalu menyatakan nilai beda ($b$)</strong>. Sebagai contoh, jika $U_n = 5n - 2$, maka tanpa perlu menjabarkan sukunya kita langsung mengetahui bahwa $b = 5$ dan $a = U_1 = 5(1) - 2 = 3$.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hubungan / Sifat Suku</th>
+                            <th>Rumus Matematika</th>
+                            <th>Keterangan & Penggunaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Rumus Dasar Suku ke-$n$</strong></td>
+                            <td>$$U_n = a + (n - 1)b$$</td>
+                            <td class="text-left">Menentukan nilai suku ke-$n$ jika diketahui suku pertama $a$ dan beda $b$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mencari Beda dari Dua Suku</strong></td>
+                            <td>$$b = \frac{U_p - U_q}{p - q}$$</td>
+                            <td class="text-left">Menghitung beda $b$ secara langsung dari dua suku sembarang $U_p$ dan $U_q$ tanpa mencari $a$ terlebih dahulu.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ekspresi Suku terhadap Suku Lain</strong></td>
+                            <td>$$U_p = U_q + (p - q)b$$</td>
+                            <td class="text-left">Menentukan suku ke-$p$ langsung dari suku ke-$q$ (menghemat langkah substitusi).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sifat Simetri Indeks Suku</strong></td>
+                            <td>$$p + q = r + s \implies U_p + U_q = U_r + U_s$$</td>
+                            <td class="text-left">Jika jumlah indeks dua suku sama dengan jumlah indeks dua suku lainnya, maka jumlah nilai sukunya juga sama (contoh: $U_2 + U_9 = U_5 + U_6$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Syarat Tiga Suku Berurutan</strong></td>
+                            <td>$$2U_2 = U_1 + U_3 \iff U_2 = \frac{U_1 + U_3}{2}$$</td>
+                            <td class="text-left">Tiga bilangan $x, y, z$ membentuk barisan aritmetika jika dan hanya jika $2y = x + z$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Suku Tengah Barisan Aritmetika ($U_t$)</h2>
+            <p>
+                Jika suatu barisan aritmetika berhingga memiliki banyak suku ganjil ($n$ bilangan ganjil), maka terdapat tepat satu <strong>suku tengah</strong> ($U_t$) yang membagi barisan tersebut menjadi dua bagian sama banyak di sebelah kiri dan kanannya.
+            </p>
+            <ul>
+                <li>
+                    <strong>Letak Indeks Suku Tengah ($t$):</strong>
+                    $$t = \frac{n + 1}{2} \quad \Longleftrightarrow \quad n = 2t - 1$$
+                </li>
+                <li>
+                    <strong>Nilai Suku Tengah ($U_t$):</strong> Merupakan rata-rata hitung (rataan aritmetika) dari suku pertama dan suku terakhir, atau rata-rata dari dua suku yang berjarak sama dari kedua ujung barisan:
+                    $$U_t = \frac{a + U_n}{2} = \frac{U_1 + U_{2t-1}}{2} = \frac{U_2 + U_{2t-2}}{2} = \dots = a + (t - 1)b$$
+                </li>
+            </ul>
+
+            <h2>4. Sisipan pada Barisan Aritmetika</h2>
+            <p>
+                Apabila di antara setiap dua suku yang berurutan pada suatu barisan aritmetika (atau di antara dua bilangan $x$ dan $y$) disisipkan sebanyak $k$ buah bilangan baru sehingga terbentuk sebuah barisan aritmetika yang baru, maka unsur-unsur barisan baru tersebut berubah sebagai berikut:
+            </p>
+
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li>
+                            <strong>Beda Baru ($b'$):</strong><br>
+                            Jika disisipkan $k$ bilangan di antara dua bilangan $x$ dan $y$ (yang memiliki selisih awal $b = y - x$), maka beda barisan baru menjadi:
+                            $$b' = \frac{y - x}{k + 1} = \frac{b}{k + 1}$$
+                        </li>
+                        <li>
+                            <strong>Banyak Suku Baru ($n'$):</strong><br>
+                            Jika barisan semula memiliki $n$ suku dan di antara <em>setiap</em> dua suku berurutan disisipkan $k$ bilangan, terdapat $(n - 1)$ celah penyisipan, sehingga:
+                            $$n' = n + (n - 1)k$$
+                            <em>(Khusus untuk penyisipan di antara 2 bilangan awal dan akhir, $n = 2$, sehingga $n' = 2 + k$).</em>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-sisipan" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Deret Aritmetika dan Jumlah $n$ Suku Pertama ($S_n$)</h2>
+            <p>
+                <strong>Deret Aritmetika</strong> adalah bentuk penjumlahan beruntun dari suku-suku pada barisan aritmetika. Jumlah $n$ suku pertama dari suatu deret aritmetika dilambangkan dengan $S_n$:
+                $$S_n = U_1 + U_2 + U_3 + \dots + U_{n-1} + U_n = \sum_{k=1}^{n} U_k$$
+            </p>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Penurunan Rumus $S_n$ (Metode Pasangan Gauss):</strong><br>
+                        Kita dapat menurunkan rumus $S_n$ dengan menuliskan deret secara urut dari depan ke belakang, lalu menjumlahkannya dengan deret yang sama yang ditulis terbalik dari belakang ke depan:
+                        $$\begin{aligned}
+                        S_n &= a + (a+b) + \dots + (U_n - b) + U_n \\
+                        S_n &= U_n + (U_n - b) + \dots + (a+b) + a \quad (+) \\
+                        \hline
+                        2S_n &= \underbrace{(a + U_n) + (a + U_n) + \dots + (a + U_n)}_{\text{sebanyak } n \text{ pasang suku}}
+                        \end{aligned}$$
+                        Sehingga diperoleh $2S_n = n(a + U_n)$, atau:
+                        $$S_n = \frac{n}{2}(a + U_n)$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-deret-gauss" style="width: 100%; max-width: 360px;"></div>
+                </div>
+            </div>
+
+            <p>
+                Dengan mensubstitusikan rumus $U_n = a + (n - 1)b$ ke dalam persamaan di atas, diperoleh rumus alternatif $S_n$ yang paling sering digunakan:
+                $$S_n = \frac{n}{2}\left(2a + (n - 1)b\right)$$
+            </p>
+
+            <p>
+                <strong>Sifat Fungsi Kuadrat pada $S_n$ dan Hubungannya dengan $U_n$:</strong>
+            </p>
+            <ul>
+                <li>
+                    Jika rumus $S_n = \frac{n}{2}(2a + nb - b)$ dijabarkan, kita memperoleh fungsi kuadrat tanpa suku konstanta ($c = 0$):
+                    $$S_n = \left(\frac{b}{2}\right)n^2 + \left(a - \frac{b}{2}\right)n = Pn^2 + Qn$$
+                    Dari bentuk $S_n = Pn^2 + Qn$, kita dapat langsung menentukan beda dengan rumus cepat $b = 2P$ dan suku pertama $a = S_1 = P + Q$, sehingga rumus suku ke-$n$ dapat langsung ditulis sebagai:
+                    $$U_n = 2Pn + (Q - P)$$
+                </li>
+                <li>
+                    Secara umum, berlaku pula identitas fundamental antara suku ke-$n$ dan jumlah $n$ suku pertama:
+                    $$U_n = S_n - S_{n-1} \quad (\text{untuk } n \ge 2) \quad \text{dan} \quad U_1 = S_1$$
+                </li>
+                <li>
+                    Jika banyak suku ganjil dan diketahui nilai suku tengah $U_t$, karena $U_t = \frac{a + U_n}{2}$, maka jumlah $n$ suku pertama dapat dihitung dengan sangat ringkas:
+                    $$S_n = n \cdot U_t$$
+                </li>
+            </ul>
+
+            <h2>6. Teknik Pemisalan Khusus dalam Soal Cerita & Kompetisi</h2>
+            <p>
+                Apabila di dalam soal diketahui <strong>jumlah beberapa suku berurutan</strong> sekaligus hasil kali atau jumlah kuadratnya, memisalkan suku-suku tersebut secara simetris akan membuat variabel beda ($b$) saling menghilangkan saat dijumlahkan:
+            </p>
+            <ul>
+                <li><strong>3 Suku Berurutan:</strong> Misalkan sebagai $(x - b), \, x, \, (x + b)$ sehingga jumlah ketiganya langsung $3x$.</li>
+                <li><strong>4 Suku Berurutan:</strong> Misalkan sebagai $(x - 3d), \, (x - d), \, (x + d), \, (x + 3d)$ dengan beda barisan $b = 2d$.</li>
+                <li><strong>5 Suku Berurutan:</strong> Misalkan sebagai $(x - 2b), \, (x - b), \, x, \, (x + b), \, (x + 2b)$ sehingga jumlah kelimanya langsung $5x$.</li>
+            </ul>
+
+            <h2>7. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berjenjang berikut untuk menguasai penerapan konsep barisan dan deret aritmetika pada berbagai tipe permasalahan:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Diketahui suatu barisan aritmetika dengan suku ke-$4$ adalah $13$ dan suku ke-$9$ adalah $33$. Tentukan:
+                    <br>a) Suku pertama ($a$) dan beda ($b$) barisan tersebut!
+                    <br>b) Rumus suku ke-$n$ ($U_n$) dan nilai suku ke-$20$ ($U_{20}$)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menentukan beda ($b$) dan suku pertama ($a$):</strong></p>
+                    <p>
+                        Gunakan rumus cepat beda dari dua suku yang diketahui ($U_9 = 33$ dan $U_4 = 13$):
+                        $$b = \frac{U_9 - U_4}{9 - 4} = \frac{33 - 13}{5} = \frac{20}{5} = 4$$
+                        Selanjutnya, substitusi $b = 4$ ke persamaan $U_4 = a + 3b = 13$:
+                        $$a + 3(4) = 13 \implies a + 12 = 13 \implies a = 1$$
+                    </p>
+                    <p><strong>b) Menentukan rumus $U_n$ dan nilai $U_{20}$:</strong></p>
+                    <p>
+                        $$U_n = a + (n - 1)b = 1 + (n - 1)4 = 1 + 4n - 4 = 4n - 3$$
+                        Untuk mencari $U_{20}$, substitusi $n = 20$ (atau gunakan $U_{20} = U_9 + 11b$):
+                        $$U_{20} = 4(20) - 3 = 80 - 3 = 77$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, suku pertama adalah $a = 1$, beda adalah $b = 4$, rumus suku ke-$n$ adalah $U_n = 4n - 3$, dan nilai $U_{20} = 77$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Suatu gedung pertunjukan memiliki $15$ baris kursi. Baris paling depan berisi $20$ kursi, baris kedua berisi $24$ kursi, baris ketiga berisi $28$ kursi, dan seterusnya selalu bertambah tetap. Jika harga tiket untuk $5$ baris paling depan (kategori VIP) adalah $\text{Rp}100.000\text{,00}$ per kursi, sedangkan untuk baris-baris sisanya (kategori Reguler) adalah $\text{Rp}60.000\text{,00}$ per kursi, tentukan total pendapatan gedung tersebut jika seluruh kursi terisi penuh!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Identifikasi unsur barisan aritmetika</strong></p>
+                    <ul>
+                        <li>Banyak kursi baris pertama: $a = 20$</li>
+                        <li>Pertambahan kursi per baris: $b = 24 - 20 = 4$</li>
+                        <li>Total seluruh baris: $n = 15$</li>
+                    </ul>
+                    <p><strong>Langkah 2: Hitung jumlah kursi VIP ($5$ baris pertama $\implies S_5$) dan total seluruh kursi ($S_{15}$)</strong></p>
+                    <p>
+                        Gunakan rumus $S_n = \frac{n}{2}\left(2a + (n - 1)b\right)$:
+                        $$S_5 = \frac{5}{2}\left(2(20) + (5 - 1)4\right) = \frac{5}{2}(40 + 16) = \frac{5}{2}(56) = 140 \text{ kursi VIP}$$
+                        $$S_{15} = \frac{15}{2}\left(2(20) + (15 - 1)4\right) = \frac{15}{2}(40 + 56) = \frac{15}{2}(96) = 720 \text{ kursi total}$$
+                        Banyaknya kursi Reguler (baris ke-$6$ sampai ke-$15$) adalah:
+                        $$N_{\text{Reguler}} = S_{15} - S_5 = 720 - 140 = 580 \text{ kursi Reguler}$$
+                    </p>
+                    <p><strong>Langkah 3: Hitung total pendapatan penjualan tiket</strong></p>
+                    <p>
+                        $$\text{Pendapatan} = (140 \times \text{Rp}100.000) + (580 \times \text{Rp}60.000)$$
+                        $$\text{Pendapatan} = \text{Rp}14.000.000 + \text{Rp}34.800.000 = \text{Rp}48.800.000\text{,00}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, total pendapatan gedung pertunjukan tersebut jika seluruh kursi terisi penuh adalah $\text{Rp}48.800.000\text{,00}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Di antara bilangan $4$ dan $68$ disisipkan sebanyak $7$ buah bilangan sehingga membentuk sebuah barisan aritmetika yang baru. Tentukan:
+                    <br>a) Beda ($b'$) dan banyak suku ($n'$) dari barisan aritmetika yang baru!
+                    <br>b) Suku tengah ($U_t$) dan jumlah seluruh suku ($S_{n'}$) pada barisan baru tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menentukan beda baru ($b'$) dan banyak suku baru ($n'$):</strong></p>
+                    <p>
+                        Diketahui bilangan awal $x = 4$, bilangan akhir $y = 68$, dan banyak sisipan $k = 7$:
+                        $$b' = \frac{y - x}{k + 1} = \frac{68 - 4}{7 + 1} = \frac{64}{8} = 8$$
+                        Banyaknya suku pada barisan baru setelah disisipkan $7$ bilangan di antara $2$ bilangan tersebut adalah:
+                        $$n' = 2 + k = 2 + 7 = 9 \text{ suku}$$
+                    </p>
+                    <p><strong>b) Menentukan suku tengah ($U_t$) dan jumlah seluruh suku ($S_9$):</strong></p>
+                    <p>
+                        Karena $n' = 9$ (ganjil), suku tengah terletak di urutan ke-$t = \frac{9+1}{2} = 5$ dengan nilai:
+                        $$U_t = \frac{a + U_{n'}}{2} = \frac{4 + 68}{2} = \frac{72}{2} = 36$$
+                        Jumlah seluruh suku ($S_9$) dapat dihitung langsung menggunakan sifat suku tengah:
+                        $$S_9 = n' \cdot U_t = 9 \times 36 = 324$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, beda barisan baru adalah $8$, banyak sukunya $9$, nilai suku tengahnya $36$, dan jumlah seluruh sukunya adalah $324$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Jumlah $n$ suku pertama suatu deret aritmetika dirumuskan dengan $S_n = 3n^2 - 5n$. Tentukan rumus suku ke-$n$ ($U_n$), beda ($b$), dan nilai dari $U_6 + U_{10}$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Cara 1: Menggunakan hubungan $U_n = S_n - S_{n-1}$</strong></p>
+                    <p>
+                        $$S_n = 3n^2 - 5n$$
+                        $$S_{n-1} = 3(n - 1)^2 - 5(n - 1) = 3(n^2 - 2n + 1) - 5n + 5 = 3n^2 - 11n + 8$$
+                        Kurangkan $S_n$ dengan $S_{n-1}$:
+                        $$U_n = (3n^2 - 5n) - (3n^2 - 11n + 8) = 6n - 8$$
+                    </p>
+                    <p><strong>Cara 2 (Rumus Cepat Sifat Kuadrat $S_n = Pn^2 + Qn$):</strong></p>
+                    <p>
+                        Dari $S_n = 3n^2 - 5n$ diperoleh $P = 3$ dan $Q = -5$. Maka beda $b = 2P = 2(3) = 6$, dan rumus suku ke-$n$ adalah:
+                        $$U_n = 2Pn + (Q - P) = 6n + (-5 - 3) = 6n - 8$$
+                    </p>
+                    <p><strong>Menghitung nilai $U_6 + U_{10}$:</strong></p>
+                    <p>
+                        $$U_6 = 6(6) - 8 = 36 - 8 = 28$$
+                        $$U_{10} = 6(10) - 8 = 60 - 8 = 52$$
+                        $$U_6 + U_{10} = 28 + 52 = 80$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, rumus suku ke-$n$ adalah $U_n = 6n - 8$, beda $b = 6$, dan nilai $U_6 + U_{10} = 80$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 5 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 5</div>
+                <div class="soal-teks">
+                    Tiga bilangan membentuk suatu barisan aritmetika. Jika jumlah ketiga bilangan tersebut adalah $24$ dan hasil kali ketiganya adalah $440$, tentukan ketiga bilangan tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Gunakan pemisalan simetris 3 suku aritmetika</strong></p>
+                    <p>
+                        Misalkan ketiga bilangan tersebut adalah $(x - b), \, x, \, (x + b)$. Karena jumlah ketiganya adalah $24$, maka:
+                        $$(x - b) + x + (x + b) = 24 \implies 3x = 24 \implies x = 8$$
+                    </p>
+                    <p><strong>Langkah 2: Gunakan informasi hasil kali untuk mencari beda ($b$)</strong></p>
+                    <p>
+                        Substitusikan $x = 8$ ke persamaan hasil kali ketiga suku:
+                        $$(8 - b) \cdot 8 \cdot (8 + b) = 440$$
+                        $$(8 - b)(8 + b) = \frac{440}{8}$$
+                        $$64 - b^2 = 55 \implies b^2 = 64 - 55 = 9 \implies b = \pm 3$$
+                    </p>
+                    <ul>
+                        <li>Untuk $b = 3$, barisannya adalah $(8 - 3), \, 8, \, (8 + 3) \implies 5, \, 8, \, 11$.</li>
+                        <li>Untuk $b = -3$, barisannya adalah $(8 + 3), \, 8, \, (8 - 3) \implies 11, \, 8, \, 5$.</li>
+                    </ul>
+                    <div class="kesimpulan">
+                        Jadi, ketiga bilangan yang membentuk barisan aritmetika tersebut adalah $5, \, 8, \text{ dan } 11$ (atau $11, \, 8, \text{ dan } 5$).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Ilustrasi Grafik Linier Barisan Aritmetika
+            const elAritmetika = document.getElementById("svg-aritmetika");
+            if (elAritmetika && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elAritmetika, 370, 200, {
+                    viewBox: "0 0 370 200",
+                    title: "Grafik Pertumbuhan Linier Barisan Aritmetika Un = 3n - 1"
+                });
+
+                geo1.buatTeks(185, 16, "Pertumbuhan Linier Aritmetika: Un = 3n - 1", {
+                    position: "middle-center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Sumbu Koordinat
+                geo1.buatVektor(40, 168, 345, 168, { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor(52, 180, 52, 28, { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatTeks(348, 178, "n", { position: "top-right", fontSize: "11px", fontWeight: "bold", fill: "#64748b" });
+                geo1.buatTeks(38, 30, "Un", { position: "middle-left", fontSize: "11px", fontWeight: "bold", fill: "#64748b" });
+
+                const titikData = [
+                    { n: 1, val: 2, cx: 88, cy: 145 },
+                    { n: 2, val: 5, cx: 142, cy: 118 },
+                    { n: 3, val: 8, cx: 196, cy: 91 },
+                    { n: 4, val: 11, cx: 250, cy: 64 },
+                    { n: 5, val: 14, cx: 304, cy: 37 }
+                ];
+
+                // Segitiga tangga beda b = +3 dan garis tren linier
+                for (let i = 0; i < titikData.length - 1; i++) {
+                    const p1 = titikData[i];
+                    const p2 = titikData[i + 1];
+
+                    // Segitiga anak tangga (kemiringan b)
+                    geo1.buatSegmen(p1.cx, p1.cy, p2.cx, p1.cy, { stroke: "#cbd5e1", strokeWidth: 1.2, dashed: "3 2" });
+                    geo1.buatSegmen(p2.cx, p1.cy, p2.cx, p2.cy, { stroke: "#f59e0b", strokeWidth: 1.5, dashed: "3 2" });
+                    geo1.buatTeks(p2.cx + 5, (p1.cy + p2.cy) / 2, "+b", {
+                        position: "middle-right",
+                        fontSize: "10px",
+                        fontWeight: "bold",
+                        fill: "#d97706"
+                    });
+
+                    // Garis hubung linier
+                    geo1.buatSegmen(p1.cx, p1.cy, p2.cx, p2.cy, {
+                        stroke: "#0d9488",
+                        strokeWidth: 2
+                    });
+                }
+
+                // Titik data dan label nilai
+                titikData.forEach(p => {
+                    geo1.buatSegmen(p.cx, 168, p.cx, p.cy, { stroke: "#e2e8f0", strokeWidth: 1, dashed: "2 2" });
+                    geo1.buatTeks(p.cx, 174, String(p.n), { position: "bottom-center", fontSize: "10.5px", fill: "#475569" });
+                    geo1.buatTitik(p.cx, p.cy, {
+                        size: 4.5,
+                        color: "#0f766e",
+                        label: `U${p.n}=${p.val}`,
+                        labelPosition: "top-left",
+                        labelDistance: 5,
+                        fontSize: "10.5px",
+                        bold: true
+                    });
+                });
+            }
+
+            // 2. Ilustrasi Skema Sisipan Barisan Aritmetika
+            const elSisipan = document.getElementById("svg-sisipan");
+            if (elSisipan && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elSisipan, 370, 175, {
+                    viewBox: "0 0 370 175",
+                    title: "Skema Sisipan k = 3 Bilangan di Antara Dua Suku"
+                });
+
+                geo2.buatTeks(185, 18, "Ilustrasi Sisipan k = 3 Bilangan (Terbentuk k + 1 = 4 Loncatan)", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const xNodes = [38, 111.5, 185, 258.5, 332];
+                const yNode = 88;
+                const labelsAtas = ["x (Awal)", "Sisipan 1", "Sisipan 2", "Sisipan 3", "y (Akhir)"];
+                const nilaiContoh = ["4", "10", "16", "22", "28"];
+
+                // Busur loncatan beda baru b' di bagian bawah
+                for (let i = 0; i < xNodes.length - 1; i++) {
+                    const xm = (xNodes[i] + xNodes[i + 1]) / 2;
+                    geo2.buatKurvaBezier(
+                        [[xNodes[i] + 4, yNode + 16], [xm, yNode + 42], [xNodes[i + 1] - 4, yNode + 16]],
+                        { stroke: "#d97706", strokeWidth: 1.5, dashed: "3 2" }
+                    );
+                    geo2.buatTeks(xm, yNode + 38, "+b'", {
+                        position: "bottom-center",
+                        fontSize: "10.5px",
+                        fontWeight: "bold",
+                        fill: "#b45309"
+                    });
+                }
+
+                // Garis dimensi selisih awal (y - x) di atas
+                geo2.buatSegmen(xNodes[0], 44, xNodes[4], 44, { stroke: "#0d9488", strokeWidth: 1.4 });
+                geo2.buatSegmen(xNodes[0], 39, xNodes[0], 49, { stroke: "#0d9488", strokeWidth: 1.4 });
+                geo2.buatSegmen(xNodes[4], 39, xNodes[4], 49, { stroke: "#0d9488", strokeWidth: 1.4 });
+                geo2.buatTeks(185, 38, "Selisih Awal: b = y - x = 24  -->  b' = 24 / (3 + 1) = 6", {
+                    position: "top-center",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Lingkaran suku awal, sisipan, dan akhir
+                for (let i = 0; i < xNodes.length; i++) {
+                    const isUjung = (i === 0 || i === xNodes.length - 1);
+                    geo2.buatLingkaran(xNodes[i], yNode, 15, {
+                        fill: isUjung ? "rgba(13, 148, 136, 0.22)" : "rgba(217, 119, 6, 0.14)",
+                        stroke: isUjung ? "#0f766e" : "#d97706",
+                        strokeWidth: 1.8
+                    });
+                    geo2.buatTeks(xNodes[i], yNode, nilaiContoh[i], {
+                        position: "middle-center",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        fill: isUjung ? "#0f766e" : "#b45309"
+                    });
+                    geo2.buatTeks(xNodes[i], yNode - 21, labelsAtas[i], {
+                        position: "top-center",
+                        fontSize: "9.5px",
+                        fontWeight: isUjung ? "bold" : "normal",
+                        fill: isUjung ? "#0f766e" : "#64748b"
+                    });
+                }
+            }
+
+            // 3. Ilustrasi Geometris Jumlah Deret Aritmetika (Tangga Gauss 2Sn = n(a + Un))
+            const elGauss = document.getElementById("svg-deret-gauss");
+            if (elGauss && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elGauss, 360, 195, {
+                    viewBox: "0 0 360 195",
+                    title: "Ilustrasi Geometris Rumus Deret Aritmetika 2Sn = n(a + Un)"
+                });
+
+                geo3.buatTeks(180, 16, "Visualisasi 2Sn = n(U1 + Un) untuk n = 4", {
+                    position: "middle-center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Menggambar blok persegi panjang berukuran 4 kolom x 5 baris (U1=1, U2=2, U3=3, U4=4)
+                const startX = 65;
+                const startY = 38;
+                const colW = 46;
+                const unitH = 22;
+                const totalUnits = 5; // U1 + U4 = 1 + 4 = 5
+
+                for (let col = 0; col < 4; col++) {
+                    const u_k = col + 1;               // Tinggi tangga Sn asli (1, 2, 3, 4)
+                    const u_rev = totalUnits - u_k;    // Tinggi tangga Sn terbalik (4, 3, 2, 1)
+                    const x = startX + col * colW;
+
+                    // Bagian Bawah: Suku deret asli (Teal)
+                    const hBottom = u_k * unitH;
+                    const yBottom = startY + u_rev * unitH;
+                    geo3.buatPersegiPanjang(x, yBottom, colW - 4, hBottom, {
+                        radius: 4,
+                        fill: "rgba(13, 148, 136, 0.22)",
+                        stroke: "#0f766e",
+                        strokeWidth: 1.5
+                    });
+                    geo3.buatTeks(x + (colW - 4) / 2, yBottom + hBottom / 2, `U${u_k}`, {
+                        position: "middle-center",
+                        fontSize: "11.5px",
+                        fontWeight: "bold",
+                        fill: "#0f766e"
+                    });
+
+                    // Bagian Atas: Suku deret dibalik (Amber)
+                    const hTop = u_rev * unitH;
+                    geo3.buatPersegiPanjang(x, startY, colW - 4, hTop - 3, {
+                        radius: 4,
+                        fill: "rgba(217, 119, 6, 0.16)",
+                        stroke: "#d97706",
+                        strokeWidth: 1.3,
+                        dashed: "3 2"
+                    });
+                    geo3.buatTeks(x + (colW - 4) / 2, startY + (hTop - 3) / 2, `U${5 - u_k}`, {
+                        position: "middle-center",
+                        fontSize: "11px",
+                        fontWeight: "bold",
+                        fill: "#b45309"
+                    });
+                }
+
+                // Dimensi Lebar (n suku) di bawah
+                const totalW = 4 * colW - 4;
+                const bottomY = startY + totalUnits * unitH;
+                geo3.buatDimensi([startX, bottomY], [startX + totalW, bottomY], 18, "Lebar = n suku", {
+                    stroke: "#334155",
+                    fontSize: "11px",
+                    fontWeight: "bold"
+                });
+
+                // Dimensi Tinggi (a + Un) di kanan
+                geo3.buatDimensi([startX + totalW, startY], [startX + totalW, bottomY], -22, "U1 + Un", {
+                    stroke: "#0f766e",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    labelJarak: 24
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

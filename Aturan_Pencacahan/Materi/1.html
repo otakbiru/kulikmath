@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Aturan Pencacahan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Aturan Pencacahan</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengantar dan Prinsip Dasar Menghitung (Counting Principles)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Aturan Pencacahan</strong> adalah suatu cabang matematika kombinatorik yang mempelajari cara menghitung banyak susunan atau kemungkinan pengaturan suatu objek tanpa harus mendaftarkan seluruh kemungkinannya satu per satu.
+                    </p>
+                    <p>
+                        Fondasi utama dari seluruh kaidah pencacahan bertumpu pada dua prinsip dasar yang sangat intuitif, yaitu:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Aturan Penjumlahan (Addition Rule):</strong> Jika suatu kejadian pertama dapat terjadi dalam $p$ cara dan kejadian kedua (yang saling lepas/tidak dapat terjadi bersamaan) dapat terjadi dalam $q$ cara, maka total cara untuk memilih kejadian pertama <em>atau</em> kejadian kedua adalah $p + q$.
+                        </li>
+                        <li>
+                            <strong>Aturan Perkalian (Multiplication Rule / Kaidah Pengisian Tempat):</strong> Jika suatu proses terdiri dari dua tahap berurutan di mana tahap pertama dapat dilakukan dalam $p$ cara dan tahap kedua dapat dilakukan dalam $q$ cara terlepas dari hasil tahap pertama, maka total cara keseluruhan proses adalah $p \times q$.
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-pohon-keputusan" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Faktorial dan Notasinya</h2>
+            <p>
+                Sebelum mempelajari permutasi dan kombinasi, kita harus memahami operasi <strong>faktorial</strong> yang dilambangkan dengan tanda seru (!). 
+            </p>
+            <p>
+                Untuk setiap bilangan bulat positif $n$, faktorial dari $n$ didefinisikan sebagai hasil kali semua bilangan bulat positif dari $1$ sampai dengan $n$:
+                $$n! = n \times (n-1) \times (n-2) \times \dots \times 3 \times 2 \times 1$$
+            </p>
+            <p>
+                <em>Definisi Khusus:</em> Secara konvensi, nilai dari $0! = 1$. Selain itu, sifat rekursif faktorial sangat berguna dalam penyederhanaan aljabar: $n! = n \times (n-1)!$.
+            </p>
+
+            <h2>3. Permutasi (Susunan dengan Memperhatikan Urutan)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Permutasi</strong> adalah susunan unsur-unsur yang berbeda dengan <em>memperhatikan urutan</em> posisi penempatannya (artinya susunan $ABC$ berbeda dengan $BCA$ atau $CAB$).
+                    </p>
+                    <p>
+                        Beberapa variasi rumus permutasi yang wajib dikuasai meliputi:
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-ilustrasi-permutasi" style="width: 100%; max-width: 330px;"></div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Permutasi</th>
+                            <th>Kondisi Kasus</th>
+                            <th>Rumus Matematis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Permutasi $r$ unsur dari $n$ unsur</strong></td>
+                            <td class="text-left">Menyusun $r$ objek dari total $n$ objek yang tersedia ($r \le n$)</td>
+                            <td>$$P(n,r) = \frac{n!}{(n-r)!}$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Permutasi Seluruh Unsur</strong></td>
+                            <td class="text-left">Menyusun seluruh $n$ objek yang berbeda dalam satu baris penuh</td>
+                            <td>$$P_n = n!$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Permutasi dengan Unsur Sama</strong></td>
+                            <td class="text-left">Menyusun objek di mana terdapat $k_1, k_2, \dots, k_m$ unsur yang identik</td>
+                            <td>$$P_{\text{sama}} = \frac{n!}{k_1! \cdot k_2! \dots k_m!}$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Permutasi Siklis (Melingkar)</strong></td>
+                            <td class="text-left">Menyusun $n$ unsur yang berbeda secara melingkar (posisi duduk melingkar)</td>
+                            <td>$$P_{\text{siklis}} = (n-1)!$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. Kombinasi (Pemilihan Tanpa Memperhatikan Urutan)</h2>
+            <p>
+                <strong>Kombinasi</strong> adalah pemilihan kelompok objek dari suatu himpunan tanpa <em>memperhatikan urutan</em> di dalam kelompok tersebut (artinya kelompok $\{A, B, C\}$ dianggap sama persis dengan $\{C, A, B\}$).
+            </p>
+            <p>
+                Banyaknya cara memilih $r$ objek dari $n$ objek yang tersedia dirumuskan sebagai berikut:
+                $$C(n,r) = \binom{n}{r} = \frac{n!}{r!(n-r)!}$$
+            </p>
+            <p>
+                <em>Sifat Penting Kombinasi:</em> $\binom{n}{r} = \binom{n}{n-r}$ serta $\sum_{r=0}^{n} \binom{n}{r} = 2^n$ (total seluruh subset dari himpunan berukuran $n$).
+            </p>
+
+            <h2>5. Perbedaan Kunci: Permutasi vs Kombinasi</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pembeda</th>
+                            <th>Permutasi</th>
+                            <th>Kombinasi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Fokus Utama</strong></td>
+                            <td class="text-left"><strong>Susunan / Urutan posisi</strong> (Contoh: Juara I, II, III atau Kode PIN)</td>
+                            <td class="text-left"><strong>Kelompok / Tim</strong> (Contoh: Pemilihan panitia atau tim bola)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pertanyaan Kunci</strong></td>
+                            <td class="text-left">"Ada berapa cara menyusun...?"</td>
+                            <td class="text-left">"Ada berapa cara memilih...?"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ilustrasi Sederhana</strong></td>
+                            <td class="text-left">Urutan AB berbeda dengan BA</td>
+                            <td class="text-left">Kelompok {A, B} sama dengan {B, A}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>6. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memahami penerapan Aturan Pencacahan dalam berbagai tipe masalah ujian:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Dari angka-angka $1, 2, 3, 4, 5,$ dan $6$ akan dibentuk suatu bilangan ratusan genap yang terdiri dari 3 digit berbeda. Tentukan banyak bilangan genap berbeda yang dapat dibentuk!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Analisis syarat bilangan genap dan digit berbeda</strong></p>
+                    <p>
+                        Bilangan yang dibentuk adalah bilangan ratusan (3 digit: <em>Ratusan</em>, <em>Puluhan</em>, <em>Satuan</em>). Agar bilangan bernilai <strong>genap</strong>, angka pada posisi <strong>Satuan</strong> haruslah bilangan genap dari himpunan yang tersedia, yaitu $\{2, 4, 6\}$ (ada 3 pilihan angka).
+                    </p>
+                    <p><strong>Langkah 2: Isi tempat menggunakan Kaidah Pengisian Tempat (Filling Slots)</strong></p>
+                    <ul>
+                        <li><strong>Posisi Satuan:</strong> Hanya bisa diisi oleh angka genap $\{2, 4, 6\} \implies$ <strong>3 cara</strong>.</li>
+                        <li><strong>Posisi Ratusan:</strong> Karena syarat digit berbeda dan 1 angka sudah dipakai di satuan, tersisa $6 - 1 = 5$ pilihan angka. (Angka 0 tidak ada, jadi aman). $\implies$ <strong>5 cara</strong>.</li>
+                        <li><strong>Posisi Puluhan:</strong> Karena 2 angka sudah terpakai (di satuan dan ratusan), tersisa $6 - 2 = 4$ pilihan angka. $\implies$ <strong>4 cara</strong>.</li>
+                    </ul>
+                    <p><strong>Langkah 3: Hitung total kemungkinan dengan aturan perkalian</strong></p>
+                    <p>
+                        $$\text{Total Bilangan} = (\text{Pilihan Ratusan}) \times (\text{Pilihan Puluhan}) \times (\text{Pilihan Satuan})$$
+                        $$\text{Total Bilangan} = 5 \times 4 \times 3 = 60\text{ bilangan}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, banyak bilangan ratusan genap berbeda yang dapat dibentuk adalah $60$ bilangan.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Berapa banyak susunan kata berbeda yang dapat dibentuk dari seluruh huruf pada kata <strong>"MATEMATIKA"</strong>?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Hitung jumlah total huruf dan frekuensi huruf yang sama</strong></p>
+                    <p>
+                        Kata "MATEMATIKA" terdiri dari total $n = 10$ huruf. Mari kita hitung kemunculan masing-masing huruf yang sama:
+                    </p>
+                    <ul>
+                        <li>Huruf <strong>M</strong> muncul sebanyak 2 kali.</li>
+                        <li>Huruf <strong>A</strong> muncul sebanyak 3 kali.</li>
+                        <li>Huruf <strong>T</strong> muncul sebanyak 2 kali.</li>
+                        <li>Huruf <strong>E</strong> muncul sebanyak 1 kali.</li>
+                        <li>Huruf <strong>I</strong> muncul sebanyak 1 kali.</li>
+                        <li>Huruf <strong>K</strong> muncul sebanyak 1 kali.</li>
+                    </ul>
+                    <p><strong>Langkah 2: Gunakan rumus Permutasi dengan Unsur Sama</strong></p>
+                    <p>
+                        $$P = \frac{n!}{k_1! \cdot k_2! \cdot k_3! \dots}$$
+                        $$P = \frac{10!}{2! \cdot 3! \cdot 2!} = \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3!}{(2 \times 1) \cdot 3! \cdot (2 \times 1)}$$
+                        $$P = \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4}{4} = 10 \times 9 \times 8 \times 7 \times 6 \times 5 = 151.200$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, banyak susunan kata berbeda dari kata "MATEMATIKA" adalah $151.200$ susunan.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Dalam sebuah rapat OSIS yang dihadiri oleh 8 orang pengurus, mereka akan duduk mengelilingi sebuah meja bundar. Jika Ketua dan Sekretaris OSIS harus selalu duduk berdampingan, tentukan banyak susunan posisi duduk yang mungkin terjadi!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Gunakan prinsip ikatan unsur (Treat as a single unit)</strong></p>
+                    <p>
+                        Karena Ketua (K) dan Sekretaris (S) harus selalu berdampingan, kita anggap mereka berdua sebagai <strong>1 satu kesatuan blok tunggal</strong>.
+                    </p>
+                    <p><strong>Langkah 2: Hitung permutasi siklis untuk objek gabungan</strong></p>
+                    <p>
+                        Semula ada 8 orang. Karena K dan S diikat jadi 1 blok, total "objek" yang akan duduk melingkar kini menjadi:
+                        $$(8 - 2) + 1 = 6 + 1 = 7 \text{ objek}$$
+                        Banyak susunan melingkar untuk 7 objek menggunakan rumus permutasi siklis $(n-1)!$:
+                        $$\text{Susunan Siklis} = (7 - 1)! = 6! = 720 \text{ cara}$$
+                    </p>
+                    <p><strong>Langkah 3: Hitung permutasi internal di dalam blok (K dan S)</strong></p>
+                    <p>
+                        Di dalam blok ikatan mereka berdua, posisi Ketua dan Sekretaris dapat bertukar tempat (K-S atau S-K) sebanyak $2! = 2 \times 1 = 2$ cara.
+                    </p>
+                    <p><strong>Langkah 4: Kalikan seluruh kemungkinan</strong></p>
+                    <p>
+                        $$\text{Total Susunan} = 6! \times 2! = 720 \times 2 = 1.440 \text{ cara}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, banyak susunan posisi duduk yang mungkin adalah $1.440$ cara.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Dari 10 orang siswa yang terdiri dari 6 putra dan 4 putri, akan dibentuk sebuah tim cerdas cermat yang beranggotakan 4 orang. Jika dalam tim tersebut harus terdapat paling sedikit 2 orang putri, tentukan banyak cara pembentukan tim tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Identifikasi syarat "paling sedikit 2 putri"</strong></p>
+                    <p>
+                        Total anggota tim adalah 4 orang dari 6 putra ($P=6$) dan 4 putri ($W=4$). Syarat "paling sedikit 2 putri" berarti komposisi anggota putri dalam tim bisa berjumlah 2, 3, atau 4 orang. Kita bagi menjadi 3 kasus kombinasi:
+                    </p>
+                    <ul>
+                        <li><strong>Kasus I (2 Putri, 2 Putra):</strong> Memilih 2 putri dari 4 dan 2 putra dari 6.
+                            $$\text{Cara}_1 = \binom{4}{2} \times \binom{6}{2} = \frac{4!}{2!2!} \times \frac{6!}{2!4!} = 6 \times 15 = 90$$
+                        </li>
+                        <li><strong>Kasus II (3 Putri, 1 Putra):</strong> Memilih 3 putri dari 4 dan 1 putra dari 6.
+                            $$\text{Cara}_2 = \binom{4}{3} \times \binom{6}{1} = 4 \times 6 = 24$$
+                        </li>
+                        <li><strong>Kasus III (4 Putri, 0 Putra):</strong> Memilih 4 putri dari 4 dan 0 putra dari 6.
+                            $$\text{Cara}_3 = \binom{4}{4} \times \binom{6}{0} = 1 \times 1 = 1$$
+                        </li>
+                    </ul>
+                    <p><strong>Langkah 2: Jumlahkan seluruh kemungkinan kasus</strong></p>
+                    <p>
+                        $$\text{Total Cara} = \text{Cara}_1 + \text{Cara}_2 + \text{Cara}_3 = 90 + 24 + 1 = 115 \text{ cara}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, banyak cara pembentukan tim tersebut adalah $115$ cara.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Pohon Keputusan (Prinsip Aturan Perkalian)
+            const elPohon = document.getElementById("svg-pohon-keputusan");
+            if (elPohon && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elPohon, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    title: "Diagram Pohon Keputusan Aturan Perkalian"
+                });
+
+                // Titik Utama Start A
+                const start = [40, 105];
+                geo1.buatTitik(start, { size: 4, color: "#0f766e", label: "Mulai", labelPosition: "bottom-center", fontSize: "12px", bold: true });
+
+                // Cabang Tahap 1 (2 pilihan: A1, A2)
+                const b1 = [130, 55];
+                const b2 = [130, 155];
+                geo1.buatVektor(start, b1, { stroke: "#0d9488", strokeWidth: 1.8, label: "Tahap 1 (2 cara)", labelJarak: 5, fontSize: "10px" });
+                geo1.buatVektor(start, b2, { stroke: "#0d9488", strokeWidth: 1.8 });
+
+                geo1.buatTitik(b1, { size: 3.5, color: "#1d4ed8", label: "A", labelPosition: "top-center", fontSize: "11px", bold: true });
+                geo1.buatTitik(b2, { size: 3.5, color: "#1d4ed8", label: "B", labelPosition: "bottom-center", fontSize: "11px", bold: true });
+
+                // Cabang Tahap 2 dari A (3 pilihan)
+                geo1.buatVektor(b1, [260, 20], { stroke: "#d97706", strokeWidth: 1.5, label: "Tahap 2 (3 cara)", labelJarak: 5, fontSize: "10px" });
+                geo1.buatVektor(b1, [260, 55], { stroke: "#d97706", strokeWidth: 1.5 });
+                geo1.buatVektor(b1, [260, 90], { stroke: "#d97706", strokeWidth: 1.5 });
+
+                geo1.buatTitik([260, 20], { size: 2.5, color: "#b45309", label: "A1", labelPosition: "right", fontSize: "10px" });
+                geo1.buatTitik([260, 55], { size: 2.5, color: "#b45309", label: "A2", labelPosition: "right", fontSize: "10px" });
+                geo1.buatTitik([260, 90], { size: 2.5, color: "#b45309", label: "A3", labelPosition: "right", fontSize: "10px" });
+
+                // Cabang Tahap 2 dari B (3 pilihan)
+                geo1.buatVektor(b2, [260, 120], { stroke: "#d97706", strokeWidth: 1.5 });
+                geo1.buatVektor(b2, [260, 155], { stroke: "#d97706", strokeWidth: 1.5 });
+                geo1.buatVektor(b2, [260, 190], { stroke: "#d97706", strokeWidth: 1.5, label: "2 × 3 = 6 Hasil", labelJarak: 8, fontSize: "10px" });
+
+                geo1.buatTitik([260, 120], { size: 2.5, color: "#b45309", label: "B1", labelPosition: "right", fontSize: "10px" });
+                geo1.buatTitik([260, 155], { size: 2.5, color: "#b45309", label: "B2", labelPosition: "right", fontSize: "10px" });
+                geo1.buatTitik([260, 190], { size: 2.5, color: "#b45309", label: "B3", labelPosition: "right", fontSize: "10px" });
+            }
+
+            // 2. Visualisasi Permutasi vs Kombinasi (Contoh Susunan vs Kelompok)
+            const elPermutasi = document.getElementById("svg-ilustrasi-permutasi");
+            if (elPermutasi && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elPermutasi, 330, 200, {
+                    viewBox: "0 0 330 200",
+                    title: "Ilustrasi Perbedaan Urutan pada Permutasi dan Kombinasi"
+                });
+
+                // Kotak Ilustrasi Permutasi (Urutan Diperhatikan)
+                geo2.buatPersegiPanjang(15, 20, 140, 155, { radius: 8, stroke: "#0d9488", strokeWidth: 1.8, fill: "rgba(13, 148, 136, 0.04)" });
+                geo2.buatTeks(85, 42, "PERMUTASI", { position: 'top-center', fontSize: '12px', fontWeight: 'bold', fill: '#0f766e' });
+                geo2.buatTeks(85, 75, "ABC ≠ BCA", { position: 'middle-center', fontSize: '13px', fontWeight: 'bold', fill: '#dc2626' });
+                geo2.buatTeks(85, 110, "Posisi/Jabatan", { position: 'middle-center', fontSize: '11px', fill: '#64748b' });
+                geo2.buatTeks(85, 135, "Juara 1, 2, 3", { position: 'middle-center', fontSize: '11px', fill: '#64748b' });
+                geo2.buatTeks(85, 160, "P(n,r) = n!/(n-r)!", { position: 'middle-center', fontSize: '10.5px', fontWeight: 'bold', fill: '#0f766e' });
+
+                // Kotak Ilustrasi Kombinasi (Urutan Diabaikan)
+                geo2.buatPersegiPanjang(175, 20, 140, 155, { radius: 8, stroke: "#7c3aed", strokeWidth: 1.8, fill: "rgba(124, 58, 237, 0.04)" });
+                geo2.buatTeks(245, 42, "KOMBINASI", { position: 'top-center', fontSize: '12px', fontWeight: 'bold', fill: '#7c3aed' });
+                geo2.buatTeks(245, 75, "{A,B,C} = {C,B,A}", { position: 'middle-center', fontSize: '12px', fontWeight: 'bold', fill: '#16a34a' });
+                geo2.buatTeks(245, 110, "Kelompok / Tim", { position: 'middle-center', fontSize: '11px', fill: '#64748b' });
+                geo2.buatTeks(245, 135, "Panitia / Anggota", { position: 'middle-center', fontSize: '11px', fill: '#64748b' });
+                geo2.buatTeks(245, 160, "C(n,r) = n! / [r!(n-r)!]", { position: 'middle-center', fontSize: '10px', fontWeight: 'bold', fill: '#7c3aed' });
+            }
+        });
+    </script>
+</body>
+
+</html>

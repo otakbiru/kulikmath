@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Bilangan Kompleks</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Bilangan Kompleks</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Bilangan Kompleks & Satuan Imajiner</h2>
+            <p>
+                Persamaan kuadrat sederhana seperti $x^2 + 1 = 0$ tidak memiliki penyelesaian di dalam himpunan bilangan real ($\mathbb{R}$) karena tidak ada bilangan real yang hasil kuadratnya bernilai negatif. Untuk mengatasi keterbatasan ini, matematikawan mendefinisikan <strong>satuan imajiner $i$</strong> (Euler) sebagai:
+                $$i = \sqrt{-1} \iff i^2 = -1$$
+            </p>
+            <p>
+                <strong>Bilangan Kompleks</strong> ($\mathbb{C}$) adalah bilangan yang dinyatakan dalam bentuk kartesius (standar):
+                $$z = a + bi$$
+                dengan $a, b \in \mathbb{R}$. Unsur-unsur utamanya meliputi:
+            </p>
+            <ul>
+                <li>
+                    <strong>Bagian Real ($\text{Re}(z)$):</strong> Bilangan real $a$ yang tidak memuat $i$.
+                </li>
+                <li>
+                    <strong>Bagian Imajiner ($\text{Im}(z)$):</strong> Bilangan real $b$ yang menjadi koefisien dari $i$ (perhatikan bahwa $\text{Im}(z) = b$, bukan $bi$).
+                </li>
+                <li>
+                    Jika $b = 0$, maka $z = a$ adalah <em>bilangan real murni</em>. Jika $a = 0$ dan $b \neq 0$, maka $z = bi$ disebut <em>bilangan imajiner murni</em>.
+                </li>
+            </ul>
+
+            <p>
+                <strong>Siklus Perpangkatan Satuan Imajiner $i$:</strong><br>
+                Nilai perpangkatan $i^n$ untuk bilangan bulat $n$ selalu berulang setiap kelipatan $4$ (periode $4$):
+            </p>
+            <div class="table-wrapper">
+                <table class="table-auto">
+                    <thead>
+                        <tr>
+                            <th>Pangkat Dasar</th>
+                            <th>Rumus Umum ($k \in \mathbb{Z}$)</th>
+                            <th>Nilai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$i^1$</td>
+                            <td>$i^{4k + 1}$</td>
+                            <td>$i$</td>
+                        </tr>
+                        <tr>
+                            <td>$i^2$</td>
+                            <td>$i^{4k + 2}$</td>
+                            <td>$-1$</td>
+                        </tr>
+                        <tr>
+                            <td>$i^3 = i^2 \cdot i$</td>
+                            <td>$i^{4k + 3}$</td>
+                            <td>$-i$</td>
+                        </tr>
+                        <tr>
+                            <td>$i^4 = (i^2)^2$</td>
+                            <td>$i^{4k}$</td>
+                            <td>$1$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Sifat Penting Penjumlahan 4 Pangkat Berurutan:<br>
+                Jumlah dari empat perpangkatan $i$ yang berurutan selalu bernilai nol:
+                $$i^n + i^{n+1} + i^{n+2} + i^{n+3} = 0$$
+            </div>
+
+            <h2>2. Kesamaan & Operasi Aljabar Bilangan Kompleks</h2>
+            <p>
+                Misalkan diketahui dua bilangan kompleks $z_1 = a + bi$ dan $z_2 = c + di$ dengan $a, b, c, d \in \mathbb{R}$.
+            </p>
+            <ol>
+                <li>
+                    <strong>Kesamaan Dua Bilangan Kompleks:</strong><br>
+                    Dua bilangan kompleks bernilai sama jika dan hanya jika bagian real dan bagian imajinernya masing-masing sama:
+                    $$a + bi = c + di \iff a = c \quad \text{dan} \quad b = d$$
+                </li>
+                <li>
+                    <strong>Penjumlahan dan Pengurangan:</strong><br>
+                    Jumlahkan atau kurangkan bagian real dengan bagian real, serta bagian imajiner dengan bagian imajiner:
+                    $$z_1 \pm z_2 = (a \pm c) + (b \pm d)i$$
+                </li>
+                <li>
+                    <strong>Perkalian:</strong><br>
+                    Gunakan sifat distributif dan substitusikan $i^2 = -1$:
+                    $$z_1 \cdot z_2 = (a + bi)(c + di) = ac + adi + bci + bdi^2 = (ac - bd) + (ad + bc)i$$
+                </li>
+            </ol>
+
+            <h2>3. Konjugat (Sekawan), Modulus, dan Pembagian</h2>
+            <p>
+                Untuk sembarang bilangan kompleks $z = a + bi$, didefinisikan dua besaran fundamental berikut:
+            </p>
+            <ul>
+                <li>
+                    <strong>Konjugat / Sekawan ($\bar{z}$ atau $z^*$):</strong> Diperoleh dengan mengubah tanda bagian imajinernya:
+                    $$\bar{z} = a - bi$$
+                    Hasil kali bilangan kompleks dengan sekawannya selalu menghasilkan bilangan real non-negatif:
+                    $$z \cdot \bar{z} = (a + bi)(a - bi) = a^2 - b^2i^2 = a^2 + b^2$$
+                </li>
+                <li>
+                    <strong>Modulus ($|z|$ atau $r$):</strong> Panjang vektor atau jarak titik $z$ terhadap titik asal $(0,0)$ pada bidang kompleks:
+                    $$|z| = \sqrt{a^2 + b^2} = \sqrt{z \cdot \bar{z}}$$
+                </li>
+                <li>
+                    <strong>Pembagian Bilangan Kompleks:</strong><br>
+                    Dilakukan dengan mengalikan pembilang dan penyebut dengan <em>konjugat dari penyebut</em>:
+                    $$\frac{z_1}{z_2} = \frac{a + bi}{c + di} \cdot \frac{c - di}{c - di} = \frac{(ac + bd) + (bc - ad)i}{c^2 + d^2} = \left(\frac{ac + bd}{c^2 + d^2}\right) + \left(\frac{bc - ad}{c^2 + d^2}\right)i$$
+                </li>
+            </ul>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sifat-Sifat Konjugat ($\bar{z}$)</th>
+                            <th>Sifat-Sifat Modulus ($|z|$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$\overline{z_1 \pm z_2} = \bar{z}_1 \pm \bar{z}_2$</td>
+                            <td>$|z| = |\bar{z}| = |-z|$ dan $|z|^2 = z \cdot \bar{z}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\overline{z_1 \cdot z_2} = \bar{z}_1 \cdot \bar{z}_2$</td>
+                            <td>$|z_1 \cdot z_2| = |z_1| \cdot |z_2|$ dan $|z^n| = |z|^n$</td>
+                        </tr>
+                        <tr>
+                            <td>$\overline{\left(\frac{z_1}{z_2}\right)} = \frac{\bar{z}_1}{\bar{z}_2} \quad (z_2 \neq 0)$</td>
+                            <td>$\left|\frac{z_1}{z_2}\right| = \frac{|z_1|}{|z_2|} \quad (z_2 \neq 0)$</td>
+                        </tr>
+                        <tr>
+                            <td>$z + \bar{z} = 2\,\text{Re}(z)$ dan $z - \bar{z} = 2i\,\text{Im}(z)$</td>
+                            <td>Ketaksamaan Segitiga: $|z_1 + z_2| \le |z_1| + |z_2|$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. Bidang Kompleks (Diagram Argand) & Bentuk Polar</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Bilangan kompleks $z = a + bi$ dapat direpresentasikan secara geometri sebagai titik $(a, b)$ atau vektor posisi dari $(0,0)$ menuju $(a, b)$ pada <strong>Bidang Argand</strong>:
+                    </p>
+                    <ul>
+                        <li><strong>Sumbu Horizontal (X):</strong> Sumbu Real ($\text{Re}$).</li>
+                        <li><strong>Sumbu Vertikal (Y):</strong> Sumbu Imajiner ($\text{Im}$).</li>
+                        <li><strong>Konjugat $\bar{z} = a - bi$:</strong> Merupakan pencerminan (refleksi) vektor $z$ terhadap sumbu Real.</li>
+                        <li><strong>Argumen ($\theta = \arg(z)$):</strong> Sudut terarah yang dibentuk oleh vektor $z$ terhadap sumbu Real positif. Nilai <em>argumen utama</em> ($\text{Arg}(z)$) biasanya dibatasi pada $-\pi < \theta \le \pi$ atau $0 \le \theta < 2\pi$.</li>
+                    </ul>
+                    <p>
+                        Berdasarkan trigonometri segitiga siku-siku pada Diagram Argand di samping, diperoleh hubungan:
+                        $$a = r \cos \theta \quad \text{dan} \quad b = r \sin \theta$$
+                        dengan $r = |z| = \sqrt{a^2 + b^2}$ serta $\tan \theta = \frac{b}{a}$ (perhatikan kuadran titik $(a,b)$).
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-argand" style="width: 100%; max-width: 350px;"></div>
+                </div>
+            </div>
+
+            <p>
+                Dengan demikian, bilangan kompleks $z = a + bi$ dapat ditulis dalam tiga bentuk yang ekuivalen:
+            </p>
+            <ol>
+                <li>
+                    <strong>Bentuk Kartesius / Standar:</strong>
+                    $$z = a + bi$$
+                </li>
+                <li>
+                    <strong>Bentuk Polar (Trigonometri):</strong>
+                    $$z = r(\cos \theta + i \sin \theta) = r\,\text{cis}\,\theta$$
+                </li>
+                <li>
+                    <strong>Bentuk Eksponensial (Rumus Euler):</strong> Berdasarkan formula Euler $e^{i\theta} = \cos \theta + i \sin \theta$, maka:
+                    $$z = r e^{i\theta}$$
+                </li>
+            </ol>
+
+            <h2>5. Operasi Polar, Teorema De Moivre & Akar Bilangan Kompleks</h2>
+            <p>
+                Bentuk polar dan Euler sangat memudahkan operasi perkalian, pembagian, perpangkatan tinggi, serta penarikan akar:
+            </p>
+            <ul>
+                <li>
+                    <strong>Perkalian dan Pembagian dalam Bentuk Polar:</strong><br>
+                    Jika $z_1 = r_1\,\text{cis}\,\theta_1$ dan $z_2 = r_2\,\text{cis}\,\theta_2$, maka:
+                    $$z_1 \cdot z_2 = r_1 r_2\,\text{cis}(\theta_1 + \theta_2) \quad \text{dan} \quad \frac{z_1}{z_2} = \frac{r_1}{r_2}\,\text{cis}(\theta_1 - \theta_2)$$
+                    <em>(Geometri: Mengalikan dengan $z_2$ berarti memperbesar panjangnya $r_2$ kali dan memutar sudutnya sejauh $\theta_2$ berlawanan jarum jam).</em>
+                </li>
+                <li>
+                    <strong>Teorema De Moivre (Perpangkatan):</strong><br>
+                    Untuk setiap bilangan bulat $n$, berlaku:
+                    $$z^n = [r(\cos \theta + i \sin \theta)]^n = r^n (\cos(n\theta) + i \sin(n\theta)) = r^n\,\text{cis}(n\theta)$$
+                </li>
+                <li>
+                    <strong>Akar Pangkat-$n$ dari Bilangan Kompleks:</strong><br>
+                    Persamaan $w^n = z = r\,\text{cis}\,\theta$ memiliki tepat $n$ buah akar kompleks berbeda ($w_0, w_1, \dots, w_{n-1}$) yang dirumuskan oleh:
+                    $$w_k = \sqrt[n]{r} \, \text{cis}\left(\frac{\theta + 2k\pi}{n}\right) = \sqrt[n]{r} \left[\cos\left(\frac{\theta + 360^\circ \cdot k}{n}\right) + i \sin\left(\frac{\theta + 360^\circ \cdot k}{n}\right)\right]$$
+                    untuk $k = 0, 1, 2, \dots, n-1$.
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Geometri Akar Pangkat-$n$ (Poligon Beraturan):</strong><br>
+                        Secara geometris, ke-$n$ akar dari bilangan kompleks $z$ selalu terletak pada lingkaran berjari-jari $R = \sqrt[n]{r}$ yang berpusat di $(0,0)$ dan membagi lingkaran tersebut dengan sudut pusat yang sama besar ($\frac{360^\circ}{n}$).
+                    </p>
+                    <p>
+                        Sebagai contoh, penyelesaian dari $z^5 = 1$ (disebut <em>Akar Satuan / Roots of Unity</em> ke-$5$) adalah:
+                        $$z_k = \text{cis}\left(\frac{2k\pi}{5}\right), \quad k = 0, 1, 2, 3, 4$$
+                        Kelima titik akarnya membentuk titik-titik sudut sebuah <strong>segilima beraturan</strong> pada lingkaran satuan ($r = 1$) seperti ditunjukkan oleh gambar di samping.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-roots" style="width: 100%; max-width: 310px;"></div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Diketahui $i = \sqrt{-1}$. Jika $\frac{5 + 5i}{2 - i} + i^{2026} = a + bi$ dengan $a, b \in \mathbb{R}$, maka nilai dari $a + 2b$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$4$</li>
+                    <li>$5$</li>
+                    <li>$6$</li>
+                    <li>$7$</li>
+                    <li>$8$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Sederhanakan bentuk pembagian $\frac{5 + 5i}{2 - i}$ dengan mengalikan sekawan penyebutnya $(2 + i)$:
+                    $$\frac{5 + 5i}{2 - i} \cdot \frac{2 + i}{2 + i} = \frac{10 + 5i + 10i + 5i^2}{2^2 + (-1)^2} = \frac{10 + 15i - 5}{5} = \frac{5 + 15i}{5} = 1 + 3i$$
+                </p>
+                <p>
+                    2. Cari nilai dari $i^{2026}$ menggunakan sisa pembagian pangkat oleh $4$:
+                    $$2026 = 4 \times 506 + 2 \implies i^{2026} = i^2 = -1$$
+                </p>
+                <p>
+                    3. Jumlahkan kedua hasil tersebut:
+                    $$(1 + 3i) + (-1) = 0 + 3i = a + bi$$
+                    Diperoleh $a = 0$ dan $b = 3$, sehingga $a + 2b = 0 + 2(3) = 6$.
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $a + 2b$ adalah $6$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Nilai modulus dari bilangan kompleks $z = \frac{(3 + 4i)(1 - i)^4}{(\sqrt{3} + i)^3}$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$\frac{5}{4}$</li>
+                    <li>$\frac{5}{2}$</li>
+                    <li>$5$</li>
+                    <li>$10$</li>
+                    <li>$20$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    Jangan menjabarkan pangkat satu per satu! Gunakan sifat modulus perkalian, pembagian, dan perpangkatan:
+                    $$|z| = \left|\frac{(3 + 4i)(1 - i)^4}{(\sqrt{3} + i)^3}\right| = \frac{|3 + 4i| \cdot |1 - i|^4}{|\sqrt{3} + i|^3}$$
+                </p>
+                <p>
+                    Hitung modulus masing-masing komponen:
+                </p>
+                <ul>
+                    <li>$|3 + 4i| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = 5$</li>
+                    <li>$|1 - i| = \sqrt{1^2 + (-1)^2} = \sqrt{2} \implies |1 - i|^4 = (\sqrt{2})^4 = 4$</li>
+                    <li>$|\sqrt{3} + i| = \sqrt{(\sqrt{3})^2 + 1^2} = \sqrt{3 + 1} = 2 \implies |\sqrt{3} + i|^3 = 2^3 = 8$</li>
+                </ul>
+                <p>
+                    Substitusikan ke dalam rumus modulus $|z|$:
+                    $$|z| = \frac{5 \times 4}{8} = \frac{20}{8} = \frac{5}{2}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai modulus $|z|$ adalah $\frac{5}{2}$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Bentuk kartesius dari $(\sqrt{3} - i)^6$ adalah ....
+                <ol class="pilgan">
+                    <li>$-64$</li>
+                    <li>$64$</li>
+                    <li>$-64i$</li>
+                    <li>$64i$</li>
+                    <li>$32 - 32\sqrt{3}i$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    Ubah basis $w = \sqrt{3} - i$ ke dalam bentuk polar $r\,\text{cis}\,\theta$:
+                </p>
+                <ul>
+                    <li>Modulus: $r = \sqrt{(\sqrt{3})^2 + (-1)^2} = \sqrt{3 + 1} = 2$.</li>
+                    <li>Argumen: $\tan \theta = \frac{-1}{\sqrt{3}}$ dengan titik $(\sqrt{3}, -1)$ berada di Kuadran IV, sehingga $\theta = -30^\circ = -\frac{\pi}{6}$.</li>
+                </ul>
+                <p>
+                    Dengan demikian, $w = 2\,\text{cis}(-30^\circ)$. Gunakan <strong>Teorema De Moivre</strong> untuk menghitung $w^6$:
+                    $$(\sqrt{3} - i)^6 = 2^6\,\text{cis}(6 \times (-30^\circ))$$
+                    $$= 64\,\text{cis}(-180^\circ) = 64(\cos(-180^\circ) + i \sin(-180^\circ))$$
+                    $$= 64(-1 + i \cdot 0) = -64$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, bentuk kartesius dari $(\sqrt{3} - i)^6$ adalah $-64$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Jika bilangan kompleks $z$ memenuhi persamaan $2z + \bar{z} = 9 - 4i$, maka nilai dari $|z|^2$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$13$</li>
+                    <li>$17$</li>
+                    <li>$25$</li>
+                    <li>$29$</li>
+                    <li>$34$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    Misalkan $z = a + bi$ dengan $a, b \in \mathbb{R}$, maka konjugatnya adalah $\bar{z} = a - bi$. Substitusikan ke dalam persamaan yang diketahui:
+                    $$2(a + bi) + (a - bi) = 9 - 4i$$
+                    $$(2a + a) + (2b - b)i = 9 - 4i$$
+                    $$3a + bi = 9 - 4i$$
+                </p>
+                <p>
+                    Berdasarkan kesamaan dua bilangan kompleks:
+                </p>
+                <ul>
+                    <li>Bagian Real: $3a = 9 \implies a = 3$</li>
+                    <li>Bagian Imajiner: $b = -4$</li>
+                </ul>
+                <p>
+                    Diperoleh $z = 3 - 4i$, sehingga nilai dari $|z|^2$ adalah:
+                    $$|z|^2 = a^2 + b^2 = 3^2 + (-4)^2 = 9 + 16 = 25$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $|z|^2$ adalah $25$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Diagram Argand, Modulus, Argumen & Konjugat menggunakan GeoSVG.js
+            const containerArgand = document.getElementById("geosvg-argand");
+            if (containerArgand && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerArgand, 320, 290, {
+                    viewBox: "-65 -145 275 290",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Diagram Argand Bilangan Kompleks",
+                    description: "Visualisasi vektor z = a + bi dan konjugatnya pada bidang kompleks"
+                });
+
+                // Grid halus
+                geo1.buatGrid(35, 35, { stroke: "var(--border-color)", strokeWidth: 0.8, opacity: 0.6 });
+
+                // Sumbu Real dan Imajiner
+                geo1.buatVektor([-55, 0], [195, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatVektor([0, -130], [0, 130], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatTeks(192, -16, "Re", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "12px", position: "middle-center" });
+                geo1.buatTeks(-18, 125, "Im", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "12px", position: "middle-center" });
+
+                const O = [0, 0];
+                const Z = [140, 105];     // z = a + bi
+                const Zbar = [140, -105]; // konjugat z = a - bi
+                const A = [140, 0];       // proyeksi di sumbu Re
+                const B = [0, 105];       // proyeksi di sumbu Im
+                const Bbar = [0, -105];
+
+                // Tanda siku-siku di (a, 0)
+                geo1.buatSiku(O, A, Z, { size: 10, stroke: "var(--text-muted)" });
+
+                // Sudut argumen theta
+                geo1.buatSudut(A, O, Z, {
+                    radius: 38,
+                    fill: "rgba(13, 148, 136, 0.18)",
+                    stroke: "var(--teal-primary)",
+                    label: "θ",
+                    labelRadius: 50,
+                    labelColor: "var(--teal-primary)",
+                    bold: true
+                });
+
+                // Garis proyeksi putus-putus
+                geo1.buatSegmen(A, Z, { stroke: "var(--text-muted)", dashed: "4 4", strokeWidth: 1.2 });
+                geo1.buatSegmen(B, Z, { stroke: "var(--text-muted)", dashed: "4 4", strokeWidth: 1.2 });
+                geo1.buatSegmen(A, Zbar, { stroke: "var(--text-muted)", dashed: "4 4", strokeWidth: 1.2 });
+                geo1.buatSegmen(Bbar, Zbar, { stroke: "var(--text-muted)", dashed: "4 4", strokeWidth: 1.2 });
+
+                // Vektor z = a + bi dan konjugat z_bar = a - bi
+                geo1.buatVektor(O, Z, {
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.5,
+                    label: "r = |z|",
+                    labelPosisi: 0.52,
+                    labelSisi: "kiri",
+                    labelJarak: 12,
+                    labelColor: "var(--teal-primary)",
+                    bold: true
+                });
+
+                geo1.buatVektor(O, Zbar, {
+                    stroke: "#d97706",
+                    strokeWidth: 2,
+                    dashed: "5 3",
+                    label: "|z̄| = r",
+                    labelPosisi: 0.52,
+                    labelSisi: "kanan",
+                    labelJarak: 12,
+                    labelColor: "#d97706",
+                    bold: true
+                });
+
+                // Titik-titik penting
+                geo1.buatTitik(O, { size: 3.5, color: "var(--text-main)", label: "O", labelPosition: "bottom-left" });
+                geo1.buatTitik(A, { size: 3, color: "var(--text-main)", label: "a", labelPosition: "bottom-right", labelDistance: 5 });
+                geo1.buatTitik(B, { size: 3, color: "var(--text-main)", label: "b", labelPosition: "top-left", labelDistance: 5 });
+                geo1.buatTitik(Bbar, { size: 3, color: "var(--text-main)", label: "-b", labelPosition: "bottom-left", labelDistance: 5 });
+                geo1.buatTitik(Z, { size: 4.5, color: "var(--teal-primary)", label: "z = a + bi", labelPosition: "top-center", bold: true, labelDistance: 8 });
+                geo1.buatTitik(Zbar, { size: 4.5, color: "#d97706", label: "z̄ = a - bi", labelPosition: "bottom-center", bold: true, labelDistance: 8 });
+            }
+
+            // 2. Visualisasi Akar Pangkat-5 dari Satuan (Roots of Unity z^5 = 1) menggunakan GeoSVG.js
+            const containerRoots = document.getElementById("geosvg-roots");
+            if (containerRoots && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerRoots, 280, 280, {
+                    viewBox: "-140 -140 280 280",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Akar Satuan Pangkat Lima",
+                    description: "Segilima beraturan pada lingkaran satuan yang merepresentasikan akar z^5 = 1"
+                });
+
+                // Sumbu Koordinat
+                geo2.buatVektor([-125, 0], [125, 0], { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+                geo2.buatVektor([0, -125], [0, 125], { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+                geo2.buatTeks(122, -14, "Re", { fill: "var(--text-muted)", fontSize: "11px", position: "middle-center" });
+                geo2.buatTeks(-15, 120, "Im", { fill: "var(--text-muted)", fontSize: "11px", position: "middle-center" });
+
+                const R = 95;
+                // Lingkaran Satuan |z| = 1
+                geo2.buatLingkaran([0, 0], R, {
+                    stroke: "var(--text-muted)",
+                    strokeWidth: 1.2,
+                    dashed: "4 4"
+                });
+
+                // Segilima beraturan yang dimulai dari sudut 0 derajat (titik (1, 0))
+                geo2.buatPoligonBeraturan([0, 0], R, 5, {
+                    startAngle: 0,
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2,
+                    fill: "rgba(13, 148, 136, 0.12)"
+                });
+
+                // Titik-titik akar w_0 sampai w_4
+                const posLabel = ["top-right", "top-center", "top-left", "bottom-left", "bottom-center"];
+                for (let k = 0; k < 5; k++) {
+                    const rad = (k * 72) * Math.PI / 180;
+                    const px = R * Math.cos(rad);
+                    const py = R * Math.sin(rad);
+
+                    geo2.buatSegmen([0, 0], [px, py], {
+                        stroke: "var(--teal-primary)",
+                        strokeWidth: 1,
+                        opacity: 0.5
+                    });
+
+                    geo2.buatTitik([px, py], {
+                        size: 4.5,
+                        color: k === 0 ? "#d97706" : "var(--teal-primary)",
+                        label: k === 0 ? "z₀ = 1" : `z${k}`,
+                        labelPosition: posLabel[k],
+                        bold: true,
+                        labelDistance: 7
+                    });
+                }
+
+                // Sudut 72 derajat antara z_0 dan z_1
+                const p0 = [R, 0];
+                const p1 = [R * Math.cos(72 * Math.PI / 180), R * Math.sin(72 * Math.PI / 180)];
+                geo2.buatSudut(p0, [0, 0], p1, {
+                    radius: 26,
+                    fill: "rgba(217, 119, 6, 0.2)",
+                    stroke: "#d97706",
+                    label: "72°",
+                    labelRadius: 40,
+                    labelColor: "#d97706",
+                    fontSize: "10px",
+                    bold: true
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

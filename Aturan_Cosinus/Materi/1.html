@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Aturan Cosinus</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Aturan Cosinus</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Rumus Dasar Aturan Cosinus</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Aturan Cosinus</strong> (<em>Law of Cosines</em>) adalah teorema trigonometri yang menyatakan hubungan antara kuadrat panjang sisi-sisi pada sembarang segitiga dengan nilai cosinus dari salah satu sudutnya.
+                    </p>
+                    <p>
+                        Secara konseptual, Aturan Cosinus merupakan <strong>perluasan (generalisasi) dari Teorema Pythagoras</strong> agar berlaku pada segitiga sembarang (baik segitiga lancip maupun segitiga tumpul). Jika sudut yang diapit bernilai $90^\circ$, karena $\cos 90^\circ = 0$, rumus Aturan Cosinus akan kembali menjadi rumus Pythagoras biasa.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-aturan-cosinus-dasar" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <p>
+                Pada sembarang $\triangle ABC$ dengan panjang sisi $a, b,$ dan $c$ yang berturut-turut berada di hadapan titik sudut $A, B,$ dan $C$, berlaku dua bentuk rumus berikut:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Unsur yang Dicari</th>
+                            <th>Rumus untuk Sisi $a$ / Sudut $A$</th>
+                            <th>Rumus untuk Sisi $b$ / Sudut $B$</th>
+                            <th>Rumus untuk Sisi $c$ / Sudut $C$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Mencari Panjang Sisi</strong><br>(Diketahui Sisi-Sudut-Sisi)</td>
+                            <td>$$a^2 = b^2 + c^2 - 2bc \cos A$$</td>
+                            <td>$$b^2 = a^2 + c^2 - 2ac \cos B$$</td>
+                            <td>$$c^2 = a^2 + b^2 - 2ab \cos C$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mencari Besar Sudut</strong><br>(Diketahui Sisi-Sisi-Sisi)</td>
+                            <td>$$\cos A = \frac{b^2 + c^2 - a^2}{2bc}$$</td>
+                            <td>$$\cos B = \frac{a^2 + c^2 - b^2}{2ac}$$</td>
+                            <td>$$\cos C = \frac{a^2 + b^2 - c^2}{2ab}$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>2. Pembuktian Geometris Aturan Cosinus</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Untuk membuktikan rumus $a^2 = b^2 + c^2 - 2bc \cos A$, perhatikan $\triangle ABC$ di samping. Tarik garis tinggi $CD = h$ yang tegak lurus terhadap sisi alas $AB$, sehingga membagi $\triangle ABC$ menjadi dua buah segitiga siku-siku, yaitu $\triangle ADC$ dan $\triangle BDC$.
+                    </p>
+                    <p>
+                        <strong>Langkah 1: Nyatakan $h$ dan $AD$ dalam trigonometri pada $\triangle ADC$</strong><br>
+                        Pada segitiga siku-siku $ADC$, diperoleh:
+                        $$\sin A = \frac{h}{b} \iff h = b \sin A$$
+                        $$\cos A = \frac{AD}{b} \iff AD = b \cos A$$
+                        Karena panjang seluruh alas $AB = c$, maka sisa panjang ruas $BD$ adalah:
+                        $$BD = c - AD = c - b \cos A$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-bukti-cosinus" style="width: 100%; max-width: 350px;"></div>
+                </div>
+            </div>
+            <p>
+                <strong>Langkah 2: Terapkan Teorema Pythagoras pada $\triangle BDC$</strong><br>
+                Pada segitiga siku-siku $BDC$ dengan sisi miring $BC = a$, berlaku:
+                $$a^2 = h^2 + BD^2$$
+                Substitusikan nilai $h = b \sin A$ dan $BD = c - b \cos A$ ke dalam persamaan di atas:
+                $$a^2 = (b \sin A)^2 + (c - b \cos A)^2$$
+                $$a^2 = b^2 \sin^2 A + c^2 - 2bc \cos A + b^2 \cos^2 A$$
+                Kelompokkan suku yang memuat $b^2$, lalu gunakan identitas dasar trigonometri $\sin^2 A + \cos^2 A = 1$:
+                $$a^2 = b^2 (\underbrace{\sin^2 A + \cos^2 A}_{= 1}) + c^2 - 2bc \cos A$$
+                $$a^2 = b^2 + c^2 - 2bc \cos A \quad \text{(Terbukti)}$$
+            </p>
+            <p>
+                <em>Catatan Sudut Tumpul:</em> Jika $\angle A$ merupakan sudut tumpul ($90^\circ < A < 180^\circ$), titik proyeksi $D$ akan jatuh di luar segmen $AB$ (pada perpanjangan sisi $BA$). Dalam kondisi ini, panjang $AD = b \cos(180^\circ - A) = -b \cos A$, sehingga panjang $BD = c + AD = c - b \cos A$. Dengan demikian, rumus Aturan Cosinus tetap berlaku secara identik baik untuk sudut lancip, siku-siku, maupun tumpul.
+            </p>
+
+            <h2>3. Kapan Menggunakan Aturan Cosinus?</h2>
+            <p>
+                Dalam menyelesaikan masalah segitiga sembarang, pemilihan antara Aturan Sinus dan Aturan Cosinus bergantung pada unsur-unsur yang diketahui pada soal:
+            </p>
+            <ul>
+                <li>
+                    <strong>Kondisi 1: Diketahui Sisi - Sudut - Sisi (S-Sd-S / SAS)</strong><br>
+                    Jika diketahui panjang <strong>dua sisi dan satu sudut yang diapit</strong> oleh kedua sisi tersebut (misalnya diketahui sisi $b$, sisi $c$, dan $\angle A$), gunakan Aturan Cosinus untuk menghitung panjang sisi ketiga ($a$) yang berada di hadapan sudut apit.
+                </li>
+                <li>
+                    <strong>Kondisi 2: Diketahui Sisi - Sisi - Sisi (S-S-S / SSS)</strong><br>
+                    Jika diketahui panjang <strong>ketiga sisi segitiga</strong> ($a, b,$ dan $c$), gunakan bentuk kedua Aturan Cosinus untuk menentukan besar salah satu sudutnya.
+                </li>
+            </ul>
+            <p>
+                <em>Keunggulan Aturan Cosinus dalam Menentukan Sudut:</em> Berbeda dengan Aturan Sinus yang memiliki sifat ambigu (karena nilai $\sin \alpha$ positif baik di Kuadran I maupun Kuadran II), nilai $\cos \alpha$ pada interval $0^\circ < \alpha < 180^\circ$ bersifat <strong>unik (satu-satu)</strong>:
+            </p>
+            <ul>
+                <li>Jika $\cos \alpha > 0$, maka $\alpha$ pasti <strong>sudut lancip</strong> ($0^\circ < \alpha < 90^\circ$).</li>
+                <li>Jika $\cos \alpha = 0$, maka $\alpha$ pasti <strong>sudut siku-siku</strong> ($\alpha = 90^\circ$).</li>
+                <li>Jika $\cos \alpha < 0$, maka $\alpha$ pasti <strong>sudut tumpul</strong> ($90^\circ < \alpha < 180^\circ$).</li>
+            </ul>
+
+            <h2>4. Klasifikasi Jenis Segitiga Berdasarkan Panjang Sisi</h2>
+            <p>
+                Misalkan diketahui panjang ketiga sisi segitiga adalah $a, b,$ dan $c$ dengan syarat ketaksamaan segitiga terpenuhi ($a + b > c$) dan <strong>$c$ adalah sisi terpanjang</strong> ($c \ge a$ dan $c \ge b$). Karena sudut terbesar pada segitiga selalu berada di hadapan sisi terpanjang, kita cukup menguji tanda dari $\cos C = \frac{a^2 + b^2 - c^2}{2ab}$ untuk menentukan jenis segitiga tersebut:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hubungan Kuadrat Sisi<br>($c$ sisi terpanjang)</th>
+                            <th>Nilai $\cos C$</th>
+                            <th>Besar Sudut Terbesar ($C$)</th>
+                            <th>Jenis Segitiga</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$$a^2 + b^2 > c^2$$</td>
+                            <td>$\cos C > 0$ (Positif)</td>
+                            <td>$C < 90^\circ$</td>
+                            <td><strong>Segitiga Lancip</strong> (ketiga sudutnya lancip)</td>
+                        </tr>
+                        <tr>
+                            <td>$$a^2 + b^2 = c^2$$</td>
+                            <td>$\cos C = 0$ (Nol)</td>
+                            <td>$C = 90^\circ$</td>
+                            <td><strong>Segitiga Siku-Siku</strong> (siku-siku di titik $C$)</td>
+                        </tr>
+                        <tr>
+                            <td>$$a^2 + b^2 < c^2$$</td>
+                            <td>$\cos C < 0$ (Negatif)</td>
+                            <td>$C > 90^\circ$</td>
+                            <td><strong>Segitiga Tumpul</strong> (tumpul di titik $C$)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>5. Perluasan Penting: Teorema Stewart dan Garis Berat</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Pada soal-soal tingkat lanjut (SNBT dan Olimpiade/HOTS), Aturan Cosinus sering digunakan untuk menghitung panjang segmen garis yang ditarik dari titik sudut ke sisi di hadapannya (disebut <em>cevian</em>), seperti garis berat, garis bagi, atau sembarang garis pembagi sisi.
+                    </p>
+                    <p>
+                        Perhatikan $\triangle ABC$ di samping. Misalkan titik $D$ terletak pada sisi $BC$ sedemikian sehingga membagi sisi $BC = a$ menjadi dua bagian, yaitu $BD = m$ dan $DC = n$ (dengan $m + n = a$), serta panjang segmen $AD = d$.
+                    </p>
+                    <p>
+                        Karena $\angle ADB$ dan $\angle ADC$ saling berpelurus ($\angle ADB + \angle ADC = 180^\circ$), maka berlaku sifat sudut berelasi:
+                        $$\cos(\angle ADC) = \cos(180^\circ - \angle ADB) = -\cos(\angle ADB)$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-teorema-stewart" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+            <p>
+                Dengan menerapkan Aturan Cosinus pada $\triangle ABD$ dan $\triangle ACD$ kemudian mengeliminasi nilai cosinusnya, diperoleh hubungan umum yang dikenal sebagai <strong>Teorema Stewart</strong>:
+                $$b^2 m + c^2 n = a(d^2 + mn)$$
+            </p>
+            <p>
+                <strong>Rumus Khusus Panjang Garis Berat (Dalil Apollonius):</strong><br>
+                Jika $AD$ adalah <strong>garis berat</strong> (garis yang membagi sisi $BC$ sama panjang sehingga $m = n = \frac{1}{2}a$), maka substitusi $m = n = \frac{1}{2}a$ ke dalam Teorema Stewart menghasilkan rumus panjang garis berat $d_a$:
+                $$d_a^2 = \frac{1}{2}b^2 + \frac{1}{2}c^2 - \frac{1}{4}a^2 \iff d_a = \frac{1}{2}\sqrt{2b^2 + 2c^2 - a^2}$$
+            </p>
+
+            <h2>6. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memahami penerapan Aturan Cosinus dalam berbagai variasi masalah geometri:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Diketahui segitiga $ABC$ memiliki panjang sisi $AB = 8\text{ cm}$, $AC = 5\text{ cm}$, dan besar $\angle A = 60^\circ$. Tentukan:
+                    <ol style="margin-top: 0.5rem; margin-bottom: 0;">
+                        <li>Panjang sisi $BC$.</li>
+                        <li>Nilai $\cos B$ dan jenis sudut $B$ (lancip/siku-siku/tumpul).</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>1. Menentukan panjang sisi $BC$ ($a$):</strong></p>
+                    <p>
+                        Diketahui panjang sisi $c = AB = 8\text{ cm}$, $b = AC = 5\text{ cm}$, dan sudut apit $\angle A = 60^\circ$. Dengan menggunakan Aturan Cosinus:
+                        $$a^2 = b^2 + c^2 - 2bc \cos A$$
+                        $$a^2 = 5^2 + 8^2 - 2(5)(8) \cos 60^\circ$$
+                        $$a^2 = 25 + 64 - 80 \cdot \left(\frac{1}{2}\right)$$
+                        $$a^2 = 89 - 40 = 49 \iff a = \sqrt{49} = 7\text{ cm}$$
+                        Jadi, panjang sisi $BC = 7\text{ cm}$.
+                    </p>
+                    <p><strong>2. Menentukan nilai $\cos B$ dan jenis sudut $B$:</strong></p>
+                    <p>
+                        Sekarang ketiga sisi segitiga telah diketahui, yaitu $a = 7\text{ cm}$, $b = 5\text{ cm}$, dan $c = 8\text{ cm}$. Gunakan rumus Aturan Cosinus untuk sudut $B$:
+                        $$\cos B = \frac{a^2 + c^2 - b^2}{2ac}$$
+                        $$\cos B = \frac{7^2 + 8^2 - 5^2}{2(7)(8)} = \frac{49 + 64 - 25}{112} = \frac{88}{112} = \frac{11}{14}$$
+                        Karena nilai $\cos B = \frac{11}{14} > 0$ (bernilai positif), maka $\angle B$ merupakan <strong>sudut lancip</strong>.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, panjang sisi $BC$ adalah $7\text{ cm}$ dan nilai $\cos B = \frac{11}{14}$ (sudut lancip).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Suatu segitiga $PQR$ memiliki panjang sisi $p = 3\text{ cm}$, $q = 5\text{ cm}$, dan $r = 7\text{ cm}$. Tentukan besar sudut terbesar pada segitiga $PQR$ tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Identifikasi sudut terbesar</strong></p>
+                    <p>
+                        Dalam setiap segitiga, sudut terbesar selalu terletak di hadapan sisi yang paling panjang. Karena sisi terpanjang adalah $r = 7\text{ cm}$, maka sudut terbesar pada $\triangle PQR$ adalah $\angle R$.
+                    </p>
+                    <p><strong>Langkah 2: Hitung nilai $\cos R$ dengan Aturan Cosinus</strong></p>
+                    <p>
+                        $$\cos R = \frac{p^2 + q^2 - r^2}{2pq}$$
+                        $$\cos R = \frac{3^2 + 5^2 - 7^2}{2(3)(5)} = \frac{9 + 25 - 49}{30} = \frac{-15}{30} = -\frac{1}{2}$$
+                    </p>
+                    <p><strong>Langkah 3: Tentukan besar sudut $R$</strong></p>
+                    <p>
+                        Karena $\cos R = -\frac{1}{2} < 0$, maka $\angle R$ berada di Kuadran II (sudut tumpul). Ingat bahwa $\cos 60^\circ = \frac{1}{2}$, sehingga:
+                        $$\cos R = -\cos 60^\circ = \cos(180^\circ - 60^\circ) = \cos 120^\circ$$
+                        $$R = 120^\circ$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, besar sudut terbesar pada segitiga $PQR$ tersebut adalah $120^\circ$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Diketahui segitiga $ABC$ dengan panjang sisi $AB = 7\text{ cm}$, $AC = 9\text{ cm}$, dan $BC = 8\text{ cm}$. Titik $D$ terletak pada sisi $BC$ sedemikian sehingga perbandingan $BD : DC = 1 : 3$. Tentukan panjang ruas garis $AD$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Tentukan panjang segmen $BD$ dan $DC$</strong></p>
+                    <p>
+                        Panjang total sisi $BC = a = 8\text{ cm}$ dengan perbandingan $BD : DC = 1 : 3$. Maka:
+                        $$m = BD = \frac{1}{1 + 3} \times 8 = 2\text{ cm}$$
+                        $$n = DC = \frac{3}{1 + 3} \times 8 = 6\text{ cm}$$
+                    </p>
+                    <p><strong>Langkah 2: Gunakan Aturan Cosinus (atau Teorema Stewart)</strong></p>
+                    <p>
+                        <em>Cara 1 (Menggunakan Aturan Cosinus dua tahap):</em><br>
+                        Perhatikan $\triangle ABC$ dengan $c = AB = 7$, $b = AC = 9$, dan $a = BC = 8$. Kita cari nilai $\cos B$ terlebih dahulu:
+                        $$\cos B = \frac{a^2 + c^2 - b^2}{2ac} = \frac{8^2 + 7^2 - 9^2}{2(8)(7)} = \frac{64 + 49 - 81}{112} = \frac{32}{112} = \frac{2}{7}$$
+                        Selanjutnya, terapkan Aturan Cosinus pada $\triangle ABD$ (dengan $AB = 7$, $BD = 2$, dan $\cos B = \frac{2}{7}$):
+                        $$AD^2 = AB^2 + BD^2 - 2 \cdot AB \cdot BD \cdot \cos B$$
+                        $$AD^2 = 7^2 + 2^2 - 2(7)(2)\left(\frac{2}{7}\right) = 49 + 4 - 8 = 45$$
+                        $$AD = \sqrt{45} = 3\sqrt{5}\text{ cm}$$
+                    </p>
+                    <p>
+                        <em>Cara 2 (Menggunakan Teorema Stewart secara langsung):</em><br>
+                        Substitusikan $b = 9, c = 7, a = 8, m = 2,$ dan $n = 6$ ke rumus $b^2 m + c^2 n = a(d^2 + mn)$:
+                        $$9^2(2) + 7^2(6) = 8(AD^2 + 2 \cdot 6)$$
+                        $$81(2) + 49(6) = 8(AD^2 + 12)$$
+                        $$162 + 294 = 8(AD^2 + 12)$$
+                        $$456 = 8(AD^2 + 12) \iff AD^2 + 12 = \frac{456}{8} = 57$$
+                        $$AD^2 = 57 - 12 = 45 \iff AD = \sqrt{45} = 3\sqrt{5}\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, panjang ruas garis $AD$ adalah $3\sqrt{5}\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Sebuah kapal berlayar dari pelabuhan $A$ ke pelabuhan $B$ sejauh $40\text{ mil}$ dengan arah jurusan tiga angka $030^\circ$. Kemudian, kapal tersebut berbelok dan berlayar dari pelabuhan $B$ menuju pelabuhan $C$ sejauh $60\text{ mil}$ dengan arah jurusan $150^\circ$. Tentukan jarak terdekat dari pelabuhan $A$ langsung ke pelabuhan $C$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Menentukan sudut belok ($\angle ABC$) dari jurusan tiga angka</strong></p>
+                    <p>
+                        Jurusan tiga angka selalu diukur dari arah Utara ($000^\circ$) searah jarum jam:
+                    </p>
+                    <ul>
+                        <li>Arah dari $A$ ke $B$ adalah $030^\circ$. Karena garis Utara di titik $A$ dan garis Utara di titik $B$ saling sejajar, maka sudut dalam sepihak antara arah Utara di $B$ dengan ruas $BA$ adalah $180^\circ - 30^\circ = 150^\circ$ (ke arah Barat/kiri).</li>
+                        <li>Arah keberangkatan dari $B$ ke $C$ adalah $150^\circ$ dari Utara (ke arah Timur/kanan).</li>
+                        <li>Dengan demikian, besar sudut $\angle ABC$ yang dibentuk oleh lintasan $BA$ dan $BC$ adalah:
+                            $$\angle ABC = 180^\circ - (150^\circ - 30^\circ) = 180^\circ - 120^\circ = 60^\circ$$
+                        </li>
+                    </ul>
+                    <p><strong>Langkah 2: Menghitung jarak $AC$ dengan Aturan Cosinus</strong></p>
+                    <p>
+                        Pada $\triangle ABC$, diketahui $AB = 40\text{ mil}$, $BC = 60\text{ mil}$, dan $\angle B = 60^\circ$:
+                        $$AC^2 = AB^2 + BC^2 - 2 \cdot AB \cdot BC \cdot \cos 60^\circ$$
+                        $$AC^2 = 40^2 + 60^2 - 2(40)(60)\left(\frac{1}{2}\right)$$
+                        $$AC^2 = 1600 + 3600 - 2400 = 2800$$
+                        $$AC = \sqrt{2800} = \sqrt{400 \times 7} = 20\sqrt{7}\text{ mil}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, jarak terdekat dari pelabuhan $A$ ke pelabuhan $C$ adalah $20\sqrt{7}\text{ mil}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Segitiga Standar Aturan Cosinus
+            const elDasar = document.getElementById("svg-aturan-cosinus-dasar");
+            if (elDasar && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elDasar, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    title: "Segitiga ABC dan Label Sisi-Sudut Aturan Cosinus"
+                });
+
+                const A = [35, 175];
+                const B = [285, 175];
+                const C = [125, 35];
+
+                // Busur sudut A, B, C terlebih dahulu agar di bawah garis segitiga
+                geo1.buatSudut(B, A, C, {
+                    radius: 28,
+                    fill: "rgba(13, 148, 136, 0.18)",
+                    stroke: "#0d9488",
+                    strokeWidth: 1.4
+                });
+                geo1.buatSudut(C, B, A, {
+                    radius: 32,
+                    fill: "rgba(217, 119, 6, 0.16)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.4
+                });
+                geo1.buatSudut(A, C, B, {
+                    radius: 26,
+                    fill: "rgba(124, 58, 237, 0.16)",
+                    stroke: "#7c3aed",
+                    strokeWidth: 1.4
+                });
+
+                // Poligon Segitiga ABC
+                geo1.buatSegitiga(A, B, C, {
+                    fill: "rgba(13, 148, 136, 0.04)",
+                    stroke: "#0f766e",
+                    strokeWidth: 2.2
+                });
+
+                // Label Sisi a, b, c
+                geo1.buatLabelSisi(B, C, "a", {
+                    pusat: A,
+                    jarak: 14,
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    fill: "#0f766e"
+                });
+                geo1.buatLabelSisi(A, C, "b", {
+                    pusat: B,
+                    jarak: 14,
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    fill: "#0f766e"
+                });
+                geo1.buatLabelSisi(A, B, "c", {
+                    pusat: C,
+                    jarak: 15,
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    fill: "#0f766e"
+                });
+
+                // Titik Sudut A, B, C
+                geo1.buatTitik(A, { size: 3.5, color: "#0f172a", label: "A", labelPosition: "bottom-left", fontSize: "13px", bold: true });
+                geo1.buatTitik(B, { size: 3.5, color: "#0f172a", label: "B", labelPosition: "bottom-right", fontSize: "13px", bold: true });
+                geo1.buatTitik(C, { size: 3.5, color: "#0f172a", label: "C", labelPosition: "top-center", fontSize: "13px", bold: true });
+            }
+
+            // 2. Visualisasi Bukti Geometris Aturan Cosinus (Garis Tinggi CD)
+            const elBukti = document.getElementById("svg-bukti-cosinus");
+            if (elBukti && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elBukti, 340, 235, {
+                    viewBox: "0 0 340 235",
+                    title: "Bukti Geometris Aturan Cosinus dengan Garis Tinggi CD"
+                });
+
+                const A = [35, 165];
+                const B = [305, 165];
+                const C = [125, 30];
+                const D = [125, 165];
+
+                // Sudut A
+                geo2.buatSudut(B, A, C, {
+                    radius: 26,
+                    fill: "rgba(13, 148, 136, 0.2)",
+                    stroke: "#0d9488",
+                    strokeWidth: 1.4,
+                    label: "A",
+                    labelRadius: 38,
+                    fontSize: "11px",
+                    bold: true,
+                    labelColor: "#0f766e"
+                });
+
+                // Tanda Siku-siku di D
+                geo2.buatSiku(C, D, B, {
+                    size: 11,
+                    stroke: "#dc2626",
+                    strokeWidth: 1.4,
+                    fill: "rgba(220, 38, 38, 0.1)"
+                });
+
+                // Segitiga ABC
+                geo2.buatSegitiga(A, B, C, {
+                    fill: "rgba(13, 148, 136, 0.04)",
+                    stroke: "#0f766e",
+                    strokeWidth: 2
+                });
+
+                // Garis Tinggi CD = h
+                geo2.buatSegmen(C, D, {
+                    stroke: "#dc2626",
+                    strokeWidth: 1.8,
+                    dashed: "5 4",
+                    label: "h = b sin A",
+                    labelSisi: "kanan",
+                    labelJarak: 6,
+                    fontSize: "11px",
+                    fontStyle: "italic",
+                    bold: true,
+                    labelColor: "#dc2626"
+                });
+
+                // Label sisi b dan a
+                geo2.buatLabelSisi(A, C, "b", {
+                    pusat: B,
+                    jarak: 14,
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    fill: "#0f766e"
+                });
+                geo2.buatLabelSisi(B, C, "a", {
+                    pusat: A,
+                    jarak: 14,
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    fill: "#0f766e"
+                });
+
+                // Dimensi AD dan BD di bawah alas AB
+                geo2.buatDimensi(A, D, 28, "b cos A", {
+                    stroke: "#475569",
+                    fontSize: "10.5px",
+                    fontStyle: "italic",
+                    labelJarak: 11
+                });
+                geo2.buatDimensi(D, B, 28, "c - b cos A", {
+                    stroke: "#475569",
+                    fontSize: "10.5px",
+                    fontStyle: "italic",
+                    labelJarak: 11
+                });
+
+                // Titik A, B, C, D
+                geo2.buatTitik(A, { size: 3.5, color: "#0f172a", label: "A", labelPosition: "top-left", fontSize: "12px", bold: true });
+                geo2.buatTitik(B, { size: 3.5, color: "#0f172a", label: "B", labelPosition: "top-right", fontSize: "12px", bold: true });
+                geo2.buatTitik(C, { size: 3.5, color: "#0f172a", label: "C", labelPosition: "top-center", fontSize: "12px", bold: true });
+                geo2.buatTitik(D, { size: 3, color: "#dc2626", label: "D", labelPosition: "top-left", dx: -2, dy: -2, fontSize: "11px", bold: true, labelColor: "#dc2626" });
+            }
+
+            // 3. Visualisasi Teorema Stewart (Cevian AD)
+            const elStewart = document.getElementById("svg-teorema-stewart");
+            if (elStewart && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elStewart, 320, 215, {
+                    viewBox: "0 0 320 215",
+                    title: "Teorema Stewart pada Segitiga ABC dengan Segmen AD"
+                });
+
+                const B = [35, 175];
+                const C = [285, 175];
+                const A = [145, 32];
+                const D = [125, 175];
+
+                // Sudut berpelurus di D
+                geo3.buatSudut(A, D, B, {
+                    radius: 20,
+                    fill: "rgba(217, 119, 6, 0.2)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.3
+                });
+                geo3.buatSudut(C, D, A, {
+                    radius: 24,
+                    fill: "rgba(124, 58, 237, 0.18)",
+                    stroke: "#7c3aed",
+                    strokeWidth: 1.3
+                });
+
+                // Segitiga ABC
+                geo3.buatSegitiga(B, C, A, {
+                    fill: "rgba(13, 148, 136, 0.04)",
+                    stroke: "#0f766e",
+                    strokeWidth: 2
+                });
+
+                // Cevian AD = d
+                geo3.buatSegmen(A, D, {
+                    stroke: "#7c3aed",
+                    strokeWidth: 2,
+                    label: "d",
+                    labelSisi: "kanan",
+                    labelJarak: 8,
+                    fontSize: "13px",
+                    fontStyle: "italic",
+                    bold: true,
+                    labelColor: "#6d28d9"
+                });
+
+                // Label sisi c, b, m, n
+                geo3.buatLabelSisi(B, A, "c", {
+                    pusat: C,
+                    jarak: 14,
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    fill: "#0f766e"
+                });
+                geo3.buatLabelSisi(A, C, "b", {
+                    pusat: B,
+                    jarak: 14,
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    fill: "#0f766e"
+                });
+                geo3.buatLabelSisi(B, D, "m", {
+                    sisi: "kanan",
+                    jarak: 15,
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    fill: "#b45309"
+                });
+                geo3.buatLabelSisi(D, C, "n", {
+                    sisi: "kanan",
+                    jarak: 15,
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    fill: "#b45309"
+                });
+
+                // Titik B, C, A, D
+                geo3.buatTitik(A, { size: 3.5, color: "#0f172a", label: "A", labelPosition: "top-center", fontSize: "13px", bold: true });
+                geo3.buatTitik(B, { size: 3.5, color: "#0f172a", label: "B", labelPosition: "bottom-left", fontSize: "13px", bold: true });
+                geo3.buatTitik(C, { size: 3.5, color: "#0f172a", label: "C", labelPosition: "bottom-right", fontSize: "13px", bold: true });
+                geo3.buatTitik(D, { size: 3.5, color: "#7c3aed", label: "D", labelPosition: "bottom-center", dy: 2, fontSize: "12px", bold: true, labelColor: "#6d28d9" });
+            }
+        });
+    </script>
+</body>
+
+</html>

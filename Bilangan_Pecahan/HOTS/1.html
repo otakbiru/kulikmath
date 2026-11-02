@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bilangan Pecahan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bilangan Pecahan</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                \[\sqrt{2}+\dfrac{\sqrt{2}}{\sqrt{2}+\dfrac{\sqrt{2}}{\sqrt{2}+\cdots}} = \dots\]
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneId/256" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan bentuk pecahan kontinu tersebut adalah \(x\):
+                    \[x = \sqrt{2}+\dfrac{\sqrt{2}}{\sqrt{2}+\dfrac{\sqrt{2}}{\sqrt{2}+\cdots}}\]
+                    Maka bagian pecahan berulang di bawahnya juga bernilai \(x\):
+                    \[
+                    \begin{aligned}
+                    x &= \sqrt{2} + \dfrac{\sqrt{2}}{x} \\
+                    x^2 &= \sqrt{2}x + \sqrt{2} \\
+                    x^2 - \sqrt{2}x - \sqrt{2} &= 0
+                    \end{aligned}
+                    \]
+                    Gunakan rumus kuadrat abc untuk menentukan nilai \(x\):
+                    \[
+                    \begin{aligned}
+                    x &= \dfrac{-(-\sqrt{2}) \pm \sqrt{(-\sqrt{2})^2 - 4(1)(-\sqrt{2})}}{2(1)} \\
+                    &= \dfrac{\sqrt{2} \pm \sqrt{2 + 4\sqrt{2}}}{2}
+                    \end{aligned}
+                    \]
+                    Karena \(x > 0\), kita ambil tanda positif:
+                    \[x = \dfrac{\sqrt{2} + \sqrt{2 + 4\sqrt{2}}}{2}\]
+                    <div class="kesimpulan">
+                        Jadi, \(\sqrt{2}+\dfrac{\sqrt{2}}{\sqrt{2}+\dfrac{\sqrt{2}}{\sqrt{2}+\cdots}} = \dfrac{\sqrt{2}+\sqrt{2+4\sqrt{2}}}{2}\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika \(\dfrac{983}{466} = a+\dfrac{1}{b+\dfrac{1}{c+\dfrac{1}{d+\dfrac{1}{e+1}}}}\), di mana \(a, b, c, d,\) dan \(e\) adalah bilangan bulat positif, maka nilai dari \(a \cdot b \cdot c \cdot d \cdot e\) adalah ....
+                <ol class="pilgan">
+                    <li>189</li>
+                    <li>126</li>
+                    <li>252</li>
+                    <li>233</li>
+                    <li>378</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Kita ubah \(\dfrac{983}{466}\) ke bentuk pecahan bersusun (algoritma Euclid):
+                    \[
+                    \begin{aligned}
+                    \dfrac{983}{466} &= 2 + \dfrac{51}{466} \\[4pt]
+                    &= 2 + \dfrac{1}{\dfrac{466}{51}} \\[4pt]
+                    &= 2 + \dfrac{1}{9 + \dfrac{7}{51}} \\[4pt]
+                    &= 2 + \dfrac{1}{9 + \dfrac{1}{\dfrac{51}{7}}} \\[4pt]
+                    &= 2 + \dfrac{1}{9 + \dfrac{1}{7 + \dfrac{2}{7}}} \\[4pt]
+                    &= 2 + \dfrac{1}{9 + \dfrac{1}{7 + \dfrac{1}{\dfrac{7}{2}}}} \\[4pt]
+                    &= 2 + \dfrac{1}{9 + \dfrac{1}{7 + \dfrac{1}{3 + \dfrac{1}{2}}}} \\[4pt]
+                    &= 2 + \dfrac{1}{9 + \dfrac{1}{7 + \dfrac{1}{3 + \dfrac{1}{1 + 1}}}}
+                    \end{aligned}
+                    \]
+                    Dengan menyamakan dengan bentuk pada soal:
+                    \[a = 2,\quad b = 9,\quad c = 7,\quad d = 3,\quad e = 1\]
+                    Maka:
+                    \[a \cdot b \cdot c \cdot d \cdot e = 2 \times 9 \times 7 \times 3 \times 1 = 378\]
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(a \cdot b \cdot c \cdot d \cdot e = 378\).<br>
+                        <b>Jawaban: E</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Nilai dari \(\dfrac{2022^2\times\left(2021^2-2020\right)}{\left(2021^2-1\right)\times\left(2021^3+1\right)}\times\dfrac{2020^3\times\left(2021^2+2022\right)}{2021^3-1}\) adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>1</li>
+                    <li>2020</li>
+                    <li>2021</li>
+                    <li>2022</li>
+                    <li>2023</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://matematikagenz2.blogspot.com/2021/04/c-s-c-posi-2021-matematika-sma.html" target="_blank" rel="noopener noreferrer">C S C POSI 2021</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Faktorkan penyebut masing-masing pecahan:
+                    <ul>
+                        <li>\(2021^2 - 1 = (2021+1)(2021-1) = 2022 \times 2020\)</li>
+                        <li>\(2021^3 + 1 = (2021+1)(2021^2 - 2021 + 1) = 2022 \times (2021^2 - 2020)\)</li>
+                        <li>\(2021^3 - 1 = (2021-1)(2021^2 + 2021 + 1) = 2020 \times (2021^2 + 2022)\)</li>
+                    </ul>
+                    Substitusikan faktor-faktor tersebut ke dalam perkalian:
+                    \[
+                    \begin{aligned}
+                    &= \dfrac{2022^2 \times (2021^2-2020)}{[2022 \times 2020] \times [2022 \times (2021^2-2020)]} \times \dfrac{2020^3 \times (2021^2+2022)}{2020 \times (2021^2+2022)} \\[6pt]
+                    &= \dfrac{2022^2 \times (2021^2-2020)}{2022^2 \times 2020 \times (2021^2-2020)} \times \dfrac{2020^3 \times (2021^2+2022)}{2020 \times (2021^2+2022)} \\[6pt]
+                    &= \dfrac{1}{2020} \times \dfrac{2020^3}{2020} \\[6pt]
+                    &= \dfrac{2020^3}{2020^2} = 2020
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">
+                        Jadi, hasil perhitungannya adalah <b>2020</b>.<br>
+                        <b>Jawaban: B</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Bentuk sederhana dari pecahan bersusun
+                \[2022+\cfrac{14}{3+\cfrac{28}{3+\cfrac{28}{3+\cfrac{28}{\vdots}}}}\]
+                adalah ....
+                <ol class="pilgan">
+                    <li>7</li>
+                    <li>2024</li>
+                    <li>\(2023\dfrac{2}{5}\)</li>
+                    <li>\(2023\dfrac{4}{7}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan bagian pecahan bersusun tak hingga pada penyebut adalah \(x\):
+                    \[x = 3+\cfrac{28}{3+\cfrac{28}{3+\cfrac{28}{\vdots}}}\]
+                    Maka:
+                    \[
+                    \begin{aligned}
+                    x &= 3 + \dfrac{28}{x} \\[4pt] 
+                    x^2 &= 3x + 28 \\
+                    x^2 - 3x - 28 &= 0 \\
+                    (x - 7)(x + 4) &= 0
+                    \end{aligned}
+                    \]
+                    Karena \(x > 0\), maka \(x = 7\) (nilai \(x = -4\) tidak memenuhi).
+                    <br><br>
+                    Substitusi nilai \(x = 7\) ke bentuk awal:
+                    \[
+                    \begin{aligned}
+                    2022 + \cfrac{14}{3+\cfrac{28}{3+\cfrac{28}{\vdots}}} &= 2022 + \dfrac{14}{7} \\
+                    &= 2022 + 2 \\
+                    &= 2024
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">
+                        Jadi, bentuk sederhana dari pecahan bersusun tersebut adalah <b>2024</b>.<br>
+                        <b>Jawaban: B</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Gabah hasil panen sawah mempunyai kadar air 25%. Setelah dijemur kadar airnya menyusut sebanyak 80%. Kadar air gabah tersebut saat ini adalah ....
+                <ol class="pilgan">
+                    <li>2,5%</li>
+                    <li>5%</li>
+                    <li>10%</li>
+                    <li>15%</li>
+                    <li>2%</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="/2023/01/download-soal-osk-matematika-smp-2003.html" target="_blank" rel="noopener noreferrer">OSK SMP 2003</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Kadar air menyusut sebanyak 80%, sehingga kadar air yang tersisa adalah:
+                    \[100\% - 80\% = 20\% \text{ dari kadar air mula-mula}\]
+                    Maka kadar air saat ini adalah:
+                    \[
+                    \begin{aligned}
+                    20\% \times 25\% &= \dfrac{20}{100} \times \dfrac{25}{100} \\[4pt]
+                    &= \dfrac{500}{10000} \\[4pt]
+                    &= \dfrac{5}{100} = 5\%
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">
+                        Jadi, kadar air gabah tersebut saat ini adalah <b>5%</b>.<br>
+                        <b>Jawaban: B</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Dimulai dari \(\dfrac{3}{4}\), tambahkan 2 pada pembilangnya atau 3 pada penyebutnya pada setiap pengerjaan, tetapi tidak keduanya, dan tidak ada pengurangan. Paling sedikit berapa kali operasi hitung yang dibutuhkan untuk kembali mendapatkan pecahan dengan nilai yang setara dengan \(\dfrac{3}{4}\)?
+            </div>
+            <div class="soal-sumber"><a href="https://chat.whatsapp.com/IrfBo2FOZ4YGf5ku3BmXqG" target="_blank" rel="noopener noreferrer">Grup WA Matematika HOTS</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan operasi penambahan 2 pada pembilang dilakukan sebanyak \(a\) kali, dan penambahan 3 pada penyebut dilakukan sebanyak \(b\) kali, dengan \(a, b \in \mathbb{Z}^+\).
+                    \[
+                    \begin{aligned}
+                    \dfrac{3 + 2a}{4 + 3b} &= \dfrac{3}{4} \\[4pt]
+                    4(3 + 2a) &= 3(4 + 3b) \\
+                    12 + 8a &= 12 + 9b \\
+                    8a &= 9b
+                    \end{aligned}
+                    \]
+                    Karena \(\text{FPB}(8, 9) = 1\), maka nilai bilangan bulat positif terkecil untuk \(a\) dan \(b\) adalah:
+                    \[a = 9 \quad \text{dan} \quad b = 8\]
+                    Jumlah operasi hitung yang dibutuhkan adalah:
+                    \[a + b = 9 + 8 = 17\]
+                    <div class="kesimpulan">
+                        Jadi, paling sedikit <b>17</b> kali operasi hitung yang dibutuhkan untuk kembali mendapatkan pecahan dengan nilai yang setara dengan \(\dfrac{3}{4}\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Hasil operasi terbesar yang dapat diperoleh dari penempatan angka-angka 4, 6, 7, dan 8 pada kotak-kotak yang tersusun seperti di bawah ini adalah ....
+                <div style="text-align: center; margin: 15px 0;">
+                    <svg width="260" height="110" viewBox="0 0 260 110" style="max-width: 100%; height: auto; font-family: Rubik, sans-serif;">
+                        <rect x="10" y="35" width="40" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <text x="68" y="62" font-size="24" text-anchor="middle" fill="currentColor">+</text>
+                        <rect x="85" y="5" width="40" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <line x1="80" y1="55" x2="130" y2="55" stroke="currentColor" stroke-width="2"/>
+                        <rect x="85" y="65" width="40" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <text x="148" y="62" font-size="24" text-anchor="middle" fill="currentColor">×</text>
+                        <rect x="165" y="35" width="40" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">OSK SMP 2003</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Struktur operasi tersebut adalah:
+                    \[\square_1 + \dfrac{\square_2}{\square_3} \times \square_4\]
+                    Untuk menghasilkan nilai terbesar:
+                    <ul>
+                        <li>Penyebut pecahan (\(\square_3\)) harus dibuat sekecil mungkin, sehingga kita letakkan angka terkecil yaitu <b>4</b>.</li>
+                        <li>Dua bilangan yang dikalikan pada pembilang (\(\square_2\) dan \(\square_4\)) diisi oleh dua angka terbesar, yaitu <b>7</b> dan <b>8</b>.</li>
+                        <li>Sisa angka, yaitu <b>6</b>, ditempatkan pada bilangan yang dijumlahkan (\(\square_1\)).</li>
+                    </ul>
+                    <div style="text-align: center; margin: 15px 0;">
+                        <svg width="260" height="110" viewBox="0 0 260 110" style="max-width: 100%; height: auto; font-family: Rubik, sans-serif;">
+                            <rect x="10" y="35" width="40" height="40" rx="4" fill="rgba(255, 193, 7, 0.2)" stroke="currentColor" stroke-width="2"/>
+                            <text x="30" y="62" font-size="20" font-weight="bold" text-anchor="middle" fill="currentColor">6</text>
+                            <text x="68" y="62" font-size="24" text-anchor="middle" fill="currentColor">+</text>
+                            <rect x="85" y="5" width="40" height="40" rx="4" fill="rgba(76, 175, 80, 0.2)" stroke="currentColor" stroke-width="2"/>
+                            <text x="105" y="32" font-size="20" font-weight="bold" text-anchor="middle" fill="currentColor">7</text>
+                            <line x1="80" y1="55" x2="130" y2="55" stroke="currentColor" stroke-width="2"/>
+                            <rect x="85" y="65" width="40" height="40" rx="4" fill="rgba(33, 150, 243, 0.2)" stroke="currentColor" stroke-width="2"/>
+                            <text x="105" y="92" font-size="20" font-weight="bold" text-anchor="middle" fill="currentColor">4</text>
+                            <text x="148" y="62" font-size="24" text-anchor="middle" fill="currentColor">×</text>
+                            <rect x="165" y="35" width="40" height="40" rx="4" fill="rgba(156, 39, 176, 0.2)" stroke="currentColor" stroke-width="2"/>
+                            <text x="185" y="62" font-size="20" font-weight="bold" text-anchor="middle" fill="currentColor">8</text>
+                        </svg>
+                    </div>
+                    Hasil perhitungannya adalah:
+                    \[6 + \dfrac{7}{4} \times 8 = 6 + 14 = 20\]
+                    <div class="kesimpulan">
+                        Jadi, hasil operasi terbesar yang dapat diperoleh adalah <b>20</b>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Dalam suatu semester, nilai rata-rata ulangan harian Matematika Andi adalah 72. Nilai rata-rata ulangan harian memiliki bobot 80% dari nilai akhir semester, sementara nilai ujian akhir semester memiliki bobot 20%. Jika KKM sekolahnya adalah 75, nilai ujian akhir semester minimal yang harus Andi dapatkan agar ia menuntaskan pelajaran Matematika dalam semester tersebut adalah ....<br>
+                <b>Catatan:</b> Di sekolah itu, asumsikan penghitungan nilai akhir tidak mengalami pembulatan.
+                <ol class="pilgan">
+                    <li>81</li>
+                    <li>84</li>
+                    <li>87</li>
+                    <li>90</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">KTOM - TO OSK SMP 2023</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan nilai akhir semester adalah \(N_a\), dan nilai ujian akhir semester adalah \(x\).
+                    \[
+                    \begin{aligned}
+                    N_a &= 80\% \cdot 72 + 20\% \cdot x \\
+                    75 &\le \dfrac{4}{5}(72) + \dfrac{1}{5}x \quad (\times 5) \\[4pt]
+                    375 &\le 288 + x \\
+                    x &\ge 375 - 288 \\
+                    x &\ge 87
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">
+                        Jadi, nilai ujian akhir semester minimal yang harus Andi dapatkan adalah <b>87</b>.<br>
+                        <b>Jawaban: C</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan nilai \(\lfloor S \rfloor\) jika
+                \[S = \dfrac{1}{\dfrac{1}{2017}+\dfrac{1}{2018}+\dfrac{1}{2019}+\cdots+\dfrac{1}{2028}}\]
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Banyaknya suku pada penyebut dari \(2017\) hingga \(2028\) adalah:
+                    \[2028 - 2017 + 1 = 12 \text{ suku}\]
+                    Penyebut \(D = \displaystyle\sum_{k=0}^{11}\dfrac{1}{2017+k}\). Karena suku terbesar adalah \(\dfrac{1}{2017}\) dan suku terkecil adalah \(\dfrac{1}{2028}\), maka:
+                    \[
+                    \begin{aligned}
+                    12 \times \dfrac{1}{2028} &< \sum_{k=0}^{11}\dfrac{1}{2017+k} < 12 \times \dfrac{1}{2017} \\[6pt]
+                    \dfrac{12}{2028} &< \dfrac{1}{S} < \dfrac{12}{2017}
+                    \end{aligned}
+                    \]
+                    Dengan membalik pertidaksamaan:
+                    \[
+                    \begin{aligned}
+                    \dfrac{2017}{12} &< S < \dfrac{2028}{12} \\[6pt]
+                    168{,}083\dots &< S < 169
+                    \end{aligned}
+                    \]
+                    Karena \(\lfloor S \rfloor\) merepresentasikan bilangan bulat terbesar yang lebih kecil atau sama dengan \(S\):
+                    \[\lfloor S \rfloor = 168\]
+                    <div class="kesimpulan">
+                        Jadi, nilai \(\lfloor S \rfloor = 168\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                \[\dfrac{🟡}{🟢}+\dfrac{🟢}{🟡}=2{,}6\overline{54}\]
+                Berapakah nilai 🟢 dan 🟡?
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Ubah desimal berulang \(A = 2{,}6\overline{54}\) ke bentuk pecahan biasa:
+                    \[
+                    \begin{aligned}
+                    1000A &= 2654{,}\overline{54} \\
+                    10A &= 26{,}\overline{54} \\
+                    \hline
+                    990A &= 2628 \\
+                    A &= \dfrac{2628}{990} = \dfrac{146}{55}
+                    \end{aligned}
+                    \]
+                    Misalkan \(x = \dfrac{🟡}{🟢}\), maka persamaannya menjadi:
+                    \[
+                    \begin{aligned}
+                    x + \dfrac{1}{x} &= \dfrac{146}{55} \quad (\times 55x) \\[4pt]
+                    55x^2 + 55 &= 146x \\
+                    55x^2 - 146x + 55 &= 0 \\
+                    (5x - 11)(11x - 5) &= 0
+                    \end{aligned}
+                    \]
+                    Terdapat dua kemungkinan:
+                    <ol>
+                        <li>
+                            \(5x - 11 = 0 \implies x = \dfrac{11}{5}\)
+                            \[\dfrac{🟡}{🟢} = \dfrac{11}{5} \implies 🟡 = 11k \quad \text{dan} \quad 🟢 = 5k\]
+                        </li>
+                        <li>
+                            \(11x - 5 = 0 \implies x = \dfrac{5}{11}\)
+                            \[\dfrac{🟡}{🟢} = \dfrac{5}{11} \implies 🟡 = 5k \quad \text{dan} \quad 🟢 = 11k\]
+                        </li>
+                    </ol>
+                    dengan \(k\) adalah bilangan bulat tak nol (\(k \in \mathbb{Z}, k \neq 0\)).
+                    <div class="kesimpulan">
+                        Jadi, <b>🟢 = \(5k\) dan 🟡 = \(11k\)</b>, atau <b>🟢 = \(11k\) dan 🟡 = \(5k\)</b>, dengan \(k\) bilangan bulat (\(k \neq 0\)).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

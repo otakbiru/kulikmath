@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bangun Ruang Sisi Lengkung</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bangun Ruang Sisi Lengkung</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sebuah bola padat berada di dalam sebuah kerucut lingkaran tegak sedemikian sehingga permukaan bola menyinggung bidang alas dan seluruh bidang selimut kerucut. Jika kerucut tersebut memiliki jari-jari alas \(R = 6\text{ cm}\) dan tinggi \(T = 8\text{ cm}\), maka volume ruang di dalam kerucut yang berada di luar bola adalah ....
+                
+                <div style="display: flex; justify-content: center; margin: 1rem 0;">
+                    <svg id="svg-hots-1" width="300" height="250" viewBox="0 0 300 250"></svg>
+                </div>
+
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>\(48\pi\text{ cm}^3\)</li>
+                        <li>\(54\pi\text{ cm}^3\)</li>
+                        <li>\(60\pi\text{ cm}^3\)</li>
+                        <li>\(64\pi\text{ cm}^3\)</li>
+                        <li>\(72\pi\text{ cm}^3\)</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">Olimpiade / HOTS</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan penampang tegak aksial yang melewati sumbu simetri kerucut adalah segitiga sama kaki \(TAB\) dengan:
+                    <ul>
+                        <li>\(T\) adalah titik puncak kerucut.</li>
+                        <li>\(AB\) adalah diameter alas kerucut dengan \(AB = 2R = 2(6) = 12\text{ cm}\).</li>
+                        <li>\(O\) adalah titik pusat lingkaran alas, sehingga \(OA = OB = 6\text{ cm}\).</li>
+                        <li>Tinggi kerucut adalah \(TO = T = 8\text{ cm}\).</li>
+                        <li>Garis pelukis kerucut adalah:
+                            \[s = TA = TB = \sqrt{R^2 + T^2} = \sqrt{6^2 + 8^2} = 10\text{ cm}\]
+                        </li>
+                    </ul>
+
+                    <b>Langkah 1: Menentukan jari-jari bola (\(r\))</b>
+                    <p>
+                        Penampang bola berupa lingkaran dalam segitiga \(TAB\) dengan titik pusat \(P\) berada pada ruas garis \(TO\).
+                        <br>
+                        Karena bola menyinggung alas di titik \(O\), maka panjang ruas garis \(OP\) sama dengan jari-jari bola:
+                        \[OP = r \implies TP = TO - OP = 8 - r\]
+                        Misalkan bola menyinggung garis pelukis \(TA\) di titik \(D\), maka \(PD \perp TA\) dan \(PD = r\).
+                        <br>
+                        Perhatikan bahwa segitiga siku-siku \(\triangle TDP\) sebangun dengan segitiga siku-siku \(\triangle TOA\) (\(\angle T\) sekutu dan \(\angle TDP = \angle TOA = 90^\circ\)):
+                        \[\begin{aligned}
+                        \dfrac{PD}{OA} &= \dfrac{TP}{TA} \\[6pt]
+                        \dfrac{r}{6} &= \dfrac{8 - r}{10} \\[6pt]
+                        10r &= 6(8 - r) \\[4pt]
+                        10r &= 48 - 6r \\[4pt]
+                        16r &= 48 \\[4pt]
+                        r &= 3\text{ cm}
+                        \end{aligned}\]
+                        Jadi, jari-jari bola tersebut adalah \(r = 3\text{ cm}\).
+                    </p>
+
+                    <b>Langkah 2: Menghitung volume kerucut</b>
+                    <p>
+                        \[\begin{aligned}
+                        V_{\text{kerucut}} &= \dfrac{1}{3}\pi R^2 T \\
+                        &= \dfrac{1}{3}\pi (6^2)(8) \\
+                        &= \dfrac{1}{3}\pi (36)(8) \\
+                        &= 96\pi\text{ cm}^3
+                        \end{aligned}\]
+                    </p>
+
+                    <b>Langkah 3: Menghitung volume bola</b>
+                    <p>
+                        \[\begin{aligned}
+                        V_{\text{bola}} &= \dfrac{4}{3}\pi r^3 \\
+                        &= \dfrac{4}{3}\pi (3^3) \\
+                        &= \dfrac{4}{3}\pi (27) \\
+                        &= 36\pi\text{ cm}^3
+                        \end{aligned}\]
+                    </p>
+
+                    <b>Langkah 4: Menghitung volume ruang di luar bola tetapi di dalam kerucut</b>
+                    <p>
+                        \[\begin{aligned}
+                        V_{\text{ruang kosong}} &= V_{\text{kerucut}} - V_{\text{bola}} \\
+                        &= 96\pi - 36\pi \\
+                        &= 60\pi\text{ cm}^3
+                        \end{aligned}\]
+                    </p>
+                    <div class="kesimpulan">Jadi, volume ruang di dalam kerucut yang berada di luar bola adalah \(60\pi\text{ cm}^3\).<br><b>JAWAB: C</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-2 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-2 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 3 
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-3 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-3 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 4 
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-4 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-4 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 5 
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-5 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-5 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 6 
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-6 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-6 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-7 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-7 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-8 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-8 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-9 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-9 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-10 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-10 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const el = document.getElementById("svg-hots-1");
+            if (el && typeof GeoSVG === "function") {
+                const geo = new GeoSVG(el, 300, 250, {
+                    viewBox: "0 0 300 250",
+                    title: "Kerucut dengan Bola Singgung di Dalamnya"
+                });
+
+                const T = [150, 25];
+                const O = [150, 215];
+                const A = [60, 215], B = [240, 215];
+                const rx = 90, ry = 22;
+
+                // Penampang kerucut
+                geo.buatPoligon([T, A, B], {
+                    fill: "rgba(251, 146, 60, 0.08)",
+                    stroke: "none"
+                });
+
+                // Alas elips kerucut
+                geo.buatElips(O, rx, ry, {
+                    fill: "rgba(251, 146, 60, 0.15)",
+                    stroke: "#c2410c",
+                    strokeWidth: 1.8,
+                    dashed: true
+                });
+
+                // Garis pelukis kiri dan kanan
+                geo.buatSegmen(T, A, { stroke: "#c2410c", strokeWidth: 2 });
+                geo.buatSegmen(T, B, { stroke: "#c2410c", strokeWidth: 2 });
+
+                // Sumbu tinggi TO
+                geo.buatSegmen(T, O, {
+                    stroke: "#64748b",
+                    strokeWidth: 1.5,
+                    dashed: true
+                });
+
+                // Bola di dalam kerucut:
+                // r = 3/8 dari tinggi kerucut (tinggi 190 px, r = 71.25 px)
+                const rBola = 71.25;
+                const P = [150, 215 - rBola]; // Pusat bola
+
+                // Bola lingkaran terpotong
+                geo.buatElips(P, rBola, rBola, {
+                    fill: "rgba(59, 130, 246, 0.22)",
+                    stroke: "#2563eb",
+                    strokeWidth: 2
+                });
+
+                // Ekuator bola (garis lintang tengah bola 3D)
+                geo.buatElips(P, rBola, 16, {
+                    fill: "none",
+                    stroke: "#3b82f6",
+                    strokeWidth: 1.2,
+                    dashed: true
+                });
+
+                // Garis jari-jari bola tegak lurus ke garis pelukis TA (titik D)
+                // Titik singgung D pada garis TA
+                const dx = 60 - 150, dy = 215 - 25; // vector TA: (-90, 190)
+                // Proyeksi titik P ke TA:
+                // Normal vektor TA mengarah ke P:
+                const tA_len = Math.hypot(dx, dy);
+                const ux = dx / tA_len, uy = dy / tA_len;
+                const D = [150 - rBola * (dy / tA_len), P[1] - rBola * (-dx / tA_len)];
+
+                geo.buatSegmen(P, D, {
+                    stroke: "#2563eb",
+                    strokeWidth: 1.8,
+                    label: "r",
+                    labelSisi: "kiri",
+                    labelColor: "#2563eb",
+                    bold: true
+                });
+                geo.buatSiku(T, D, P, { size: 8, stroke: "#2563eb" });
+
+                // Titik-titik penting
+                geo.buatTitik(T, { label: "T", labelPosition: "top-center", size: 3.5, color: "#c2410c", bold: true });
+                geo.buatTitik(O, { label: "O", labelPosition: "bottom-center", size: 3.5, color: "#c2410c", bold: true });
+                geo.buatTitik(P, { label: "P", labelPosition: "middle-right", size: 3.5, color: "#2563eb", bold: true });
+                geo.buatTitik(D, { label: "D", labelPosition: "middle-left", size: 3, color: "#2563eb" });
+
+                // Label R pada jari-jari alas
+                geo.buatSegmen(O, B, {
+                    stroke: "#c2410c",
+                    strokeWidth: 1.5,
+                    dashed: true,
+                    label: "R = 6 cm",
+                    labelSisi: "bawah",
+                    labelColor: "#c2410c",
+                    bold: true
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

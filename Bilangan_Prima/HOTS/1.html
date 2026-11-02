@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bilangan Prima</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bilangan Prima</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sebutkan semua bilangan prima yang dapat dinyatakan dalam bentuk \(n^5 - 1\) di mana \(n\) adalah bilangan bulat.
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Jika \(n \le 1\), maka \(n^5 - 1 \le 0\) (bukan bilangan prima). Oleh karena itu, haruslah \(n \ge 2\).
+                    <br><br>
+                    Faktorkan bentuk aljabar \(n^5 - 1\):
+                    \[n^5 - 1 = (n - 1)(n^4 + n^3 + n^2 + n + 1)\]
+                    Karena \(n^5 - 1\) adalah bilangan prima, salah satu faktornya harus sama dengan 1:
+                    <ul>
+                        <li><b>Kasus 1:</b> \(n - 1 = 1 \implies n = 2\)
+                            <br>Substitusikan \(n = 2\) ke faktor lainnya:
+                            \[2^4 + 2^3 + 2^2 + 2 + 1 = 16 + 8 + 4 + 2 + 1 = 31\]
+                            Karena 31 adalah bilangan prima, maka nilai ini memenuhi.
+                        </li>
+                        <li style="margin-top: 8px;"><b>Kasus 2:</b> \(n^4 + n^3 + n^2 + n + 1 = 1\)
+                            \[
+                            \begin{aligned}
+                            n^4 + n^3 + n^2 + n &= 0 \\
+                            n(n + 1)(n^2 + 1) &= 0
+                            \end{aligned}
+                            \]
+                            Solusi bilangan bulatnya adalah \(n = 0\) atau \(n = -1\). Keduanya tidak memenuhi karena syarat \(n \ge 2\).
+                        </li>
+                    </ul>
+                    <div class="kesimpulan">
+                        Jadi, satu-satunya bilangan prima yang dapat dinyatakan dalam bentuk \(n^5 - 1\) adalah <b>31</b>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Bilangan 126 dapat ditulis sebagai jumlah dua bilangan prima. Selisih terbesar yang mungkin antara kedua bilangan tersebut adalah ....
+                <ol class="pilgan">
+                    <li>112</li>
+                    <li>100</li>
+                    <li>92</li>
+                    <li>88</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/ppgmatematika" target="_blank" rel="noopener noreferrer">Grup PPG Matematika</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan dua bilangan prima tersebut adalah \(p_1\) dan \(p_2\) dengan \(p_1 \le p_2\) sehingga:
+                    \[p_1 + p_2 = 126 \implies p_2 - p_1 = 126 - 2p_1\]
+                    Untuk memperoleh selisih terbesar, kita harus memilih bilangan prima terkecil \(p_1\):
+                    <ul>
+                        <li>\(p_1 = 2 \implies p_2 = 124\) (bukan prima)</li>
+                        <li>\(p_1 = 3 \implies p_2 = 123\) (bukan prima, habis dibagi 3)</li>
+                        <li>\(p_1 = 5 \implies p_2 = 121 = 11^2\) (bukan prima)</li>
+                        <li>\(p_1 = 7 \implies p_2 = 119 = 7 \times 17\) (bukan prima)</li>
+                        <li>\(p_1 = 11 \implies p_2 = 115\) (bukan prima, habis dibagi 5)</li>
+                        <li>\(p_1 = 13 \implies p_2 = 113\) (merupakan bilangan prima!)</li>
+                    </ul>
+                    Pasangan bilangan prima yang menghasilkan selisih terbesar adalah \(13\) dan \(113\):
+                    \[113 - 13 = 100\]
+                    <div class="kesimpulan">
+                        Jadi, selisih terbesar yang mungkin antara kedua bilangan tersebut adalah <b>100</b>.<br>
+                        <b>Jawaban: B</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diketahui \(n^2 + n + 2021\) merupakan bilangan kuadrat sempurna dengan \(n\) adalah bilangan prima. Nilai \(n = \dots\)
+                <ol class="pilgan">
+                    <li>11</li>
+                    <li>13</li>
+                    <li>17</li>
+                    <li>19</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneId/236" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan \(n^2 + n + 2021 = k^2\) untuk suatu bilangan bulat positif \(k\).
+                    <br>Kalikan kedua ruas dengan 4:
+                    \[
+                    \begin{aligned}
+                    4n^2 + 4n + 8084 &= 4k^2 \\
+                    (2n + 1)^2 + 8083 &= (2k)^2 \\
+                    (2k)^2 - (2n + 1)^2 &= 8083 \\
+                    (2k + 2n + 1)(2k - 2n - 1) &= 8083
+                    \end{aligned}
+                    \]
+                    Faktorisasi prima dari 8083 adalah \(8083 = 59 \times 137\).
+                    <br>Karena \(n > 0\), maka \(2k + 2n + 1 > 2k - 2n - 1\):
+                    <ul>
+                        <li><b>Kemungkinan 1:</b>
+                            \[
+                            \begin{aligned}
+                            2k + 2n + 1 &= 8083 \\
+                            2k - 2n - 1 &= 1
+                            \end{aligned}
+                            \]
+                            Kurangkan kedua persamaan:
+                            \[4n + 2 = 8082 \implies 4n = 8080 \implies n = 2020\]
+                            Karena 2020 bukan bilangan prima, kemungkinan ini tidak memenuhi.
+                        </li>
+                        <li style="margin-top: 8px;"><b>Kemungkinan 2:</b>
+                            \[
+                            \begin{aligned}
+                            2k + 2n + 1 &= 137 \\
+                            2k - 2n - 1 &= 59
+                            \end{aligned}
+                            \]
+                            Kurangkan kedua persamaan:
+                            \[4n + 2 = 78 \implies 4n = 76 \implies n = 19\]
+                            Karena 19 adalah bilangan prima, maka nilai ini memenuhi.
+                        </li>
+                    </ul>
+                    <div class="kesimpulan">
+                        Jadi, nilai \(n\) yang memenuhi adalah <b>19</b>.<br>
+                        <b>Jawaban: D</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Di antara keempat bilangan berikut, manakah yang merupakan bilangan prima?
+                <ol class="pilgan">
+                    <li>2023</li>
+                    <li>2025</li>
+                    <li>2029</li>
+                    <li>2031</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">KTOM - TO OSK SMP 2023</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Uji sifat pembagian untuk setiap opsi:
+                    <ul>
+                        <li><b>2025:</b> Memiliki angka satuan 5, sehingga habis dibagi 5 (bukan prima).</li>
+                        <li><b>2031:</b> Jumlah angka-angkanya adalah \(2 + 0 + 3 + 1 = 6\) (kelipatan 3), sehingga habis dibagi 3 (\(2031 = 3 \times 677\), bukan prima).</li>
+                        <li><b>2023:</b> Dapat difaktorkan sebagai \(2023 = 7 \times 289 = 7 \times 17^2\) (bukan prima).</li>
+                        <li><b>2029:</b> Tidak habis dibagi oleh semua bilangan prima \(\le \sqrt{2029} \approx 45{,}04\) (yaitu 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43). Oleh karena itu, 2029 adalah bilangan prima.</li>
+                    </ul>
+                    <div class="kesimpulan">
+                        Jadi, bilangan yang merupakan bilangan prima adalah <b>2029</b>.<br>
+                        <b>Jawaban: C</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Bilangan bulat positif \(p \ge 2\) disebut bilangan prima jika ia hanya mempunyai faktor 1 dan \(p\). Tentukan nilai penjumlahan semua bilangan prima di antara 1 dan 100 yang sekaligus bersifat:
+                <br>satu lebihnya dari suatu bilangan kelipatan 5 dan satu kurangnya dari suatu bilangan kelipatan 6.
+            </div>
+            <div class="soal-sumber"><a href="https://forummatematika.freeforums.net/thread/16/soal" target="_blank" rel="noopener noreferrer">OSK SMA 2002</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan bilangan prima tersebut adalah \(p\).
+                    <br>Berdasarkan soal:
+                    \[p \equiv 1 \pmod 5 \quad \text{dan} \quad p \equiv -1 \equiv 5 \pmod 6\]
+                    Analisis sifat bilangan:
+                    <ul>
+                        <li>Dari \(p \equiv 1 \pmod 5\), angka satuan dari \(p\) haruslah 1 atau 6.</li>
+                        <li>Karena \(p\) adalah bilangan prima selain 2, satuannya tidak boleh genap (6), sehingga satuannya harus <b>1</b>.</li>
+                        <li>Dari \(p \equiv -1 \pmod 6 \iff p + 1 \equiv 0 \pmod 6\), maka \(p + 1\) adalah kelipatan 6 yang bersatuan 2 (\(1 + 1 = 2\)).</li>
+                        <li>Kelipatan 6 di bawah 100 yang bersatuan 2 adalah:
+                            \[12, \quad 42, \quad 72\]
+                        </li>
+                        <li>Sehingga nilai \(p = (p + 1) - 1\) yang mungkin adalah:
+                            \[11, \quad 41, \quad 71\]
+                        </li>
+                    </ul>
+                    Ketiga bilangan tersebut (11, 41, 71) semuanya merupakan bilangan prima.
+                    <br><br>
+                    Jumlah semua bilangan prima tersebut:
+                    \[11 + 41 + 71 = 123\]
+                    <div class="kesimpulan">
+                        Jadi, nilai penjumlahan semua bilangan prima tersebut adalah <b>123</b>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diketahui \(p\) dan \(q\) bilangan prima. Misalkan \((p_1, q_1), (p_2, q_2), \dots, (p_k, q_k)\) adalah semua solusi dari persamaan \(p^2 + 3q^2 = 4p + 4q + 1\) dengan \(3 \nmid (p + q)\). Nilai dari \(\displaystyle\sum_{i=1}^k (p_i + q_i)\) adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>5</li>
+                    <li>7</li>
+                    <li>9</li>
+                    <li>11</li>
+                    <li>13</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">LMNAS 33 UGM</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Sederhanakan persamaan dengan melengkapkan kuadrat:
+                    \[
+                    \begin{aligned}
+                    p^2 + 3q^2 &= 4p + 4q + 1 \\
+                    (p^2 - 4p + 4) + (q^2 - 4q + 4) + 2q^2 &= 1 + 4 + 4 \\
+                    (p - 2)^2 + (q - 2)^2 + 2q^2 &= 9 \\
+                    (p - 2)^2 + (q - 2)^2 &= 9 - 2q^2
+                    \end{aligned}
+                    \]
+                    Karena \((p - 2)^2 + (q - 2)^2 \ge 0\), maka:
+                    \[9 - 2q^2 \ge 0 \implies 2q^2 \le 9 \implies q^2 \le 4{,}5\]
+                    Karena \(q\) adalah bilangan prima, satu-satunya nilai yang mungkin adalah <b>\(q = 2\)</b>.
+                    <br><br>
+                    Substitusikan \(q = 2\) ke persamaan:
+                    \[
+                    \begin{aligned}
+                    (p - 2)^2 + (2 - 2)^2 &= 9 - 2(2^2) \\
+                    (p - 2)^2 + 0 &= 9 - 8 = 1 \\
+                    (p - 2)^2 &= 1 \\
+                    p - 2 &= \pm 1 \\
+                    p = 3 \quad &\text{atau} \quad p = 1
+                    \end{aligned}
+                    \]
+                    Karena \(p\) harus bilangan prima, maka dipilih <b>\(p = 3\)</b>.
+                    <br><br>
+                    Periksa syarat \(3 \nmid (p + q)\):
+                    \[p + q = 3 + 2 = 5\]
+                    Karena 5 tidak habis dibagi 3 (\(3 \nmid 5\)), maka solusi ini memenuhi.
+                    <br><br>
+                    Jumlah dari pasangan solusi adalah:
+                    \[\sum_{i=1}^k (p_i + q_i) = 3 + 2 = 5\]
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(\displaystyle\sum_{i=1}^k (p_i + q_i) = 5\).<br>
+                        <b>Jawaban: A</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Bilangan asli \(n\) dikatakan <i>menarik</i> jika terdapat suku banyak (polinom) dengan koefisien bulat \(P(x)\) sehingga \(P(7) = 2021\) dan \(P(n) = 2045\). Banyaknya bilangan prima <i>menarik</i> adalah ....
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Latihan OSK 2024 SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <b>Lemma Polinom:</b> Untuk setiap suku banyak \(P(x)\) dengan koefisien bulat dan sebarang bilangan bulat \(a, b\), berlaku:
+                    \[(a - b) \mid (P(a) - P(b))\]
+                    Terapkan lemma untuk \(a = n\) dan \(b = 7\):
+                    \[(n - 7) \mid (P(n) - P(7)) \implies (n - 7) \mid (2045 - 2021) \implies (n - 7) \mid 24\]
+                    Faktor-faktor pembagi bulat dari 24 adalah:
+                    \[\pm 1, \pm 2, \pm 3, \pm 4, \pm 6, \pm 8, \pm 12, \pm 24\]
+                    Karena \(n\) adalah bilangan prima, maka \(n \ge 2\), yang berarti \(n - 7 \ge -5\).
+                    <br>Kita cari nilai \(n = (n - 7) + 7\) yang menghasilkan bilangan prima:
+                    <ul>
+                        <li>\(n - 7 = -4 \implies n = 3\) (prima)</li>
+                        <li>\(n - 7 = -2 \implies n = 5\) (prima)</li>
+                        <li>\(n - 7 = -1 \implies n = 6\) (bukan prima)</li>
+                        <li>\(n - 7 = 1 \implies n = 8\) (bukan prima)</li>
+                        <li>\(n - 7 = 2 \implies n = 9\) (bukan prima)</li>
+                        <li>\(n - 7 = 3 \implies n = 10\) (bukan prima)</li>
+                        <li>\(n - 7 = 4 \implies n = 11\) (prima)</li>
+                        <li>\(n - 7 = 6 \implies n = 13\) (prima)</li>
+                        <li>\(n - 7 = 8 \implies n = 15\) (bukan prima)</li>
+                        <li>\(n - 7 = 12 \implies n = 19\) (prima)</li>
+                        <li>\(n - 7 = 24 \implies n = 31\) (prima)</li>
+                    </ul>
+                    Bilangan prima menarik yang memenuhi adalah: \(3, 5, 11, 13, 19, 31\).
+                    <div class="kesimpulan">
+                        Jadi, banyaknya bilangan prima <i>menarik</i> adalah <b>6</b>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan bilangan asli \(x\) dan bilangan prima \(p\) sehingga \(p^2 = x^3 + 1\). Banyak pasangan \((x, p)\) yang memenuhi adalah ....
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Evaluasi GMOM Februari 2024 tingkat SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Faktorkan persamaan:
+                    \[p^2 = x^3 + 1 = (x + 1)(x^2 - x + 1)\]
+                    Karena \(x\) bilangan asli (\(x \ge 1\)), maka \(x + 1 \ge 2\).
+                    <br>Karena \(p\) adalah bilangan prima, faktor pembagi positif dari \(p^2\) hanyalah \(1, p,\) dan \(p^2\).
+                    <br><br>
+                    Tinjau kemungkinan faktorisasi:
+                    <ul>
+                        <li><b>Kasus 1:</b> \(x + 1 = p\) dan \(x^2 - x + 1 = p\)
+                            \[
+                            \begin{aligned}
+                            x^2 - x + 1 &= x + 1 \\
+                            x^2 - 2x &= 0 \\
+                            x(x - 2) &= 0
+                            \end{aligned}
+                            \]
+                            Karena \(x\) bilangan asli (\(x \ge 1\)), diperoleh \(x = 2\).
+                            <br>Untuk \(x = 2\):
+                            \[p = x + 1 = 3 \quad (\text{prima})\]
+                            Uji ke persamaan awal: \(p^2 = 3^2 = 9\), dan \(x^3 + 1 = 2^3 + 1 = 9\) (memenuhi).
+                        </li>
+                        <li style="margin-top: 8px;"><b>Kasus 2:</b> \(x + 1 = p^2\) dan \(x^2 - x + 1 = 1\)
+                            \[x^2 - x = 0 \implies x(x - 1) = 0\]
+                            Untuk \(x = 1\):
+                            \[p^2 = x + 1 = 2 \implies p = \sqrt{2} \quad (\text{bukan bilangan prima})\]
+                        </li>
+                        <li style="margin-top: 8px;"><b>Kasus 3:</b> \(x + 1 = 1\) dan \(x^2 - x + 1 = p^2\)
+                            \[x = 0 \quad (\text{tidak memenuhi karena } x \text{ bilangan asli})\]
+                        </li>
+                    </ul>
+                    Hanya ada 1 pasangan solusi, yaitu \((x, p) = (2, 3)\).
+                    <div class="kesimpulan">
+                        Jadi, banyak pasangan \((x, p)\) yang memenuhi adalah <b>1</b>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Bilangan prima \(p\) yang memenuhi sehingga \(p + 8\) dan \(p + 16\) juga adalah bilangan prima ada sebanyak ....
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Evaluasi GMOM September 2024</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Kita uji modulo 3 untuk bilangan prima \(p\):
+                    <ul>
+                        <li><b>Untuk \(p = 2\):</b>
+                            \[p + 8 = 10 \quad (\text{bukan bilangan prima})\]
+                        </li>
+                        <li><b>Untuk \(p = 3\):</b>
+                            \[
+                            \begin{aligned}
+                            p + 8 &= 3 + 8 = 11 \quad (\text{prima}) \\
+                            p + 16 &= 3 + 16 = 19 \quad (\text{prima})
+                            \end{aligned}
+                            \]
+                            Nilai \(p = 3\) memenuhi syarat.
+                        </li>
+                        <li><b>Untuk \(p > 3\):</b>
+                            Setiap bilangan prima \(p > 3\) tidak habis dibagi 3, sehingga:
+                            <ul>
+                                <li>Jika \(p \equiv 1 \pmod 3\):
+                                    \[p + 8 \equiv 1 + 8 = 9 \equiv 0 \pmod 3\]
+                                    Karena \(p + 8 > 3\) dan habis dibagi 3, maka \(p + 8\) adalah bilangan komposit (bukan prima).
+                                </li>
+                                <li>Jika \(p \equiv 2 \pmod 3\):
+                                    \[p + 16 \equiv 2 + 16 = 18 \equiv 0 \pmod 3\]
+                                    Karena \(p + 16 > 3\) dan habis dibagi 3, maka \(p + 16\) adalah bilangan komposit (bukan prima).
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    Dengan demikian, hanya \(p = 3\) yang memenuhi.
+                    <div class="kesimpulan">
+                        Jadi, bilangan prima \(p\) yang memenuhi ada sebanyak <b>1</b>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diketahui \(x\) adalah bilangan bulat positif sehingga \(20x^2 - 91x\) merupakan bilangan pangkat 3 dari suatu bilangan prima. Jumlah semua nilai \(x\) yang memenuhi adalah ....
+                <ol class="pilgan">
+                    <li>7</li>
+                    <li>10</li>
+                    <li>14</li>
+                    <li>18</li>
+                    <li>20</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Penyisihan OGM 10 Tingkat SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan \(20x^2 - 91x = p^3\) dengan \(p\) bilangan prima.
+                    \[x(20x - 91) = p^3\]
+                    Karena \(x > 0\) dan \(p^3 > 0\), maka \(20x - 91 > 0 \implies x > 4{,}55\).
+                    <br>Karena \(x \mid p^3\), maka kemungkinan nilai \(x\) adalah \(1, p, p^2,\) atau \(p^3\):
+                    <ul>
+                        <li><b>Untuk \(x = 1\):</b>
+                            \(20(1) - 91 = -71 < 0\) (tidak memenuhi).
+                        </li>
+                        <li><b>Untuk \(x = p\):</b>
+                            \[
+                            \begin{aligned}
+                            20p - 91 &= p^2 \\
+                            p^2 - 20p + 91 &= 0 \\
+                            (p - 7)(p - 13) &= 0
+                            \end{aligned}
+                            \]
+                            Diperoleh \(p = 7\) atau \(p = 13\).
+                            <br>Karena keduanya bilangan prima, maka diperoleh nilai:
+                            \[x = 7 \quad \text{dan} \quad x = 13\]
+                        </li>
+                        <li><b>Untuk \(x = p^2\):</b>
+                            \[
+                            \begin{aligned}
+                            20p^2 - 91 &= p \\
+                            20p^2 - p - 91 &= 0
+                            \end{aligned}
+                            \]
+                            Diskriminan: \(D = (-1)^2 - 4(20)(-91) = 7281\) bukan bilangan kuadrat sempurna, sehingga tidak ada nilai bulat \(p\) yang memenuhi.
+                        </li>
+                        <li><b>Untuk \(x = p^3\):</b>
+                            \[
+                            20p^3 - 91 = 1 \implies 20p^3 = 92 \implies p^3 = \dfrac{23}{5} \quad (\text{bukan bilangan bulat})
+                            \]
+                        </li>
+                    </ul>
+                    Nilai \(x\) yang memenuhi adalah \(x = 7\) dan \(x = 13\).
+                    <br><br>
+                    Jumlah semua nilai \(x\):
+                    \[7 + 13 = 20\]
+                    <div class="kesimpulan">
+                        Jadi, jumlah semua nilai \(x\) yang memenuhi adalah <b>20</b>.<br>
+                        <b>Jawaban: E</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

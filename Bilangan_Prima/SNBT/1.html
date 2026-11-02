@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNBT - Bilangan Prima</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bilangan Prima</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diketahui \(p, q,\) dan \(r\) adalah tiga bilangan prima yang memenuhi persamaan:
+                \[p \cdot q + r = 73\]
+                Jika \(p < q\), maka nilai terbesar yang mungkin untuk nilai \(p + q + r\) adalah ....
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>62</li>
+                        <li>68</li>
+                        <li>72</li>
+                        <li>74</li>
+                        <li>76</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">SNBT / UTBK</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Diberikan persamaan dengan \(p, q, r\) adalah bilangan prima dan \(p < q\):
+                    \[p \cdot q + r = 73\]
+
+                    <b>Langkah 1: Menganalisis sifat paritas</b>
+                    <p>
+                        Karena ruas kanan bernilai ganjil (\(73\)), maka penjumlahan \((p \cdot q) + r\) hanya dapat bernilai ganjil jika salah satu sukunya <b>genap</b> dan suku lainnya <b>ganjil</b>:
+                        <ul>
+                            <li><b>Kemungkinan 1:</b> \(r\) adalah bilangan genap.
+                                <br>
+                                Karena satu-satunya bilangan prima genap adalah \(2\), maka \(r = 2\).
+                                <br>
+                                Persamaan menjadi:
+                                \[p \cdot q + 2 = 73 \implies p \cdot q = 71\]
+                                Namun \(71\) adalah bilangan prima, sehingga faktor positif dari 71 hanyalah 1 dan 71. Tidak ada pasangan bilangan prima \(p\) dan \(q\) yang memenuhi \(p \cdot q = 71\). Jadi kemungkinan ini gugur.
+                            </li>
+                            <li style="margin-top: 8px;"><b>Kemungkinan 2:</b> \((p \cdot q)\) adalah bilangan genap.
+                                <br>
+                                Agar hasil kali dua bilangan prima menghasilkan bilangan genap, salah satu faktornya harus genap (yaitu \(2\)).
+                                <br>
+                                Karena diketahui \(p < q\), maka haruslah:
+                                \[p = 2\]
+                            </li>
+                        </ul>
+                    </p>
+
+                    <b>Langkah 2: Menyatakan persamaan dalam \(q\) dan \(r\)</b>
+                    <p>
+                        Substitusikan \(p = 2\) ke dalam persamaan awal:
+                        \[2q + r = 73 \implies r = 73 - 2q\]
+                        Ekspresi yang dicari nilai terbesarnya adalah \(p + q + r\):
+                        \[\begin{aligned}
+                        p + q + r &= 2 + q + (73 - 2q) \\
+                        &= 75 - q
+                        \end{aligned}\]
+                        Perhatikan fungsi \(75 - q\). Agar nilai \(75 - q\) <b>maksimum</b>, maka nilai \(q\) harus dibuat <b>seminimum mungkin</b>.
+                    </p>
+
+                    <b>Langkah 3: Menguji nilai prima terkecil untuk \(q\)</b>
+                    <p>
+                        Karena \(p = 2\) dan \(p < q\), maka \(q\) adalah bilangan prima yang lebih besar dari \(2\):
+                        <ul>
+                            <li>Coba bilangan prima terkecil berikutnya, yaitu \(q = 3\):
+                                \[r = 73 - 2(3) = 73 - 6 = 67\]
+                                Periksa apakah \(67\) adalah bilangan prima:
+                                <br>
+                                \(67\) tidak habis dibagi oleh \(2, 3, 5, 7\) (\(\le \sqrt{67}\)), sehingga \(67\) terbukti bilangan prima.
+                                <br>
+                                Maka tripel prima \((p, q, r) = (2, 3, 67)\) adalah solusi yang valid!
+                            </li>
+                        </ul>
+                    </p>
+
+                    <b>Langkah 4: Menghitung nilai maksimum</b>
+                    <p>
+                        Karena \(q = 3\) adalah nilai prima terkecil yang mungkin (\(q > 2\)), maka:
+                        \[(p + q + r)_{\text{maks}} = 75 - 3 = 72\]
+                        (Atau secara langsung: \(2 + 3 + 67 = 72\)).
+                    </p>
+                    <div class="kesimpulan">Jadi, nilai terbesar yang mungkin untuk \(p + q + r\) adalah 72.<br><b>JAWAB: C</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-2 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-2 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 3 
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-3 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-3 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 4 
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-4 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-4 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 5 
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-5 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-5 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 6 
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-6 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-6 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-7 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-7 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-8 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-8 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-9 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-9 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-10 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-10 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

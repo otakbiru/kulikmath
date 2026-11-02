@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Bilangan Bulat</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Bilangan Bulat</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Bilangan Bulat & Partisi Himpunannya</h2>
+            <p>
+                <strong>Bilangan Bulat</strong> (<em>Integers</em>) adalah himpunan bilangan yang mencakup seluruh bilangan bulat negatif, bilangan nol ($0$), dan seluruh bilangan bulat positif (bilangan asli), tanpa memuat komponen pecahan maupun desimal. Himpunan bilangan bulat dilambangkan dengan huruf kapital $\mathbb{Z}$ (berasal dari kata bahasa Jerman <em>"Zahlen"</em> yang berarti bilangan):
+                $$\mathbb{Z} = \{\dots, -3, -2, -1, 0, 1, 2, 3, \dots\}$$
+                Kehadiran bilangan bulat memperluas himpunan bilangan asli ($\mathbb{N}$) dan bilangan cacah ($\mathbb{W}$) agar operasi <strong>pengurangan selalu bersifat tertutup</strong> (untuk setiap $a, b \in \mathbb{Z}$, hasil $a - b$ selalu berada di dalam $\mathbb{Z}$).
+            </p>
+            <p>
+                Secara struktural, himpunan bilangan bulat $\mathbb{Z}$ terbagi (terpartisi) menjadi <strong>tiga himpunan bagian yang saling lepas</strong>:
+            </p>
+            <ul>
+                <li><strong>Bilangan Bulat Negatif ($\mathbb{Z}^-$):</strong> $\{\dots, -4, -3, -2, -1\}$, terletak di sebelah kiri angka $0$ pada garis bilangan.</li>
+                <li><strong>Bilangan Nol ($\{0\}$):</strong> Bilangan netral yang <strong>bukan positif</strong> dan <strong>bukan negatif</strong>.</li>
+                <li><strong>Bilangan Bulat Positif ($\mathbb{Z}^+$ atau Bilangan Asli $\mathbb{N}$):</strong> $\{1, 2, 3, 4, \dots\}$, terletak di sebelah kanan angka $0$.</li>
+            </ul>
+            <p>
+                <em>Catatan Istilah Penting pada Soal Seleksi (SNBT/Olimpiade):</em><br>
+                Perhatikan perbedaan istilah <strong>"Bilangan Bulat Positif"</strong> ($\{1, 2, 3, \dots\}$) dengan <strong>"Bilangan Bulat Tak-Negatif / Non-Negatif"</strong> ($\{0, 1, 2, 3, \dots\} = \mathbb{W}$, angka $0$ ikut termasuk), serta <strong>"Bilangan Bulat Tak-Positif"</strong> ($\{\dots, -2, -1, 0\}$).
+            </p>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Urutan & Nilai Mutlak pada Garis Bilangan:</strong><br>
+                        Pada garis bilangan mendatar, semakin ke kanan letak suatu bilangan bulat, semakin besar nilainya ($a < b$ jika $a$ di sebelah kiri $b$). Oleh karena itu, $-2 > -7$. Jarak suatu bilangan bulat $x$ terhadap titik $0$ disebut <strong>nilai mutlak</strong> ($|x| \ge 0$), sehingga $|-5| = |5| = 5$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-garis-bilangan-bulat" style="width: 100%; max-width: 375px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Sifat-Sifat Aljabar & Aturan Operasi Aritmetika</h2>
+            <p>
+                Dalam aljabar abstrak, himpunan bilangan bulat $(\mathbb{Z}, +, \times)$ membentuk struktur <strong>Gelanggang Komutatif (Commutative Ring)</strong> dan <strong>Daerah Integral (Integral Domain)</strong>. Berikut adalah sifat-sifat fundamentalnya untuk setiap $a, b, c \in \mathbb{Z}$:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sifat Aljabar</th>
+                            <th>Penjumlahan ($+$) & Pengurangan ($-$)</th>
+                            <th>Perkalian ($\times$) & Pembagian ($\div$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sifat Tertutup</strong></td>
+                            <td class="text-left">Tertutup: $a + b \in \mathbb{Z}$ dan $a - b \in \mathbb{Z}$.</td>
+                            <td class="text-left">Perkalian tertutup ($a \times b \in \mathbb{Z}$), tetapi <strong>pembagian tidak tertutup</strong> ($3 \div 2 = 1\text{,}5 \notin \mathbb{Z}$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Komutatif & Asosiatif</strong></td>
+                            <td class="text-left">$a + b = b + a$<br>$(a + b) + c = a + (b + c)$<br><small>(Tidak berlaku untuk pengurangan)</small></td>
+                            <td class="text-left">$a \times b = b \times a$<br>$(a \times b) \times c = a \times (b \times c)$<br><small>(Tidak berlaku untuk pembagian)</small></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Unsur Identitas</strong></td>
+                            <td class="text-left">Angka $\mathbf{0}$ adalah identitas penjumlahan:<br>$a + 0 = 0 + a = a$</td>
+                            <td class="text-left">Angka $\mathbf{1}$ adalah identitas perkalian:<br>$a \times 1 = 1 \times a = a$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Unsur Invers di $\mathbb{Z}$</strong></td>
+                            <td class="text-left">Setiap $a \in \mathbb{Z}$ memiliki <strong>invers tambah (lawan)</strong> yaitu $-a \in \mathbb{Z}$ sehingga $a + (-a) = 0$.</td>
+                            <td class="text-left">Hanya $\mathbf{1}$ dan $\mathbf{-1}$ yang memiliki invers kali di dalam $\mathbb{Z}$ (disebut <em>unit</em> dari $\mathbb{Z}$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sifat Pembagi Nol</strong></td>
+                            <td class="text-left">$a - a = 0$</td>
+                            <td class="text-left"><strong>Tanpa Pembagi Nol:</strong><br>$a \times b = 0 \iff a = 0 \text{ atau } b = 0$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>2.1. Aturan Tanda & Hierarki Operasi Campuran</h3>
+            <ul>
+                <li><strong>Pengurangan sebagai Penjumlahan dengan Lawan:</strong> $a - b = a + (-b)$ dan $a - (-b) = a + b$.</li>
+                <li><strong>Aturan Tanda Perkalian/Pembagian:</strong> Hasil kali atau hasil bagi dua bilangan bulat yang <strong>bertanda sama</strong> selalu <strong>positif</strong> ($(+)\times(+) = (+)$ dan $(-)\times(-) = (+)$), sedangkan jika <strong>berbeda tanda</strong> selalu <strong>negatif</strong> ($(+)\times(-) = (-)$).</li>
+                <li><strong>Perpangkatan Bilangan Bulat Negatif:</strong> Untuk $a > 0$, nilai $(-a)^n$ bernilai <strong>positif jika $n$ genap</strong> dan <strong>negatif jika $n$ ganjil</strong>. Hati-hati membedakan $(-3)^2 = (-3)\times(-3) = 9$ dengan $-3^2 = -(3 \times 3) = -9$.</li>
+                <li><strong>Prioritas Operasi Campuran:</strong> (1) Tanda Kurung $(\dots)$, (2) Eksponen/Perpangkatan, (3) Perkalian & Pembagian (setara, kerjakan dari kiri ke kanan), (4) Penjumlahan & Pengurangan (setara, kerjakan dari kiri ke kanan).</li>
+            </ul>
+
+            <h3>2.2. Sifat Paritas (Ganjil dan Genap pada $\mathbb{Z}$)</h3>
+            <p>
+                Setiap bilangan bulat $n \in \mathbb{Z}$ (baik positif, nol, maupun negatif) dapat dikelompokkan berdasarkan keterbagiannya oleh $2$:
+            </p>
+            <ul>
+                <li><strong>Bilangan Bulat Genap ($n = 2k, k \in \mathbb{Z}$):</strong> $\{\dots, -4, -2, 0, 2, 4, \dots\}$. Angka $\mathbf{0}$ adalah <strong>bilangan genap</strong> karena $0 = 2 \times 0$.</li>
+                <li><strong>Bilangan Bulat Ganjil ($n = 2k + 1, k \in \mathbb{Z}$):</strong> $\{\dots, -3, -1, 1, 3, 5, \dots\}$.</li>
+                <li><strong>Aturan Operasi Paritas:</strong>
+                    $$\text{Genap} \pm \text{Genap} = \text{Genap}, \quad \text{Ganjil} \pm \text{Ganjil} = \text{Genap}, \quad \text{Genap} \pm \text{Ganjil} = \text{Ganjil}$$
+                    $$\text{Genap} \times \text{Sembarang} = \text{Genap}, \quad \text{Ganjil} \times \text{Ganjil} = \text{Ganjil}$$
+                </li>
+            </ul>
+
+            <h2>3. Algoritma Pembagian & Keterbagian (Divisibility)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Teorema Algoritma Pembagian (Division Algorithm):</strong><br>
+                        Untuk setiap bilangan bulat $a \in \mathbb{Z}$ dan pembagi bulat positif $b > 0$, selalu terdapat secara tunggal pasangan bilangan bulat $q$ (<strong>hasil bagi / kuosien</strong>) dan $r$ (<strong>sisa pembagian</strong>) sedemikian sehingga:
+                        $$a = b \cdot q + r \quad \text{dengan syarat mutlak } \mathbf{0 \le r < b}$$
+                        Perhatikan bahwa secara matematis <strong>sisa pembagian $r$ tidak pernah bernilai negatif</strong>! Sebagai contoh, jika $a = -17$ dibagi oleh $b = 5$, kita tidak menulis $-17 = 5(-3) - 2$, melainkan harus membulatkan hasil bagi ke bawah ($q = -4$):
+                        $$-17 = 5 \times (-4) + 3 \implies \text{hasil bagi } q = -4 \text{ dan sisa } r = 3$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-algoritma-pembagian" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <p>
+                <strong>Konsep Keterbagian ($b \mid a$):</strong><br>
+                Apabila sisa pembagian $a$ oleh $b$ adalah $r = 0$, maka dikatakan $b$ habis membagi $a$ (ditulis $b \mid a$), yang berarti terdapat bilangan bulat $k \in \mathbb{Z}$ sehingga $a = b \cdot k$. Berikut adalah aturan uji cepat keterbagian bilangan bulat dalam basis $10$:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pembagi</th>
+                            <th>Syarat Habis Dibagi (Uji Keterbagian Cepat)</th>
+                            <th>Contoh Penerapan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>$2^k$ ($2, 4, 8$)</strong></td>
+                            <td class="text-left">$k$ digit terakhirnya habis dibagi $2^k$ ($1$ digit akhir untuk $2$, $2$ digit akhir untuk $4$, $3$ digit akhir untuk $8$).</td>
+                            <td class="text-left">$5.128$ habis dibagi $8$ karena $128 \div 8 = 16$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$3$ dan $9$</strong></td>
+                            <td class="text-left">Jumlah seluruh angka penyusun (digit) bilangan tersebut habis dibagi $3$ (atau habis dibagi $9$).</td>
+                            <td class="text-left">$4.725$: $4+7+2+5 = 18$ (habis dibagi $3$ dan $9$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$5$ dan $10$</strong></td>
+                            <td class="text-left">Habis dibagi $5$ jika digit satuannya $0$ atau $5$; habis dibagi $10$ jika digit satuannya $0$.</td>
+                            <td class="text-left">$1.375$ habis dibagi $5$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$6$ dan $12$</strong></td>
+                            <td class="text-left">Dipecah ke faktor yang saling koprima: habis dibagi $6 \iff$ habis dibagi $2$ <strong>dan</strong> $3$; habis dibagi $12 \iff$ habis dibagi $3$ <strong>dan</strong> $4$.</td>
+                            <td class="text-left">$732$ genap, $32$ habis dibagi $4$, dan $7+3+2=12$ habis dibagi $3 \implies$ habis dibagi $12$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$11$</strong></td>
+                            <td class="text-left">Jumlah selang-seling tanda digitnya (dari kanan ke kiri: $+, -, +, -\dots$) habis dibagi $11$ (termasuk bernilai $0$).</td>
+                            <td class="text-left">$91.828$: $(8 - 2 + 8 - 1 + 9) = 22$ (habis dibagi $11$).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. FPB, KPK, dan Algoritma Euclid</h2>
+            <p>
+                Untuk dua bilangan bulat positif $a$ dan $b$:
+            </p>
+            <ul>
+                <li><strong>Faktor Persekutuan Terbesar ($\text{FPB}(a, b)$ atau $\gcd(a, b)$):</strong> Bilangan bulat positif terbesar yang dapat membagi habis $a$ sekaligus $b$. Pada faktorisasi prima, ambil <strong>faktor prima yang sama (bersekutu) dengan pangkat terkecil</strong>. Jika $\text{FPB}(a, b) = 1$, maka $a$ dan $b$ disebut <strong>saling prima (koprima)</strong>.</li>
+                <li><strong>Kelipatan Persekutuan Terkecil ($\text{KPK}(a, b)$ atau $\text{lcm}(a, b)$):</strong> Bilangan bulat positif terkecil yang habis dibagi oleh $a$ sekaligus $b$. Pada faktorisasi prima, ambil <strong>semua faktor prima dengan pangkat terbesar</strong>.</li>
+            </ul>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Sifat-Sifat Fundamental FPB & KPK:</strong>
+                    </p>
+                    <ol>
+                        <li><strong>Hubungan Hasil Kali:</strong>
+                            $$\text{FPB}(a, b) \times \text{KPK}(a, b) = |a \times b|$$
+                        </li>
+                        <li><strong>Pemisalan Baku dari $\text{FPB}(a, b) = d$:</strong><br>
+                            Jika $\text{FPB}(a, b) = d$, maka kita selalu dapat memisalkan $a = d \cdot x$ dan $b = d \cdot y$ dengan syarat mutlak $\mathbf{\text{FPB}(x, y) = 1}$ (saling koprima), sehingga berlaku:
+                            $$\text{KPK}(a, b) = d \cdot x \cdot y$$
+                        </li>
+                        <li><strong>Algoritma Euclid (Mencari FPB Bilangan Besar):</strong><br>
+                            Jika $a = b \cdot q + r$, maka $\text{FPB}(a, b) = \text{FPB}(b, r) = \text{FPB}(a, a - b)$.
+                        </li>
+                        <li><strong>Identitas Bezout:</strong> Terdapat bilangan bulat $x, y \in \mathbb{Z}$ sehingga $ax + by = \text{FPB}(a, b)$.</li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-fpb-kpk" style="width: 100%; max-width: 360px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Kongruensi Modulo & Fungsi Tangga ($\lfloor x \rfloor$ dan $\lceil x \rceil$)</h2>
+            <p>
+                <strong>a) Aritmetika Modulo (Kongruensi Bilangan Bulat):</strong><br>
+                Dua bilangan bulat $a$ dan $b$ dikatakan <strong>kongruen modulo $m$</strong> (untuk $m \in \mathbb{Z}^+$), ditulis:
+                $$a \equiv b \pmod{m} \iff m \mid (a - b)$$
+                Artinya, $a$ dan $b$ memiliki <strong>sisa yang sama</strong> ketika dibagi oleh $m$, atau selisih $(a - b)$ merupakan kelipatan $m$. Sifat operasi kongruensi sangat berguna untuk mencari sisa pembagian dan digit terakhir perpangkatan besar: jika $a \equiv b \pmod{m}$ dan $c \equiv d \pmod{m}$, maka:
+                $$a \pm c \equiv b \pm d \pmod{m}, \quad a \cdot c \equiv b \cdot d \pmod{m}, \quad \text{dan} \quad a^k \equiv b^k \pmod{m}$$
+            </p>
+            <p>
+                <strong>b) Fungsi Bilangan Bulat Terbesar (Floor $\lfloor x \rfloor$) dan Terkecil (Ceiling $\lceil x \rceil$):</strong><br>
+                Untuk memetakan bilangan real $x \in \mathbb{R}$ ke bilangan bulat terdekat, digunakan dua fungsi pembulatan:
+            </p>
+            <ul>
+                <li><strong>Fungsi Floor ($\lfloor x \rfloor$):</strong> Bilangan bulat terbesar yang kurang dari atau sama dengan $x$ ($\lfloor x \rfloor \le x < \lfloor x \rfloor + 1$). Contoh: $\lfloor 3\text{,}8 \rfloor = 3$, dan hati-hati untuk bilangan negatif: $\mathbf{\lfloor -3\text{,}2 \rfloor = -4}$ (bukan $-3$).</li>
+                <li><strong>Fungsi Ceiling ($\lceil x \rceil$):</strong> Bilangan bulat terkecil yang lebih dari atau sama dengan $x$ ($\lceil x \rceil - 1 < x \le \lceil x \rceil$). Contoh: $\lceil 3\text{,}2 \rceil = 4$ dan $\lceil -3\text{,}2 \rceil = -3$.</li>
+            </ul>
+
+            <h2>6. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berjenjang berikut untuk menguasai berbagai konsep bilangan bulat mulai dari aturan skor, algoritma pembagian negatif, analisis FPB-KPK, kongruensi modulo, hingga persamaan faktorisasi bulat:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Dalam sebuah kompetisi matematika yang terdiri dari $50$ butir soal, ditetapkan aturan penilaian bilangan bulat sebagai berikut: jawaban benar mendapat skor $+4$, jawaban salah mendapat skor $-2$, dan soal yang tidak dijawab mendapat skor $-1$. Seorang peserta tidak menjawab $6$ soal dan memperoleh total skor akhir sebesar $116$. Tentukan banyaknya soal yang dijawab <strong>benar</strong> oleh peserta tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Nyatakan banyak soal yang dijawab dalam variabel</strong></p>
+                    <p>
+                        Total soal adalah $50$ dan soal yang tidak dijawab (kosong) adalah $K = 6$. Maka total soal yang dijawab (benar maupun salah) adalah:
+                        $$B + S = 50 - 6 = 44 \implies S = 44 - B$$
+                    </p>
+                    <p><strong>Langkah 2: Susun persamaan total skor bilangan bulat</strong></p>
+                    <p>
+                        $$\text{Skor Total} = 4B + (-2)S + (-1)K = 116$$
+                        Substitusikan $K = 6$ dan $S = 44 - B$:
+                        $$4B - 2(44 - B) - 1(6) = 116$$
+                        $$4B - 88 + 2B - 6 = 116$$
+                        $$6B - 94 = 116 \implies 6B = 116 + 94 = 210 \implies B = \frac{210}{6} = 35$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, banyaknya soal yang dijawab benar oleh peserta tersebut adalah $35$ soal (dengan $9$ soal salah dan $6$ soal kosong).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Suatu bilangan bulat $N$ jika dibagi oleh $12$ memberikan sisa $7$. Tentukan:
+                    <br>a) Sisa pembagian bilangan $(3N - 20)$ apabila dibagi oleh $12$!
+                    <br>b) Hasil bagi ($q$) dan sisa pembagian ($r$) yang sah menurut Algoritma Pembagian ketika bilangan bulat negatif $-145$ dibagi oleh $12$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Mencari sisa pembagian $(3N - 20)$ oleh $12$:</strong></p>
+                    <p>
+                        Karena $N$ dibagi $12$ bersisa $7$, kita dapat menuliskan $N = 12k + 7$ untuk suatu $k \in \mathbb{Z}$ (atau dalam notasi modulo: $N \equiv 7 \pmod{12}$). Substitusikan ke dalam ekspresi $(3N - 20)$:
+                        $$3N - 20 = 3(12k + 7) - 20 = 36k + 21 - 20 = 12(3k) + 1$$
+                        Karena $0 \le 1 < 12$, maka sisa pembagian $(3N - 20)$ oleh $12$ adalah $1$.
+                    </p>
+                    <p><strong>b) Hasil bagi dan sisa pembagian $-145$ oleh $12$:</strong></p>
+                    <p>
+                        Menurut Algoritma Pembagian $-145 = 12q + r$, sisa pembagian $r$ wajib memenuhi syarat $0 \le r < 12$.
+                        <br>Perhatikan kelipatan $12$ di sekitar $-145$: kita tahu $12 \times (-12) = -144$, namun $-144 > -145$ (sehingga sisanya akan negatif: $-1$). Oleh karena itu, kita harus mengambil kelipatan $12$ tepat di bawah $-145$, yaitu $12 \times (-13) = -156$:
+                        $$-145 = 12 \times (-13) + 11$$
+                        Dengan demikian diperoleh hasil bagi $q = -13$ dan sisa pembagian $r = 11$.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, sisa pembagian $(3N - 20)$ oleh $12$ adalah $1$, sedangkan pembagian $-145$ oleh $12$ menghasilkan hasil bagi $q = -13$ dan sisa $r = 11$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Diketahui dua bilangan bulat positif $A$ dan $B$ memiliki $\text{FPB}(A, B) = 15$ dan $\text{KPK}(A, B) = 180$. Jika $A < B$, tentukan semua pasangan bilangan $(A, B)$ yang mungkin beserta selisih terkecil $B - A$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Gunakan pemisalan baku FPB dan KPK</strong></p>
+                    <p>
+                        Karena $\text{FPB}(A, B) = d = 15$, kita misalkan:
+                        $$A = 15x \quad \text{dan} \quad B = 15y \quad \text{dengan syarat } \text{FPB}(x, y) = 1 \text{ dan } x < y$$
+                        Gunakan rumus $\text{KPK}(A, B) = d \cdot x \cdot y$:
+                        $$15 \cdot x \cdot y = 180 \implies x \cdot y = \frac{180}{15} = 12$$
+                    </p>
+                    <p><strong>Langkah 2: Cari pasangan faktor $(x, y)$ dari $12$ yang saling koprima ($\text{FPB}(x, y) = 1$)</strong></p>
+                    <ul>
+                        <li><strong>Pasangan 1:</strong> $x = 1$ dan $y = 12$. Karena $\text{FPB}(1, 12) = 1$ (memenuhi), maka:
+                            $$A = 15(1) = 15 \quad \text{dan} \quad B = 15(12) = 180 \implies B - A = 165$$
+                        </li>
+                        <li><strong>Pasangan 2:</strong> $x = 2$ dan $y = 6$. Karena $\text{FPB}(2, 6) = 2 \neq 1$, pasangan ini <strong>tidak memenuhi</strong> (jika dihitung, FPB-nya akan menjadi $30$, bukan $15$).</li>
+                        <li><strong>Pasangan 3:</strong> $x = 3$ dan $y = 4$. Karena $\text{FPB}(3, 4) = 1$ (memenuhi), maka:
+                            $$A = 15(3) = 45 \quad \text{dan} \quad B = 15(4) = 60 \implies B - A = 15$$
+                        </li>
+                    </ul>
+                    <div class="kesimpulan">
+                        Jadi, pasangan $(A, B)$ yang memenuhi adalah $(15, 180)$ atau $(45, 60)$, dengan selisih terkecil $B - A = 15$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Tentukan berapa banyak bilangan bulat $n$ (baik positif, nol, maupun negatif) yang menyebabkan bentuk pecahan aljabar berikut bernilai <strong>bilangan bulat</strong>:
+                    $$\frac{3n + 19}{n - 3}$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Sederhanakan pecahan dengan memisahkan bagian bulatnya</strong></p>
+                    <p>
+                        Munculkan bentuk penyebut $(n - 3)$ pada bagian pembilang:
+                        $$\frac{3n + 19}{n - 3} = \frac{3(n - 3) + 9 + 19}{n - 3} = \frac{3(n - 3) + 28}{n - 3} = 3 + \frac{28}{n - 3}$$
+                    </p>
+                    <p><strong>Langkah 2: Analisis syarat keterbagian pada $\mathbb{Z}$</strong></p>
+                    <p>
+                        Karena $3$ sudah merupakan bilangan bulat, maka $3 + \frac{28}{n - 3}$ bernilai bilangan bulat jika dan hanya jika $(n - 3)$ merupakan <strong>faktor bulat (positif maupun negatif) dari $28$</strong>, yaitu $(n - 3) \mid 28$.
+                    </p>
+                    <p>
+                        Faktorisasi prima dari $28$ adalah $28 = 2^2 \times 7^1$. Banyaknya faktor bulat positif dari $28$ adalah:
+                        $$\tau(28) = (2 + 1)(1 + 1) = 3 \times 2 = 6 \text{ faktor positif } \{1, 2, 4, 7, 14, 28\}$$
+                        Karena $n \in \mathbb{Z}$ boleh menghasilkan $(n - 3)$ yang bernilai negatif ($\{-1, -2, -4, -7, -14, -28\}$), maka total nilai $(n - 3)$ yang memenuhi ada sebanyak $2 \times 6 = 12$ nilai. Setiap nilai $(n - 3)$ memberikan tepat satu bilangan bulat $n$.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, terdapat $12$ bilangan bulat $n$ yang membuat pecahan $\dfrac{3n + 19}{n - 3}$ bernilai bilangan bulat.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 5 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 5</div>
+                <div class="soal-teks">
+                    Tentukan semua pasangan bilangan bulat $(x, y) \in \mathbb{Z} \times \mathbb{Z}$ yang memenuhi persamaan:
+                    $$x^2 - y^2 = 15 \quad \text{dengan syarat } x > 0$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Faktorkan bentuk selisih dua kuadrat</strong></p>
+                    <p>
+                        $$(x - y)(x + y) = 15$$
+                        Karena $x, y \in \mathbb{Z}$, maka $(x - y)$ dan $(x + y)$ adalah pasangan faktor bulat dari $15$. Selain itu, perhatikan bahwa jumlah kedua faktor tersebut adalah $(x - y) + (x + y) = 2x$. Karena diketahui $x > 0$, maka jumlah kedua faktornya harus positif, dan karena $y^2 \ge 0$, berlaku $x = \sqrt{15 + y^2} > |y|$, sehingga kedua faktor $(x - y)$ dan $(x + y)$ pasti bernilai <strong>bulat positif</strong>.
+                    </p>
+                    <p><strong>Langkah 2: Uji semua pasangan faktor positif dari $15$</strong></p>
+                    <p>
+                        Pasangan faktor positif dari $15$ adalah $(1, 15), \, (15, 1), \, (3, 5),$ dan $(5, 3)$. Gunakan rumus eliminasi $x = \frac{F_1 + F_2}{2}$ dan $y = \frac{F_2 - F_1}{2}$:
+                    </p>
+                    <ul>
+                        <li>Jika $x - y = 1$ dan $x + y = 15 \implies x = \frac{1+15}{2} = 8$ dan $y = \frac{15-1}{2} = 7 \implies (8, 7)$.</li>
+                        <li>Jika $x - y = 15$ dan $x + y = 1 \implies x = \frac{15+1}{2} = 8$ dan $y = \frac{1-15}{2} = -7 \implies (8, -7)$.</li>
+                        <li>Jika $x - y = 3$ dan $x + y = 5 \implies x = \frac{3+5}{2} = 4$ dan $y = \frac{5-3}{2} = 1 \implies (4, 1)$.</li>
+                        <li>Jika $x - y = 5$ dan $x + y = 3 \implies x = \frac{5+3}{2} = 4$ dan $y = \frac{3-5}{2} = -1 \implies (4, -1)$.</li>
+                    </ul>
+                    <div class="kesimpulan">
+                        Jadi, terdapat $4$ pasangan bilangan bulat $(x, y)$ yang memenuhi, yaitu $(8, 7), \, (8, -7), \, (4, 1),$ dan $(4, -1)$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Ilustrasi Garis Bilangan Bulat (Partisi Negatif, Nol, Positif & Simetri Nilai Mutlak)
+            const elGaris = document.getElementById("svg-garis-bilangan-bulat");
+            if (elGaris && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elGaris, 375, 195, {
+                    viewBox: "0 0 375 195",
+                    title: "Garis Bilangan Bulat: Bilangan Negatif, Nol, dan Positif"
+                });
+
+                geo1.buatTeks(187.5, 16, "Partisi Himpunan Bilangan Bulat (Z) pada Garis Bilangan", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const yLine = 98;
+                const xZero = 187.5;
+                const step = 36;
+
+                // Kotak penanda Z- (Kiri) dan Z+ (Kanan)
+                geo1.buatPersegiPanjang(26, 36, 138, 42, {
+                    radius: 6,
+                    fill: "rgba(217, 119, 6, 0.12)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.4,
+                    dashed: "3 2"
+                });
+                geo1.buatTeks(95, 50, "Bulat Negatif (Z⁻)", {
+                    position: "middle-center", fontSize: "10px", fontWeight: "bold", fill: "#b45309"
+                });
+                geo1.buatTeks(95, 65, "{..., -4, -3, -2, -1}", {
+                    position: "middle-center", fontSize: "9.5px", fontWeight: "bold", fill: "#b45309"
+                });
+
+                geo1.buatPersegiPanjang(211, 36, 138, 42, {
+                    radius: 6,
+                    fill: "rgba(13, 148, 136, 0.12)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.4,
+                    dashed: "3 2"
+                });
+                geo1.buatTeks(280, 50, "Bulat Positif (Z⁺ = N)", {
+                    position: "middle-center", fontSize: "10px", fontWeight: "bold", fill: "#0f766e"
+                });
+                geo1.buatTeks(280, 65, "{1, 2, 3, 4, ...}", {
+                    position: "middle-center", fontSize: "9.5px", fontWeight: "bold", fill: "#0f766e"
+                });
+
+                // Garis bilangan dua arah (vektor ke kiri dan ke kanan dari 0)
+                geo1.buatVektor(xZero, yLine, 14, yLine, { stroke: "#475569", strokeWidth: 2 });
+                geo1.buatVektor(xZero, yLine, 361, yLine, { stroke: "#475569", strokeWidth: 2 });
+
+                // Titik-titik bilangan bulat -4 s.d. 4
+                for (let k = -4; k <= 4; k++) {
+                    const cx = xZero + k * step;
+                    let col = "#475569";
+                    if (k < 0) col = "#d97706";
+                    if (k > 0) col = "#0f766e";
+
+                    geo1.buatTitik(cx, yLine, {
+                        size: k === 0 ? 5.5 : 4.5,
+                        marker: k === 0 ? "empty-circle" : "full-circle",
+                        color: col
+                    });
+
+                    geo1.buatTeks(cx, yLine + 16, String(k), {
+                        position: "bottom-center",
+                        fontSize: "11px",
+                        fontWeight: "bold",
+                        fill: col
+                    });
+                }
+
+                // Busur simetri nilai mutlak |-3| = |3| = 3 di bagian bawah
+                const xMin3 = xZero - 3 * step;
+                const xPlus3 = xZero + 3 * step;
+                geo1.buatKurvaBezier(
+                    [[xZero - 3, yLine + 32], [(xZero + xMin3) / 2, yLine + 64], [xMin3 + 3, yLine + 32]],
+                    { stroke: "#d97706", strokeWidth: 1.5, dashed: "3 2" }
+                );
+                geo1.buatTeks((xZero + xMin3) / 2, yLine + 58, "|-3| = 3", {
+                    position: "bottom-center", fontSize: "9.5px", fontWeight: "bold", fill: "#b45309"
+                });
+
+                geo1.buatKurvaBezier(
+                    [[xZero + 3, yLine + 32], [(xZero + xPlus3) / 2, yLine + 64], [xPlus3 - 3, yLine + 32]],
+                    { stroke: "#0f766e", strokeWidth: 1.5, dashed: "3 2" }
+                );
+                geo1.buatTeks((xZero + xPlus3) / 2, yLine + 58, "|+3| = 3", {
+                    position: "bottom-center", fontSize: "9.5px", fontWeight: "bold", fill: "#0f766e"
+                });
+
+                geo1.buatTeks(xZero, 55, "Nol {0}", {
+                    position: "middle-center", fontSize: "9.5px", fontWeight: "bold", fill: "#334155"
+                });
+                geo1.buatVektor(xZero, 64, xZero, yLine - 9, { stroke: "#64748b", strokeWidth: 1.2 });
+            }
+
+            // 2. Ilustrasi Algoritma Pembagian Bilangan Bulat Negatif: -17 = 5(-4) + 3
+            const elAlgo = document.getElementById("svg-algoritma-pembagian");
+            if (elAlgo && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elAlgo, 370, 185, {
+                    viewBox: "0 0 370 185",
+                    title: "Visualisasi Algoritma Pembagian -17 dibagi 5 pada Garis Bilangan"
+                });
+
+                geo2.buatTeks(185, 16, "Algoritma Pembagian: -17 = 5 × (-4) + 3  (Sisa r = +3)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const yL = 105;
+                geo2.buatVektor(18, yL, 354, yL, { stroke: "#475569", strokeWidth: 1.8 });
+
+                // Titik kelipatan 5: -20 (x=65), -15 (x=185), -10 (x=305)
+                // Skala: 1 satuan = 24 px -> -17 berada di x = 65 + 3*24 = 137
+                const x20 = 65;
+                const x17 = 137;
+                const x15 = 185;
+                const x10 = 305;
+
+                const ticks = [
+                    { x: x20, val: "-20", sub: "5 × (-4)", col: "#0f766e" },
+                    { x: x15, val: "-15", sub: "5 × (-3)", col: "#64748b" },
+                    { x: x10, val: "-10", sub: "5 × (-2)", col: "#64748b" }
+                ];
+
+                ticks.forEach(t => {
+                    geo2.buatSegmen(t.x, yL - 6, t.x, yL + 6, { stroke: t.col, strokeWidth: 2 });
+                    geo2.buatTeks(t.x, yL + 18, t.val, {
+                        position: "bottom-center", fontSize: "11px", fontWeight: "bold", fill: t.col
+                    });
+                    geo2.buatTeks(t.x, yL + 34, t.sub, {
+                        position: "bottom-center", fontSize: "9.5px", fontWeight: "bold", fill: t.col
+                    });
+                });
+
+                // Titik -17 yang dibagi
+                geo2.buatTitik(x17, yL, { size: 5.5, color: "#d97706" });
+                geo2.buatTeks(x17, yL + 18, "-17", {
+                    position: "bottom-center", fontSize: "11.5px", fontWeight: "bold", fill: "#b45309"
+                });
+
+                // Panah sisa positif r = +3 dari -20 ke kanan menuju -17
+                geo2.buatKurvaBezier(
+                    [[x20 + 2, yL - 8], [(x20 + x17) / 2, yL - 48], [x17 - 3, yL - 8]],
+                    { stroke: "#0f766e", strokeWidth: 2 }
+                );
+                geo2.buatVektor((x20 + x17) / 2 + 12, yL - 25, x17 - 3, yL - 8, {
+                    stroke: "#0f766e", strokeWidth: 1.8
+                });
+                geo2.buatTeks((x20 + x17) / 2, yL - 38, "r = +3 (Benar: 0 ≤ r < 5)", {
+                    position: "top-center", fontSize: "10px", fontWeight: "bold", fill: "#0f766e"
+                });
+
+                // Panah selisih salah dari -15 ke kiri menuju -17
+                geo2.buatKurvaBezier(
+                    [[x15 - 2, yL - 8], [(x15 + x17) / 2, yL - 32], [x17 + 3, yL - 8]],
+                    { stroke: "#dc2626", strokeWidth: 1.4, dashed: "3 2" }
+                );
+                geo2.buatTeks((x15 + x17) / 2 + 18, yL - 22, "-2 (Bukan Sisa)", {
+                    position: "top-center", fontSize: "9.5px", fontWeight: "bold", fill: "#dc2626"
+                });
+
+                geo2.buatTeks(185, 168, "Ambil kelipatan pembagi tepat di sebelah KIRI (-20), lalu maju +3", {
+                    position: "middle-center", fontSize: "10px", fontWeight: "bold", fill: "#475569"
+                });
+            }
+
+            // 3. Ilustrasi Diagram Venn Faktor Prima untuk FPB & KPK
+            const elVenn = document.getElementById("svg-fpb-kpk");
+            if (elVenn && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elVenn, 360, 195, {
+                    viewBox: "0 0 360 195",
+                    title: "Diagram Venn Faktorisasi Prima FPB dan KPK"
+                });
+
+                geo3.buatTeks(180, 16, "Relasi Struktur: A = d·x , B = d·y dengan FPB(x, y) = 1", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Lingkaran A (Kiri) dan Lingkaran B (Kanan)
+                const cx1 = 135, cx2 = 225, cy = 96, r = 56;
+                geo3.buatLingkaran(cx1, cy, r, {
+                    fill: "rgba(13, 148, 136, 0.14)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.8
+                });
+                geo3.buatLingkaran(cx2, cy, r, {
+                    fill: "rgba(217, 119, 6, 0.14)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.8
+                });
+
+                // Label A dan B di atas lingkaran
+                geo3.buatTeks(cx1 - 24, 32, "Bilangan A", {
+                    position: "middle-center", fontSize: "10.5px", fontWeight: "bold", fill: "#0f766e"
+                });
+                geo3.buatTeks(cx2 + 24, 32, "Bilangan B", {
+                    position: "middle-center", fontSize: "10.5px", fontWeight: "bold", fill: "#b45309"
+                });
+
+                // Isi bagian kiri (x), tengah/irisan (d = FPB), dan kanan (y)
+                geo3.buatTeks(104, cy - 6, "x", {
+                    position: "middle-center", fontSize: "15px", fontWeight: "bold", fill: "#0f766e"
+                });
+                geo3.buatTeks(104, cy + 12, "(Unik A)", {
+                    position: "middle-center", fontSize: "9px", fontWeight: "bold", fill: "#0f766e"
+                });
+
+                geo3.buatTeks(180, cy - 8, "d", {
+                    position: "middle-center", fontSize: "15px", fontWeight: "bold", fill: "#0f172a"
+                });
+                geo3.buatTeks(180, cy + 10, "(FPB)", {
+                    position: "middle-center", fontSize: "10px", fontWeight: "bold", fill: "#0f172a"
+                });
+
+                geo3.buatTeks(256, cy - 6, "y", {
+                    position: "middle-center", fontSize: "15px", fontWeight: "bold", fill: "#b45309"
+                });
+                geo3.buatTeks(256, cy + 12, "(Unik B)", {
+                    position: "middle-center", fontSize: "9px", fontWeight: "bold", fill: "#b45309"
+                });
+
+                // Kotak kesimpulan rumus di bawah
+                geo3.buatPersegiPanjang(24, 160, 312, 26, {
+                    radius: 6,
+                    fill: "rgba(13, 148, 136, 0.10)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.3
+                });
+                geo3.buatTeks(180, 173, "FPB(A, B) = d   |   KPK(A, B) = d · x · y   |   A · B = FPB × KPK", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

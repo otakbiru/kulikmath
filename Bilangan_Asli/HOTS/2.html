@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bilangan Asli</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bilangan Asli</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 11 -->
+        <article class="soal-item" id="11">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan \(a\), \(b\), dan \(c\) adalah tiga bilangan asli berbeda sedemikian sehingga:
+                \[\dfrac{a}{b}+\dfrac{a}{c}, \quad \dfrac{b}{c}+\dfrac{b}{a}, \quad \dfrac{c}{a}+\dfrac{c}{b}\]
+                masing-masing merupakan bilangan bulat. Berapakah nilai terkecil dari \(a + b + c\)?
+            </div>
+            <div class="soal-sumber"><a href="https://www.pendidikmatematika.com/" target="_blank" rel="noopener noreferrer">Tryout OSN-K Matematika SMA 2023</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Tanpa mengurangi keumuman (WLOG), misalkan \(a < b < c\).</p>
+                    <p>Tinjau bentuk pecahan pertama:</p>
+                    \[
+                    \dfrac{a}{b} + \dfrac{a}{c} = a\left(\dfrac{b+c}{bc}\right)
+                    \]
+                    <ul>
+                        <li>Jika \(a = 1\): \(\dfrac{1}{b} + \dfrac{1}{c}\) merupakan bilangan bulat. Karena \(b < c\), maka \(\dfrac{1}{b} + \dfrac{1}{c} < 1\) untuk \(b \ge 2\), sehingga tidak ada solusi bilangan bulat bulat selain \(b=c=2\) yang bertentangan dengan syarat bilangan berbeda.</li>
+                        <li>Jika \(a = 2\):
+                        \[\dfrac{2}{b} + \dfrac{2}{c} = 2\left(\dfrac{b+c}{bc}\right)\]
+                        Agar bernilai bulat positif (karena \(a < b < c\), nilainya harus 1):
+                        \[
+                        \begin{aligned}
+                        2(b + c) &= bc \\
+                        bc - 2b - 2c &= 0 \\
+                        (b - 2)(c - 2) &= 4
+                        \end{aligned}
+                        \]
+                        Karena \(b < c\) dan \(b > a = 2\), maka \(b - 2 < c - 2\), sehingga pasangan faktor dari 4 yang mungkin adalah \(b - 2 = 1\) dan \(c - 2 = 4\).
+                        Diperoleh \(b = 3\) dan \(c = 6\).
+                        </li>
+                    </ul>
+                    <p>Uji untuk ketiga pecahan dengan \(a = 2, b = 3, c = 6\):</p>
+                    <ul>
+                        <li>\(\dfrac{2}{3} + \dfrac{2}{6} = 1\) (bulat)</li>
+                        <li>\(\dfrac{3}{6} + \dfrac{3}{2} = 2\) (bulat)</li>
+                        <li>\(\dfrac{6}{2} + \dfrac{6}{3} = 3 + 2 = 5\) (bulat)</li>
+                    </ul>
+                    <p>Maka nilai terkecil dari \(a + b + c\) adalah \(2 + 3 + 6 = 11\).</p>
+                    <div class="kesimpulan">Jadi, nilai terkecil dari \(a + b + c\) adalah 11.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 12 -->
+        <article class="soal-item" id="12">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan \(s(n)\) menyatakan kuadrat dari jumlah angka-angka dari bilangan asli \(n\) pada representasi desimalnya, sebagai contoh \(s(23) = (2 + 3)^2 = 25\). Didefinisikan aturan: \(s^2(n) = s(s(n))\) dan \(s^{k+1}(n) = s^k(s(n))\) untuk setiap bilangan asli \(k\). Tentukan nilai dari \(s^{2023}(13)\).
+            </div>
+            <div class="soal-sumber"><a href="https://www.pendidikmatematika.com/" target="_blank" rel="noopener noreferrer">Tryout OSN-K Matematika SMA 2023</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Hitung nilai iterasi berturut-turut untuk \(n = 13\):</p>
+                    \[
+                    \begin{aligned}
+                    s^1(13) &= (1 + 3)^2 = 4^2 = 16 \\
+                    s^2(13) &= s(16) = (1 + 6)^2 = 7^2 = 49 \\
+                    s^3(13) &= s(49) = (4 + 9)^2 = 13^2 = 169 \\
+                    s^4(13) &= s(169) = (1 + 6 + 9)^2 = 16^2 = 256 \\
+                    s^5(13) &= s(256) = (2 + 5 + 6)^2 = 13^2 = 169
+                    \end{aligned}
+                    \]
+                    <p>Terlihat pola berulang dengan periode 2 untuk setiap \(k \ge 3\):</p>
+                    \[
+                    s^k(13) = \begin{cases}
+                    169, & \text{jika } k \text{ ganjil} \\
+                    256, & \text{jika } k \text{ genap}
+                    \end{cases}
+                    \]
+                    <p>Karena 2023 adalah bilangan ganjil (\(2023 \ge 3\)), maka \(s^{2023}(13) = 169\).</p>
+                    <div class="kesimpulan">Jadi, nilai dari \(s^{2023}(13) = 169\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 13 -->
+        <article class="soal-item" id="13">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan barisan bilangan asli:
+                \[1, 12, 1231, 12312312, 1231231231231231, \dots\]
+                di mana suku ke-\(n\) adalah bilangan asli berisikan \(2^{n-1}\) digit yang polanya berulang dari digit 1, 2, 3, lalu kembali ke 1, dan seterusnya. Tentukan bilangan asli \(n\) terkecil sehingga suku ke-\(n\) habis dibagi 36.
+            </div>
+            <div class="soal-sumber">KTOM April 2023</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Suatu bilangan habis dibagi 36 jika dan hanya jika habis dibagi 4 dan 9 (\(\gcd(4,9)=1\)).</p>
+                    <p><b>1. Keterbagian oleh 4:</b></p>
+                    <p>Dua digit terakhir harus habis dibagi 4. Digit pada posisi ke-\(m\) berulang dengan periode 3 (1, 2, 3). Panjang bilangan suku ke-\(n\) adalah \(2^{n-1}\).
+                    Dua digit terakhir berakhiran 12 jika \(2^{n-1} \equiv 2 \pmod 3\). Karena \(2 \equiv -1 \pmod 3\), maka \((-1)^{n-1} \equiv -1 \pmod 3 \iff n-1\) ganjil \(\iff n\) genap. Misalkan \(n = 2k\).</p>
+                    <p><b>2. Keterbagian oleh 9:</b></p>
+                    <p>Dua digit terakhir adalah 12. Di sebelah kirinya ada \(2^{2k-1} - 2\) digit yang terdiri dari blok-blok penuh "123". Karena \(1+2+3 = 6\):</p>
+                    \[
+                    \text{Jumlah digit} = \dfrac{2^{2k-1}-2}{3} \times 6 + (1 + 2) = 2(2^{2k-1} - 2) + 3 = 4^k - 1
+                    \]
+                    <p>Syarat habis dibagi 9:</p>
+                    \[
+                    4^k - 1 \equiv 0 \pmod 9 \implies 4^k \equiv 1 \pmod 9
+                    \]
+                    <p>Cek perpangkatan 4 modulo 9:</p>
+                    <ul>
+                        <li>\(4^1 \equiv 4 \pmod 9\)</li>
+                        <li>\(4^2 \equiv 16 \equiv 7 \pmod 9\)</li>
+                        <li>\(4^3 \equiv 7 \times 4 = 28 \equiv 1 \pmod 9\)</li>
+                    </ul>
+                    <p>Nilai \(k\) terkecil adalah \(k = 3\), sehingga \(n = 2k = 2(3) = 6\).</p>
+                    <div class="kesimpulan">Jadi, bilangan asli \(n\) terkecil adalah 6.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 14 -->
+        <article class="soal-item" id="14">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Bilangan segitiga adalah bilangan yang berbentuk \(\dfrac{n(n+1)}{2}\), dengan \(n\) adalah bilangan asli. Banyaknya bilangan segitiga yang kurang dari 100 adalah ...
+                <ol class="pilgan pilgan-5kolom">
+                    <li>8</li>
+                    <li>9</li>
+                    <li>10</li>
+                    <li>13</li>
+                    <li>15</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">OSK SMP 2004</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Syarat bilangan segitiga kurang dari 100:</p>
+                    \[
+                    \begin{aligned}
+                    \dfrac{n(n+1)}{2} &< 100 \\
+                    n(n+1) &< 200
+                    \end{aligned}
+                    \]
+                    <p>Uji nilai \(n \in \mathbb{N}\):</p>
+                    <ul>
+                        <li>Untuk \(n = 13\): \(13 \times 14 = 182 < 200\) (memenuhi, bilangan segitiga ke-13 adalah \(\dfrac{182}{2} = 91\)).</li>
+                        <li>Untuk \(n = 14\): \(14 \times 15 = 210 > 200\) (tidak memenuhi).</li>
+                    </ul>
+                    <p>Karena \(n\) dimulai dari 1 sampai 13, maka banyaknya bilangan segitiga yang kurang dari 100 adalah 13 buah.</p>
+                    <div class="kesimpulan">Jadi, banyaknya bilangan segitiga yang kurang dari 100 adalah 13.<br><b>JAWAB: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 15 -->
+        <article class="soal-item" id="15">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sebuah bilangan bulat positif dikatakan <i>wah</i> jika bilangan tersebut terdiri dari 3 digit, dan semua digit penyusunnya adalah bilangan prima. Contoh bilangan <i>wah</i> adalah 232 dan 777. Banyaknya bilangan <i>wah</i> yang berbeda adalah ...
+                <ol class="pilgan pilgan-5kolom">
+                    <li>27</li>
+                    <li>64</li>
+                    <li>81</li>
+                    <li>125</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">KTOM - TO OSK SMP 2023</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Digit-digit yang merupakan bilangan prima (1 digit) adalah: \(\{2, 3, 5, 7\}\) (ada 4 angka).</p>
+                    <p>Karena bilangan tersebut terdiri dari 3 digit dan setiap digit bebas dipilih dari keempat angka prima tersebut (termasuk digit ratusan karena tidak memuat 0):</p>
+                    <ul>
+                        <li>Digit ratusan: 4 pilihan</li>
+                        <li>Digit puluhan: 4 pilihan</li>
+                        <li>Digit satuan: 4 pilihan</li>
+                    </ul>
+                    \[
+                    \text{Banyaknya bilangan } = 4 \times 4 \times 4 = 4^3 = \boxed{\boxed{64}}
+                    \]
+                    <div class="kesimpulan">Jadi, banyaknya bilangan <i>wah</i> yang berbeda ada sebanyak 64.<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 16 -->
+        <article class="soal-item" id="16">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan banyak bilangan asli \(n\) sedemikian sehingga ekspresi:
+                \[\dfrac{n^{2024}}{n+1}+\dfrac{5}{n^2+n}\]
+                merupakan bilangan asli.
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM Agustus 2023</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Samakan penyebut kedua pecahan:</p>
+                    \[
+                    \dfrac{n^{2024}}{n+1} + \dfrac{5}{n(n+1)} = \dfrac{n^{2025} + 5}{n(n+1)}
+                    \]
+                    <p>Perhatikan bahwa \(n^{2025} + 5 \equiv 5 \pmod n\), sehingga agar habis dibagi \(n\), maka \(n \mid 5 \implies n \in \{1, 5\}\).</p>
+                    <p>Uji nilai \(n\):</p>
+                    <ul>
+                        <li>Untuk \(n = 1\):
+                        \[\dfrac{1^{2025} + 5}{1(1+1)} = \dfrac{6}{2} = 3 \in \mathbb{N} \quad (\text{memenuhi})\]
+                        </li>
+                        <li>Untuk \(n = 5\):
+                        \[n(n+1) = 5 \times 6 = 30\]
+                        Periksa keterbagian oleh \(n+1 = 6\):
+                        \[5^{2025} + 5 \equiv (-1)^{2025} + 5 \equiv -1 + 5 = 4 \not\equiv 0 \pmod 6\]
+                        Sehingga untuk \(n = 5\) pecahan bukan bilangan bulat.
+                        </li>
+                    </ul>
+                    <p>Hanya ada 1 bilangan asli yang memenuhi, yaitu \(n = 1\).</p>
+                    <div class="kesimpulan">Jadi, banyak bilangan asli \(n\) yang memenuhi adalah 1 bilangan.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 17 -->
+        <article class="soal-item" id="17">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan sebuah bilangan asli \(n\) dan bilangan-bilangan real \(-1 \le a_1, a_2, \dots, a_n \le 2\) sehingga hasil penjumlahan seluruh suku tersebut adalah 0:
+                \[\sum_{i=1}^n a_i = 0\]
+                Buktikan bahwa:
+                \[a_1^2 + a_2^2 + \cdots + a_n^2 \le 2n\]
+            </div>
+            <div class="soal-sumber">KTOM Oktober 2023</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena \(-1 \le a_i \le 2\) untuk setiap \(i = 1, 2, \dots, n\), maka:</p>
+                    \[
+                    \begin{aligned}
+                    (a_i + 1)(a_i - 2) &\le 0 \\
+                    a_i^2 - a_i - 2 &\le 0 \\
+                    a_i^2 &\le a_i + 2
+                    \end{aligned}
+                    \]
+                    <p>Jumlahkan pertidaksamaan tersebut untuk semua \(i = 1, 2, \dots, n\):</p>
+                    \[
+                    \sum_{i=1}^n a_i^2 \le \sum_{i=1}^n (a_i + 2) = \sum_{i=1}^n a_i + \sum_{i=1}^n 2
+                    \]
+                    <p>Diketahui bahwa \(\displaystyle\sum_{i=1}^n a_i = 0\), maka diperoleh:</p>
+                    \[
+                    \sum_{i=1}^n a_i^2 \le 0 + 2n = 2n
+                    \]
+                    <div class="kesimpulan">Jadi, terbukti bahwa \(a_1^2 + a_2^2 + \cdots + a_n^2 \le 2n\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 18 -->
+        <article class="soal-item" id="18">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Apabila \(a, b\) adalah bilangan asli yang relatif prima dan \(a \times b = 25!\), tentukan banyaknya bilangan rasional yang dapat dinyatakan dalam bentuk \(\dfrac{a}{b}\).
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Latihan OSK 2024 SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Banyaknya bilangan prima yang kurang dari atau sama dengan 25 adalah 9 bilangan:</p>
+                    \[2, 3, 5, 7, 11, 13, 17, 19, 23\]
+                    <p>Sehingga faktorisasi prima dari \(25!\) dapat dituliskan dalam bentuk:</p>
+                    \[25! = 2^{e_1} \times 3^{e_2} \times 5^{e_3} \times 7^{e_4} \times 11^{e_5} \times 13^{e_6} \times 17^{e_7} \times 19^{e_8} \times 23^{e_9}\]
+                    <p>Karena \(a\) dan \(b\) relatif prima (\(\gcd(a, b) = 1\)), maka untuk setiap faktor prima \(p_i^{e_i}\), seluruh faktor tersebut harus dialokasikan ke \(a\) saja atau ke \(b\) saja (tidak boleh terbagi antara \(a\) dan \(b\)).</p>
+                    <p>Karena ada 9 faktor prima yang berbeda, masing-masing memiliki 2 pilihan alokasi (sebagai pembilang \(a\) atau penyebut \(b\)):</p>
+                    \[
+                    2^9 = \boxed{\boxed{512}}
+                    \]
+                    <div class="kesimpulan">Jadi, banyaknya bilangan rasional yang dapat dibentuk adalah 512.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 19 -->
+        <article class="soal-item" id="19">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan banyaknya bilangan empat digit \(\overline{abcd}\) sehingga \(\overline{abcd}\) dan \(\overline{dbca}\) keduanya habis dibagi 7.
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Latihan OSK 2024 SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena \(\overline{abcd} \equiv 0 \pmod 7\) dan \(\overline{dbca} \equiv 0 \pmod 7\), maka selisihnya juga habis dibagi 7:</p>
+                    \[
+                    \overline{abcd} - \overline{dbca} = 999(a - d) \equiv 0 \pmod 7
+                    \]
+                    <p>Karena \(999 = 7 \times 142 + 5 \equiv 5 \pmod 7\), maka haruslah \(a \equiv d \pmod 7\).</p>
+                    <p>Karena \(a\) dan \(d\) adalah digit pertama dari bilangan empat digit (\(a, d \in \{1, 2, \dots, 9\}\)):</p>
+                    <ul>
+                        <li>Jika \(a, d \in \{1, 8\}\): ada \(2 \times 2 = 4\) pasang.</li>
+                        <li>Jika \(a, d \in \{2, 9\}\): ada \(2 \times 2 = 4\) pasang.</li>
+                        <li>Jika \(a = d \in \{3, 4, 5, 6, 7\}\): ada 5 pasang.</li>
+                    </ul>
+                    <p>Total pasangan \((a, d)\) adalah \(4 + 4 + 5 = 13\) pasang.</p>
+                    <p>Selanjutnya tinjau \(\overline{abcd}\):</p>
+                    \[
+                    \begin{aligned}
+                    1000a + 100b + 10c + d &\equiv 0 \pmod 7 \\
+                    -a + 10\overline{bc} + d &\equiv 0 \pmod 7
+                    \end{aligned}
+                    \]
+                    <p>Karena \(a \equiv d \pmod 7\), maka \(-a + d \equiv 0 \pmod 7\), sehingga diperoleh:</p>
+                    \[
+                    10\overline{bc} \equiv 0 \pmod 7 \implies \overline{bc} \equiv 0 \pmod 7
+                    \]
+                    <p>Nilai \(\overline{bc}\) dapat bernilai dari \(00\) hingga \(98\) kelipatan 7: \(00, 07, 14, \dots, 98\). Ada \(\dfrac{98}{7} + 1 = 15\) kemungkinan nilai \(\overline{bc}\).</p>
+                    <p>Banyaknya bilangan empat digit adalah:</p>
+                    \[
+                    13 \times 15 = \boxed{\boxed{195}}
+                    \]
+                    <div class="kesimpulan">Jadi, banyaknya bilangan empat digit yang memenuhi adalah 195.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 20 -->
+        <article class="soal-item" id="20">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jumlah semua bilangan asli yang kurang dari atau sama dengan 250 tanpa melibatkan bilangan kuadrat maupun bilangan pangkat tiga adalah ...
+            </div>
+            <div class="soal-sumber">Evaluasi GMOM Februari 2024 tingkat SMA</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan Prinsip Inklusi-Eksklusi (PIE):</p>
+                    <p><b>1. Jumlah semua bilangan asli \(\le 250\):</b></p>
+                    \[
+                    S = \sum_{k=1}^{250} k = \dfrac{250 \times 251}{2} = 31375
+                    \]
+                    <p><b>2. Jumlah bilangan kuadrat \(\le 250\) (\(15^2 = 225 \le 250\)):</b></p>
+                    \[
+                    S_2 = \sum_{k=1}^{15} k^2 = \dfrac{15 \times 16 \times 31}{6} = 1240
+                    \]
+                    <p><b>3. Jumlah bilangan pangkat tiga (kubik) \(\le 250\) (\(6^3 = 216 \le 250\)):</b></p>
+                    \[
+                    S_3 = \sum_{k=1}^6 k^3 = \left(\dfrac{6 \times 7}{2}\right)^2 = 21^2 = 441
+                    \]
+                    <p><b>4. Jumlah bilangan pangkat enam \(\le 250\) (\(2^6 = 64 \le 250\)):</b></p>
+                    \[
+                    S_6 = 1^6 + 2^6 = 1 + 64 = 65
+                    \]
+                    <p>Maka jumlah bilangan yang dicari adalah:</p>
+                    \[
+                    \begin{aligned}
+                    \text{Jumlah} &= S - S_2 - S_3 + S_6 \\
+                    &= 31375 - 1240 - 441 + 65 = \boxed{\boxed{29759}}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, jumlahnya adalah 29759.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

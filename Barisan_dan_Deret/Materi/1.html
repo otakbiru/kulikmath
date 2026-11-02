@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Barisan dan Deret</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Barisan dan Deret</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Konsep Dasar Pola Bilangan, Barisan, dan Deret</h2>
+            <p>
+                Dalam matematika, <strong>pola bilangan</strong> adalah susunan bilangan yang memiliki aturan atau keteraturan tertentu. Dari konsep pola bilangan ini, kita mengenal dua istilah fundamental yang saling berkaitan erat namun memiliki makna yang berbeda, yaitu <strong>barisan bilangan</strong> dan <strong>deret bilangan</strong>.
+            </p>
+            <ul>
+                <li>
+                    <strong>Barisan Bilangan:</strong> Urutan bilangan-bilangan yang disusun berdasarkan aturan atau fungsi tertentu yang memetakan bilangan asli $n \in \{1, 2, 3, \dots\}$ ke suku ke-$n$ ($U_n$). Setiap bilangan penyusunnya dipisahkan dengan tanda koma:
+                    $$U_1, \, U_2, \, U_3, \, U_4, \, \dots, \, U_n$$
+                </li>
+                <li>
+                    <strong>Deret Bilangan:</strong> Penjumlahan beruntun dari suku-suku pada suatu barisan bilangan. Jumlah $n$ suku pertama dari suatu barisan dilambangkan dengan $S_n$:
+                    $$S_n = U_1 + U_2 + U_3 + U_4 + \dots + U_n$$
+                </li>
+            </ul>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pola Bilangan Khusus</th>
+                            <th>Barisan Bilangan ($U_1, U_2, U_3, U_4, \dots$)</th>
+                            <th>Rumus Suku ke-$n$ ($U_n$)</th>
+                            <th>Rumus Jumlah $n$ Suku Pertama ($S_n$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Bilangan Asli</strong></td>
+                            <td>$1, 2, 3, 4, 5, \dots$</td>
+                            <td>$$U_n = n$$</td>
+                            <td>$$S_n = \frac{n(n+1)}{2}$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bilangan Genap Positif</strong></td>
+                            <td>$2, 4, 6, 8, 10, \dots$</td>
+                            <td>$$U_n = 2n$$</td>
+                            <td>$$S_n = n(n+1)$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bilangan Ganjil Positif</strong></td>
+                            <td>$1, 3, 5, 7, 9, \dots$</td>
+                            <td>$$U_n = 2n - 1$$</td>
+                            <td>$$S_n = n^2$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bilangan Persegi (Kuadrat)</strong></td>
+                            <td>$1, 4, 9, 16, 25, \dots$</td>
+                            <td>$$U_n = n^2$$</td>
+                            <td>$$S_n = \frac{n(n+1)(2n+1)}{6}$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bilangan Segitiga</strong></td>
+                            <td>$1, 3, 6, 10, 15, \dots$</td>
+                            <td>$$U_n = \frac{n(n+1)}{2}$$</td>
+                            <td>$$S_n = \frac{n(n+1)(n+2)}{6}$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bilangan Persegi Panjang</strong></td>
+                            <td>$2, 6, 12, 20, 30, \dots$</td>
+                            <td>$$U_n = n(n+1)$$</td>
+                            <td>$$S_n = \frac{n(n+1)(n+2)}{3}$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Representasi Geometris Pola Bilangan:</strong><br>
+                        Banyak pola bilangan yang dinamai berdasarkan susunan titik (noktah) bangun datar. Sebagai contoh, <em>bilangan segitiga</em> ($1, 3, 6, 10, \dots$) menyatakan banyaknya titik yang dapat menyusun segitiga sama sisi berjenjang, sedangkan <em>bilangan persegi</em> ($1, 4, 9, 16, \dots$) menyusun kisi persegi berukuran $n \times n$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-pola-figurat" style="width: 100%; max-width: 380px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Hubungan Fundamental antara Suku ke-$n$ ($U_n$) dan Jumlah Suku ($S_n$)</h2>
+            <p>
+                Pada <strong>semua jenis barisan dan deret</strong> (baik aritmetika, geometri, maupun deret sembarang), apabila rumus jumlah $n$ suku pertama ($S_n$) diketahui, kita dapat menentukan nilai suku ke-$n$ ($U_n$) dengan mengurangkan jumlah $n$ suku pertama terhadap jumlah $(n-1)$ suku pertama.
+            </p>
+            <p>
+                Perhatikan uraian penjumlahan berikut:
+                $$S_n = \underbrace{U_1 + U_2 + U_3 + \dots + U_{n-1}}_{S_{n-1}} + U_n \iff S_n = S_{n-1} + U_n$$
+                Dengan demikian, berlaku identitas universal barisan dan deret:
+                $$U_n = \begin{cases} S_1, & \text{untuk } n = 1 \\[6pt] S_n - S_{n-1}, & \text{untuk } n \ge 2 \end{cases}$$
+            </p>
+
+            <h2>3. Notasi Sigma ($\Sigma$) dan Sifat-Sifatnya</h2>
+            <p>
+                <strong>Notasi Sigma ($\sum$)</strong> adalah simbol matematika (berasal dari huruf kapital Yunani <em>Sigma</em> yang berarti <em>Sum</em> atau penjumlahan) untuk menuliskan penjumlahan beruntun yang panjang secara ringkas dan sistematis:
+                $$\sum_{k=1}^{n} U_k = U_1 + U_2 + U_3 + \dots + U_n$$
+                Keterangan: $k$ disebut indeks penjumlahan, $1$ adalah batas bawah penjumlahan, $n$ adalah batas atas penjumlahan, dan $U_k$ adalah rumus umum suku yang dijumlahkan.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sifat Notasi Sigma</th>
+                            <th>Rumus Matematika</th>
+                            <th>Penjelasan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Penjumlahan Konstanta</strong></td>
+                            <td>$$\sum_{k=1}^{n} c = n \cdot c$$</td>
+                            <td class="text-left">Menjumlahkan konstanta $c$ sebanyak $n$ suku menghasilkan $n \times c$. (Untuk batas bawah $m$, hasilnya $(n - m + 1)c$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Perkalian Skalar</strong></td>
+                            <td>$$\sum_{k=1}^{n} \left(c \cdot U_k\right) = c \sum_{k=1}^{n} U_k$$</td>
+                            <td class="text-left">Faktor konstanta pengali $c$ (tidak memuat indeks $k$) dapat dikeluarkan ke depan tanda sigma.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kelompok Penjumlahan/Pengurangan</strong></td>
+                            <td>$$\sum_{k=1}^{n} \left(U_k \pm V_k\right) = \sum_{k=1}^{n} U_k \pm \sum_{k=1}^{n} V_k$$</td>
+                            <td class="text-left">Notasi sigma bersifat linier terhadap operasi penjumlahan dan pengurangan (tetapi <strong>tidak</strong> untuk perkalian/pembagian).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pemecahan Batas Indeks</strong></td>
+                            <td>$$\sum_{k=1}^{m} U_k + \sum_{k=m+1}^{n} U_k = \sum_{k=1}^{n} U_k$$</td>
+                            <td class="text-left">Dua sigma dengan rumus suku yang sama dan batas yang bersambung ($m$ ke $m+1$) dapat digabung ($1 < m < n$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pergeseran Batas Indeks</strong></td>
+                            <td>$$\sum_{k=m}^{n} U_k = \sum_{k=m+p}^{n+p} U_{k-p}$$</td>
+                            <td class="text-left">Jika batas bawah dan atas ditambah $p$, maka variabel $k$ di dalam rumus fungsi diganti menjadi $(k - p)$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. Barisan Aritmetika Bertingkat dan Barisan Rekursif</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>a) Barisan Aritmetika Bertingkat (Polinomial):</strong><br>
+                        Tidak semua barisan memiliki selisih yang langsung konstan pada tingkat pertama. Jika selisih antar-suku baru bernilai konstan pada <strong>tingkat kedua</strong> (barisan berderajat dua/kuadratik), maka rumus suku ke-$n$ berbentuk fungsi kuadrat $U_n = an^2 + bn + c$, atau dapat ditentukan menggunakan rumus kombinasi:
+                        $$U_n = a + \frac{(n-1)}{1!}b_1 + \frac{(n-1)(n-2)}{2!}c_1$$
+                        di mana $a = U_1$ (suku pertama barisan), $b_1 = U_2 - U_1$ (selisih pertama pada tingkat ke-$1$), dan $c_1$ adalah selisih konstan pada tingkat ke-$2$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-bertingkat" style="width: 100%; max-width: 360px;"></div>
+                </div>
+            </div>
+
+            <p>
+                <strong>b) Barisan Rekursif dan Barisan Fibonacci:</strong><br>
+                <strong>Barisan rekursif</strong> adalah barisan yang nilai sukunya didefinisikan berdasarkan nilai satu atau lebih suku-suku sebelumnya. Contoh paling terkenal adalah <strong>Barisan Fibonacci</strong> ($1, 1, 2, 3, 5, 8, 13, 21, \dots$) yang memiliki syarat awal $F_1 = 1$, $F_2 = 1$, dan relasi rekursif:
+                $$F_n = F_{n-1} + F_{n-2} \quad \text{untuk } n \ge 3$$
+            </p>
+
+            <h2>5. Jenis-Jenis Barisan dan Deret Utama (Ringkasan & Tautan Materi)</h2>
+            <p>
+                Berdasarkan pola perubahan antar-sukunya, barisan dan deret dibagi menjadi beberapa topik utama. Berikut adalah ringkasan konsep intinya beserta tautan untuk mempelajari materi lengkap, pembuktian rumus, dan variasi soal pada masing-masing topik:
+            </p>
+
+            <h3>5.1. Barisan dan Deret Aritmetika</h3>
+            <p>
+                <strong>Barisan Aritmetika</strong> adalah barisan bilangan yang memiliki selisih atau <strong>beda ($b$)</strong> yang selalu tetap (konstan) di antara dua suku yang berurutan ($b = U_n - U_{n-1}$).
+            </p>
+            <ul>
+                <li><strong>Rumus Suku ke-$n$:</strong> $U_n = a + (n - 1)b$</li>
+                <li><strong>Rumus Jumlah $n$ Suku Pertama:</strong> $S_n = \frac{n}{2}(a + U_n) = \frac{n}{2}\left(2a + (n - 1)b\right)$</li>
+                <li><strong>Suku Tengah (untuk $n$ ganjil):</strong> $U_t = \frac{a + U_n}{2}$ sehingga $S_n = n \cdot U_t$</li>
+            </ul>
+            <div class="topic-links" style="margin-bottom: 1.5rem;">
+                <a href="/Barisan_dan_Deret_Aritmetika/Materi/1.html" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
+                    📖 Pelajari Selengkapnya: Materi Barisan dan Deret Aritmetika &rarr;
+                </a>
+            </div>
+
+            <h3>5.2. Barisan dan Deret Geometri</h3>
+            <p>
+                <strong>Barisan Geometri</strong> adalah barisan bilangan yang memiliki perbandingan atau <strong>rasio ($r$)</strong> yang selalu tetap (konstan) di antara dua suku yang berurutan ($r = \frac{U_n}{U_{n-1}}$ dengan $r \neq 0$).
+            </p>
+            <ul>
+                <li><strong>Rumus Suku ke-$n$:</strong> $U_n = a \cdot r^{n-1}$</li>
+                <li><strong>Rumus Jumlah $n$ Suku Pertama ($r \neq 1$):</strong> $S_n = \frac{a(r^n - 1)}{r - 1}$ atau $S_n = \frac{a(1 - r^n)}{1 - r}$</li>
+                <li><strong>Suku Tengah (untuk $n$ ganjil):</strong> $U_t = \sqrt{a \cdot U_n}$</li>
+            </ul>
+            <div class="topic-links" style="margin-bottom: 1.5rem;">
+                <a href="/Barisan_dan_Deret_Geometri/Materi/1.html" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
+                    📖 Pelajari Selengkapnya: Materi Barisan dan Deret Geometri &rarr;
+                </a>
+            </div>
+
+            <h3>5.3. Deret Geometri Tak Hingga</h3>
+            <p>
+                <strong>Deret Geometri Tak Hingga</strong> adalah penjumlahan tak berhingga suku-suku dari barisan geometri ($U_1 + U_2 + U_3 + \dots$). Agar jumlah tak hingganya menuju satu nilai tertentu (<strong>konvergen</strong>), nilai rasionya harus memenuhi syarat $-1 < r < 1$ ($|r| < 1$).
+            </p>
+            <ul>
+                <li><strong>Jumlah Deret Tak Hingga:</strong> $S_\infty = \frac{a}{1 - r}$</li>
+                <li><strong>Pemisahan Suku Ganjil dan Suku Genap:</strong> $S_{\text{ganjil}} = \frac{a}{1 - r^2}$ dan $S_{\text{genap}} = \frac{ar}{1 - r^2}$, sehingga berlaku $r = \frac{S_{\text{genap}}}{S_{\text{ganjil}}}$.</li>
+            </ul>
+            <div class="topic-links" style="margin-bottom: 1.5rem;">
+                <a href="/Deret_Geometri_Tak_Hingga/Materi/1.html" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
+                    📖 Pelajari Selengkapnya: Materi Deret Geometri Tak Hingga &rarr;
+                </a>
+            </div>
+
+            <h3>5.4. Deret Teleskopik</h3>
+            <p>
+                <strong>Deret Teleskopik</strong> adalah deret yang setiap sukunya dapat dinyatakan sebagai selisih dari dua suku berurutan pada suatu barisan bantu ($U_k = f(k) - f(k+1)$ atau $U_k = f(k+1) - f(k)$), sehingga ketika dijumlahkan, suku-suku bagian tengahnya saling menghilangkan (saling mencoret) dan hanya menyisakan suku di ujung awal dan ujung akhir.
+            </p>
+            <ul>
+                <li><strong>Prinsip Dasar Teleskopik:</strong> $\sum_{k=1}^{n} \left(f(k) - f(k+1)\right) = f(1) - f(n+1)$</li>
+                <li><strong>Contoh Klasik Pecahan Parsial:</strong> $\sum_{k=1}^{n} \frac{1}{k(k+1)} = \sum_{k=1}^{n} \left(\frac{1}{k} - \frac{1}{k+1}\right) = 1 - \frac{1}{n+1} = \frac{n}{n+1}$</li>
+            </ul>
+            <div class="topic-links" style="margin-bottom: 1.5rem;">
+                <a href="/Deret_Teleskopik/Materi/1.html" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
+                    📖 Pelajari Selengkapnya: Materi Deret Teleskopik &rarr;
+                </a>
+            </div>
+
+            <h2>6. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memperdalam pemahaman mengenai hubungan $U_n$ dan $S_n$, sifat notasi sigma, barisan bertingkat, serta barisan rekursif:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Jumlah $n$ suku pertama dari suatu deret bilangan dinyatakan dengan rumus $S_n = 2n^2 + 5n$. Tentukan:
+                    <br>a) Rumus suku ke-$n$ ($U_n$) dari barisan tersebut!
+                    <br>b) Nilai dari suku ke-$10$ ($U_{10}$)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menentukan rumus suku ke-$n$ ($U_n$):</strong></p>
+                    <p>
+                        Gunakan hubungan dasar antara $U_n$ dan $S_n$, yaitu $U_n = S_n - S_{n-1}$:
+                        $$S_n = 2n^2 + 5n$$
+                        $$S_{n-1} = 2(n - 1)^2 + 5(n - 1) = 2(n^2 - 2n + 1) + 5n - 5 = 2n^2 + n - 3$$
+                        Kurangkan $S_n$ dengan $S_{n-1}$:
+                        $$U_n = (2n^2 + 5n) - (2n^2 + n - 3) = 4n + 3$$
+                        <em>(Catatan: Untuk $n = 1$, diperoleh $U_1 = 4(1) + 3 = 7$, sesuai dengan $S_1 = 2(1)^2 + 5(1) = 7$).</em>
+                    </p>
+                    <p><strong>b) Menentukan nilai suku ke-$10$ ($U_{10}$):</strong></p>
+                    <p>
+                        Substitusikan $n = 10$ ke dalam rumus $U_n = 4n + 3$:
+                        $$U_{10} = 4(10) + 3 = 40 + 3 = 43$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, rumus suku ke-$n$ barisan tersebut adalah $U_n = 4n + 3$ dan nilai suku ke-$10$ adalah $43$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Diketahui sebuah barisan bilangan: $3, \, 7, \, 13, \, 21, \, 31, \, \dots$
+                    <br>Tentukan rumus suku ke-$n$ ($U_n$) dan hitunglah nilai suku ke-$15$ ($U_{15}$) dari barisan tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Analisis selisih antar-suku (Barisan Bertingkat)</strong></p>
+                    <ul>
+                        <li>Barisan utama: $\mathbf{3}, \, 7, \, 13, \, 21, \, 31, \, \dots \implies$ suku pertama $a = 3$.</li>
+                        <li>Selisih tingkat ke-$1$: $+\mathbf{4}, \, +6, \, +8, \, +10, \, \dots \implies$ selisih awal $b_1 = 4$.</li>
+                        <li>Selisih tingkat ke-$2$: $+\mathbf{2}, \, +2, \, +2, \, \dots \implies$ selisih konstan tingkat kedua $c_1 = 2$.</li>
+                    </ul>
+                    <p><strong>Langkah 2: Menyusun rumus suku ke-$n$ ($U_n$)</strong></p>
+                    <p>
+                        Substitusikan $a = 3$, $b_1 = 4$, dan $c_1 = 2$ ke dalam rumus barisan aritmetika bertingkat dua:
+                        $$U_n = a + \frac{(n-1)}{1!}b_1 + \frac{(n-1)(n-2)}{2!}c_1$$
+                        $$U_n = 3 + (n - 1)(4) + \frac{(n - 1)(n - 2)}{2}(2)$$
+                        $$U_n = 3 + 4n - 4 + (n^2 - 3n + 2)$$
+                        $$U_n = n^2 + n + 1$$
+                    </p>
+                    <p><strong>Langkah 3: Menghitung suku ke-$15$ ($U_{15}$)</strong></p>
+                    <p>
+                        $$U_{15} = 15^2 + 15 + 1 = 225 + 15 + 1 = 241$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, rumus suku ke-$n$ adalah $U_n = n^2 + n + 1$ dan suku ke-$15$ bernilai $241$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Hitunglah nilai dari penjumlahan notasi sigma berikut:
+                    $$\sum_{k=4}^{13} (6k - 15)$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Geser batas indeks sigma agar dimulai dari $k = 1$</strong></p>
+                    <p>
+                        Kurangi batas bawah dan batas atas dengan $3$, lalu ganti variabel $k$ di dalam fungsi dengan $(k + 3)$:
+                        $$\sum_{k=4}^{13} (6k - 15) = \sum_{k=4-3}^{13-3} \left(6(k + 3) - 15\right) = \sum_{k=1}^{10} (6k + 18 - 15) = \sum_{k=1}^{10} (6k + 3)$$
+                    </p>
+                    <p><strong>Langkah 2: Gunakan sifat linieritas notasi sigma</strong></p>
+                    <p>
+                        $$\sum_{k=1}^{10} (6k + 3) = 6 \sum_{k=1}^{10} k + \sum_{k=1}^{10} 3$$
+                        Ingat bahwa $\sum_{k=1}^{n} k = \frac{n(n+1)}{2}$ dan $\sum_{k=1}^{n} c = n \cdot c$, sehingga untuk $n = 10$:
+                        $$\sum_{k=1}^{10} (6k + 3) = 6 \left(\frac{10 \times 11}{2}\right) + (10 \times 3)$$
+                        $$\sum_{k=1}^{10} (6k + 3) = 6(55) + 30 = 330 + 30 = 360$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari $\sum_{k=4}^{13} (6k - 15)$ adalah $360$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Suatu barisan bilangan didefinisikan secara rekursif oleh hubungan $U_{n+2} = 2U_{n+1} - U_n + 3$ untuk setiap bilangan asli $n \ge 1$. Jika diketahui $U_1 = 2$ dan $U_2 = 5$, tentukan nilai dari $U_5$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Hitung suku-suku secara bertahap menggunakan relasi rekursif</strong></p>
+                    <p>
+                        Diketahui $U_1 = 2$, $U_2 = 5$, dan $U_{n+2} = 2U_{n+1} - U_n + 3$:
+                    </p>
+                    <ul>
+                        <li>
+                            Untuk $n = 1 \implies U_3 = 2U_2 - U_1 + 3 = 2(5) - 2 + 3 = 10 - 2 + 3 = 11$
+                        </li>
+                        <li>
+                            Untuk $n = 2 \implies U_4 = 2U_3 - U_2 + 3 = 2(11) - 5 + 3 = 22 - 5 + 3 = 20$
+                        </li>
+                        <li>
+                            Untuk $n = 3 \implies U_5 = 2U_4 - U_3 + 3 = 2(20) - 11 + 3 = 40 - 11 + 3 = 32$
+                        </li>
+                    </ul>
+                    <p>
+                        <em>(Cara Alternatif: Perhatikan bahwa persamaan $U_{n+2} - U_{n+1} = (U_{n+1} - U_n) + 3$ menunjukkan bahwa selisih antar-sukunya selalu bertambah $3$ pada setiap langkah, yaitu $+3, +6, +9, +12, \dots$ sehingga $U_5 = 2 + 3 + 6 + 9 + 12 = 32$).</em>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari suku ke-$5$ ($U_5$) adalah $32$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Pola Bilangan Segitiga (U1=1, U2=3, U3=6, U4=10)
+            const elPola = document.getElementById("svg-pola-figurat");
+            if (elPola && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elPola, 380, 175, {
+                    viewBox: "0 0 380 175",
+                    title: "Ilustrasi Pola Bilangan Segitiga U1=1, U2=3, U3=6, U4=10"
+                });
+
+                geo1.buatTeks(190, 18, "Pola Bilangan Segitiga: Un = n(n + 1) / 2", {
+                    position: "middle-center",
+                    fontSize: "12.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Fungsi pembantu menggambar piramida titik segitiga ke-n
+                const gambarSegitigaTitik = (n, centerX, baseY, warna, label) => {
+                    const dx = 18;
+                    const dy = 15.5;
+                    for (let row = 1; row <= n; row++) {
+                        // row 1 di puncak, row n di alas bawah
+                        const y = baseY - (n - row) * dy;
+                        const startX = centerX - ((row - 1) * dx) / 2;
+                        for (let col = 0; col < row; col++) {
+                            geo1.buatTitik(startX + col * dx, y, {
+                                size: 4.2,
+                                color: warna
+                            });
+                        }
+                    }
+                    // Kerangka segitiga tipis
+                    if (n > 1) {
+                        const topY = baseY - (n - 1) * dy;
+                        const halfW = ((n - 1) * dx) / 2;
+                        geo1.buatPoligon(
+                            [[centerX, topY], [centerX - halfW, baseY], [centerX + halfW, baseY]],
+                            { fill: "rgba(13, 148, 136, 0.08)", stroke: "#0d9488", strokeWidth: 1, dashed: "3 3" }
+                        );
+                    }
+                    geo1.buatTeks(centerX, baseY + 24, label, {
+                        position: "middle-center",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        fill: "#334155"
+                    });
+                };
+
+                const baseY = 122;
+                gambarSegitigaTitik(1, 42, baseY, "#0d9488", "U₁ = 1");
+                gambarSegitigaTitik(2, 118, baseY, "#0d9488", "U₂ = 3");
+                gambarSegitigaTitik(3, 212, baseY, "#0f766e", "U₃ = 6");
+                gambarSegitigaTitik(4, 322, baseY, "#0f766e", "U₄ = 10");
+            }
+
+            // 2. Visualisasi Skema Barisan Aritmetika Bertingkat Dua
+            const elBertingkat = document.getElementById("svg-bertingkat");
+            if (elBertingkat && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elBertingkat, 360, 195, {
+                    viewBox: "0 0 360 195",
+                    title: "Skema Selisih Barisan Aritmetika Bertingkat Dua"
+                });
+
+                const xPos = [45, 118, 191, 264, 330];
+                const suku = ["3", "7", "13", "21", "31"];
+                const beda1 = ["+4", "+6", "+8", "+10"];
+                const beda2 = ["+2", "+2", "+2"];
+
+                // Label keterangan tingkat di sisi kiri
+                geo2.buatTeks(15, 22, "Barisan Utama (a = 3):", {
+                    position: "middle-right",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Baris 1: Suku Utama (y = 48)
+                const y1 = 48;
+                for (let i = 0; i < xPos.length; i++) {
+                    const isFirst = i === 0;
+                    geo2.buatLingkaran(xPos[i], y1, 15, {
+                        fill: isFirst ? "rgba(13, 148, 136, 0.22)" : "rgba(13, 148, 136, 0.08)",
+                        stroke: "#0f766e",
+                        strokeWidth: isFirst ? 2 : 1.5
+                    });
+                    geo2.buatTeks(xPos[i], y1, suku[i], {
+                        position: "middle-center",
+                        fontSize: "12.5px",
+                        fontWeight: "bold",
+                        fill: "#0f766e"
+                    });
+                }
+
+                // Baris 2: Selisih Tingkat 1 (y = 112)
+                const y2 = 112;
+                const xMid1 = [];
+                for (let i = 0; i < beda1.length; i++) {
+                    const xm = (xPos[i] + xPos[i + 1]) / 2;
+                    xMid1.push(xm);
+
+                    // Garis hubung V dari suku utama ke selisih tingkat 1
+                    geo2.buatSegmen(xPos[i] + 5, y1 + 15, xm - 6, y2 - 12, { stroke: "#d97706", strokeWidth: 1.4 });
+                    geo2.buatSegmen(xPos[i + 1] - 5, y1 + 15, xm + 6, y2 - 12, { stroke: "#d97706", strokeWidth: 1.4 });
+
+                    const isFirst = i === 0;
+                    geo2.buatPersegiPanjang(xm - 16, y2 - 11, 32, 22, {
+                        radius: 6,
+                        fill: isFirst ? "rgba(217, 119, 6, 0.20)" : "rgba(217, 119, 6, 0.08)",
+                        stroke: "#d97706",
+                        strokeWidth: isFirst ? 1.8 : 1.2
+                    });
+                    geo2.buatTeks(xm, y2, beda1[i], {
+                        position: "middle-center",
+                        fontSize: "11.5px",
+                        fontWeight: "bold",
+                        fill: "#b45309"
+                    });
+                }
+
+                // Baris 3: Selisih Tingkat 2 (y = 168)
+                const y3 = 168;
+                for (let i = 0; i < beda2.length; i++) {
+                    const xm2 = (xMid1[i] + xMid1[i + 1]) / 2;
+
+                    geo2.buatSegmen(xMid1[i] + 4, y2 + 12, xm2 - 6, y3 - 11, { stroke: "#dc2626", strokeWidth: 1.4, dashed: "3 2" });
+                    geo2.buatSegmen(xMid1[i + 1] - 4, y2 + 12, xm2 + 6, y3 - 11, { stroke: "#dc2626", strokeWidth: 1.4, dashed: "3 2" });
+
+                    const isFirst = i === 0;
+                    geo2.buatPersegiPanjang(xm2 - 15, y3 - 10, 30, 20, {
+                        radius: 5,
+                        fill: isFirst ? "rgba(220, 38, 38, 0.18)" : "rgba(220, 38, 38, 0.08)",
+                        stroke: "#dc2626",
+                        strokeWidth: isFirst ? 1.8 : 1.2
+                    });
+                    geo2.buatTeks(xm2, y3, beda2[i], {
+                        position: "middle-center",
+                        fontSize: "11px",
+                        fontWeight: "bold",
+                        fill: "#dc2626"
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

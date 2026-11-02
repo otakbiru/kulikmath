@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Asimtot Kurva</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Asimtot Kurva</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Asimtot Kurva</h2>
+            <p>
+                Secara geometris, <strong>asimtot</strong> (berasal dari bahasa Yunani <em>asymptotos</em> yang berarti "tidak bertemu") adalah suatu garis lurus (atau kurva acuan) yang didekati oleh grafik fungsi $y = f(x)$ sedekat-dekatnya ketika koordinat $x$ atau $y$ bergerak menuju tak hingga ($\pm\infty$).
+            </p>
+            <p>
+                Artinya, jarak tegak lurus antara titik pada kurva $y = f(x)$ dengan garis asimtot tersebut akan mendekati nol ($\to 0$) seiring kurva memanjang ke tak hingga. Secara umum, asimtot garis lurus dibagi menjadi tiga jenis utama:
+            </p>
+            <ul>
+                <li><strong>Asimtot Tegak (Vertikal):</strong> Garis vertikal dengan persamaan $x = c$.</li>
+                <li><strong>Asimtot Datar (Horizontal):</strong> Garis horizontal dengan persamaan $y = L$.</li>
+                <li><strong>Asimtot Miring (Oblik):</strong> Garis miring dengan persamaan $y = mx + c$ (dengan $m \neq 0$).</li>
+            </ul>
+
+            <p>
+                <strong>Miskonsepsi Umum:</strong> Banyak yang menganggap bahwa kurva <em>tidak pernah boleh memotong</em> asimtotnya. Pernyataan ini hanya mutlak berlaku untuk <strong>Asimtot Tegak</strong> (karena melanggar domain fungsi). Namun, sebuah kurva <u>boleh memotong</u> <strong>Asimtot Datar</strong> atau <strong>Asimtot Miring</strong> pada nilai $x$ yang berhingga, asalkan untuk $x \to \pm\infty$ kurva tersebut kembali merapat mendekati garis asimtotnya.
+            </p>
+
+            <h2>2. Asimtot Tegak (Vertikal)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Garis vertikal $x = c$ disebut sebagai <strong>asimtot tegak</strong> dari grafik fungsi $y = f(x)$ jika minimal salah satu dari empat kondisi limit sepihak berikut terpenuhi:
+                    </p>
+                    $$\lim_{x \to c^+} f(x) = +\infty \quad \text{atau} \quad \lim_{x \to c^+} f(x) = -\infty$$
+                    $$\lim_{x \to c^-} f(x) = +\infty \quad \text{atau} \quad \lim_{x \to c^-} f(x) = -\infty$$
+                    <p>
+                        <strong>Cara Menentukan Asimtot Tegak pada Fungsi Rasional:</strong><br>
+                        Misalkan diketahui fungsi rasional $f(x) = \frac{P(x)}{Q(x)}$ dengan $P(x)$ dan $Q(x)$ adalah polinomial:
+                    </p>
+                    <ol>
+                        <li>Sederhanakan fungsi $f(x)$ terlebih dahulu dengan memfaktorkan dan mencoret faktor persekutuan antara pembilang $P(x)$ dan penyebut $Q(x)$.</li>
+                        <li>Cari pembuat nol dari penyebut yang tersisa, yaitu selesaikan persamaan $Q(x) = 0$ (dengan syarat $P(x) \neq 0$).</li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-asimtot-tegak-datar" style="width: 100%; max-width: 360px;"></div>
+                </div>
+            </div>
+            <p>
+                <em>Catatan Lubang Kurva (Removable Discontinuity):</em> Jika suatu nilai $x = a$ membuat $P(a) = 0$ sekaligus $Q(a) = 0$, dan faktor $(x - a)$ habis terbagi (hilang dari penyebut setelah disederhanakan), maka $x = a$ <strong>bukanlah asimtot tegak</strong>, melainkan berupa "lubang" (titik kosong) pada grafik kurva.
+            </p>
+
+            <h2>3. Asimtot Datar (Horizontal)</h2>
+            <p>
+                Garis horizontal $y = L$ (dengan $L \in \mathbb{R}$ bernilai hingga) disebut sebagai <strong>asimtot datar</strong> dari grafik fungsi $y = f(x)$ jika memenuhi salah satu atau kedua kondisi limit di tak hingga berikut:
+            </p>
+            $$\lim_{x \to +\infty} f(x) = L \quad \text{atau} \quad \lim_{x \to -\infty} f(x) = L$$
+            <p>
+                Suatu fungsi rasional paling banyak memiliki $1$ asimtot datar. Namun, fungsi yang melibatkan bentuk akar seperti $f(x) = \frac{x}{\sqrt{x^2 + 1}}$ atau fungsi eksponensial/arkustangen seperti $f(x) = \arctan(x)$ dapat memiliki <strong>dua asimtot datar yang berbeda</strong> (satu untuk arah $x \to +\infty$ dan satu lagi untuk arah $x \to -\infty$).
+            </p>
+            <p>
+                <strong>Aturan Cepat Asimtot Datar pada Fungsi Rasional:</strong><br>
+                Untuk fungsi rasional $f(x) = \frac{a_n x^n + a_{n-1} x^{n-1} + \dots + a_0}{b_m x^m + b_{m-1} x^{m-1} + \dots + b_0}$ dengan $a_n \neq 0$ dan $b_m \neq 0$:
+            </p>
+            <ul>
+                <li>Jika <strong>$n < m$</strong> (derajat pembilang kurang dari penyebut), maka asimtot datarnya adalah sumbu-$X$, yaitu <strong>$y = 0$</strong>.</li>
+                <li>Jika <strong>$n = m$</strong> (derajat pembilang sama dengan penyebut), maka asimtot datarnya adalah rasio koefisien pangkat tertinggi, yaitu <strong>$y = \frac{a_n}{b_m}$</strong>.</li>
+                <li>Jika <strong>$n > m$</strong> (derajat pembilang lebih dari penyebut), maka kurva <strong>tidak memiliki asimtot datar</strong> (karena nilai limitnya menuju $\pm\infty$).</li>
+            </ul>
+
+            <h2>4. Asimtot Miring (Oblik)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Garis lurus $y = mx + c$ dengan kemiringan $m \neq 0$ disebut sebagai <strong>asimtot miring</strong> dari kurva $y = f(x)$ jika jarak vertikal antara kurva dan garis tersebut mendekati nol saat $x \to +\infty$ atau $x \to -\infty$:
+                    </p>
+                    $$\lim_{x \to \pm\infty} \big[ f(x) - (mx + c) \big] = 0$$
+                    <p>
+                        <strong>Rumus Umum Koefisien $m$ dan $c$ (Metode Limit):</strong><br>
+                        Untuk sembarang fungsi $f(x)$ (baik fungsi rasional maupun irasional/bentuk akar), gradien $m$ dan konstanta $c$ dapat dicari secara berurutan menggunakan limit:
+                    </p>
+                    $$m = \lim_{x \to \pm\infty} \frac{f(x)}{x} \quad \text{dan} \quad c = \lim_{x \to \pm\infty} \big[ f(x) - mx \big]$$
+                </div>
+                <div class="col col-center">
+                    <div id="svg-asimtot-miring" style="width: 100%; max-width: 360px;"></div>
+                </div>
+            </div>
+            <p>
+                <strong>Metode Pembagian Polinomial (Khusus Fungsi Rasional):</strong><br>
+                Pada fungsi rasional $f(x) = \frac{P(x)}{Q(x)}$, asimtot miring muncul <u>jika dan hanya jika</u> <strong>derajat pembilang tepat satu tingkat lebih tinggi daripada derajat penyebut</strong> ($\text{derajat } P(x) - \text{derajat } Q(x) = 1$, atau $n = m + 1$).
+            </p>
+            <p>
+                Dengan melakukan pembagian bersusun (porogapit) atau skema Horner, kita dapat mengubah bentuk $f(x)$ menjadi:
+                $$f(x) = \frac{P(x)}{Q(x)} = \underbrace{(mx + c)}_{\text{Hasil Bagi}} + \frac{\text{Sisa}(x)}{Q(x)}$$
+                Ketika $x \to \pm\infty$, suku pecahan $\frac{\text{Sisa}(x)}{Q(x)} \to 0$ karena derajat sisa pasti lebih kecil daripada derajat pembagi $Q(x)$. Dengan demikian, <strong>hasil bagi $(mx + c)$ langsung menjadi persamaan asimtot miringnya</strong>.
+            </p>
+            <p>
+                <em>Catatan Asimtot Lengkung (Kurvilinear):</em> Jika selisih derajat $n - m \ge 2$ (misalnya $n - m = 2$), maka hasil baginya berupa fungsi kuadrat $y = ax^2 + bx + c$ yang disebut sebagai <strong>asimtot parabolik</strong>.
+            </p>
+
+            <h2>5. Ringkasan Klasifikasi Asimtot Fungsi Rasional</h2>
+            <p>
+                Tabel berikut merangkum cara cepat mengidentifikasi jenis-jenis asimtot pada fungsi rasional $f(x) = \frac{P(x)}{Q(x)} = \frac{a_n x^n + \dots + a_0}{b_m x^m + \dots + b_0}$ yang sudah berada dalam bentuk paling sederhana:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Asimtot</th>
+                            <th>Syarat Keberadaan</th>
+                            <th>Persamaan Asimtot</th>
+                            <th>Keterangan Tambahan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Asimtot Tegak</strong></td>
+                            <td>$Q(c) = 0$ dan $P(c) \neq 0$</td>
+                            <td>$$x = c$$</td>
+                            <td class="text-left">Jumlah asimtot tegak bergantung pada banyaknya akar real berbeda dari penyebut $Q(x) = 0$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Asimtot Datar</strong><br>(Kasus $n < m$)</td>
+                            <td>Derajat Pembilang $<$ Penyebut<br>($n < m$)</td>
+                            <td>$$y = 0$$</td>
+                            <td class="text-left">Sumbu-$X$ menjadi asimtot datar. Tidak memiliki asimtot miring.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Asimtot Datar</strong><br>(Kasus $n = m$)</td>
+                            <td>Derajat Pembilang $=$ Penyebut<br>($n = m$)</td>
+                            <td>$$y = \frac{a_n}{b_m}$$</td>
+                            <td class="text-left">Rasio koefisien pangkat tertinggi. Tidak memiliki asimtot miring.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Asimtot Miring</strong></td>
+                            <td>Derajat Pembilang $=$ Penyebut $+ 1$<br>($n = m + 1$)</td>
+                            <td>$$y = mx + c$$</td>
+                            <td class="text-left">Diperoleh dari hasil bagi $\frac{P(x)}{Q(x)}$. Tidak memiliki asimtot datar.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Asimtot Lengkung</strong></td>
+                            <td>Derajat Pembilang $\ge$ Penyebut $+ 2$<br>($n \ge m + 2$)</td>
+                            <td>$$y = H(x)$$</td>
+                            <td class="text-left">Berupa kurva polinomial hasil bagi $H(x)$ berderajat $n - m$. Tidak memiliki asimtot datar maupun miring.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>6. Asimtot pada Fungsi Non-Aljabar (Transenden)</h2>
+            <p>
+                Selain pada fungsi rasional, konsep asimtot juga menjadi ciri khas utama pada beberapa fungsi transenden yang sering dijumpai:
+            </p>
+            <ul>
+                <li>
+                    <strong>Fungsi Eksponensial $f(x) = a \cdot b^{kx} + c$ (dengan $b > 0, b \neq 1$):</strong><br>
+                    Tidak memiliki asimtot tegak karena domainnya seluruh bilangan real ($x \in \mathbb{R}$), tetapi memiliki <strong>asimtot datar $y = c$</strong> karena nilai $b^{kx} \to 0$ pada salah satu ujung tak hingga.
+                </li>
+                <li>
+                    <strong>Fungsi Logaritma $f(x) = a \cdot \,^b\!\log(gx + h) + c$:</strong><br>
+                    Tidak memiliki asimtot datar maupun miring, tetapi memiliki <strong>asimtot tegak</strong> pada saat numerus bernilai nol, yaitu garis <strong>$gx + h = 0 \iff x = -\frac{h}{g}$</strong>.
+                </li>
+                <li>
+                    <strong>Fungsi Trigonometri ($\tan x, \cot x, \sec x, \csc x$):</strong><br>
+                    Memiliki <strong>asimtot tegak yang jumlahnya tak hingga</strong> dan berulang secara periodik pada titik-titik pembuat nol penyebutnya. Misalnya, kurva $y = \tan x = \frac{\sin x}{\cos x}$ memiliki asimtot tegak di $x = \frac{\pi}{2} + k\pi$ untuk setiap $k \in \mathbb{Z}$.
+                </li>
+            </ul>
+
+            <h2>7. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal di bawah ini untuk memahami langkah sistematis menentukan persamaan asimtot dari berbagai bentuk fungsi:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Tentukan semua persamaan asimtot (tegak dan datar) serta koordinat titik lubang (jika ada) dari grafik fungsi rasional:
+                    $$f(x) = \frac{2x^2 - 2x - 12}{x^2 - 9}$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Faktorkan pembilang dan penyebut untuk menyederhanakan fungsi</strong></p>
+                    <p>
+                        $$f(x) = \frac{2(x^2 - x - 6)}{(x - 3)(x + 3)} = \frac{2(x - 3)(x + 2)}{(x - 3)(x + 3)}$$
+                        Perhatikan bahwa terdapat faktor persekutuan $(x - 3)$ pada pembilang dan penyebut. Untuk $x \neq 3$, fungsi dapat disederhanakan menjadi:
+                        $$f(x) = \frac{2(x + 2)}{x + 3} = \frac{2x + 4}{x + 3}$$
+                    </p>
+                    <p><strong>Langkah 2: Analisis Titik Lubang dan Asimtot Tegak</strong></p>
+                    <ul>
+                        <li>Karena faktor $(x - 3)$ habis terbagi, maka di $x = 3$ <strong>tidak terbentuk asimtot tegak</strong>, melainkan sebuah titik lubang (<em>hole</em>) dengan ordinat $y = \lim_{x \to 3} \frac{2x + 4}{x + 3} = \frac{2(3) + 4}{3 + 3} = \frac{10}{6} = \frac{5}{3}$. Jadi, koordinat lubangnya adalah $\left(3, \frac{5}{3}\right)$.</li>
+                        <li>Dari bentuk sederhana $f(x) = \frac{2x + 4}{x + 3}$, pembuat nol penyebutnya adalah $x + 3 = 0 \iff x = -3$. Karena untuk $x = -3$ pembilangnya bernilai $2(-3) + 4 = -2 \neq 0$, maka <strong>asimtot tegaknya adalah garis $x = -3$</strong>.</li>
+                    </ul>
+                    <p><strong>Langkah 3: Analisis Asimtot Datar</strong></p>
+                    <p>
+                        Derajat pembilang dan penyebut sama ($n = m = 2$ pada fungsi awal, atau $n = m = 1$ pada bentuk sederhana). Kita hitung limitnya saat $x \to \pm\infty$:
+                        $$y = \lim_{x \to \pm\infty} \frac{2x + 4}{x + 3} = \frac{2}{1} = 2$$
+                        Dengan demikian, <strong>asimtot datarnya adalah garis $y = 2$</strong>.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, kurva memiliki asimtot tegak $x = -3$, asimtot datar $y = 2$, dan titik lubang pada koordinat $\left(3, \frac{5}{3}\right)$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Tentukan persamaan asimtot tegak dan asimtot miring dari kurva fungsi rasional:
+                    $$f(x) = \frac{2x^2 - 3x - 1}{x - 2}$$
+                    Kemudian, tentukan titik potong antara kedua garis asimtot tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Menentukan Asimtot Tegak</strong></p>
+                    <p>
+                        Substitusi $x = 2$ ke pembilang menghasilkan $2(2)^2 - 3(2) - 1 = 8 - 6 - 1 = 1 \neq 0$. Artinya, pecahan tidak dapat disederhanakan lagi. Pembuat nol penyebutnya adalah:
+                        $$x - 2 = 0 \iff x = 2$$
+                        Jadi, persamaan <strong>asimtot tegaknya adalah $x = 2$</strong>.
+                    </p>
+                    <p><strong>Langkah 2: Menentukan Asimtot Miring</strong></p>
+                    <p>
+                        Karena derajat pembilang ($n = 2$) tepat satu lebihnya dari derajat penyebut ($m = 1$), maka kurva memiliki asimtot miring. Kita ubah bentuk pecahan dengan membagi $2x^2 - 3x - 1$ oleh $(x - 2)$:
+                        $$2x^2 - 3x - 1 = (2x + 1)(x - 2) + 1$$
+                        Sehingga fungsi $f(x)$ dapat ditulis ulang menjadi:
+                        $$f(x) = \frac{(2x + 1)(x - 2) + 1}{x - 2} = 2x + 1 + \frac{1}{x - 2}$$
+                        Ketika $x \to \pm\infty$, nilai $\frac{1}{x - 2} \to 0$. Oleh karena itu, persamaan <strong>asimtot miringnya adalah $y = 2x + 1$</strong>.
+                    </p>
+                    <p><strong>Langkah 3: Menentukan Titik Potong Kedua Asimtot</strong></p>
+                    <p>
+                        Substitusikan persamaan asimtot tegak $x = 2$ ke dalam persamaan asimtot miring $y = 2x + 1$:
+                        $$y = 2(2) + 1 = 5$$
+                        Sehingga titik potong kedua asimtot (yang juga merupakan pusat simetri hiperbola) berada di titik $(2, 5)$.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, persamaan asimtot tegaknya adalah $x = 2$, asimtot miringnya adalah $y = 2x + 1$, dan keduanya berpotongan di titik $(2, 5)$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Tentukan semua persamaan asimtot datar dari kurva fungsi irasional berikut:
+                    $$f(x) = \frac{3x - 5}{\sqrt{4x^2 + x + 1}}$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Pada fungsi yang memuat bentuk akar kuadrat $\sqrt{x^2}$, kita harus berhati-hati karena sifat aljabar <strong>$\sqrt{x^2} = |x|$</strong>. Artinya:
+                    </p>
+                    <ul>
+                        <li>Untuk $x > 0$ (menuju $+\infty$), berlaku $x = +\sqrt{x^2}$.</li>
+                        <li>Untuk $x < 0$ (menuju $-\infty$), berlaku $x = -\sqrt{x^2}$.</li>
+                    </ul>
+                    <p><strong>1. Analisis untuk $x \to +\infty$ ($x > 0$):</strong></p>
+                    <p>
+                        Bagi pembilang dan penyebut dengan $x = +\sqrt{x^2}$:
+                        $$y_1 = \lim_{x \to +\infty} \frac{\frac{3x - 5}{x}}{\frac{\sqrt{4x^2 + x + 1}}{\sqrt{x^2}}} = \lim_{x \to +\infty} \frac{3 - \frac{5}{x}}{\sqrt{4 + \frac{1}{x} + \frac{1}{x^2}}} = \frac{3 - 0}{\sqrt{4 + 0 + 0}} = \frac{3}{2}$$
+                    </p>
+                    <p><strong>2. Analisis untuk $x \to -\infty$ ($x < 0$):</strong></p>
+                    <p>
+                        Bagi pembilang dengan $x$ dan penyebut dengan $x = -\sqrt{x^2}$:
+                        $$y_2 = \lim_{x \to -\infty} \frac{\frac{3x - 5}{x}}{\frac{\sqrt{4x^2 + x + 1}}{-\sqrt{x^2}}} = \lim_{x \to -\infty} \frac{3 - \frac{5}{x}}{-\sqrt{4 + \frac{1}{x} + \frac{1}{x^2}}} = \frac{3 - 0}{-\sqrt{4 + 0 + 0}} = -\frac{3}{2}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, kurva tersebut memiliki dua asimtot datar yang berbeda, yaitu garis $y = \frac{3}{2}$ (ke arah kanan) dan garis $y = -\frac{3}{2}$ (ke arah kiri).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Asimtot Tegak & Datar: f(x) = 1/(x - 1) + 1
+            const elTegakDatar = document.getElementById("svg-asimtot-tegak-datar");
+            if (elTegakDatar && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elTegakDatar, 340, 260, {
+                    viewBox: "-140 -130 280 260",
+                    yUp: true,
+                    title: "Grafik Asimtot Tegak dan Asimtot Datar"
+                });
+
+                const skala = 26; // 1 satuan = 26 piksel
+
+                // Grid dan Sumbu Koordinat
+                geo1.buatGrid(skala, skala, { stroke: "#e2e8f0", strokeWidth: 0.8 });
+                geo1.buatSumbuKoordinat(-130, 130, -115, 115, skala, {
+                    stroke: "#64748b",
+                    strokeWidth: 1.2,
+                    tickSize: 0 // sembunyikan angka sumbu agar bersih
+                });
+                geo1.buatTeks(122, -12, "x", { fontSize: "11px", fontStyle: "italic", fill: "#475569", position: "middle-center" });
+                geo1.buatTeks(-12, 108, "y", { fontSize: "11px", fontStyle: "italic", fill: "#475569", position: "middle-center" });
+
+                // Asimtot Tegak x = 1 (x_px = 26)
+                geo1.buatSegmen(1 * skala, -115, 1 * skala, 115, {
+                    stroke: "#dc2626",
+                    strokeWidth: 1.8,
+                    dashed: "5 4"
+                });
+                geo1.buatTeks(1 * skala + 6, -95, "Asimtot Tegak (x = c)", {
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#dc2626",
+                    position: "middle-right"
+                });
+
+                // Asimtot Datar y = 1 (y_px = 26)
+                geo1.buatSegmen(-130, 1 * skala, 130, 1 * skala, {
+                    stroke: "#d97706",
+                    strokeWidth: 1.8,
+                    dashed: "5 4"
+                });
+                geo1.buatTeks(-125, 1 * skala + 12, "Asimtot Datar (y = L)", {
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#b45309",
+                    position: "middle-right"
+                });
+
+                // Kurva Cabang Kiri: x dari -4.8 sampai 0.72
+                geo1.buatFungsi(x => 1 / (x - 1) + 1, -4.8, 0.72, {
+                    skala: skala,
+                    stroke: "#0d9488",
+                    strokeWidth: 2.2
+                });
+
+                // Kurva Cabang Kanan: x dari 1.32 sampai 4.8
+                geo1.buatFungsi(x => 1 / (x - 1) + 1, 1.32, 4.8, {
+                    skala: skala,
+                    stroke: "#0d9488",
+                    strokeWidth: 2.2
+                });
+
+                geo1.buatTeks(78, 68, "y = f(x)", {
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    fill: "#0f766e",
+                    position: "middle-center"
+                });
+            }
+
+            // 2. Visualisasi Asimtot Miring: f(x) = 0.5x + 0.5 + 0.6/(x - 0.5)
+            const elMiring = document.getElementById("svg-asimtot-miring");
+            if (elMiring && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elMiring, 340, 260, {
+                    viewBox: "-140 -130 280 260",
+                    yUp: true,
+                    title: "Grafik Asimtot Miring dan Asimtot Tegak"
+                });
+
+                const skala = 25;
+
+                // Grid dan Sumbu Koordinat
+                geo2.buatGrid(skala, skala, { stroke: "#e2e8f0", strokeWidth: 0.8 });
+                geo2.buatSumbuKoordinat(-130, 130, -115, 115, skala, {
+                    stroke: "#64748b",
+                    strokeWidth: 1.2,
+                    tickSize: 0
+                });
+                geo2.buatTeks(122, -12, "x", { fontSize: "11px", fontStyle: "italic", fill: "#475569", position: "middle-center" });
+                geo2.buatTeks(-12, 108, "y", { fontSize: "11px", fontStyle: "italic", fill: "#475569", position: "middle-center" });
+
+                // Asimtot Tegak x = 0.5
+                geo2.buatSegmen(0.5 * skala, -115, 0.5 * skala, 115, {
+                    stroke: "#dc2626",
+                    strokeWidth: 1.6,
+                    dashed: "5 4"
+                });
+                geo2.buatTeks(0.5 * skala + 6, -98, "x = c", {
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#dc2626",
+                    position: "middle-right"
+                });
+
+                // Asimtot Miring y = 0.5x + 0.5
+                geo2.buatFungsi(x => 0.5 * x + 0.5, -4.8, 4.8, {
+                    skala: skala,
+                    stroke: "#7c3aed",
+                    strokeWidth: 1.8,
+                    dashed: "6 4"
+                });
+                geo2.buatTeks(-72, -48, "y = mx + c", {
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#6d28d9",
+                    position: "middle-center"
+                });
+
+                // Kurva Cabang Kiri
+                geo2.buatFungsi(x => 0.5 * x + 0.5 + 0.6 / (x - 0.5), -4.8, 0.32, {
+                    skala: skala,
+                    stroke: "#0d9488",
+                    strokeWidth: 2.2
+                });
+
+                // Kurva Cabang Kanan
+                geo2.buatFungsi(x => 0.5 * x + 0.5 + 0.6 / (x - 0.5), 0.72, 4.8, {
+                    skala: skala,
+                    stroke: "#0d9488",
+                    strokeWidth: 2.2
+                });
+
+                geo2.buatTeks(80, 92, "y = f(x)", {
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    fill: "#0f766e",
+                    position: "middle-center"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

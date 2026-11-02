@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Bilangan Real</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Bilangan Real</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Hierarki Sistem Bilangan Real</h2>
+            <p>
+                <strong>Bilangan Real</strong> (dilambangkan dengan $\mathbb{R}$) adalah himpunan seluruh bilangan yang dapat direpresentasikan sebagai titik pada garis bilangan yang kontinu (tanpa celah). Himpunan bilangan real merupakan gabungan dari dua himpunan yang saling lepas, yaitu <strong>Bilangan Rasional ($\mathbb{Q}$)</strong> dan <strong>Bilangan Irasional ($\mathbb{I}$ atau $\mathbb{R} \setminus \mathbb{Q}$)</strong>:
+                $$\mathbb{N} \subset \mathbb{W} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$$
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Berikut adalah rincian sub-himpunan di dalam sistem bilangan real:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Bilangan Asli ($\mathbb{N}$):</strong> Bilangan bulat positif untuk membilang: $\{1, 2, 3, 4, \dots\}$.
+                        </li>
+                        <li>
+                            <strong>Bilangan Cacah ($\mathbb{W}$):</strong> Gabungan bilangan asli dengan angka nol: $\{0, 1, 2, 3, \dots\}$.
+                        </li>
+                        <li>
+                            <strong>Bilangan Bulat ($\mathbb{Z}$):</strong> Mencakup bilangan bulat negatif, nol, dan bilangan bulat positif: $\{\dots, -2, -1, 0, 1, 2, \dots\}$.
+                        </li>
+                        <li>
+                            <strong>Bilangan Rasional ($\mathbb{Q}$):</strong> Bilangan yang <em>dapat</em> dinyatakan dalam bentuk pecahan $\frac{p}{q}$ dengan $p, q \in \mathbb{Z}$ dan $q \neq 0$.
+                        </li>
+                        <li>
+                            <strong>Bilangan Irasional ($\mathbb{R} \setminus \mathbb{Q}$):</strong> Bilangan real yang <em>tidak dapat</em> dinyatakan sebagai perbandingan dua bilangan bulat $\frac{p}{q}$ (contoh: $\sqrt{2}, \sqrt{3}, \pi, e, \log_2 3$).
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-venn-real" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Ciri Desimal: Rasional vs Irasional</h2>
+            <p>
+                Ketika suatu bilangan real diubah ke dalam bentuk desimal, kita dapat membedakan bilangan rasional dan irasional dari pola angka di belakang komanya:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Bilangan</th>
+                            <th>Ciri Bentuk Desimal</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Bilangan Rasional ($\mathbb{Q}$)</strong></td>
+                            <td class="text-left">Desimalnya <strong>berhenti (terbatas)</strong> ATAU tak hingga tetapi <strong>berulang secara periodik</strong>.</td>
+                            <td>
+                                $\frac{3}{8} = 0{,}375$<br>
+                                $\frac{2}{11} = 0{,}181818\dots = 0{,}\overline{18}$
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Bilangan Irasional ($\mathbb{R} \setminus \mathbb{Q}$)</strong></td>
+                            <td class="text-left">Desimalnya <strong>tak hingga dan TIDAK berulang</strong> (tidak memiliki pola periodik).</td>
+                            <td>
+                                $\sqrt{2} = 1{,}41421356\dots$<br>
+                                $\pi = 3{,}14159265\dots$
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Trik Cepat Mengubah Desimal Berulang ke Pecahan $\frac{p}{q}$:<br>
+                Banyaknya angka yang berulang di belakang koma menentukan banyaknya angka $9$ pada penyebut:<br>
+                • $0{,}\overline{a} = 0{,}aaa\dots = \frac{a}{9}$ &nbsp;&nbsp;&nbsp; • $0{,}\overline{ab} = 0{,}abab\dots = \frac{ab}{99}$ &nbsp;&nbsp;&nbsp; • $0{,}\overline{abc} = \frac{abc}{999}$<br>
+                <em>Contoh Campuran:</em> $x = 0{,}2\overline{35} \implies 1000x - 10x = 235{,}\overline{35} - 2{,}\overline{35} \implies 990x = 233 \implies x = \frac{233}{990}$.
+            </div>
+
+            <h2>3. Garis Bilangan Real & Konstruksi Geometri $\sqrt{2}$</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Sifat Kelengkapan (Completeness) & Kerapatan (Density):</strong><br>
+                        Di antara sembarang dua bilangan real yang berbeda $a < b$, selalu terdapat tak hingga banyaknya bilangan rasional maupun bilangan irasional (contohnya rata-rata aritmetika $\frac{a+b}{2}$ selalu berada tepat di tengah $a$ dan $b$).
+                    </p>
+                    <p>
+                        Meskipun $\sqrt{2} \approx 1{,}414\dots$ memiliki desimal tak berujung, posisinya pada garis bilangan real dapat ditentukan secara <strong>eksak</strong> menggunakan geometri:
+                    </p>
+                    <ol>
+                        <li>Buat segitiga siku-siku dengan alas $1$ satuan (dari $0$ ke $1$) dan tinggi $1$ satuan.</li>
+                        <li>Berdasarkan Teorema Pythagoras, panjang sisi miringnya adalah $\sqrt{1^2 + 1^2} = \sqrt{2}$.</li>
+                        <li>Jangkakan busur lingkaran berpusat di $0$ dari ujung sisi miring hingga memotong sumbu positif tepat di titik $\sqrt{2}$.</li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-sqrt2" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Sifat-Sifat Aljabar (Field) dan Urutan Bilangan Real</h2>
+            <p>
+                Untuk setiap bilangan real $a, b, c \in \mathbb{R}$, berlaku aksioma medan (<em>field</em>) dan sifat urutan yang menjadi fondasi seluruh manipulasi persamaan dan pertidaksamaan:
+            </p>
+            <ul>
+                <li>
+                    <strong>Unsur Identitas & Invers:</strong>
+                    <ul>
+                        <li>Identitas penjumlahan adalah $0$ ($a + 0 = a$), dan invers penjumlahan (lawan) dari $a$ adalah $-a$ sehingga $a + (-a) = 0$.</li>
+                        <li>Identitas perkalian adalah $1$ ($a \cdot 1 = a$), dan invers perkalian (kebalikan) dari $a \neq 0$ adalah $a^{-1} = \frac{1}{a}$ sehingga $a \cdot \frac{1}{a} = 1$.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Sifat Trikotomi:</strong> Untuk sembarang dua bilangan real $a$ dan $b$, tepat satu dari tiga hubungan berikut pasti berlaku:
+                    $$a < b, \quad a = b, \quad \text{atau} \quad a > b$$
+                </li>
+                <li>
+                    <strong>Sifat Perkalian Pertidaksamaan (Sangat Penting!):</strong>
+                    <ul>
+                        <li>Jika $a < b$ dan dikalikan bilangan <strong>positif</strong> ($c > 0$), tanda pertidaksamaan <strong>tetap</strong>: $ac < bc$.</li>
+                        <li>Jika $a < b$ dan dikalikan bilangan <strong>negatif</strong> ($c < 0$), tanda pertidaksamaan <strong>berbalik arah</strong>: $ac > bc$.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Sifat Kuadrat Non-Negatif:</strong> Untuk setiap $x \in \mathbb{R}$, selalu berlaku $x^2 \ge 0$. Akibatnya, jika $x^2 + y^2 = 0$ untuk $x, y \in \mathbb{R}$, maka satu-satunya kemungkinan adalah $x = 0$ dan $y = 0$.
+                </li>
+            </ul>
+
+            <h2>5. Notasi Selang (Interval) pada Garis Bilangan</h2>
+            <p>
+                Himpunan bagian dari bilangan real yang berupa ruas garis dinyatakan menggunakan <strong>notasi selang (interval)</strong>:
+            </p>
+            <ul>
+                <li>Kurung siku <code>[</code> atau <code>]</code> menandakan titik ujung <strong>termasuk</strong> dalam himpunan ($\le$ atau $\ge$), digambarkan dengan <strong>bulatan penuh</strong> ($\bullet$).</li>
+                <li>Kurung biasa <code>(</code> atau <code>)</code> menandakan titik ujung <strong>tidak termasuk</strong> dalam himpunan ($<$ atau $>$), digambarkan dengan <strong>bulatan kosong</strong> ($\circ$).</li>
+            </ul>
+
+            <div id="geosvg-interval" style="width: 100%; max-width: 580px; margin: 1.25rem auto;"></div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Notasi Interval</th>
+                            <th>Notasi Pembentuk Himpunan</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$(a, b)$</td>
+                            <td>$\{x \in \mathbb{R} \mid a < x < b\}$</td>
+                            <td class="text-left">Interval terbuka (ujung $a$ dan $b$ tidak ikut).</td>
+                        </tr>
+                        <tr>
+                            <td>$[a, b]$</td>
+                            <td>$\{x \in \mathbb{R} \mid a \le x \le b\}$</td>
+                            <td class="text-left">Interval tertutup (ujung $a$ dan $b$ ikut).</td>
+                        </tr>
+                        <tr>
+                            <td>$[a, b)$</td>
+                            <td>$\{x \in \mathbb{R} \mid a \le x < b\}$</td>
+                            <td class="text-left">Interval setengah terbuka (kanan terbuka).</td>
+                        </tr>
+                        <tr>
+                            <td>$[a, \infty)$</td>
+                            <td>$\{x \in \mathbb{R} \mid x \ge a\}$</td>
+                            <td class="text-left">Interval tak hingga ke kanan (simbol $\pm\infty$ selalu memakai kurung biasa).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>6. Nilai Mutlak (Absolute Value) pada Bilangan Real</h2>
+            <p>
+                Secara geometris, <strong>nilai mutlak $|x|$</strong> adalah jarak dari titik $x$ ke titik asal $0$ pada garis bilangan real. Secara umum, $|x - y|$ menyatakan jarak antara titik $x$ dan titik $y$. Karena jarak tidak pernah negatif, nilai mutlak didefinisikan secara sepotong-sepotong (<em>piecewise</em>):
+                $$|x| = \begin{cases} x, & \text{jika } x \ge 0 \\ -x, & \text{jika } x < 0 \end{cases}$$
+            </p>
+            <p>
+                <strong>Sifat Penting Akar Kuadrat & Pertidaksamaan Nilai Mutlak:</strong>
+            </p>
+            <ol>
+                <li>
+                    <strong>Hubungan dengan Akar Kuadrat:</strong> Untuk setiap $x \in \mathbb{R}$, berlaku:
+                    $$\sqrt{x^2} = |x| \quad (\text{BUKAN sekadar } x!)$$
+                    Sebagai contoh, jika $x < 2$, maka $\sqrt{(x - 2)^2} = |x - 2| = -(x - 2) = 2 - x$.
+                </li>
+                <li>
+                    <strong>Pertidaksamaan Nilai Mutlak ($a > 0$):</strong>
+                    <ul>
+                        <li>$|x| \le a \iff -a \le x \le a$</li>
+                        <li>$|x| \ge a \iff x \le -a \quad \text{atau} \quad x \ge a$</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Ketaksamaan Segitiga:</strong> Untuk setiap $x, y \in \mathbb{R}$, berlaku:
+                    $$|x + y| \le |x| + |y| \quad \text{dan} \quad |x - y| \ge \big||x| - |y|\big|$$
+                </li>
+            </ol>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Jika bilangan desimal berulang $0{,}454545\dots + 0{,}333\dots$ dinyatakan dalam bentuk pecahan paling sederhana $\frac{p}{q}$ dengan $p$ dan $q$ bilangan asli yang saling prima, maka nilai dari $p + q$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$35$</li>
+                    <li>$47$</li>
+                    <li>$59$</li>
+                    <li>$64$</li>
+                    <li>$79$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Ubah masing-masing desimal berulang ke dalam bentuk pecahan biasa:
+                </p>
+                <ul>
+                    <li>$0{,}454545\dots = 0{,}\overline{45} = \frac{45}{99} = \frac{5}{11}$ (dibagi $9$)</li>
+                    <li>$0{,}333\dots = 0{,}\overline{3} = \frac{3}{9} = \frac{1}{3}$</li>
+                </ul>
+                <p>
+                    2. Jumlahkan kedua pecahan tersebut dengan menyamakan penyebutnya:
+                    $$\frac{5}{11} + \frac{1}{3} = \frac{15 + 11}{33} = \frac{26}{33}$$
+                </p>
+                <p>
+                    Karena $\text{FPB}(26, 33) = 1$, maka pecahan $\frac{26}{33}$ sudah paling sederhana dengan $p = 26$ dan $q = 33$. Dengan demikian:
+                    $$p + q = 26 + 33 = 59$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $p + q$ adalah $59$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Diketahui bilangan real $x$ memenuhi $-3 < x < 2$. Bentuk paling sederhana dari $\sqrt{x^2 - 4x + 4} + \sqrt{x^2 + 6x + 9}$ adalah ....
+                <ol class="pilgan">
+                    <li>$2x + 1$</li>
+                    <li>$2x - 5$</li>
+                    <li>$-2x - 1$</li>
+                    <li>$1$</li>
+                    <li>$5$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Faktorkan bentuk kuadrat di dalam tanda akar, lalu gunakan sifat $\sqrt{A^2} = |A|$:
+                    $$\sqrt{(x - 2)^2} + \sqrt{(x + 3)^2} = |x - 2| + |x + 3|$$
+                </p>
+                <p>
+                    2. Analisis tanda dari masing-masing bentuk di dalam nilai mutlak untuk domain $-3 < x < 2$:
+                </p>
+                <ul>
+                    <li>Karena $x < 2$, maka $x - 2 < 0$ (negatif), sehingga $|x - 2| = -(x - 2) = 2 - x$.</li>
+                    <li>Karena $x > -3$, maka $x + 3 > 0$ (positif), sehingga $|x + 3| = x + 3$.</li>
+                </ul>
+                <p>
+                    3. Jumlahkan hasilnya:
+                    $$|x - 2| + |x + 3| = (2 - x) + (x + 3) = 5$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, bentuk paling sederhananya adalah $5$ (Jawaban E).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Jika $x$ dan $y$ adalah bilangan real yang memenuhi $-4 \le x \le 3$ dan $-2 \le y \le 5$, maka nilai minimum dari $x^2 - 2y$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$-10$</li>
+                    <li>$-6$</li>
+                    <li>$-1$</li>
+                    <li>$4$</li>
+                    <li>$20$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    Agar nilai $x^2 - 2y$ mencapai <strong>minimum</strong>, maka suku $x^2$ harus dibuat <em>sekecil mungkin</em> dan pengurangnya ($2y$) harus dibuat <em>sebesar mungkin</em>:
+                </p>
+                <p>
+                    1. <strong>Batas nilai $x^2$:</strong><br>
+                    Hati-hati! Karena interval $-4 \le x \le 3$ memuat angka $0$, nilai kuadrat terkecil dari bilangan real pada interval tersebut bukanlah $(-4)^2$ atau $3^2$, melainkan $0^2 = 0$ (saat $x = 0$):
+                    $$0 \le x^2 \le 16 \implies (x^2)_{\text{min}} = 0$$
+                </p>
+                <p>
+                    2. <strong>Batas nilai $2y$:</strong><br>
+                    Dari $-2 \le y \le 5$, diperoleh $-4 \le 2y \le 10$, sehingga nilai maksimum dari $2y$ adalah $10$ (saat $y = 5$).
+                </p>
+                <p>
+                    3. <strong>Hitung nilai minimum $x^2 - 2y$:</strong>
+                    $$(x^2 - 2y)_{\text{min}} = (x^2)_{\text{min}} - (2y)_{\text{maks}} = 0 - 10 = -10$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai minimum dari $x^2 - 2y$ adalah $-10$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Diketahui $a, b,$ dan $c$ adalah bilangan real yang memenuhi persamaan $a^2 + b^2 + c^2 - 2a + 4b - 6c + 14 = 0$. Nilai dari $a + b + c$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$-2$</li>
+                    <li>$0$</li>
+                    <li>$2$</li>
+                    <li>$4$</li>
+                    <li>$6$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    Kelompokkan suku-suku berdasarkan variabelnya dan ubah menjadi bentuk kuadrat sempurna (pecah konstanta $14 = 1 + 4 + 9$):
+                    $$(a^2 - 2a + 1) + (b^2 + 4b + 4) + (c^2 - 6c + 9) = 0$$
+                    $$(a - 1)^2 + (b + 2)^2 + (c - 3)^2 = 0$$
+                </p>
+                <p>
+                    Karena $a, b, c \in \mathbb{R}$, setiap bentuk kuadrat selalu bernilai non-negatif:
+                    $$(a - 1)^2 \ge 0, \quad (b + 2)^2 \ge 0, \quad (c - 3)^2 \ge 0$$
+                    Jumlah ketiganya bernilai $0$ jika dan hanya jika masing-masing suku bernilai $0$:
+                </p>
+                <ul>
+                    <li>$a - 1 = 0 \implies a = 1$</li>
+                    <li>$b + 2 = 0 \implies b = -2$</li>
+                    <li>$c - 3 = 0 \implies c = 3$</li>
+                </ul>
+                <p>
+                    Dengan demikian, nilai dari $a + b + c = 1 + (-2) + 3 = 2$.
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $a + b + c$ adalah $2$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Diagram Venn Hierarki Bilangan Real dengan GeoSVG.js
+            const containerVenn = document.getElementById("geosvg-venn-real");
+            if (containerVenn && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerVenn, 320, 240, {
+                    viewBox: "0 0 320 240",
+                    clearContainer: true,
+                    title: "Diagram Venn Sistem Bilangan Real",
+                    description: "Hierarki himpunan bilangan Asli, Cacah, Bulat, Rasional, dan Irasional di dalam Bilangan Real"
+                });
+
+                // Kotak Besar: Bilangan Real (R)
+                geo1.buatPersegiPanjang(8, 8, 304, 224, {
+                    radius: 12,
+                    fill: "var(--bg-subtle)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2
+                });
+                geo1.buatTeks(160, 26, "Bilangan Real (ℝ)", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "13px",
+                    position: "middle-center"
+                });
+
+                // Kotak Kiri: Bilangan Rasional (Q)
+                geo1.buatPersegiPanjang(18, 42, 188, 180, {
+                    radius: 10,
+                    fill: "rgba(13, 148, 136, 0.08)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 1.5
+                });
+                geo1.buatTeks(112, 58, "Rasional (ℚ) : ½, -0,75", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "11px",
+                    position: "middle-center"
+                });
+
+                // Elips Bilangan Bulat (Z)
+                geo1.buatElips(112, 142, 82, 68, {
+                    fill: "rgba(13, 148, 136, 0.12)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 1.3
+                });
+                geo1.buatTeks(112, 89, "Bulat (ℤ) : -3, -2, -1", {
+                    fill: "var(--text-main)",
+                    fontWeight: "bold",
+                    fontSize: "10.5px",
+                    position: "middle-center"
+                });
+
+                // Elips Bilangan Cacah (W)
+                geo1.buatElips(112, 156, 62, 48, {
+                    fill: "rgba(13, 148, 136, 0.16)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 1.2
+                });
+                geo1.buatTeks(112, 122, "Cacah (𝕎) : 0", {
+                    fill: "var(--text-main)",
+                    fontWeight: "bold",
+                    fontSize: "10.5px",
+                    position: "middle-center"
+                });
+
+                // Elips Bilangan Asli (N)
+                geo1.buatElips(112, 170, 42, 28, {
+                    fill: "rgba(13, 148, 136, 0.24)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 1.2
+                });
+                geo1.buatTeks(112, 170, "Asli (ℕ): 1,2,3", {
+                    fill: "var(--text-main)",
+                    fontWeight: "bold",
+                    fontSize: "10px",
+                    position: "middle-center"
+                });
+
+                // Kotak Kanan: Bilangan Irasional (I)
+                geo1.buatPersegiPanjang(214, 42, 88, 180, {
+                    radius: 10,
+                    fill: "rgba(217, 119, 6, 0.12)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.5,
+                    dashed: "5 3"
+                });
+                geo1.buatTeks(258, 65, "Irasional", {
+                    fill: "#d97706",
+                    fontWeight: "bold",
+                    fontSize: "11.5px",
+                    position: "middle-center"
+                });
+                geo1.buatTeks(258, 82, "(ℝ \\ ℚ)", {
+                    fill: "#d97706",
+                    fontWeight: "bold",
+                    fontSize: "10.5px",
+                    position: "middle-center"
+                });
+                geo1.buatTeks(258, 120, "√2, √3", {
+                    fill: "var(--text-main)",
+                    fontSize: "11px",
+                    position: "middle-center"
+                });
+                geo1.buatTeks(258, 145, "π ≈ 3,1415...", {
+                    fill: "var(--text-main)",
+                    fontSize: "11px",
+                    position: "middle-center"
+                });
+                geo1.buatTeks(258, 170, "e ≈ 2,7182...", {
+                    fill: "var(--text-main)",
+                    fontSize: "11px",
+                    position: "middle-center"
+                });
+            }
+
+            // 2. Konstruksi Geometri Bilangan Irasional sqrt(2) pada Garis Bilangan dengan GeoSVG.js
+            const containerSqrt2 = document.getElementById("geosvg-sqrt2");
+            if (containerSqrt2 && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerSqrt2, 320, 185, {
+                    viewBox: "-35 -35 280 165",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Konstruksi Geometri Akar 2 pada Garis Bilangan",
+                    description: "Segitiga siku-siku dengan alas 1 dan tinggi 1 menghasilkan hipotenusa akar 2 yang diproyeksikan ke garis bilangan"
+                });
+
+                const scale = 85; // 1 satuan = 85 piksel
+
+                // Garis Bilangan Real
+                geo2.buatVektor([-25, 0], [230, 0], { stroke: "var(--text-main)", strokeWidth: 1.6 });
+
+                // Tick angka 0, 1, 2
+                [0, 1, 2].forEach(val => {
+                    const x = val * scale;
+                    geo2.buatSegmen([x, -5], [x, 5], { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    geo2.buatTeks(x, -16, String(val), {
+                        fill: "var(--text-main)",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        position: "middle-center"
+                    });
+                });
+
+                const O = [0, 0];
+                const A = [scale, 0];
+                const B = [scale, scale];
+                const R = Math.sqrt(2) * scale;
+                const P = [R, 0];
+
+                // Segitiga siku-siku OAB (alas 1, tinggi 1)
+                geo2.buatSegitiga(O, A, B, {
+                    fill: "rgba(13, 148, 136, 0.14)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2
+                });
+                geo2.buatSiku(O, A, B, { size: 10, stroke: "var(--teal-primary)" });
+
+                // Busur jangka dari B(1,1) turun ke P(sqrt(2), 0)
+                geo2.buatBusur(O, R, 0, 45, {
+                    stroke: "#d97706",
+                    strokeWidth: 2,
+                    dashed: "5 3"
+                });
+
+                // Label sisi segitiga
+                geo2.buatTeks(scale / 2, 10, "1", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "11px",
+                    position: "middle-center"
+                });
+                geo2.buatTeks(scale - 10, scale / 2, "1", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "11px",
+                    position: "middle-center"
+                });
+                geo2.buatTeks(scale / 2 - 12, scale / 2 + 12, "√2", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    position: "middle-center"
+                });
+
+                // Titik B dan Titik sqrt(2) pada garis bilangan
+                geo2.buatTitik(B, { size: 3.5, color: "var(--teal-primary)" });
+                geo2.buatTitik(P, {
+                    size: 4.5,
+                    color: "#d97706",
+                    label: "√2 ≈ 1,414",
+                    labelPosition: "bottom-center",
+                    labelDistance: 10,
+                    bold: true
+                });
+            }
+
+            // 3. Visualisasi Notasi Selang (Interval) pada Garis Bilangan dengan GeoSVG.js
+            const containerInterval = document.getElementById("geosvg-interval");
+            if (containerInterval && typeof GeoSVG !== "undefined") {
+                const geo3 = new GeoSVG(containerInterval, 540, 145, {
+                    viewBox: "0 0 540 145",
+                    clearContainer: true,
+                    title: "Visualisasi Selang pada Garis Bilangan",
+                    description: "Perbandingan bulatan penuh (tertutup) dan bulatan kosong (terbuka) pada interval [-2, 3)"
+                });
+
+                // Ilustrasi Interval [-2, 3) dan [4, inf)
+                const yAxis = 80;
+                geo3.buatTeks(270, 22, "Contoh Representasi Himpunan [-2, 3) ∪ (4, ∞) pada Garis Bilangan Real", {
+                    fill: "var(--text-main)",
+                    fontWeight: "bold",
+                    fontSize: "12.5px",
+                    position: "middle-center"
+                });
+
+                // Garis utama
+                geo3.buatVektor([30, yAxis], [510, yAxis], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo3.buatVektor([510, yAxis], [30, yAxis], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+
+                // Titik koordinat: -3 s.d. 6
+                const startX = 65;
+                const step = 45;
+                for (let val = -3; val <= 6; val++) {
+                    const x = startX + (val + 3) * step;
+                    geo3.buatSegmen(x, yAxis - 5, x, yAxis + 5, { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+                    geo3.buatTeks(x, yAxis + 22, String(val), {
+                        fill: "var(--text-main)",
+                        fontSize: "12px",
+                        fontWeight: (val === -2 || val === 3 || val === 4) ? "bold" : "normal",
+                        position: "middle-center"
+                    });
+                }
+
+                // 1. Interval [-2, 3): dari x(-2) ke x(3)
+                const xMin2 = startX + 1 * step; // -2
+                const x3 = startX + 6 * step;    // 3
+                geo3.buatSegmen(xMin2, yAxis, x3, yAxis, {
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 5
+                });
+                // Bulatan penuh di -2 (ikut)
+                geo3.buatTitik(xMin2, yAxis, {
+                    marker: "full-circle",
+                    size: 6,
+                    color: "var(--teal-primary)",
+                    label: "-2 ≤ x < 3",
+                    labelPosition: "top-right",
+                    labelDistance: 12,
+                    dx: 45,
+                    bold: true
+                });
+                // Bulatan kosong di 3 (tidak ikut)
+                geo3.buatLingkaran(x3, yAxis, 6, {
+                    fill: "var(--bg-card)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.5
+                });
+
+                // 2. Interval (4, inf): dari x(4) ke ujung kanan panah
+                const x4 = startX + 7 * step; // 4
+                geo3.buatVektor([x4, yAxis], [505, yAxis], {
+                    stroke: "#d97706",
+                    strokeWidth: 4.5
+                });
+                // Bulatan kosong di 4 (tidak ikut)
+                geo3.buatLingkaran(x4, yAxis, 6, {
+                    fill: "var(--bg-card)",
+                    stroke: "#d97706",
+                    strokeWidth: 2.5
+                });
+                geo3.buatTeks((x4 + 500) / 2, yAxis - 18, "x > 4", {
+                    fill: "#d97706",
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    position: "middle-center"
+                });
+
+                // Legenda singkat di bagian bawah
+                geo3.buatTeks(270, 130, "● Bulatan Penuh: Titik ujung termasuk (≤ atau ≥)     ○ Bulatan Kosong: Titik ujung tidak termasuk (< atau >)", {
+                    fill: "var(--text-muted)",
+                    fontSize: "11px",
+                    position: "middle-center"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

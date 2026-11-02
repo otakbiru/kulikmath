@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Aritmetika Sosial</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Aritmetika Sosial</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Aritmetika Sosial</h2>
+            <p>
+                <strong>Aritmetika Sosial</strong> adalah cabang ilmu matematika yang mempelajari penerapan operasi dasar aritmetika dalam kehidupan sosial dan ekonomi sehari-hari. Topik ini mencakup perhitungan dalam kegiatan perdagangan (jual-beli), potongan harga, timbangan barang, perbankan (bunga dan tabungan), hingga perpajakan.
+            </p>
+            <p>
+                Dalam materi ini, kita akan berfokus pada besaran-besaran nilai uang, berat, serta rasio persentase yang menjadi dasar pengambilan keputusan finansial sederhana.
+            </p>
+
+            <h2>2. Harga Beli, Harga Jual, Untung, dan Rugi</h2>
+            <p>
+                Dalam sebuah aktivitas perdagangan, terdapat beberapa komponen utama yang menentukan apakah seorang pedagang mendapatkan keuntungan atau mengalami kerugian:
+            </p>
+            <ul>
+                <li><strong>Harga Beli ($HB$) / Modal ($M$):</strong> Nilai uang yang dikeluarkan oleh pedagang untuk memperoleh atau memproduksi barang. Pada banyak kasus, modal total juga mencakup biaya operasional seperti ongkos kirim atau biaya perbaikan ($M = HB + \text{Biaya Operasional}$).</li>
+                <li><strong>Harga Jual ($HJ$):</strong> Nilai uang yang diterima oleh pedagang dari konsumen saat menjual barang.</li>
+                <li><strong>Untung / Laba ($U$):</strong> Kondisi ketika harga jual lebih tinggi daripada harga beli ($HJ > HB$).</li>
+                <li><strong>Rugi ($R$):</strong> Kondisi ketika harga jual lebih rendah daripada harga beli ($HJ < HB$).</li>
+                <li><strong>Impang / Balik Modal (<em>Break-Even Point</em>):</strong> Kondisi ketika harga jual sama persis dengan harga beli ($HJ = HB$).</li>
+            </ul>
+
+            <div class="row">
+                <div class="col">
+                    <p><strong>Rumus Nilai Untung dan Rugi:</strong></p>
+                    $$U = HJ - HB$$
+                    $$R = HB - HJ$$
+                    <p>
+                        <strong>Catatan Penting:</strong> Persentase keuntungan ($\text{PU}$) dan persentase kerugian ($\text{PR}$) <u>selalu dihitung terhadap Harga Beli (Modal)</u>, kecuali dinyatakan lain secara eksplisit pada soal.
+                    </p>
+                    $$\text{PU} = \frac{U}{HB} \times 100\%$$
+                    $$\text{PR} = \frac{R}{HB} \times 100\%$$
+                </div>
+                <div class="col col-center">
+                    <div id="svg-untung-rugi" style="width: 100%; max-width: 360px;"></div>
+                </div>
+            </div>
+
+            <p>
+                Apabila diketahui Harga Beli ($HB$) beserta persentase untung ($\text{PU}$) atau persentase rugi ($\text{PR}$), kita dapat langsung menentukan Harga Jual ($HJ$) menggunakan hubungan proporsional berikut:
+            </p>
+            $$HJ = HB \times \left(\frac{100 + \text{PU}}{100}\right) \quad \text{atau} \quad HJ = HB \times \left(\frac{100 - \text{PR}}{100}\right)$$
+            <p>
+                Sebaliknya, untuk mencari Harga Beli ($HB$) jika diketahui Harga Jual ($HJ$) dan persentase untung/rugi:
+            </p>
+            $$HB = HJ \times \left(\frac{100}{100 + \text{PU}}\right) \quad \text{atau} \quad HB = HJ \times \left(\frac{100}{100 - \text{PR}}\right)$$
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kondisi</th>
+                            <th>Syarat</th>
+                            <th>Rumus Selisih</th>
+                            <th>Rumus Persentase</th>
+                            <th>Rumus Cepat $HJ$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Untung ($U$)</strong></td>
+                            <td>$HJ > HB$</td>
+                            <td>$U = HJ - HB$</td>
+                            <td>$\text{PU} = \frac{U}{HB} \times 100\%$</td>
+                            <td>$HJ = (100\% + \text{PU}) \times HB$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rugi ($R$)</strong></td>
+                            <td>$HJ < HB$</td>
+                            <td>$R = HB - HJ$</td>
+                            <td>$\text{PR} = \frac{R}{HB} \times 100\%$</td>
+                            <td>$HJ = (100\% - \text{PR}) \times HB$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Impas</strong></td>
+                            <td>$HJ = HB$</td>
+                            <td>$0$</td>
+                            <td>$0\%$</td>
+                            <td>$HJ = HB$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Rabat (Diskon), Bruto, Neto, dan Tara</h2>
+            
+            <h3>A. Rabat (Diskon / Potongan Harga)</h3>
+            <p>
+                <strong>Rabat</strong> atau <strong>Diskon ($D$)</strong> adalah pengurangan harga yang diberikan oleh penjual kepada pembeli dari harga semula (harga label / harga kotor). Istilah <em>diskon</em> umumnya digunakan untuk konsumen eceran, sedangkan <em>rabat</em> biasanya diberikan oleh produsen atau grosir kepada pedagang eceran.
+            </p>
+            <ul>
+                <li><strong>Besar Diskon (Nominal):</strong> $\text{Nominal Diskon} = \%D \times \text{Harga Awal}$</li>
+                <li><strong>Harga Bersih (Harga Bayar):</strong> $\text{Harga Bersih} = \text{Harga Awal} - \text{Nominal Diskon} = (100\% - \%D) \times \text{Harga Awal}$</li>
+            </ul>
+            <p>
+                <strong>Diskon Bertingkat (Ganda):</strong> Di pusat perbelanjaan, kita sering menjumpai label diskon seperti $50\% + 20\%$. Ini <u>bukan</u> berarti diskon $70\%$. Artinya, harga barang dipotong $50\%$ terlebih dahulu, kemudian sisa harganya dipotong lagi sebesar $20\%$. Jika terdapat diskon bertingkat sebesar $d_1\%$ dan $d_2\%$, maka harga akhirnya adalah:
+            </p>
+            $$\text{Harga Akhir} = \text{Harga Awal} \times \left(1 - \frac{d_1}{100}\right) \times \left(1 - \frac{d_2}{100}\right)$$
+            $$\text{Total Persentase Diskon Efektif} = \left[1 - \left(1 - \frac{d_1}{100}\right)\left(1 - \frac{d_2}{100}\right)\right] \times 100\%$$
+
+            <h3>B. Bruto, Neto, dan Tara</h3>
+            <p>
+                Dalam perdagangan barang yang menggunakan wadah atau kemasan (seperti karung beras, kaleng susu, atau kardus buah), kita mengenal tiga istilah ukuran berat:
+            </p>
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li><strong>Bruto ($B$):</strong> Berat kotor, yaitu berat isi barang beserta kemasannya.</li>
+                        <li><strong>Neto ($N$):</strong> Berat bersih, yaitu berat murni dari isi barangnya saja (tanpa kemasan).</li>
+                        <li><strong>Tara ($T$):</strong> Berat potongan, yaitu berat dari wadah atau kemasannya saja.</li>
+                    </ul>
+                    <p><strong>Hubungan Matematis:</strong></p>
+                    $$B = N + T \iff N = B - T \iff T = B - N$$
+                    <p>
+                        Persentase Tara ($\text{PT}$) dan Persentase Neto ($\text{PN}$) selalu dihitung terhadap <strong>Bruto</strong>:
+                    </p>
+                    $$\text{PT} = \frac{T}{B} \times 100\% \quad \text{dan} \quad \text{PN} = \frac{N}{B} \times 100\%$$
+                </div>
+                <div class="col col-center">
+                    <div id="svg-bruto-neto" style="width: 100%; max-width: 360px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Bunga Tunggal dan Tabungan / Pinjaman</h2>
+            <p>
+                Saat kita menyimpan uang di bank (menabung) atau meminjam uang dari lembaga keuangan (kredit), terdapat balas jasa berupa <strong>Bunga</strong>. Dalam aritmetika sosial tingkat sekolah, perhitungan yang digunakan umumnya adalah <strong>Bunga Tunggal</strong>, yaitu bunga yang dihitung hanya berdasarkan modal awal saja untuk setiap periode waktu (bunga tidak ikut berbunga).
+            </p>
+            <p>
+                Misalkan $M_0$ adalah modal awal (tabungan awal / pokok pinjaman) dan $p\%$ adalah suku bunga tunggal per tahun. Besar bunga ($B$) dan total tabungan akhir ($M_n$) setelah disimpan selama periode waktu tertentu dirumuskan sebagai berikut:
+            </p>
+            <ul>
+                <li><strong>Jika ditabung selama $t$ tahun:</strong>
+                    $$B = M_0 \times \frac{p}{100} \times t$$
+                </li>
+                <li><strong>Jika ditabung selama $b$ bulan (1 tahun = 12 bulan):</strong>
+                    $$B = M_0 \times \frac{p}{100} \times \frac{b}{12}$$
+                </li>
+                <li><strong>Jika ditabung selama $h$ hari (1 tahun = 360 hari atau 365 hari):</strong>
+                    $$B = M_0 \times \frac{p}{100} \times \frac{h}{360}$$
+                </li>
+            </ul>
+            <p>
+                <strong>Tabungan Akhir ($M_n$):</strong>
+                $$M_n = M_0 + B = M_0 \left(1 + \frac{p}{100} \times \frac{b}{12}\right)$$
+            </p>
+            <p>
+                <strong>Angsuran Pinjaman:</strong> Jika seseorang meminjam uang sebesar $M_0$ dengan bunga tunggal $p\%$ per tahun dan akan dilunasi dalam $b$ bulan melalui cicilan tetap setiap bulannya, maka besar angsuran per bulan adalah:
+            </p>
+            $$\text{Angsuran per Bulan} = \frac{\text{Total Pinjaman} + \text{Total Bunga}}{\text{Lama Meminjam (bulan)}} = \frac{M_0 + B}{b}$$
+
+            <h2>5. Perpajakan dalam Aritmetika Sosial</h2>
+            <p>
+                <strong>Pajak</strong> adalah iuran wajib dari warga negara kepada kas negara berdasarkan undang-undang. Dalam transaksi ekonomi sehari-hari, pajak memiliki sifat yang <u>berkebalikan</u> dengan diskon (jika diskon mengurangi harga dan menambah pendapatan, maka pajak menambah harga beli konsumen dan mengurangi penghasilan bersih).
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Pajak</th>
+                            <th>Penjelasan & Objek Pajak</th>
+                            <th>Dampak pada Nilai Uang</th>
+                            <th>Rumus Perhitungan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>PPN</strong><br>(Pajak Pertambahan Nilai) / Pajak Restoran</td>
+                            <td class="text-left">Dikenakan atas pembelian barang kena pajak atau jasa (seperti belanja di swalayan atau makan di restoran).</td>
+                            <td class="text-left"><strong>Menambah</strong> harga yang harus dibayarkan oleh pembeli.</td>
+                            <td>$$\text{Pajak} = \%\text{PPN} \times \text{Harga Barang}$$ $$\text{Harga Bayar} = \text{Harga Barang} + \text{Pajak}$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PPh</strong><br>(Pajak Penghasilan)</td>
+                            <td class="text-left">Dikenakan atas gaji karyawan, honorarium, atau hadiah undian yang diterima seseorang.</td>
+                            <td class="text-left"><strong>Mengurangi</strong> penghasilan yang diterima (Gaji Bersih / <em>Take Home Pay</em>).</td>
+                            <td>$$\text{Pajak} = \%\text{PPh} \times \text{PKP}$$ $$\text{Gaji Bersih} = \text{Gaji Kotor} - \text{Pajak}$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pajak UMKM</strong><br>(PPh Final)</td>
+                            <td class="text-left">Dikenakan atas omzet (peredaran bruto) usaha mikro, kecil, dan menengah.</td>
+                            <td class="text-left"><strong>Mengurangi</strong> pendapatan kotor usaha.</td>
+                            <td>$$\text{Pajak} = \%\text{Pajak} \times \text{Omzet}$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                <em>Keterangan PPh:</em> Dalam perhitungan pajak penghasilan karyawan, pajak tidak langsung dikalikan dengan seluruh gaji kotor, melainkan dikurangi terlebih dahulu dengan <strong>PTKP (Penghasilan Tidak Kena Pajak)</strong> sehingga diperoleh <strong>PKP (Penghasilan Kena Pajak)</strong>:
+                $$\text{PKP} = \text{Penghasilan Kotor} - \text{PTKP}$$
+            </p>
+
+            <h2>6. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Untuk memperdalam pemahaman mengenai konsep-konsep di atas, perhatikan beberapa variasi contoh soal beserta langkah penyelesaiannya berikut ini:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Seorang pedagang membeli $5$ karung beras dengan harga $\text{Rp}650.000\text{,00}$ per karung. Pada masing-masing karung tertera tulisan <strong>Bruto $50\text{ kg}$</strong> dan <strong>Tara $2\%$</strong>. Pedagang tersebut kemudian menjual kembali seluruh beras secara eceran dengan harga $\text{Rp}15.000\text{,00}$ per kg, dan karung kosongnya dijual dengan harga $\text{Rp}2.000\text{,00}$ per lembar. Tentukan besar keuntungan dan persentase keuntungan pedagang tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Hitung Modal Total (Harga Beli)</strong></p>
+                    <p>
+                        Pedagang membeli $5$ karung beras dengan harga $\text{Rp}650.000\text{,00}$ per karung:
+                        $$HB = 5 \times \text{Rp}650.000\text{,00} = \text{Rp}3.250.000\text{,00}$$
+                    </p>
+                    <p><strong>Langkah 2: Hitung Neto (Berat Bersih) Beras Seluruhnya</strong></p>
+                    <p>
+                        Bruto 1 karung $= 50\text{ kg}$, sehingga Bruto 5 karung adalah:
+                        $$B_{\text{total}} = 5 \times 50\text{ kg} = 250\text{ kg}$$
+                        Karena Tara $= 2\%$, maka persentase Neto adalah $100\% - 2\% = 98\%$:
+                        $$N_{\text{total}} = 98\% \times 250\text{ kg} = \frac{98}{100} \times 250 = 245\text{ kg}$$
+                    </p>
+                    <p><strong>Langkah 3: Hitung Harga Jual Total ($HJ$)</strong></p>
+                    <ul>
+                        <li>Hasil penjualan beras $= 245\text{ kg} \times \text{Rp}15.000\text{,00} = \text{Rp}3.675.000\text{,00}$</li>
+                        <li>Hasil penjualan 5 karung $= 5 \times \text{Rp}2.000\text{,00} = \text{Rp}10.000\text{,00}$</li>
+                        <li>Total Harga Jual ($HJ$) $= \text{Rp}3.675.000\text{,00} + \text{Rp}10.000\text{,00} = \text{Rp}3.685.000\text{,00}$</li>
+                    </ul>
+                    <p><strong>Langkah 4: Hitung Untung dan Persentase Untung</strong></p>
+                    $$U = HJ - HB = \text{Rp}3.685.000\text{,00} - \text{Rp}3.250.000\text{,00} = \text{Rp}435.000\text{,00}$$
+                    $$\text{PU} = \frac{U}{HB} \times 100\% = \frac{435.000}{3.250.000} \times 100\% = \frac{435}{32,5}\% \approx 13,38\%$$
+                    <div class="kesimpulan">
+                        Jadi, keuntungan pedagang tersebut adalah $\text{Rp}435.000\text{,00}$ dengan persentase keuntungan sekitar $13,38\%$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Sebuah toko pakaian memberikan promo akhir tahun berupa diskon ganda $40\% + 15\%$ untuk sebuah jaket. Jika setelah diskon seorang pembeli membayar sebesar $\text{Rp}255.000\text{,00}$ di kasir, berapakah harga label (harga awal) jaket tersebut sebelum didiskon?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Misalkan harga awal jaket adalah $H_0$. Pada diskon bertingkat $d_1 = 40\%$ dan $d_2 = 15\%$, proporsi harga yang dibayarkan adalah:
+                        $$\text{Harga Akhir} = H_0 \times \left(1 - \frac{40}{100}\right) \times \left(1 - \frac{15}{100}\right)$$
+                        $$255.000 = H_0 \times \left(\frac{60}{100}\right) \times \left(\frac{85}{100}\right)$$
+                        $$255.000 = H_0 \times \frac{51}{100}$$
+                        $$H_0 = 255.000 \times \frac{100}{51} = 5.000 \times 100 = 500.000$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, harga label jaket tersebut sebelum didiskon adalah $\text{Rp}500.000\text{,00}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Bu Rina menabung uang di sebuah bank sebesar $\text{Rp}8.000.000\text{,00}$ dengan suku bunga tunggal $9\%$ per tahun. Saat diambil, tabungan Bu Rina telah berkembang menjadi $\text{Rp}9.080.000\text{,00}$. Tentukan berapa bulan lama Bu Rina menabung di bank tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Diketahui tabungan awal $M_0 = \text{Rp}8.000.000\text{,00}$, tabungan akhir $M_n = \text{Rp}9.080.000\text{,00}$, dan suku bunga $p = 9\%$ per tahun.
+                    </p>
+                    <p>
+                        Besar bunga ($B$) yang diperoleh Bu Rina adalah:
+                        $$B = M_n - M_0 = \text{Rp}9.080.000\text{,00} - \text{Rp}8.000.000\text{,00} = \text{Rp}1.080.000\text{,00}$$
+                    </p>
+                    <p>
+                        Substitusikan ke dalam rumus bunga tunggal bulanan:
+                        $$B = M_0 \times \frac{p}{100} \times \frac{b}{12}$$
+                        $$1.080.000 = 8.000.000 \times \frac{9}{100} \times \frac{b}{12}$$
+                        $$1.080.000 = 80.000 \times \frac{3}{4} \times b$$
+                        $$1.080.000 = 60.000 \times b$$
+                        $$b = \frac{1.080.000}{60.000} = 18\text{ bulan}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, lama Bu Rina menabung di bank tersebut adalah $18\text{ bulan}$ (atau $1\text{ tahun } 6\text{ bulan}$).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Diagram Visual Untung & Rugi
+            const elUntungRugi = document.getElementById("svg-untung-rugi");
+            if (elUntungRugi && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elUntungRugi, 340, 210, {
+                    viewBox: "0 0 340 210",
+                    title: "Diagram Perbandingan Harga Beli, Untung, dan Rugi"
+                });
+
+                // Judul Diagram
+                geo1.buatTeks(170, 18, "Perbandingan Struktur Harga", {
+                    position: "middle-center",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Baris 1: Kondisi UNTUNG
+                geo1.buatTeks(15, 45, "Kondisi Untung (HJ > HB):", {
+                    position: "middle-right",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#334155"
+                });
+                // Kotak HB
+                geo1.buatPersegiPanjang(15, 58, 210, 32, {
+                    fill: "#ccfbf1",
+                    stroke: "#0d9488",
+                    strokeWidth: 1.5,
+                    radius: 4
+                });
+                geo1.buatTeks(120, 74, "Harga Beli (HB)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+                // Kotak Untung
+                geo1.buatPersegiPanjang(225, 58, 95, 32, {
+                    fill: "#fef3c7",
+                    stroke: "#d97706",
+                    strokeWidth: 1.5,
+                    radius: 4
+                });
+                geo1.buatTeks(272.5, 74, "+ Untung (U)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#92400e"
+                });
+                // Dimensi Total HJ pada Untung
+                geo1.buatDimensi([15, 92], [320, 92], 14, "Total Harga Jual (HJ)", {
+                    stroke: "#0d9488",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    labelJarak: 9
+                });
+
+                // Baris 2: Kondisi RUGI
+                geo1.buatTeks(15, 132, "Kondisi Rugi (HJ < HB):", {
+                    position: "middle-right",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#334155"
+                });
+                // Kotak HJ
+                geo1.buatPersegiPanjang(15, 145, 150, 32, {
+                    fill: "#e0f2fe",
+                    stroke: "#0284c7",
+                    strokeWidth: 1.5,
+                    radius: 4
+                });
+                geo1.buatTeks(90, 161, "Harga Jual (HJ)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0369a1"
+                });
+                // Kotak Rugi
+                geo1.buatPersegiPanjang(165, 145, 60, 32, {
+                    fill: "#fee2e2",
+                    stroke: "#dc2626",
+                    strokeWidth: 1.5,
+                    dashed: true,
+                    radius: 4
+                });
+                geo1.buatTeks(195, 161, "- Rugi (R)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#b91c1c"
+                });
+                // Dimensi HB pada Rugi
+                geo1.buatDimensi([15, 179], [225, 179], 14, "Harga Beli Semula (HB)", {
+                    stroke: "#64748b",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    labelJarak: 9
+                });
+            }
+
+            // 2. Diagram Visual Bruto, Neto, dan Tara
+            const elBrutoNeto = document.getElementById("svg-bruto-neto");
+            if (elBrutoNeto && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elBrutoNeto, 340, 195, {
+                    viewBox: "0 0 340 195",
+                    title: "Diagram Hubungan Bruto, Neto, dan Tara"
+                });
+
+                geo2.buatTeks(170, 18, "Komponen Berat Barang (Bruto)", {
+                    position: "middle-center",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Ilustrasi Kotak Neto (Isi)
+                geo2.buatPersegiPanjang(25, 45, 115, 95, {
+                    fill: "#ccfbf1",
+                    stroke: "#0d9488",
+                    strokeWidth: 2,
+                    radius: 8
+                });
+                geo2.buatTeks(82.5, 82, "NETO (N)", {
+                    position: "middle-center",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+                geo2.buatTeks(82.5, 102, "(Berat Bersih Isi)", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fill: "#0f766e"
+                });
+
+                // Tanda Tambah (+)
+                geo2.buatTeks(162, 92, "+", {
+                    position: "middle-center",
+                    fontSize: "22px",
+                    fontWeight: "bold",
+                    fill: "#0d9488"
+                });
+
+                // Ilustrasi Kotak Tara (Kemasan)
+                geo2.buatPersegiPanjang(185, 45, 130, 95, {
+                    fill: "#fef3c7",
+                    stroke: "#d97706",
+                    strokeWidth: 2,
+                    dashed: "5 3",
+                    radius: 8
+                });
+                geo2.buatTeks(250, 82, "TARA (T)", {
+                    position: "middle-center",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fill: "#92400e"
+                });
+                geo2.buatTeks(250, 102, "(Berat Kemasan)", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fill: "#92400e"
+                });
+
+                // Garis Dimensi Bruto
+                geo2.buatDimensi([25, 148], [315, 148], 16, "BRUTO = NETO + TARA (Berat Kotor)", {
+                    stroke: "#0f766e",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    labelJarak: 11
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

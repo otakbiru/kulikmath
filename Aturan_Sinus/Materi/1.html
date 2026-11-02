@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Aturan Sinus</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Aturan Sinus</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Rumus Dasar Aturan Sinus</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Aturan Sinus (Law of Sines)</strong> adalah teorema dalam trigonometri yang menyatakan bahwa pada setiap segitiga sembarang, perbandingan antara panjang suatu sisi dengan nilai sinus sudut di hadapannya adalah konstan (selalu bernilai sama).
+                    </p>
+                    <p>
+                        Untuk sembarang segitiga $ABC$ dengan panjang sisi $a, b,$ dan $c$ yang masing-masing terletak tepat di hadapan sudut $A, B,$ dan $C$, berlaku hubungan:
+                        $$\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}$$
+                    </p>
+                    <p>
+                        Persamaan di atas juga dapat dituliskan dalam bentuk perbandingan terbalik:
+                        $$\frac{\sin A}{a} = \frac{\sin B}{b} = \frac{\sin C}{c}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-segitiga-sinus" style="width: 100%; max-width: 310px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Pembuktian Geometris Aturan Sinus</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Untuk membuktikan Aturan Sinus, tarik sebuah garis tinggi $CD = h$ yang tegak lurus terhadap sisi alas $AB$ pada segitiga sembarang $ABC$. Garis tinggi $h$ ini membagi $\triangle ABC$ menjadi dua buah segitiga siku-siku, yaitu $\triangle ADC$ dan $\triangle BDC$.
+                    </p>
+                    <ul>
+                        <li>
+                            Pada $\triangle ADC$ (siku-siku di $D$):
+                            $$\sin A = \frac{\text{depan}}{\text{miring}} = \frac{h}{b} \iff h = b \sin A$$
+                        </li>
+                        <li>
+                            Pada $\triangle BDC$ (siku-siku di $D$):
+                            $$\sin B = \frac{\text{depan}}{\text{miring}} = \frac{h}{a} \iff h = a \sin B$$
+                        </li>
+                    </ul>
+                    <p>
+                        Dengan menyamakan kedua nilai $h$ tersebut, diperoleh:
+                        $$b \sin A = a \sin B \iff \frac{a}{\sin A} = \frac{b}{\sin B}$$
+                    </p>
+                    <p>
+                        Dengan cara serupa, jika kita menarik garis tinggi dari titik sudut $A$ ke sisi $BC$, kita akan memperoleh $\frac{b}{\sin B} = \frac{c}{\sin C}$. Dengan menggabungkan keduanya, terbuktilah rumus Aturan Sinus secara lengkap.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-bukti-sinus" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Perluasan Aturan Sinus: Lingkaran Luar Segitiga ($2R$)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Nilai konstan dari perbandingan $\frac{a}{\sin A}$ ternyata sama persis dengan <strong>panjang diameter lingkaran luar segitiga</strong> ($2R$), di mana $R$ adalah jari-jari lingkaran yang melalui ketiga titik sudut segitiga $ABC$ (<em>circumradius</em>).
+                    </p>
+                    <p>
+                        <strong>Rumus Lengkap Aturan Sinus:</strong>
+                        $$\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C} = 2R$$
+                    </p>
+                    <p>
+                        <em>Bukti Singkat:</em> Buat diameter $CA'$ yang melalui pusat lingkaran luar $O$ sehingga $CA' = 2R$. Karena sudut keliling yang menghadap busur yang sama adalah sama besar, maka $\angle CA'B = \angle CAB = A$. Selain itu, karena $\angle CBA'$ menghadap diameter $CA'$, maka $\angle CBA' = 90^\circ$ (segitiga $CBA'$ siku-siku di $B$). Akibatnya:
+                        $$\sin A' = \sin A = \frac{BC}{CA'} = \frac{a}{2R} \iff \frac{a}{\sin A} = 2R$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-lingkaran-luar" style="width: 100%; max-width: 300px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Kapan Menggunakan Aturan Sinus? (Syarat & Kasus Ambigu)</h2>
+            <p>
+                Aturan Sinus digunakan ketika kita mengetahui <strong>sepasang sisi dan sudut yang saling berhadapan</strong>, yaitu pada dua kondisi berikut:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kondisi Diketahui</th>
+                            <th>Unsur yang Dicari</th>
+                            <th>Keterangan Penyelesaian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sd - Sd - S</strong> atau <strong>Sd - S - Sd</strong><br>(Dua Sudut dan Satu Sisi)</td>
+                            <td class="text-left">Panjang sisi lainnya</td>
+                            <td class="text-left">Selalu menghasilkan <strong>1 segitiga unik</strong> (asalkan jumlah dua sudut $&lt; 180^\circ$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>S - S - Sd</strong><br>(Dua Sisi dan Satu Sudut di hadapan salah satu sisi)</td>
+                            <td class="text-left">Besar sudut di hadapan sisi lainnya</td>
+                            <td class="text-left"><strong>Kasus Ambigu:</strong> Karena $\sin(180^\circ - \theta) = \sin \theta$, persamaan $\sin B = k$ dapat menghasilkan <strong>0, 1, atau 2 segitiga</strong> yang memenuhi.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                <strong>Analisis Kasus Ambigu (S - S - Sd):</strong> Misalkan diketahui panjang sisi $a, b,$ dan sudut lancip $A$, serta tinggi $h = b \sin A$:
+            </p>
+            <ul>
+                <li>Jika $a &lt; b \sin A$ (atau nilai $\sin B &gt; 1$): <strong>Tidak ada segitiga</strong> yang dapat dibentuk ($0$ solusi).</li>
+                <li>Jika $a = b \sin A$ (atau nilai $\sin B = 1$): Terbentuk tepat <strong>1 segitiga siku-siku</strong> ($B = 90^\circ$).</li>
+                <li>Jika $b \sin A &lt; a &lt; b$: Terbentuk <strong>2 segitiga berbeda</strong>, karena sudut $B$ bisa berupa sudut lancip ($B_1$) maupun sudut tumpul ($B_2 = 180^\circ - B_1$).</li>
+                <li>Jika $a \ge b$: Terbentuk tepat <strong>1 segitiga</strong>, karena sudut $B$ pasti lancip ($B &lt; A$).</li>
+            </ul>
+
+            <h2>5. Aplikasi pada Rumus Luas Segitiga Trigonometri</h2>
+            <p>
+                Dari pembuktian garis tinggi $h = b \sin A$, kita dapat mensubstitusikannya ke dalam rumus luas segitiga dasar $L = \frac{1}{2} \times \text{alas} \times \text{tinggi} = \frac{1}{2} c \cdot h$, sehingga diperoleh rumus luas segitiga trigonometri:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Unsur yang Diketahui</th>
+                            <th>Rumus Luas Segitiga ($L$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Dua Sisi dan Satu Sudut Apit (S - Sd - S)</strong></td>
+                            <td>$$L = \frac{1}{2} bc \sin A = \frac{1}{2} ac \sin B = \frac{1}{2} ab \sin C$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Satu Sisi dan Semua Sudut (Sd - S - Sd)</strong></td>
+                            <td>$$L = \frac{a^2 \sin B \sin C}{2 \sin A} = \frac{b^2 \sin A \sin C}{2 \sin B} = \frac{c^2 \sin A \sin B}{2 \sin C}$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ketiga Sisi dan Jari-jari Lingkaran Luar ($R$)</strong></td>
+                            <td>$$L = \frac{abc}{4R} \iff R = \frac{abc}{4L}$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>6. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memahami cara menerapkan Aturan Sinus pada berbagai variasi soal:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Pada segitiga $ABC$, diketahui besar $\angle A = 45^\circ$, $\angle B = 60^\circ$, dan panjang sisi $BC = 12\text{ cm}$. Tentukan panjang sisi $AC$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Identifikasi pasangan sisi dan sudut yang berhadapan</strong></p>
+                    <ul>
+                        <li>Sisi $BC = a = 12\text{ cm}$ berhadapan dengan sudut $\angle A = 45^\circ$.</li>
+                        <li>Sisi $AC = b$ berhadapan dengan sudut $\angle B = 60^\circ$.</li>
+                    </ul>
+                    <p><strong>Langkah 2: Terapkan rumus Aturan Sinus</strong></p>
+                    <p>
+                        $$\frac{b}{\sin B} = \frac{a}{\sin A}$$
+                        $$\frac{AC}{\sin 60^\circ} = \frac{12}{\sin 45^\circ}$$
+                        $$\frac{AC}{\frac{1}{2}\sqrt{3}} = \frac{12}{\frac{1}{2}\sqrt{2}}$$
+                    </p>
+                    <p><strong>Langkah 3: Sederhanakan dan rasionalkan penyebut</strong></p>
+                    <p>
+                        $$AC = \frac{12 \times \frac{1}{2}\sqrt{3}}{\frac{1}{2}\sqrt{2}} = \frac{12\sqrt{3}}{\sqrt{2}} \times \frac{\sqrt{2}}{\sqrt{2}} = 6\sqrt{6}\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, panjang sisi $AC$ adalah $6\sqrt{6}\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Pada $\triangle PQR$, diketahui panjang sisi $p = 8\text{ cm}$, sisi $q = 8\sqrt{2}\text{ cm}$, dan besar $\angle P = 30^\circ$. Jika $\angle Q$ merupakan <strong>sudut tumpul</strong>, tentukan besar $\angle R$ dan luas $\triangle PQR$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Cari nilai $\sin Q$ menggunakan Aturan Sinus (Kasus S-S-Sd)</strong></p>
+                    <p>
+                        $$\frac{\sin Q}{q} = \frac{\sin P}{p}$$
+                        $$\frac{\sin Q}{8\sqrt{2}} = \frac{\sin 30^\circ}{8} \iff \frac{\sin Q}{8\sqrt{2}} = \frac{\frac{1}{2}}{8}$$
+                        $$\sin Q = 8\sqrt{2} \times \frac{1}{16} = \frac{1}{2}\sqrt{2}$$
+                    </p>
+                    <p><strong>Langkah 2: Tentukan besar $\angle Q$ dan $\angle R$</strong></p>
+                    <p>
+                        Nilai $\sin Q = \frac{1}{2}\sqrt{2}$ dipenuhi oleh $\angle Q = 45^\circ$ (lancip) atau $\angle Q = 180^\circ - 45^\circ = 135^\circ$ (tumpul). Karena pada soal diketahui $\angle Q$ adalah sudut tumpul, maka kita pilih:
+                        $$\angle Q = 135^\circ$$
+                        Jumlah sudut dalam segitiga adalah $180^\circ$, sehingga besar $\angle R$:
+                        $$\angle R = 180^\circ - (\angle P + \angle Q) = 180^\circ - (30^\circ + 135^\circ) = 15^\circ$$
+                    </p>
+                    <p><strong>Langkah 3: Hitung luas $\triangle PQR$ menggunakan sudut apit $\angle R = 15^\circ$</strong></p>
+                    <p>
+                        Ingat nilai $\sin 15^\circ = \sin(45^\circ - 30^\circ) = \frac{1}{4}(\sqrt{6} - \sqrt{2})$. Maka luas segitiga adalah:
+                        $$L = \frac{1}{2} \cdot p \cdot q \cdot \sin R$$
+                        $$L = \frac{1}{2} \times 8 \times 8\sqrt{2} \times \frac{1}{4}(\sqrt{6} - \sqrt{2})$$
+                        $$L = 8\sqrt{2}(\sqrt{6} - \sqrt{2}) = 8\sqrt{12} - 16 = (16\sqrt{3} - 16)\text{ cm}^2$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, besar $\angle R = 15^\circ$ dan luas $\triangle PQR$ adalah $(16\sqrt{3} - 16)\text{ cm}^2$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Sebuah segitiga $ABC$ memiliki panjang sisi $AB = 10\text{ cm}$ dan besar sudut $\angle C = 120^\circ$. Tentukan luas lingkaran luar dari segitiga $ABC$ tersebut! (Gunakan $\pi$)
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Hitung jari-jari lingkaran luar ($R$) dengan Aturan Sinus</strong></p>
+                    <p>
+                        Sisi $AB = c = 10\text{ cm}$ berhadapan langsung dengan sudut $\angle C = 120^\circ$. Berdasarkan perluasan Aturan Sinus:
+                        $$\frac{c}{\sin C} = 2R$$
+                        $$\frac{10}{\sin 120^\circ} = 2R \iff \frac{10}{\frac{1}{2}\sqrt{3}} = 2R$$
+                        $$2R = \frac{20}{\sqrt{3}} \iff R = \frac{10}{\sqrt{3}}\text{ cm}$$
+                    </p>
+                    <p><strong>Langkah 2: Hitung luas lingkaran luar</strong></p>
+                    <p>
+                        $$L_{\text{lingkaran}} = \pi R^2 = \pi \left(\frac{10}{\sqrt{3}}\right)^2 = \frac{100}{3}\pi\text{ cm}^2$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, luas lingkaran luar segitiga $ABC$ tersebut adalah $\frac{100}{3}\pi\text{ cm}^2$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Dua buah pos pengamat pantai $A$ dan $B$ berjarak $20\text{ km}$ satu sama lain pada garis pantai yang lurus. Sebuah kapal terdeteksi dari pos $A$ dengan sudut $75^\circ$ terhadap garis pantai $AB$, dan dari pos $B$ dengan sudut $45^\circ$ terhadap garis pantai $BA$. Tentukan jarak kapal tersebut dari pos pengamat $A$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Buat model segitiga dan tentukan besar sudut di titik kapal ($K$)</strong></p>
+                    <p>
+                        Misalkan posisi kapal adalah titik $K$, sehingga terbentuk $\triangle ABK$ dengan:
+                    </p>
+                    <ul>
+                        <li>Jarak antarpos: $AB = k = 20\text{ km}$</li>
+                        <li>Sudut di pos $A$: $\angle A = 75^\circ$</li>
+                        <li>Sudut di pos $B$: $\angle B = 45^\circ$</li>
+                    </ul>
+                    <p>
+                        Maka sudut pada posisi kapal ($\angle K$) adalah:
+                        $$\angle K = 180^\circ - (75^\circ + 45^\circ) = 180^\circ - 120^\circ = 60^\circ$$
+                    </p>
+                    <p><strong>Langkah 2: Gunakan Aturan Sinus untuk mencari jarak kapal ke pos $A$ ($AK = b$)</strong></p>
+                    <p>
+                        Sisi $AK = b$ berada di hadapan sudut $\angle B = 45^\circ$, sedangkan sisi $AB = k = 20\text{ km}$ berada di hadapan sudut $\angle K = 60^\circ$:
+                        $$\frac{AK}{\sin B} = \frac{AB}{\sin K}$$
+                        $$\frac{AK}{\sin 45^\circ} = \frac{20}{\sin 60^\circ}$$
+                        $$AK = \frac{20 \times \frac{1}{2}\sqrt{2}}{\frac{1}{2}\sqrt{3}} = \frac{20\sqrt{2}}{\sqrt{3}} \times \frac{\sqrt{3}}{\sqrt{3}} = \frac{20}{3}\sqrt{6}\text{ km}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, jarak kapal tersebut dari pos pengamat $A$ adalah $\frac{20}{3}\sqrt{6}\text{ km}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Segitiga Dasar Aturan Sinus
+            const elSinus = document.getElementById("svg-segitiga-sinus");
+            if (elSinus && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elSinus, 310, 210, {
+                    viewBox: "0 0 310 210",
+                    title: "Segitiga Sembarang ABC pada Aturan Sinus"
+                });
+
+                const A = [35, 170];
+                const B = [275, 170];
+                const C = [115, 35];
+
+                // Gambar busur sudut terlebih dahulu
+                geo1.buatSudut(B, A, C, { radius: 28, fill: "rgba(13, 148, 136, 0.15)", stroke: "#0d9488", label: "A", labelRadius: 38, labelColor: "#0f766e", fontSize: "11px", bold: true });
+                geo1.buatSudut(C, B, A, { radius: 30, fill: "rgba(217, 119, 6, 0.15)", stroke: "#d97706", label: "B", labelRadius: 40, labelColor: "#b45309", fontSize: "11px", bold: true });
+                geo1.buatSudut(A, C, B, { radius: 26, fill: "rgba(124, 58, 237, 0.15)", stroke: "#7c3aed", label: "C", labelRadius: 36, labelColor: "#6d28d9", fontSize: "11px", bold: true });
+
+                // Segitiga utama
+                geo1.buatSegitiga(A, B, C, { stroke: "#0f766e", strokeWidth: 2, fill: "rgba(13, 148, 136, 0.03)" });
+
+                // Label Sisi
+                geo1.buatLabelSisi(B, C, "a", { pusat: A, jarak: 14, color: "#0f766e", fontWeight: "bold", fontStyle: "italic", fontSize: "13px" });
+                geo1.buatLabelSisi(A, C, "b", { pusat: B, jarak: 14, color: "#b45309", fontWeight: "bold", fontStyle: "italic", fontSize: "13px" });
+                geo1.buatLabelSisi(A, B, "c", { pusat: C, jarak: 15, color: "#6d28d9", fontWeight: "bold", fontStyle: "italic", fontSize: "13px" });
+
+                // Titik Sudut
+                geo1.buatTitik(A, { size: 3.5, color: "#0f766e", label: "A", labelPosition: "bottom-left", bold: true });
+                geo1.buatTitik(B, { size: 3.5, color: "#0f766e", label: "B", labelPosition: "bottom-right", bold: true });
+                geo1.buatTitik(C, { size: 3.5, color: "#0f766e", label: "C", labelPosition: "top-center", bold: true });
+            }
+
+            // 2. Visualisasi Bukti Geometris (Garis Tinggi h)
+            const elBukti = document.getElementById("svg-bukti-sinus");
+            if (elBukti && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elBukti, 320, 215, {
+                    viewBox: "0 0 320 215",
+                    title: "Pembuktian Aturan Sinus dengan Garis Tinggi CD = h"
+                });
+
+                const A = [35, 175];
+                const B = [285, 175];
+                const C = [125, 35];
+                const D = geo2.hitungKakiTegakLurus(C, A, B);
+
+                // Sudut A dan B
+                geo2.buatSudut(B, A, C, { radius: 26, fill: "rgba(13, 148, 136, 0.14)", stroke: "#0d9488", label: "A", labelRadius: 36, fontSize: "11px" });
+                geo2.buatSudut(C, B, A, { radius: 28, fill: "rgba(217, 119, 6, 0.14)", stroke: "#d97706", label: "B", labelRadius: 38, fontSize: "11px" });
+
+                // Tanda siku-siku di D
+                geo2.buatSiku(C, D, B, { size: 11, stroke: "#dc2626", fill: "rgba(220, 38, 38, 0.1)" });
+
+                // Segitiga & Garis Tinggi h
+                geo2.buatSegitiga(A, B, C, { stroke: "#0f766e", strokeWidth: 2, fill: "rgba(13, 148, 136, 0.03)" });
+                geo2.buatSegmen(C, D, { stroke: "#dc2626", strokeWidth: 1.8, dashed: true, label: "h", labelSisi: "kanan", labelJarak: 8, labelColor: "#dc2626", bold: true });
+
+                // Label Sisi b dan a
+                geo2.buatLabelSisi(A, C, "b", { pusat: B, jarak: 14, color: "#0f766e", fontWeight: "bold", fontStyle: "italic" });
+                geo2.buatLabelSisi(B, C, "a", { pusat: A, jarak: 14, color: "#0f766e", fontWeight: "bold", fontStyle: "italic" });
+
+                // Teks persamaan h
+                geo2.buatTeks(160, 202, "h = b sin A = a sin B", { position: "middle-center", fontSize: "11.5px", fontWeight: "bold", fill: "#dc2626" });
+
+                // Titik
+                geo2.buatTitik(A, { size: 3.5, color: "#0f766e", label: "A", labelPosition: "bottom-left", bold: true });
+                geo2.buatTitik(B, { size: 3.5, color: "#0f766e", label: "B", labelPosition: "bottom-right", bold: true });
+                geo2.buatTitik(C, { size: 3.5, color: "#0f766e", label: "C", labelPosition: "top-center", bold: true });
+                geo2.buatTitik(D, { size: 3, color: "#dc2626", label: "D", labelPosition: "bottom-center", fontSize: "11px", bold: true });
+            }
+
+            // 3. Visualisasi Lingkaran Luar Segitiga (2R)
+            const elLingkaran = document.getElementById("svg-lingkaran-luar");
+            if (elLingkaran && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elLingkaran, 300, 240, {
+                    viewBox: "0 0 300 240",
+                    title: "Hubungan Aturan Sinus dengan Lingkaran Luar Segitiga"
+                });
+
+                const cx = 150, cy = 120, r = 88;
+                const toPt = (deg) => {
+                    const rad = (deg * Math.PI) / 180;
+                    return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)];
+                };
+
+                const C = toPt(-115);
+                const B = toPt(20);
+                const A = toPt(145);
+                const A_prime = toPt(65); // Titik antipodal dari C sehingga CA' adalah diameter
+
+                // Lingkaran Luar
+                geo3.buatLingkaran([cx, cy], r, { stroke: "#0d9488", strokeWidth: 1.8, fill: "rgba(13, 148, 136, 0.03)" });
+
+                // Sudut siku-siku di B pada segitiga CBA'
+                geo3.buatSiku(C, B, A_prime, { size: 10, stroke: "#d97706" });
+
+                // Sudut keliling A dan A' yang sama besar
+                geo3.buatSudut(B, A, C, { radius: 22, fill: "rgba(124, 58, 237, 0.18)", stroke: "#7c3aed" });
+                geo3.buatSudut(B, A_prime, C, { radius: 22, fill: "rgba(124, 58, 237, 0.18)", stroke: "#7c3aed" });
+
+                // Segitiga ABC
+                geo3.buatSegitiga(A, B, C, { stroke: "#0f766e", strokeWidth: 2, fill: "rgba(13, 148, 136, 0.06)" });
+
+                // Diameter CA' dan tali busur A'B
+                geo3.buatSegmen(C, A_prime, { stroke: "#dc2626", strokeWidth: 1.6, dashed: true, label: "2R", labelPosisi: 0.35, labelSisi: "kiri", labelJarak: 8, labelColor: "#dc2626", bold: true });
+                geo3.buatSegmen(A_prime, B, { stroke: "#64748b", strokeWidth: 1.4, dashed: true });
+
+                // Label sisi a
+                geo3.buatLabelSisi(C, B, "a", { pusat: A, jarak: 12, color: "#0f766e", fontWeight: "bold", fontStyle: "italic" });
+
+                // Titik Pusat O dan Titik Sudut
+                geo3.buatTitik([cx, cy], { size: 3, color: "#dc2626", label: "O", labelPosition: "bottom-left", fontSize: "10px", bold: true });
+                geo3.buatTitik(A, { size: 3.5, color: "#0f766e", label: "A", labelPosition: "bottom-left", bold: true });
+                geo3.buatTitik(B, { size: 3.5, color: "#0f766e", label: "B", labelPosition: "middle-right", bold: true });
+                geo3.buatTitik(C, { size: 3.5, color: "#0f766e", label: "C", labelPosition: "top-left", bold: true });
+                geo3.buatTitik(A_prime, { size: 3.5, color: "#7c3aed", label: "A'", labelPosition: "bottom-right", bold: true });
+            }
+        });
+    </script>
+</body>
+
+</html>

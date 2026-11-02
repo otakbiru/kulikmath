@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Deret Geometri</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Deret Geometri</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Konsep Dasar Deret Geometri</h2>
+            <p>
+                <strong>Deret Geometri</strong> (atau sering disebut <em>deret ukur</em>) adalah bentuk penjumlahan beruntun dari suku-suku pada suatu barisan geometri. Apabila $U_1, U_2, U_3, \dots, U_n$ merupakan barisan geometri dengan suku pertama $a$ dan rasio $r$ (di mana $a \neq 0$ dan $r \neq 0$), maka jumlah $n$ suku pertama dari deret geometri dilambangkan dengan $S_n$:
+                $$S_n = U_1 + U_2 + U_3 + \dots + U_n = \sum_{k=1}^{n} U_k$$
+                $$S_n = a + ar + ar^2 + ar^3 + \dots + ar^{n-1}$$
+            </p>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Pertumbuhan Kumulatif Jumlah Suku ($S_n$):</strong><br>
+                        Pada deret geometri dengan suku-suku positif dan rasio $r > 1$, nilai jumlah kumulatif $S_n$ meningkat sangat pesat seiring bertambahnya $n$. Bahkan untuk $r = 2$, setiap suku baru bernilai lebih besar daripada jumlah seluruh suku sebelumnya ($U_n > S_{n-1}$, tepatnya $S_n = 2^n \cdot a - a$).
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-akumulasi-deret" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Penurunan Rumus Jumlah $n$ Suku Pertama ($S_n$)</h2>
+            <p>
+                Untuk mendapatkan rumus tertutup dari $S_n$ (dengan syarat $r \neq 1$), kita gunakan teknik pengalian persamaan $S_n$ dengan rasio $r$, kemudian mengurangkan kedua persamaan tersebut agar suku-suku di bagian tengah saling menghilangkan (teleskopik):
+                $$\begin{aligned}
+                S_n &= a + ar + ar^2 + \dots + ar^{n-2} + ar^{n-1} \\
+                r \cdot S_n &= \phantom{a + \,} ar + ar^2 + \dots + ar^{n-2} + ar^{n-1} + ar^n \quad (-) \\
+                \hline
+                S_n - r \cdot S_n &= a - ar^n
+                \end{aligned}$$
+                Dengan memfaktorkan kedua ruas menjadi $(1 - r)S_n = a(1 - r^n)$, kita memperoleh rumus umum jumlah $n$ suku pertama deret geometri:
+                $$S_n = \frac{a\left(1 - r^n\right)}{1 - r} \quad \text{atau} \quad S_n = \frac{a\left(r^n - 1\right)}{r - 1} \quad (\text{untuk } r \neq 1)$$
+            </p>
+            <p>
+                Apabila kita mengalikan dan menjabarkan suku terakhir $U_n = ar^{n-1} \implies a \cdot r^n = r \cdot ar^{n-1} = r \cdot U_n$, maka rumus $S_n$ juga dapat dinyatakan langsung dalam suku pertama $a$ dan suku terakhir $U_n$:
+                $$S_n = \frac{r \cdot U_n - a}{r - 1} = \frac{a - r \cdot U_n}{1 - r}$$
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kondisi Rasio ($r$)</th>
+                            <th>Rumus Jumlah $n$ Suku Pertama ($S_n$)</th>
+                            <th>Keterangan & Rekomendasi Penggunaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>$|r| > 1$ (atau $r > 1$)</strong></td>
+                            <td>$$S_n = \frac{a\left(r^n - 1\right)}{r - 1}$$</td>
+                            <td class="text-left">Digunakan saat rasio lebih besar dari $1$ agar pembilang dan penyebut bernilai positif.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$|r| < 1$ (atau $r < 1$)</strong></td>
+                            <td>$$S_n = \frac{a\left(1 - r^n\right)}{1 - r}$$</td>
+                            <td class="text-left">Digunakan saat rasio berupa pecahan di antara $-1$ dan $1$ atau negatif agar menghindari pembagian bilangan negatif.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$r = 1$ (Konstan)</strong></td>
+                            <td>$$S_n = \underbrace{a + a + \dots + a}_{n \text{ suku}} = n \cdot a$$</td>
+                            <td class="text-left">Rumus pecahan tidak berlaku karena penyebut $1 - r = 0$. Semua sukunya bernilai sama dengan $a$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$r = -1$ (Berganti Tanda)</strong></td>
+                            <td>$$S_n = \begin{cases} 0, & \text{jika } n \text{ genap} \\ a, & \text{jika } n \text{ ganjil} \end{cases}$$</td>
+                            <td class="text-left">Deret berbentuk $a - a + a - a + \dots$ sehingga setiap pasangan suku berurutan berjumlah $0$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diketahui $a, r,$ dan $U_n$</strong></td>
+                            <td>$$S_n = \frac{r \cdot U_n - a}{r - 1}$$</td>
+                            <td class="text-left">Menghitung jumlah deret tanpa perlu mencari banyak suku ($n$) terlebih dahulu.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Sifat Eksponensial Rumus $S_n$ dan Hubungannya dengan $U_n$</h2>
+            <p>
+                <strong>a) Menentukan Suku ke-$n$ dari Rumus $S_n$:</strong><br>
+                Sama seperti pada deret lainnya, berlaku hubungan fundamental antara jumlah $n$ suku pertama ($S_n$) dan suku ke-$n$ ($U_n$):
+                $$U_n = S_n - S_{n-1} \quad (\text{untuk } n \ge 2) \quad \text{dan} \quad U_1 = S_1$$
+            </p>
+            <p>
+                <strong>b) Ciri Khas Bentuk Eksponensial $S_n$ Deret Geometri:</strong><br>
+                Apabila rumus $S_n = \frac{a(r^n - 1)}{r - 1}$ dijabarkan, kita dapat menuliskannya sebagai:
+                $$S_n = \left(\frac{a}{r - 1}\right)r^n - \left(\frac{a}{r - 1}\right) \iff S_n = A \cdot r^n + B$$
+                Perhatikan bahwa koefisien dari $r^n$ dan konstanta bebasnya selalu berlawanan tanda, sehingga <strong>syarat mutlak agar suatu fungsi eksponensial $S_n = A \cdot r^n + B$ merupakan rumus jumlah $n$ suku pertama deret geometri murni (mulai dari $U_1$) adalah $A + B = 0$ (atau $S_0 = 0$)</strong>. Dari bentuk ini:
+            </p>
+            <ul>
+                <li>Bilangan pokok (basis) yang berpangkat $n$ langsung menyatakan nilai <strong>rasio ($r$)</strong>.</li>
+                <li>Suku pertama adalah $a = S_1 = A \cdot r + B = A(r - 1)$.</li>
+            </ul>
+
+            <h2>4. Sifat-Sifat Khusus & Identitas Aljabar Deret Geometri</h2>
+            <p>
+                Dalam soal-soal seleksi masuk perguruan tinggi (SNBT/Mandiri) maupun olimpiade, sering kali soal tidak memberikan nilai $a$ dan $r$ secara langsung, melainkan memberikan jumlah kelompok-kelompok suku. Berikut adalah sifat-sifat struktural deret geometri yang sangat mempercepat perhitungan:
+            </p>
+
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li>
+                            <strong>1. Perbandingan Jumlah $n$ Suku dan $2n$ Suku Pertama:</strong><br>
+                            Mengingat identitas selisih kuadrat $r^{2n} - 1 = (r^n - 1)(r^n + 1)$, maka:
+                            $$\frac{S_{2n}}{S_n} = \frac{\frac{a(r^{2n} - 1)}{r - 1}}{\frac{a(r^n - 1)}{r - 1}} = r^n + 1 \iff S_{2n} = S_n\left(r^n + 1\right)$$
+                        </li>
+                        <li>
+                            <strong>2. Barisan Geometri dari Blok Jumlah $k$ Suku Berurutan:</strong><br>
+                            Jika deret geometri dikelompokkan menjadi blok-blok berisi $k$ suku berurutan:
+                            $$\begin{aligned}
+                            K_1 &= U_1 + U_2 + \dots + U_k = S_k \\
+                            K_2 &= U_{k+1} + U_{k+2} + \dots + U_{2k} = S_{2k} - S_k = r^k \cdot S_k \\
+                            K_3 &= U_{2k+1} + U_{2k+2} + \dots + U_{3k} = S_{3k} - S_{2k} = r^{2k} \cdot S_k
+                            \end{aligned}$$
+                            Maka $K_1, \, K_2, \, K_3, \, \dots$ kembali membentuk <strong>barisan geometri baru</strong> dengan rasio sebesar $R = r^k$.
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-blok-deret" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <ul>
+                <li>
+                    <strong>3. Pemisahan Jumlah Suku Berindeks Ganjil dan Genap (pada $2n$ Suku):</strong><br>
+                    Jika suatu deret geometri memiliki sebanyak $2n$ suku ($S_{2n} = S_{\text{ganjil}} + S_{\text{genap}}$):
+                    $$\begin{aligned}
+                    S_{\text{ganjil}} &= U_1 + U_3 + U_5 + \dots + U_{2n-1} \\
+                    S_{\text{genap}} &= U_2 + U_4 + U_6 + \dots + U_{2n} = r\left(U_1 + U_3 + \dots + U_{2n-1}\right)
+                    \end{aligned}$$
+                    Maka perbandingan jumlah suku berindeks genap terhadap jumlah suku berindeks ganjil langsung menghasilkan nilai rasio:
+                    $$S_{\text{genap}} = r \cdot S_{\text{ganjil}} \quad \Longleftrightarrow \quad r = \frac{S_{\text{genap}}}{S_{\text{ganjil}}}$$
+                </li>
+                <li>
+                    <strong>4. Jumlah Deret Baru Setelah Penyisipan $k$ Bilangan:</strong><br>
+                    Jika di antara setiap dua suku berurutan pada deret geometri yang semula memiliki $n$ suku (suku awal $a$, suku akhir $U_n$, rasio $r$) disisipkan $k$ bilangan, maka terbentuk deret geometri baru dengan rasio $r' = \sqrt[k+1]{r}$, banyak suku $n' = n + (n - 1)k$, dan jumlah seluruh sukunya adalah:
+                    $$S_{n'} = \frac{a\left((r')^{n'} - 1\right)}{r' - 1} = \frac{r' \cdot U_n - a}{r' - 1}$$
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>5. Pola Bilangan Berulang Digit ($a + aa + aaa + \dots$):</strong><br>
+                        Deret bilangan dengan digit berulang seperti $7 + 77 + 777 + \dots$ (sebanyak $n$ suku) bukanlah deret geometri langsung, tetapi dapat diubah menjadi selisih deret geometri dengan memfaktorkan angka satuan $d$ dan memunculkan angka $9$:
+                        $$S_n = \frac{d}{9}\left(9 + 99 + 999 + \dots + \underbrace{99\dots9}_{n \text{ digit}}\right)$$
+                        $$S_n = \frac{d}{9}\left[(10^1 - 1) + (10^2 - 1) + \dots + (10^n - 1)\right]$$
+                        $$S_n = \frac{d}{9}\left[\frac{10\left(10^n - 1\right)}{9} - n\right]$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-ganjil-genap" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <p style="margin-top: 0.5rem;">
+                <em>Catatan: Apabila banyaknya suku pada deret geometri diteruskan hingga tak berhingga ($n \to \infty$) dengan syarat konvergensi $|r| < 1$, maka pembahasannya masuk ke dalam topik khusus <strong>Deret Geometri Tak Hingga</strong>:</em>
+            </p>
+            <div class="topic-links" style="margin-bottom: 1.5rem;">
+                <a href="/Deret_Geometri_Tak_Hingga/Materi/1.html" style="font-size: 0.88rem; padding: 0.45rem 0.95rem;">
+                    📖 Pelajari Selengkapnya: Materi Deret Geometri Tak Hingga &rarr;
+                </a>
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berjenjang berikut untuk menguasai berbagai teknik perhitungan dan sifat-sifat pada deret geometri:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Diketahui suatu deret geometri: $3 + 6 + 12 + 24 + \dots$
+                    <br>a) Tentukan rumus jumlah $n$ suku pertama ($S_n$) dan hitunglah jumlah $8$ suku pertamanya ($S_8$)!
+                    <br>b) Jika jumlah $n$ suku pertama deret tersebut adalah $3.069$, tentukan nilai $n$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menentukan rumus $S_n$ dan nilai $S_8$:</strong></p>
+                    <p>
+                        Dari deret $3 + 6 + 12 + 24 + \dots$ diperoleh suku pertama $a = 3$ dan rasio $r = \frac{6}{3} = 2$ ($r > 1$). Gunakan rumus $S_n$:
+                        $$S_n = \frac{a(r^n - 1)}{r - 1} = \frac{3(2^n - 1)}{2 - 1} = 3(2^n - 1)$$
+                        Substitusikan $n = 8$ untuk menghitung $S_8$:
+                        $$S_8 = 3(2^8 - 1) = 3(256 - 1) = 3 \times 255 = 765$$
+                    </p>
+                    <p><strong>b) Menentukan banyak suku ($n$) jika $S_n = 3.069$:</strong></p>
+                    <p>
+                        $$3(2^n - 1) = 3.069 \implies 2^n - 1 = \frac{3.069}{3} = 1.023$$
+                        $$2^n = 1.023 + 1 = 1.024 \implies 2^n = 2^{10} \implies n = 10$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, rumus jumlah $n$ suku pertama adalah $S_n = 3(2^n - 1)$, nilai $S_8 = 765$, dan banyak suku agar jumlahnya $3.069$ adalah $n = 10$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Suatu deret geometri dengan rasio positif memiliki jumlah $3$ suku pertama sebesar $21$ dan jumlah $6$ suku pertama sebesar $189$. Tentukan:
+                    <br>a) Rasio ($r$) dan suku pertama ($a$) deret tersebut!
+                    <br>b) Jumlah dari suku ke-$7$, suku ke-$8$, dan suku ke-$9$ ($U_7 + U_8 + U_9$)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menentukan rasio ($r$) dan suku pertama ($a$):</strong></p>
+                    <p>
+                        Diketahui $S_3 = 21$ dan $S_6 = 189$. Gunakan sifat perbandingan $\frac{S_{2n}}{S_n} = r^n + 1$ untuk $n = 3$:
+                        $$\frac{S_6}{S_3} = r^3 + 1 \implies \frac{189}{21} = r^3 + 1$$
+                        $$9 = r^3 + 1 \implies r^3 = 8 \implies r = \sqrt[3]{8} = 2$$
+                        Substitusikan $r = 2$ ke dalam rumus $S_3 = 21$:
+                        $$S_3 = \frac{a(2^3 - 1)}{2 - 1} = 21 \implies 7a = 21 \implies a = 3$$
+                    </p>
+                    <p><strong>b) Menentukan nilai $U_7 + U_8 + U_9$:</strong></p>
+                    <p>
+                        Berdasarkan sifat blok jumlah $k = 3$ suku berurutan, kelompok $K_1 = U_1 + U_2 + U_3 = 21$, kelompok $K_2 = U_4 + U_5 + U_6 = 189 - 21 = 168$, dan kelompok $K_3 = U_7 + U_8 + U_9$ membentuk barisan geometri dengan rasio blok $R = r^3 = 8$:
+                        $$U_7 + U_8 + U_9 = K_2 \cdot r^3 = 168 \times 8 = 1.344$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, rasio deret tersebut adalah $r = 2$, suku pertama $a = 3$, dan nilai $U_7 + U_8 + U_9 = 1.344$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Jumlah $n$ suku pertama suatu deret geometri dinyatakan dengan rumus $S_n = 2^{n+2} + k$. Agar deret tersebut merupakan deret geometri murni, tentukan nilai konstanta $k$, rasio ($r$), suku pertama ($a$), serta rumus suku ke-$n$ ($U_n$)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Ubah bentuk $S_n$ ke bentuk baku $A \cdot r^n + B$</strong></p>
+                    <p>
+                        $$S_n = 2^{n+2} + k = 2^2 \cdot 2^n + k = 4 \cdot 2^n + k$$
+                        Syarat agar $S_n = A \cdot r^n + B$ membentuk deret geometri adalah $A + B = 0$ (atau $S_0 = 0$):
+                        $$4 + k = 0 \implies k = -4$$
+                        Sehingga rumus jumlah sukunya adalah $S_n = 4 \cdot 2^n - 4$.
+                    </p>
+                    <p><strong>Langkah 2: Menentukan rasio ($r$), suku pertama ($a$), dan rumus $U_n$</strong></p>
+                    <ul>
+                        <li>Dari basis eksponen $2^n$, diperoleh rasio $r = 2$.</li>
+                        <li>Suku pertama: $a = U_1 = S_1 = 4 \cdot 2^1 - 4 = 8 - 4 = 4$.</li>
+                        <li>Rumus suku ke-$n$:
+                            $$U_n = a \cdot r^{n-1} = 4 \cdot 2^{n-1} = 2^2 \cdot 2^{n-1} = 2^{n+1}$$
+                            <em>(Atau melalui $U_n = S_n - S_{n-1} = (4 \cdot 2^n - 4) - (4 \cdot 2^{n-1} - 4) = 4 \cdot 2^{n-1}(2 - 1) = 2^{n+1}$).</em>
+                        </li>
+                    </ul>
+                    <div class="kesimpulan">
+                        Jadi, nilai $k = -4$, rasio $r = 2$, suku pertama $a = 4$, dan rumus suku ke-$n$ adalah $U_n = 2^{n+1}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Suatu deret geometri terdiri atas $8$ suku. Jumlah semua suku yang berindeks ganjil ($U_1 + U_3 + U_5 + U_7$) adalah $85$, sedangkan jumlah semua suku yang berindeks genap ($U_2 + U_4 + U_6 + U_8$) adalah $170$. Tentukan suku pertama ($a$) dan nilai suku ke-$8$ ($U_8$)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Menentukan rasio ($r$) dari perbandingan jumlah suku genap dan ganjil</strong></p>
+                    <p>
+                        Diketahui $S_{\text{ganjil}} = 85$ dan $S_{\text{genap}} = 170$. Gunakan sifat $S_{\text{genap}} = r \cdot S_{\text{ganjil}}$:
+                        $$r = \frac{S_{\text{genap}}}{S_{\text{ganjil}}} = \frac{170}{85} = 2$$
+                    </p>
+                    <p><strong>Langkah 2: Menentukan suku pertama ($a$) dan suku ke-$8$ ($U_8$)</strong></p>
+                    <p>
+                        Jumlah keseluruhan $8$ suku pertama adalah $S_8 = S_{\text{ganjil}} + S_{\text{genap}} = 85 + 170 = 255$. Substitusikan $r = 2$ ke dalam rumus $S_8$:
+                        $$S_8 = \frac{a(2^8 - 1)}{2 - 1} = 255 \implies a(256 - 1) = 255 \implies 255a = 255 \implies a = 1$$
+                        Dengan demikian, nilai suku ke-$8$ ($U_8$) adalah:
+                        $$U_8 = a \cdot r^7 = 1 \cdot 2^7 = 128$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, suku pertama deret tersebut adalah $a = 1$ dan nilai suku ke-$8$ adalah $U_8 = 128$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 5 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 5</div>
+                <div class="soal-teks">
+                    Seutas tali dipotong menjadi $6$ bagian sehingga panjang masing-masing potongan membentuk barisan geometri. Jika potongan tali yang paling pendek adalah $4\text{ cm}$ dan potongan tali yang paling panjang adalah $128\text{ cm}$, tentukan panjang tali semula sebelum dipotong!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Identifikasi unsur-unsur barisan geometri</strong></p>
+                    <p>
+                        Banyak potongan tali adalah $n = 6$, suku terpendek $a = U_1 = 4\text{ cm}$, dan suku terpanjang $U_6 = 128\text{ cm}$ (dengan $r > 1$):
+                        $$U_6 = a \cdot r^5 = 128 \implies 4 \cdot r^5 = 128 \implies r^5 = \frac{128}{4} = 32 \implies r = \sqrt[5]{32} = 2$$
+                    </p>
+                    <p><strong>Langkah 2: Hitung panjang tali semula ($S_6$)</strong></p>
+                    <p>
+                        Gunakan rumus $S_n = \frac{r \cdot U_n - a}{r - 1}$ untuk $n = 6$:
+                        $$S_6 = \frac{2(128) - 4}{2 - 1} = 256 - 4 = 252\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, panjang tali semula sebelum dipotong adalah $252\text{ cm}$ (atau $2\text{,52 meter}$).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Ilustrasi Perbandingan Suku ke-n (Un) dan Akumulasi Deret (Sn)
+            const elAkumulasi = document.getElementById("svg-akumulasi-deret");
+            if (elAkumulasi && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elAkumulasi, 370, 210, {
+                    viewBox: "0 0 370 210",
+                    title: "Visualisasi Akumulasi Deret Geometri Sn = 1 + 2 + 4 + 8"
+                });
+
+                geo1.buatTeks(185, 16, "Akumulasi Deret Geometri: Sn = 1 + 2 + 4 + 8 = 15", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Sumbu dasar
+                geo1.buatSegmen(32, 178, 345, 178, { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor(42, 186, 42, 28, { stroke: "#64748b", strokeWidth: 1.5 });
+
+                // Data untuk n = 1, 2, 3, 4 (a=1, r=2 -> U = [1, 2, 4, 8], S = [1, 3, 7, 15])
+                const cols = [
+                    { n: 1, u: 1, s: 1, x: 70 },
+                    { n: 2, u: 2, s: 3, x: 140 },
+                    { n: 3, u: 4, s: 7, x: 210 },
+                    { n: 4, u: 8, s: 15, x: 280 }
+                ];
+                const scaleY = 9; // 15 * 9 = 135px
+                const barW = 22;
+
+                cols.forEach(item => {
+                    const hU = item.u * scaleY;
+                    const hS = item.s * scaleY;
+                    const yU = 178 - hU;
+                    const yS = 178 - hS;
+
+                    // Batang Un (Teal)
+                    geo1.buatPersegiPanjang(item.x, yU, barW, hU, {
+                        radius: 3,
+                        fill: "rgba(13, 148, 136, 0.25)",
+                        stroke: "#0f766e",
+                        strokeWidth: 1.4
+                    });
+                    geo1.buatTeks(item.x + barW / 2, yU - 5, `U${item.n}=${item.u}`, {
+                        position: "top-center",
+                        fontSize: "9.5px",
+                        fontWeight: "bold",
+                        fill: "#0f766e"
+                    });
+
+                    // Batang Sn (Amber)
+                    geo1.buatPersegiPanjang(item.x + barW + 4, yS, barW, hS, {
+                        radius: 3,
+                        fill: "rgba(217, 119, 6, 0.24)",
+                        stroke: "#d97706",
+                        strokeWidth: 1.5
+                    });
+                    geo1.buatTeks(item.x + barW + 4 + barW / 2, yS - 5, `S${item.n}=${item.s}`, {
+                        position: "top-center",
+                        fontSize: "9.5px",
+                        fontWeight: "bold",
+                        fill: "#b45309"
+                    });
+
+                    // Label n di bawah sumbu
+                    geo1.buatTeks(item.x + barW + 2, 184, `n = ${item.n}`, {
+                        position: "bottom-center",
+                        fontSize: "10px",
+                        fontWeight: "bold",
+                        fill: "#475569"
+                    });
+                });
+            }
+
+            // 2. Ilustrasi Sifat Blok Jumlah k Suku Berurutan (K1, K2, K3)
+            const elBlok = document.getElementById("svg-blok-deret");
+            if (elBlok && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elBlok, 370, 185, {
+                    viewBox: "0 0 370 185",
+                    title: "Skema Pengelompokan Blok k Suku Berurutan pada Deret Geometri"
+                });
+
+                geo2.buatTeks(185, 16, "Blok Jumlah k = 3 Suku Membentuk Barisan Geometri Baru", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const blocks = [
+                    { x: 18, w: 98, title: "Blok K₁ (S₃)", sub: "U₁ + U₂ + U₃", val: "= S₃", isHighlight: false },
+                    { x: 136, w: 98, title: "Blok K₂ (S₆ - S₃)", sub: "U₄ + U₅ + U₆", val: "= r³ · S₃", isHighlight: true },
+                    { x: 254, w: 98, title: "Blok K₃ (S₉ - S₆)", sub: "U₇ + U₈ + U₉", val: "= r⁶ · S₃", isHighlight: false }
+                ];
+
+                blocks.forEach(b => {
+                    geo2.buatPersegiPanjang(b.x, 42, b.w, 74, {
+                        radius: 7,
+                        fill: b.isHighlight ? "rgba(217, 119, 6, 0.16)" : "rgba(13, 148, 136, 0.14)",
+                        stroke: b.isHighlight ? "#d97706" : "#0f766e",
+                        strokeWidth: 1.7
+                    });
+                    geo2.buatTeks(b.x + b.w / 2, 57, b.title, {
+                        position: "middle-center",
+                        fontSize: "10.5px",
+                        fontWeight: "bold",
+                        fill: b.isHighlight ? "#b45309" : "#0f766e"
+                    });
+                    geo2.buatTeks(b.x + b.w / 2, 78, b.sub, {
+                        position: "middle-center",
+                        fontSize: "10.5px",
+                        fill: "#334155"
+                    });
+                    geo2.buatTeks(b.x + b.w / 2, 99, b.val, {
+                        position: "middle-center",
+                        fontSize: "11px",
+                        fontWeight: "bold",
+                        fill: b.isHighlight ? "#b45309" : "#0f766e"
+                    });
+                });
+
+                // Busur loncatan rasio blok x r^3 di bagian bawah
+                geo2.buatKurvaBezier(
+                    [[67, 120], [126, 158], [185, 120]],
+                    { stroke: "#d97706", strokeWidth: 1.6, dashed: "3 2" }
+                );
+                geo2.buatTeks(126, 152, "× r³", {
+                    position: "bottom-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#b45309"
+                });
+
+                geo2.buatKurvaBezier(
+                    [[185, 120], [244, 158], [303, 120]],
+                    { stroke: "#d97706", strokeWidth: 1.6, dashed: "3 2" }
+                );
+                geo2.buatTeks(244, 152, "× r³", {
+                    position: "bottom-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#b45309"
+                });
+            }
+
+            // 3. Ilustrasi Hubungan S_ganjil dan S_genap pada Deret Geometri
+            const elGG = document.getElementById("svg-ganjil-genap");
+            if (elGG && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elGG, 370, 175, {
+                    viewBox: "0 0 370 175",
+                    title: "Skema Pemisahan Suku Ganjil dan Suku Genap Deret Geometri"
+                });
+
+                geo3.buatTeks(185, 16, "Relasi Suku Ganjil & Genap: S_genap = r · S_ganjil", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Kotak S_ganjil di atas
+                geo3.buatPersegiPanjang(35, 36, 300, 38, {
+                    radius: 6,
+                    fill: "rgba(13, 148, 136, 0.14)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.6
+                });
+                geo3.buatTeks(185, 55, "S_ganjil = U₁ + U₃ + U₅ + U₇", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Panah transformasi kali r
+                const xArrows = [105, 165, 225, 285];
+                xArrows.forEach(xa => {
+                    geo3.buatVektor(xa, 76, xa, 110, { stroke: "#d97706", strokeWidth: 1.5 });
+                    geo3.buatTeks(xa + 5, 93, "×r", {
+                        position: "middle-right",
+                        fontSize: "10px",
+                        fontWeight: "bold",
+                        fill: "#b45309"
+                    });
+                });
+
+                // Kotak S_genap di bawah
+                geo3.buatPersegiPanjang(35, 114, 300, 38, {
+                    radius: 6,
+                    fill: "rgba(217, 119, 6, 0.16)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.6
+                });
+                geo3.buatTeks(185, 133, "S_genap = U₂ + U₄ + U₆ + U₈ = r · S_ganjil", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#b45309"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

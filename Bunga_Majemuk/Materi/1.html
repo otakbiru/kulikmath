@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Bunga Majemuk</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+    <style>
+        .geosvg-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.25rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: auto;
+        }
+
+        .geosvg-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .caption-diagram {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .rumus-box {
+            background-color: var(--bg-subtle);
+            border-left: 4px solid var(--teal-primary);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Bunga Majemuk</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Bunga Majemuk</h2>
+            <p>
+                <strong>Bunga Majemuk (<em>Compound Interest</em>)</strong> adalah sistem perhitungan bunga di mana
+                bunga yang diperoleh pada setiap akhir periode ditambahkan ke nilai modal awal untuk menjadi dasar
+                perhitungan bunga pada periode berikutnya. Dalam istilah populer, bunga majemuk sering disebut sebagai
+                <strong>"bunga berbunga"</strong>.
+            </p>
+            <p>
+                Berbeda dengan <em>Bunga Tunggal</em> yang perhitungannya selalu mengacu pada modal awal yang konstan,
+                pada bunga majemuk pokok modal terus bertambah seiring berjalannya waktu, sehingga pertumbuhan nilai
+                investasi bersifat <strong>eksponensial</strong> (berkembang mengikuti barisan dan deret geometri).
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Bunga Tunggal (Linear)</th>
+                            <th>Bunga Majemuk (Eksponensial)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Dasar Perhitungan Bunga</strong></td>
+                            <td>Hanya modal awal ($M_0$)</td>
+                            <td>Modal awal + akumulasi bunga periode sebelumnya ($M_t$)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Besar Bunga Tiap Periode</strong></td>
+                            <td>Selalu sama / tetap</td>
+                            <td>Semakin membesar di setiap periode</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Karakteristik Pertumbuhan</strong></td>
+                            <td>Deret Aritmetika (Grafik garis lurus)</td>
+                            <td>Deret Geometri (Grafik kurva eksponensial melengkung ke atas)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>2. Perbandingan Visual: Bunga Tunggal vs Bunga Majemuk</h2>
+            <p>
+                Grafik di bawah ini memvisualisasikan akumulasi nilai modal $M_t$ terhadap waktu $t$ dengan modal awal
+                $M_0 = 100$ dan suku bunga $15\%$ per periode.
+            </p>
+
+            <!-- Wadah Grafik GeoSVG -->
+            <div class="geosvg-box">
+                <div id="diagram-komparasi"></div>
+                <p class="caption-diagram">Gambar 1: Perbandingan pertumbuhan saldo Bunga Tunggal ($M_t = M_0(1 + i
+                    \cdot t)$) dan Bunga Majemuk ($M_t = M_0(1 + i)^t$).</p>
+            </div>
+
+            <h2>3. Penurunan Rumus Bunga Majemuk</h2>
+            <p>
+                Misalkan modal awal diinvestasikan sebesar $M_0$ dengan persentase suku bunga per periode sebesar $i$
+                (dalam bentuk desimal). Mari kita telusuri pertambahan saldo pada setiap akhir periode:
+            </p>
+
+            <ul>
+                <li><strong>Akhir Periode ke-1:</strong><br>
+                    $M_1 = M_0 + (M_0 \times i) = M_0(1 + i)$
+                </li>
+                <li><strong>Akhir Periode ke-2:</strong><br>
+                    $M_2 = M_1 + (M_1 \times i) = M_1(1 + i) = [M_0(1 + i)](1 + i) = M_0(1 + i)^2$
+                </li>
+                <li><strong>Akhir Periode ke-3:</strong><br>
+                    $M_3 = M_2 + (M_2 \times i) = M_2(1 + i) = [M_0(1 + i)^2](1 + i) = M_0(1 + i)^3$
+                </li>
+            </ul>
+
+            <p>
+                Dengan menggeneralisasi pola barisan geometri tersebut hingga periode ke-$n$, diperoleh rumus umum nilai
+                akhir modal:
+            </p>
+
+            <div class="rumus-box">
+                $$M_n = M_0(1 + i)^n$$
+                <p style="margin-bottom: 0;"><strong>Keterangan:</strong></p>
+                <ul style="margin-bottom: 0;">
+                    <li>$M_n$ = Nilai akhir modal setelah periode ke-$n$</li>
+                    <li>$M_0$ = Modal awal (pokok simpanan/pinjaman)</li>
+                    <li>$i$ = Suku bunga per periode pemajemukan (dalam desimal)</li>
+                    <li>$n$ = Jumlah total periode pemajemukan</li>
+                </ul>
+            </div>
+
+            <p>
+                Total akumulasi nilai bunga majemuk ($B_n$) yang didapatkan selama $n$ periode adalah selisih antara
+                modal akhir dengan modal mula-mula:
+            </p>
+            $$B_n = M_n - M_0 = M_0 \left[ (1 + i)^n - 1 \right]$$
+
+            <h2>4. Pemajemukan Bunga Berkala (Sub-Periode)</h2>
+            <p>
+                Dalam praktik perbankan dan pasar keuangan, bunga sering kali dimajemukkan lebih dari sekali dalam satu
+                tahun, misalnya:
+            </p>
+            <ul>
+                <li><strong>Semesteran (setengah tahun):</strong> $m = 2$ kali per tahun</li>
+                <li><strong>Kuartalan (triwulan):</strong> $m = 4$ kali per tahun</li>
+                <li><strong>Bulanan:</strong> $m = 12$ kali per tahun</li>
+                <li><strong>Harian:</strong> $m = 365$ kali per tahun</li>
+            </ul>
+
+            <p>
+                Jika suku bunga nominal per tahun dinyatakan sebagai $j$ (atau $i_{\text{tahunan}}$) dan modal
+                diinvestasikan selama $t$ tahun dengan frekuensi pemajemukan sebanyak $m$ kali dalam setahun, maka:
+            </p>
+            <div class="rumus-box">
+                $$M_t = M_0 \left( 1 + \frac{j}{m} \right)^{m \cdot t}$$
+                <p style="margin-bottom: 0;"><strong>Keterangan:</strong></p>
+                <ul style="margin-bottom: 0;">
+                    <li>$\frac{j}{m}$ = Suku bunga efektif per sub-periode konversi</li>
+                    <li>$n = m \cdot t$ = Total frekuensi pemajemukan selama investasi berjalan</li>
+                </ul>
+            </div>
+
+            <h2>5. Nilai Tunai (Present Value) Bunga Majemuk</h2>
+            <p>
+                <strong>Nilai Tunai (Present Value / $PV$)</strong> adalah nilai modal saat ini yang harus
+                diinvestasikan agar pada akhir periode ke-$n$ di masa depan diperoleh modal sebesar $M_n$ (Future Value
+                / $FV$) dengan suku bunga majemuk $i$:
+            </p>
+            <div class="rumus-box">
+                $$M_0 = \frac{M_n}{(1 + i)^n} = M_n (1 + i)^{-n}$$
+            </div>
+
+            <h2>6. Representasi Vektor Pertumbuhan Saldo</h2>
+            <p>
+                Visualisasi bertingkat berikut menggambarkan bagaimana pokok modal memicu penambahan bunga, dan bunga
+                tersebut otomatis menyatu menjadi basis pertumbuhan modal baru pada langkah selanjutnya:
+            </p>
+
+            <!-- Wadah Blok Multiplikasi GeoSVG -->
+            <div class="geosvg-box">
+                <div id="diagram-step"></div>
+                <p class="caption-diagram">Gambar 2: Penambahan nilai bertahap tiap periode akibat efek multiplikasi $(1
+                    + i)$.</p>
+            </div>
+
+            <h2>7. Contoh Soal dan Pembahasan</h2>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 1</span>
+                <div class="soal-teks">
+                    Pak Budi mendepositokan uang sebesar $\text{Rp}10.000.000,00$ di sebuah bank yang menawarkan suku
+                    bunga majemuk tahunan sebesar $6\%$. Berapakah total uang Pak Budi setelah $3$ tahun jika bunga
+                    dikapitalisasi setahun sekali?
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Diketahui:</p>
+                    <ul>
+                        <li>$M_0 = 10.000.000$</li>
+                        <li>$i = 6\% = 0{,}06$ per tahun</li>
+                        <li>$n = 3$ tahun</li>
+                    </ul>
+                    <p>Rumus bunga majemuk:</p>
+                    $$M_n = M_0(1 + i)^n$$
+                    $$M_3 = 10.000.000 \times (1 + 0{,}06)^3$$
+                    $$M_3 = 10.000.000 \times (1{,}06)^3$$
+                    $$M_3 = 10.000.000 \times 1{,}191016 = 11.910.160$$
+                    <div class="kesimpulan">
+                        Jadi, total saldo simpanan Pak Budi setelah 3 tahun adalah <strong>Rp11.910.160,00</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 2</span>
+                <div class="soal-teks">
+                    Ibu Ani menabung sebesar $\text{Rp}20.000.000,00$ dengan suku bunga majemuk nominal $8\%$ per tahun
+                    yang dibayarkan setiap triwulan (3 bulan sekali). Berapakah saldo tabungan Ibu Ani pada akhir tahun
+                    ke-2?
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Diketahui:</p>
+                    <ul>
+                        <li>$M_0 = 20.000.000$</li>
+                        <li>Tingkat bunga nominal: $j = 8\% = 0{,}08$</li>
+                        <li>Frekuensi pemajemukan triwulan: $m = 4$ kali per tahun</li>
+                        <li>Lama investasi: $t = 2$ tahun</li>
+                    </ul>
+                    <p>Hitung suku bunga per periode ($i$) dan total periode ($n$):</p>
+                    $$i = \frac{j}{m} = \frac{0{,}08}{4} = 0{,}02$$
+                    $$n = m \times t = 4 \times 2 = 8 \text{ periode}$$
+                    <p>Menghitung modal akhir:</p>
+                    $$M_t = M_0(1 + i)^n$$
+                    $$M_8 = 20.000.000 \times (1 + 0{,}02)^8$$
+                    $$M_8 = 20.000.000 \times (1{,}02)^8$$
+                    $$M_8 \approx 20.000.000 \times 1{,}171659 = 23.433.188$$
+                    <div class="kesimpulan">
+                        Jadi, saldo tabungan Ibu Ani pada akhir tahun ke-2 adalah <strong>Rp23.433.188,00</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <span class="soal-no">Contoh 3</span>
+                <div class="soal-teks">
+                    Rendra membutuhkan dana sebesar $\text{Rp}50.000.000,00$ tepat $4$ tahun yang akan datang untuk
+                    biaya pendidikan adiknya. Jika lembaga keuangan memberikan suku bunga majemuk $10\%$ per tahun,
+                    berapa nominal dana tunai yang harus didepositokan Rendra saat ini?
+                </div>
+                <button class="btn-solusi" type="button">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>Diketahui:</p>
+                    <ul>
+                        <li>Nilai masa depan ($M_4$ atau $FV$) $= 50.000.000$</li>
+                        <li>Suku bunga per tahun ($i$) $= 10\% = 0{,}10$</li>
+                        <li>Jangka waktu ($n$) $= 4$ tahun</li>
+                    </ul>
+                    <p>Menghitung Nilai Tunai (Present Value):</p>
+                    $$M_0 = \frac{M_n}{(1 + i)^n}$$
+                    $$M_0 = \frac{50.000.000}{(1 + 0{,}10)^4} = \frac{50.000.000}{(1{,}10)^4}$$
+                    $$M_0 = \frac{50.000.000}{1{,}4641} \approx 34.150.672{,}77$$
+                    <div class="kesimpulan">
+                        Jadi, modal tunai yang harus didepositokan saat ini adalah sebesar
+                        <strong>Rp34.150.673,00</strong>.
+                    </div>
+                    <button class="btn-tutup" type="button">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Pembuatan Diagram Visual Menggunakan GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // ==========================================
+            // Diagram 1: Kurva Eksponensial vs Linear
+            // ==========================================
+            const cont1 = document.getElementById("diagram-komparasi");
+            if (cont1 && typeof GeoSVG !== 'undefined') {
+                // Dimensi kanvas 540 x 300
+                const geo1 = new GeoSVG(cont1, 540, 300, {
+                    viewBox: "0 0 540 300",
+                    background: "transparent"
+                });
+
+                // Area koordinat: x origin = 65, y origin = 245
+                const ox = 65, oy = 245;
+                const maxX = 490, maxY = 35;
+
+                // Sumbu X & Y
+                geo1.buatVektor(ox, oy, maxX, oy, { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatVektor(ox, oy, ox, maxY, { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+
+                // Label Sumbu
+                geo1.buatTeks(maxX + 5, oy, "t (Periode)", { position: "middle-left", fontSize: "12px", fill: "var(--text-muted)" });
+                geo1.buatTeks(ox, maxY - 15, "M(t) (Saldo)", { position: "middle-center", fontSize: "12px", fill: "var(--text-muted)", fontWeight: "bold" });
+
+                // Parameter simulasi: t = 0 .. 6
+                // M0 = 100, i = 0.20
+                // Skala: dx = 65px per periode t.
+                // y(0) = 100 -> skala y: 1 unit nilai = 0.65px tinggi
+                const scaleX = 65;
+                const scaleY = 0.65;
+                const M0 = 100;
+                const i = 0.20;
+
+                const pointsTunggal = [];
+                const pointsMajemuk = [];
+
+                for (let t = 0; t <= 6; t++) {
+                    const px = ox + t * scaleX;
+
+                    // Bunga tunggal: Mt = 100 * (1 + 0.20 * t)
+                    const valTunggal = M0 * (1 + i * t);
+                    const pyTunggal = oy - (valTunggal * scaleY);
+                    pointsTunggal.push([px, pyTunggal]);
+
+                    // Bunga majemuk: Mt = 100 * (1 + 0.20)^t
+                    const valMajemuk = M0 * Math.pow(1 + i, t);
+                    const pyMajemuk = oy - (valMajemuk * scaleY);
+                    pointsMajemuk.push([px, pyMajemuk]);
+
+                    // Titik dan label sumbu t
+                    geo1.buatSegmen(px, oy - 3, px, oy + 3, { stroke: "var(--text-muted)", strokeWidth: 1 });
+                    geo1.buatTeks(px, oy + 16, `${t}`, { position: "middle-center", fontSize: "11px", fill: "var(--text-muted)" });
+                }
+
+                // Gambar kurva Bunga Tunggal (Garis lurus oranye)
+                geo1.buatPolyline(pointsTunggal, { stroke: "#f59e0b", strokeWidth: 2.2, dashed: "4 3" });
+                // Titik-titik sampel
+                pointsTunggal.forEach(pt => {
+                    geo1.buatTitik(pt[0], pt[1], { size: 3.5, color: "#f59e0b" });
+                });
+
+                // Gambar kurva Bunga Majemuk (Kurva halus teal)
+                geo1.buatKurvaHalus(pointsMajemuk, { stroke: "var(--teal-primary)", strokeWidth: 3 });
+                // Titik-titik sampel
+                pointsMajemuk.forEach(pt => {
+                    geo1.buatTitik(pt[0], pt[1], { size: 4, color: "var(--teal-primary)" });
+                });
+
+                // Tanda M0 pada sumbu Y
+                const pyM0 = oy - (M0 * scaleY);
+                geo1.buatSegmen(ox - 3, pyM0, ox + 3, pyM0, { stroke: "var(--text-muted)", strokeWidth: 1 });
+                geo1.buatTeks(ox - 10, pyM0, "M₀", { position: "middle-right", fontSize: "12px", fontWeight: "bold", fill: "var(--text-main)" });
+
+                // Legenda
+                const legX = 100, legY = 60;
+                // Legenda Bunga Majemuk
+                geo1.buatSegmen(legX, legY, legX + 30, legY, { stroke: "var(--teal-primary)", strokeWidth: 3 });
+                geo1.buatTitik(legX + 15, legY, { size: 3.5, color: "var(--teal-primary)" });
+                geo1.buatTeks(legX + 38, legY, "Bunga Majemuk: M₀(1 + i)ᵗ", { position: "middle-left", fontSize: "12px", fontWeight: "bold", fill: "var(--teal-primary)" });
+
+                // Legenda Bunga Tunggal
+                geo1.buatSegmen(legX, legY + 22, legX + 30, legY + 22, { stroke: "#f59e0b", strokeWidth: 2.2, dashed: "4 3" });
+                geo1.buatTitik(legX + 15, legY + 22, { size: 3.5, color: "#f59e0b" });
+                geo1.buatTeks(legX + 38, legY + 22, "Bunga Tunggal: M₀(1 + i·t)", { position: "middle-left", fontSize: "12px", fontWeight: "bold", fill: "#d97706" });
+            }
+
+            // ==========================================
+            // Diagram 2: Skema Multiplikasi Step demi Step
+            // ==========================================
+            const cont2 = document.getElementById("diagram-step");
+            if (cont2 && typeof GeoSVG !== 'undefined') {
+                const geo2 = new GeoSVG(cont2, 540, 160, {
+                    viewBox: "0 0 540 160",
+                    background: "transparent"
+                });
+
+                // Kotak langkah: Periode 0 -> 1 -> 2 -> 3
+                const steps = [
+                    { label: "M₀", sub: "Modal Awal", x: 60, y: 80 },
+                    { label: "M₁ = M₀(1+i)", sub: "Akhir Th. 1", x: 190, y: 80 },
+                    { label: "M₂ = M₀(1+i)²", sub: "Akhir Th. 2", x: 340, y: 80 },
+                    { label: "M₃ = M₀(1+i)³", sub: "Akhir Th. 3", x: 480, y: 80 }
+                ];
+
+                for (let j = 0; j < steps.length; j++) {
+                    const st = steps[j];
+                    // Lingkaran node
+                    geo2.buatLingkaran(st.x, st.y, 22, {
+                        fill: "var(--bg-subtle)",
+                        stroke: "var(--teal-primary)",
+                        strokeWidth: 2
+                    });
+                    // Label utama
+                    geo2.buatTeks(st.x, st.y, j === 0 ? "M₀" : `M${j}`, {
+                        position: "middle-center",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        fill: "var(--teal-primary)"
+                    });
+                    // Subketerangan di bawah node
+                    geo2.buatTeks(st.x, st.y + 35, st.sub, {
+                        position: "top-center",
+                        fontSize: "10.5px",
+                        fill: "var(--text-muted)"
+                    });
+
+                    // Panah transisi antar node
+                    if (j < steps.length - 1) {
+                        const nextSt = steps[j + 1];
+                        const xStart = st.x + 24;
+                        const xEnd = nextSt.x - 24;
+                        geo2.buatVektor(xStart, st.y, xEnd, st.y, {
+                            stroke: "var(--teal-primary)",
+                            strokeWidth: 1.7
+                        });
+                        // Label faktor kali di atas panah
+                        geo2.buatTeks((xStart + xEnd) / 2, st.y - 12, "× (1 + i)", {
+                            position: "bottom-center",
+                            fontSize: "11px",
+                            fontWeight: "bold",
+                            fill: "var(--teal-primary)"
+                        });
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

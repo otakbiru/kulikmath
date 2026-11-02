@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Bilangan Asli</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Bilangan Asli</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Bilangan Asli dan Posisinya dalam Sistem Bilangan</h2>
+            <p>
+                <strong>Bilangan Asli</strong> (<em>Natural Numbers</em>) adalah himpunan bilangan bulat positif yang dimulai dari angka $1, 2, 3, 4,$ dan seterusnya tanpa batas. Himpunan bilangan asli dilambangkan dengan huruf kapital $\mathbb{N}$ (atau $\mathbb{Z}^+$):
+                $$\mathbb{N} = \{1, 2, 3, 4, 5, \dots\}$$
+                Dalam kehidupan sehari-hari dan matematika, bilangan asli memiliki dua fungsi utama, yaitu sebagai <strong>bilangan kardinal</strong> (menyatakan banyaknya anggota suatu himpunan/pencacahan, misalnya "ada $5$ buah buku") dan sebagai <strong>bilangan ordinal</strong> (menyatakan urutan atau posisi, misalnya "juara ke-$1$, suku ke-$n$").
+            </p>
+            <p>
+                <strong>Perbedaan Bilangan Asli ($\mathbb{N}$) dan Bilangan Cacah ($\mathbb{W}$):</strong><br>
+                Dalam kurikulum matematika di Indonesia, angka $0$ <strong>tidak termasuk</strong> ke dalam himpunan bilangan asli. Apabila angka $0$ digabungkan ke dalam himpunan bilangan asli, maka terbentuklah himpunan <strong>Bilangan Cacah</strong> ($\mathbb{W} = \{0\} \cup \mathbb{N} = \{0, 1, 2, 3, \dots\}$). Secara hierarki himpunan bilangan, berlaku hubungan subset:
+                $$\mathbb{N} \subset \mathbb{W} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$$
+            </p>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Aksioma Peano & Sifat Urutan Rapi (Well-Ordering Principle):</strong><br>
+                        Secara aksiomatik (Aksioma Peano), bilangan asli dibangun dari unsur terkecil $1$, di mana setiap bilangan asli $n$ memiliki tepat satu penerus (<em>suksesor</em>) yaitu $S(n) = n + 1$. Hal ini melahirkan <strong>Prinsip Urutan Rapi</strong>: <em>"Setiap himpunan bagian tak-kosong dari bilangan asli selalu memiliki satu anggota terkecil (elemen minimum)."</em>
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-garis-bilangan-asli" style="width: 100%; max-width: 370px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Sifat-Sifat Operasi Aritmetika pada Bilangan Asli</h2>
+            <p>
+                Berbeda dengan bilangan bulat ($\mathbb{Z}$) atau bilangan real ($\mathbb{R}$), himpunan bilangan asli $\mathbb{N}$ hanya bersifat <strong>tertutup terhadap operasi penjumlahan dan perkalian</strong>, tetapi tidak tertutup terhadap pengurangan dan pembagian.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sifat Aljabar</th>
+                            <th>Rumus Matematika ($a, b, c \in \mathbb{N}$)</th>
+                            <th>Keterangan pada $\mathbb{N} = \{1, 2, 3, \dots\}$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sifat Tertutup</strong></td>
+                            <td>$$a + b \in \mathbb{N} \quad \text{dan} \quad a \times b \in \mathbb{N}$$</td>
+                            <td class="text-left">Penjumlahan dan perkalian dua bilangan asli pasti menghasilkan bilangan asli. (Pengurangan tidak tertutup: $3 - 5 = -2 \notin \mathbb{N}$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sifat Komutatif</strong></td>
+                            <td>$$a + b = b + a \quad \text{dan} \quad a \times b = b \times a$$</td>
+                            <td class="text-left">Pertukaran urutan suku pada penjumlahan dan perkalian tidak mengubah hasil.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sifat Asosiatif</strong></td>
+                            <td>$$(a + b) + c = a + (b + c)$$$$(a \times b) \times c = a \times (b \times c)$$</td>
+                            <td class="text-left">Pengelompokan operasi penjumlahan atau perkalian tidak mengubah hasil.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sifat Distributif</strong></td>
+                            <td>$$a \times (b \pm c) = (a \times b) \pm (a \times c)$$</td>
+                            <td class="text-left">Perkalian bersifat distributif terhadap penjumlahan dan pengurangan (selama $b > c$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Unsur Identitas</strong></td>
+                            <td>$$a \times 1 = 1 \times a = a$$</td>
+                            <td class="text-left">Angka $1$ adalah identitas perkalian di $\mathbb{N}$. (Identitas penjumlahan $0$ tidak ada di $\mathbb{N}$, melainkan di bilangan cacah $\mathbb{W}$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sifat Kanselasi</strong></td>
+                            <td>$$a + c = b + c \implies a = b$$$$a \cdot c = b \cdot c \implies a = b$$</td>
+                            <td class="text-left">Karena setiap $c \in \mathbb{N}$ memenuhi $c \neq 0$, pencoretan faktor pengali $c$ pada kedua ruas persamaan selalu sah tanpa syarat tambahan.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Klasifikasi Khusus di Dalam Himpunan Bilangan Asli</h2>
+            <p>
+                Di dalam himpunan bilangan asli $\mathbb{N}$, bilangan-bilangan dapat dikelompokkan berdasarkan paritas (keterbagian oleh $2$) maupun berdasarkan banyaknya faktor pembagi positifnya:
+            </p>
+
+            <h3>3.1. Klasifikasi Berdasarkan Paritas (Ganjil dan Genap)</h3>
+            <ul>
+                <li><strong>Bilangan Asli Ganjil:</strong> Bilangan asli yang tidak habis dibagi $2$, dinyatakan dalam bentuk $2k - 1$ untuk $k \in \mathbb{N}$, yaitu $\{1, 3, 5, 7, 9, \dots\}$.</li>
+                <li><strong>Bilangan Asli Genap:</strong> Bilangan asli yang habis dibagi $2$, dinyatakan dalam bentuk $2k$ untuk $k \in \mathbb{N}$, yaitu $\{2, 4, 6, 8, 10, \dots\}$.</li>
+            </ul>
+
+            <h3>3.2. Klasifikasi Berdasarkan Banyaknya Faktor Positif (Teorema Fundamental Aritmetika)</h3>
+            <p>
+                Setiap bilangan asli $n \in \mathbb{N}$ terbagi ke dalam <strong>tepat satu</strong> dari tiga kelompok yang saling lepas berikut:
+            </p>
+            <ol>
+                <li>
+                    <strong>Bilangan Unit ($n = 1$):</strong> Hanya memiliki tepat $1$ faktor positif (yaitu dirinya sendiri). Angka $1$ <strong>bukan bilangan prima</strong> dan <strong>bukan pula bilangan komposit</strong>.
+                </li>
+                <li>
+                    <strong>Bilangan Prima ($p$):</strong> Bilangan asli lebih dari $1$ yang memiliki <strong>tepat $2$ faktor positif</strong>, yaitu $1$ dan $p$ sendiri. Contoh: $\{2, 3, 5, 7, 11, 13, 17, 19, 23, \dots\}$. Angka $2$ adalah satu-satunya bilangan prima yang genap.
+                </li>
+                <li>
+                    <strong>Bilangan Komposit:</strong> Bilangan asli lebih dari $1$ yang memiliki <strong>lebih dari $2$ faktor positif</strong> (dapat dinyatakan sebagai hasil kali dua bilangan asli yang lebih kecil). Contoh: $\{4, 6, 8, 9, 10, 12, 14, 15, \dots\}$.
+                </li>
+            </ol>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Teorema Fundamental Aritmetika & Banyak Faktor:</strong><br>
+                        Setiap bilangan asli $N > 1$ dapat difaktorkan secara tunggal (unik) ke dalam bentuk perkalian bilangan-bilangan prima berpangkat (faktorisasi prima kanonik):
+                        $$N = p_1^{a_1} \cdot p_2^{a_2} \cdots p_k^{a_k}$$
+                        Dari bentuk ini, <strong>banyaknya seluruh pembagi (faktor) asli</strong> dari $N$ (dilambangkan dengan $\tau(N)$ atau $d(N)$) serta <strong>jumlah seluruh faktor asli</strong> dari $N$ (dilambangkan dengan $\sigma(N)$) dapat dihitung dengan rumus:
+                        $$\tau(N) = (a_1 + 1)(a_2 + 1)\cdots(a_k + 1)$$
+                        $$\sigma(N) = \left(\frac{p_1^{a_1+1}-1}{p_1-1}\right)\left(\frac{p_2^{a_2+1}-1}{p_2-1}\right)\cdots\left(\frac{p_k^{a_k+1}-1}{p_k-1}\right)$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-partisi-asli" style="width: 100%; max-width: 360px;"></div>
+                </div>
+            </div>
+
+            <p>
+                <strong>Sifat Khusus Banyak Faktor $\tau(N)$:</strong> Suatu bilangan asli $N$ memiliki <strong>banyak faktor ganjil</strong> jika dan hanya jika $N$ merupakan <strong>bilangan kuadrat sempurna</strong> ($1, 4, 9, 16, \dots$), karena semua pangkat faktor primanya ($a_1, a_2, \dots$) bernilai genap.
+            </p>
+
+            <h2>4. Rumus Jumlah Deret Bilangan Asli dan Bilangan Berurutan</h2>
+            <p>
+                Dalam soal-soal tes potensi skolastik (SNBT) dan kompetisi, rumus penjumlahan perpangkatan $n$ bilangan asli pertama serta sifat bilangan asli berurutan merupakan senjata utama:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Penjumlahan / Sifat</th>
+                            <th>Rumus Tertutup</th>
+                            <th>Contoh / Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Jumlah $n$ Bilangan Asli Pertama</strong></td>
+                            <td>$$\sum_{k=1}^{n} k = 1 + 2 + 3 + \dots + n = \frac{n(n + 1)}{2}$$</td>
+                            <td class="text-left">Untuk $n = 100$: $\frac{100 \times 101}{2} = 5.050$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jumlah $n$ Bilangan Asli Ganjil Pertama</strong></td>
+                            <td>$$\sum_{k=1}^{n} (2k - 1) = 1 + 3 + 5 + \dots + (2n - 1) = n^2$$</td>
+                            <td class="text-left">Jumlah $15$ bilangan ganjil pertama adalah $15^2 = 225$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jumlah $n$ Bilangan Asli Genap Pertama</strong></td>
+                            <td>$$\sum_{k=1}^{n} 2k = 2 + 4 + 6 + \dots + 2n = n(n + 1)$$</td>
+                            <td class="text-left">Jumlah $15$ bilangan genap pertama adalah $15 \times 16 = 240$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jumlah Kuadrat $n$ Bilangan Asli Pertama</strong></td>
+                            <td>$$\sum_{k=1}^{n} k^2 = 1^2 + 2^2 + \dots + n^2 = \frac{n(n + 1)(2n + 1)}{6}$$</td>
+                            <td class="text-left">Untuk $n = 10$: $\frac{10 \times 11 \times 21}{6} = 385$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jumlah Pangkat Tiga $n$ Bilangan Asli Pertama</strong></td>
+                            <td>$$\sum_{k=1}^{n} k^3 = 1^3 + 2^3 + \dots + n^3 = \left(\frac{n(n + 1)}{2}\right)^2$$</td>
+                            <td class="text-left">Sama dengan kuadrat dari jumlah $n$ bilangan asli pertama.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hasil Kali $k$ Bilangan Asli Berurutan</strong></td>
+                            <td>$$n(n + 1)(n + 2)\cdots(n + k - 1) \text{ habis dibagi } k!$$</td>
+                            <td class="text-left">Contoh: $n(n+1)$ selalu genap ($2!$), dan $n(n+1)(n+2)$ selalu habis dibagi $3! = 6$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>5. Prinsip Induksi Matematika & Pencacahan Digit</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>a) Prinsip Induksi Matematika:</strong><br>
+                        Untuk membuktikan bahwa suatu pernyataan matematika $P(n)$ bernilai benar untuk setiap bilangan asli $n \in \mathbb{N}$, kita cukup melakukan dua langkah (efek domino):
+                    </p>
+                    <ol>
+                        <li><strong>Langkah Basis:</strong> Buktikan bahwa $P(1)$ bernilai benar.</li>
+                        <li><strong>Langkah Induksi:</strong> Asumsikan $P(k)$ benar untuk suatu $k \in \mathbb{N}$ (hipotesis induksi), lalu buktikan bahwa $P(k + 1)$ juga harus bernilai benar.</li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-induksi-visual" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <p>
+                <strong>b) Banyaknya Bilangan Asli dalam Suatu Interval Inklusif $[a, b]$:</strong><br>
+                Banyaknya bilangan asli mulai dari $a$ sampai dengan $b$ (dengan $a, b \in \mathbb{N}$ dan $a \le b$, batas atas dan bawah ikut dihitung) adalah:
+                $$\text{Banyak Bilangan} = b - a + 1$$
+                Berdasarkan rumus ini, banyaknya bilangan asli yang terdiri dari $d$ angka (digit) dalam basis $10$ adalah:
+            </p>
+            <ul>
+                <li><strong>$1$ angka ($1$ s.d. $9$):</strong> $9 - 1 + 1 = 9$ bilangan ($9 \times 1$ digit $= 9$ digit).</li>
+                <li><strong>$2$ angka ($10$ s.d. $99$):</strong> $99 - 10 + 1 = 90$ bilangan ($90 \times 2$ digit $= 180$ digit).</li>
+                <li><strong>$3$ angka ($100$ s.d. $999$):</strong> $999 - 100 + 1 = 900$ bilangan ($900 \times 3$ digit $= 2.700$ digit).</li>
+                <li><strong>$d$ angka ($10^{d-1}$ s.d. $10^d - 1$):</strong> $9 \times 10^{d-1}$ bilangan.</li>
+            </ul>
+
+            <h2>6. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berjenjang berikut untuk menguasai berbagai permasalahan tentang sifat bilangan asli, faktorisasi prima, persamaan Diophantine pada $\mathbb{N}$, hingga pencacahan digit:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Jumlah dari $5$ bilangan asli ganjil yang berurutan adalah $135$. Tentukan hasil kali antara bilangan terkecil dan bilangan terbesar dari kelima bilangan tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Gunakan pemisalan simetris untuk $5$ bilangan ganjil berurutan</strong></p>
+                    <p>
+                        Karena selisih antar bilangan ganjil yang berurutan adalah $2$, misalkan bilangan tengah (urutan ke-$3$) sebagai $x$. Maka kelima bilangan tersebut adalah:
+                        $$(x - 4), \, (x - 2), \, x, \, (x + 2), \, (x + 4)$$
+                    </p>
+                    <p><strong>Langkah 2: Hitung nilai $x$ dari jumlah kelima bilangan</strong></p>
+                    <p>
+                        $$(x - 4) + (x - 2) + x + (x + 2) + (x + 4) = 135$$
+                        $$5x = 135 \implies x = \frac{135}{5} = 27$$
+                        Dengan demikian, bilangan terkecilnya adalah $x - 4 = 27 - 4 = 23$, dan bilangan terbesarnya adalah $x + 4 = 27 + 4 = 31$.
+                    </p>
+                    <p><strong>Langkah 3: Hitung hasil kali bilangan terkecil dan terbesar</strong></p>
+                    <p>
+                        $$23 \times 31 = (27 - 4)(27 + 4) = 27^2 - 4^2 = 729 - 16 = 713$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, hasil kali bilangan terkecil dan bilangan terbesar tersebut adalah $713$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Diketahui bilangan asli $N = 360$. Tentukan:
+                    <br>a) Banyaknya seluruh faktor (pembagi) bilangan asli dari $360$, serta banyaknya faktor asli dari $360$ yang merupakan bilangan ganjil!
+                    <br>b) Bilangan asli terkecil $k$ sehingga $360 \times k$ merupakan bilangan kuadrat sempurna!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Tentukan faktorisasi prima kanonik dari $360$</strong></p>
+                    <p>
+                        $$360 = 36 \times 10 = (2^2 \times 3^2) \times (2 \times 5) = 2^3 \times 3^2 \times 5^1$$
+                    </p>
+                    <p><strong>a) Menghitung banyak seluruh faktor asli dan faktor ganjil:</strong></p>
+                    <ul>
+                        <li>
+                            <strong>Banyak seluruh faktor asli $\tau(360)$:</strong> Tambahkan $1$ pada masing-masing pangkat faktor primanya lalu kalikan:
+                            $$\tau(360) = (3 + 1)(2 + 1)(1 + 1) = 4 \times 3 \times 2 = 24 \text{ faktor}$$
+                        </li>
+                        <li>
+                            <strong>Banyak faktor ganjil:</strong> Agar suatu faktor bernilai ganjil, faktor tersebut <strong>tidak boleh memuat faktor prima $2$</strong> (pangkat dari $2$ harus $0$). Maka kita cukup menghitung kombinasi pangkat dari faktor prima ganjilnya ($3^2 \times 5^1$):
+                            $$\tau_{\text{ganjil}}(360) = (2 + 1)(1 + 1) = 3 \times 2 = 6 \text{ faktor ganjil}$$
+                            <em>(Keenam faktor ganjil tersebut adalah $1, 3, 5, 9, 15,$ dan $45$).</em>
+                        </li>
+                    </ul>
+                    <p><strong>b) Menentukan bilangan asli terkecil $k$ agar $360k$ menjadi kuadrat sempurna:</strong></p>
+                    <p>
+                        Suatu bilangan asli merupakan kuadrat sempurna jika dan hanya jika semua pangkat pada faktorisasi primanya bernilai <strong>genap</strong>. Pada $360 = 2^3 \times 3^2 \times 5^1$, faktor prima yang pangkatnya masih ganjil adalah $2^3$ dan $5^1$. Agar pangkatnya menjadi genap terkecil ($2^4 \times 3^2 \times 5^2$), kita harus mengalikannya dengan:
+                        $$k = 2^1 \times 5^1 = 10$$
+                        <em>(Sehingga $360 \times 10 = 3.600 = 60^2$).</em>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, $360$ memiliki $24$ faktor asli ($6$ di antaranya ganjil), dan nilai bilangan asli terkecil $k$ agar $360k$ menjadi kuadrat sempurna adalah $k = 10$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Hitunglah nilai dari ekspresi deret kuadrat bilangan asli berikut:
+                    $$S = 11^2 + 12^2 + 13^2 + \dots + 25^2$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Nyatakan deret sebagai selisih dua deret yang dimulai dari $1^2$</strong></p>
+                    <p>
+                        Rumus $\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}$ hanya berlaku jika penjumlahan dimulai dari $1^2$. Oleh karena itu, kita ubah $S$ menjadi:
+                        $$S = \left(1^2 + 2^2 + \dots + 25^2\right) - \left(1^2 + 2^2 + \dots + 10^2\right) = \sum_{k=1}^{25} k^2 - \sum_{k=1}^{10} k^2$$
+                    </p>
+                    <p><strong>Langkah 2: Hitung masing-masing bagian dengan rumus jumlah kuadrat</strong></p>
+                    <ul>
+                        <li>
+                            Untuk $n = 25$:
+                            $$\sum_{k=1}^{25} k^2 = \frac{25 \times (25 + 1) \times (2(25) + 1)}{6} = \frac{25 \times 26 \times 51}{6} = 25 \times 13 \times 17 = 5.525$$
+                        </li>
+                        <li>
+                            Untuk $n = 10$:
+                            $$\sum_{k=1}^{10} k^2 = \frac{10 \times 11 \times 21}{6} = 5 \times 11 \times 7 = 385$$
+                        </li>
+                    </ul>
+                    <p>
+                        Kurangkan kedua hasil tersebut:
+                        $$S = 5.525 - 385 = 5.140$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, hasil dari $11^2 + 12^2 + \dots + 25^2$ adalah $5.140$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Tentukan semua pasangan bilangan asli $(x, y)$ yang memenuhi persamaan aljabar:
+                    $$xy + 2x + 3y = 24$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Faktorkan persamaan menggunakan Trik Pemfaktoran Simon (SFFT)</strong></p>
+                    <p>
+                        Kelompokkan suku yang memuat $x$, lalu tambahkan konstanta $6$ pada kedua ruas agar terbentuk faktor yang sama:
+                        $$x(y + 2) + 3y + 6 = 24 + 6$$
+                        $$x(y + 2) + 3(y + 2) = 30$$
+                        $$(x + 3)(y + 2) = 30$$
+                    </p>
+                    <p><strong>Langkah 2: Batasi faktor pembagi berdasarkan syarat bilangan asli ($x, y \in \mathbb{N}$)</strong></p>
+                    <p>
+                        Karena $x \ge 1$ dan $y \ge 1$ adalah bilangan asli, maka faktor $(x + 3)$ dan $(y + 2)$ juga merupakan bilangan asli dengan batas bawah:
+                        $$x \ge 1 \implies x + 3 \ge 4 \quad \text{dan} \quad y \ge 1 \implies y + 2 \ge 3$$
+                        Kita cari pasangan faktor dari $30 = (x + 3) \times (y + 2)$ yang memenuhi $x + 3 \ge 4$ dan $y + 2 \ge 3$:
+                    </p>
+                    <ul>
+                        <li>Jika $x + 3 = 5$ dan $y + 2 = 6 \implies x = 2$ dan $y = 4$.</li>
+                        <li>Jika $x + 3 = 6$ dan $y + 2 = 5 \implies x = 3$ dan $y = 3$.</li>
+                        <li>Jika $x + 3 = 10$ dan $y + 2 = 3 \implies x = 7$ dan $y = 1$.</li>
+                    </ul>
+                    <p>
+                        <em>(Pasangan faktor lain seperti $3 \times 10$ atau $15 \times 2$ tidak memenuhi syarat $x + 3 \ge 4$ dan $y + 2 \ge 3$).</em>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, terdapat $3$ pasangan bilangan asli $(x, y)$ yang memenuhi, yaitu $(2, 4), \, (3, 3),$ dan $(7, 1)$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 5 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 5</div>
+                <div class="soal-teks">
+                    Sebuah buku ensiklopedia diberi nomor halaman secara berurutan menggunakan bilangan asli mulai dari halaman $1, 2, 3, \dots$ hingga halaman terakhir $N$. Jika untuk mencetak seluruh nomor halaman buku tersebut dibutuhkan tepat $642$ buah digit (angka tunggal), tentukan jumlah halaman buku tersebut ($N$)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Hitung pemakaian digit untuk halaman $1$ angka dan $2$ angka</strong></p>
+                    <ul>
+                        <li><strong>Halaman $1$ s.d. $9$ ($1$ digit):</strong> Terdapat $9 - 1 + 1 = 9$ halaman $\implies 9 \times 1 = 9$ digit.</li>
+                        <li><strong>Halaman $10$ s.d. $99$ ($2$ digit):</strong> Terdapat $99 - 10 + 1 = 90$ halaman $\implies 90 \times 2 = 180$ digit.</li>
+                    </ul>
+                    <p>
+                        Total digit yang terpakai sampai halaman $99$ adalah $9 + 180 = 189$ digit.
+                    </p>
+                    <p><strong>Langkah 2: Hitung sisa digit untuk halaman $3$ angka (mulai halaman $100$ s.d. $N$)</strong></p>
+                    <p>
+                        Sisa digit yang tersedia untuk halaman bernomor $3$ angka adalah:
+                        $$\text{Sisa Digit} = 642 - 189 = 453 \text{ digit}$$
+                        Karena setiap halaman mulai dari $100$ membutuhkan $3$ digit, maka banyaknya halaman $3$-angka adalah:
+                        $$\text{Banyak Halaman 3-Angka} = \frac{453}{3} = 151 \text{ halaman}$$
+                    </p>
+                    <p><strong>Langkah 3: Tentukan nomor halaman terakhir ($N$)</strong></p>
+                    <p>
+                        Gunakan rumus banyak bilangan asli $N - 100 + 1 = 151$ (atau tambahkan $99$ halaman sebelumnya dengan $151$):
+                        $$N = 99 + 151 = 250$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, buku ensiklopedia tersebut memiliki total $250$ halaman.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Ilustrasi Garis Bilangan Asli vs Bilangan Cacah & Aksioma Suksesor Peano
+            const elGaris = document.getElementById("svg-garis-bilangan-asli");
+            if (elGaris && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elGaris, 370, 185, {
+                    viewBox: "0 0 370 185",
+                    title: "Perbandingan Bilangan Asli dan Bilangan Cacah pada Garis Bilangan"
+                });
+
+                geo1.buatTeks(185, 16, "Garis Bilangan: Bilangan Asli (N) Dimulai dari 1", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const yLine = 88;
+                // Sinar garis bilangan ke kanan
+                geo1.buatVektor(25, yLine, 352, yLine, { stroke: "#475569", strokeWidth: 2 });
+
+                const xStart = 42;
+                const step = 48;
+
+                // Kotak penanda himpunan Bilangan Asli (mulai dari 1)
+                geo1.buatPersegiPanjang(xStart + step - 16, 40, 298, 72, {
+                    radius: 8,
+                    fill: "rgba(13, 148, 136, 0.10)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.5,
+                    dashed: "4 3"
+                });
+                geo1.buatTeks(222, 52, "Himpunan Bilangan Asli N = {1, 2, 3, 4, 5, ...}", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Titik 0 (Milik Bilangan Cacah, bukan Asli) dan titik 1..6
+                for (let i = 0; i <= 5; i++) {
+                    const cx = xStart + i * step;
+                    const isZero = i === 0;
+
+                    // Busur loncatan suksesor +1 untuk bilangan asli
+                    if (i >= 1 && i < 5) {
+                        const nx = cx + step;
+                        geo1.buatKurvaBezier(
+                            [[cx + 3, yLine - 6], [(cx + nx) / 2, yLine - 28], [nx - 3, yLine - 6]],
+                            { stroke: "#d97706", strokeWidth: 1.4 }
+                        );
+                        geo1.buatTeks((cx + nx) / 2, yLine - 22, "+1", {
+                            position: "top-center",
+                            fontSize: "9.5px",
+                            fontWeight: "bold",
+                            fill: "#b45309"
+                        });
+                    }
+
+                    geo1.buatTitik(cx, yLine, {
+                        size: 5,
+                        marker: isZero ? "empty-circle" : "full-circle",
+                        color: isZero ? "#d97706" : "#0f766e"
+                    });
+
+                    geo1.buatTeks(cx, yLine + 16, String(i), {
+                        position: "bottom-center",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        fill: isZero ? "#b45309" : "#0f766e"
+                    });
+                }
+
+                // Keterangan angka 0 dan Bilangan Cacah di bagian bawah
+                geo1.buatVektor(xStart, 142, xStart, yLine + 32, { stroke: "#d97706", strokeWidth: 1.4 });
+                geo1.buatTeks(xStart + 6, 152, "0 bukan Bilangan Asli", {
+                    position: "middle-right",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#b45309"
+                });
+                geo1.buatTeks(185, 172, "Jika 0 digabungkan dengan N ➔ Bilangan Cacah W = {0, 1, 2, ...}", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#475569"
+                });
+            }
+
+            // 2. Ilustrasi Partisi Himpunan Bilangan Asli Berdasarkan Banyak Faktor
+            const elPartisi = document.getElementById("svg-partisi-asli");
+            if (elPartisi && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elPartisi, 360, 195, {
+                    viewBox: "0 0 360 195",
+                    title: "Partisi Himpunan Bilangan Asli Berdasarkan Banyak Faktor"
+                });
+
+                geo2.buatTeks(180, 16, "Partisi Bilangan Asli (N) Berdasarkan Banyak Faktor", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Kotak induk N di atas
+                geo2.buatPersegiPanjang(95, 30, 170, 32, {
+                    radius: 6,
+                    fill: "rgba(13, 148, 136, 0.18)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.8
+                });
+                geo2.buatTeks(180, 46, "Bilangan Asli N = {1, 2, 3, ...}", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                // Panah cabang ke 3 kelompok
+                geo2.buatVektor(130, 62, 62, 92, { stroke: "#64748b", strokeWidth: 1.4 });
+                geo2.buatVektor(180, 62, 180, 92, { stroke: "#0f766e", strokeWidth: 1.4 });
+                geo2.buatVektor(230, 62, 298, 92, { stroke: "#d97706", strokeWidth: 1.4 });
+
+                // Kelompok 1: Unit {1}
+                geo2.buatPersegiPanjang(12, 95, 100, 82, {
+                    radius: 7,
+                    fill: "rgba(100, 116, 139, 0.12)",
+                    stroke: "#475569",
+                    strokeWidth: 1.5
+                });
+                geo2.buatTeks(62, 112, "Unit", { position: "middle-center", fontSize: "11.5px", fontWeight: "bold", fill: "#334155" });
+                geo2.buatTeks(62, 132, "{ 1 }", { position: "middle-center", fontSize: "13px", fontWeight: "bold", fill: "#0f172a" });
+                geo2.buatTeks(62, 156, "Tepat 1 Faktor", { position: "middle-center", fontSize: "9.5px", fontWeight: "bold", fill: "#475569" });
+
+                // Kelompok 2: Bilangan Prima
+                geo2.buatPersegiPanjang(122, 95, 116, 82, {
+                    radius: 7,
+                    fill: "rgba(13, 148, 136, 0.15)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.7
+                });
+                geo2.buatTeks(180, 112, "Prima", { position: "middle-center", fontSize: "11.5px", fontWeight: "bold", fill: "#0f766e" });
+                geo2.buatTeks(180, 132, "{2, 3, 5, 7, ...}", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#0f766e" });
+                geo2.buatTeks(180, 156, "Tepat 2 Faktor", { position: "middle-center", fontSize: "9.5px", fontWeight: "bold", fill: "#0f766e" });
+
+                // Kelompok 3: Bilangan Komposit
+                geo2.buatPersegiPanjang(248, 95, 100, 82, {
+                    radius: 7,
+                    fill: "rgba(217, 119, 6, 0.15)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.6
+                });
+                geo2.buatTeks(298, 112, "Komposit", { position: "middle-center", fontSize: "11.5px", fontWeight: "bold", fill: "#b45309" });
+                geo2.buatTeks(298, 132, "{4, 6, 8, 9, ...}", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#b45309" });
+                geo2.buatTeks(298, 156, "> 2 Faktor", { position: "middle-center", fontSize: "9.5px", fontWeight: "bold", fill: "#b45309" });
+            }
+
+            // 3. Ilustrasi Bukti Visual Jumlah Bilangan Ganjil = n^2 (L-Gnomon Persegi)
+            const elInduksi = document.getElementById("svg-induksi-visual");
+            if (elInduksi && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elInduksi, 340, 200, {
+                    viewBox: "0 0 340 200",
+                    title: "Bukti Geometris Jumlah n Bilangan Asli Ganjil Pertama = n^2"
+                });
+
+                geo3.buatTeks(170, 15, "Bukti Visual: 1 + 3 + 5 + 7 = 4² = 16", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const x0 = 52, y0 = 32, u = 34; // ukuran 1 petak = 34x34, total 4x4 = 136x136
+                const layerColors = [
+                    { fill: "rgba(13, 148, 136, 0.32)", stroke: "#0f766e", text: "#0f766e" },
+                    { fill: "rgba(217, 119, 6, 0.24)", stroke: "#d97706", text: "#b45309" },
+                    { fill: "rgba(13, 148, 136, 0.16)", stroke: "#0f766e", text: "#0f766e" },
+                    { fill: "rgba(217, 119, 6, 0.14)", stroke: "#d97706", text: "#b45309" }
+                ];
+
+                // Gambar petak 4x4 berdasarkan lapisan L-Gnomon ke-k (k = Math.max(r, c))
+                for (let r = 0; r < 4; r++) {
+                    for (let c = 0; c < 4; c++) {
+                        const layer = Math.max(r, c);
+                        const colStyle = layerColors[layer];
+                        const px = x0 + c * u;
+                        const py = y0 + r * u;
+
+                        geo3.buatPersegiPanjang(px, py, u, u, {
+                            fill: colStyle.fill,
+                            stroke: colStyle.stroke,
+                            strokeWidth: 1.5
+                        });
+
+                        // Tulis angka ganjil di sudut diagonal masing-masing lapisan
+                        if (r === c) {
+                            const oddVal = 2 * r + 1;
+                            geo3.buatTeks(px + u / 2, py + u / 2, `+${oddVal}`, {
+                                position: "middle-center",
+                                fontSize: "12px",
+                                fontWeight: "bold",
+                                fill: colStyle.text
+                            });
+                        }
+                    }
+                }
+
+                // Keterangan lapisan di sebelah kanan persegi
+                const notes = [
+                    { y: 49, txt: "Lapis 1 = 1 petak (1²)", c: "#0f766e" },
+                    { y: 83, txt: "Lapis 2 = +3 petak (2²)", c: "#b45309" },
+                    { y: 117, txt: "Lapis 3 = +5 petak (3²)", c: "#0f766e" },
+                    { y: 151, txt: "Lapis 4 = +7 petak (4²)", c: "#b45309" }
+                ];
+                notes.forEach(n => {
+                    geo3.buatTeks(202, n.y, n.txt, {
+                        position: "middle-right",
+                        fontSize: "10.5px",
+                        fontWeight: "bold",
+                        fill: n.c
+                    });
+                });
+
+                geo3.buatTeks(170, 186, "1 + 3 + 5 + ... + (2n - 1) = n²", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

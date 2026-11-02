@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Bangun Ruang Sisi Lengkung</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Bangun Ruang Sisi Lengkung</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengantar Bangun Ruang Sisi Lengkung</h2>
+            <p>
+                <strong>Bangun Ruang Sisi Lengkung (BRSL)</strong> adalah kelompok bangun ruang berdimensi tiga yang memiliki minimal satu sisi permukaan berbentuk lengkungan. Bangun ini dapat dibentuk dengan memutar suatu bangun datar mengelilingi satu sumbu putar sejauh $360^\circ$ (disebut juga <em>benda putar</em>):
+            </p>
+            <ul>
+                <li><strong>Tabung (Silinder):</strong> Terbentuk dari perputaran persegi panjang mengelilingi salah satu sisinya.</li>
+                <li><strong>Kerucut:</strong> Terbentuk dari perputaran segitiga siku-siku mengelilingi salah satu sisi siku-sikunya.</li>
+                <li><strong>Bola:</strong> Terbentuk dari perputaran setengah lingkaran mengelilingi garis diameternya.</li>
+            </ul>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bangun Ruang</th>
+                            <th>Banyak Sisi</th>
+                            <th>Banyak Rusuk</th>
+                            <th>Titik Sudut</th>
+                            <th>Rincian Unsur Pembentuk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tabung</strong></td>
+                            <td>$3$ buah</td>
+                            <td>$2$ buah (lengkung)</td>
+                            <td>$0$</td>
+                            <td class="text-left">Sisi alas (lingkaran), sisi tutup (lingkaran kongruen), dan selimut tabung (persegi panjang jika dibentangkan).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kerucut</strong></td>
+                            <td>$2$ buah</td>
+                            <td>$1$ buah (lengkung)</td>
+                            <td>$1$ (Titik Puncak)</td>
+                            <td class="text-left">Sisi alas (lingkaran) dan selimut kerucut (juring lingkaran jika dibentangkan).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bola</strong></td>
+                            <td>$1$ buah</td>
+                            <td>$0$</td>
+                            <td>$0$</td>
+                            <td class="text-left">Satu bidang lengkung tertutup sempurna yang setiap titiknya berjarak sama ($r$) terhadap titik pusat bola.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>2. Tabung (Silinder)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Tabung</strong> adalah bangun ruang yang dibatasi oleh dua bidang sejajar dan kongruen berbentuk lingkaran (alas dan tutup) serta sebuah bidang lengkung yang disebut selimut tabung.
+                    </p>
+                    <p>
+                        Apabila tabung dibelah sepanjang garis tingginya dan direbahkan menjadi jaring-jaring tabung, <strong>selimut tabung</strong> akan berbentuk persegi panjang dengan ukuran:
+                    </p>
+                    <ul>
+                        <li>Panjang persegi panjang $=$ Keliling lingkaran alas $= 2\pi r$</li>
+                        <li>Lebar persegi panjang $=$ Tinggi tabung $= t$</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-tabung" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besaran pada Tabung</th>
+                            <th>Rumus Matematika</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Luas Alas ($L_a$)</strong></td>
+                            <td>$$L_a = \pi r^2 = \frac{1}{4}\pi d^2$$</td>
+                            <td class="text-left">$r =$ jari-jari alas, $d = 2r =$ diameter alas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Luas Selimut ($L_s$)</strong></td>
+                            <td>$$L_s = 2\pi r t = \pi d t$$</td>
+                            <td class="text-left">Hasil kali keliling lingkaran alas dengan tinggi tabung ($t$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Luas Permukaan Utuh ($L_p$)</strong></td>
+                            <td>$$L_p = 2L_a + L_s = 2\pi r(r + t)$$</td>
+                            <td class="text-left">Gabungan luas alas, luas tutup, dan luas selimut.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Luas Tabung Tanpa Tutup</strong></td>
+                            <td>$$L_{tt} = L_a + L_s = \pi r(r + 2t)$$</td>
+                            <td class="text-left">Terdiri atas $1$ lingkaran alas dan $1$ selimut tabung.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Volume Tabung ($V$)</strong></td>
+                            <td>$$V = L_a \times t = \pi r^2 t$$</td>
+                            <td class="text-left">Prinsip prisma: luas alas dikalikan tinggi.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Kerucut dan Kerucut Terpancung</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Kerucut</strong> adalah bangun ruang sisi lengkung yang menyerupai limas dengan bidang alas berbentuk lingkaran. Jarak dari titik puncak ke pusat alas disebut <strong>tinggi kerucut ($t$)</strong>, sedangkan jarak dari titik puncak ke tepi keliling lingkaran alas disebut <strong>garis pelukis ($s$)</strong>.
+                    </p>
+                    <p>
+                        Pada penampang tegak kerucut, jari-jari ($r$), tinggi ($t$), dan garis pelukis ($s$) membentuk segitiga siku-siku sehingga berlaku <strong>Teorema Pythagoras</strong>:
+                        $$s^2 = r^2 + t^2 \iff s = \sqrt{r^2 + t^2}$$
+                    </p>
+                    <p>
+                        <strong>Hubungan Selimut Kerucut dengan Juring Lingkaran:</strong><br>
+                        Jika selimut kerucut direbahkan, terbentuk juring lingkaran berjari-jari $s$ dengan panjang busur sama dengan keliling alas kerucut ($2\pi r$). Sudut pusat juring ($\theta$ dalam derajat) memenuhi perbandingan:
+                        $$\frac{\theta}{360^\circ} = \frac{\text{Panjang Busur}}{\text{Keliling Lingkaran Juring}} = \frac{2\pi r}{2\pi s} = \frac{r}{s}$$
+                        Sehingga luas selimut kerucut adalah:
+                        $$L_s = \frac{r}{s} \times \pi s^2 = \pi r s$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-kerucut" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besaran pada Kerucut</th>
+                            <th>Rumus Matematika</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Garis Pelukis ($s$)</strong></td>
+                            <td>$$s = \sqrt{r^2 + t^2}$$</td>
+                            <td class="text-left">Sisi miring segitiga siku-siku antara jari-jari $r$ dan tinggi $t$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Luas Selimut ($L_s$)</strong></td>
+                            <td>$$L_s = \pi r s$$</td>
+                            <td class="text-left">Luas juring lingkaran berjari-jari $s$ dengan busur $2\pi r$.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Luas Permukaan ($L_p$)</strong></td>
+                            <td>$$L_p = L_a + L_s = \pi r(r + s)$$</td>
+                            <td class="text-left">Jumlah luas lingkaran alas dan luas selimut kerucut.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Volume Kerucut ($V$)</strong></td>
+                            <td>$$V = \frac{1}{3} \pi r^2 t$$</td>
+                            <td class="text-left">Sepertiga dari volume tabung yang memiliki $r$ dan $t$ yang sama.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                <strong>Pengayaan — Kerucut Terpancung (Ember / Kap Lampu):</strong><br>
+                Jika sebuah kerucut dipotong oleh bidang datar yang sejajar dengan alasnya, bagian bawah yang tersisa disebut <em>kerucut terpancung</em> dengan jari-jari alas bawah $R$, jari-jari atas $r$, tinggi $t$, dan garis pelukis $a = \sqrt{t^2 + (R - r)^2}$. Rumus-rumusnya adalah:
+            </p>
+            <ul>
+                <li><strong>Luas Selimut Kerucut Terpancung:</strong> $L_s = \pi (R + r) a$</li>
+                <li><strong>Volume Kerucut Terpancung:</strong> $V = \frac{1}{3}\pi t \left(R^2 + Rr + r^2\right)$</li>
+            </ul>
+
+            <h2>4. Bola dan Belahan Bola</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Bola</strong> adalah tempat kedudukan titik-titik di dalam ruang tiga dimensi yang berjarak sama (sebesar jari-jari $r$) dari satu titik tetap yang disebut pusat bola.
+                    </p>
+                    <p>
+                        Berdasarkan percobaan Archimedes, luas permukaan sebuah bola tepat sama dengan <strong>$4$ kali luas lingkaran</strong> yang berjari-jari sama, atau sama dengan luas selimut tabung yang tepat melingkupi bola tersebut ($t = 2r \implies 2\pi r(2r) = 4\pi r^2$).
+                    </p>
+                    <p>
+                        Perhatikan perbedaan penting antara <strong>belahan bola berongga</strong> (mangkuk tipis tanpa tutup) dan <strong>belahan bola pejal/padat</strong> (seperti semangka yang dibelah dua dan memiliki permukaan lingkaran datar di bagian irisannya):
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-bola" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besaran pada Bola</th>
+                            <th>Rumus Matematika</th>
+                            <th>Keterangan & Rincian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Luas Permukaan Bola Utuh</strong></td>
+                            <td>$$L_p = 4\pi r^2 = \pi d^2$$</td>
+                            <td class="text-left">Setara dengan $4$ kali luas lingkaran besar bola.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Luas Belahan Bola Berongga</strong></td>
+                            <td>$$L_{\text{rongga}} = 2\pi r^2$$</td>
+                            <td class="text-left">Hanya menghitung setengah kulit lengkung bola (tanpa bidang datar).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Luas Belahan Bola Pejal (Padat)</strong></td>
+                            <td>$$L_{\text{pejal}} = 2\pi r^2 + \pi r^2 = 3\pi r^2$$</td>
+                            <td class="text-left">Kulit lengkung setengah bola ($2\pi r^2$) ditambah luas lingkaran penampang ($1\pi r^2$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Volume Bola Utuh ($V$)</strong></td>
+                            <td>$$V = \frac{4}{3}\pi r^3 = \frac{1}{6}\pi d^3$$</td>
+                            <td class="text-left">Untuk setengah bola, volumenya adalah $V_{\frac{1}{2}} = \frac{2}{3}\pi r^3$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>5. Perbandingan Klasik Archimedes (Kerucut : Bola : Tabung)</h2>
+            <p>
+                Jika sebuah <strong>kerucut</strong>, <strong>bola</strong>, dan <strong>tabung</strong> memiliki jari-jari yang sama ($r$) serta tinggi kerucut dan tabung sama dengan diameter bola ($t = 2r$), maka berlaku perbandingan istimewa berikut (sering diujikan di SNBT dan Olimpiade):
+            </p>
+            <ol>
+                <li>
+                    <strong>Perbandingan Volume ($V_{\text{kerucut}} : V_{\text{bola}} : V_{\text{tabung}}$):</strong>
+                    $$\frac{1}{3}\pi r^2(2r) : \frac{4}{3}\pi r^3 : \pi r^2(2r) = \frac{2}{3}\pi r^3 : \frac{4}{3}\pi r^3 : \frac{6}{3}\pi r^3 = \mathbf{1 : 2 : 3}$$
+                </li>
+                <li>
+                    <strong>Perbandingan Luas Permukaan Bola dan Tabung ($L_{\text{bola}} : L_{\text{tabung}}$):</strong>
+                    $$4\pi r^2 : 2\pi r(r + 2r) = 4\pi r^2 : 6\pi r^2 = \mathbf{2 : 3}$$
+                </li>
+            </ol>
+
+            <h2>6. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk menguasai penerapan konsep bangun ruang sisi lengkung dari tingkat dasar hingga gabungan bangun ruang:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Sebuah tangki air berbentuk tabung tertutup memiliki keliling alas $132\text{ cm}$ dan tinggi $25\text{ cm}$. Dengan menggunakan $\pi = \frac{22}{7}$, tentukan:
+                    <br>a) Jari-jari alas tangki tersebut!
+                    <br>b) Luas seluruh permukaan tangki dan volume air maksimal yang dapat ditampung (dalam satuan liter)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menentukan jari-jari alas tabung ($r$):</strong></p>
+                    <p>
+                        Diketahui keliling lingkaran alas $K = 2\pi r = 132\text{ cm}$ dan $t = 25\text{ cm}$.
+                        $$2 \times \frac{22}{7} \times r = 132 \iff \frac{44}{7} r = 132$$
+                        $$r = 132 \times \frac{7}{44} = 3 \times 7 = 21\text{ cm}$$
+                    </p>
+                    <p><strong>b) Menghitung luas permukaan ($L_p$) dan volume ($V$):</strong></p>
+                    <ul>
+                        <li>
+                            <strong>Luas Permukaan Tabung Utuh:</strong>
+                            $$L_p = 2\pi r(r + t) = 2 \times \frac{22}{7} \times 21 \times (21 + 25)$$
+                            $$L_p = 132 \times 46 = 6.072\text{ cm}^2$$
+                        </li>
+                        <li>
+                            <strong>Volume Tabung:</strong>
+                            $$V = \pi r^2 t = \frac{22}{7} \times 21 \times 21 \times 25 = 66 \times 525 = 34.650\text{ cm}^3$$
+                            Karena $1\text{ liter} = 1\text{ dm}^3 = 1.000\text{ cm}^3$, maka:
+                            $$V = \frac{34.650}{1.000} = 34,65\text{ liter}$$
+                        </li>
+                    </ul>
+                    <div class="kesimpulan">
+                        Jadi, jari-jari alas tangki adalah $21\text{ cm}$, luas permukaannya $6.072\text{ cm}^2$, dan kapasitas maksimalnya $34,65\text{ liter}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Selembar karton berbentuk juring lingkaran dengan sudut pusat $216^\circ$ dan jari-jari $20\text{ cm}$ akan digulung dan direkatkan kedua sisi lurusnya untuk membuat sebuah topi ulang tahun berbentuk kerucut (tanpa alas). Tentukan jari-jari dan tinggi topi kerucut yang terbentuk!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Memahami hubungan juring karton dengan unsur kerucut</strong></p>
+                    <p>
+                        Saat juring lingkaran digulung menjadi kerucut:
+                    </p>
+                    <ul>
+                        <li>Jari-jari juring lingkaran menjadi <strong>garis pelukis kerucut ($s$)</strong>, sehingga $s = 20\text{ cm}$.</li>
+                        <li>Panjang busur juring menjadi <strong>keliling lingkaran alas kerucut ($2\pi r$)</strong>.</li>
+                    </ul>
+                    <p><strong>Langkah 2: Hitung jari-jari kerucut ($r$) dari perbandingan sudut pusat</strong></p>
+                    <p>
+                        $$\frac{r}{s} = \frac{\theta}{360^\circ} \implies \frac{r}{20} = \frac{216^\circ}{360^\circ}$$
+                        Sederhanakan pecahan $\frac{216}{360}$ dengan membagi pembilang dan penyebut dengan $72$:
+                        $$\frac{r}{20} = \frac{3}{5} \implies r = 20 \times \frac{3}{5} = 12\text{ cm}$$
+                    </p>
+                    <p><strong>Langkah 3: Hitung tinggi kerucut ($t$) menggunakan Teorema Pythagoras</strong></p>
+                    <p>
+                        $$t = \sqrt{s^2 - r^2} = \sqrt{20^2 - 12^2} = \sqrt{400 - 144} = \sqrt{256} = 16\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, topi kerucut yang terbentuk memiliki jari-jari alas $12\text{ cm}$ dan tinggi $16\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Sebuah kapsul obat atau pelampung berbentuk gabungan tabung dan dua belahan bola di kedua ujungnya. Jika diameter tabung adalah $14\text{ mm}$ dan panjang total kapsul dari ujung ke ujung adalah $34\text{ mm}$, tentukan luas permukaan dan volume kapsul tersebut! ($\pi = \frac{22}{7}$)
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Identifikasi ukuran tiap bagian bangun gabungan</strong></p>
+                    <ul>
+                        <li>Diameter $d = 14\text{ mm} \implies$ jari-jari tabung sama dengan jari-jari bola, yaitu $r = 7\text{ mm}$.</li>
+                        <li>Dua belahan bola di ujung kiri dan kanan jika digabungkan membentuk $1$ bola utuh berjari-jari $r = 7\text{ mm}$.</li>
+                        <li>Panjang (tinggi) bagian tabung saja adalah panjang total dikurangi jari-jari belahan bola kiri dan kanan:
+                            $$t_{\text{tabung}} = 34 - (r + r) = 34 - (7 + 7) = 20\text{ mm}$$
+                        </li>
+                    </ul>
+                    <p><strong>Langkah 2: Hitung luas permukaan kapsul ($L_p$)</strong></p>
+                    <p>
+                        Permukaan luar kapsul hanya terdiri dari <strong>luas selimut tabung</strong> dan <strong>luas $1$ bola utuh</strong> (bidang lingkaran pertemuan di dalam kapsul tidak dihitung karena berimpit di bagian dalam):
+                        $$L_p = L_{\text{selimut tabung}} + L_{\text{bola}} = 2\pi r t + 4\pi r^2 = 2\pi r(t + 2r)$$
+                        $$L_p = 2 \times \frac{22}{7} \times 7 \times (20 + 14) = 44 \times 34 = 1.496\text{ mm}^2$$
+                    </p>
+                    <p><strong>Langkah 3: Hitung volume kapsul ($V$)</strong></p>
+                    <p>
+                        $$V = V_{\text{tabung}} + V_{\text{bola}} = \pi r^2 t + \frac{4}{3}\pi r^3$$
+                        $$V = \left(\frac{22}{7} \times 7^2 \times 20\right) + \left(\frac{4}{3} \times \frac{22}{7} \times 7^3\right)$$
+                        $$V = 3.080 + \frac{4.312}{3} = 3.080 + 1.437,33 = 4.517,33\text{ mm}^3$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, luas permukaan kapsul adalah $1.496\text{ mm}^2$ dan volumenya adalah $4.517,33\text{ mm}^3$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Sebuah wadah berbentuk tabung berjari-jari $12\text{ cm}$ berisi air setinggi $20\text{ cm}$. Ke dalam wadah tersebut dimasukkan $3$ buah bola besi identik berjari-jari $6\text{ cm}$ hingga ketiganya tenggelam seluruhnya. Jika tidak ada air yang tumpah, tentukan tinggi permukaan air di dalam tabung sekarang!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Prinsip Hukum Archimedes (Kenaikan Volume Air)</strong></p>
+                    <p>
+                        Volume kenaikan air di dalam tabung (yang berbentuk tabung dengan jari-jari $R_{\text{tabung}} = 12\text{ cm}$ dan tinggi kenaikan $\Delta t$) tepat sama dengan total volume $3$ bola besi yang dimasukkan ($r_{\text{bola}} = 6\text{ cm}$):
+                        $$V_{\text{kenaikan air}} = 3 \times V_{\text{bola}}$$
+                        $$\pi R_{\text{tabung}}^2 \cdot \Delta t = 3 \times \left(\frac{4}{3}\pi r_{\text{bola}}^3\right)$$
+                    </p>
+                    <p><strong>Langkah 2: Hitung kenaikan tinggi air ($\Delta t$)</strong></p>
+                    <p>
+                        Coret $\pi$ pada kedua ruas persamaan:
+                        $$R_{\text{tabung}}^2 \cdot \Delta t = 4 \cdot r_{\text{bola}}^3$$
+                        $$12^2 \cdot \Delta t = 4 \times 6^3$$
+                        $$144 \cdot \Delta t = 4 \times 216 = 864$$
+                        $$\Delta t = \frac{864}{144} = 6\text{ cm}$$
+                    </p>
+                    <p><strong>Langkah 3: Hitung tinggi permukaan air akhir ($t_{\text{akhir}}$)</strong></p>
+                    <p>
+                        $$t_{\text{akhir}} = t_{\text{awal}} + \Delta t = 20\text{ cm} + 6\text{ cm} = 26\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, tinggi permukaan air di dalam tabung sekarang menjadi $26\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Tabung (Unsur r dan t)
+            const elTabung = document.getElementById("svg-tabung");
+            if (elTabung && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elTabung, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    title: "Ilustrasi Tabung dengan Jari-Jari r dan Tinggi t"
+                });
+
+                const cx = 150, yTop = 42, yBot = 178;
+                const rx = 80, ry = 22;
+
+                // Badan selimut tabung (warna transparan lembut)
+                geo1.buatPersegiPanjang(cx - rx, yTop, 2 * rx, yBot - yTop, {
+                    fill: "rgba(13, 148, 136, 0.08)",
+                    stroke: "none"
+                });
+
+                // Elips Tutup Atas
+                geo1.buatElips(cx, yTop, rx, ry, {
+                    fill: "rgba(13, 148, 136, 0.16)",
+                    stroke: "#0f766e",
+                    strokeWidth: 2
+                });
+
+                // Elips Alas Bawah (setengah belakang putus-putus, setengah depan utuh)
+                geo1.buatElips(cx, yBot, rx, ry, {
+                    fill: "rgba(13, 148, 136, 0.14)",
+                    stroke: "#64748b",
+                    strokeWidth: 1.5,
+                    dashed: true
+                });
+
+                // Rusuk tegak kiri dan kanan selimut tabung
+                geo1.buatSegmen(cx - rx, yTop, cx - rx, yBot, { stroke: "#0f766e", strokeWidth: 2 });
+                geo1.buatSegmen(cx + rx, yTop, cx + rx, yBot, { stroke: "#0f766e", strokeWidth: 2 });
+
+                // Garis tinggi t (di tengah poros tabung) dan jari-jari r (di alas bawah)
+                geo1.buatSegmen(cx, yTop, cx, yBot, {
+                    stroke: "#7c3aed",
+                    strokeWidth: 1.8,
+                    dashed: true,
+                    label: "t",
+                    labelSisi: "kiri",
+                    labelJarak: 8,
+                    labelColor: "#7c3aed",
+                    bold: true
+                });
+                geo1.buatSegmen(cx, yBot, cx + rx, yBot, {
+                    stroke: "#dc2626",
+                    strokeWidth: 2,
+                    label: "r",
+                    labelSisi: "kanan",
+                    labelJarak: 9,
+                    labelColor: "#dc2626",
+                    bold: true
+                });
+
+                // Tanda siku-siku antara tinggi dan jari-jari alas
+                geo1.buatSiku([cx, yTop], [cx, yBot], [cx + rx, yBot], { size: 10, stroke: "#dc2626" });
+
+                // Titik pusat atas & bawah
+                geo1.buatTitik([cx, yTop], { size: 3, color: "#0f766e", label: "O'", labelPosition: "top-center", bold: true });
+                geo1.buatTitik([cx, yBot], { size: 3.5, color: "#dc2626", label: "O", labelPosition: "bottom-left", bold: true });
+                geo1.buatTitik([cx + rx, yBot], { size: 3, color: "#0f766e", label: "A", labelPosition: "middle-right", bold: true });
+            }
+
+            // 2. Visualisasi Kerucut (Unsur r, t, dan Garis Pelukis s)
+            const elKerucut = document.getElementById("svg-kerucut");
+            if (elKerucut && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elKerucut, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    title: "Ilustrasi Kerucut dengan Jari-Jari r, Tinggi t, dan Garis Pelukis s"
+                });
+
+                const T = [155, 22];
+                const O = [155, 178];
+                const Kiri = [70, 178], Kanan = [240, 178];
+                const rx = 85, ry = 23;
+
+                // Daerah selimut kerucut dan segitiga siku-siku TOB
+                geo2.buatPoligon([T, Kiri, Kanan], { fill: "rgba(13, 148, 136, 0.07)", stroke: "none" });
+                geo2.buatPoligon([T, O, Kanan], { fill: "rgba(217, 119, 6, 0.14)", stroke: "none" });
+
+                // Elips Alas Kerucut
+                geo2.buatElips(O, rx, ry, {
+                    fill: "rgba(13, 148, 136, 0.15)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.8,
+                    dashed: true
+                });
+
+                // Garis pelukis kiri dan kanan
+                geo2.buatSegmen(T, Kiri, { stroke: "#0f766e", strokeWidth: 2 });
+                geo2.buatSegmen(T, Kanan, {
+                    stroke: "#d97706",
+                    strokeWidth: 2.3,
+                    label: "s (garis pelukis)",
+                    labelSisi: "kanan",
+                    labelJarak: 10,
+                    labelColor: "#b45309",
+                    bold: true
+                });
+
+                // Tinggi t dan Jari-jari r
+                geo2.buatSegmen(T, O, {
+                    stroke: "#7c3aed",
+                    strokeWidth: 1.8,
+                    dashed: true,
+                    label: "t",
+                    labelSisi: "kiri",
+                    labelJarak: 9,
+                    labelColor: "#7c3aed",
+                    bold: true
+                });
+                geo2.buatSegmen(O, Kanan, {
+                    stroke: "#dc2626",
+                    strokeWidth: 2,
+                    label: "r",
+                    labelSisi: "kanan",
+                    labelJarak: 9,
+                    labelColor: "#dc2626",
+                    bold: true
+                });
+
+                // Siku-siku di O
+                geo2.buatSiku(T, O, Kanan, { size: 11, stroke: "#dc2626" });
+
+                // Titik Puncak T, Pusat Alas O, dan Titik Tepi B
+                geo2.buatTitik(T, { size: 3.5, color: "#0f766e", label: "T (Puncak)", labelPosition: "top-center", bold: true });
+                geo2.buatTitik(O, { size: 3.5, color: "#dc2626", label: "O", labelPosition: "bottom-left", bold: true });
+                geo2.buatTitik(Kanan, { size: 3.5, color: "#d97706", label: "B", labelPosition: "middle-right", bold: true });
+            }
+
+            // 3. Visualisasi Bola (Lingkaran Besar, Khatulistiwa, dan Jari-Jari r)
+            const elBola = document.getElementById("svg-bola");
+            if (elBola && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elBola, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    title: "Ilustrasi Bola dengan Titik Pusat O dan Jari-Jari r"
+                });
+
+                const P = [160, 110];
+                const R = 82;
+
+                // Lingkaran Luar Bola
+                geo3.buatLingkaran(P, R, {
+                    fill: "rgba(13, 148, 136, 0.10)",
+                    stroke: "#0f766e",
+                    strokeWidth: 2.2
+                });
+
+                // Elips Horizontal (Khatulistiwa) dan Elips Vertikal (Meridian) untuk kesan 3D
+                geo3.buatElips(P, R, 26, {
+                    fill: "rgba(13, 148, 136, 0.12)",
+                    stroke: "#0f766e",
+                    strokeWidth: 1.5,
+                    dashed: true
+                });
+                geo3.buatElips(P, 26, R, {
+                    fill: "none",
+                    stroke: "#64748b",
+                    strokeWidth: 1.2,
+                    dashed: true
+                });
+
+                // Jari-jari r ke arah kanan dan ke arah atas
+                geo3.buatSegmen(P, [160 + R, 110], {
+                    stroke: "#dc2626",
+                    strokeWidth: 2.2,
+                    label: "r",
+                    labelSisi: "kanan",
+                    labelJarak: 8,
+                    labelColor: "#dc2626",
+                    bold: true
+                });
+                geo3.buatSegmen(P, [160, 110 - R], {
+                    stroke: "#7c3aed",
+                    strokeWidth: 1.8,
+                    dashed: true,
+                    label: "r",
+                    labelSisi: "kiri",
+                    labelJarak: 8,
+                    labelColor: "#7c3aed",
+                    bold: true
+                });
+
+                // Siku-siku di pusat O
+                geo3.buatSiku([160, 110 - R], P, [160 + R, 110], { size: 10, stroke: "#dc2626" });
+
+                // Titik Pusat O dan Titik Permukaan
+                geo3.buatTitik(P, { size: 3.5, color: "#dc2626", label: "O", labelPosition: "bottom-left", bold: true });
+                geo3.buatTitik([160 + R, 110], { size: 3, color: "#0f766e", label: "A", labelPosition: "middle-right", bold: true });
+                geo3.buatTitik([160, 110 - R], { size: 3, color: "#0f766e", label: "U", labelPosition: "top-center", bold: true });
+            }
+        });
+    </script>
+</body>
+
+</html>

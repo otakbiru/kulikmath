@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bilangan Asli</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bilangan Asli</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 8 SOAL ================= -->
+
+        <!-- SOAL 21 -->
+        <article class="soal-item" id="21">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Banyaknya pasangan bilangan asli \((m, n)\) yang memenuhi persamaan \(m^2 - n^2 = 30^7\) adalah ...
+            </div>
+            <div class="soal-sumber">Evaluasi GMOM Februari 2024 tingkat SMA</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorkan persamaan:</p>
+                    \[
+                    \begin{aligned}
+                    (m + n)(m - n) &= 30^7 \\
+                    &= (2 \times 3 \times 5)^7 = 2^7 \times 3^7 \times 5^7
+                    \end{aligned}
+                    \]
+                    <p>Karena \((m + n) + (m - n) = 2m\) (genap), maka paritas \((m + n)\) dan \((m - n)\) harus sama. Karena hasil kalinya genap kelipatan \(2^7\), maka keduanya harus berupa bilangan genap.</p>
+                    <p>Misalkan \(m + n = 2p\) dan \(m - n = 2q\) dengan \(p > q \ge 1\):</p>
+                    \[
+                    (2p)(2q) = 2^7 \times 3^7 \times 5^7 \implies pq = 2^5 \times 3^7 \times 5^7
+                    \]
+                    <p>Banyaknya faktor positif dari \(pq\) adalah:</p>
+                    \[
+                    d(2^5 \times 3^7 \times 5^7) = (5 + 1)(7 + 1)(7 + 1) = 6 \times 8 \times 8 = 384
+                    \]
+                    <p>Karena \(p \ne q\) (jika \(p = q\) maka \(n = 0\), padahal \(n \in \mathbb{N}\)), dan \(p > q\), maka banyaknya pasangan \((p, q)\) yang memenuhi adalah:</p>
+                    \[
+                    \dfrac{384}{2} = \boxed{\boxed{192}}
+                    \]
+                    <div class="kesimpulan">Jadi, banyaknya pasangan bilangan asli \((m, n)\) yang memenuhi adalah 192.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 22 -->
+        <article class="soal-item" id="22">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Pada papan tertulis 90 bilangan asli \(1, 1, \dots, 1, a, b\) (ada sebanyak 88 bilangan 1). Hasil penjumlahan seluruh bilangan di papan adalah \(A\) dan demikian juga hasil perkalian semua bilangan di papan adalah \(A\). Nilai \(A\) adalah ...
+            </div>
+            <div class="soal-sumber">OSK SMA 2024</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Berdasarkan informasi soal:</p>
+                    \[
+                    \begin{aligned}
+                    \text{Jumlah} &= \underbrace{1 + 1 + \dots + 1}_{88 \text{ buah}} + a + b = 88 + a + b = A \\
+                    \text{Hasil kali} &= \underbrace{1 \times 1 \times \dots \times 1}_{88 \text{ buah}} \times a \times b = ab = A
+                    \end{aligned}
+                    \]
+                    <p>Sehingga berlaku persamaan:</p>
+                    \[
+                    \begin{aligned}
+                    ab &= 88 + a + b \\
+                    ab - a - b + 1 &= 89 \\
+                    (a - 1)(b - 1) &= 89
+                    \end{aligned}
+                    \]
+                    <p>Karena 89 adalah bilangan prima dan \(a, b \in \mathbb{N}\), maka faktor bulat positif dari 89 hanyalah 1 dan 89:</p>
+                    \[
+                    \begin{cases}
+                    a - 1 = 1 \implies a = 2 \\
+                    b - 1 = 89 \implies b = 90
+                    \end{cases}
+                    \]
+                    <p>Maka nilai \(A\) adalah:</p>
+                    \[
+                    A = ab = 2 \times 90 = \boxed{\boxed{180}}
+                    \]
+                    <p>(Atau melalui penjumlahan: \(A = 88 + 2 + 90 = 180\)).</p>
+                    <div class="kesimpulan">Jadi, nilai \(A = 180\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 23 -->
+        <article class="soal-item" id="23">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Banyak bilangan dua digit \(\overline{ab}\) dengan \(a, b \ne 0\) sehingga \(\overline{ab} + \overline{ba}\) merupakan kelipatan 66 adalah ...
+            </div>
+            <div class="soal-sumber">OSK SMA 2024</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Uraikan penjumlahan dua bilangan tersebut:</p>
+                    \[
+                    \begin{aligned}
+                    \overline{ab} + \overline{ba} &= (10a + b) + (10b + a) \\
+                    &= 11(a + b)
+                    \end{aligned}
+                    \]
+                    <p>Agar \(11(a + b)\) merupakan kelipatan 66:</p>
+                    \[
+                    11(a + b) = 66k \implies a + b = 6k
+                    \]
+                    <p>Karena \(a, b \in \{1, 2, \dots, 9\}\), maka \(2 \le a + b \le 18\). Nilai \(a + b\) yang merupakan kelipatan 6 adalah 6, 12, atau 18:</p>
+                    <ul>
+                        <li><b>Kasus 1 (\(a + b = 6\)):</b> Pasangan \((a, b)\) adalah \((1, 5), (2, 4), (3, 3), (4, 2), (5, 1)\) \(\implies\) 5 bilangan.</li>
+                        <li><b>Kasus 2 (\(a + b = 12\)):</b> Pasangan \((a, b)\) adalah \((3, 9), (4, 8), (5, 7), (6, 6), (7, 5), (8, 4), (9, 3)\) \(\implies\) 7 bilangan.</li>
+                        <li><b>Kasus 3 (\(a + b = 18\)):</b> Pasangan \((a, b)\) adalah \((9, 9)\) \(\implies\) 1 bilangan.</li>
+                    </ul>
+                    <p>Total banyaknya bilangan dua digit adalah:</p>
+                    \[
+                    5 + 7 + 1 = \boxed{\boxed{13}}
+                    \]
+                    <div class="kesimpulan">Jadi, banyaknya bilangan dua digit yang memenuhi adalah 13.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 24 -->
+        <article class="soal-item" id="24">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diketahui bilangan bulat positif \(k\) sehingga \(\dfrac{5k+1}{3k-18}\) juga merupakan bilangan bulat positif. Tentukan dua nilai \(k\) yang memenuhi!
+            </div>
+            <div class="soal-sumber">Olimpiade Matematika</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ubah bentuk pecahan aljabar:</p>
+                    \[
+                    \begin{aligned}
+                    \dfrac{5k+1}{3k-18} &= \dfrac{1}{3}\left(\dfrac{5(k-6) + 31}{k-6}\right) \\
+                    &= \dfrac{1}{3}\left(5 + \dfrac{31}{k-6}\right)
+                    \end{aligned}
+                    \]
+                    <p>Agar bernilai bulat positif, maka \(k - 6\) harus merupakan faktor bulat positif dari 31 (karena 31 adalah bilangan prima, faktornya hanyalah 1 dan 31), dan \(5 + \dfrac{31}{k-6}\) harus habis dibagi 3:</p>
+                    <ul>
+                        <li>Untuk \(k - 6 = 1 \implies k = 7\):
+                        \[\dfrac{1}{3}\left(5 + \dfrac{31}{1}\right) = \dfrac{1}{3}(36) = 12 \in \mathbb{Z}^+ \quad (\text{memenuhi})\]
+                        </li>
+                        <li>Untuk \(k - 6 = 31 \implies k = 37\):
+                        \[\dfrac{1}{3}\left(5 + \dfrac{31}{31}\right) = \dfrac{1}{3}(6) = 2 \in \mathbb{Z}^+ \quad (\text{memenuhi})\]
+                        </li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, dua nilai \(k\) yang memenuhi adalah 7 dan 37.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 25 -->
+        <article class="soal-item" id="25">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sebuah bilangan asli \(n\) dikatakan <i>wibu</i> jika untuk setiap \(a\) pembagi positif dari \(n\) berlaku \((a + 1)\) membagi \((n + 1)\). Banyaknya bilangan <i>wibu</i> yang kurang dari atau sama dengan 100 adalah ...
+                <ol class="pilgan pilgan-5kolom">
+                    <li>25</li>
+                    <li>27</li>
+                    <li>26</li>
+                    <li>28</li>
+                    <li>29</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">LMNAS ke-28 SMA</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan \(n = ak\) dengan \(1 \le a \le k\). Berdasarkan definisi soal:</p>
+                    \[
+                    (a + 1) \mid (ak + 1)
+                    \]
+                    <p>Perhatikan bahwa \(ak + 1 = k(a + 1) - (k - 1)\), sehingga:</p>
+                    \[
+                    (a + 1) \mid (k - 1)
+                    \]
+                    <p>Secara analog, karena \(k\) juga pembagi dari \(n\), maka \((k + 1) \mid (a - 1)\).</p>
+                    <p>Karena \(a \le k\), maka \(a - 1 < k + 1\). Agar \((k + 1) \mid (a - 1)\), satu-satunya kemungkinan adalah \(a - 1 = 0 \implies a = 1\).</p>
+                    <p>Karena untuk setiap faktorisasi \(n = ak\) selalu diperoleh \(a = 1\), maka \(n\) tidak memiliki pembagi sejati selain 1 dan dirinya sendiri (\(n\)). Dengan kata lain, \(n\) harus merupakan <b>bilangan prima</b>.</p>
+                    <p>Banyaknya bilangan prima yang \(\le 100\) adalah 25 bilangan.</p>
+                    <div class="kesimpulan">Jadi, banyaknya bilangan <i>wibu</i> yang kurang dari atau sama dengan 100 adalah 25.<br><b>JAWAB: A</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 26 -->
+        <article class="soal-item" id="26">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Banyaknya bilangan asli \(n\) sehingga \(2^n + 12^n + 211^n\) merupakan bilangan kuadrat sempurna adalah ...
+                <ol class="pilgan pilgan-5kolom">
+                    <li>Tak hingga</li>
+                    <li>0</li>
+                    <li>2</li>
+                    <li>1</li>
+                    <li>4</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">LMNAS Ke-28 SMA</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Uji untuk nilai \(n = 1\):</p>
+                    \[
+                    2^1 + 12^1 + 211^1 = 2 + 12 + 211 = 225 = 15^2 \quad (\text{kuadrat sempurna})
+                    \]
+                    <p>Tinjau untuk \(n \ge 2\):</p>
+                    <ul>
+                        <li><b>Jika \(n\) genap (\(n \ge 2\)):</b> Tinjau modulo 3.
+                        \[
+                        2^n + 12^n + 211^n \equiv (-1)^n + 0 + 1^n \equiv 1 + 1 = 2 \pmod 3
+                        \]
+                        Namun bilangan kuadrat sempurna hanya bisa kongruen dengan \(0\) atau \(1 \pmod 3\). Jadi tidak ada solusi untuk \(n\) genap.
+                        </li>
+                        <li><b>Jika \(n\) ganjil (\(n \ge 3\)):</b> Tinjau modulo 4.
+                        Karena \(n \ge 3\), maka \(2^n\) habis dibagi 4 dan \(12^n\) habis dibagi 4:
+                        \[
+                        2^n + 12^n + 211^n \equiv 0 + 0 + (-1)^n \equiv -1 \equiv 3 \pmod 4
+                        \]
+                        Namun bilangan kuadrat sempurna hanya bisa kongruen dengan \(0\) atau \(1 \pmod 4\). Jadi tidak ada solusi untuk \(n\) ganjil \(\ge 3\).
+                        </li>
+                    </ul>
+                    <p>Dengan demikian, satu-satunya nilai \(n\) yang memenuhi adalah \(n = 1\).</p>
+                    <div class="kesimpulan">Jadi, banyaknya bilangan asli \(n\) yang memenuhi adalah 1.<br><b>JAWAB: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 27 -->
+        <article class="soal-item" id="27">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan \(A, N, T, I, B, O,\) dan \(K\) adalah bilangan asli satu digit yang saling berbeda. Apabila \(m\) dan \(M\) berturut-turut adalah nilai minimum dan maksimum yang mungkin dari:
+                \[A + N + T + I + B + I + O + T + I + K\]
+                tentukan nilai dari \(m + M\).
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">KTOM Januari 2025</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Sederhanakan bentuk penjumlahan huruf:</p>
+                    \[
+                    S = (A + N + B + O + K) + 2T + 3I
+                    \]
+                    <p>Ada 7 huruf berbeda yang nilainya dipilih dari digit asli \(\{1, 2, 3, 4, 5, 6, 7, 8, 9\}\).</p>
+                    <p><b>1. Nilai Minimum (\(m\)):</b></p>
+                    <p>Pilih 7 digit terkecil: \(\{1, 2, 3, 4, 5, 6, 7\}\). Berikan nilai terkecil pada variabel dengan koefisien terbesar (\(I = 1\), \(T = 2\)):</p>
+                    \[
+                    \begin{aligned}
+                    m &= 3(1) + 2(2) + (3 + 4 + 5 + 6 + 7) \\
+                    &= 3 + 4 + 25 = 32
+                    \end{aligned}
+                    \]
+                    <p><b>2. Nilai Maksimum (\(M\)):</b></p>
+                    <p>Pilih 7 digit terbesar: \(\{3, 4, 5, 6, 7, 8, 9\}\). Berikan nilai terbesar pada variabel dengan koefisien terbesar (\(I = 9\), \(T = 8\)):</p>
+                    \[
+                    \begin{aligned}
+                    M &= 3(9) + 2(8) + (7 + 6 + 5 + 4 + 3) \\
+                    &= 27 + 16 + 25 = 68
+                    \end{aligned}
+                    \]
+                    <p>Maka nilai dari \(m + M\) adalah:</p>
+                    \[
+                    m + M = 32 + 68 = \boxed{\boxed{100}}
+                    \]
+                    <div class="kesimpulan">Jadi, \(m + M = 100\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 28 -->
+        <article class="soal-item" id="28">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan semua bilangan asli \(n\) yang merupakan faktor dari \((ab + bc + ca + 1)\) dan \(abc(a + b + c + abc)\), untuk semua bilangan asli \(a, b,\) dan \(c\).
+            </div>
+            <div class="soal-sumber">Olimpiade Matematika</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena \(n\) harus membagi kedua ekspresi untuk <b>semua</b> bilangan asli \(a, b, c \in \mathbb{N}\), maka \(n\) harus membagi nilai ekspresi pada kasus-kasus khusus:</p>
+                    <ul>
+                        <li>Untuk \(a = 1, b = 1, c = 1\):
+                        \[
+                        ab + bc + ca + 1 = 1 + 1 + 1 + 1 = 4
+                        \]
+                        Maka \(n \mid 4 \implies n \in \{1, 2, 4\}\).
+                        </li>
+                        <li>Untuk \(a = 2, b = 2, c = 2\):
+                        \[
+                        ab + bc + ca + 1 = 4 + 4 + 4 + 1 = 13
+                        \]
+                        Maka \(n \mid 13\).
+                        </li>
+                    </ul>
+                    <p>Karena \(n\) harus membagi 4 dan juga membagi 13:</p>
+                    \[
+                    n \mid \gcd(4, 13) = 1 \implies n = 1
+                    \]
+                    <p>Untuk \(n = 1\), jelas bahwa 1 membagi setiap bilangan bulat untuk setiap nilai \(a, b, c\).</p>
+                    <div class="kesimpulan">Jadi, satu-satunya bilangan asli \(n\) yang memenuhi adalah \(n = 1\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

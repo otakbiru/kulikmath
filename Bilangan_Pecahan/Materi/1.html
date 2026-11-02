@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Bilangan Pecahan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Bilangan Pecahan</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Jenis-Jenis Bilangan Pecahan</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Bilangan pecahan</strong> adalah bilangan yang menyatakan perbandingan bagian terhadap keseluruhan (<em>part of a whole</em>) atau hasil bagi dari dua bilangan bulat, yang dituliskan dalam bentuk umum:
+                        $$\frac{a}{b} \quad \text{dengan } a, b \in \mathbb{Z} \text{ dan } b \neq 0$$
+                    </p>
+                    <ul>
+                        <li><strong>Pembilang (<em>Numerator</em>):</strong> Bilangan bulat $a$ di bagian atas yang menyatakan banyaknya bagian yang diambil atau dibagi.</li>
+                        <li><strong>Penyebut (<em>Denominator</em>):</strong> Bilangan bulat tak nol $b$ di bagian bawah yang menyatakan jumlah seluruh bagian yang sama besar (pembagi).</li>
+                        <li>Himpunan seluruh bilangan yang dapat dinyatakan dalam bentuk pecahan $\frac{a}{b}$ ($a, b \in \mathbb{Z}, b \neq 0$) disebut <strong>Himpunan Bilangan Rasional ($\mathbb{Q}$)</strong>.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-konsep-pecahan" style="width: 100%; max-width: 355px;"></div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Pecahan</th>
+                            <th>Syarat / Bentuk Umum</th>
+                            <th>Penjelasan</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Pecahan Murni</strong><br>(<em>Proper Fraction</em>)</td>
+                            <td>$$|a| < |b|$$</td>
+                            <td class="text-left">Nilai mutlak pembilang lebih kecil daripada penyebutnya (nilainya berada di antara $-1$ dan $1$).</td>
+                            <td>$\frac{2}{5}, \quad \frac{7}{12}, \quad -\frac{3}{8}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pecahan Tak Murni</strong><br>(<em>Improper Fraction</em>)</td>
+                            <td>$$|a| \ge |b|$$</td>
+                            <td class="text-left">Nilai mutlak pembilang lebih besar atau sama dengan penyebutnya, sehingga dapat diubah menjadi pecahan campuran.</td>
+                            <td>$\frac{9}{4}, \quad \frac{17}{5}, \quad \frac{6}{6}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pecahan Campuran</strong><br>(<em>Mixed Number</em>)</td>
+                            <td>$$c\frac{a}{b} = c + \frac{a}{b} = \frac{c \cdot b + a}{b}$$</td>
+                            <td class="text-left">Perpaduan antara bilangan bulat $c$ dan pecahan murni $\frac{a}{b}$ (untuk $c > 0$).</td>
+                            <td>$2\frac{1}{4} = \frac{2 \cdot 4 + 1}{4} = \frac{9}{4}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pecahan Desimal</strong></td>
+                            <td>$$\text{Penyebut } 10^n \quad (10, 100, 1000, \dots)$$</td>
+                            <td class="text-left">Pecahan yang ditulis menggunakan tanda koma desimal berdasarkan nilai tempat persepuluhan, perseratusan, dst.</td>
+                            <td>$0{,}35 = \frac{35}{100} = \frac{7}{20}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Persen ($\text{\%}$) & Permil ($\text{\textperthousand}$)</strong></td>
+                            <td>$$p\% = \frac{p}{100}, \qquad p\text{\textperthousand} = \frac{p}{1000}$$</td>
+                            <td class="text-left">Pecahan dengan penyebut tetap seratus (persen) atau seribu (permil).</td>
+                            <td>$25\% = \frac{25}{100} = \frac{1}{4}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>2. Pecahan Senilai, Penyederhanaan, dan Membandingkan Pecahan</h2>
+
+            <h3>2.1. Pecahan Senilai dan Bentuk Paling Sederhana</h3>
+            <p>
+                Dua pecahan atau lebih dikatakan <strong>senilai (ekuivalen)</strong> apabila memiliki nilai perbandingan yang sama. Nilai suatu pecahan tidak akan berubah jika pembilang dan penyebutnya dikalikan atau dibagi dengan bilangan real tak nol yang sama ($k \neq 0$):
+                $$\frac{a}{b} = \frac{a \times k}{b \times k} = \frac{a : k}{b : k}$$
+                Suatu pecahan $\frac{a}{b}$ berada dalam <strong>bentuk paling sederhana (tereduksi / <em>irreducible</em>)</strong> jika pembilang dan penyebutnya tidak lagi memiliki faktor persekutuan selain $1$, yaitu $\text{FPB}(a, b) = 1$. Untuk menyederhanakan pecahan secara langsung dalam satu langkah, bagilah pembilang dan penyebut dengan $\text{FPB}(a, b)$:
+                $$\text{Contoh: } \frac{48}{72} = \frac{48 : \text{FPB}(48, 72)}{72 : \text{FPB}(48, 72)} = \frac{48 : 24}{72 : 24} = \frac{2}{3}$$
+            </p>
+
+            <h3>2.2. Membandingkan, Mengurutkan, dan Menyisipkan Pecahan</h3>
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li>
+                            <strong>Uji Kali Silang (Untuk $b > 0$ dan $d > 0$):</strong><br>
+                            Tanpa harus menyamakan penyebut, perbandingan dua pecahan $\frac{a}{b}$ dan $\frac{c}{d}$ dapat ditentukan secara cepat dengan mengalikan silang ke atas:
+                            $$\frac{a}{b} < \frac{c}{d} \iff a \cdot d < b \cdot c \qquad \text{dan} \qquad \frac{a}{b} > \frac{c}{d} \iff a \cdot d > b \cdot c$$
+                        </li>
+                        <li>
+                            <strong>Mengurutkan Berbagai Bentuk Pecahan:</strong><br>
+                            Jika terdapat campuran pecahan biasa, desimal, dan persen, ubahlah semuanya ke bentuk <strong>desimal (dengan jumlah angka di belakang koma yang sama)</strong> atau ke bentuk <strong>persen</strong>.
+                        </li>
+                        <li>
+                            <strong>Menyisipkan Pecahan di Antara Dua Pecahan:</strong><br>
+                            Samakan kedua penyebutnya terlebih dahulu. Jika jarak pembilangnya belum cukup lebar, kalikan pembilang dan penyebut kedua pecahan dengan $2, 3, \dots$ hingga muncul bilangan bulat di antara kedua pembilang.
+                            <br><em>Sifat Mediant (Farey):</em> Untuk pecahan positif $\frac{a}{b} < \frac{c}{d}$, pecahan $\frac{a+c}{b+d}$ pasti selalu berada di antara keduanya:
+                            $$\frac{a}{b} < \frac{a + c}{b + d} < \frac{c}{d}$$
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-garis-bilangan" style="width: 100%; max-width: 355px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Konversi Pecahan Desimal & Desimal Berulang Tak Hingga</h2>
+            <p>
+                Ketika pecahan biasa paling sederhana $\frac{a}{b}$ (dengan $\text{FPB}(a,b)=1$) diubah menjadi desimal melalui pembagian $a : b$, hanya ada dua kemungkinan hasil:
+            </p>
+            <ol>
+                <li>
+                    <strong>Desimal Berhenti (<em>Terminating Decimal</em>):</strong> Terjadi jika dan hanya jika faktorisasi prima dari penyebut $b$ <strong>hanya memuat faktor prima $2$ dan/atau $5$</strong> ($b = 2^m \cdot 5^n$). Banyaknya angka di belakang koma tepat sama dengan $\max(m, n)$.
+                </li>
+                <li>
+                    <strong>Desimal Berulang Tak Hingga / Periodik (<em>Repeating Decimal</em>):</strong> Terjadi jika penyebut $b$ memiliki faktor prima selain $2$ dan $5$ (misalnya $3, 7, 11, 13$).
+                </li>
+            </ol>
+
+            <h3>3.1. Rumus Cepat Mengubah Desimal Berulang ke Bentuk $\frac{a}{b}$</h3>
+            <p>
+                Setiap desimal berulang tak hingga merupakan bilangan rasional dan dapat dikembalikan ke bentuk pecahan biasa $\frac{a}{b}$ dengan memisalkan sebagai $x$ (metode aljabar $10^k x - x$) atau menggunakan rumus cepat berikut:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Desimal Berulang</th>
+                            <th>Bentuk Penulisan</th>
+                            <th>Rumus Konversi ke Pecahan Biasa</th>
+                            <th>Contoh Penerapan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Berulang Murni $1$ Angka</strong></td>
+                            <td>$$0{,}aaa\dots = 0{,}\overline{a}$$</td>
+                            <td>$$\frac{a}{9}$$</td>
+                            <td>$0{,}777\dots = \frac{7}{9}$<br>$0{,}333\dots = \frac{3}{9} = \frac{1}{3}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Berulang Murni $2$ Angka</strong></td>
+                            <td>$$0{,}ababab\dots = 0{,}\overline{ab}$$</td>
+                            <td>$$\frac{ab}{99}$$</td>
+                            <td>$0{,}232323\dots = \frac{23}{99}$<br>$0{,}454545\dots = \frac{45}{99} = \frac{5}{11}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Berulang Murni $k$ Angka</strong></td>
+                            <td>$$0{,}\overline{a_1 a_2 \dots a_k}$$</td>
+                            <td>$$\frac{a_1 a_2 \dots a_k}{\underbrace{99\dots9}_{k \text{ angka } 9}}$$</td>
+                            <td>$1{,}123123\dots = 1 + \frac{123}{999} = 1\frac{41}{333} = \frac{374}{333}$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Berulang Campuran</strong><br>($m$ angka tak berulang, $k$ angka berulang)</td>
+                            <td>$$0{,}b_1\dots b_m\,\overline{a_1\dots a_k}$$</td>
+                            <td>$$\frac{(\text{Seluruh angka}) - (\text{Angka tak berulang})}{\underbrace{99\dots9}_{k \text{ angka } 9}\underbrace{00\dots0}_{m \text{ angka } 0}}$$</td>
+                            <td>$0{,}12555\dots = 0{,}12\overline{5} = \frac{125 - 12}{900} = \frac{113}{900}$<br>$0{,}23434\dots = 0{,}2\overline{34} = \frac{234 - 2}{990} = \frac{116}{495}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. Operasi Hitung Bilangan Pecahan</h2>
+            <p>
+                Untuk sembarang bilangan pecahan dengan penyebut tak nol, berlaku aturan operasi hitung berikut:
+            </p>
+            <ol>
+                <li>
+                    <strong>Penjumlahan dan Pengurangan Pecahan:</strong><br>
+                    Jika penyebutnya sudah sama, jumlahkan/kurangkan pembilangnya. Jika penyebutnya berbeda, samakan penyebut menggunakan $\text{KPK}(b, d)$ atau kali silang:
+                    $$\frac{a}{b} \pm \frac{c}{b} = \frac{a \pm c}{b} \qquad \text{dan} \qquad \frac{a}{b} \pm \frac{c}{d} = \frac{ad \pm bc}{bd}$$
+                    <em>Trik Pecahan Campuran:</em> Untuk menjumlahkan atau mengurangkan pecahan campuran berangka besar, pisahkan bagian bilangan bulat dan bagian pecahannya tanpa perlu mengubah ke pecahan biasa:
+                    $$m\frac{a}{b} \pm n\frac{c}{d} = (m \pm n) + \left(\frac{a}{b} \pm \frac{c}{d}\right)$$
+                </li>
+                <li>
+                    <strong>Perkalian Pecahan:</strong><br>
+                    Kalikan pembilang dengan pembilang, dan penyebut dengan penyebut. Untuk pecahan campuran, <strong>wajib</strong> diubah ke bentuk pecahan biasa terlebih dahulu:
+                    $$\frac{a}{b} \times \frac{c}{d} = \frac{a \times c}{b \times d}$$
+                    <em>Tips Efisiensi:</em> Lakukan penyederhanaan silang (coret faktor persekutuan antara pembilang dan penyebut) sebelum mengalikan agar angka tidak membesar.
+                </li>
+                <li>
+                    <strong>Pembagian Pecahan:</strong><br>
+                    Membagi dengan suatu pecahan sama artinya dengan <strong>mengalikan dengan kebalikan (invers perkalian / resiprokal)</strong> dari pecahan pembagi tersebut:
+                    $$\frac{a}{b} : \frac{c}{d} = \frac{\;\dfrac{a}{b}\;}{\dfrac{c}{d}} = \frac{a}{b} \times \frac{d}{c} = \frac{ad}{bc} \quad (\text{dengan } b, c, d \neq 0)$$
+                </li>
+                <li>
+                    <strong>Perpangkatan dan Akar Pecahan:</strong>
+                    $$\left(\frac{a}{b}\right)^n = \frac{a^n}{b^n}, \qquad \left(\frac{a}{b}\right)^{-n} = \left(\frac{b}{a}\right)^n = \frac{b^n}{a^n}, \qquad \sqrt[n]{\frac{a}{b}} = \frac{\sqrt[n]{a}}{\sqrt[n]{b}}$$
+                </li>
+            </ol>
+
+            <h2>5. Teknik Lanjut (SNBT & HOTS): Pecahan Bersusun dan Deret Teleskopik</h2>
+
+            <h3>5.1. Pecahan Bersusun / Kontinu (Continued Fractions)</h3>
+            <p>
+                <strong>Pecahan bersusun (pecahan kontinu)</strong> adalah ekspresi pecahan bertingkat yang penyebutnya berupa penjumlahan bilangan bulat/real dengan pecahan lainnya:
+            </p>
+            <ul>
+                <li>
+                    <strong>Pecahan Bersusun Hingga & Algoritma Euclid:</strong><br>
+                    Setiap bilangan rasional $\frac{P}{Q}$ dapat diuraikan secara tunggal menjadi pecahan bersusun hingga dengan memisahkan bagian bulat dan membalik pecahan sisanya ($\frac{r}{Q} = \frac{1}{Q/r}$) secara berulang:
+                    $$\frac{P}{Q} = a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{\ddots + \cfrac{1}{a_n}}}}$$
+                    Sebaliknya, untuk menghitung nilai pecahan bersusun hingga, kerjakan <strong>dari bagian paling bawah (paling dalam)</strong> naik ke atas.
+                </li>
+                <li>
+                    <strong>Pecahan Bersusun Tak Hingga Periodik:</strong><br>
+                    Untuk bentuk berulang tak hingga seperti $x = a + \cfrac{b}{a + \cfrac{b}{a + \dots}}$ (dengan $a, b > 0$), karena struktur di bawah garis pecahan pertama identik dengan keseluruhan ekspresi $x$, substitusikan $x$ ke penyebutnya:
+                    $$x = a + \frac{b}{x} \iff x^2 - ax - b = 0 \implies x = \frac{a + \sqrt{a^2 + 4b}}{2} \quad (\text{ambil } x > 0)$$
+                </li>
+            </ul>
+
+            <h3>5.2. Dekomposisi Pecahan Parsial & Deret Teleskopik (Telescoping Sums)</h3>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Pada soal-soal penalaran kuantitatif SNBT dan Olimpiade, penjumlahan atau perkalian pecahan dengan banyak suku hampir tidak pernah dihitung dengan menyamakan seluruh penyebutnya, melainkan dipecah menjadi selisih dua suku yang saling menghilangkan (<strong>efek teleskopik</strong>):
+                    </p>
+                    <div class="kesimpulan" style="margin-top: 0.5rem;">
+                        💡 <strong>Identitas Emas Pecahan Teleskopik:</strong><br>
+                        1. <strong>Selisih Penyebut $1$:</strong>
+                        $$\frac{1}{k(k + 1)} = \frac{1}{k} - \frac{1}{k + 1}$$
+                        2. <strong>Selisih Penyebut $d$:</strong>
+                        $$\frac{1}{k(k + d)} = \frac{1}{d}\left(\frac{1}{k} - \frac{1}{k + d}\right)$$
+                        3. <strong>Tiga Faktor Berurutan:</strong>
+                        $$\frac{1}{k(k+1)(k+2)} = \frac{1}{2}\left[\frac{1}{k(k+1)} - \frac{1}{(k+1)(k+2)}\right]$$
+                        4. <strong>Perkalian Pecahan Kuadrat:</strong>
+                        $$1 - \frac{1}{k^2} = \frac{k^2 - 1}{k^2} = \left(\frac{k - 1}{k}\right)\left(\frac{k + 1}{k}\right)$$
+                    </div>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-teleskopik-pecahan" style="width: 100%; max-width: 355px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Contoh Soal dan Pembahasan Terpadu</h2>
+            <p>
+                Pelajari contoh-contoh soal berjenjang berikut mulai dari pengurutan pecahan, desimal berulang, soal cerita bertahap, pecahan bersusun, hingga deret teleskopik:
+            </p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Diketahui lima buah bilangan pecahan: $\frac{5}{8}; \quad 62\%; \quad 0{,}628; \quad \frac{19}{30}; \quad 0{,}6\overline{2}$.
+                    <br>a) Urutkan kelima bilangan tersebut dari yang terkecil hingga terbesar!
+                    <br>b) Tentukan bentuk pecahan biasa paling sederhana dari $0{,}6\overline{2} + 0{,}\overline{27}$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Mengurutkan pecahan dengan mengubah ke desimal $4$ angka di belakang koma:</strong></p>
+                    <ul>
+                        <li>$\frac{5}{8} = \frac{625}{1000} = 0{,}6250$</li>
+                        <li>$62\% = \frac{62}{100} = 0{,}6200$</li>
+                        <li>$0{,}628 = 0{,}6280$</li>
+                        <li>$\frac{19}{30} = 0{,}6333\dots$</li>
+                        <li>$0{,}6\overline{2} = 0{,}6222\dots$</li>
+                    </ul>
+                    <p>
+                        Bandingkan nilai desimalnya dari yang terkecil:
+                        $$0{,}6200 < 0{,}6222\dots < 0{,}6250 < 0{,}6280 < 0{,}6333\dots$$
+                        Sehingga urutan dari yang terkecil ke terbesar adalah: $62\%; \quad 0{,}6\overline{2}; \quad \frac{5}{8}; \quad 0{,}628; \quad \frac{19}{30}$.
+                    </p>
+                    <p><strong>b) Menghitung $0{,}6\overline{2} + 0{,}\overline{27}$ dalam bentuk pecahan paling sederhana:</strong></p>
+                    <p>
+                        Ubah masing-masing desimal berulang ke pecahan biasa:
+                        $$0{,}6\overline{2} = \frac{62 - 6}{90} = \frac{56}{90} \qquad \text{dan} \qquad 0{,}\overline{27} = \frac{27}{99} = \frac{3}{11} = \frac{27}{99}$$
+                        Jumlahkan dengan menyamakan penyebut ($\text{KPK}(90, 11) = 990$):
+                        $$0{,}6\overline{2} + 0{,}\overline{27} = \frac{28}{45} + \frac{3}{11} = \frac{28(11) + 3(45)}{495} = \frac{308 + 135}{495} = \frac{443}{495}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, urutan dari terkecil adalah $62\%;\; 0{,}6\overline{2};\; \frac{5}{8};\; 0{,}628;\; \frac{19}{30}$, dan hasil dari $0{,}6\overline{2} + 0{,}\overline{27}$ adalah $\frac{443}{495}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Seorang pedagang memiliki sekarung beras. Pada hari pertama, ia menjual $\frac{1}{3}$ bagian dari seluruh berasnya. Pada hari kedua, ia menjual $\frac{2}{5}$ bagian dari <strong>sisa beras</strong> yang masih ada. Pada hari ketiga, ia menjual lagi $\frac{1}{4}$ bagian dari sisa beras hari kedua. Jika beras yang masih tersisa di dalam karung sekarang adalah $27\text{ kg}$, berapa kilogram berat beras mula-mula di dalam karung?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Gunakan metode perkalian fraksi sisa bertahap</strong></p>
+                    <p>
+                        Misalkan berat beras mula-mula adalah $M\text{ kg}$. Setiap kali sebagian beras terjual dari sisa sebelumnya, kita cukup mengalikan dengan <strong>bagian yang tersisa</strong> ($1 - \text{bagian terjual}$):
+                    </p>
+                    <ul>
+                        <li>Sisa setelah hari ke-1 (terjual $\frac{1}{3}$): $\left(1 - \frac{1}{3}\right) = \frac{2}{3}$ bagian.</li>
+                        <li>Sisa setelah hari ke-2 (terjual $\frac{2}{5}$ dari sisa): $\left(1 - \frac{2}{5}\right) = \frac{3}{5}$ dari sisa hari ke-1.</li>
+                        <li>Sisa setelah hari ke-3 (terjual $\frac{1}{4}$ dari sisa): $\left(1 - \frac{1}{4}\right) = \frac{3}{4}$ dari sisa hari ke-2.</li>
+                    </ul>
+                    <p><strong>Langkah 2: Susun persamaan sisa akhir dan sederhanakan silang</strong></p>
+                    <p>
+                        $$\text{Sisa Akhir} = \frac{2}{3} \times \frac{3}{5} \times \frac{3}{4} \times M = 27$$
+                        Coret faktor $3$ pada pembilang dan penyebut, serta sederhanakan $\frac{2}{4} = \frac{1}{2}$:
+                        $$\frac{1}{\cancel{3}} \times \frac{\cancel{3}}{5} \times \frac{3}{2} \times M = 27 \iff \frac{3}{10} M = 27$$
+                        $$M = 27 \times \frac{10}{3} = 9 \times 10 = 90\text{ kg}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, berat beras mula-mula di dalam karung adalah $90\text{ kg}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Diketahui persamaan pecahan bersusun (kontinu) berikut:
+                    $$\frac{157}{68} = a + \cfrac{1}{b + \cfrac{1}{c + \cfrac{1}{d + \cfrac{1}{e}}}}$$
+                    dengan $a, b, c, d, e$ adalah bilangan bulat positif dan $e > 1$. Tentukan nilai dari $(a + b + c + d + e)$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Uraikan $\frac{157}{68}$ dengan pembagian berulang (Algoritma Euclid)</strong></p>
+                    <p>
+                        Pisahkan bagian bulat dan balikkan pecahan sisanya secara beruntun hingga pembilang terakhir bernilai $1$:
+                        $$\begin{aligned}
+                        \frac{157}{68} &= 2 + \frac{21}{68} = 2 + \cfrac{1}{\dfrac{68}{21}} \\[6pt]
+                        &= 2 + \cfrac{1}{3 + \dfrac{5}{21}} = 2 + \cfrac{1}{3 + \cfrac{1}{\dfrac{21}{5}}} \\[6pt]
+                        &= 2 + \cfrac{1}{3 + \cfrac{1}{4 + \dfrac{1}{5}}}
+                        \end{aligned}$$
+                    </p>
+                    <p><strong>Langkah 2: Sesuaikan ujung pecahan agar memiliki $5$ variabel ($a, b, c, d, e$ dengan $e > 1$)</strong></p>
+                    <p>
+                        Pada hasil di atas baru terdapat $4$ tingkat ($2, 3, 4, 5$). Agar muncul tingkat kelima dengan pembilang $1$ dan syarat $e > 1$, kita ubah penyebut terakhir $5$ menjadi $4 + 1 = 4 + \frac{1}{1}$ (tidak memenuhi $e > 1$), atau perhatikan bahwa pada tingkat keempat:
+                        $$4 + \frac{1}{5} = 4 + \cfrac{1}{4 + \dfrac{1}{1}} \quad \text{(bila } e=1\text{)} \quad \text{atau kita cek jumlah tingkatnya:}$$
+                        Perhatikan kembali: $157 = 2(68) + 21$; $68 = 3(21) + 5$; $21 = 4(5) + 1$; dan karena $\frac{1}{5}$ dapat ditulis sebagai $\cfrac{1}{4 + \cfrac{1}{1}}$, sedangkan jika soal mensyaratkan bentuk kanonik $a=2, b=3, c=4, d=5$ (4 tingkat) atau dengan pemecahan akhir $5 = 4 + \frac{1}{1}$:
+                        <br>Mari kita cek penjumlahan koefisien hasil bagi Euclid $(2, 3, 4, 4, 1)$ maupun $(2, 3, 4, 5)$: keduanya memiliki jumlah yang <strong>sama persis</strong> karena $5 = 4 + 1$!
+                        $$a + b + c + d + e = 2 + 3 + 4 + 4 + 1 = 14$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari $a + b + c + d + e$ adalah $14$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Hitunglah nilai dari penjumlahan dan perkalian deret pecahan berikut:
+                    <br>a) $S = \frac{1}{2 \times 5} + \frac{1}{5 \times 8} + \frac{1}{8 \times 11} + \dots + \frac{1}{29 \times 32}$
+                    <br>b) $P = \left(1 - \frac{1}{2^2}\right)\left(1 - \frac{1}{3^2}\right)\left(1 - \frac{1}{4^2}\right)\dots\left(1 - \frac{1}{2026^2}\right)$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>a) Menghitung penjumlahan teleskopik $S$ (selisih faktor penyebut $d = 3$):</strong></p>
+                    <p>
+                        Gunakan identitas dekomposisi $\frac{1}{k(k + 3)} = \frac{1}{3}\left(\frac{1}{k} - \frac{1}{k + 3}\right)$ untuk setiap suku:
+                        $$S = \frac{1}{3}\left[\left(\frac{1}{2} - \cancel{\frac{1}{5}}\right) + \left(\cancel{\frac{1}{5}} - \cancel{\frac{1}{8}}\right) + \left(\cancel{\frac{1}{8}} - \cancel{\frac{1}{11}}\right) + \dots + \left(\cancel{\frac{1}{29}} - \frac{1}{32}\right)\right]$$
+                        Seluruh suku tengah saling menghilangkan, sehingga hanya menyisakan suku pertama dan suku terakhir:
+                        $$S = \frac{1}{3}\left(\frac{1}{2} - \frac{1}{32}\right) = \frac{1}{3}\left(\frac{16 - 1}{32}\right) = \frac{1}{3} \times \frac{15}{32} = \frac{5}{32}$$
+                    </p>
+                    <p><strong>b) Menghitung perkalian teleskopik $P$:</strong></p>
+                    <p>
+                        Faktorkan setiap suku dengan selisih dua kuadrat $1 - \frac{1}{k^2} = \frac{k^2 - 1}{k^2} = \frac{k - 1}{k} \cdot \frac{k + 1}{k}$:
+                        $$P = \left(\frac{1}{2} \cdot \frac{3}{2}\right)\left(\frac{2}{3} \cdot \frac{4}{3}\right)\left(\frac{3}{4} \cdot \frac{5}{4}\right)\dots\left(\frac{2025}{2026} \cdot \frac{2027}{2026}\right)$$
+                        Perhatikan bahwa pasangan suku bersebelahan $\left(\frac{3}{2} \cdot \frac{2}{3} = 1\right)$, $\left(\frac{4}{3} \cdot \frac{3}{4} = 1\right)$, dan seterusnya saling mencoret habis menjadi $1$, sehingga hanya menyisakan faktor paling kiri dan faktor paling kanan:
+                        $$P = \frac{1}{2} \times \frac{2027}{2026} = \frac{2027}{4052}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai $S = \frac{5}{32}$ dan nilai $P = \frac{2027}{4052}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 5 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 5</div>
+                <div class="soal-teks">
+                    Tentukan nilai dari pecahan bersusun tak hingga berikut:
+                    $$x = 3 + \cfrac{10}{3 + \cfrac{10}{3 + \cfrac{10}{3 + \ddots}}}$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p><strong>Langkah 1: Substitusikan bentuk berulang dengan variabel $x$</strong></p>
+                    <p>
+                        Karena seluruh suku positif, jelas bahwa $x > 3 > 0$. Perhatikan bahwa bagian penyebut di bawah angka $10$ pertama memiliki bentuk tak hingga yang persis sama dengan $x$, sehingga persamaan dapat ditulis menjadi:
+                        $$x = 3 + \frac{10}{x}$$
+                    </p>
+                    <p><strong>Langkah 2: Selesaikan persamaan kuadrat yang terbentuk</strong></p>
+                    <p>
+                        Kalikan kedua ruas dengan $x$:
+                        $$x^2 = 3x + 10 \iff x^2 - 3x - 10 = 0$$
+                        Faktorkan persamaan kuadrat tersebut:
+                        $$(x - 5)(x + 2) = 0 \implies x = 5 \quad \text{atau} \quad x = -2$$
+                        Karena nilai pecahan bersusun positif harus memenuhi $x > 0$, maka kita pilih $x = 5$.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari pecahan bersusun tak hingga tersebut adalah $5$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Ilustrasi Visualisasi Pecahan Senilai: 1/2 = 2/4 = 4/8
+            const elKonsep = document.getElementById("svg-konsep-pecahan");
+            if (elKonsep && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elKonsep, 355, 195, {
+                    viewBox: "0 0 355 195",
+                    title: "Visualisasi Diagram Batang Pecahan Senilai 1/2 = 2/4 = 4/8"
+                });
+
+                geo1.buatTeks(177, 16, "Visualisasi Pecahan Senilai: 1/2 = 2/4 = 4/8", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const bars = [
+                    { n: 2, shaded: 1, label: "1/2 = 0,5 = 50%", y: 34, color: "rgba(13, 148, 136, 0.25)", stroke: "#0f766e" },
+                    { n: 4, shaded: 2, label: "2/4 = 0,5 = 50%", y: 84, color: "rgba(217, 119, 6, 0.25)", stroke: "#d97706" },
+                    { n: 8, shaded: 4, label: "4/8 = 0,5 = 50%", y: 134, color: "rgba(124, 58, 237, 0.22)", stroke: "#7c3aed" }
+                ];
+
+                const xStart = 20;
+                const totalW = 224;
+                const barH = 34;
+
+                bars.forEach(b => {
+                    const cellW = totalW / b.n;
+                    for (let i = 0; i < b.n; i++) {
+                        const isFilled = i < b.shaded;
+                        geo1.buatPersegiPanjang(xStart + i * cellW, b.y, cellW, barH, {
+                            fill: isFilled ? b.color : "rgba(148, 163, 184, 0.08)",
+                            stroke: b.stroke,
+                            strokeWidth: 1.5
+                        });
+                    }
+                    geo1.buatTeks(xStart + totalW + 10, b.y + barH / 2, b.label, {
+                        position: "middle-right",
+                        fontSize: "10.5px",
+                        fontWeight: "bold",
+                        fill: b.stroke
+                    });
+                });
+
+                // Garis batas tengah 50%
+                geo1.buatSegmen(xStart + totalW / 2, 28, xStart + totalW / 2, 176, {
+                    stroke: "#dc2626",
+                    strokeWidth: 1.6,
+                    dashed: "4 3"
+                });
+            }
+
+            // 2. Ilustrasi Garis Bilangan Pecahan & Sifat Mediant (Sisipan Pecahan)
+            const elGaris = document.getElementById("svg-garis-bilangan");
+            if (elGaris && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elGaris, 355, 175, {
+                    viewBox: "0 0 355 175",
+                    title: "Garis Bilangan Urutan Pecahan dari 0 sampai 1"
+                });
+
+                geo2.buatTeks(177, 18, "Posisi Pecahan pada Garis Bilangan [0, 1]", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const x0 = 30;
+                const x1 = 325;
+                const yLine = 92;
+                const span = x1 - x0;
+
+                // Garis utama
+                geo2.buatVektor(15, yLine, 342, yLine, { stroke: "#334155", strokeWidth: 2 });
+
+                const points = [
+                    { val: 0, top: "0", bot: "0%", color: "#334155" },
+                    { val: 0.25, top: "1/4", bot: "0,25", color: "#0f766e" },
+                    { val: 2 / 5, top: "2/5", bot: "0,40", color: "#d97706" },
+                    { val: 0.5, top: "1/2", bot: "0,50", color: "#0f766e" },
+                    { val: 3 / 4, top: "3/4", bot: "0,75", color: "#7c3aed" },
+                    { val: 1, top: "1", bot: "100%", color: "#334155" }
+                ];
+
+                points.forEach(pt => {
+                    const px = x0 + pt.val * span;
+                    geo2.buatSegmen(px, yLine - 7, px, yLine + 7, { stroke: pt.color, strokeWidth: 1.8 });
+                    geo2.buatTitik([px, yLine], { size: 3.8, color: pt.color });
+
+                    geo2.buatTeks(px, yLine - 18, pt.top, {
+                        position: "top-center",
+                        fontSize: "11.5px",
+                        fontWeight: "bold",
+                        fill: pt.color
+                    });
+                    geo2.buatTeks(px, yLine + 20, pt.bot, {
+                        position: "bottom-center",
+                        fontSize: "10px",
+                        fontWeight: "bold",
+                        fill: "#64748b"
+                    });
+                });
+
+                geo2.buatTeks(177, 152, "Semakin ke kanan → nilai pecahan semakin besar", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+            }
+
+            // 3. Ilustrasi Skema Deret Teleskopik Pecahan 1/(k(k+1)) = 1/k - 1/(k+1)
+            const elTeleskopik = document.getElementById("svg-teleskopik-pecahan");
+            if (elTeleskopik && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elTeleskopik, 355, 195, {
+                    viewBox: "0 0 355 195",
+                    title: "Skema Saling Menghilangkan pada Deret Pecahan Teleskopik"
+                });
+
+                geo3.buatTeks(177, 16, "Efek Teleskopik: 1/(1·2) + 1/(2·3) + 1/(3·4) = 3/4", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+
+                const terms = [
+                    { text: "+1/1", x: 18, keep: true },
+                    { text: "-1/2", x: 72, keep: false },
+                    { text: "+1/2", x: 126, keep: false },
+                    { text: "-1/3", x: 180, keep: false },
+                    { text: "+1/3", x: 234, keep: false },
+                    { text: "-1/4", x: 288, keep: true }
+                ];
+
+                terms.forEach(t => {
+                    const w = 48, h = 34, y = 48;
+                    geo3.buatPersegiPanjang(t.x, y, w, h, {
+                        radius: 6,
+                        fill: t.keep ? "rgba(13, 148, 136, 0.18)" : "rgba(220, 38, 38, 0.12)",
+                        stroke: t.keep ? "#0f766e" : "#dc2626",
+                        strokeWidth: 1.6
+                    });
+                    geo3.buatTeks(t.x + w / 2, y + h / 2, t.text, {
+                        position: "middle-center",
+                        fontSize: "11.5px",
+                        fontWeight: "bold",
+                        fill: t.keep ? "#0f766e" : "#dc2626"
+                    });
+
+                    // Garis coret untuk suku tengah
+                    if (!t.keep) {
+                        geo3.buatSegmen(t.x + 6, y + h - 6, t.x + w - 6, y + 6, {
+                            stroke: "#dc2626",
+                            strokeWidth: 1.8
+                        });
+                    }
+                });
+
+                // Kurung pasangan yang saling menghilangkan (= 0)
+                geo3.buatSegmen(96, 88, 96, 102, { stroke: "#dc2626", strokeWidth: 1.4 });
+                geo3.buatSegmen(150, 88, 150, 102, { stroke: "#dc2626", strokeWidth: 1.4 });
+                geo3.buatSegmen(96, 102, 150, 102, { stroke: "#dc2626", strokeWidth: 1.4 });
+                geo3.buatTeks(123, 114, "= 0", { position: "top-center", fontSize: "10px", fontWeight: "bold", fill: "#dc2626" });
+
+                geo3.buatSegmen(204, 88, 204, 102, { stroke: "#dc2626", strokeWidth: 1.4 });
+                geo3.buatSegmen(258, 88, 258, 102, { stroke: "#dc2626", strokeWidth: 1.4 });
+                geo3.buatSegmen(204, 102, 258, 102, { stroke: "#dc2626", strokeWidth: 1.4 });
+                geo3.buatTeks(231, 114, "= 0", { position: "top-center", fontSize: "10px", fontWeight: "bold", fill: "#dc2626" });
+
+                // Kotak hasil akhir
+                geo3.buatPersegiPanjang(65, 138, 225, 36, {
+                    radius: 7,
+                    fill: "rgba(217, 119, 6, 0.16)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.6
+                });
+                geo3.buatTeks(177, 156, "Tersisa Ujung: 1/1 - 1/4 = 3/4", {
+                    position: "middle-center",
+                    fontSize: "11.5px",
+                    fontWeight: "bold",
+                    fill: "#b45309"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
