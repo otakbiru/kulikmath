@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Limit</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Limit</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 21 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Buktikan limit fungsi multivariabel berikut menggunakan definisi presisi limit \((\varepsilon - \delta)\):
+                    \[\lim_{(x,y)\to(3,2)}(3x-4y)=1\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/7306" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Akan ditunjukkan bahwa untuk setiap \(\varepsilon > 0\), terdapat \(\delta > 0\) sedemikian rupa sehingga jika
+                        \[0 < \sqrt{(x-3)^2+(y-2)^2} < \delta\]
+                        maka
+                        \[|(3x-4y)-1| < \varepsilon\]
+                    </p>
+                    <p>
+                        Perhatikan bahwa jika \(\sqrt{(x-3)^2+(y-2)^2} < \delta\), maka berlaku:
+                        \[|x-3| \le \sqrt{(x-3)^2+(y-2)^2} < \delta \quad \text{dan} \quad |y-2| \le \sqrt{(x-3)^2+(y-2)^2} < \delta\]
+                    </p>
+                    <p>Uraikan bentuk nilai mutlak yang ingin dibatasi:</p>
+                    \[
+                    \begin{aligned}
+                    |(3x-4y)-1| &= |3(x-3) - 4(y-2)|\\[3.7pt]
+                    &\le |3(x-3)| + |4(y-2)|\\[3.7pt]
+                    &= 3|x-3| + 4|y-2|\\[3.7pt]
+                    &< 3\delta + 4\delta = 7\delta
+                    \end{aligned}
+                    \]
+                    <p>
+                        Pilihlah \(\delta = \dfrac{\varepsilon}{7}\). Maka:
+                        \[|(3x-4y)-1| < 7\left(\dfrac{\varepsilon}{7}\right) = \varepsilon\]
+                    </p>
+                    <div class="kesimpulan">Jadi, terbukti secara definisi bahwa \(\displaystyle\lim_{(x,y)\to(3,2)}(3x-4y)=1\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 22 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Diketahui \(f(x) = x^2 - 1\). Tentukan nilai dari:
+                    \[\lim_{p\to0}\dfrac{f(2+p)-f(2)}{p}\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/10139" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Substitusikan \(f(2+p) = (2+p)^2 - 1\) dan \(f(2) = 2^2 - 1 = 3\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{p\to0}\dfrac{f(2+p)-f(2)}{p}&=\lim_{p\to0}\dfrac{\left[(2+p)^2-1\right]-\left(2^2-1\right)}{p}\\[3.7pt]
+                    &=\lim_{p\to0}\dfrac{4+4p+p^2-1-3}{p}\\[3.7pt]
+                    &=\lim_{p\to0}\dfrac{4p+p^2}{p}\\[3.7pt]
+                    &=\lim_{p\to0}(4+p)\\[3.7pt]
+                    &=4+0 = 4
+                    \end{aligned}
+                    \]
+                    <p><em>Catatan:</em> Bentuk limit ini setara dengan definisi turunan \(f'(2)\). Karena \(f'(x)=2x\), maka \(f'(2)=2(2)=4\).</p>
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{p\to0}\dfrac{f(2+p)-f(2)}{p}=4\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 23 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{x}{\sqrt{5-x}-\sqrt{5}}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/10139" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kalikan dengan sekawan dari penyebut:</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{x}{\sqrt{5-x}-\sqrt{5}}&=\lim_{x\to0}\dfrac{x}{\sqrt{5-x}-\sqrt{5}}\cdot\dfrac{\sqrt{5-x}+\sqrt{5}}{\sqrt{5-x}+\sqrt{5}}\\[3.7pt]
+                    &=\lim_{x\to0}\dfrac{x\left(\sqrt{5-x}+\sqrt{5}\right)}{(5-x)-5}\\[3.7pt]
+                    &=\lim_{x\to0}\dfrac{x\left(\sqrt{5-x}+\sqrt{5}\right)}{-x}\\[3.7pt]
+                    &=\lim_{x\to0}\left(-\left(\sqrt{5-x}+\sqrt{5}\right)\right)\\[3.7pt]
+                    &=-\left(\sqrt{5-0}+\sqrt{5}\right) = -2\sqrt{5}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to0}\dfrac{x}{\sqrt{5-x}-\sqrt{5}}=-2\sqrt{5}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 24 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{x^3+2x^2}{x^4-x^3+5x^2}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/10139" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorkan \(x^2\) dari pembilang dan penyebut:</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{x^3+2x^2}{x^4-x^3+5x^2}&=\lim_{x\to0}\dfrac{x^2(x+2)}{x^2\left(x^2-x+5\right)}\\[3.7pt]
+                    &=\lim_{x\to0}\dfrac{x+2}{x^2-x+5}\\[3.7pt]
+                    &=\dfrac{0+2}{0^2-0+5} = \dfrac{2}{5}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to0}\dfrac{x^3+2x^2}{x^4-x^3+5x^2}=\dfrac{2}{5}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 25 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to-3}\dfrac{2x+1}{x^2-3x+4}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/10139" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan teknik substitusi langsung karena penyebut terdefinisi dan tidak bernilai nol:</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to-3}\dfrac{2x+1}{x^2-3x+4}&=\dfrac{2(-3)+1}{(-3)^2-3(-3)+4}\\[3.7pt]
+                    &=\dfrac{-6+1}{9+9+4}\\[3.7pt]
+                    &=\dfrac{-5}{22} = -\dfrac{5}{22}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to-3}\dfrac{2x+1}{x^2-3x+4}=-\dfrac{5}{22}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 26 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{x^2+3x-1}{x^3+5x}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/10139" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Periksa nilai limit dari pembilang dan penyebut:</p>
+                    \[
+                    \lim_{x\to0}(x^2+3x-1) = -1 \quad \text{dan} \quad \lim_{x\to0}(x^3+5x) = \lim_{x\to0}x(x^2+5) = 0
+                    \]
+                    <p>Karena pembilang bernilai bukan nol (\(-1\)) dan penyebut mendekati \(0\), maka limitnya tidak terdefinisi secara bilangan real (asintot tegak / menuju tak hingga \(\infty\)):</p>
+                    \[
+                    \lim_{x\to0}\dfrac{x^2+3x-1}{x^3+5x} \to \infty
+                    \]
+                    <div class="kesimpulan">Jadi, nilainya menuju \(\infty\) (tidak berhingga).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 27 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Diberikan fungsi \(f(x) = \dfrac{x^2-x-2}{x-2}\). Tentukan nilai \(\displaystyle\lim_{x\to2}\dfrac{x^2-x-2}{x-2}\) dengan menggunakan tabel pendekatan nilai berikut:
+                </p>
+                <div class="table-container" style="overflow-x: auto; margin: 1rem 0;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: center;">
+                        <thead>
+                            <tr style="background-color: var(--card-bg, #f8fafc); border-bottom: 2px solid var(--border-color, #e2e8f0);">
+                                <th style="padding: 8px;">Nilai \(x\)</th>
+                                <th style="padding: 8px;">Nilai \(y = f(x)\)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(1{,}95\)</td><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">...</td></tr>
+                            <tr><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(1{,}98\)</td><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">...</td></tr>
+                            <tr><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(1{,}99\)</td><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">...</td></tr>
+                            <tr><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(2{,}01\)</td><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">...</td></tr>
+                            <tr><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(2{,}05\)</td><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">...</td></tr>
+                            <tr><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(2{,}10\)</td><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/10590" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena \(\dfrac{x^2-x-2}{x-2} = \dfrac{(x-2)(x+1)}{x-2} = x+1\) untuk setiap \(x \ne 2\), maka nilai fungsi mendekati:</p>
+                    <div class="table-container" style="overflow-x: auto; margin: 1rem 0;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: center;">
+                            <thead>
+                                <tr style="background-color: var(--card-bg, #f8fafc); border-bottom: 2px solid var(--border-color, #e2e8f0);">
+                                    <th style="padding: 8px;">Nilai \(x\)</th>
+                                    <th style="padding: 8px;">Nilai \(y = x + 1\)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(1{,}95\)</td><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(2{,}95\)</td></tr>
+                                <tr><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(1{,}98\)</td><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(2{,}98\)</td></tr>
+                                <tr><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(1{,}99\)</td><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(2{,}99\)</td></tr>
+                                <tr><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(2{,}01\)</td><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(3{,}01\)</td></tr>
+                                <tr><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(2{,}05\)</td><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(3{,}05\)</td></tr>
+                                <tr><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(2{,}10\)</td><td style="padding: 6px; border-bottom: 1px solid var(--border-color, #e2e8f0);">\(3{,}10\)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Dari tabel terlihat bahwa saat \(x\) mendekati \(2\) baik dari kiri maupun kanan, nilai \(y\) mendekati \(3\).</p>
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to2}\dfrac{x^2-x-2}{x-2}=3\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 28 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to3}\left(x^2+2x+10\right)=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena fungsi polinom kontinu di setiap titik, substitusikan langsung nilai \(x = 3\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to3}\left(x^2+2x+10\right)&=3^2+2(3)+10\\[3.7pt]
+                    &=9+6+10 = 25
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to3}\left(x^2+2x+10\right)=25\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 29 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to2}(3x+2)=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(4\)</li>
+                    <li>\(5\)</li>
+                    <li>\(6\)</li>
+                    <li>\(7\)</li>
+                    <li>\(8\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan teknik substitusi langsung:</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to2}(3x+2)&=3(2)+2\\[3.7pt]
+                    &=6+2 = 8
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to2}(3x+2)=8\).<br><b>Jawaban: E</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 30 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Tentukan status nilai limit fungsi berikut saat disubstitusi langsung, apakah <strong>terdefinisi</strong>, <strong>tidak terdefinisi</strong>, atau <strong>bentuk tak tentu \(\dfrac{0}{0}\)</strong>:
+                </p>
+                <ol type="a">
+                    <li>\(\displaystyle\lim_{x\to3}\dfrac{x^2-1}{x+1}\)</li>
+                    <li>\(\displaystyle\lim_{x\to2}\dfrac{2x^2+1}{2x-4}\)</li>
+                    <li>\(\displaystyle\lim_{x\to4}\dfrac{x^2-16}{x-4}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">Latihan Pra UKK Semester Genap Kelas XI</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <ol type="a">
+                        <li>
+                            Substitusi langsung \(x = 3\):
+                            \[
+                            \lim_{x\to3}\dfrac{x^2-1}{x+1} = \dfrac{3^2-1}{3+1} = \dfrac{8}{4} = 2
+                            \]
+                            Penyebut tidak sama dengan nol, sehingga nilainya <strong>terdefinisi</strong>.
+                        </li>
+                        <li>
+                            Substitusi langsung \(x = 2\):
+                            \[
+                            \lim_{x\to2}\dfrac{2x^2+1}{2x-4} = \dfrac{2(2)^2+1}{2(2)-4} = \dfrac{9}{0}
+                            \]
+                            Pembagian dengan nol menghasilkan bilangan yang <strong>tidak terdefinisi</strong> (menuju \(\pm\infty\)).
+                        </li>
+                        <li>
+                            Substitusi langsung \(x = 4\):
+                            \[
+                            \lim_{x\to4}\dfrac{x^2-16}{x-4} = \dfrac{4^2-16}{4-4} = \dfrac{0}{0}
+                            \]
+                            Merupakan <strong>bentuk tak tentu \(\dfrac{0}{0}\)</strong> (dapat diselesaikan dengan pemfaktoran menjadi \(\lim_{x\to4}(x+4) = 8\)).
+                        </li>
+                    </ol>
+                    <div class="kesimpulan">
+                        Jadi statusnya:
+                        <ol type="a">
+                            <li><strong>Terdefinisi</strong> (bernilai 2)</li>
+                            <li><strong>Tidak terdefinisi</strong> (\(\frac{9}{0}\))</li>
+                            <li><strong>Bentuk tak tentu \(\dfrac{0}{0}\)</strong></li>
+                        </ol>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <!-- Script Math Blog Otomatis (Navigasi Level, Penomoran, Toggle Solusi) -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

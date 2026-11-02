@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Kubus</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Kubus</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Unsur-Unsur Kubus</h2>
+            <p>
+                <strong>Kubus</strong> (atau <em>heksaedron beraturan</em>) adalah bangun ruang tiga dimensi yang dibatasi oleh enam bidang sisi kongruen yang semuanya berbentuk <strong>persegi</strong>. Kubus merupakan salah satu dari lima <em>Bangun Ruang Platonik</em> dan dapat dipandang sebagai kasus khusus dari balok atau prisma segi empat tegak yang seluruh rusuknya memiliki panjang yang sama ($p = l = t = s$).
+            </p>
+            <p>
+                Pada sebuah kubus $ABCD.EFGH$ dengan panjang rusuk $s$, terdapat unsur-unsur geometri berikut:
+            </p>
+            <ul>
+                <li>
+                    <strong>Sisi / Bidang ($F = 6$ buah):</strong> Berbentuk persegi dengan luas masing-masing $s^2$, yaitu bidang alas ($ABCD$), bidang atas ($EFGH$), sisi depan ($ABFE$), sisi belakang ($DCGH$), sisi kiri ($ADHE$), dan sisi kanan ($BCGF$).
+                </li>
+                <li>
+                    <strong>Rusuk ($E = 12$ buah):</strong> Ruas garis perpotongan dua bidang sisi yang semuanya sama panjang ($s$), terdiri dari $4$ rusuk alas ($AB, BC, CD, DA$), $4$ rusuk atas ($EF, FG, GH, HE$), dan $4$ rusuk tegak ($AE, BF, CG, DH$).
+                </li>
+                <li>
+                    <strong>Titik Sudut ($V = 8$ buah):</strong> Titik pertemuan tiga rusuk yang saling tegak lurus ($A, B, C, D, E, F, G, H$). Memenuhi rumus polihedron Euler: $V - E + F = 8 - 12 + 6 = 2$.
+                </li>
+                <li>
+                    <strong>Diagonal Bidang / Diagonal Sisi ($12$ buah):</strong> Ruas garis yang menghubungkan dua titik sudut berhadapan pada satu bidang sisi yang sama (masing-masing sisi memiliki $2$ diagonal bidang, misalnya $AC, BD, BG, CF, AF, BE$, dst.).
+                </li>
+                <li>
+                    <strong>Diagonal Ruang ($4$ buah):</strong> Ruas garis yang menghubungkan dua titik sudut yang saling berhadapan di dalam ruang kubus dan tidak terletak pada satu bidang sisi, yaitu $AG$, $BH$, $CE$, dan $DF$. Keempat diagonal ruang berpotongan tepat di satu titik pusat simetri kubus.
+                </li>
+                <li>
+                    <strong>Bidang Diagonal ($6$ buah):</strong> Bidang di dalam kubus yang dibentuk oleh dua rusuk yang saling berhadapan beserta dua diagonal bidang yang sejajar. Keenam bidang diagonal berbentuk <strong>persegi panjang</strong>, yaitu $ACGE$, $BDHF$, $ABGH$, $CDEF$, $ADGF$, dan $BCHE$.
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-kubus-unsur" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Rumus-Rumus Metrik Pada Kubus</h2>
+            <p>
+                Jika panjang rusuk kubus adalah $s$, maka dengan menerapkan Teorema Pythagoras diperoleh rumus-rumus ukuran kubus sebagai berikut:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besaran Pada Kubus</th>
+                            <th>Rumus</th>
+                            <th>Penurunan &amp; Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Panjang Kerangka (Total Rusuk)</strong></td>
+                            <td>$$K = 12s$$</td>
+                            <td class="text-left">Jumlah panjang seluruh $12$ rusuk kubus.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Panjang Diagonal Bidang ($d_b$)</strong></td>
+                            <td>$$d_b = s\sqrt{2}$$</td>
+                            <td class="text-left">Dari segitiga siku-siku sama kaki $\triangle ABC$: $AC = \sqrt{s^2 + s^2} = s\sqrt{2}$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Panjang Diagonal Ruang ($d_r$)</strong></td>
+                            <td>$$d_r = s\sqrt{3}$$</td>
+                            <td class="text-left">Dari $\triangle ACG$ siku-siku di $C$: $AG = \sqrt{AC^2 + CG^2} = \sqrt{(s\sqrt{2})^2 + s^2} = s\sqrt{3}$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Luas Satu Bidang Diagonal ($L_{bd}$)</strong></td>
+                            <td>$$L_{bd} = s^2\sqrt{2}$$</td>
+                            <td class="text-left">Persegi panjang $ACGE$ memiliki panjang $AC = s\sqrt{2}$ dan lebar $CG = s$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Luas Permukaan Kubus ($L_p$)</strong></td>
+                            <td>$$L_p = 6s^2$$</td>
+                            <td class="text-left">Jumlah luas dari $6$ sisi persegi. (Jika kubus tanpa tutup, luasnya $5s^2$).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Volume Kubus ($V$)</strong></td>
+                            <td>$$V = s^3$$</td>
+                            <td class="text-left">Luas alas dikali tinggi: $L_{\text{alas}} \times t = s^2 \times s = s^3$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Jaring-Jaring Kubus dan Lintasan Terpendek</h2>
+            <p>
+                Jika sebuah kubus dipotong menurut beberapa rusuknya lalu direbahkan pada bidang datar tanpa ada sisi yang terlepas, terbentuklah <strong>jaring-jaring kubus</strong>. Secara kombinatorial, terdapat tepat <strong>$11$ variasi jaring-jaring kubus</strong> yang berbeda (tidak kongruen oleh rotasi maupun pencerminan), yang dikelompokkan menjadi:
+            </p>
+            <ul>
+                <li><strong>Pola 1–4–1 ($6$ macam):</strong> Empat persegi berderet di tengah, diapit masing-masing satu persegi di sisi atas dan bawah.</li>
+                <li><strong>Pola 2–3–1 ($3$ macam):</strong> Tiga persegi berderet di tengah, dua persegi di satu sisi, dan satu persegi di sisi lainnya.</li>
+                <li><strong>Pola 2–2–2 ($1$ macam):</strong> Berbentuk menyerupai tangga tiga tingkat.</li>
+                <li><strong>Pola 3–3 ($1$ macam):</strong> Dua baris yang masing-masing terdiri dari tiga persegi.</li>
+            </ul>
+            <p>
+                <strong>Lintasan Terpendek Pada Permukaan Kubus:</strong> Untuk mencari jarak lintasan terpendek (misalnya semut merayap) sepanjang permukaan kubus dari titik sudut $A$ menuju titik sudut seberang $G$, rebahkan dua sisi persegi yang dilalui menjadi satu persegi panjang berukuran $2s \times s$, sehingga jarak lintasan terpendeknya adalah:
+                $$d_{\text{permukaan}}(A \to G) = \sqrt{(2s)^2 + s^2} = s\sqrt{5}$$
+            </p>
+
+            <h2>4. Sifat Geometri Dimensi Tiga &amp; Rumus Cepat Jarak Pada Kubus</h2>
+            <p>
+                Dalam soal-soal Geometri Ruang (Dimensi Tiga &amp; SNBT), terdapat sifat pembagian diagonal ruang oleh dua bidang segitiga sama sisi di dalam kubus yang sangat penting untuk dikuasai:
+            </p>
+            <p>
+                Perhatikan diagonal ruang $EC$ serta dua bidang segitiga sama sisi $\triangle BDG$ dan $\triangle AFH$ (masing-masing sisinya adalah diagonal bidang $s\sqrt{2}$). Garis diagonal ruang $EC$ menembus secara <strong>tegak lurus</strong> bidang $\triangle BDG$ tepat di titik beratnya ($P$) dan menembus bidang $\triangle AFH$ tepat di titik beratnya ($Q$), serta membagi $EC$ menjadi <strong>tiga bagian sama panjang</strong>:
+                $$EP = PQ = QC = \frac{1}{3}EC = \frac{1}{3}s\sqrt{3}$$
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Objek Jarak di Dalam Kubus $ABCD.EFGH$ (Rusuk $s$)</th>
+                            <th>Rumus Cepat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Jarak titik sudut $C$ ke bidang $\triangle BDG$ (atau titik $E$ ke bidang $\triangle AFH$)</td>
+                            <td>$$\frac{1}{3}s\sqrt{3}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Jarak antara bidang $\triangle BDG$ dan bidang $\triangle AFH$ (sejajar)</td>
+                            <td>$$\frac{1}{3}s\sqrt{3}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Jarak titik sudut $E$ ke bidang $\triangle BDG$ (atau titik $C$ ke bidang $\triangle AFH$)</td>
+                            <td>$$\frac{2}{3}s\sqrt{3}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Jarak titik sudut ke garis diagonal ruang yang tidak melaluinya (misal titik $B$ ke garis $AG$)</td>
+                            <td>$$\frac{1}{3}s\sqrt{6}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Jarak titik sudut ke titik tengah sisi di seberangnya (misal titik $A$ ke tengah sisi $EFGH$)</td>
+                            <td>$$\frac{1}{2}s\sqrt{6}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Jarak titik sudut ke titik tengah rusuk yang tidak sebidang (misal titik $A$ ke tengah rusuk $CG$)</td>
+                            <td>$$\frac{3}{2}s$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Jari-jari bola dalam kubus ($r_{\text{dalam}}$) dan jari-jari bola luar kubus ($R_{\text{luar}}$)</td>
+                            <td>$$r_{\text{dalam}} = \frac{1}{2}s, \qquad R_{\text{luar}} = \frac{1}{2}s\sqrt{3}$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-kubus-jaring-jarak" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Ingat Perbandingan Segitiga Siku-Siku Utama di Dalam Kubus:
+                <br>• Segitiga <strong>Rusuk – Rusuk – Diagonal Bidang</strong> (contoh $\triangle ABC$): perbandingan sisinya $1 : 1 : \sqrt{2}$.
+                <br>• Segitiga <strong>Rusuk – Diagonal Bidang – Diagonal Ruang</strong> (contoh $\triangle ACG$): perbandingan sisinya $1 : \sqrt{2} : \sqrt{3}$.
+                <br>• Segitiga <strong>Diagonal Bidang – Diagonal Bidang – Diagonal Bidang</strong> (contoh $\triangle BDG$ atau $\triangle ACH$): merupakan <strong>segitiga sama sisi</strong> dengan panjang sisi $s\sqrt{2}$ dan sudut dalam $60^\circ$.
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memahami cara menghitung besaran metrik dan jarak di dalam kubus. Klik tombol <strong>Lihat Penyelesaian</strong> untuk melihat pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Hubungan Luas Bidang Diagonal, Luas Permukaan, dan Volume -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Diketahui sebuah kubus $ABCD.EFGH$ memiliki luas bidang diagonal $ACGE$ sebesar $36\sqrt{2}\text{ cm}^2$. Tentukan:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Panjang rusuk kubus dan panjang diagonal ruang $BH$,</li>
+                        <li>Luas permukaan dan volume kubus tersebut.</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Menentukan panjang rusuk ($s$) dan diagonal ruang ($BH$)</strong><br>
+                        Bidang diagonal $ACGE$ berbentuk persegi panjang dengan luas $L_{bd} = s^2\sqrt{2}$. Diketahui $L_{bd} = 36\sqrt{2}\text{ cm}^2$, sehingga:
+                        $$s^2\sqrt{2} = 36\sqrt{2} \implies s^2 = 36 \implies s = 6\text{ cm}$$
+                        Panjang diagonal ruang $BH$ adalah:
+                        $$BH = s\sqrt{3} = 6\sqrt{3}\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menghitung luas permukaan ($L_p$) dan volume ($V$)</strong><br>
+                        Substitusikan $s = 6\text{ cm}$ ke rumus luas permukaan dan volume:
+                        $$L_p = 6s^2 = 6 \times 6^2 = 6 \times 36 = 216\text{ cm}^2$$
+                        $$V = s^3 = 6^3 = 216\text{ cm}^3$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, panjang rusuk kubus adalah $6\text{ cm}$, panjang diagonal ruang $BH = 6\sqrt{3}\text{ cm}$, luas permukaannya $216\text{ cm}^2$, dan volumenya $216\text{ cm}^3$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Jarak Titik Sudut ke Garis Diagonal Ruang -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Pada kubus $ABCD.EFGH$ dengan panjang rusuk $12\text{ cm}$, tentukan jarak dari titik sudut $C$ ke garis diagonal ruang $AG$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Mengidentifikasi segitiga bantu $\triangle ACG$</strong><br>
+                        Tarik garis dari titik $A$, $C$, dan $G$ sehingga membentuk segitiga $\triangle ACG$. Karena rusuk tegak $CG$ tegak lurus terhadap bidang alas $ABCD$, maka $CG \perp AC$, sehingga $\triangle ACG$ adalah <strong>segitiga siku-siku di $C$</strong> dengan ukuran sisi:
+                        <ul>
+                            <li>Sisi siku-siku pertama (diagonal bidang alas): $AC = s\sqrt{2} = 12\sqrt{2}\text{ cm}$.</li>
+                            <li>Sisi siku-siku kedua (rusuk tegak): $CG = s = 12\text{ cm}$.</li>
+                            <li>Sisi miring (diagonal ruang): $AG = s\sqrt{3} = 12\sqrt{3}\text{ cm}$.</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menghitung jarak titik $C$ ke garis $AG$ dengan kesamaan luas segitiga</strong><br>
+                        Misalkan $t$ adalah proyeksi tegak lurus (jarak) dari titik $C$ ke garis $AG$. Dengan rumus luas segitiga siku-siku $\frac{1}{2} \times \text{alas} \times \text{tinggi}$:
+                        $$\frac{1}{2} \times AG \times t = \frac{1}{2} \times AC \times CG$$
+                        $$t = \frac{AC \times CG}{AG} = \frac{12\sqrt{2} \times 12}{12\sqrt{3}} = \frac{12\sqrt{2}}{\sqrt{3}} \times \frac{\sqrt{3}}{\sqrt{3}} = \frac{12\sqrt{6}}{3} = 4\sqrt{6}\text{ cm}$$
+                        <em>(Cocok dengan rumus cepat: $d = \frac{1}{3}s\sqrt{6} = \frac{1}{3}(12)\sqrt{6} = 4\sqrt{6}\text{ cm}$).</em>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, jarak dari titik sudut $C$ ke garis diagonal ruang $AG$ adalah $4\sqrt{6}\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Jarak Titik dan Bidang terhadap Segitiga BDG -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Diketahui kubus $ABCD.EFGH$ memiliki panjang rusuk $9\text{ cm}$. Titik $M$ adalah titik tengah diagonal bidang $BG$. Tentukan:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Jarak titik $E$ ke bidang $BDG$,</li>
+                        <li>Jarak titik $A$ ke titik $M$.</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Bagian 1: Menghitung jarak titik $E$ ke bidang $BDG$</strong><br>
+                        Diagonal ruang $EC = s\sqrt{3} = 9\sqrt{3}\text{ cm}$ ditembus secara tegak lurus oleh bidang $AFH$ dan bidang $BDG$ yang membagi $EC$ menjadi tiga bagian sama panjang.<br>
+                        Karena letak bidang $BDG$ lebih dekat ke titik $C$ ($\frac{1}{3}EC$) dan lebih jauh dari titik $E$ ($\frac{2}{3}EC$), maka jarak titik $E$ ke bidang $BDG$ adalah:
+                        $$d(E, BDG) = \frac{2}{3}EC = \frac{2}{3}s\sqrt{3} = \frac{2}{3}(9\sqrt{3}) = 6\sqrt{3}\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>Bagian 2: Menghitung jarak titik $A$ ke titik tengah $M$ pada $BG$</strong><br>
+                        Perhatikan segitiga $\triangle ABG$. Rusuk $AB$ tegak lurus terhadap seluruh bidang sisi kanan $BCGF$, sehingga $AB \perp BG$ ($\triangle ABG$ siku-siku di $B$).<br>
+                        • Panjang $AB = s = 9\text{ cm}$.<br>
+                        • Panjang diagonal bidang $BG = s\sqrt{2} = 9\sqrt{2}\text{ cm}$. Karena $M$ titik tengah $BG$, maka $BM = \frac{1}{2}BG = \frac{9}{2}\sqrt{2}\text{ cm}$.<br>
+                        Gunakan Teorema Pythagoras pada $\triangle ABM$ siku-siku di $B$:
+                        $$AM = \sqrt{AB^2 + BM^2} = \sqrt{9^2 + \left(\frac{9}{2}\sqrt{2}\right)^2} = \sqrt{81 + \frac{81 \times 2}{4}} = \sqrt{81 + \frac{81}{2}} = \sqrt{81 \times \frac{3}{2}} = \frac{9}{2}\sqrt{6}\text{ cm}$$
+                        <em>(Sesuai dengan rumus cepat jarak titik sudut ke pusat sisi di seberangnya: $\frac{1}{2}s\sqrt{6} = \frac{9}{2}\sqrt{6}\text{ cm}$).</em>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, jarak titik $E$ ke bidang $BDG$ adalah $6\sqrt{3}\text{ cm}$ dan jarak titik $A$ ke titik $M$ adalah $\frac{9}{2}\sqrt{6}\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiKubus() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const subtleBg = isDark ? '#0f172a' : '#f8fafc';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const tealFill = isDark ? 'rgba(20, 184, 166, 0.20)' : 'rgba(13, 148, 136, 0.14)';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const amberFill = isDark ? 'rgba(251, 191, 36, 0.22)' : 'rgba(217, 119, 6, 0.16)';
+            const roseColor = isDark ? '#fb7185' : '#e11d48';
+            const roseFill = isDark ? 'rgba(251, 113, 133, 0.22)' : 'rgba(225, 29, 72, 0.15)';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const blueFill = isDark ? 'rgba(56, 189, 248, 0.20)' : 'rgba(2, 132, 199, 0.13)';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI ANATOMI KUBUS ABCD.EFGH & BIDANG DIAGONAL ACGE
+               ------------------------------------------------------------- */
+            const geoUnsur = new GeoSVG('geosvg-kubus-unsur', 580, 295, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoUnsur.buatPersegiPanjang(6, 6, 568, 283, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoUnsur.buatTeks(290, 26, "Anatomi Kubus ABCD.EFGH: Bidang Diagonal ACGE, Diagonal Bidang AC, & Diagonal Ruang AG", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            // Koordinat proyeksi oblik kubus ABCD.EFGH di sisi kiri
+            const A = [55, 238];
+            const B = [205, 238];
+            const D = [110, 183];
+            const C = [260, 183];
+
+            const E = [55, 88];
+            const F = [205, 88];
+            const H = [110, 33 + 22];
+            const G = [260, 33 + 22];
+            // Sesuaikan pergeseran vertikal murni sebesar 150px
+            H[1] = D[1] - 150;
+            G[1] = C[1] - 150;
+
+            // Arsir Bidang Diagonal ACGE
+            geoUnsur.buatPoligon([A, C, G, E], {
+                fill: tealFill, stroke: 'none'
+            });
+
+            // Rusuk belakang (putus-putus): AD, DC, DH
+            geoUnsur.buatSegmen(A, D, { stroke: mutedColor, strokeWidth: 1.5, dashed: '5,4' });
+            geoUnsur.buatSegmen(D, C, { stroke: mutedColor, strokeWidth: 1.5, dashed: '5,4' });
+            geoUnsur.buatSegmen(D, H, { stroke: mutedColor, strokeWidth: 1.5, dashed: '5,4' });
+
+            // Diagonal bidang AC (biru) dan diagonal atas EG
+            geoUnsur.buatSegmen(A, C, { stroke: blueColor, strokeWidth: 2.2, dashed: '6,3' });
+            geoUnsur.buatSegmen(E, G, { stroke: tealColor, strokeWidth: 1.8, dashed: '5,3' });
+
+            // Tanda siku-siku di C pada segitiga ACG (AC tegak lurus CG)
+            geoUnsur.buatSiku(A, C, G, { size: 11, stroke: tealColor, strokeWidth: 1.5 });
+
+            // Diagonal ruang AG (merah/rose)
+            geoUnsur.buatSegmen(A, G, { stroke: roseColor, strokeWidth: 2.8 });
+
+            // Rusuk depan & samping yang terlihat
+            geoUnsur.buatSegmen(A, B, { stroke: textColor, strokeWidth: 2 });
+            geoUnsur.buatSegmen(B, C, { stroke: textColor, strokeWidth: 2 });
+            geoUnsur.buatSegmen(A, E, { stroke: textColor, strokeWidth: 2 });
+            geoUnsur.buatSegmen(B, F, { stroke: textColor, strokeWidth: 2 });
+            geoUnsur.buatSegmen(C, G, { stroke: textColor, strokeWidth: 2.2 });
+            geoUnsur.buatSegmen(E, F, { stroke: textColor, strokeWidth: 2 });
+            geoUnsur.buatSegmen(F, G, { stroke: textColor, strokeWidth: 2 });
+            geoUnsur.buatSegmen(G, H, { stroke: textColor, strokeWidth: 2 });
+            geoUnsur.buatSegmen(H, E, { stroke: textColor, strokeWidth: 2 });
+
+            // Titik sudut kubus
+            geoUnsur.buatTitik(A, { size: 3.5, color: textColor, label: 'A', labelPosition: 'bottom-left', bold: true });
+            geoUnsur.buatTitik(B, { size: 3.5, color: textColor, label: 'B', labelPosition: 'bottom-right', bold: true });
+            geoUnsur.buatTitik(C, { size: 3.5, color: textColor, label: 'C', labelPosition: 'middle-right', bold: true });
+            geoUnsur.buatTitik(D, { size: 3.5, color: mutedColor, label: 'D', labelPosition: 'top-left', bold: true });
+            geoUnsur.buatTitik(E, { size: 3.5, color: textColor, label: 'E', labelPosition: 'middle-left', bold: true });
+            geoUnsur.buatTitik(F, { size: 3.5, color: textColor, label: 'F', labelPosition: 'bottom-right', bold: true });
+            geoUnsur.buatTitik(G, { size: 3.5, color: textColor, label: 'G', labelPosition: 'top-right', bold: true });
+            geoUnsur.buatTitik(H, { size: 3.5, color: textColor, label: 'H', labelPosition: 'top-left', bold: true });
+
+            // Label panjang rusuk dan diagonal pada gambar
+            geoUnsur.buatTeks(130, 252, "s", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor });
+            geoUnsur.buatTeks(274, 110, "s", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor });
+            geoUnsur.buatTeks(172, 200, "s√2", { position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: blueColor });
+            geoUnsur.buatTeks(145, 122, "s√3", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: roseColor });
+
+            // Panel Kanan: Segitiga Siku-Siku ACG yang dibedah keluar
+            geoUnsur.buatPersegiPanjang(310, 50, 248, 222, {
+                radius: 8, fill: subtleBg, stroke: borderColor, strokeWidth: 1.2
+            });
+
+            geoUnsur.buatTeks(434, 72, "Bedah Segitiga Siku-Siku ΔACG", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+
+            const pA = [340, 210];
+            const pC = [495, 210];
+            const pG = [495, 100];
+
+            geoUnsur.buatPoligon([pA, pC, pG], {
+                fill: tealFill, stroke: 'none'
+            });
+            geoUnsur.buatSiku(pA, pC, pG, { size: 12, stroke: tealColor, strokeWidth: 1.5 });
+            geoUnsur.buatSegmen(pA, pC, { stroke: blueColor, strokeWidth: 2.4 });
+            geoUnsur.buatSegmen(pC, pG, { stroke: textColor, strokeWidth: 2.4 });
+            geoUnsur.buatSegmen(pA, pG, { stroke: roseColor, strokeWidth: 2.6 });
+
+            geoUnsur.buatTitik(pA, { size: 3.5, color: textColor, label: 'A', labelPosition: 'bottom-left', bold: true });
+            geoUnsur.buatTitik(pC, { size: 3.5, color: textColor, label: 'C', labelPosition: 'bottom-right', bold: true });
+            geoUnsur.buatTitik(pG, { size: 3.5, color: textColor, label: 'G', labelPosition: 'top-right', bold: true });
+
+            geoUnsur.buatTeks(418, 226, "AC = s√2 (Diagonal Bidang)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: blueColor
+            });
+            geoUnsur.buatTeks(522, 155, "CG = s", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: textColor
+            });
+            geoUnsur.buatTeks(400, 142, "AG = s√3", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: roseColor
+            });
+            geoUnsur.buatTeks(434, 253, "Perbandingan:  1  :  √2  :  √3", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: amberColor
+            });
+
+
+            /* -------------------------------------------------------------
+               2. ILUSTRASI JARING-JARING KUBUS & PEMBAGIAN 3 DIAGONAL RUANG
+               ------------------------------------------------------------- */
+            const geoJaring = new GeoSVG('geosvg-kubus-jaring-jarak', 580, 285, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoJaring.buatPersegiPanjang(6, 6, 568, 273, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            // Garis pemisah kiri dan kanan
+            geoJaring.buatSegmen(282, 18, 282, 265, {
+                stroke: borderColor, strokeWidth: 1.2, dashed: '4,4'
+            });
+
+            // --- PANEL KIRI: Jaring-Jaring Pola 1-4-1 & Lintasan Semut s√5 ---
+            geoJaring.buatTeks(144, 26, "Jaring-Jaring (Pola 1–4–1) & Rute Terpendek", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            const sq = 46;
+            const nx0 = 36, ny0 = 112;
+
+            // 4 persegi tengah: kiri, alas(ABCD), kanan, atas
+            const netCells = [
+                { gx: 0, gy: 0, label: 'ADHE', fill: subtleBg },
+                { gx: 1, gy: 0, label: 'ABCD\n(Alas)', fill: tealFill },
+                { gx: 2, gy: 0, label: 'BCGF', fill: amberFill },
+                { gx: 3, gy: 0, label: 'EFGH\n(Atas)', fill: blueFill },
+                { gx: 1, gy: -1, label: 'DCGH', fill: subtleBg },
+                { gx: 1, gy: 1, label: 'ABFE', fill: subtleBg }
+            ];
+
+            netCells.forEach(cell => {
+                const rx = nx0 + cell.gx * sq;
+                const ry = ny0 + cell.gy * sq;
+                geoJaring.buatPersegiPanjang(rx, ry, sq, sq, {
+                    fill: cell.fill, stroke: textColor, strokeWidth: 1.6
+                });
+                const lines = cell.label.split('\n');
+                if (lines.length === 1) {
+                    geoJaring.buatTeks(rx + sq / 2, ry + sq / 2, lines[0], {
+                        position: 'middle-center', fontSize: '9.5px', fontWeight: 'bold', fill: mutedColor
+                    });
+                } else {
+                    geoJaring.buatTeks(rx + sq / 2, ry + sq / 2 - 6, lines[0], {
+                        position: 'middle-center', fontSize: '9.5px', fontWeight: 'bold', fill: textColor
+                    });
+                    geoJaring.buatTeks(rx + sq / 2, ry + sq / 2 + 6, lines[1], {
+                        position: 'middle-center', fontSize: '8.5px', fill: tealColor
+                    });
+                }
+            });
+
+            // Lintasan terpendek sepanjang permukaan dari A (kiri bawah ABCD) ke G (kanan atas BCGF)
+            const ptA_net = [nx0 + 1 * sq, ny0 + sq];
+            const ptG_net = [nx0 + 3 * sq, ny0];
+            geoJaring.buatSegmen(ptA_net, ptG_net, {
+                stroke: roseColor, strokeWidth: 2.5, dashed: '5,3'
+            });
+            geoJaring.buatTitik(ptA_net, { size: 3.5, color: roseColor, label: 'A', labelPosition: 'bottom-left', bold: true });
+            geoJaring.buatTitik(ptG_net, { size: 3.5, color: roseColor, label: 'G', labelPosition: 'top-right', bold: true });
+
+            geoJaring.buatTeks(144, 232, "Lintasan permukaan A → G melintasi 2 persegi (2s × s):", {
+                position: 'middle-center', fontSize: '10.5px', fill: mutedColor
+            });
+            geoJaring.buatTeks(144, 252, "Jarak permukaan terpendek = √((2s)² + s²) = s√5", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: roseColor
+            });
+
+            // --- PANEL KANAN: Pembagian 3 Diagonal Ruang EC oleh ΔAFH & ΔBDG ---
+            geoJaring.buatTeks(430, 26, "Pembagian 3 Diagonal Ruang EC (⅓s√3)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            // Skema potongan bidang diagonal ACGE yang memuat E, C, Q (tembus AFH), P (tembus BDG)
+            const rA = [325, 195];
+            const rC = [535, 195];
+            const rE = [325, 65];
+            const rG = [535, 65];
+
+            const rM_AC = [(rA[0] + rC[0]) / 2, rA[1]]; // tengah AC
+            const rM_EG = [(rE[0] + rG[0]) / 2, rE[1]]; // tengah EG
+
+            // Persegi panjang bidang diagonal ACGE
+            geoJaring.buatPersegiPanjang(rE[0], rE[1], rC[0] - rA[0], rA[1] - rE[1], {
+                fill: subtleBg, stroke: textColor, strokeWidth: 1.8
+            });
+
+            // Garis potong bidang AFH (dari A ke tengah EG) dan bidang BDG (dari tengah AC ke G)
+            geoJaring.buatSegmen(rA, rM_EG, { stroke: blueColor, strokeWidth: 2.2 });
+            geoJaring.buatSegmen(rM_AC, rG, { stroke: tealColor, strokeWidth: 2.2 });
+
+            // Diagonal ruang EC
+            geoJaring.buatSegmen(rE, rC, { stroke: roseColor, strokeWidth: 2.6 });
+
+            // Titik Q (1/3 dari E) dan P (2/3 dari E)
+            const rQ = [rE[0] + (rC[0] - rE[0]) / 3, rE[1] + (rC[1] - rE[1]) / 3];
+            const rP = [rE[0] + 2 * (rC[0] - rE[0]) / 3, rE[1] + 2 * (rC[1] - rE[1]) / 3];
+
+            geoJaring.buatTitik(rE, { size: 3.5, color: textColor, label: 'E', labelPosition: 'top-left', bold: true });
+            geoJaring.buatTitik(rG, { size: 3.5, color: textColor, label: 'G', labelPosition: 'top-right', bold: true });
+            geoJaring.buatTitik(rA, { size: 3.5, color: textColor, label: 'A', labelPosition: 'bottom-left', bold: true });
+            geoJaring.buatTitik(rC, { size: 3.5, color: textColor, label: 'C', labelPosition: 'bottom-right', bold: true });
+
+            geoJaring.buatTitik(rQ, { size: 4, color: blueColor, label: 'Q', labelPosition: 'bottom-left', bold: true });
+            geoJaring.buatTitik(rP, { size: 4, color: tealColor, label: 'P', labelPosition: 'top-right', bold: true });
+
+            // Label bidang AFH dan BDG
+            geoJaring.buatTeks(362, 148, "Bidang AFH", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10px', fill: blueColor
+            });
+            geoJaring.buatTeks(498, 115, "Bidang BDG", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10px', fill: tealColor
+            });
+
+            // Keterangan pembagian 3 sama panjang
+            geoJaring.buatTeks(430, 230, "EQ  =  QP  =  PC  =  ⅓ EC  =  ⅓ s√3", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: amberColor
+            });
+            geoJaring.buatTeks(430, 252, "• Jarak C ke BDG = ⅓ s√3     • Jarak E ke BDG = ⅔ s√3", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: tealColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiKubus();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiKubus, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

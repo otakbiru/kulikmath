@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Limit Tak Hingga</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Limit Tak Hingga</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Konsep Dasar Limit Tak Hingga</h2>
+            <p>
+                Dalam kalkulus, istilah <strong>Limit Tak Hingga</strong> mencakup dua konteks analisis yang berbeda namun sangat penting:
+            </p>
+            <ul>
+                <li>
+                    <strong>Limit di Ketakhinggaan (\(x \to \infty\) atau \(x \to -\infty\)):</strong> Mengkaji perilaku nilai suatu fungsi \(f(x)\) ketika peubah bebas \(x\) membesar tanpa batas menuju positif tak hingga (\(\infty\)) atau mengecil tanpa batas menuju negatif tak hingga (\(-\infty\)). Notasinya ditulis:
+                    $$\lim_{x \to \infty} f(x) = L \quad \text{atau} \quad \lim_{x \to -\infty} f(x) = M$$
+                </li>
+                <li>
+                    <strong>Limit Bernilai Tak Hingga (\(f(x) \to \pm\infty\)):</strong> Mengkaji kondisi ketika nilai suatu fungsi \(f(x)\) membesar atau mengecil tanpa batas saat peubah \(x\) mendekati suatu bilangan real tertentu \(c\). Notasinya ditulis:
+                    $$\lim_{x \to c} f(x) = \infty \quad \text{atau} \quad \lim_{x \to c} f(x) = -\infty$$
+                    Kondisi ini secara geometris berkaitan erat dengan keberadaan <strong>Asimtot Tegak</strong> pada grafik fungsi tersebut.
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-limit-tak-hingga" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Sifat Dasar dan Teorema Operasi Tak Hingga</h2>
+            <p>
+                Untuk bilangan real positif \(k\) dan bilangan bulat positif \(n\), berlaku teorema dasar limit di ketakhinggaan yang sangat fundamental:
+                $$\lim_{x \to \infty} \frac{k}{x^n} = 0 \qquad \text{dan} \qquad \lim_{x \to -\infty} \frac{k}{x^n} = 0$$
+            </p>
+            <p>
+                Selain itu, operasi aritmetika yang melibatkan simbol \(\infty\) (dengan anggapan kuantitas diperlakukan secara limit) mengikuti aturan intuitif berikut (selama bukan bentuk tak tentu):
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Operasi Aljabat Limit Tak Hingga</th>
+                            <th>Hasil / Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">\(\infty + \infty = \infty\) dan \((-\infty) + (-\infty) = -\infty\)</td>
+                            <td>Jumlah kuantitas tak berhingga tetap tak berhingga.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">\(\infty \times (\pm\infty) = \pm\infty\) (sesuai aturan tanda)</td>
+                            <td>Perkalian besar nilai membesar tanpa batas.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">\(\frac{k}{\infty} = 0\) dan \(\frac{k}{-\infty} = 0\) (untuk \(k\) konstanta berhingga)</td>
+                            <td>Bilangan konstan dibagi bilangan sangat besar menuju nol.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">\(\frac{\pm\infty}{k} = \pm\infty\) (untuk \(k > 0\))</td>
+                            <td>Bilangan sangat besar dibagi konstanta positif tetap tak berhingga.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Strategi Menyelesaikan Limit Fungsi Rasional di Ketakhinggaan</h2>
+            <p>
+                Bentuk umum limit fungsi rasional di ketakhinggaan adalah rasio dua polinomial derajat \(n\) dan \(m\):
+                $$\lim_{x \to \infty} \frac{a_n x^n + a_{n-1} x^{n-1} + \dots + a_0}{b_m x^m + b_{m-1} x^{m-1} + \dots + b_0}$$
+                Metode universal untuk menyelesaikannya adalah dengan <strong>membagi setiap suku pada pembilang dan penyebut dengan \(x\) berpangkat tertinggi</strong> yang terdapat pada penyebut. Namun, untuk kecepatan analisis (terutama soal pilihan ganda SNBT), kita dapat langsung membandingkan <strong>derajat tertinggi \(n\) (pembilang) dan \(m\) (penyebut)</strong>:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hubungan Derajat (\(n\) vs \(m\))</th>
+                            <th>Hasil Limit (\(x \to \infty\) atau \(x \to -\infty\))</th>
+                            <th>Interpretasi Geometris Grafik</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Kasus 1: Pangkat Pembilang < Penyebut (\(n < m\))</strong></td>
+                            <td>Hasil limit adalah <strong>\(0\)</strong></td>
+                            <td>Sumbu-\(X\) (\(y = 0\)) bertindak sebagai asimtot datar.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Kasus 2: Pangkat Pembilang = Penyebut (\(n = m\))</strong></td>
+                            <td>Hasil limit adalah rasio koefisien utama: <strong>\(\frac{a_n}{b_m}\)</strong></td>
+                            <td>Garis horizontal \(y = \frac{a_n}{b_m}\) adalah asimtot datar.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Kasus 3: Pangkat Pembilang > Penyebut (\(n > m\))</strong></td>
+                            <td>Hasil limit adalah <strong>\(\infty\) atau \(-\infty\)</strong> (bergantung tanda koefisien)</td>
+                            <td>Tidak memiliki asimtot datar (kurva melesat ke atas/bawah).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. Limit Bentuk Selisih Akar Kuadrat (\(\infty - \infty\))</h2>
+            <p>
+                Bentuk selisih dua akar kuadrat \(\lim_{x \to \infty} \left(\sqrt{ax^2 + bx + c} - \sqrt{px^2 + qx + r}\right)\) menghasilkan bentuk tak tentu \(\infty - \infty\). Cara menyelesaikannya adalah dengan <strong>mengalikan dengan sekawan akarnya</strong>, atau menggunakan rumus cepat berikut ketika koefisien pangkat tertinggi kuadratnya sama (\(a = p\)):
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kondisi Koefisien \(a\) dan \(p\)</th>
+                            <th>Rumus / Hasil Nilai Limit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Jika \(a = p\)</strong> (Koefisien \(x^2\) sama)</td>
+                            <td>$$\frac{b - q}{2\sqrt{a}}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Jika \(a > p\)</strong></td>
+                            <td>\(+\infty\)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Jika \(a < p\)</strong></td>
+                            <td>\(-\infty\)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-limit-asimtot" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Catatan Penting Limit Tak Hingga:
+                <br>• Perhatikan tanda negatif pada \(x \to -\infty\). Ketika variabel \(x\) negatif bernilai sangat besar, bentuk \(\sqrt{x^2}\) harus disetarakan dengan \(|x| = -x\).
+                <br>• Asimtot Datar diperoleh dengan menghitung nilai limit fungsi saat \(x \to \infty\) dan \(x \to -\infty\).
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh soal berikut untuk memahami teknik membagi pangkat tertinggi, merasionalkan selisih akar, serta menentukan asimtot datar grafik fungsi. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Limit Fungsi Rasional Derajat Berbeda -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Tentukan nilai dari limit fungsi aljabar berikut:
+                    $$\lim_{x \to \infty} \frac{(2x - 3)(3x + 1)}{(x + 2)(4x - 5)}$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Jabarkan bentuk perkalian pada pembilang dan penyebut terlebih dahulu untuk melihat suku polinomial tertingginya:
+                        <ul>
+                            <li>Pembilang: \((2x - 3)(3x + 1) = 6x^2 + 2x - 9x - 3 = 6x^2 - 7x - 3\) (Derajat tertinggi \(n = 2\), koefisien utama \(a_2 = 6\))</li>
+                            <li>Penyebut: \((x + 2)(4x - 5) = 4x^2 - 5x + 8x - 10 = 4x^2 + 3x - 10\) (Derajat tertinggi \(m = 2\), koefisien utama \(b_2 = 4\))</li>
+                        </ul>
+                        Karena derajat pembilang sama dengan derajat penyebut (\(n = m = 2\)), kita gunakan sifat perbandingan koefisien utama:
+                        $$\lim_{x \to \infty} \frac{6x^2 - 7x - 3}{4x^2 + 3x - 10} = \frac{6}{4} = \frac{3}{2}$$
+                        Atau dengan membagi seluruh suku dengan \(x^2\):
+                        $$\lim_{x \to \infty} \frac{6 - \frac{7}{x} - \frac{3}{x^2}}{4 + \frac{3}{x} - \frac{10}{x^2}} = \frac{6 - 0 - 0}{4 + 0 - 0} = \frac{6}{4} = \frac{3}{2}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari limit tersebut adalah \(\frac{3}{2}\) atau \(1{,}5\).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Limit Selisih Akar Kuadrat dengan \(x \to \infty\) -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Tentukan nilai dari:
+                    $$\lim_{x \to \infty} \left(\sqrt{9x^2 - 12x + 4} - (3x + 2)\right)$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Ubah bagian \((3x + 2)\) ke dalam bentuk akar kuadrat dengan mengkuadratkannya:
+                        $$3x + 2 = \sqrt{(3x + 2)^2} = \sqrt{9x^2 + 12x + 4}$$
+                        Sehingga bentuk limit berubah menjadi:
+                        $$\lim_{x \to \infty} \left(\sqrt{9x^2 - 12x + 4} - \sqrt{9x^2 + 12x + 4}\right)$$
+                        Bentuk ini sesuai dengan format \(\lim_{x \to \infty} \left(\sqrt{ax^2 + bx + c} - \sqrt{px^2 + qx + r}\right)\) dengan:
+                        <ul>
+                            <li>\(a = 9, \ b = -12, \ c = 4\)</li>
+                            <li>\(p = 9, \ q = 12, \ r = 4\)</li>
+                        </ul>
+                        Karena koefisien \(a = p = 9\) (sama), gunakan rumus cepat \(\frac{b - q}{2\sqrt{a}}\):
+                        $$\text{Nilai Limit} = \frac{-12 - 12}{2\sqrt{9}} = \frac{-24}{2 \times 3} = \frac{-24}{6} = -4$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari limit tak hingga tersebut adalah \(-4\).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Limit Tak Hingga Fungsi Trigonometri / Aljabar Lanjutan -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Tentukan nilai dari limit fungsi berikut untuk \(x \to \infty\):
+                    $$\lim_{x \to \infty} x \left(\sec\left(\frac{2}{x}\right) - 1\right)$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Misalkan variabel substitusi \(y = \frac{1}{x}\). Ketika \(x \to \infty\), maka \(y \to 0^+\).<br>
+                        Substitusikan \(x = \frac{1}{y}\) ke dalam bentuk limit:
+                        $$\lim_{y \to 0} \frac{1}{y} \left(\sec(2y) - 1\right) = \lim_{y \to 0} \frac{\frac{1}{\cos(2y)} - 1}{y} = \lim_{y \to 0} \frac{1 - \cos(2y)}{y \cos(2y)}$$
+                        Gunakan identitas trigonometri pembatas limit khusus \(\lim_{y \to 0} \frac{1 - \cos(2y)}{y^2} = \frac{1}{2}(2)^2 = 2\). Kita kalikan pembilang dan penyebut dengan \(y\):
+                        $$\lim_{y \to 0} \left( \frac{1 - \cos(2y)}{y^2} \cdot \frac{y}{\cos(2y)} \right) = 2 \cdot \frac{0}{\cos(0)} = 2 \cdot 0 = 0$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari limit tersebut adalah \(0\).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiLimitTakHingga() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI ASIMTOT DATAR & PERILAKU x -> \infty
+               ------------------------------------------------------------- */
+            const geoTk = new GeoSVG('geosvg-limit-tak-hingga', 580, 265, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoTk.buatPersegiPanjang(6, 6, 568, 253, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoTk.buatTeks(290, 24, "Perilaku Grafik Menuju Asimtot Datar saat x → ∞", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor
+            });
+
+            // Sumbu koordinat
+            geoTk.buatVektor(52, 204, 536, 204, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoTk.buatVektor(80, 224, 80, 42, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoTk.buatTeks(540, 204, "x", { position: 'middle-left', fontSize: '11px', fill: mutedColor });
+            geoTk.buatTeks(80, 36, "y", { position: 'bottom-center', fontSize: '11px', fill: mutedColor });
+
+            // Garis Asimtot Datar y = L (misal di y = 90)
+            const yAsimtot = 90;
+            geoTk.buatSegmen(80, yAsimtot, 520, yAsimtot, { stroke: amberColor, strokeWidth: 1.8, dashed: '6,4' });
+            geoTk.buatTeks(524, yAsimtot, "y = L", { position: 'middle-left', fontWeight: 'bold', fontSize: '11px', fill: amberColor });
+
+            // Kurva fungsi rasional f(x) = 2 + 120/(x+10) yang mendekati y = L dari atas
+            const ptsFunc = [];
+            for (let x = 90; x <= 500; x += 10) {
+                const fx = yAsimtot + 1400 / (x - 60);
+                ptsFunc.push([x, fx]);
+            }
+            geoTk.buatKurvaHalus(ptsFunc, { stroke: tealColor, strokeWidth: 2.6 });
+
+            // Keterangan panah x -> \infty
+            geoTk.buatVektor(380, 150, 480, 150, { stroke: blueColor, strokeWidth: 2 });
+            geoTk.buatTeks(430, 134, "x → ∞", { position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: blueColor });
+            geoTk.buatTeks(290, 238, "limₓ→∞ f(x) = L  (Grafik mendekati garis asimtot y = L)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor
+            });
+
+
+            /* -------------------------------------------------------------
+               2. ILUSTRASI ASIMTOT TEGAK SAAT x -> c
+               ------------------------------------------------------------- */
+            const geoAsm = new GeoSVG('geosvg-limit-asimtot', 580, 265, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoAsm.buatPersegiPanjang(6, 6, 568, 253, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoAsm.buatTeks(290, 24, "Asimtot Tegak: Nilai Limit Menuju Tak Hingga (x → c)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor
+            });
+
+            // Sumbu koordinat
+            geoAsm.buatVektor(52, 210, 536, 210, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoAsm.buatVektor(290, 230, 290, 44, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoAsm.buatTeks(540, 210, "x", { position: 'middle-left', fontSize: '11px', fill: mutedColor });
+            geoAsm.buatTeks(290, 38, "y", { position: 'bottom-center', fontSize: '11px', fill: mutedColor });
+
+            // Garis Asimtot Tegak x = c di x = 390
+            const xAsim = 390;
+            geoAsm.buatSegmen(xAsim, 48, xAsim, 224, { stroke: amberColor, strokeWidth: 1.8, dashed: '6,4' });
+            geoAsm.buatTeks(xAsim, 232, "x = c", { position: 'top-center', fontWeight: 'bold', fontSize: '11px', fill: amberColor });
+
+            // Kurva kiri melesat ke atas menuju +infinit
+            const ptsKiri = [];
+            for (let x = 110; x <= 378; x += 8) {
+                const y = 210 - Math.min(150, 4000 / (xAsim - x));
+                ptsKiri.push([x, y]);
+            }
+            geoAsm.buatKurvaHalus(ptsKiri, { stroke: tealColor, strokeWidth: 2.6 });
+
+            // Kurva kanan melesat ke atas
+            const ptsKanan = [];
+            for (let x = 402; x <= 510; x += 8) {
+                const y = 210 - Math.min(150, 4000 / (x - xAsim));
+                ptsKanan.push([x, y]);
+            }
+            geoAsm.buatKurvaHalus(ptsKanan, { stroke: tealColor, strokeWidth: 2.6 });
+
+            geoAsm.buatTeks(290, 244, "limₓ→c f(x) = ∞  (Nilai fungsi membesar tanpa batas)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: amberColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiLimitTakHingga();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiLimitTakHingga, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

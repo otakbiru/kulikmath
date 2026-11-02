@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal SNBT - Limit Trigonometri</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Limit Trigonometri</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{\tan x}{x^2\csc 3x}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(1\)</li>
+                    <li>\(2\)</li>
+                    <li>\(3\)</li>
+                    <li>\(4\)</li>
+                    <li>\(5\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">SBMPTN 2017</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ubah \(\csc 3x = \dfrac{1}{\sin 3x}\) dan \(\tan x = \dfrac{\sin x}{\cos x}\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{\tan x}{x^2\csc 3x} &= \lim_{x\to0}\dfrac{\dfrac{\sin x}{\cos x}}{\dfrac{x^2}{\sin 3x}}\\[3.7pt]
+                    &= \lim_{x\to0}\left(\dfrac{\sin x}{x}\cdot\dfrac{\sin 3x}{x}\cdot\dfrac{1}{\cos x}\right)\\[3.7pt]
+                    &= 1 \cdot 3 \cdot \dfrac{1}{\cos 0} = 3
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(3\).<br><b>Jawaban: C</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to\infty}\dfrac{x+\sec\left(\frac{1}{x}\right)}{x^3\sin^2\left(\frac{1}{4x}\right)}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(0\)</li>
+                    <li>\(\dfrac{1}{4}\)</li>
+                    <li>\(4\)</li>
+                    <li>\(16\)</li>
+                    <li>\(32\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">SBMPTN 2017</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Lakukan pemisalan \(t = \dfrac{1}{x}\). Saat \(x \to \infty\), maka \(t \to 0\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to\infty}\dfrac{x+\sec\left(\frac{1}{x}\right)}{x^3\sin^2\left(\frac{1}{4x}\right)} &= \lim_{t\to0}\dfrac{\dfrac{1}{t}+\sec t}{\dfrac{1}{t^3}\sin^2\left(\frac{t}{4}\right)}\\[3.7pt]
+                    &= \lim_{t\to0}\dfrac{\dfrac{1+t\sec t}{t}}{\dfrac{\sin^2\left(\frac{t}{4}\right)}{t^3}}\\[3.7pt]
+                    &= \lim_{t\to0}\left[\dfrac{t^2}{\sin^2\left(\frac{t}{4}\right)}\cdot(1 + t\sec t)\right]\\[3.7pt]
+                    &= \left(\dfrac{1}{\frac{1}{4}}\right)^2 \cdot (1 + 0)\\[3.7pt]
+                    &= 4^2 \cdot 1 = 16
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(16\).<br><b>Jawaban: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{\sec x+\cos x-2}{x^2\sin^2 x}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(-\dfrac{1}{8}\)</li>
+                    <li>\(-\dfrac{1}{4}\)</li>
+                    <li>\(0\)</li>
+                    <li>\(\dfrac{1}{4}\)</li>
+                    <li>\(\dfrac{1}{8}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ubah \(\sec x = \dfrac{1}{\cos x}\) dan samakan penyebut pada pembilang:</p>
+                    \[
+                    \begin{aligned}
+                    \sec x + \cos x - 2 &= \dfrac{1 + \cos^2 x - 2\cos x}{\cos x} = \dfrac{(\cos x - 1)^2}{\cos x}
+                    \end{aligned}
+                    \]
+                    Gunakan sudut paruh \(\cos x - 1 = -2\sin^2\left(\frac{1}{2}x\right)\):
+                    \[
+                    (\cos x - 1)^2 = \left(-2\sin^2\left(\frac{1}{2}x\right)\right)^2 = 4\sin^4\left(\frac{1}{2}x\right)
+                    \]
+                    Substitusikan ke dalam bentuk limit:
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{\sec x+\cos x-2}{x^2\sin^2 x} &= \lim_{x\to0}\dfrac{4\sin^4\left(\frac{1}{2}x\right)}{x^2\sin^2 x\cos x}\\[3.7pt]
+                    &= \dfrac{4\cdot\left(\frac{1}{2}\right)^4}{1^2\cdot 1^2\cdot\cos 0}\\[3.7pt]
+                    &= \dfrac{4\cdot\dfrac{1}{16}}{1\cdot 1\cdot 1} = \dfrac{1}{4}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(\dfrac{1}{4}\).<br><b>Jawaban: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to\infty}\dfrac{4x^3\sin\left(\frac{1}{x^2}\right)-x\tan^2\left(\frac{1}{x}\right)-\frac{4}{x}}{x\sqrt{\cos\left(\frac{2}{x}\right)}}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan \(t = \dfrac{1}{x}\). Saat \(x \to \infty\), maka \(t \to 0\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to\infty}\dfrac{4x^3\sin\left(\frac{1}{x^2}\right)-x\tan^2\left(\frac{1}{x}\right)-\frac{4}{x}}{x\sqrt{\cos\left(\frac{2}{x}\right)}} &= \lim_{t\to0}\dfrac{\dfrac{4}{t^3}\sin(t^2)-\dfrac{1}{t}\tan^2 t - 4t}{\dfrac{1}{t}\sqrt{\cos 2t}}\\[3.7pt]
+                    &= \lim_{t\to0}\dfrac{\dfrac{4\sin(t^2)}{t^2} - \tan^2 t - 4t^2}{\sqrt{\cos 2t}}\\[3.7pt]
+                    &= \dfrac{4(1) - 0 - 0}{\sqrt{\cos 0}} = \dfrac{4}{1} = 4
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(4\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{h\to0}\dfrac{\cos(x+2h)-\cos(x-2h)}{h\sqrt{4-h^2}}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber">SBMPTN 2016</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan rumus pengurangan kosinus \(\cos A - \cos B = -2\sin\left(\dfrac{A+B}{2}\right)\sin\left(\dfrac{A-B}{2}\right)\):</p>
+                    \[
+                    \cos(x+2h) - \cos(x-2h) = -2\sin(x)\sin(2h)
+                    \]
+                    Substitusikan ke bentuk limit:
+                    \[
+                    \begin{aligned}
+                    \lim_{h\to0}\dfrac{\cos(x+2h)-\cos(x-2h)}{h\sqrt{4-h^2}} &= \lim_{h\to0}\left[\dfrac{-2\sin x}{\sqrt{4-h^2}}\cdot\dfrac{\sin 2h}{h}\right]\\[3.7pt]
+                    &= \dfrac{-2\sin x}{\sqrt{4-0}}\cdot 2\\[3.7pt]
+                    &= \dfrac{-4\sin x}{2} = -2\sin x
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(-2\sin x\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari:
+                    \[\lim_{a\to0}\dfrac{1}{a}\left(\dfrac{\sin^3 2a}{\cos 2a}+\sin 2a\cos 2a\right)\]
+                    sama dengan ....
+                </p>
+                <ol class="pilgan">
+                    <li>\(0\)</li>
+                    <li>\(\dfrac{1}{2}\)</li>
+                    <li>\(1\)</li>
+                    <li>\(2\)</li>
+                    <li>\(\infty\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">UM UGM 2004</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorkan \(\sin 2a\) dari dalam tanda kurung:</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{a\to0}\dfrac{1}{a}\left(\dfrac{\sin^3 2a}{\cos 2a}+\sin 2a\cos 2a\right) &= \lim_{a\to0}\left[\dfrac{\sin 2a}{a}\cdot\left(\dfrac{\sin^2 2a}{\cos 2a}+\cos 2a\right)\right]\\[3.7pt]
+                    &= 2\cdot\left(\dfrac{\sin^2 0}{\cos 0} + \cos 0\right)\\[3.7pt]
+                    &= 2\cdot\left(\dfrac{0}{1} + 1\right) = 2
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(2\).<br><b>Jawaban: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to\frac{1}{4}\pi}\dfrac{1-2\sin x\cos x}{\sin x-\cos x}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(\dfrac{1}{2}\)</li>
+                    <li>\(\dfrac{1}{2}\sqrt{2}\)</li>
+                    <li>\(1\)</li>
+                    <li>\(0\)</li>
+                    <li>\(-1\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">SNMPTN 2008 (Kode 201)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan identitas trigonometri \(1 = \sin^2 x + \cos^2 x\):</p>
+                    \[
+                    1 - 2\sin x\cos x = \sin^2 x - 2\sin x\cos x + \cos^2 x = (\sin x - \cos x)^2
+                    \]
+                    Substitusikan ke dalam bentuk limit:
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to\frac{1}{4}\pi}\dfrac{1-2\sin x\cos x}{\sin x-\cos x} &= \lim_{x\to\frac{1}{4}\pi}\dfrac{(\sin x-\cos x)^2}{\sin x-\cos x}\\[3.7pt]
+                    &= \lim_{x\to\frac{1}{4}\pi}(\sin x - \cos x)\\[3.7pt]
+                    &= \sin\left(\frac{1}{4}\pi\right) - \cos\left(\frac{1}{4}\pi\right)\\[3.7pt]
+                    &= \dfrac{1}{2}\sqrt{2} - \dfrac{1}{2}\sqrt{2} = 0
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(0\).<br><b>Jawaban: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari:
+                    \[\lim_{x\to0}\dfrac{3x^2-\sin\left(3x^2\right)}{2x^6}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(0\)</li>
+                    <li>\(\dfrac{9}{4}\)</li>
+                    <li>\(\dfrac{9}{2}\)</li>
+                    <li>\(\dfrac{3}{4}\)</li>
+                    <li>\(9\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Cara 1: Deret Taylor Maclaurin</strong></p>
+                    <p>Ekspansi deret Taylor untuk \(\sin u = u - \dfrac{u^3}{6} + \dots\). Misalkan \(u = 3x^2\):</p>
+                    \[
+                    \sin(3x^2) = 3x^2 - \dfrac{(3x^2)^3}{6} + \dots = 3x^2 - \dfrac{27x^6}{6} + \dots = 3x^2 - \dfrac{9}{2}x^6 + \dots
+                    \]
+                    Maka pembilang menjadi:
+                    \[
+                    3x^2 - \sin(3x^2) = 3x^2 - \left(3x^2 - \dfrac{9}{2}x^6 + \dots\right) = \dfrac{9}{2}x^6 + \dots
+                    \]
+                    Bagi dengan penyebut \(2x^6\):
+                    \[
+                    \lim_{x\to0}\dfrac{\dfrac{9}{2}x^6}{2x^6} = \dfrac{\dfrac{9}{2}}{2} = \dfrac{9}{4}
+                    \]
+
+                    <p><strong>Cara 2: Aturan L'Hôpital</strong></p>
+                    <p>Turunkan terhadap \(x\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{3x^2-\sin(3x^2)}{2x^6} &= \lim_{x\to0}\dfrac{6x - 6x\cos(3x^2)}{12x^5}\\[3.7pt]
+                    &= \lim_{x\to0}\dfrac{1 - \cos(3x^2)}{2x^4}\\[3.7pt]
+                    &= \lim_{x\to0}\dfrac{2\sin^2\left(\frac{3}{2}x^2\right)}{2x^4}\\[3.7pt]
+                    &= \lim_{x\to0}\left(\dfrac{\sin\left(\frac{3}{2}x^2\right)}{x^2}\right)^2 = \left(\dfrac{3}{2}\right)^2 = \dfrac{9}{4}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(\dfrac{9}{4}\).<br><b>Jawaban: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to\frac{\pi}{4}}\dfrac{\dfrac{1}{\sqrt{2}}\sin\left(\dfrac{\pi}{4}-2x\right)+\dfrac{1}{\sqrt{2}}\cos\left(\dfrac{\pi}{4}-2x\right)}{4x-\pi}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan rumus kombinasi linear \(A\sin\theta + B\cos\theta = k\cos(\theta - \alpha)\) atau penjumlahan sudut:</p>
+                    \[
+                    \begin{aligned}
+                    \dfrac{1}{\sqrt{2}}\sin\left(\dfrac{\pi}{4}-2x\right)+\dfrac{1}{\sqrt{2}}\cos\left(\dfrac{\pi}{4}-2x\right) &= \sin\left(\dfrac{\pi}{4}\right)\sin\left(\dfrac{\pi}{4}-2x\right) + \cos\left(\dfrac{\pi}{4}\right)\cos\left(\dfrac{\pi}{4}-2x\right)\\[3.7pt]
+                    &= \cos\left(\left(\dfrac{\pi}{4}-2x\right) - \dfrac{\pi}{4}\right)\\[3.7pt]
+                    &= \cos(-2x) = \cos 2x = \sin\left(\dfrac{\pi}{2}-2x\right)
+                    \end{aligned}
+                    \]
+                    Perhatikan penyebut \(4x - \pi = -2\left(\dfrac{\pi}{2}-2x\right)\):
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to\frac{\pi}{4}}\dfrac{\sin\left(\dfrac{\pi}{2}-2x\right)}{-2\left(\dfrac{\pi}{2}-2x\right)} &= -\dfrac{1}{2}\cdot 1 = -\dfrac{1}{2}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(-\dfrac{1}{2}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to\infty}\dfrac{\sin\left(\frac{3}{x}\right)}{x^2\tan\left(\frac{2}{x}\right)\left(1-\cos\left(\frac{2}{x}\right)\right)}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(\dfrac{3}{4}\)</li>
+                    <li>\(\dfrac{3}{2}\)</li>
+                    <li>\(3\)</li>
+                    <li>\(1\)</li>
+                    <li>\(\dfrac{1}{4}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan \(y = \dfrac{1}{x}\). Saat \(x \to \infty\), maka \(y \to 0\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to\infty}\dfrac{\sin\left(\frac{3}{x}\right)}{x^2\tan\left(\frac{2}{x}\right)\left(1-\cos\left(\frac{2}{x}\right)\right)} &= \lim_{y\to0}\dfrac{\sin 3y}{\dfrac{1}{y^2}\tan 2y(1-\cos 2y)}\\[3.7pt]
+                    &= \lim_{y\to0}\dfrac{y^2\sin 3y}{\tan 2y\cdot 2\sin^2 y}\\[3.7pt]
+                    &= \dfrac{1}{2}\cdot\lim_{y\to0}\left(\dfrac{y}{\tan 2y}\cdot\dfrac{y}{\sin y}\cdot\dfrac{\sin 3y}{\sin y}\right)\\[3.7pt]
+                    &= \dfrac{1}{2}\cdot\left(\dfrac{1}{2}\right)\cdot 1 \cdot 3 = \dfrac{3}{4}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(\dfrac{3}{4}\).<br><b>Jawaban: A</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <!-- Script Math Blog Otomatis (Navigasi Level, Penomoran, Toggle Solusi) -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

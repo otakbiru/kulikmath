@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Luas Daerah Di Bawah Kurva</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Luas Daerah Di Bawah Kurva</span>
+            </p>
+            <!-- Tombol Tingkat dirender otomatis oleh script.js -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diberikan fungsi kuadrat \(f(x) = ax(2 - x)\) dengan suatu konstanta \(a > 0\). Daerah \(R\) didefinisikan sebagai daerah tertutup yang dibatasi oleh kurva \(y = f(x)\) dan sumbu-\(X\) pada interval \([0, 2]\). Kurva parabola lain \(y = g(x) = x^2\) membagi daerah \(R\) menjadi dua bagian, yaitu daerah \(R_A\) yang berada di atas kurva \(y = g(x)\) dan daerah \(R_B\) yang berada di bawah kurva \(y = g(x)\). Jika luas daerah \(R_A\) sama dengan luas daerah \(R_B\), maka nilai \(a\) adalah ....</p>
+                <div class="opsi-wrapper">
+                    <ol class="pilgan" type="A">
+                        <li>\(\sqrt{2} - 1\)</li>
+                        <li>\(\sqrt{2} + 1\)</li>
+                        <li>\(2\sqrt{2} - 1\)</li>
+                        <li>\(2\sqrt{2} + 1\)</li>
+                        <li>\(\sqrt{3} + 1\)</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">HOTS / Pengayaan Kalkulus Integral</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geosvg-solusi-1" style="display: flex; justify-content: center; margin: 15px 0;"></div>
+
+                    <p><strong>Langkah 1: Menghitung Luas Total Daerah \(R\)</strong></p>
+                    <p>Fungsi kurva adalah \(f(x) = ax(2 - x) = 2ax - ax^2\). Kurva memotong sumbu-\(X\) di \(x = 0\) dan \(x = 2\). Karena \(a > 0\), parabola terbuka ke bawah dan bernilai non-negatif pada interval \([0, 2]\).
+                    \[
+                    \begin{aligned}
+                    L(R) &= \int_{0}^{2} (2ax - ax^2)\, dx \\
+                    &= \left[ ax^2 - \frac{a}{3}x^3 \right]_0^2 \\
+                    &= \left( a(2)^2 - \frac{a}{3}(2)^3 \right) - 0 \\
+                    &= 4a - \frac{8a}{3} = \frac{4a}{3} \text{ satuan luas}
+                    \end{aligned}
+                    \]
+                    </p>
+
+                    <p><strong>Langkah 2: Menentukan Absis Titik Potong Kedua Kurva</strong></p>
+                    <p>Titik potong kurva \(y = f(x)\) dan \(y = g(x)\) ditentukan dengan menyamakan kedua persamaan:
+                    \[
+                    \begin{aligned}
+                    ax(2 - x) &= x^2 \\
+                    2ax - ax^2 &= x^2 \\
+                    (a + 1)x^2 - 2ax &= 0 \\
+                    x \big( (a + 1)x - 2a \big) &= 0
+                    \end{aligned}
+                    \]
+                    Karena \(x = 0\) adalah titik asal, maka absis titik potong lainnya adalah:
+                    \[x_0 = \frac{2a}{a + 1}\]
+                    Karena \(a > 0\), perhatikan bahwa:
+                    \[x_0 = \frac{2(a + 1) - 2}{a + 1} = 2 - \frac{2}{a + 1} \in (0, 2)\]
+                    Artinya, titik potong ini selalu berada di dalam interval tertutup \([0, 2]\).</p>
+
+                    <p><strong>Langkah 3: Menghitung Luas Daerah \(R_A\)</strong></p>
+                    <p>Pada interval \([0, x_0]\), kurva \(y = f(x)\) berada di atas kurva \(y = g(x)\). Daerah \(R_A\) adalah bagian dari \(R\) yang berada di atas kurva \(y = g(x)\), sehingga dibatasi oleh kurva \(y = f(x)\) di sebelah atas dan kurva \(y = x^2\) di sebelah bawah dari \(x = 0\) hingga \(x = x_0\):
+                    \[
+                    \begin{aligned}
+                    L(R_A) &= \int_{0}^{x_0} \big( f(x) - g(x) \big)\, dx \\
+                    &= \int_{0}^{x_0} \big( 2ax - (a + 1)x^2 \big)\, dx \\
+                    &= \left[ ax^2 - \frac{a + 1}{3}x^3 \right]_0^{x_0} \\
+                    &= x_0^2 \left( a - \frac{a + 1}{3}x_0 \right)
+                    \end{aligned}
+                    \]
+                    Substitusikan nilai \(x_0 = \dfrac{2a}{a + 1}\):
+                    \[
+                    \begin{aligned}
+                    L(R_A) &= x_0^2 \left( a - \frac{a + 1}{3} \cdot \frac{2a}{a + 1} \right) \\
+                    &= x_0^2 \left( a - \frac{2}{3}a \right) \\
+                    &= \frac{1}{3}a \, x_0^2 \\
+                    &= \frac{1}{3}a \left( \frac{2a}{a + 1} \right)^2 \\
+                    &= \frac{4a^3}{3(a + 1)^2}
+                    \end{aligned}
+                    \]
+                    </p>
+
+                    <p><strong>Langkah 4: Menentukan Nilai \(a\)</strong></p>
+                    <p>Karena kurva \(y = g(x)\) membagi daerah \(R\) menjadi dua bagian dengan luas yang sama (\(L(R_A) = L(R_B)\)) dan \(R = R_A \cup R_B\) dengan daerah yang saling lepas, maka:
+                    \[L(R_A) = \frac{1}{2} L(R)\]
+                    Substitusikan hasil dari Langkah 1 dan Langkah 3:
+                    \[
+                    \frac{4a^3}{3(a + 1)^2} = \frac{1}{2} \cdot \frac{4a}{3} = \frac{2a}{3}
+                    \]
+                    Karena \(a > 0\), kedua ruas dapat dibagi dengan \(\dfrac{2a}{3}\):
+                    \[
+                    \begin{aligned}
+                    \frac{2a^2}{(a + 1)^2} &= 1 \\
+                    (a + 1)^2 &= 2a^2
+                    \end{aligned}
+                    \]
+                    Karena \(a > 0\), kita dapat menarik akar kuadrat pada kedua ruas:
+                    \[
+                    \begin{aligned}
+                    a + 1 &= a\sqrt{2} \\
+                    a\sqrt{2} - a &= 1 \\
+                    a(\sqrt{2} - 1) &= 1 \\
+                    a &= \frac{1}{\sqrt{2} - 1}
+                    \end{aligned}
+                    \]
+                    Rasionalkan penyebut pecahan tersebut:
+                    \[
+                    a = \frac{1 \cdot (\sqrt{2} + 1)}{(\sqrt{2} - 1)(\sqrt{2} + 1)} = \frac{\sqrt{2} + 1}{2 - 1} = \sqrt{2} + 1
+                    \]
+                    </p>
+
+                    <div class="kesimpulan">Jadi, nilai \(a\) yang memenuhi adalah <strong>\(\sqrt{2} + 1\)</strong> (Pilihan B).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <!--
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-2 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-2 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 3 -->
+        <!--
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-3 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-3 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 4 -->
+        <!--
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-4 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-4 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 5 -->
+        <!--
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-5 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-5 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 6 -->
+        <!--
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-6 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-6 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 7 -->
+        <!--
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-7 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-7 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 8 -->
+        <!--
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-8 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-8 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 9 -->
+        <!--
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-9 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-9 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 10 -->
+        <!--
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-10 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-10 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        function renderAllGeoSVG() {
+            if (typeof GeoSVG === "undefined") return;
+
+            const el1 = document.getElementById("geosvg-solusi-1");
+            if (el1 && !el1.dataset.rendered) {
+                el1.dataset.rendered = "true";
+                const W = 380, H = 250;
+                const geo = new GeoSVG("geosvg-solusi-1", W, H, {
+                    margin: 10,
+                    title: "Pembagian Daerah R oleh Kurva y = x^2"
+                });
+                if (geo.svg) {
+                    geo.svg.style.width = "100%";
+                    geo.svg.style.maxWidth = `${W}px`;
+                    geo.svg.style.height = "auto";
+                }
+
+                const ox = 60, oy = 210;
+                const sx = 125, sy = 65;
+                function pt(x, y) { return [ox + x * sx, oy - y * sy]; }
+
+                const aVal = Math.SQRT2 + 1; // ≈ 2.4142
+                const x0 = Math.SQRT2;       // ≈ 1.4142
+
+                function f(x) { return aVal * x * (2 - x); }
+                function g(x) { return x * x; }
+
+                // Sumbu koordinat
+                geo.buatSegmen(pt(-0.3, 0), pt(2.4, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo.buatSegmen(pt(0, -0.3), pt(0, 2.9), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo.buatTeks(ox + 2.45 * sx, oy + 4, "X", { position: "middle-left", fill: "#64748b", fontSize: "11px", fontWeight: "bold" });
+                geo.buatTeks(ox - 8, oy - 2.9 * sy, "Y", { position: "bottom-center", fill: "#64748b", fontSize: "11px", fontWeight: "bold" });
+
+                // Poligon Daerah R_A (antara g(x) dan f(x) dari x = 0 sampai x0)
+                const polyRA = [];
+                for (let x = 0; x <= x0; x += 0.05) polyRA.push(pt(x, f(x)));
+                for (let x = x0; x >= 0; x -= 0.05) polyRA.push(pt(x, g(x)));
+                geo.buatPoligon(polyRA, { fill: "rgba(13, 148, 136, 0.35)", stroke: "none" });
+
+                // Poligon Daerah R_B
+                // Terdiri dari daerah di bawah g(x) pada [0, x0] dan di bawah f(x) pada [x0, 2]
+                const polyRB = [pt(0, 0)];
+                for (let x = 0; x <= x0; x += 0.05) polyRB.push(pt(x, g(x)));
+                for (let x = x0; x <= 2.0; x += 0.05) polyRB.push(pt(x, f(x)));
+                polyRB.push(pt(2, 0));
+                geo.buatPoligon(polyRB, { fill: "rgba(59, 130, 246, 0.25)", stroke: "none" });
+
+                // Garis kurva f(x)
+                const fPts = [];
+                for (let x = 0; x <= 2.1; x += 0.04) fPts.push(pt(x, f(x)));
+                geo.buatPolyline(fPts, { stroke: "#0d9488", strokeWidth: 2 });
+                geo.buatTeks(ox + 1.0 * sx, oy - f(1.0) * sy - 8, "y = f(x)", { position: "bottom-center", fill: "#0f766e", fontSize: "11px", fontWeight: "bold" });
+
+                // Garis kurva g(x)
+                const gPts = [];
+                for (let x = 0; x <= 1.65; x += 0.04) gPts.push(pt(x, g(x)));
+                geo.buatPolyline(gPts, { stroke: "#2563eb", strokeWidth: 2 });
+                geo.buatTeks(ox + 1.62 * sx + 5, oy - g(1.62) * sy, "y = x²", { position: "middle-left", fill: "#1d4ed8", fontSize: "11px", fontWeight: "bold" });
+
+                // Titik potong (x0, y0)
+                const y0 = x0 * x0; // = 2
+                geo.buatTitik(pt(x0, y0), { color: "#dc2626", size: 3.5 });
+                geo.buatTeks(ox + x0 * sx + 6, oy - y0 * sy - 6, `(${x0.toFixed(2)}, 2)`, { position: "middle-left", fill: "#dc2626", fontSize: "10px", fontWeight: "bold" });
+
+                // Garis bantu tegak ke sumbu X di x0
+                geo.buatSegmen(pt(x0, 0), pt(x0, y0), { stroke: "#94a3b8", strokeWidth: 1.2, dashed: true });
+                geo.buatTeks(ox + x0 * sx, oy + 12, "x₀", { position: "top-center", fill: "#dc2626", fontSize: "11px", fontWeight: "bold" });
+
+                // Titik potong di sumbu X (0 dan 2)
+                geo.buatTitik(pt(0, 0), { color: "#64748b", size: 3 });
+                geo.buatTeks(ox - 6, oy + 12, "0", { position: "top-right", fill: "#64748b", fontSize: "10px" });
+
+                geo.buatTitik(pt(2, 0), { color: "#64748b", size: 3 });
+                geo.buatTeks(ox + 2 * sx, oy + 12, "2", { position: "top-center", fill: "#64748b", fontSize: "10px", fontWeight: "bold" });
+
+                // Label daerah RA dan RB
+                geo.buatTeks(ox + 0.8 * sx, oy - 1.4 * sy, "R_A", { position: "middle-center", fill: "#0f766e", fontSize: "13px", fontWeight: "bold" });
+                geo.buatTeks(ox + 1.1 * sx, oy - 0.45 * sy, "R_B", { position: "middle-center", fill: "#1e40af", fontSize: "13px", fontWeight: "bold" });
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            renderAllGeoSVG();
+            const btn = document.querySelector(".btn-solusi");
+            if (btn) {
+                btn.addEventListener("click", function () {
+                    setTimeout(renderAllGeoSVG, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
+

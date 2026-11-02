@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Limit Trigonometri</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Limit Trigonometri</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 11 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{x}{2\csc x\left(1-\sqrt{\cos x}\right)}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(-2\)</li>
+                    <li>\(-1\)</li>
+                    <li>\(0\)</li>
+                    <li>\(1\)</li>
+                    <li>\(2\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ubah \(\csc x = \dfrac{1}{\sin x}\), lalu kalikan sekawan akar dan kosinus berturut-turut:</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{x}{2\csc x\left(1-\sqrt{\cos x}\right)} &= \lim_{x\to0}\dfrac{x\sin x}{2\left(1-\sqrt{\cos x}\right)}\cdot\dfrac{1+\sqrt{\cos x}}{1+\sqrt{\cos x}}\\[3.7pt]
+                    &= \lim_{x\to0}\dfrac{x\sin x\left(1+\sqrt{\cos x}\right)}{2(1-\cos x)}\cdot\dfrac{1+\cos x}{1+\cos x}\\[3.7pt]
+                    &= \lim_{x\to0}\dfrac{x\sin x\left(1+\sqrt{\cos x}\right)(1+\cos x)}{2(1-\cos^2 x)}\\[3.7pt]
+                    &= \lim_{x\to0}\dfrac{x\sin x\left(1+\sqrt{\cos x}\right)(1+\cos x)}{2\sin^2 x}\\[3.7pt]
+                    &= \lim_{x\to0}\dfrac{x}{\sin x}\cdot\lim_{x\to0}\dfrac{\left(1+\sqrt{\cos x}\right)(1+\cos x)}{2}\\[3.7pt]
+                    &= 1\cdot\dfrac{(1+\sqrt{1})(1+1)}{2}\\[3.7pt]
+                    &= \dfrac{2(2)}{2} = 2
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(2\).<br><b>Jawaban: E</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 12 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari:
+                    \[\lim_{x\to2}\dfrac{\left(x^2-5x+6\right)\sin(x-2)}{\left(x^2-x-2\right)^2}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(0\)</li>
+                    <li>\(-\dfrac{1}{9}\)</li>
+                    <li>\(\dfrac{1}{2}\)</li>
+                    <li>\(2\)</li>
+                    <li>\(4\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorkan pembilang dan penyebut:</p>
+                    \[
+                    \begin{aligned}
+                    x^2-5x+6 &= (x-3)(x-2)\\[3.7pt]
+                    x^2-x-2 &= (x+1)(x-2) \implies (x^2-x-2)^2 = (x+1)^2(x-2)^2
+                    \end{aligned}
+                    \]
+                    Substitusikan ke dalam bentuk limit:
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to2}\dfrac{(x-3)(x-2)\sin(x-2)}{(x+1)^2(x-2)^2} &= \lim_{x\to2}\left[\dfrac{x-3}{(x+1)^2}\cdot\dfrac{\sin(x-2)}{x-2}\right]\\[3.7pt]
+                    &= \dfrac{2-3}{(2+1)^2}\cdot 1\\[3.7pt]
+                    &= \dfrac{-1}{3^2} = -\dfrac{1}{9}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(-\dfrac{1}{9}\).<br><b>Jawaban: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 13 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari:
+                    \[\lim_{x\to0}\dfrac{\sin 3x+\sin 5x}{2x\cos 4x}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://brainly.co.id/tugas/25797216" target="_blank" rel="noopener noreferrer">Brainly.co.id</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Bagi pembilang dan penyebut dengan \(x\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{\sin 3x+\sin 5x}{2x\cos 4x} &= \lim_{x\to0}\dfrac{\dfrac{\sin 3x}{x}+\dfrac{\sin 5x}{x}}{2\cos 4x}\\[3.7pt]
+                    &= \dfrac{3 + 5}{2\cos(0)}\\[3.7pt]
+                    &= \dfrac{8}{2(1)} = 4
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to0}\dfrac{\sin 3x+\sin 5x}{2x\cos 4x}=4\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 14 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari:
+                    \[\lim_{x\to0}\dfrac{x\tan 3x}{\sin^2 x-\cos 2x+1}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(\dfrac{1}{2}\)</li>
+                    <li>\(-1\)</li>
+                    <li>\(-2\)</li>
+                    <li>\(1\)</li>
+                    <li>\(2\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ubah identitas kosinus sudut ganda \(\cos 2x = 1 - 2\sin^2 x\):</p>
+                    \[
+                    \begin{aligned}
+                    \sin^2 x - \cos 2x + 1 &= \sin^2 x - (1 - 2\sin^2 x) + 1\\[3.7pt]
+                    &= \sin^2 x - 1 + 2\sin^2 x + 1 = 3\sin^2 x
+                    \end{aligned}
+                    \]
+                    Substitusikan ke bentuk limit:
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{x\tan 3x}{3\sin^2 x} &= \lim_{x\to0}\left(\dfrac{1}{3}\cdot\dfrac{x}{\sin x}\cdot\dfrac{\tan 3x}{\sin x}\right)\\[3.7pt]
+                    &= \dfrac{1}{3}\cdot 1 \cdot 3 = 1
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(1\).<br><b>Jawaban: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 15 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{\sin 3x}{5x}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/6522" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Berdasarkan teorema limit fungsi trigonometri dasar \(\lim_{x\to0}\dfrac{\sin ax}{bx} = \dfrac{a}{b}\):</p>
+                    \[
+                    \lim_{x\to0}\dfrac{\sin 3x}{5x} = \dfrac{3}{5}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to0}\dfrac{\sin 3x}{5x}=\dfrac{3}{5}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 16 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{4\tan 5x}{3x}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/6522" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Berdasarkan teorema limit fungsi trigonometri dasar \(\lim_{x\to0}\dfrac{\tan ax}{x} = a\):</p>
+                    \[
+                    \lim_{x\to0}\dfrac{4\tan 5x}{3x} = \dfrac{4}{3}\cdot\lim_{x\to0}\dfrac{\tan 5x}{x} = \dfrac{4}{3}\cdot 5 = \dfrac{20}{3}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to0}\dfrac{4\tan 5x}{3x}=\dfrac{20}{3}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 17 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Tentukan nilai dari:
+                    \[\lim_{x\to0}\dfrac{2-2\cos 2x}{x^2}\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/6522" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan rumus sudut rangkap \(\cos 2x = 1 - 2\sin^2 x\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{2-2\cos 2x}{x^2} &= \lim_{x\to0}\dfrac{2 - 2(1 - 2\sin^2 x)}{x^2}\\[3.7pt]
+                    &= \lim_{x\to0}\dfrac{4\sin^2 x}{x^2}\\[3.7pt]
+                    &= 4\cdot\lim_{x\to0}\left(\dfrac{\sin x}{x}\right)^2\\[3.7pt]
+                    &= 4(1)^2 = 4
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to0}\dfrac{2-2\cos 2x}{x^2}=4\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 18 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari:
+                    \[\lim_{x\to4}\dfrac{x^2-16}{\sin(2x-8)}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/6887" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorkan pembilang \(x^2 - 16 = (x + 4)(x - 4)\) dan penyebut \(\sin(2x - 8) = \sin 2(x - 4)\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to4}\dfrac{x^2-16}{\sin(2x-8)} &= \lim_{x\to4}\left[(x+4)\cdot\dfrac{x-4}{\sin 2(x-4)}\right]
+                    \end{aligned}
+                    \]
+                    Misalkan \(t = x - 4\), saat \(x \to 4\) maka \(t \to 0\):
+                    \[
+                    \begin{aligned}
+                    &= (4 + 4)\cdot\lim_{t\to0}\dfrac{t}{\sin 2t}\\[3.7pt]
+                    &= 8\cdot\dfrac{1}{2} = 4
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to4}\dfrac{x^2-16}{\sin(2x-8)}=4\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 19 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{1-\cos 4x}{x\sin x}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/6984" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan identitas sudut rangkap \(1 - \cos 4x = 2\sin^2 2x\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{1-\cos 4x}{x\sin x} &= \lim_{x\to0}\dfrac{2\sin^2 2x}{x\sin x}\\[3.7pt]
+                    &= 2\cdot\lim_{x\to0}\left(\dfrac{\sin 2x}{x}\cdot\dfrac{\sin 2x}{\sin x}\right)\\[3.7pt]
+                    &= 2 \cdot 2 \cdot 2 = 8
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to0}\dfrac{1-\cos 4x}{x\sin x}=8\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <!-- Script Math Blog Otomatis (Navigasi Level, Penomoran, Toggle Solusi) -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

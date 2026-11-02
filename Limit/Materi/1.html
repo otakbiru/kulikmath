@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Limit</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Limit</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Intuitif dan Syarat Keberadaan Limit</h2>
+            <p>
+                Secara intuitif, <strong>Limit Fungsi</strong> menjelaskan perilaku nilai suatu fungsi $f(x)$ ketika peubah $x$ bergerak mendekati suatu bilangan tertentu $c$ (baik dari arah kiri maupun dari arah kanan), <strong>tanpa harus peduli</strong> apakah fungsi $f(x)$ tersebut terdefinisi tepat di titik $x = c$ atau tidak. Notasi limit ditulis sebagai:
+                $$\lim_{x \to c} f(x) = L$$
+                yang dibaca: <em>"Limit dari $f(x)$ untuk $x$ mendekati $c$ adalah $L$"</em>.
+            </p>
+            <p>
+                Suatu nilai limit di titik $x = c$ dikatakan <strong>ada (terdefinisi)</strong> jika dan hanya jika nilai pendekatan dari arah kiri ($x < c$, disebut <strong>limit kiri</strong>) dan nilai pendekatan dari arah kanan ($x > c$, disebut <strong>limit kanan</strong>) keduanya ada dan bernilai sama:
+                $$\lim_{x \to c} f(x) = L \iff \lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x) = L$$
+                Jika $\lim_{x \to c^-} f(x) \neq \lim_{x \to c^+} f(x)$, maka $\lim_{x \to c} f(x)$ dinyatakan <strong>tidak ada</strong>.
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-limit-eksistensi" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Sifat-Sifat Dasar (Teorema Limit Utama)</h2>
+            <p>
+                Misalkan $k$ adalah konstanta real, $n$ bilangan bulat positif, serta $\lim_{x \to c} f(x) = L$ dan $\lim_{x \to c} g(x) = M$ (keduanya ada dan berhingga). Maka berlaku sifat-sifat aljabar limit berikut:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Sifat Limit</th>
+                            <th>Rumus Matematis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>1. Limit Fungsi Konstan &amp; Identitas</strong></td>
+                            <td>$$\lim_{x \to c} k = k \qquad \text{dan} \qquad \lim_{x \to c} x = c$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>2. Kelipatan Konstanta</strong></td>
+                            <td>$$\lim_{x \to c} [k \cdot f(x)] = k \cdot \lim_{x \to c} f(x) = k \cdot L$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>3. Penjumlahan dan Pengurangan</strong></td>
+                            <td>$$\lim_{x \to c} [f(x) \pm g(x)] = \lim_{x \to c} f(x) \pm \lim_{x \to c} g(x) = L \pm M$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>4. Perkalian Fungsi</strong></td>
+                            <td>$$\lim_{x \to c} [f(x) \cdot g(x)] = \left(\lim_{x \to c} f(x)\right) \cdot \left(\lim_{x \to c} g(x)\right) = L \cdot M$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>5. Pembagian Fungsi</strong></td>
+                            <td>$$\lim_{x \to c} \frac{f(x)}{g(x)} = \frac{\lim_{x \to c} f(x)}{\lim_{x \to c} g(x)} = \frac{L}{M}, \quad \text{dengan syarat } M \neq 0$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>6. Perpangkatan dan Penarikan Akar</strong></td>
+                            <td>$$\lim_{x \to c} [f(x)]^n = L^n \qquad \text{dan} \qquad \lim_{x \to c} \sqrt[n]{f(x)} = \sqrt[n]{L}$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Strategi Menyelesaikan Limit Bentuk Tak Tentu</h2>
+            <p>
+                Langkah pertama dalam menghitung $\lim_{x \to c} f(x)$ adalah selalu melakukan <strong>substitusi langsung</strong> $x = c$:
+            </p>
+            <ul>
+                <li>Jika hasilnya bilangan real tentu $L$ (termasuk $\frac{0}{k} = 0$ untuk $k \neq 0$), maka $L$ adalah jawaban akhirnya.</li>
+                <li>Jika hasilnya $\frac{k}{0}$ (dengan $k \neq 0$), maka nilainya menuju $\pm\infty$ (periksa tanda dari kiri dan kanan).</li>
+                <li>Jika substitusi langsung menghasilkan <strong>Bentuk Tak Tentu (<em>Indeterminate Form</em>)</strong> seperti $\frac{0}{0}$, $\frac{\infty}{\infty}$, $\infty - \infty$, atau $0 \cdot \infty$, maka ekspresi fungsi wajib dimanipulasi terlebih dahulu agar faktor pembuat nolnya dapat disederhanakan:</li>
+            </ul>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Bentuk Tak Tentu</th>
+                            <th>Metode Penyelesaian Utama</th>
+                            <th>Rumus Cepat / Pola Kunci</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Bentuk $\frac{0}{0}$ (Fungsi Aljabar Rasional)</strong></td>
+                            <td class="text-left"><strong>Pemfaktoran:</strong> Faktorkan pembilang dan penyebut, lalu coret faktor pembuat nol $(x - c)$.</td>
+                            <td>$$\lim_{x \to c} \frac{(x - c) \cdot P(x)}{(x - c) \cdot Q(x)} = \frac{P(c)}{Q(c)}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Bentuk $\frac{0}{0}$ (Memuat Bentuk Akar)</strong></td>
+                            <td class="text-left"><strong>Kali Sekawan:</strong> Kalikan dengan sekawan akar $\frac{\sqrt{u} + \sqrt{v}}{\sqrt{u} + \sqrt{v}}$ sehingga muncul selisih kuadrat $(u - v)$.</td>
+                            <td>$$(\sqrt{u} - \sqrt{v})(\sqrt{u} + \sqrt{v}) = u - v$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Bentuk $\frac{0}{0}$ atau $\frac{\infty}{\infty}$ (Fungsi Diferensiabel)</strong></td>
+                            <td class="text-left"><strong>Aturan L'Hôpital:</strong> Turunkan pembilang dan penyebut secara terpisah terhadap $x$, lalu substitusikan $x = c$.</td>
+                            <td>$$\lim_{x \to c} \frac{f(x)}{g(x)} = \lim_{x \to c} \frac{f'(x)}{g'(x)}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Limit di Ketakhinggaan $\frac{\infty}{\infty}$</strong><br>$\lim_{x \to \infty} \frac{a_n x^n + \dots + a_0}{b_m x^m + \dots + b_0}$</td>
+                            <td class="text-left">Bagi pembilang dan penyebut dengan $x$ berpangkat tertinggi, atau bandingkan derajat pangkat tertinggi $n$ dan $m$.</td>
+                            <td>
+                                • Jika $n < m \implies 0$<br>
+                                • Jika $n = m \implies \frac{a_n}{b_m}$<br>
+                                • Jika $n > m \implies \pm\infty$
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Bentuk Selisih Akar Kuadrat $\infty - \infty$</strong><br>$\lim_{x \to \infty} \left(\sqrt{ax^2 + bx + c} - \sqrt{px^2 + qx + r}\right)$</td>
+                            <td class="text-left">Rasionalkan dengan sekawan akar, atau gunakan rumus cepat koefisien saat $a = p$.</td>
+                            <td>
+                                • Jika $a = p \implies \frac{b - q}{2\sqrt{a}}$<br>
+                                • Jika $a > p \implies +\infty$<br>
+                                • Jika $a < p \implies -\infty$
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. Limit Trigonometri Dasar, Teorema Apit, dan Kekontinuan</h2>
+            <p>
+                <strong>A. Rumus Dasar Limit Trigonometri (untuk sudut $x$ dalam radian):</strong><br>
+                Untuk $x \to 0$, nilai fungsi $\sin x$ dan $\tan x$ berkelakuan linier mendekati $x$:
+                $$\lim_{x \to 0} \frac{\sin ax}{bx} = \lim_{x \to 0} \frac{ax}{\sin bx} = \lim_{x \to 0} \frac{\tan ax}{bx} = \lim_{x \to 0} \frac{ax}{\tan bx} = \lim_{x \to 0} \frac{\sin ax}{\tan bx} = \frac{a}{b}$$
+                Sedangkan untuk bentuk $1 - \cos ax$, gunakan identitas sudut rangkap $1 - \cos ax = 2\sin^2\left(\frac{1}{2}ax\right)$, sehingga diperoleh:
+                $$\lim_{x \to 0} \frac{1 - \cos ax}{x^2} = \frac{1}{2}a^2 \qquad \text{dan} \qquad \lim_{x \to 0} \frac{1 - \cos x}{x} = 0$$
+            </p>
+            <p>
+                <strong>B. Teorema Apit (<em>Squeeze / Sandwich Theorem</em>):</strong><br>
+                Jika untuk setiap $x$ di sekitar $c$ (kecuali mungkin di $x = c$) berlaku ketaksamaan fungsi:
+                $$g(x) \le f(x) \le h(x)$$
+                dan diketahui bahwa kedua fungsi pembatas memiliki nilai limit yang sama, yaitu $\lim_{x \to c} g(x) = \lim_{x \to c} h(x) = L$, maka fungsi $f(x)$ yang terjepit di antaranya juga pasti memiliki limit $\lim_{x \to c} f(x) = L$.
+            </p>
+            <p>
+                <strong>C. Syarat Kekontinuan Fungsi di Satu Titik:</strong><br>
+                Fungsi $f(x)$ dikatakan <strong>kontinu</strong> di titik $x = c$ jika grafik fungsinya tidak terputus atau berlubang di titik tersebut, yaitu harus memenuhi ketiga syarat berikut sekaligus:
+            </p>
+            <ol>
+                <li>Nilai fungsi $f(c)$ ada (terdefinisi),</li>
+                <li>Nilai limit $\lim_{x \to c} f(x)$ ada ($\lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x)$),</li>
+                <li>Nilai limit sama dengan nilai fungsinya: $\lim_{x \to c} f(x) = f(c)$.</li>
+            </ol>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-limit-apit" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Ingat Prinsip Emas Limit:
+                <br>• Limit $\lim_{x \to c} f(x)$ hanya mengamati nilai fungsi <strong>di sekitar $x = c$</strong> ($x \neq c$), sehingga boleh mencoret faktor $(x - c)$ pada bentuk $\frac{(x-c)P(x)}{(x-c)Q(x)}$ karena $x - c \neq 0$.
+                <br>• Pada fungsi sepotong-sepotong (<em>piecewise function</em>), selalu cek <strong>Limit Kiri</strong> dan <strong>Limit Kanan</strong> secara terpisah di titik batas pergantian rumus fungsi.
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk menguasai teknik pemfaktoran, perkalian sekawan akar, limit di ketakhinggaan, serta analisis limit sepihak. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Limit Aljabar Bentuk Akar (0/0) -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Tentukan nilai dari limit fungsi aljabar berikut:
+                    $$\lim_{x \to 3} \frac{x^2 - 9}{\sqrt{2x + 3} - 3}$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Jika disubstitusikan langsung $x = 3$, diperoleh bentuk tak tentu $\frac{3^2 - 9}{\sqrt{2(3)+3} - 3} = \frac{0}{0}$.<br>
+                        <strong>Cara 1 (Mengalikan dengan Sekawan Akar &amp; Pemfaktoran):</strong><br>
+                        Kalikan pembilang dan penyebut dengan sekawan penyebutnya, yaitu $\sqrt{2x + 3} + 3$, serta faktorkan $x^2 - 9 = (x - 3)(x + 3)$:
+                        $$\lim_{x \to 3} \frac{(x - 3)(x + 3)}{\sqrt{2x + 3} - 3} \cdot \frac{\sqrt{2x + 3} + 3}{\sqrt{2x + 3} + 3} = \lim_{x \to 3} \frac{(x - 3)(x + 3)\left(\sqrt{2x + 3} + 3\right)}{(2x + 3) - 9}$$
+                        Perhatikan bahwa $2x + 3 - 9 = 2x - 6 = 2(x - 3)$. Coret faktor $(x - 3)$ pada pembilang dan penyebut:
+                        $$= \lim_{x \to 3} \frac{(x + 3)\left(\sqrt{2x + 3} + 3\right)}{2} = \frac{(3 + 3)\left(\sqrt{6 + 3} + 3\right)}{2} = \frac{6 \times (3 + 3)}{2} = 18$$
+                    </p>
+                    <p>
+                        <strong>Cara 2 (Aturan L'Hôpital):</strong><br>
+                        Turunkan pembilang dan penyebut secara terpisah terhadap $x$:
+                        $$\lim_{x \to 3} \frac{2x}{\frac{2}{2\sqrt{2x + 3}}} = \lim_{x \to 3} \left(2x \sqrt{2x + 3}\right) = 2(3)\sqrt{2(3) + 3} = 6 \times 3 = 18$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari $\lim_{x \to 3} \frac{x^2 - 9}{\sqrt{2x + 3} - 3}$ adalah $18$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Limit di Ketakhinggaan Bentuk Selisih Akar -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Tentukan nilai dari:
+                    $$\lim_{x \to \infty} \left(\sqrt{4x^2 + 6x - 5} - 2x + 1\right)$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Kelompokkan terlebih dahulu suku $-2x + 1$ menggunakan tanda kurung agar menjadi pengurangan bentuk akar standar:
+                        $$\lim_{x \to \infty} \left(\sqrt{4x^2 + 6x - 5} - (2x - 1)\right)$$
+                        Karena untuk $x \to \infty$ nilai $2x - 1 > 0$, kita dapat mengubah $(2x - 1)$ ke dalam bentuk akar kuadrat:
+                        $$2x - 1 = \sqrt{(2x - 1)^2} = \sqrt{4x^2 - 4x + 1}$$
+                        Dengan demikian, soal berubah menjadi bentuk baku $\lim_{x \to \infty} \left(\sqrt{ax^2 + bx + c} - \sqrt{px^2 + qx + r}\right)$:
+                        $$\lim_{x \to \infty} \left(\sqrt{4x^2 + 6x - 5} - \sqrt{4x^2 - 4x + 1}\right)$$
+                        Karena koefisien $x^2$ pada kedua akar sudah sama ($a = p = 4$), gunakan rumus cepat $\frac{b - q}{2\sqrt{a}}$ dengan $b = 6$ dan $q = -4$:
+                        $$\text{Nilai Limit} = \frac{6 - (-4)}{2\sqrt{4}} = \frac{10}{2 \times 2} = \frac{10}{4} = \frac{5}{2}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari $\lim_{x \to \infty} \left(\sqrt{4x^2 + 6x - 5} - 2x + 1\right)$ adalah $\frac{5}{2}$ atau $2{,}5$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Syarat Keberadaan Limit dan Kekontinuan Fungsi Sepotong-Sepotong -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Diketahui fungsi $f(x)$ yang didefinisikan secara sepotong-sepotong sebagai berikut:
+                    $$f(x) = \begin{cases} ax^2 - 2x + 1, & \text{untuk } x < 2 \\ 3x + a, & \text{untuk } x \ge 2 \end{cases}$$
+                    Jika nilai $\lim_{x \to 2} f(x)$ <strong>ada</strong>, tentukan nilai konstanta $a$ serta nilai dari $\lim_{x \to 2} f(x)$ tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Agar $\lim_{x \to 2} f(x)$ ada, maka nilai <strong>limit kiri</strong> ($x \to 2^-$) harus sama dengan nilai <strong>limit kanan</strong> ($x \to 2^+$):
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Limit Kiri ($x < 2$):</strong> Gunakan cabang rumus pertama $f(x) = ax^2 - 2x + 1$:
+                            $$\lim_{x \to 2^-} f(x) = \lim_{x \to 2^-} (ax^2 - 2x + 1) = a(2)^2 - 2(2) + 1 = 4a - 3$$
+                        </li>
+                        <li>
+                            <strong>Limit Kanan ($x \ge 2$):</strong> Gunakan cabang rumus kedua $f(x) = 3x + a$:
+                            $$\lim_{x \to 2^+} f(x) = \lim_{x \to 2^+} (3x + a) = 3(2) + a = 6 + a$$
+                        </li>
+                    </ul>
+                    <p>
+                        Samakan limit kiri dan limit kanan:
+                        $$4a - 3 = 6 + a \implies 3a = 9 \implies a = 3$$
+                        Substitusikan $a = 3$ untuk memperoleh nilai limitnya:
+                        $$\lim_{x \to 2} f(x) = 6 + 3 = 9$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai konstanta $a = 3$ dan nilai $\lim_{x \to 2} f(x) = 9$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiLimit() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const subtleBg = isDark ? '#0f172a' : '#f8fafc';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const tealFill = isDark ? 'rgba(20, 184, 166, 0.20)' : 'rgba(13, 148, 136, 0.14)';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const roseColor = isDark ? '#fb7185' : '#e11d48';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI KEBERADAAN LIMIT (LIMIT ADA vs LIMIT TIDAK ADA)
+               ------------------------------------------------------------- */
+            const geoEks = new GeoSVG('geosvg-limit-eksistensi', 580, 285, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoEks.buatPersegiPanjang(6, 6, 568, 273, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoEks.buatSegmen(290, 18, 290, 268, {
+                stroke: borderColor, strokeWidth: 1.2, dashed: '4,4'
+            });
+
+            // --- PANEL KIRI: Limit Ada Meskipun Berlubang di x = c ---
+            geoEks.buatTeks(148, 24, "Kasus 1: Limit Ada (L Kiri = L Kanan = L)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: tealColor
+            });
+
+            // Sumbu koordinat panel kiri
+            geoEks.buatVektor(38, 212, 262, 212, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoEks.buatVektor(54, 232, 54, 48, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoEks.buatTeks(265, 212, "x", { position: 'middle-left', fontSize: '11px', fill: mutedColor });
+            geoEks.buatTeks(54, 42, "y", { position: 'bottom-center', fontSize: '11px', fill: mutedColor });
+
+            // Kurva f(x) mendekati titik (156, 118)
+            geoEks.buatKurvaHalus([
+                [66, 188], [105, 162], [156, 118], [205, 86], [246, 68]
+            ], { stroke: tealColor, strokeWidth: 2.6 });
+
+            // Garis proyeksi putus-putus ke sumbu x = c dan y = L
+            geoEks.buatSegmen(156, 118, 156, 212, { stroke: amberColor, strokeWidth: 1.3, dashed: '4,3' });
+            geoEks.buatSegmen(54, 118, 156, 118, { stroke: amberColor, strokeWidth: 1.3, dashed: '4,3' });
+
+            // Panah pendekatan x -> c- dan x -> c+
+            geoEks.buatVektor(114, 224, 148, 224, { stroke: blueColor, strokeWidth: 1.8 });
+            geoEks.buatVektor(198, 224, 164, 224, { stroke: blueColor, strokeWidth: 1.8 });
+            geoEks.buatTeks(130, 236, "x → c⁻", { position: 'middle-center', fontSize: '9.5px', fontWeight: 'bold', fill: blueColor });
+            geoEks.buatTeks(182, 236, "x → c⁺", { position: 'middle-center', fontSize: '9.5px', fontWeight: 'bold', fill: blueColor });
+
+            // Lingkaran berlubang di (156, 118) dan titik f(c) terpisah di (156, 74)
+            geoEks.buatLingkaran(156, 118, 5, { fill: cardBg, stroke: tealColor, strokeWidth: 2.2 });
+            geoEks.buatTitik(156, 74, { size: 4, color: roseColor });
+            geoEks.buatTeks(164, 74, "f(c)", { position: 'middle-left', fontSize: '10px', fontWeight: 'bold', fill: roseColor });
+
+            geoEks.buatTeks(156, 216, "c", { position: 'top-center', fontWeight: 'bold', fontSize: '11px', fill: textColor });
+            geoEks.buatTeks(46, 118, "L", { position: 'middle-right', fontWeight: 'bold', fontSize: '11px', fill: amberColor });
+            geoEks.buatTeks(148, 258, "lim x→c f(x) = L (walau L ≠ f(c))", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: textColor
+            });
+
+            // --- PANEL KANAN: Limit Tidak Ada Akibat Lompatan (L1 != L2) ---
+            geoEks.buatTeks(434, 24, "Kasus 2: Limit Tidak Ada (L₁ ≠ L₂)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: roseColor
+            });
+
+            // Sumbu koordinat panel kanan
+            geoEks.buatVektor(324, 212, 548, 212, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoEks.buatVektor(340, 232, 340, 48, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoEks.buatTeks(551, 212, "x", { position: 'middle-left', fontSize: '11px', fill: mutedColor });
+            geoEks.buatTeks(340, 42, "y", { position: 'bottom-center', fontSize: '11px', fill: mutedColor });
+
+            // Cabang kiri menuju (442, 148) -> L1
+            geoEks.buatKurvaHalus([
+                [352, 192], [396, 172], [442, 148]
+            ], { stroke: blueColor, strokeWidth: 2.6 });
+
+            // Cabang kanan mulai dari (442, 88) -> L2
+            geoEks.buatKurvaHalus([
+                [442, 88], [488, 76], [534, 62]
+            ], { stroke: roseColor, strokeWidth: 2.6 });
+
+            // Proyeksi putus-putus
+            geoEks.buatSegmen(442, 88, 442, 212, { stroke: mutedColor, strokeWidth: 1.3, dashed: '4,3' });
+            geoEks.buatSegmen(340, 148, 442, 148, { stroke: blueColor, strokeWidth: 1.3, dashed: '4,3' });
+            geoEks.buatSegmen(340, 88, 442, 88, { stroke: roseColor, strokeWidth: 1.3, dashed: '4,3' });
+
+            // Titik ujung terbuka di L1 dan tertutup di L2
+            geoEks.buatLingkaran(442, 148, 5, { fill: cardBg, stroke: blueColor, strokeWidth: 2.2 });
+            geoEks.buatTitik(442, 88, { size: 4.5, color: roseColor });
+
+            geoEks.buatTeks(442, 216, "c", { position: 'top-center', fontWeight: 'bold', fontSize: '11px', fill: textColor });
+            geoEks.buatTeks(332, 148, "L₁", { position: 'middle-right', fontWeight: 'bold', fontSize: '10.5px', fill: blueColor });
+            geoEks.buatTeks(332, 88, "L₂", { position: 'middle-right', fontWeight: 'bold', fontSize: '10.5px', fill: roseColor });
+
+            geoEks.buatTeks(434, 258, "lim x→c⁻ f(x) = L₁ ≠ L₂ = lim x→c⁺ f(x)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: roseColor
+            });
+
+
+            /* -------------------------------------------------------------
+               2. ILUSTRASI VISUAL TEOREMA APIT (SQUEEZE THEOREM)
+               ------------------------------------------------------------- */
+            const geoApit = new GeoSVG('geosvg-limit-apit', 580, 265, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoApit.buatPersegiPanjang(6, 6, 568, 253, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoApit.buatTeks(290, 24, "Ilustrasi Geometri Teorema Apit: g(x) ≤ f(x) ≤ h(x) di Sekitar x = c", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor
+            });
+
+            // Sumbu koordinat
+            geoApit.buatVektor(52, 214, 536, 214, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoApit.buatVektor(76, 232, 76, 44, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoApit.buatTeks(542, 214, "x", { position: 'middle-left', fontSize: '11px', fill: mutedColor });
+            geoApit.buatTeks(76, 38, "y", { position: 'bottom-center', fontSize: '11px', fill: mutedColor });
+
+            // Titik pertemuan di (cx, cy) = (296, 126)
+            const cx = 296, cy = 126;
+
+            // Hasilkan titik-titik untuk kurva atas h(x), kurva bawah g(x), dan kurva terjepit f(x)
+            const ptsUpper = [];
+            const ptsLower = [];
+            const ptsMid = [];
+            for (let x = 96; x <= 496; x += 8) {
+                const dx = (x - cx) / 100;
+                const env = 64 * dx * dx;
+                const yUp = cy - env;
+                const yLow = cy + env;
+                const yOsc = cy - env * Math.cos(dx * 11);
+                ptsUpper.push([x, yUp]);
+                ptsLower.push([x, yLow]);
+                ptsMid.push([x, yOsc]);
+            }
+
+            // Daerah arsiran di antara g(x) dan h(x)
+            const polyShade = ptsUpper.concat(ptsLower.slice().reverse());
+            geoApit.buatPoligon(polyShade, { fill: tealFill, stroke: 'none' });
+
+            // Gambar ketiga kurva
+            geoApit.buatKurvaHalus(ptsUpper, { stroke: blueColor, strokeWidth: 2.2, dashed: '5,3' });
+            geoApit.buatKurvaHalus(ptsLower, { stroke: roseColor, strokeWidth: 2.2, dashed: '5,3' });
+            geoApit.buatKurvaHalus(ptsMid, { stroke: tealColor, strokeWidth: 2.5 });
+
+            // Proyeksi titik jepit (cx, cy)
+            geoApit.buatSegmen(cx, cy, cx, 214, { stroke: amberColor, strokeWidth: 1.4, dashed: '4,3' });
+            geoApit.buatSegmen(76, cy, cx, cy, { stroke: amberColor, strokeWidth: 1.4, dashed: '4,3' });
+            geoApit.buatTitik(cx, cy, { size: 4.5, color: amberColor });
+
+            // Label kurva dan sumbu
+            geoApit.buatTeks(478, 52, "y = h(x) (Batas Atas)", {
+                position: 'middle-right', fontWeight: 'bold', fontSize: '10.5px', fill: blueColor
+            });
+            geoApit.buatTeks(486, 124, "y = f(x) (Terjepit)", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '10.5px', fill: tealColor
+            });
+            geoApit.buatTeks(478, 198, "y = g(x) (Batas Bawah)", {
+                position: 'middle-right', fontWeight: 'bold', fontSize: '10.5px', fill: roseColor
+            });
+
+            geoApit.buatTeks(cx, 220, "c", { position: 'top-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor });
+            geoApit.buatTeks(68, cy, "L", { position: 'middle-right', fontWeight: 'bold', fontSize: '11.5px', fill: amberColor });
+            geoApit.buatTeks(290, 244, "Jika lim x→c g(x) = lim x→c h(x) = L, maka lim x→c f(x) = L", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.8px', fill: amberColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiLimit();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiLimit, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Laju Perubahan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Laju Perubahan</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Laju Perubahan Rata-Rata vs Laju Perubahan Sesaat</h2>
+            <p>
+                Dalam kalkulus dan sains terapan, konsep <strong>laju perubahan</strong> mengukur seberapa cepat suatu besaran bergantung ($y$) berubah terhadap perubahan besaran bebasnya ($x$ atau waktu $t$). Misalkan sebuah fungsi dinyatakan oleh $y = f(x)$ dan nilai $x$ berubah dari $x_1$ menjadi $x_2 = x_1 + \Delta x$.
+            </p>
+            <ul>
+                <li>
+                    <strong>Laju Perubahan Rata-Rata (<em>Average Rate of Change</em>):</strong> Perbandingan antara perubahan nilai fungsi $\Delta y$ terhadap perubahan variabel bebas $\Delta x$ pada interval $[x_1, x_2]$:
+                    $$\frac{\Delta y}{\Delta x} = \frac{f(x_2) - f(x_1)}{x_2 - x_1} = \frac{f(x_1 + \Delta x) - f(x_1)}{\Delta x}$$
+                    Secara geometri, laju perubahan rata-rata merupakan <strong>gradien garis potong (garis sekan / <em>secant line</em>)</strong> yang menghubungkan titik $P(x_1, f(x_1))$ dan $Q(x_2, f(x_2))$ pada kurva.
+                </li>
+                <li>
+                    <strong>Laju Perubahan Sesaat (<em>Instantaneous Rate of Change</em>):</strong> Nilai limit dari laju perubahan rata-rata ketika lebar selang $\Delta x$ mendekati nol ($\Delta x \to 0$) tepat di satu titik $x = x_1$:
+                    $$\left.\frac{dy}{dx}\right|_{x=x_1} = f'(x_1) = \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = \lim_{\Delta x \to 0} \frac{f(x_1 + \Delta x) - f(x_1)}{\Delta x}$$
+                    Secara geometri, laju perubahan sesaat merupakan <strong>gradien garis singgung (<em>tangent line</em>)</strong> kurva $y = f(x)$ di titik $P(x_1, f(x_1))$.
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-laju-grafik" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Laju Perubahan dalam Gerak Lurus (Kinematika)</h2>
+            <p>
+                Salah satu penerapan paling fundamental dari laju perubahan terhadap waktu ($t$) adalah analisis gerak partikel sepanjang garis lurus. Jika posisi benda pada saat $t$ dinyatakan oleh fungsi posisi $s = s(t)$, maka:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besaran Fisika / Kinematika</th>
+                            <th>Rumus Kalkulus</th>
+                            <th>Interpretasi &amp; Tanda Aljabar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Kecepatan Rata-Rata ($v_{\text{rata}}$)</strong><br>pada selang $[t_1, t_2]$</td>
+                            <td>$$v_{\text{rata}} = \frac{\Delta s}{\Delta t} = \frac{s(t_2) - s(t_1)}{t_2 - t_1}$$</td>
+                            <td class="text-left">Perpindahan dibagi selang waktu tempuh.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Kecepatan Sesaat ($v(t)$)</strong></td>
+                            <td>$$v(t) = \frac{ds}{dt} = s'(t)$$</td>
+                            <td class="text-left">
+                                • $v(t) > 0$: benda bergerak maju (ke kanan/atas).<br>
+                                • $v(t) < 0$: benda bergerak mundur (ke kiri/bawah).<br>
+                                • $v(t) = 0$: benda <strong>berhenti sesaat</strong> (stasioner/balik arah).
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Kelajuan Sesaat (<em>Speed</em>)</strong></td>
+                            <td>$$\text{Kelajuan} = |v(t)| = \left|\frac{ds}{dt}\right|$$</td>
+                            <td class="text-left">Besarnya kecepatan tanpa memperhatikan arah (selalu $\ge 0$).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Percepatan Sesaat ($a(t)$)</strong></td>
+                            <td>$$a(t) = \frac{dv}{dt} = \frac{d^2s}{dt^2} = s''(t)$$</td>
+                            <td class="text-left">
+                                Laju perubahan kecepatan terhadap waktu.<br>
+                                • Jika $v(t)$ dan $a(t)$ <strong>bertanda sama</strong> ($v \cdot a > 0$), kelajuan benda <strong>bertambah (dipercepat)</strong>.<br>
+                                • Jika $v(t)$ dan $a(t)$ <strong>berbeda tanda</strong> ($v \cdot a < 0$), kelajuan benda <strong>berkurang (diperlambat)</strong>.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Laju Perubahan Terkait (<em>Related Rates</em>)</h2>
+            <p>
+                Dalam banyak masalah geometri dan fisika, dua atau lebih besaran (misalnya volume $V$, luas $L$, jari-jari $r$, dan tinggi $h$) berubah secara bersamaan terhadap waktu $t$, dan besaran-besaran tersebut saling terhubung oleh suatu persamaan matematika.
+            </p>
+            <p>
+                Dengan menggunakan <strong>Aturan Rantai (<em>Chain Rule</em>)</strong> dan diferensiasi implisit terhadap waktu $t$, hubungan antarlaju perubahan dapat dinyatakan sebagai:
+                $$\frac{dy}{dt} = \frac{dy}{dx} \cdot \frac{dx}{dt}$$
+            </p>
+            <p>
+                <strong>Prosedur 5 Langkah Menyelesaikan Soal Laju Perubahan Terkait:</strong>
+            </p>
+            <ol>
+                <li><strong>Gambarlah sketsa geometri</strong> dan beri nama variabel untuk besaran yang berubah terhadap waktu $t$ (jangan langsung memasukkan nilai angka yang hanya berlaku pada saat tertentu sebelum menurunkan!). Besaran yang benar-benar konstan sepanjang waktu boleh langsung diisi angkanya.</li>
+                <li><strong>Identifikasi informasi laju</strong> yang diketahui (misal $\frac{dx}{dt}$, $\frac{dV}{dt}$) dan laju yang ditanyakan pada kondisi sesaat tertentu. Perhatikan tanda: <strong>bertambah ($+$)</strong> atau <strong>berkurang/bocor/menyusut ($-$)</strong>.</li>
+                <li><strong>Susun persamaan utama</strong> yang menghubungkan variabel-variabel tersebut (misalnya Teorema Pythagoras, kesebangunan segitiga, rumus luas, atau rumus volume). Jika ada terlalu banyak variabel, eliminasi salah satu variabel menggunakan perbandingan tetap (seperti kesebangunan pada kerucut).</li>
+                <li><strong>Turunkan kedua ruas persamaan secara implisit terhadap waktu $t$</strong> menggunakan aturan rantai.</li>
+                <li><strong>Substitusikan semua nilai sesaat</strong> yang diketahui ke dalam persamaan hasil turunan untuk memperoleh laju yang dicari.</li>
+            </ol>
+
+            <h2>4. Tabel Model Klasik Laju Perubahan Terkait</h2>
+            <p>
+                Berikut adalah empat model masalah <em>related rates</em> yang paling sering diujikan beserta persamaan induk dan hasil turunannya terhadap waktu $t$:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model Geometri</th>
+                            <th>Persamaan Induk</th>
+                            <th>Hubungan Laju (Turunan thd $t$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>1. Tangga Meluncur di Dinding</strong><br>(Panjang tangga $L$ tetap, ujung bawah $x$ menjauh, ujung atas $y$ turun)</td>
+                            <td>$$x^2 + y^2 = L^2$$</td>
+                            <td>$$2x\frac{dx}{dt} + 2y\frac{dy}{dt} = 0 \implies \frac{dy}{dt} = -\frac{x}{y}\frac{dx}{dt}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>2. Lingkaran / Riak Air Membesar</strong><br>(Jari-jari $r$ dan luas lingkaran $L$)</td>
+                            <td>$$L = \pi r^2$$</td>
+                            <td>$$\frac{dL}{dt} = 2\pi r \frac{dr}{dt}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>3. Balon Bola Mengembang / Mengempis</strong><br>(Jari-jari $r$, volume $V$, dan luas kulit bola $S$)</td>
+                            <td>$$V = \frac{4}{3}\pi r^3$$<br>$$S = 4\pi r^2$$</td>
+                            <td>$$\frac{dV}{dt} = 4\pi r^2 \frac{dr}{dt}$$<br>$$\frac{dS}{dt} = 8\pi r \frac{dr}{dt}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>4. Tangki Kerucut Terisi / Bocor</strong><br>(Ukuran tangki $R, H$ tetap; gunakan kesebangunan $\frac{r}{h} = \frac{R}{H} \implies r = \frac{R}{H}h$)</td>
+                            <td>$$V = \frac{1}{3}\pi r^2 h = \frac{1}{3}\pi \left(\frac{R}{H}\right)^2 h^3$$</td>
+                            <td>$$\frac{dV}{dt} = \pi \left(\frac{R}{H}\right)^2 h^2 \frac{dh}{dt}$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-laju-model" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Aturan Emas Laju Perubahan Terkait (<em>Related Rates</em>):
+                <br>• <strong>Jangan pernah mensubstitusikan nilai variabel sesaat</strong> (seperti $x = 3\text{ m}$ atau $h = 4\text{ m}$) ke dalam persamaan induk <strong>sebelum</strong> Anda melakukan penurunan terhadap waktu $t$ ($\frac{d}{dt}$), karena turunan dari konstanta akan menjadi nol!
+                <br>• Hanya besaran yang <strong>tetap sepanjang waktu</strong> (seperti panjang tangga $L$, jari-jari tabung wadah $R$, atau rasio $\frac{R}{H}$ kerucut) yang boleh disubstitusikan sejak awal.
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk menguasai perhitungan laju perubahan pada fungsi kinematika maupun masalah geometri terkait. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka langkah pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Kinematika Gerak Partikel (Laju Rata-Rata vs Sesaat) -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Sebuah partikel bergerak sepanjang garis lurus dengan persamaan posisi $s(t) = t^3 - 6t^2 + 9t + 2$ (dalam meter, dan $t$ dalam detik). Tentukan:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Kecepatan rata-rata partikel pada selang waktu $t = 1$ detik hingga $t = 4$ detik,</li>
+                        <li>Kecepatan dan percepatan sesaat partikel pada saat $t = 2$ detik,</li>
+                        <li>Waktu $t$ ketika partikel berhenti sesaat.</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Bagian 1: Menghitung kecepatan rata-rata pada interval $[1, 4]$</strong><br>
+                        Hitung posisi partikel pada $t = 1$ dan $t = 4$:
+                        $$s(1) = (1)^3 - 6(1)^2 + 9(1) + 2 = 1 - 6 + 9 + 2 = 6\text{ m}$$
+                        $$s(4) = (4)^3 - 6(4)^2 + 9(4) + 2 = 64 - 96 + 36 + 2 = 6\text{ m}$$
+                        Maka kecepatan rata-ratanya adalah:
+                        $$v_{\text{rata}} = \frac{s(4) - s(1)}{4 - 1} = \frac{6 - 6}{3} = 0\text{ m/detik}$$
+                    </p>
+                    <p>
+                        <strong>Bagian 2: Menghitung kecepatan dan percepatan sesaat saat $t = 2$</strong><br>
+                        Turunkan fungsi posisi $s(t)$ terhadap waktu $t$:
+                        $$v(t) = \frac{ds}{dt} = 3t^2 - 12t + 9$$
+                        $$a(t) = \frac{dv}{dt} = 6t - 12$$
+                        Substitusikan $t = 2$:
+                        $$v(2) = 3(2)^2 - 12(2) + 9 = 12 - 24 + 9 = -3\text{ m/detik (bergerak mundur)}$$
+                        $$a(2) = 6(2) - 12 = 0\text{ m/detik}^2$$
+                    </p>
+                    <p>
+                        <strong>Bagian 3: Menentukan saat partikel berhenti sesaat ($v(t) = 0$)</strong><br>
+                        $$3t^2 - 12t + 9 = 0 \implies 3(t^2 - 4t + 3) = 0 \implies 3(t - 1)(t - 3) = 0$$
+                        Diperoleh $t = 1\text{ detik}$ atau $t = 3\text{ detik}$.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, kecepatan rata-ratanya $0\text{ m/detik}$, pada $t = 2$ detik kecepatannya $-3\text{ m/detik}$ dan percepatannya $0\text{ m/detik}^2$, serta partikel berhenti sesaat pada $t = 1\text{ detik}$ dan $t = 3\text{ detik}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tangga Meluncur (Related Rates Pythagoras) -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Sebuah tangga yang panjangnya $10\text{ meter}$ bersandar pada dinding vertikal yang licin. Ujung bawah tangga ditarik menjauhi dinding secara mendatar dengan laju konstan $1{,}2\text{ m/detik}$. Seberapa cepat ujung atas tangga meluncur turun menyusuri dinding pada saat ujung bawah tangga berjarak $6\text{ meter}$ dari dinding?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Memisalkan variabel dan menentukan nilai sesaat</strong><br>
+                        Misalkan $x$ adalah jarak mendatar ujung bawah tangga ke dinding, dan $y$ adalah tinggi ujung atas tangga dari lantai. Panjang tangga tetap $L = 10\text{ m}$.<br>
+                        Diketahui laju $\frac{dx}{dt} = +1{,}2\text{ m/detik}$. Pada saat $x = 6\text{ m}$, menurut Teorema Pythagoras:
+                        $$x^2 + y^2 = 10^2 \implies 6^2 + y^2 = 100 \implies y^2 = 64 \implies y = 8\text{ m}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menurunkan persamaan terhadap waktu $t$</strong><br>
+                        Turunkan kedua ruas persamaan $x^2 + y^2 = 100$ secara implisit terhadap $t$:
+                        $$\frac{d}{dt}(x^2 + y^2) = \frac{d}{dt}(100)$$
+                        $$2x\frac{dx}{dt} + 2y\frac{dy}{dt} = 0 \implies x\frac{dx}{dt} + y\frac{dy}{dt} = 0$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Mensubstitusikan nilai sesaat</strong><br>
+                        Masukkan $x = 6$, $y = 8$, dan $\frac{dx}{dt} = 1{,}2$:
+                        $$(6)(1{,}2) + (8)\frac{dy}{dt} = 0 \implies 7{,}2 + 8\frac{dy}{dt} = 0 \implies \frac{dy}{dt} = -\frac{7{,}2}{8} = -0{,}9\text{ m/detik}$$
+                        Tanda negatif menunjukkan bahwa ketinggian $y$ berkurang (ujung atas tangga bergerak turun).
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, ujung atas tangga meluncur turun dengan laju $0{,}9\text{ m/detik}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tangki Kerucut Terbalik (Kesebangunan & Laju Volume) -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Air dituangkan ke dalam sebuah tangki berbentuk kerucut terbalik (puncak di bawah) dengan laju tetap $8\pi\text{ cm}^3/\text{detik}$. Tangki kerucut tersebut memiliki tinggi total $12\text{ cm}$ dan jari-jari lingkaran atas $6\text{ cm}$. Berapakah laju naiknya tinggi permukaan air pada saat kedalaman air mencapai $4\text{ cm}$?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Menyatakan jari-jari permukaan air ($r$) dalam tinggi air ($h$)</strong><br>
+                        Misalkan pada saat $t$, permukaan air memiliki jari-jari $r$ dan kedalaman (tinggi) $h$. Berdasarkan kesebangunan segitiga penampang kerucut:
+                        $$\frac{r}{h} = \frac{R}{H} = \frac{6}{12} = \frac{1}{2} \implies r = \frac{1}{2}h$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menyusun fungsi volume $V$ dalam satu variabel $h$</strong><br>
+                        Substitusikan $r = \frac{1}{2}h$ ke rumus volume kerucut:
+                        $$V = \frac{1}{3}\pi r^2 h = \frac{1}{3}\pi \left(\frac{1}{2}h\right)^2 h = \frac{1}{12}\pi h^3$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menurunkan terhadap waktu $t$ dan menghitung $\frac{dh}{dt}$</strong><br>
+                        Turunkan kedua ruas terhadap waktu $t$:
+                        $$\frac{dV}{dt} = \frac{1}{12}\pi \cdot 3h^2 \frac{dh}{dt} = \frac{1}{4}\pi h^2 \frac{dh}{dt}$$
+                        Substitusikan $\frac{dV}{dt} = 8\pi\text{ cm}^3/\text{detik}$ dan $h = 4\text{ cm}$:
+                        $$8\pi = \frac{1}{4}\pi (4)^2 \frac{dh}{dt} \implies 8\pi = 4\pi \frac{dh}{dt} \implies \frac{dh}{dt} = 2\text{ cm/detik}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, laju naiknya permukaan air pada saat kedalaman air $4\text{ cm}$ adalah $2\text{ cm/detik}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiLaju() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const subtleBg = isDark ? '#0f172a' : '#f8fafc';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const tealFill = isDark ? 'rgba(20, 184, 166, 0.20)' : 'rgba(13, 148, 136, 0.14)';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const amberFill = isDark ? 'rgba(251, 191, 36, 0.22)' : 'rgba(217, 119, 6, 0.16)';
+            const roseColor = isDark ? '#fb7185' : '#e11d48';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const blueFill = isDark ? 'rgba(56, 189, 248, 0.22)' : 'rgba(2, 132, 199, 0.15)';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI GARIS SEKAN (RATA-RATA) VS GARIS SINGGUNG (SESAAT)
+               ------------------------------------------------------------- */
+            const geoGrafik = new GeoSVG('geosvg-laju-grafik', 580, 290, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoGrafik.buatPersegiPanjang(6, 6, 568, 278, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoGrafik.buatTeks(290, 26, "Interpretasi Geometri: Laju Rata-Rata (Garis Sekan) vs Laju Sesaat (Garis Singgung)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            // Sumbu koordinat lokal
+            const ox = 65, oy = 242;
+            geoGrafik.buatVektor(45, oy, 365, oy, { stroke: mutedColor, strokeWidth: 1.6 });
+            geoGrafik.buatVektor(ox, 258, ox, 48, { stroke: mutedColor, strokeWidth: 1.6 });
+            geoGrafik.buatTeks(374, oy, "x", { position: 'middle-left', fontWeight: 'bold', fontSize: '12px', fill: textColor });
+            geoGrafik.buatTeks(ox, 40, "y", { position: 'bottom-center', fontWeight: 'bold', fontSize: '12px', fill: textColor });
+
+            // Fungsi kurva: y_math = 0.0042 * (x - ox)^2 + 18
+            const fY = (xPx) => {
+                const dx = xPx - ox;
+                return oy - (18 + 0.0042 * dx * dx);
+            };
+
+            const curvePts = [];
+            for (let xp = ox + 10; xp <= 335; xp += 8) {
+                curvePts.push([xp, fY(xp)]);
+            }
+            geoGrafik.buatKurvaHalus(curvePts, { stroke: tealColor, strokeWidth: 2.8 });
+            geoGrafik.buatTeks(338, fY(330) - 6, "y = f(x)", {
+                position: 'bottom-left', fontWeight: 'bold', fontSize: '11.5px', fill: tealColor
+            });
+
+            // Titik P(x1, y1) dan Q(x2, y2)
+            const x1 = 135, y1 = fY(x1);
+            const x2 = 285, y2 = fY(x2);
+
+            // Segitiga siku-siku perubahan Delta x dan Delta y
+            const ptCorner = [x2, y1];
+            geoGrafik.buatPoligon([[x1, y1], ptCorner, [x2, y2]], {
+                fill: amberFill, stroke: 'none'
+            });
+            geoGrafik.buatSegmen([x1, y1], ptCorner, { stroke: amberColor, strokeWidth: 1.6, dashed: '5,3' });
+            geoGrafik.buatSegmen(ptCorner, [x2, y2], { stroke: amberColor, strokeWidth: 1.6, dashed: '5,3' });
+            geoGrafik.buatSiku([x1, y1], ptCorner, [x2, y2], { size: 10, stroke: amberColor, strokeWidth: 1.3 });
+
+            // Proyeksi ke sumbu X
+            geoGrafik.buatSegmen([x1, y1], [x1, oy], { stroke: mutedColor, strokeWidth: 1.2, dashed: '4,4' });
+            geoGrafik.buatSegmen([x2, y2], [x2, oy], { stroke: mutedColor, strokeWidth: 1.2, dashed: '4,4' });
+            geoGrafik.buatTeks(x1, oy + 14, "x₁", { position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor });
+            geoGrafik.buatTeks(x2, oy + 14, "x₂ = x₁ + Δx", { position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor });
+
+            // Garis Sekan (melalui P dan Q)
+            const mSec = (y2 - y1) / (x2 - x1);
+            const secX0 = 90, secY0 = y1 + mSec * (secX0 - x1);
+            const secX1 = 330, secY1 = y1 + mSec * (secX1 - x1);
+            geoGrafik.buatSegmen(secX0, secY0, secX1, secY1, {
+                stroke: blueColor, strokeWidth: 2.2
+            });
+
+            // Garis Singgung di P(x1, y1): turunan dy_px / dx_px = -2 * 0.0042 * (x1 - ox)
+            const mTan = -2 * 0.0042 * (x1 - ox);
+            const tanX0 = 80, tanY0 = y1 + mTan * (tanX0 - x1);
+            const tanX1 = 245, tanY1 = y1 + mTan * (tanX1 - x1);
+            geoGrafik.buatSegmen(tanX0, tanY0, tanX1, tanY1, {
+                stroke: roseColor, strokeWidth: 2.4
+            });
+
+            // Titik P dan Q
+            geoGrafik.buatTitik(x1, y1, { size: 4.5, color: roseColor, label: 'P(x₁, f(x₁))', labelPosition: 'top-left', bold: true });
+            geoGrafik.buatTitik(x2, y2, { size: 4.5, color: blueColor, label: 'Q(x₂, f(x₂))', labelPosition: 'top-left', bold: true });
+
+            // Label Delta x dan Delta y
+            geoGrafik.buatTeks((x1 + x2) / 2, y1 + 14, "Δx = x₂ − x₁", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: amberColor
+            });
+            geoGrafik.buatTeks(x2 + 8, (y1 + y2) / 2, "Δy", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '11px', fill: amberColor
+            });
+
+            // Panel Keterangan Kanan
+            geoGrafik.buatPersegiPanjang(388, 52, 172, 206, {
+                radius: 8, fill: subtleBg, stroke: borderColor, strokeWidth: 1.2
+            });
+            geoGrafik.buatTeks(474, 74, "Perbandingan Gradien", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            geoGrafik.buatSegmen(402, 102, 430, 102, { stroke: blueColor, strokeWidth: 2.5 });
+            geoGrafik.buatTeks(438, 102, "Garis Sekan PQ", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '10.5px', fill: blueColor
+            });
+            geoGrafik.buatTeks(474, 122, "m_sekan = Δy / Δx", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: textColor
+            });
+            geoGrafik.buatTeks(474, 138, "(Laju Rata-Rata)", {
+                position: 'middle-center', fontSize: '9.5px', fill: mutedColor
+            });
+
+            geoGrafik.buatSegmen(402, 172, 430, 172, { stroke: roseColor, strokeWidth: 2.5 });
+            geoGrafik.buatTeks(438, 172, "Garis Singgung di P", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '10.5px', fill: roseColor
+            });
+            geoGrafik.buatTeks(474, 192, "m_singgung = dy / dx", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: textColor
+            });
+            geoGrafik.buatTeks(474, 208, "(Laju Sesaat, Q → P)", {
+                position: 'middle-center', fontSize: '9.5px', fill: mutedColor
+            });
+            geoGrafik.buatTeks(474, 238, "dy/dx = lim (Δx→0) Δy/Δx", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10px', fill: tealColor
+            });
+
+
+            /* -------------------------------------------------------------
+               2. ILUSTRASI DUA MODEL KLASIK RELATED RATES (TANGGA & KERUCUT)
+               ------------------------------------------------------------- */
+            const geoModel = new GeoSVG('geosvg-laju-model', 580, 285, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoModel.buatPersegiPanjang(6, 6, 568, 273, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoModel.buatSegmen(290, 18, 290, 265, {
+                stroke: borderColor, strokeWidth: 1.2, dashed: '4,4'
+            });
+
+            // --- PANEL KIRI: Tangga Meluncur ---
+            geoModel.buatTeks(148, 26, "Model 1: Tangga Meluncur (x² + y² = L²)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            const wOrigin = [68, 210];
+            const wTop = [68, 52];
+            const wRight = [245, 210];
+
+            // Dinding & Lantai
+            geoModel.buatPersegiPanjang(54, 52, 14, 158, {
+                fill: subtleBg, stroke: borderColor, strokeWidth: 1.2
+            });
+            geoModel.buatPersegiPanjang(54, 210, 191, 12, {
+                fill: subtleBg, stroke: borderColor, strokeWidth: 1.2
+            });
+            geoModel.buatSiku(wTop, wOrigin, wRight, { size: 12, stroke: mutedColor, strokeWidth: 1.5 });
+            geoModel.buatSegmen(wOrigin, wTop, { stroke: textColor, strokeWidth: 2.2 });
+            geoModel.buatSegmen(wOrigin, wRight, { stroke: textColor, strokeWidth: 2.2 });
+
+            // Tangga miring dari (68, 82) ke (196, 210)
+            const tAtas = [68, 82];
+            const tBawah = [196, 210];
+            geoModel.buatPoligon([wOrigin, tAtas, tBawah], {
+                fill: tealFill, stroke: 'none'
+            });
+            geoModel.buatSegmen(tAtas, tBawah, { stroke: amberColor, strokeWidth: 4 });
+            geoModel.buatTitik(tAtas, { size: 4, color: roseColor });
+            geoModel.buatTitik(tBawah, { size: 4, color: blueColor });
+
+            // Vektor arah gerak dy/dt (turun) dan dx/dt (kanan)
+            geoModel.buatVektor(84, 65, 84, 108, { stroke: roseColor, strokeWidth: 2.2 });
+            geoModel.buatTeks(92, 86, "dy/dt < 0", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '10.5px', fill: roseColor
+            });
+
+            geoModel.buatVektor(196, 194, 240, 194, { stroke: blueColor, strokeWidth: 2.2 });
+            geoModel.buatTeks(218, 180, "dx/dt > 0", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: blueColor
+            });
+
+            // Label variabel y, x, L
+            geoModel.buatTeks(44, 145, "y(t)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor
+            });
+            geoModel.buatTeks(132, 232, "x(t)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor
+            });
+            geoModel.buatTeks(148, 136, "L (tetap)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: amberColor
+            });
+
+            geoModel.buatTeks(148, 256, "x(dx/dt) + y(dy/dt) = 0", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: tealColor
+            });
+
+            // --- PANEL KANAN: Tangki Kerucut Terbalik ---
+            geoModel.buatTeks(435, 26, "Model 2: Tangki Kerucut (Kesebangunan r/h = R/H)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            const cApex = [435, 218];
+            const cTopY = 74;
+            const cRx = 72, cRy = 16;
+
+            // Air di dalam kerucut (ketinggian 60% dari tinggi total)
+            const wY = 132;
+            const wRx = 43, wRy = 10;
+
+            geoModel.buatPoligon([[cApex[0] - wRx, wY], cApex, [cApex[0] + wRx, wY]], {
+                fill: blueFill, stroke: 'none'
+            });
+            geoModel.buatElips(cApex[0], wY, wRx, wRy, {
+                fill: blueFill, stroke: blueColor, strokeWidth: 1.8
+            });
+
+            // Garis luar kerucut & elips atas
+            geoModel.buatElips(cApex[0], cTopY, cRx, cRy, {
+                fill: subtleBg, stroke: textColor, strokeWidth: 1.8
+            });
+            geoModel.buatSegmen([cApex[0] - cRx, cTopY], cApex, { stroke: textColor, strokeWidth: 2 });
+            geoModel.buatSegmen([cApex[0] + cRx, cTopY], cApex, { stroke: textColor, strokeWidth: 2 });
+
+            // Sumbu tinggi tengah & jari-jari R, r
+            geoModel.buatSegmen(cApex, [cApex[0], cTopY], { stroke: mutedColor, strokeWidth: 1.4, dashed: '4,4' });
+            geoModel.buatSegmen([cApex[0], cTopY], [cApex[0] + cRx, cTopY], { stroke: amberColor, strokeWidth: 2.2 });
+            geoModel.buatSegmen([cApex[0], wY], [cApex[0] + wRx, wY], { stroke: blueColor, strokeWidth: 2.2 });
+
+            geoModel.buatSiku(cApex, [cApex[0], cTopY], [cApex[0] + cRx, cTopY], { size: 9, stroke: amberColor, strokeWidth: 1.3 });
+            geoModel.buatSiku(cApex, [cApex[0], wY], [cApex[0] + wRx, wY], { size: 8, stroke: blueColor, strokeWidth: 1.3 });
+
+            // Panah permukaan air naik dh/dt
+            geoModel.buatVektor(cApex[0] - 20, wY - 4, cApex[0] - 20, wY - 32, { stroke: tealColor, strokeWidth: 2.2 });
+            geoModel.buatTeks(cApex[0] - 26, wY - 18, "dh/dt", {
+                position: 'middle-right', fontWeight: 'bold', fontSize: '10px', fill: tealColor
+            });
+
+            // Label R, r, H, h
+            geoModel.buatTeks(cApex[0] + cRx / 2, cTopY - 8, "R", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: amberColor
+            });
+            geoModel.buatTeks(cApex[0] + wRx / 2, wY - 7, "r", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: blueColor
+            });
+            geoModel.buatTeks(cApex[0] - 10, (cApex[1] + wY) / 2, "h", {
+                position: 'middle-right', fontWeight: 'bold', fontSize: '11px', fill: blueColor
+            });
+
+            // Dimensi tinggi total H di sebelah kanan
+            geoModel.buatSegmen(522, cTopY, 522, cApex[1], { stroke: mutedColor, strokeWidth: 1.4, dashed: '4,3' });
+            geoModel.buatTeks(532, (cTopY + cApex[1]) / 2, "H", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '11px', fill: textColor
+            });
+
+            geoModel.buatTeks(435, 238, "r = (R/H)·h   ⇒   V = ⅓π(R/H)²·h³", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: textColor
+            });
+            geoModel.buatTeks(435, 256, "dV/dt = π(R/H)²·h²·(dh/dt)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: tealColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiLaju();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiLaju, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

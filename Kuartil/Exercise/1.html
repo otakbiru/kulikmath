@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Kuartil</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Kuartil</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Tentukan kuartil bawah (\(Q_1\)), kuartil tengah (\(Q_2\)), dan kuartil atas (\(Q_3\)) dari data pada tabel distribusi frekuensi berikut:
+                </p>
+                <div style="overflow-x: auto;">
+                    <table style="margin: 1rem auto; border-collapse: collapse; text-align: center; width: 100%; max-width: 420px; font-size: 0.95rem;">
+                        <thead>
+                            <tr style="background: rgba(37, 99, 235, 0.1);">
+                                <th style="border: 1px solid #cbd5e1; padding: 8px 14px;">Interval Kelas</th>
+                                <th style="border: 1px solid #cbd5e1; padding: 8px 14px;">Frekuensi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">120 &minus; 124</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">4</td></tr>
+                            <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">125 &minus; 129</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">3</td></tr>
+                            <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">130 &minus; 134</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">10</td></tr>
+                            <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">135 &minus; 139</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">7</td></tr>
+                            <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">140 &minus; 144</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">11</td></tr>
+                            <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">145 &minus; 149</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">5</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneid" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Pertama, buat tabel distribusi frekuensi lengkap dengan frekuensi kumulatif (\(F_k\)):
+                    </p>
+                    <div style="overflow-x: auto;">
+                        <table style="margin: 1rem auto; border-collapse: collapse; text-align: center; width: 100%; max-width: 480px; font-size: 0.95rem;">
+                            <thead>
+                                <tr style="background: rgba(37, 99, 235, 0.1);">
+                                    <th style="border: 1px solid #cbd5e1; padding: 8px 14px;">Interval Kelas</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 8px 14px;">Frekuensi (\(f\))</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 8px 14px;">\(F_k\)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">120 &minus; 124</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">4</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">4</td></tr>
+                                <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">125 &minus; 129</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">3</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">7</td></tr>
+                                <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">130 &minus; 134</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">10</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">17</td></tr>
+                                <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">135 &minus; 139</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">7</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">24</td></tr>
+                                <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">140 &minus; 144</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">11</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">35</td></tr>
+                                <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">145 &minus; 149</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">5</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">40</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        Total data \(n = 40\), dan panjang kelas \(p = 124 - 120 + 1 = 5\).
+                    </p>
+
+                    <p><strong>1. Menentukan Kuartil Bawah (\(Q_1\)):</strong></p>
+                    <p>
+                        Letak \(Q_1\) berada pada data ke-\(\dfrac{1}{4}n = \dfrac{1}{4}(40) = 10\).<br>
+                        Data ke-10 berada pada kelas interval ke-3 (<strong>130 &minus; 134</strong>).
+                    </p>
+                    <ul>
+                        <li>Tepi bawah (\(T_b\)) = \(130 - 0{,}5 = 129{,}5\)</li>
+                        <li>Frekuensi kumulatif sebelum kelas \(Q_1\) (\(F_k\)) = \(7\)</li>
+                        <li>Frekuensi kelas \(Q_1\) (\(f\)) = \(10\)</li>
+                        <li>Panjang kelas (\(p\)) = \(5\)</li>
+                    </ul>
+                    <p>
+                        \[
+                        \begin{aligned}
+                        Q_1 &= T_b + \left(\frac{\frac{n}{4} - F_k}{f}\right) p \\[6pt]
+                            &= 129{,}5 + \left(\frac{10 - 7}{10}\right) 5 \\[6pt]
+                            &= 129{,}5 + \left(\frac{3}{10}\right) 5 \\[6pt]
+                            &= 129{,}5 + 1{,}5 = 131
+                        \end{aligned}
+                        \]
+                    </p>
+
+                    <p><strong>2. Menentukan Kuartil Tengah / Median (\(Q_2\)):</strong></p>
+                    <p>
+                        Letak \(Q_2\) berada pada data ke-\(\dfrac{2}{4}n = \dfrac{1}{2}(40) = 20\).<br>
+                        Data ke-20 berada pada kelas interval ke-4 (<strong>135 &minus; 139</strong>).
+                    </p>
+                    <ul>
+                        <li>Tepi bawah (\(T_b\)) = \(135 - 0{,}5 = 134{,}5\)</li>
+                        <li>Frekuensi kumulatif sebelum kelas \(Q_2\) (\(F_k\)) = \(17\)</li>
+                        <li>Frekuensi kelas \(Q_2\) (\(f\)) = \(7\)</li>
+                        <li>Panjang kelas (\(p\)) = \(5\)</li>
+                    </ul>
+                    <p>
+                        \[
+                        \begin{aligned}
+                        Q_2 &= T_b + \left(\frac{\frac{n}{2} - F_k}{f}\right) p \\[6pt]
+                            &= 134{,}5 + \left(\frac{20 - 17}{7}\right) 5 \\[6pt]
+                            &= 134{,}5 + \left(\frac{3}{7}\right) 5 \\[6pt]
+                            &= 134{,}5 + \frac{15}{7} \\[6pt]
+                            &\approx 134{,}5 + 2{,}14 = 136{,}64
+                        \end{aligned}
+                        \]
+                    </p>
+
+                    <p><strong>3. Menentukan Kuartil Atas (\(Q_3\)):</strong></p>
+                    <p>
+                        Letak \(Q_3\) berada pada data ke-\(\dfrac{3}{4}n = \dfrac{3}{4}(40) = 30\).<br>
+                        Data ke-30 berada pada kelas interval ke-5 (<strong>140 &minus; 144</strong>).
+                    </p>
+                    <ul>
+                        <li>Tepi bawah (\(T_b\)) = \(140 - 0{,}5 = 139{,}5\)</li>
+                        <li>Frekuensi kumulatif sebelum kelas \(Q_3\) (\(F_k\)) = \(24\)</li>
+                        <li>Frekuensi kelas \(Q_3\) (\(f\)) = \(11\)</li>
+                        <li>Panjang kelas (\(p\)) = \(5\)</li>
+                    </ul>
+                    <p>
+                        \[
+                        \begin{aligned}
+                        Q_3 &= T_b + \left(\frac{\frac{3n}{4} - F_k}{f}\right) p \\[6pt]
+                            &= 139{,}5 + \left(\frac{30 - 24}{11}\right) 5 \\[6pt]
+                            &= 139{,}5 + \left(\frac{6}{11}\right) 5 \\[6pt]
+                            &= 139{,}5 + \frac{30}{11} \\[6pt]
+                            &\approx 139{,}5 + 2{,}73 = 142{,}23
+                        \end{aligned}
+                        \]
+                    </p>
+
+                    <div class="kesimpulan">
+                        Jadi, diperoleh nilai kuartil sebagai berikut:
+                        <ul style="margin-left: 1.5rem; margin-top: 0.35rem;">
+                            <li>Kuartil bawah (\(Q_1\)) = \(131\)</li>
+                            <li>Kuartil tengah (\(Q_2\)) = \(136{,}64\)</li>
+                            <li>Kuartil atas (\(Q_3\)) = \(142{,}23\)</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Perhatikan data pada tabel berikut:
+                </p>
+                <div style="overflow-x: auto;">
+                    <table style="margin: 1rem auto; border-collapse: collapse; text-align: center; width: 100%; max-width: 420px; font-size: 0.95rem;">
+                        <thead>
+                            <tr style="background: rgba(37, 99, 235, 0.1);">
+                                <th style="border: 1px solid #cbd5e1; padding: 8px 14px;">Nilai</th>
+                                <th style="border: 1px solid #cbd5e1; padding: 8px 14px;">Frekuensi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">50 &minus; 59</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">2</td></tr>
+                            <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">60 &minus; 69</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">7</td></tr>
+                            <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">70 &minus; 79</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">11</td></tr>
+                            <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">80 &minus; 89</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">4</td></tr>
+                            <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">90 &minus; 99</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    Tentukan simpangan kuartil (\(Q_d\)) dari data tersebut!
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneIdGrup/5100" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Lengkapilah tabel distribusi frekuensi dengan frekuensi kumulatif (\(F_k\)):
+                    </p>
+                    <div style="overflow-x: auto;">
+                        <table style="margin: 1rem auto; border-collapse: collapse; text-align: center; width: 100%; max-width: 480px; font-size: 0.95rem;">
+                            <thead>
+                                <tr style="background: rgba(37, 99, 235, 0.1);">
+                                    <th style="border: 1px solid #cbd5e1; padding: 8px 14px;">Nilai</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 8px 14px;">Frekuensi (\(f\))</th>
+                                    <th style="border: 1px solid #cbd5e1; padding: 8px 14px;">\(F_k\)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">50 &minus; 59</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">2</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">2</td></tr>
+                                <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">60 &minus; 69</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">7</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">9</td></tr>
+                                <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">70 &minus; 79</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">11</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">20</td></tr>
+                                <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">80 &minus; 89</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">4</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">24</td></tr>
+                                <tr><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">90 &minus; 99</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">1</td><td style="border: 1px solid #cbd5e1; padding: 6px 14px;">25</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        Total data \(n = 25\), dan panjang interval kelas \(p = 59 - 50 + 1 = 10\).
+                    </p>
+
+                    <p><strong>1. Menentukan Kuartil Bawah (\(Q_1\)):</strong></p>
+                    <p>
+                        Letak \(Q_1\) berada pada data ke-\(\dfrac{1}{4}n = \dfrac{1}{4}(25) = 6{,}25\).<br>
+                        Data ke-6,25 terletak pada kelas ke-2 (<strong>60 &minus; 69</strong>).
+                    </p>
+                    <ul>
+                        <li>\(T_b = 60 - 0{,}5 = 59{,}5\)</li>
+                        <li>\(F_k = 2\)</li>
+                        <li>\(f = 7\)</li>
+                        <li>\(p = 10\)</li>
+                    </ul>
+                    <p>
+                        \[
+                        \begin{aligned}
+                        Q_1 &= T_b + \left(\frac{\frac{n}{4} - F_k}{f}\right) p \\[6pt]
+                            &= 59{,}5 + \left(\frac{6{,}25 - 2}{7}\right) 10 \\[6pt]
+                            &= 59{,}5 + \left(\frac{4{,}25}{7}\right) 10 \\[6pt]
+                            &= 59{,}5 + \frac{42{,}5}{7} \\[6pt]
+                            &\approx 59{,}5 + 6{,}07 = 65{,}57
+                        \end{aligned}
+                        \]
+                    </p>
+
+                    <p><strong>2. Menentukan Kuartil Atas (\(Q_3\)):</strong></p>
+                    <p>
+                        Letak \(Q_3\) berada pada data ke-\(\dfrac{3}{4}n = \dfrac{3}{4}(25) = 18{,}75\).<br>
+                        Data ke-18,75 terletak pada kelas ke-3 (<strong>70 &minus; 79</strong>).
+                    </p>
+                    <ul>
+                        <li>\(T_b = 70 - 0{,}5 = 69{,}5\)</li>
+                        <li>\(F_k = 9\)</li>
+                        <li>\(f = 11\)</li>
+                        <li>\(p = 10\)</li>
+                    </ul>
+                    <p>
+                        \[
+                        \begin{aligned}
+                        Q_3 &= T_b + \left(\frac{\frac{3n}{4} - F_k}{f}\right) p \\[6pt]
+                            &= 69{,}5 + \left(\frac{18{,}75 - 9}{11}\right) 10 \\[6pt]
+                            &= 69{,}5 + \left(\frac{9{,}75}{11}\right) 10 \\[6pt]
+                            &= 69{,}5 + \frac{97{,}5}{11} \\[6pt]
+                            &\approx 69{,}5 + 8{,}86 = 78{,}36
+                        \end{aligned}
+                        \]
+                    </p>
+
+                    <p><strong>3. Menentukan Simpangan Kuartil (\(Q_d\)):</strong></p>
+                    <p>
+                        Rumus simpangan kuartil:
+                        \[
+                        \begin{aligned}
+                        Q_d &= \frac{1}{2}(Q_3 - Q_1) \\[6pt]
+                            &= \frac{1}{2}(78{,}36 - 65{,}57) \\[6pt]
+                            &= \frac{1}{2}(12{,}79) \\[6pt]
+                            &= 6{,}395
+                        \end{aligned}
+                        \]
+                    </p>
+
+                    <div class="kesimpulan">
+                        Jadi, simpangan kuartil (\(Q_d\)) dari data tersebut adalah \(6{,}395\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Matematika Idham Daz. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- Script Render KaTeX -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof renderMathInElement === "function") {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "\\[", right: "\\]", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false }
+                    ]
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Math Blog Otomatis (Navigasi Level, Penomoran, Toggle Solusi) -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

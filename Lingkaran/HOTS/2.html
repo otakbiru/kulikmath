@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal HOTS - Lingkaran [2]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Lingkaran</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 11 -->
+        <article class="soal-item" id="11">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <div id="geosvg-hots-11" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                Pada sebuah lingkaran dengan pusat $O$, tali busur $AB$ diperpanjang ke titik $C$ sehingga panjang $BC$ sama dengan panjang jari-jari lingkaran. Garis $CO$ ditarik dan diperpanjang memotong keliling lingkaran di titik $D$. Jika $\angle AOD = 39^\circ$, berapakah besar $\angle BOC$?
+            </div>
+            <div class="soal-sumber"><a href="https://chat.whatsapp.com/LqD5uOjjYtd7UjHnmTMIUa" target="_blank" rel="noopener noreferrer">Final OGM 10 Tingkat SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan jari-jari lingkaran adalah $r$. Diketahui $BC = r$, dan karena $OB$ adalah jari-jari lingkaran, maka $OB = r$.</p>
+                    <p>Perhatikan bahwa segitiga $BOC$ adalah segitiga sama kaki dengan $BC = OB = r$. Misalkan:</p>
+                    \[
+                    \angle BCO = \angle BOC = x
+                    \]
+                    <p>Sudut luar dari segitiga $BOC$ di titik sudut $B$ adalah:</p>
+                    \[
+                    \angle ABO = \angle BCO + \angle BOC = x + x = 2x
+                    \]
+                    <p>Karena $OA$ dan $OB$ adalah jari-jari lingkaran ($OA = OB = r$), maka segitiga $AOB$ juga merupakan segitiga sama kaki, sehingga:</p>
+                    \[
+                    \angle BAO = \angle ABO = 2x
+                    \]
+                    <p>Besar sudut $\angle AOB$ pada segitiga $AOB$ adalah:</p>
+                    \[
+                    \angle AOB = 180^\circ - (\angle BAO + \angle ABO) = 180^\circ - (2x + 2x) = 180^\circ - 4x
+                    \]
+                    <p>Karena titik $D, O, C$ terletak pada satu garis lurus (diameter/perpanjangan garis $CO$), maka sudut-sudut yang membentuk garis lurus berjumlah $180^\circ$:</p>
+                    \[
+                    \begin{aligned}
+                    \angle AOD + \angle AOB + \angle BOC &= 180^\circ \\
+                    39^\circ + (180^\circ - 4x) + x &= 180^\circ \\
+                    39^\circ - 3x &= 0 \\
+                    3x &= 39^\circ \\
+                    x &= 13^\circ
+                    \end{aligned}
+                    \]
+                    <p>Karena $\angle BOC = x$, maka diperoleh besar $\angle BOC = 13^\circ$.</p>
+                    <div class="kesimpulan">Jadi, besar $\angle BOC$ adalah $13^\circ$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const el = document.getElementById("geosvg-hots-11");
+            if (el && typeof GeoSVG !== "undefined") {
+                const W = 360, H = 240;
+                const geo = new GeoSVG("geosvg-hots-11", W, H, { margin: 10, title: "Lingkaran Sudut AOD dan BOC" });
+                if (geo.svg) {
+                    geo.svg.style.width = "100%";
+                    geo.svg.style.maxWidth = `${W}px`;
+                    geo.svg.style.height = "auto";
+                }
+
+                const c = [150, 120];
+                const R = 80;
+
+                // Lingkaran pusat O
+                geo.buatLingkaran(c, R, { stroke: "#1e293b", strokeWidth: 2, fill: "none" });
+
+                // Parameter sudut: COD garis lurus horizontal
+                // Garis COD horizontal: D di kiri (c[0]-R, c[1]), C di kanan jauh
+                // Titik D (-R, 0): [c[0]-R, c[1]]
+                const pD = [c[0] - R, c[1]];
+                // Sudut AOD = 39 derajat ke atas dari OD (OD adalah arah kiri, 180 deg)
+                // Jadi titik A berada pada sudut 180 - 39 = 141 deg
+                const deg = Math.PI / 180;
+                const pA = [c[0] - R * Math.cos(39 * deg), c[1] - R * Math.sin(39 * deg)];
+
+                // Titik C berada di perpanjangan COD ke arah kanan
+                // Titik B pada lingkaran sedemikian rupa sehingga A, B, C segaris dan BC = R
+                // x = 13 deg -> garis COD miring 13 deg terhadap CB?
+                // Lebih tepat: letakkan C di sebelah kanan, misal pada [c[0] + 130, c[1]]
+                // Lalu titik B di lingkaran
+                const angleB = 26 * deg; // 2x = 26
+                const pB = [c[0] + R * Math.cos(angleB), c[1] - R * Math.sin(angleB)];
+                const pC = [c[0] + R + 75, c[1] + 18];
+
+                // Segmen garis lurus
+                geo.buatSegmen(pD, pC, { stroke: "#0284c7", strokeWidth: 1.8 }); // Garis COD
+                geo.buatSegmen(pA, pC, { stroke: "#1e293b", strokeWidth: 2 });   // Garis ABC
+                geo.buatSegmen(c, pA, { stroke: "#dc2626", strokeWidth: 1.5, dashed: "3 3" });
+                geo.buatSegmen(c, pB, { stroke: "#dc2626", strokeWidth: 1.5, dashed: "3 3" });
+
+                // Titik-titik penting
+                geo.buatTitik(c, { label: "O", labelPosition: "bottom-center", size: 3.5, color: "#0284c7" });
+                geo.buatTitik(pD, { label: "D", labelPosition: "middle-left", size: 3 });
+                geo.buatTitik(pA, { label: "A", labelPosition: "top-left", size: 3 });
+                geo.buatTitik(pB, { label: "B", labelPosition: "top-right", size: 3 });
+                geo.buatTitik(pC, { label: "C", labelPosition: "bottom-right", size: 3.5, color: "#1e293b" });
+
+                // Label sudut
+                geo.buatTeks(c[0] - 32, c[1] - 12, "39°", { fontSize: "11px", fontWeight: "bold", fill: "#dc2626" });
+                geo.buatTeks(pC[0] - 25, pC[1] - 12, "x", { fontSize: "12px", fontWeight: "bold", fill: "#0284c7" });
+                geo.buatTeks((pB[0] + pC[0]) / 2 + 5, (pB[1] + pC[1]) / 2 - 8, "r", { fontSize: "11px", fill: "#16a34a" });
+            }
+        });
+    </script>
+</body>
+
+</html>

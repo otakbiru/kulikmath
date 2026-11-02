@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soal HOTS - Kubus</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Kubus</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Pada sebuah kardus tertutup berbentuk kubus \(ABCD.EFGH\), terdapat seekor semut tepat di titik sudut \(B\) yang akan mengambil sebutir gula di titik sudut \(H\).
+                    Tentukan lintasan dan jarak terdekat dari posisi semut ke butiran gula jika semut hanya dapat merayap pada permukaan luar kardus dan panjang rusuk kubus adalah \(10\text{ cm}\)!
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneId/143" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Karena semut hanya merayap pada permukaan luar kubus, lintasan terpendek antara dua titik pada permukaan bangun ruang diperoleh dengan <strong>membentangkan (membuka jaring-jaring)</strong> sisi-sisi kubus yang dilalui menjadi satu bidang datar.
+                    </p>
+                    <p>
+                        Salah satu rute terpendek adalah melewati bidang depan \(ABFE\) dilanjutkan ke bidang atas \(EFGH\).
+                        Jika bidang \(ABFE\) dan bidang \(EFGH\) direntangkan pada satu bidang datar dengan poros rusuk \(EF\), maka terbentuk sebuah persegi panjang dengan:
+                    </p>
+                    <ul>
+                        <li>Lebar = panjang rusuk \(AB = 10\text{ cm}\)</li>
+                        <li>Panjang = panjang rusuk \(AE + EH = 10\text{ cm} + 10\text{ cm} = 20\text{ cm}\)</li>
+                    </ul>
+                    <p>
+                        Jarak terdekat semut dari titik \(B\) ke titik \(H\) adalah panjang ruas garis lurus yang menghubungkan titik \(B\) dan titik \(H\) pada jaring-jaring tersebut.
+                        Berdasarkan teorema Pythagoras:
+                        \[
+                        \begin{aligned}
+                        r &= \sqrt{AB^2 + (AE + EH)^2} \\[6pt]
+                          &= \sqrt{10^2 + (10 + 10)^2} \\[6pt]
+                          &= \sqrt{10^2 + 20^2} \\[6pt]
+                          &= \sqrt{100 + 400} \\[6pt]
+                          &= \sqrt{500} = \sqrt{100 \times 5} \\[6pt]
+                          &= 10\sqrt{5}\text{ cm}
+                        \end{aligned}
+                        \]
+                    </p>
+
+                    <!-- Visualisasi GeoSVG Kubus & Rentangan Jaring-jaring -->
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin: 1rem 0;">
+                        <div id="geosvg-hots-kubus"></div>
+                        <div id="geosvg-hots-jaring"></div>
+                    </div>
+
+                    <div class="kesimpulan">
+                        Jadi, jarak terdekat yang ditempuh semut dari titik \(B\) ke butir gula di titik \(H\) adalah \(10\sqrt{5}\text{ cm}\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Matematika Idham Daz. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- Script Render GeoSVG & KaTeX -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof renderMathInElement === "function") {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "\\[", right: "\\]", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false }
+                    ]
+                });
+            }
+
+            function renderDiagrams() {
+                if (typeof GeoSVG === "undefined") {
+                    setTimeout(renderDiagrams, 100);
+                    return;
+                }
+
+                // 1. Diagram 3D Kubus dengan Lintasan Permukaan
+                const el1 = document.getElementById("geosvg-hots-kubus");
+                if (el1 && !el1.dataset.rendered) {
+                    el1.dataset.rendered = "true";
+                    const W = 280, H = 250;
+                    const geo = new GeoSVG("geosvg-hots-kubus", W, H, {
+                        margin: 10,
+                        title: "Lintasan Semut pada Permukaan Kubus"
+                    });
+                    if (geo.svg) {
+                        geo.svg.style.width = "100%";
+                        geo.svg.style.maxWidth = `${W}px`;
+                        geo.svg.style.height = "auto";
+                    }
+
+                    const pA = [50, 200], s = 120, dx = 55, dy = 42;
+                    const pts = {
+                        A: pA,
+                        B: [pA[0] + s, pA[1]],
+                        C: [pA[0] + s + dx, pA[1] - dy],
+                        D: [pA[0] + dx, pA[1] - dy],
+                        E: [pA[0], pA[1] - s],
+                        F: [pA[0] + s, pA[1] - s],
+                        G: [pA[0] + s + dx, pA[1] - s - dy],
+                        H: [pA[0] + dx, pA[1] - s - dy]
+                    };
+
+                    // Rusuk kubus
+                    geo.buatSegmen(pts.A, pts.D, { stroke: "#cbd5e1", strokeWidth: 1.2, dashed: true });
+                    geo.buatSegmen(pts.D, pts.C, { stroke: "#cbd5e1", strokeWidth: 1.2, dashed: true });
+                    geo.buatSegmen(pts.D, pts.H, { stroke: "#cbd5e1", strokeWidth: 1.2, dashed: true });
+                    geo.buatSegmen(pts.A, pts.B, { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen(pts.B, pts.C, { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen(pts.E, pts.F, { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen(pts.F, pts.G, { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen(pts.G, pts.H, { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen(pts.H, pts.E, { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen(pts.A, pts.E, { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen(pts.B, pts.F, { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen(pts.C, pts.G, { stroke: "#475569", strokeWidth: 1.5 });
+
+                    // Titik tengah EF tempat semut melintasi rusuk EF
+                    const pM = [(pts.E[0] + pts.F[0]) / 2, (pts.E[1] + pts.F[1]) / 2];
+
+                    // Lintasan semut di permukaan ABFE dan EFGH
+                    geo.buatSegmen(pts.B, pM, { stroke: "#ef4444", strokeWidth: 2.2 });
+                    geo.buatSegmen(pM, pts.H, { stroke: "#ef4444", strokeWidth: 2.2 });
+
+                    // Label titik
+                    geo.buatTitik(pts.A, { label: "A", labelPosition: "bottom-left", color: "#1e293b", size: 3 });
+                    geo.buatTitik(pts.B, { label: "B (Semut)", labelPosition: "bottom-right", color: "#dc2626", size: 4 });
+                    geo.buatTitik(pts.C, { label: "C", labelPosition: "middle-right", color: "#1e293b", size: 3 });
+                    geo.buatTitik(pts.D, { label: "D", labelPosition: "top-left", color: "#64748b", size: 2.5 });
+                    geo.buatTitik(pts.E, { label: "E", labelPosition: "top-left", color: "#1e293b", size: 3 });
+                    geo.buatTitik(pts.F, { label: "F", labelPosition: "top-right", color: "#1e293b", size: 3 });
+                    geo.buatTitik(pts.G, { label: "G", labelPosition: "top-right", color: "#1e293b", size: 3 });
+                    geo.buatTitik(pts.H, { label: "H (Gula)", labelPosition: "top-left", color: "#16a34a", size: 4 });
+                }
+
+                // 2. Diagram 2D Rentangan Jaring-Jaring Bidang ABFE dan EFGH
+                const el2 = document.getElementById("geosvg-hots-jaring");
+                if (el2 && !el2.dataset.rendered) {
+                    el2.dataset.rendered = "true";
+                    const W = 280, H = 250;
+                    const geo = new GeoSVG("geosvg-hots-jaring", W, H, {
+                        margin: 10,
+                        title: "Bentangan Jaring-Jaring Sisi ABFE dan EFGH"
+                    });
+                    if (geo.svg) {
+                        geo.svg.style.width = "100%";
+                        geo.svg.style.maxWidth = `${W}px`;
+                        geo.svg.style.height = "auto";
+                    }
+
+                    // Persegi panjang ABFE (bawah) dan EFGH (atas)
+                    // B di kanan-bawah, A di kiri-bawah
+                    // F di kanan-tengah, E di kiri-tengah
+                    // G di kanan-atas, H di kiri-atas
+                    const pA = [60, 220], pB = [180, 220];
+                    const pE = [60, 140], pF = [180, 140];
+                    const pH = [60, 60], pG = [180, 60];
+
+                    // Kotak bawah ABFE
+                    geo.buatPoligon([pA, pB, pF, pE], { fill: "rgba(37, 99, 235, 0.06)", stroke: "#475569", strokeWidth: 1.5 });
+                    // Kotak atas EFGH
+                    geo.buatPoligon([pE, pF, pG, pH], { fill: "rgba(16, 185, 129, 0.06)", stroke: "#475569", strokeWidth: 1.5 });
+
+                    // Garis poros EF
+                    geo.buatSegmen(pE, pF, { stroke: "#64748b", strokeWidth: 1.2, dashed: true });
+
+                    // Garis lurus lintasan terpendek dari B ke H
+                    geo.buatSegmen(pB, pH, { stroke: "#ef4444", strokeWidth: 2.2 });
+
+                    // Label dimensi
+                    geo.buatTeks(120, 232, "10 cm", { position: "top-center", fill: "#475569", fontSize: "11px" });
+                    geo.buatTeks(48, 180, "10 cm", { position: "middle-right", fill: "#475569", fontSize: "11px" });
+                    geo.buatTeks(48, 100, "10 cm", { position: "middle-right", fill: "#475569", fontSize: "11px" });
+
+                    // Label titik sudut
+                    geo.buatTitik(pA, { label: "A", labelPosition: "bottom-left", color: "#1e293b", size: 3 });
+                    geo.buatTitik(pB, { label: "B", labelPosition: "bottom-right", color: "#dc2626", size: 4 });
+                    geo.buatTitik(pE, { label: "E", labelPosition: "middle-left", color: "#1e293b", size: 3 });
+                    geo.buatTitik(pF, { label: "F", labelPosition: "middle-right", color: "#1e293b", size: 3 });
+                    geo.buatTitik(pH, { label: "H", labelPosition: "top-left", color: "#16a34a", size: 4 });
+                    geo.buatTitik(pG, { label: "G", labelPosition: "top-right", color: "#1e293b", size: 3 });
+                }
+            }
+
+            renderDiagrams();
+        });
+    </script>
+
+    <!-- Script Math Blog Otomatis (Navigasi Level, Penomoran, Toggle Solusi) -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

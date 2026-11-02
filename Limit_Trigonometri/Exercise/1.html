@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Limit Trigonometri</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Limit Trigonometri</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{\cos 3x-\cos x}{\tan^2 2x}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(1\)</li>
+                    <li>\(-\dfrac{1}{2}\)</li>
+                    <li>\(-1\)</li>
+                    <li>\(\dfrac{1}{2}\)</li>
+                    <li>\(3\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan rumus selisih kosinus \(\cos A - \cos B = -2\sin\left(\dfrac{A+B}{2}\right)\sin\left(\dfrac{A-B}{2}\right)\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{\cos 3x-\cos x}{\tan^2 2x} &= \lim_{x\to0}\dfrac{-2\sin\left(\dfrac{3x+x}{2}\right)\sin\left(\dfrac{3x-x}{2}\right)}{\tan^2 2x}\\[3.7pt]
+                    &= \lim_{x\to0}\dfrac{-2\sin 2x\sin x}{\tan^2 2x}\\[3.7pt]
+                    &= -2\cdot\lim_{x\to0}\left(\dfrac{\sin 2x}{\tan 2x}\cdot\dfrac{\sin x}{\tan 2x}\right)\\[3.7pt]
+                    &= -2\cdot\left(\dfrac{2}{2}\right)\cdot\left(\dfrac{1}{2}\right) = -1
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to0}\dfrac{\cos 3x-\cos x}{\tan^2 2x}=-1\).<br><b>Jawaban: C</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{1-\cos x}{\sin x}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(0\)</li>
+                    <li>\(\dfrac{1}{4}\)</li>
+                    <li>\(\dfrac{1}{2}\)</li>
+                    <li>\(1\)</li>
+                    <li>\(2\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Cara 1: Mengalikan dengan Sekawan</strong></p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{1-\cos x}{\sin x} &= \lim_{x\to0}\dfrac{1-\cos x}{\sin x}\cdot\dfrac{1+\cos x}{1+\cos x}\\[3.7pt]
+                    &= \lim_{x\to0}\dfrac{1-\cos^2 x}{\sin x(1+\cos x)}\\[3.7pt]
+                    &= \lim_{x\to0}\dfrac{\sin^2 x}{\sin x(1+\cos x)}\\[3.7pt]
+                    &= \lim_{x\to0}\dfrac{\sin x}{1+\cos x}\\[3.7pt]
+                    &= \dfrac{\sin 0}{1+\cos 0} = \dfrac{0}{1+1} = 0
+                    \end{aligned}
+                    \]
+
+                    <p><strong>Cara 2: Sudut Paruh</strong></p>
+                    \[
+                    \lim_{x\to0}\dfrac{2\sin^2\left(\frac{1}{2}x\right)}{2\sin\left(\frac{1}{2}x\right)\cos\left(\frac{1}{2}x\right)} = \lim_{x\to0}\tan\left(\frac{1}{2}x\right) = 0
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to0}\dfrac{1-\cos x}{\sin x}=0\).<br><b>Jawaban: A</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari:
+                    \[\lim_{x\to0}\dfrac{2\sin^2\left(\frac{1}{2}x\right)}{x\tan x}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(-2\)</li>
+                    <li>\(-1\)</li>
+                    <li>\(-\dfrac{1}{2}\)</li>
+                    <li>\(\dfrac{1}{2}\)</li>
+                    <li>\(1\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan sifat dasar limit trigonometri \(\lim_{x\to0}\dfrac{\sin ax}{x} = a\) dan \(\lim_{x\to0}\dfrac{\sin ax}{\tan bx} = \dfrac{a}{b}\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{2\sin^2\left(\frac{1}{2}x\right)}{x\tan x} &= 2\cdot\lim_{x\to0}\left(\dfrac{\sin\left(\frac{1}{2}x\right)}{x}\cdot\dfrac{\sin\left(\frac{1}{2}x\right)}{\tan x}\right)\\[3.7pt]
+                    &= 2\cdot\left(\dfrac{1}{2}\right)\cdot\left(\dfrac{1}{2}\right)\\[3.7pt]
+                    &= \dfrac{1}{2}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(\dfrac{1}{2}\).<br><b>Jawaban: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari:
+                    \[\lim_{x\to-2}\dfrac{\left(x^2-4\right)\tan(x+2)}{\sin^2(x+2)}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(-4\)</li>
+                    <li>\(-3\)</li>
+                    <li>\(0\)</li>
+                    <li>\(4\)</li>
+                    <li>\(\infty\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorkan \(x^2 - 4 = (x - 2)(x + 2)\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to-2}\dfrac{\left(x^2-4\right)\tan(x+2)}{\sin^2(x+2)} &= \lim_{x\to-2}\left[(x-2)\cdot\dfrac{x+2}{\sin(x+2)}\cdot\dfrac{\tan(x+2)}{\sin(x+2)}\right]
+                    \end{aligned}
+                    \]
+                    Misalkan \(u = x + 2\), saat \(x \to -2\) maka \(u \to 0\):
+                    \[
+                    \begin{aligned}
+                    &= (-2 - 2)\cdot\left(\lim_{u\to0}\dfrac{u}{\sin u}\right)\cdot\left(\lim_{u\to0}\dfrac{\tan u}{\sin u}\right)\\[3.7pt]
+                    &= (-4)\cdot 1 \cdot 1 = -4
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(-4\).<br><b>Jawaban: A</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{\sqrt{1+\tan x}-\sqrt{1+\sin x}}{x^3}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kalikan pembilang dan penyebut dengan bentuk sekawan dari pembilang:</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{\sqrt{1+\tan x}-\sqrt{1+\sin x}}{x^3} &= \lim_{x\to0}\dfrac{(1+\tan x)-(1+\sin x)}{x^3\left(\sqrt{1+\tan x}+\sqrt{1+\sin x}\right)}\\[3.7pt]
+                    &= \lim_{x\to0}\dfrac{\tan x - \sin x}{x^3\left(\sqrt{1+\tan x}+\sqrt{1+\sin x}\right)}
+                    \end{aligned}
+                    \]
+                    Ubah \(\tan x - \sin x = \tan x(1 - \cos x) = \tan x \cdot 2\sin^2\left(\frac{1}{2}x\right)\):
+                    \[
+                    \begin{aligned}
+                    &= \lim_{x\to0}\dfrac{\tan x\cdot 2\sin^2\left(\frac{1}{2}x\right)}{x^3}\cdot\lim_{x\to0}\dfrac{1}{\sqrt{1+\tan x}+\sqrt{1+\sin x}}\\[3.7pt]
+                    &= \left(1 \cdot 2\left(\dfrac{1}{2}\right)^2\right)\cdot\dfrac{1}{\sqrt{1+0}+\sqrt{1+0}}\\[3.7pt]
+                    &= \left(2\cdot\dfrac{1}{4}\right)\cdot\dfrac{1}{2}\\[3.7pt]
+                    &= \dfrac{1}{2}\cdot\dfrac{1}{2} = \dfrac{1}{4}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to0}\dfrac{\sqrt{1+\tan x}-\sqrt{1+\sin x}}{x^3}=\dfrac{1}{4}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to2}\dfrac{\sin(2x-4)}{2-\sqrt{6-x}}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(-8\)</li>
+                    <li>\(-2\)</li>
+                    <li>\(0\)</li>
+                    <li>\(2\)</li>
+                    <li>\(8\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Cara 1: Mengalikan dengan Sekawan</strong></p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to2}\dfrac{\sin(2x-4)}{2-\sqrt{6-x}} &= \lim_{x\to2}\dfrac{\sin 2(x-2)}{2-\sqrt{6-x}}\cdot\dfrac{2+\sqrt{6-x}}{2+\sqrt{6-x}}\\[3.7pt]
+                    &= \lim_{x\to2}\dfrac{\sin 2(x-2)\left(2+\sqrt{6-x}\right)}{4-(6-x)}\\[3.7pt]
+                    &= \lim_{x\to2}\dfrac{\sin 2(x-2)\left(2+\sqrt{6-x}\right)}{x-2}\\[3.7pt]
+                    &= \lim_{x\to2}\dfrac{\sin 2(x-2)}{x-2}\cdot\left(2+\sqrt{6-x}\right)\\[3.7pt]
+                    &= 2\cdot\left(2+\sqrt{6-2}\right) = 2(2+2) = 8
+                    \end{aligned}
+                    \]
+
+                    <p><strong>Cara 2: Aturan L'Hôpital</strong></p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to2}\dfrac{2\cos(2x-4)}{-\dfrac{-1}{2\sqrt{6-x}}} &= \lim_{x\to2}4\cos(2x-4)\sqrt{6-x}\\[3.7pt]
+                    &= 4\cos(0)\sqrt{4} = 4(1)(2) = 8
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(8\).<br><b>Jawaban: E</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to0}\dfrac{\tan 5x-\tan 3x-\tan 2x}{x^3}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://chat.whatsapp.com/HIUpnicy1VA0lrtkiARqRd" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan rumus pengurangan tangen \(\tan(A - B) = \dfrac{\tan A - \tan B}{1 + \tan A\tan B}\) dengan \(A = 5x\) dan \(B = 3x\):</p>
+                    \[
+                    \begin{aligned}
+                    \tan(5x - 3x) &= \dfrac{\tan 5x - \tan 3x}{1 + \tan 5x\tan 3x}\\[3.7pt]
+                    \tan 2x(1 + \tan 5x\tan 3x) &= \tan 5x - \tan 3x\\[3.7pt]
+                    \tan 5x - \tan 3x - \tan 2x &= \tan 2x\tan 3x\tan 5x
+                    \end{aligned}
+                    \]
+                    Substitusikan kembali ke bentuk limit:
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to0}\dfrac{\tan 5x-\tan 3x-\tan 2x}{x^3} &= \lim_{x\to0}\dfrac{\tan 2x\tan 3x\tan 5x}{x^3}\\[3.7pt]
+                    &= \left(\lim_{x\to0}\dfrac{\tan 2x}{x}\right)\cdot\left(\lim_{x\to0}\dfrac{\tan 3x}{x}\right)\cdot\left(\lim_{x\to0}\dfrac{\tan 5x}{x}\right)\\[3.7pt]
+                    &= 2 \cdot 3 \cdot 5 = 30
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, \(\displaystyle\lim_{x\to0}\dfrac{\tan 5x-\tan 3x-\tan 2x}{x^3}=30\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to-1}\dfrac{\sin(2x+2)}{\sqrt{3x+4}-\sqrt{x+2}}=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(\dfrac{1}{2}\)</li>
+                    <li>\(1\)</li>
+                    <li>\(2\)</li>
+                    <li>\(4\)</li>
+                    <li>\(6\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kalikan penyebut dengan bentuk sekawannya:</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to-1}\dfrac{\sin 2(x+1)}{\sqrt{3x+4}-\sqrt{x+2}} &= \lim_{x\to-1}\dfrac{\sin 2(x+1)}{\sqrt{3x+4}-\sqrt{x+2}}\cdot\dfrac{\sqrt{3x+4}+\sqrt{x+2}}{\sqrt{3x+4}+\sqrt{x+2}}\\[3.7pt]
+                    &= \lim_{x\to-1}\dfrac{\sin 2(x+1)\left(\sqrt{3x+4}+\sqrt{x+2}\right)}{(3x+4)-(x+2)}\\[3.7pt]
+                    &= \lim_{x\to-1}\dfrac{\sin 2(x+1)\left(\sqrt{3x+4}+\sqrt{x+2}\right)}{2x+2}\\[3.7pt]
+                    &= \lim_{x\to-1}\dfrac{\sin 2(x+1)}{2(x+1)}\cdot\left(\sqrt{3x+4}+\sqrt{x+2}\right)\\[3.7pt]
+                    &= 1\cdot\left(\sqrt{3(-1)+4}+\sqrt{-1+2}\right)\\[3.7pt]
+                    &= \sqrt{1}+\sqrt{1} = 2
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(2\).<br><b>Jawaban: C</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \[\lim_{x\to3}\dfrac{\sin\left(\sqrt{x+1}-2\right)}{x-3}=\dots\]
+                </p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/2796" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kalikan pembilang dan penyebut dengan \(\dfrac{\sqrt{x+1}-2}{\sqrt{x+1}-2}\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to3}\dfrac{\sin\left(\sqrt{x+1}-2\right)}{x-3} &= \lim_{x\to3}\left[\dfrac{\sin\left(\sqrt{x+1}-2\right)}{\sqrt{x+1}-2}\cdot\dfrac{\sqrt{x+1}-2}{x-3}\right]\\[3.7pt]
+                    &= 1\cdot\lim_{x\to3}\left[\dfrac{\sqrt{x+1}-2}{x-3}\cdot\dfrac{\sqrt{x+1}+2}{\sqrt{x+1}+2}\right]\\[3.7pt]
+                    &= \lim_{x\to3}\dfrac{(x+1)-4}{(x-3)\left(\sqrt{x+1}+2\right)}\\[3.7pt]
+                    &= \lim_{x\to3}\dfrac{x-3}{(x-3)\left(\sqrt{x+1}+2\right)}\\[3.7pt]
+                    &= \dfrac{1}{\sqrt{3+1}+2} = \dfrac{1}{2+2} = \dfrac{1}{4}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(\dfrac{1}{4}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari:
+                    \[\lim_{x\to\pi}\left(\sin x+\cos x\right)=\dots\]
+                </p>
+                <ol class="pilgan">
+                    <li>\(-1\)</li>
+                    <li>\(1\)</li>
+                    <li>\(-2\)</li>
+                    <li>\(0\)</li>
+                    <li>\(2\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan teknik substitusi langsung karena fungsi trigonometri kontinu pada titik \(x = \pi\):</p>
+                    \[
+                    \begin{aligned}
+                    \lim_{x\to\pi}(\sin x + \cos x) &= \sin\pi + \cos\pi\\[3.7pt]
+                    &= 0 + (-1) = -1
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, hasilnya adalah \(-1\).<br><b>Jawaban: A</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <!-- Script Math Blog Otomatis (Navigasi Level, Penomoran, Toggle Solusi) -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

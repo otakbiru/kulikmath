@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - KPK (Kelipatan Persekutuan Terkecil)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">KPK (Kelipatan Persekutuan Terkecil)</span>
+            </p>
+            <!-- Tombol Tingkat dirender otomatis oleh script.js -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diberikan dua bilangan asli \(a\) dan \(b\) dengan \(a < b\). Diketahui bahwa: \[a + b=96 \quad
+                        \text{dan} \quad \text{KPK}(a, b)=180\] Nilai dari \(b - a\) adalah ....</p>
+                        <div class="opsi-wrapper">
+                            <ol class="pilgan" type="A">
+                                <li>\(12\)</li>
+                                <li>\(18\)</li>
+                                <li>\(24\)</li>
+                                <li>\(30\)</li>
+                                <li>\(36\)</li>
+                            </ol>
+                        </div>
+            </div>
+            <div class="soal-sumber">HOTS / Olimpiade Matematika</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Langkah 1: Memodelkan Masalah dengan Sifat FPB dan KPK</strong></p>
+                    <p>Misalkan \(d = \text{FPB}(a, b)\). Maka bilangan \(a\) dan \(b\) dapat dinyatakan sebagai:
+                        \[a = dx \quad \text{dan} \quad b = dy\]
+                        dengan syarat \(x\) dan \(y\) adalah bilangan asli yang saling prima (\(\text{FPB}(x, y) = 1\))
+                        serta \(x < y\).</p>
+                            <p>Berdasarkan sifat FPB dan KPK:
+                                \[\text{KPK}(a, b) = dxy\]
+                                Dari informasi pada soal:
+                            <ol>
+                                <li>\(a + b = d(x + y) = 96\) ...(Persamaan 1)</li>
+                                <li>\(\text{KPK}(a, b) = dxy = 180\) ...(Persamaan 2)</li>
+                            </ol>
+                    </p>
+
+                    <p><strong>Langkah 2: Mengeliminasi Nilai \(d\)</strong></p>
+                    <p>Bagi Persamaan 2 dengan Persamaan 1:
+                        \[\frac{dxy}{d(x + y)} = \frac{180}{96}\]
+                        Sederhanakan pecahan dengan membagi pembilang dan penyebut dengan \(12\):
+                        \[\frac{xy}{x + y} = \frac{15}{8}\]
+                        Lakukan perkalian silang:
+                        \[8xy = 15(x + y)\]
+                        \[8xy - 15x - 15y = 0\]
+                    </p>
+
+                    <p><strong>Langkah 3: Mengubah ke Persamaan Diophantine Faktorisasi</strong></p>
+                    <p>Kalikan kedua ruas dengan \(8\):
+                        \[64xy - 120x - 120y = 0\]
+                        Tambahkan \(15^2 = 225\) pada kedua ruas untuk membentuk pemfaktoran sempurna:
+                        \[64xy - 120x - 120y + 225 = 225\]
+                        \[(8x - 15)(8y - 15) = 225\]
+                    </p>
+
+                    <p><strong>Langkah 4: Menganalisis Pasangan Faktor dari \(225\)</strong></p>
+                    <p>Faktorisasi prima dari \(225\) adalah \(225 = 3^2 \times 5^2\).<br>
+                        Karena \(x < y\), maka \((8x - 15) < (8y - 15)\). Pasangan faktor positif \((u, v)\) dengan \(u
+                            \times v=225\) dan \(u < v\) adalah: <ul>
+                            <li>\(u = 1, v = 225 \implies 8x = 1 + 15 = 16 \implies x = 2\); \(8y = 225 + 15 = 240
+                                \implies y = 30\). Namun, \(\text{FPB}(2, 30) = 2 \neq 1\) (tidak saling prima,
+                                ditolak).</li>
+                            <li>\(u = 3, v = 75 \implies 8x = 3 + 15 = 18\) (bukan kelipatan \(8\)).</li>
+                            <li>\(u = 5, v = 45 \implies 8x = 5 + 15 = 20\) (bukan kelipatan \(8\)).</li>
+                            <li>\(u = 9, v = 25 \implies 8x = 9 + 15 = 24 \implies x = 3\); \(8y = 25 + 15 = 40 \implies
+                                y = 5\). Karena \(\text{FPB}(3, 5) = 1\) (saling prima, memenuhi!).</li>
+                            </ul>
+                            Diperoleh pasangan yang memenuhi adalah \(x = 3\) dan \(y = 5\).
+                    </p>
+
+                    <p><strong>Langkah 5: Menentukan Nilai \(d\), \(a\), dan \(b\)</strong></p>
+                    <p>Substitusikan \(x = 3\) dan \(y = 5\) ke Persamaan 1:
+                        \[d(x + y) = 96 \implies d(3 + 5) = 96 \implies 8d = 96 \implies d = 12\]
+                        Maka nilai \(a\) dan \(b\) adalah:
+                        \[a = dx = 12 \times 3 = 36\]
+                        \[b = dy = 12 \times 5 = 60\]
+                        Periksa: \(a + b = 36 + 60 = 96\) dan \(\text{KPK}(36, 60) = 180\) (benar).
+                    </p>
+
+                    <p><strong>Langkah 6: Menghitung Nilai \(b - a\)</strong></p>
+                    <p>
+                        \[b - a = 60 - 36 = 24\]
+                    </p>
+                    <div class="kesimpulan">Jadi, nilai dari \(b - a\) adalah <strong>\(24\)</strong> (Pilihan C).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <!--
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-2 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-2 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 3 -->
+        <!--
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-3 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-3 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 4 -->
+        <!--
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-4 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-4 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 5 -->
+        <!--
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-5 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-5 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 6 -->
+        <!--
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-6 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-6 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 7 -->
+        <!--
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-7 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-7 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 8 -->
+        <!--
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-8 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-8 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 9 -->
+        <!--
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-9 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-9 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 10 -->
+        <!--
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-10 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-10 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

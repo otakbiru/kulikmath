@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - KPK (Kelipatan Persekutuan Terkecil)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">KPK (Kelipatan Persekutuan Terkecil)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Kelipatan, Kelipatan Persekutuan, dan KPK</h2>
+            <p>
+                Untuk memahami konsep <strong>Kelipatan Persekutuan Terkecil (KPK)</strong>—atau dalam literatur internasional disebut <em>Least Common Multiple ($\text{LCM}$)</em>—perhatikan tiga pengertian berjenjang berikut:
+            </p>
+            <ul>
+                <li>
+                    <strong>Kelipatan Suatu Bilangan:</strong> Hasil kali bilangan asli tersebut dengan bilangan asli berurutan $1, 2, 3, 4, \dots$.<br>
+                    Contoh kelipatan positif dari $4$ adalah $\{4, 8, 12, 16, 20, 24, \dots\}$ dan kelipatan positif dari $6$ adalah $\{6, 12, 18, 24, 30, \dots\}$.
+                </li>
+                <li>
+                    <strong>Kelipatan Persekutuan:</strong> Bilangan-bilangan yang menjadi anggota himpunan kelipatan dari dua bilangan (atau lebih) secara bersamaan.<br>
+                    Contoh kelipatan persekutuan dari $4$ dan $6$ adalah $\{12, 24, 36, 48, \dots\}$.
+                </li>
+                <li>
+                    <strong>Kelipatan Persekutuan Terkecil (KPK):</strong> Bilangan bulat positif <strong>paling kecil</strong> yang habis dibagi oleh masing-masing bilangan tersebut:
+                    $$\text{KPK}(a, b) = \min \{m \in \mathbb{N} \mid a \mid m \text{ dan } b \mid m\}$$
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Visualisasi Garis Bilangan (Lompatan Kelipatan):</strong><br>
+                        Perhatikan lompatan kelipatan $4$ (hijau teal) dan lompatan kelipatan $6$ (kuning mustard) pada garis bilangan di samping.
+                    </p>
+                    <p>
+                        Kedua lompatan tersebut bertemu bersama-sama pada titik $12, 24, 36,$ dan seterusnya. Titik pertemuan positif <strong>pertama</strong> terjadi di angka $12$, sehingga $\text{KPK}(4, 6) = 12$. Seluruh kelipatan persekutuan berikutnya pasti merupakan kelipatan dari KPK-nya ($12k$).
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-kpk-jumps" style="width: 100%; max-width: 360px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Tiga Metode Menentukan KPK</h2>
+            <p>
+                Terdapat tiga cara utama yang efektif digunakan untuk mencari nilai KPK sesuai dengan karakteristik angka pada soal:
+            </p>
+            <ol>
+                <li>
+                    <strong>Metode Faktorisasi Prima (Pohon Faktor):</strong><br>
+                    Ubah setiap bilangan ke dalam bentuk faktorisasi prima kanonik $n = p_1^{a_1} p_2^{a_2} \cdots p_k^{a_k}$.
+                    <ul>
+                        <li><strong>Aturan Emas KPK:</strong> Kalikan <strong>semua faktor prima</strong> yang ada (baik yang sama maupun yang tidak sama), dan jika ada faktor prima yang sama, pilih yang memiliki <strong>pangkat terbesar</strong>.</li>
+                        <li>Secara matematis, jika $A = \prod p_i^{a_i}$ dan $B = \prod p_i^{b_i}$, maka:
+                            $$\text{KPK}(A, B) = \prod p_i^{\max(a_i, b_i)}$$
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Metode Tabel Pembagian Bersama (Sengkedan):</strong><br>
+                    Bagi bilangan-bilangan tersebut secara bersama-sama dengan bilangan prima terkecil hingga seluruh baris terakhir bernilai $1$. Nilai KPK adalah hasil kali dari seluruh pembagi prima di kolom kiri.
+                </li>
+                <li>
+                    <strong>Metode Hubungan FPB & Algoritma Euclid (Untuk Angka Besar):</strong><br>
+                    Jika angka pada soal berukuran besar dan sulit difaktorkan, cari terlebih dahulu $\text{FPB}(a, b)$ menggunakan Algoritma Euclid, lalu gunakan identitas:
+                    $$\text{KPK}(a, b) = \frac{a \times b}{\text{FPB}(a, b)}$$
+                </li>
+            </ol>
+
+            <p>
+                <strong>Contoh Perbandingan Faktorisasi Prima ($A = 72$ dan $B = 90$):</strong>
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bilangan</th>
+                            <th>Faktorisasi Prima</th>
+                            <th>Pangkat Faktor $2$</th>
+                            <th>Pangkat Faktor $3$</th>
+                            <th>Pangkat Faktor $5$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$A = 72$</td>
+                            <td>$2^3 \cdot 3^2$</td>
+                            <td>$2^3$</td>
+                            <td>$3^2$</td>
+                            <td>$5^0$</td>
+                        </tr>
+                        <tr>
+                            <td>$B = 90$</td>
+                            <td>$2^1 \cdot 3^2 \cdot 5^1$</td>
+                            <td>$2^1$</td>
+                            <td>$3^2$</td>
+                            <td>$5^1$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ambil $\max$ (KPK)</strong></td>
+                            <td><strong>$2^3 \cdot 3^2 \cdot 5^1 = 360$</strong></td>
+                            <td><strong>$2^3$</strong></td>
+                            <td><strong>$3^2$</strong></td>
+                            <td><strong>$5^1$</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Diagram Venn Faktor Prima & Sifat-Sifat Penting KPK</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Hubungan antara faktorisasi prima dari dua bilangan $A$ dan $B$, FPB, serta KPK dapat divisualisasikan dengan sangat jelas menggunakan <strong>Diagram Venn Faktor Prima</strong> (contoh untuk $A = 24 = 2^3 \cdot 3$ dan $B = 36 = 2^2 \cdot 3^2$):
+                    </p>
+                    <ul>
+                        <li><strong>Daerah Irisan Tengah ($A \cap B$):</strong> Berisi faktor prima persekutuan ($2 \times 2 \times 3 = 12$), yang merupakan nilai <strong>$\text{FPB}(24, 36) = 12$</strong>.</li>
+                        <li><strong>Daerah Gabungan Seluruhnya ($A \cup B$):</strong> Hasil kali seluruh angka di dalam kedua lingkaran ($2 \times 12 \times 3 = 72$) merupakan nilai <strong>$\text{KPK}(24, 36) = 72$</strong>.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-venn-kpk" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <p>
+                <strong>Sifat-Sifat Aljabar KPK yang Sering Diujikan di SNBT & Olimpiade:</strong>
+            </p>
+            <ol>
+                <li>
+                    <strong>Hubungan Fundamental FPB dan KPK (Khusus 2 Bilangan):</strong><br>
+                    Untuk sembarang dua bilangan asli $a$ dan $b$, hasil kali KPK dan FPB-nya selalu sama dengan hasil kali kedua bilangan tersebut:
+                    $$\text{KPK}(a, b) \times \text{FPB}(a, b) = a \times b$$
+                    <em>Peringatan:</em> Rumus ini secara umum <strong>tidak berlaku</strong> untuk 3 bilangan ($\text{KPK}(a,b,c) \cdot \text{FPB}(a,b,c) \neq abc$, kecuali ketiganya saling prima pasang demi pasang).
+                </li>
+                <li>
+                    <strong>Representasi Saling Prima (Koprima) dari FPB & KPK:</strong><br>
+                    Misalkan $\text{FPB}(a, b) = d$. Maka kita selalu dapat memisalkan:
+                    $$a = d \cdot x \quad \text{dan} \quad b = d \cdot y \quad \text{dengan } \text{FPB}(x, y) = 1 \text{ (saling prima)}$$
+                    Sehingga rumus KPK-nya menjadi sangat sederhana:
+                    $$\text{KPK}(a, b) = d \cdot x \cdot y$$
+                    <em>(Teknik pemisalan $a = dx$ dan $b = dy$ ini adalah senjata paling ampuh untuk menyelesaikan soal mencari pasangan bilangan jika diketahui nilai FPB dan KPK-nya!).</em>
+                </li>
+                <li>
+                    <strong>KPK dari Dua Bilangan yang Saling Prima ($\text{FPB}(a, b) = 1$):</strong><br>
+                    Jika $a$ dan $b$ saling prima (contohnya dua bilangan asli berurutan $n$ dan $n+1$, atau dua bilangan prima berbeda), maka KPK-nya adalah hasil kali keduanya langsung:
+                    $$\text{FPB}(a, b) = 1 \implies \text{KPK}(a, b) = a \times b$$
+                </li>
+                <li>
+                    <strong>Sifat Kelipatan ($a \mid b$):</strong> Jika $a$ habis membagi $b$, maka $\text{FPB}(a, b) = a$ dan $\text{KPK}(a, b) = b$.
+                </li>
+                <li>
+                    <strong>Sifat Distributif Perkalian Konstanta ($k > 0$):</strong>
+                    $$\text{KPK}(ka, kb) = k \cdot \text{KPK}(a, b)$$
+                </li>
+            </ol>
+
+            <div class="kesimpulan">
+                💡 Rumus KPK dan FPB untuk Bilangan Pecahan:<br>
+                Jika diberikan beberapa pecahan dalam <strong>bentuk paling sederhana</strong> $\frac{a}{b}, \frac{c}{d}, \frac{e}{f}$ (masing-masing pembilang dan penyebutnya sudah saling prima), maka:<br>
+                $$\text{KPK}\left(\frac{a}{b}, \frac{c}{d}, \frac{e}{f}\right) = \frac{\text{KPK}(a, c, e)}{\text{FPB}(b, d, f)} \qquad \text{dan} \qquad \text{FPB}\left(\frac{a}{b}, \frac{c}{d}, \frac{e}{f}\right) = \frac{\text{FPB}(a, c, e)}{\text{KPK}(b, d, f)}$$
+            </div>
+
+            <h2>4. Aplikasi KPK pada Soal Cerita & Pembagian Bersisa</h2>
+            <p>
+                <strong>a. Soal Cerita Siklus / Kejadian Berulang Bersama-sama:</strong><br>
+                Jika suatu soal menanyakan <em>"kapan mereka bertemu bersama lagi"</em>, <em>"kapan lampu menyala bersamaan"</em>, atau <em>"siklus hari pasaran (Senin-Minggu / Pon-Wage)"</em>, gunakanlah <strong>KPK dari masing-masing periode waktunya</strong>:
+                $$\text{Waktu Bertemu Lagi} = \text{Waktu Awal} + \text{KPK}(T_1, T_2, T_3)$$
+            </p>
+            <p>
+                <strong>b. Aplikasi Teori Bilangan (Pembagian Bersisa):</strong><br>
+                KPK sangat sering digunakan untuk menentukan bilangan bulat positif terkecil $N$ yang memenuhi syarat sisa pembagian tertentu oleh pembagi $d_1, d_2, d_3$:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipe Soal Pembagian Bersisa</th>
+                            <th>Pola Sisa</th>
+                            <th>Rumus Umum Bilangan $N$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Tipe 1: Sisa Pembagian Sama ($r$)</strong><br>Dibagi $d_1, d_2, d_3$ selalu bersisa $r$.</td>
+                            <td>$N - r$ habis dibagi $d_1, d_2, d_3$</td>
+                            <td>$$N = k \cdot \text{KPK}(d_1, d_2, d_3) + r$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Tipe 2: Selisih Pembagi & Sisa Konstan ($c$)</strong><br>Dibagi $d_1$ sisa $r_1$, dibagi $d_2$ sisa $r_2$, dst.</td>
+                            <td>$d_1 - r_1 = d_2 - r_2 = c$<br>($N + c$ habis dibagi $d_i$)</td>
+                            <td>$$N = k \cdot \text{KPK}(d_1, d_2, d_3) - c$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Tiga buah lampu hias menyala secara berkala. Lampu merah menyala setiap $12$ detik, lampu kuning setiap $15$ detik, dan lampu hijau setiap $20$ detik. Jika ketiga lampu menyala secara bersamaan untuk pertama kalinya pada pukul $19.14.00$, maka ketiga lampu tersebut akan menyala bersamaan untuk <strong>keempat kalinya</strong> pada pukul ....
+                <ol class="pilgan">
+                    <li>$19.16.00$</li>
+                    <li>$19.17.00$</li>
+                    <li>$19.18.00$</li>
+                    <li>$19.19.00$</li>
+                    <li>$19.20.00$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. <strong>Cari KPK dari periode ketiga lampu ($12, 15,$ dan $20$ detik):</strong>
+                </p>
+                <ul>
+                    <li>$12 = 2^2 \cdot 3$</li>
+                    <li>$15 = 3 \cdot 5$</li>
+                    <li>$20 = 2^2 \cdot 5$</li>
+                </ul>
+                <p>
+                    Maka $\text{KPK}(12, 15, 20) = 2^2 \cdot 3 \cdot 5 = 4 \times 15 = 60\text{ detik} = 1\text{ menit}$. Artinya, ketiga lampu menyala bersamaan setiap $1$ menit sekali.
+                </p>
+                <p>
+                    2. <strong>Hitung waktu menyala bersamaan untuk keempat kalinya:</strong><br>
+                    Hati-hati! Karena pada pukul $19.14.00$ sudah dihitung sebagai nyala bersamaan yang <em>pertama</em>, maka dari kali ke-$1$ menuju kali ke-$4$ terdapat $(4 - 1) = 3$ kali selang waktu KPK:
+                    $$\text{Tambahan Waktu} = 3 \times 1\text{ menit} = 3\text{ menit}$$
+                    $$\text{Waktu Keempat} = 19.14.00 + 00.03.00 = 19.17.00$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, ketiga lampu menyala bersamaan untuk keempat kalinya pada pukul $19.17.00$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Diketahui dua bilangan bulat positif $a$ dan $b$ memiliki $\text{FPB}(a, b) = 15$ dan $\text{KPK}(a, b) = 180$. Jika $a$ tidak habis membagi $b$ dan $b$ tidak habis membagi $a$, maka nilai dari $a + b$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$75$</li>
+                    <li>$90$</li>
+                    <li>$105$</li>
+                    <li>$120$</li>
+                    <li>$195$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Karena $\text{FPB}(a, b) = d = 15$, kita misalkan kedua bilangan tersebut sebagai:
+                    $$a = 15x \quad \text{dan} \quad b = 15y \quad \text{dengan } \text{FPB}(x, y) = 1$$
+                </p>
+                <p>
+                    2. Gunakan rumus $\text{KPK}(a, b) = d \cdot x \cdot y = 180$:
+                    $$15 \cdot x \cdot y = 180 \implies x \cdot y = \frac{180}{15} = 12$$
+                </p>
+                <p>
+                    3. Cari pasangan bilangan asli $(x, y)$ yang hasil kalinya $12$ dan <strong>saling prima ($\text{FPB}(x, y) = 1$)</strong>:
+                </p>
+                <ul>
+                    <li>Pasangan $(1, 12) \implies \text{FPB}(1, 12) = 1$. Diperoleh $a = 15(1) = 15$ dan $b = 15(12) = 180$. Namun pada kasus ini $15$ habis membagi $180$ (tidak memenuhi syarat soal).</li>
+                    <li>Pasangan $(2, 6) \implies \text{FPB}(2, 6) = 2 \neq 1$ (tidak saling prima, gugur).</li>
+                    <li>Pasangan $(3, 4) \implies \text{FPB}(3, 4) = 1$. Diperoleh $a = 15(3) = 45$ dan $b = 15(4) = 60$. Keduanya tidak saling membagi!</li>
+                </ul>
+                <p>
+                    4. Dengan demikian, pasangan bilangannya adalah $45$ dan $60$, sehingga nilai dari $a + b = 45 + 60 = 105$.
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $a + b$ adalah $105$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Suatu bilangan bulat positif terkecil $N$ apabila dibagi $6$ bersisa $4$, dibagi $8$ bersisa $6$, dan dibagi $15$ bersisa $13$. Jumlah digit-digit dari bilangan $N$ tersebut adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$8$</li>
+                    <li>$9$</li>
+                    <li>$10$</li>
+                    <li>$11$</li>
+                    <li>$12$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Perhatikan selisih antara masing-masing pembagi dengan sisanya:
+                </p>
+                <ul>
+                    <li>Dibagi $6$ bersisa $4 \implies \text{selisih} = 6 - 4 = 2$</li>
+                    <li>Dibagi $8$ bersisa $6 \implies \text{selisih} = 8 - 6 = 2$</li>
+                    <li>Dibagi $15$ bersisa $13 \implies \text{selisih} = 15 - 13 = 2$</li>
+                </ul>
+                <p>
+                    Karena selisihnya konstan sama dengan $c = 2$, artinya jika $N$ ditambah $2$, maka $(N + 2)$ habis dibagi oleh $6, 8,$ maupun $15$.
+                </p>
+                <p>
+                    2. Cari $\text{KPK}(6, 8, 15)$:
+                    $$6 = 2 \cdot 3, \quad 8 = 2^3, \quad 15 = 3 \cdot 5$$
+                    $$\text{KPK}(6, 8, 15) = 2^3 \cdot 3 \cdot 5 = 8 \times 15 = 120$$
+                </p>
+                <p>
+                    3. Tentukan bilangan bulat positif terkecil $N$ (ambil $k = 1$):
+                    $$N + 2 = 120 \implies N = 120 - 2 = 118$$
+                    Jumlah digit-digit dari $N = 118$ adalah $1 + 1 + 8 = 10$.
+                </p>
+                <div class="kesimpulan">
+                    Jadi, jumlah digit-digit dari bilangan $N$ adalah $10$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Nilai Kelipatan Persekutuan Terkecil (KPK) dari tiga bilangan pecahan $\frac{4}{9}$, $\frac{6}{15}$, dan $\frac{10}{21}$ adalah ....
+                <ol class="pilgan">
+                    <li>$\frac{20}{3}$</li>
+                    <li>$\frac{40}{3}$</li>
+                    <li>$\frac{60}{3}$</li>
+                    <li>$\frac{20}{9}$</li>
+                    <li>$\frac{120}{7}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. <strong>Wajib sederhanakan setiap pecahan terlebih dahulu!</strong><br>
+                    Perhatikan bahwa $\frac{6}{15}$ belum dalam bentuk paling sederhana (sama-sama dibagi $3$):
+                    $$\frac{4}{9} \text{ (tetap)}, \qquad \frac{6}{15} = \frac{2}{5}, \qquad \frac{10}{21} \text{ (tetap)}$$
+                </p>
+                <p>
+                    2. Gunakan rumus KPK pecahan untuk $\frac{4}{9}, \frac{2}{5},$ dan $\frac{10}{21}$:
+                    $$\text{KPK}\left(\frac{4}{9}, \frac{2}{5}, \frac{10}{21}\right) = \frac{\text{KPK}(4, 2, 10)}{\text{FPB}(9, 5, 21)}$$
+                </p>
+                <p>
+                    3. Hitung KPK pembilang dan FPB penyebutnya:
+                </p>
+                <ul>
+                    <li>Pembilang: $\text{KPK}(4, 2, 10) = 20$</li>
+                    <li>Penyebut: $\text{FPB}(9, 5, 21) = 1$ (karena $5$ prima dan tidak membagi $9$ maupun $21$)</li>
+                </ul>
+                <p>
+                    Dengan demikian, nilai KPK-nya adalah $\frac{20}{1} = 20 = \frac{60}{3}$.
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai KPK dari ketiga pecahan tersebut adalah $20$ atau $\frac{60}{3}$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Garis Bilangan Lompatan Kelipatan 4 dan 6 (KPK = 12) menggunakan GeoSVG.js
+            const containerJumps = document.getElementById("geosvg-kpk-jumps");
+            if (containerJumps && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerJumps, 350, 215, {
+                    viewBox: "0 0 350 215",
+                    clearContainer: true,
+                    title: "Lompatan Kelipatan 4 dan 6 pada Garis Bilangan",
+                    description: "Visualisasi lompatan kelipatan 4 dan kelipatan 6 yang bertemu di titik 12 dan 24"
+                });
+
+                geo1.buatTeks(175, 16, "Lompatan Kelipatan 4 dan 6 (KPK = 12)", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    position: "middle-center"
+                });
+
+                const yAxis = 125;
+                const startX = 20;
+                const totalW = 300; // untuk rentang 0 sampai 24
+                const unit = totalW / 24; // 12.5 px per satuan
+
+                // Garis Bilangan
+                geo1.buatVektor([12, yAxis], [340, yAxis], { stroke: "var(--text-main)", strokeWidth: 1.6 });
+
+                // Busur lompatan kelipatan 4 di ATAS garis bilangan (0 -> 4 -> 8 -> 12 -> 16 -> 20 -> 24)
+                for (let k = 0; k < 6; k++) {
+                    const x1 = startX + (k * 4) * unit;
+                    const x2 = startX + ((k + 1) * 4) * unit;
+                    const midX = (x1 + x2) / 2;
+                    geo1.buatKurvaBezier([[x1, yAxis - 2], [midX, yAxis - 44], [x2, yAxis - 2]], {
+                        stroke: "var(--teal-primary)",
+                        strokeWidth: 2
+                    });
+                    geo1.buatTeks(midX, yAxis - 30, "+4", {
+                        fill: "var(--teal-primary)",
+                        fontSize: "9.5px",
+                        fontWeight: "bold",
+                        position: "middle-center"
+                    });
+                }
+
+                // Busur lompatan kelipatan 6 di BAWAH garis bilangan (0 -> 6 -> 12 -> 18 -> 24)
+                for (let k = 0; k < 4; k++) {
+                    const x1 = startX + (k * 6) * unit;
+                    const x2 = startX + ((k + 1) * 6) * unit;
+                    const midX = (x1 + x2) / 2;
+                    geo1.buatKurvaBezier([[x1, yAxis + 2], [midX, yAxis + 48], [x2, yAxis + 2]], {
+                        stroke: "#d97706",
+                        strokeWidth: 2,
+                        dashed: "4 3"
+                    });
+                    geo1.buatTeks(midX, yAxis + 36, "+6", {
+                        fill: "#d97706",
+                        fontSize: "9.5px",
+                        fontWeight: "bold",
+                        position: "middle-center"
+                    });
+                }
+
+                // Tanda angka penting pada garis bilangan
+                [0, 4, 6, 8, 12, 16, 18, 20, 24].forEach(val => {
+                    const x = startX + val * unit;
+                    const isCommon = val === 12 || val === 24;
+
+                    geo1.buatSegmen(x, yAxis - 5, x, yAxis + 5, {
+                        stroke: isCommon ? "#ef4444" : "var(--text-main)",
+                        strokeWidth: isCommon ? 2 : 1.3
+                    });
+
+                    if (isCommon) {
+                        geo1.buatTitik(x, yAxis, {
+                            size: 5,
+                            color: "#ef4444"
+                        });
+                        // Kotak highlight di atas titik pertemuan
+                        geo1.buatPersegiPanjang(x - 24, val === 12 ? 36 : 42, 48, 20, {
+                            radius: 5,
+                            fill: "rgba(239, 68, 68, 0.14)",
+                            stroke: "#ef4444",
+                            strokeWidth: 1.4
+                        });
+                        geo1.buatTeks(x, val === 12 ? 46 : 52, val === 12 ? "KPK=12" : "24", {
+                            fill: "#ef4444",
+                            fontSize: "10px",
+                            fontWeight: "bold",
+                            position: "middle-center"
+                        });
+                    }
+
+                    geo1.buatTeks(x, yAxis + 14, String(val), {
+                        fill: isCommon ? "#ef4444" : "var(--text-main)",
+                        fontSize: "10px",
+                        fontWeight: isCommon ? "bold" : "normal",
+                        position: "middle-center"
+                    });
+                });
+
+                // Legenda singkat di bagian bawah
+                geo1.buatTeks(175, 198, "Atas: Kelipatan 4   |   Bawah: Kelipatan 6   |   Merah: Kelipatan Persekutuan", {
+                    fill: "var(--text-muted)",
+                    fontSize: "9.5px",
+                    position: "middle-center"
+                });
+            }
+
+            // 2. Visualisasi Diagram Venn Faktor Prima dari 24 dan 36 menggunakan GeoSVG.js
+            const containerVenn = document.getElementById("geosvg-venn-kpk");
+            if (containerVenn && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerVenn, 330, 225, {
+                    viewBox: "0 0 330 225",
+                    clearContainer: true,
+                    title: "Diagram Venn Faktor Prima untuk FPB dan KPK",
+                    description: "Diagram Venn faktorisasi prima dari 24 = 2^3 * 3 dan 36 = 2^2 * 3^2 yang memperlihatkan FPB = 12 dan KPK = 72"
+                });
+
+                geo2.buatTeks(165, 16, "Diagram Venn Faktor Prima: 24 dan 36", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    position: "middle-center"
+                });
+
+                const c1 = [122, 108];
+                const c2 = [208, 108];
+                const r = 66;
+
+                // Lingkaran kiri (24) dan kanan (36)
+                geo2.buatLingkaran(c1, r, {
+                    fill: "rgba(13, 148, 136, 0.14)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2
+                });
+                geo2.buatLingkaran(c2, r, {
+                    fill: "rgba(217, 119, 6, 0.14)",
+                    stroke: "#d97706",
+                    strokeWidth: 2
+                });
+
+                // Label himpunan
+                geo2.buatTeks(88, 32, "24 = 2³ · 3", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "11px",
+                    position: "middle-center"
+                });
+                geo2.buatTeks(242, 32, "36 = 2² · 3²", {
+                    fill: "#d97706",
+                    fontWeight: "bold",
+                    fontSize: "11px",
+                    position: "middle-center"
+                });
+
+                // Isi faktor prima di Kiri Saja (sisa faktor 24: 2)
+                geo2.buatPersegi(74, 94, 28, {
+                    radius: 6,
+                    fill: "var(--bg-card)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 1.5
+                });
+                geo2.buatTeks(88, 108, "2", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "14px",
+                    position: "middle-center"
+                });
+
+                // Isi faktor prima di Irisan Tengah (FPB: 2, 2, 3)
+                const midFactors = [
+                    { y: 76, val: "2" },
+                    { y: 108, val: "2" },
+                    { y: 140, val: "3" }
+                ];
+                midFactors.forEach(f => {
+                    geo2.buatPersegi(152, f.y - 13, 26, {
+                        radius: 6,
+                        fill: "var(--bg-card)",
+                        stroke: "var(--text-main)",
+                        strokeWidth: 1.5
+                    });
+                    geo2.buatTeks(165, f.y, f.val, {
+                        fill: "var(--text-main)",
+                        fontWeight: "bold",
+                        fontSize: "13px",
+                        position: "middle-center"
+                    });
+                });
+
+                // Isi faktor prima di Kanan Saja (sisa faktor 36: 3)
+                geo2.buatPersegi(228, 94, 28, {
+                    radius: 6,
+                    fill: "var(--bg-card)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.5
+                });
+                geo2.buatTeks(242, 108, "3", {
+                    fill: "#d97706",
+                    fontWeight: "bold",
+                    fontSize: "14px",
+                    position: "middle-center"
+                });
+
+                // Rangkuman FPB & KPK di bagian bawah
+                geo2.buatPersegiPanjang(18, 184, 294, 34, {
+                    radius: 7,
+                    fill: "var(--bg-subtle)",
+                    stroke: "var(--border-color)",
+                    strokeWidth: 1.2
+                });
+                geo2.buatTeks(165, 195, "Irisan Tengah = FPB = 2 × 2 × 3 = 12", {
+                    fill: "var(--text-main)",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    position: "middle-center"
+                });
+                geo2.buatTeks(165, 210, "Gabungan Semua = KPK = 2 × (2 × 2 × 3) × 3 = 72", {
+                    fill: "var(--teal-primary)",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    position: "middle-center"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Kombinasi dengan Pengulangan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+
+    <!-- Tambahan style khusus halaman ini (tidak mengubah style.css) -->
+    <style>
+        .materi-card h3 {
+            color: var(--teal-primary);
+            margin: 1.25rem 0 0.6rem;
+            font-size: 1.1rem;
+        }
+
+        /* Wadah gambar GeoSVG: warna garis/teks mengikuti Dark Mode lewat currentColor */
+        .geo-box {
+            color: var(--text-main);
+            text-align: center;
+            overflow-x: auto;
+            margin: 1rem 0 0.25rem;
+        }
+
+        .geo-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 1.25rem;
+        }
+
+        .catatan {
+            margin: 1rem 0;
+            padding: 0.75rem 1.1rem;
+            background: var(--bg-subtle);
+            border-left: 4px solid var(--teal-primary);
+            border-radius: 6px;
+        }
+
+        details.contoh {
+            margin: 0.9rem 0 1.4rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-card);
+            overflow-x: auto;
+        }
+
+        details.contoh>summary {
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            font-weight: 700;
+            color: var(--teal-primary);
+            background: var(--bg-subtle);
+        }
+
+        details.contoh>.isi {
+            padding: 0.9rem 1.1rem 0.4rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Kombinasi dengan Pengulangan</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+
+            <!-- ============================================================ -->
+            <h2>1. Pengertian Kombinasi dengan Pengulangan</h2>
+            <p>
+                Pada kombinasi biasa, kita memilih $r$ objek <em>berbeda</em> dari $n$ objek tanpa memperhatikan urutan.
+                Pada <b>kombinasi dengan pengulangan</b> (<i>combination with repetition</i> atau <i>multiset
+                    coefficient</i>), objek yang sama <b>boleh dipilih lebih dari satu kali</b>, tetapi urutan pemilihan
+                tetap <b>tidak diperhatikan</b>.
+            </p>
+            <p>
+                Dengan kata lain, kita menghitung banyaknya cara membentuk <b>himpunan ganda (multiset)</b>
+                beranggotakan $r$ unsur yang diambil dari $n$ jenis objek. Dua pilihan dianggap sama jika banyaknya objek
+                dari setiap jenis sama.
+            </p>
+
+            <h3>Contoh pembuka: memilih es krim</h3>
+            <p>
+                Sebuah kedai menjual 3 rasa es krim: cokelat (A), stroberi (B), dan vanila (C). Anda memesan 2 scoop dan
+                boleh mengambil rasa yang sama dua kali. Urutan scoop tidak penting, sehingga "A lalu B" sama saja dengan
+                "B lalu A". Semua kemungkinan pesanan adalah sebagai berikut.
+            </p>
+            <div class="geo-box" id="geo-es-krim"></div>
+            <p class="caption">Gambar 1. Enam kemungkinan pesanan 2 scoop dari 3 rasa (A = cokelat, B = stroberi, C =
+                vanila).</p>
+            <p>
+                Terdapat <b>6</b> pesanan: AA, AB, AC, BB, BC, CC. Jika pengulangan tidak diperbolehkan, hanya tersisa
+                3 pesanan (AB, AC, BC). Pertanyaannya: adakah rumus untuk menghitung banyaknya tanpa mendaftar satu per
+                satu? Jawabannya ada, dan itulah inti materi ini.
+            </p>
+
+            <!-- ============================================================ -->
+            <h2>2. Membedakan Empat Jenis Pencacahan</h2>
+            <p>
+                Ada dua pertanyaan penentu untuk memilih rumus yang tepat: <b>(1) apakah urutan penting?</b> dan
+                <b>(2) apakah objek boleh berulang?</b>
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Tanpa pengulangan</th>
+                            <th>Dengan pengulangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Urutan penting<br>(permutasi)</th>
+                            <td>$\dfrac{n!}{(n-r)!}$</td>
+                            <td>$n^r$</td>
+                        </tr>
+                        <tr>
+                            <th>Urutan tidak penting<br>(kombinasi)</th>
+                            <td>$\dbinom{n}{r}$</td>
+                            <td>$\dbinom{n+r-1}{r}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Untuk $n = 3$ dan $r = 2$ pada contoh es krim, keempatnya memberikan hasil berikut.</p>
+            <div class="table-wrapper">
+                <table class="table-auto">
+                    <thead>
+                        <tr>
+                            <th>Jenis</th>
+                            <th>Perhitungan</th>
+                            <th>Hasil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Permutasi tanpa pengulangan</td>
+                            <td>$\frac{3!}{1!}$</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Permutasi dengan pengulangan</td>
+                            <td>$3^2$</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Kombinasi tanpa pengulangan</td>
+                            <td>$\binom{3}{2}$</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><b>Kombinasi dengan pengulangan</b></td>
+                            <td>$\binom{4}{2}$</td>
+                            <td><b>6</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="catatan">
+                <b>Perhatian.</b> Pada contoh ini permutasi tanpa pengulangan dan kombinasi dengan pengulangan sama-sama
+                bernilai 6. Itu hanya kebetulan angka. Kedua hitungan menghitung objek yang berbeda: yang pertama
+                menghitung susunan berurutan (AB dan BA dihitung dua kali), yang kedua menghitung pilihan tak berurutan
+                (AA dihitung satu kali).
+            </div>
+
+            <!-- ============================================================ -->
+            <h2>3. Rumus Kombinasi dengan Pengulangan</h2>
+            <p>
+                Banyaknya cara memilih $r$ objek dari $n$ jenis objek yang berbeda, dengan pengulangan
+                diperbolehkan dan urutan tidak diperhatikan, adalah
+            </p>
+            $$ {}_nH_r \;=\; \binom{n+r-1}{r} \;=\; \frac{(n+r-1)!}{r!\,(n-1)!} $$
+            <p>
+                Notasi lain yang sering dijumpai: $H_r^n$, $H(n,r)$, $C(n+r-1,\,r)$, atau
+                $\left(\!\!\dbinom{n}{r}\!\!\right)$. Karena $\binom{n+r-1}{r} = \binom{n+r-1}{n-1}$, kedua bentuk
+                penulisan itu bernilai sama.
+            </p>
+            <p class="kesimpulan">
+                Jadi, ${}_nH_r = \binom{n+r-1}{r}$ dengan $n$ = banyak <i>jenis</i> objek dan $r$ = banyak objek yang
+                <i>dipilih</i>. Perhatikan bahwa $r$ boleh lebih besar dari $n$.
+            </p>
+            <p>
+                Pemeriksaan untuk contoh es krim ($n=3$, $r=2$):
+                ${}_3H_2 = \binom{3+2-1}{2} = \binom{4}{2} = 6$. Sesuai dengan daftar pada Gambar 1.
+            </p>
+
+            <!-- ============================================================ -->
+            <h2>4. Bukti Rumus: Metode Bintang dan Batang</h2>
+            <p>
+                Metode ini disebut <i>stars and bars</i>. Idenya: ubah setiap pilihan menjadi sebuah barisan simbol
+                <b>bintang ★</b> dan <b>batang |</b>.
+            </p>
+            <ul>
+                <li>Setiap bintang ★ mewakili satu objek yang dipilih. Ada $r$ bintang.</li>
+                <li>Batang | memisahkan satu jenis objek dari jenis berikutnya. Untuk $n$ jenis diperlukan
+                    $n-1$ batang.</li>
+                <li>Banyak bintang di antara batang-batang menyatakan banyak objek dari jenis tersebut.</li>
+            </ul>
+            <p>
+                Misalkan $n = 3$ jenis (A, B, C) dan $r = 4$ objek. Tiga contoh pilihan dan kodenya digambarkan
+                berikut.
+            </p>
+            <div class="geo-box" id="geo-bintang-batang"></div>
+            <p class="caption">Gambar 2. Pilihan $(x_1, x_2, x_3)$ dengan $x_1 + x_2 + x_3 = 4$ diubah menjadi susunan
+                4 bintang dan 2 batang.</p>
+
+            <h3>Langkah pembuktian</h3>
+            <ol>
+                <li>
+                    <b>Korespondensi satu-satu.</b> Setiap pilihan $(x_1, x_2, \dots, x_n)$ dengan $x_i \ge 0$ dan
+                    $x_1 + \dots + x_n = r$ berkorespondensi tepat satu dengan satu susunan $r$ bintang dan $n-1$
+                    batang. Sebaliknya, setiap susunan seperti itu menghasilkan tepat satu pilihan.
+                </li>
+                <li>
+                    <b>Panjang susunan.</b> Total simbol adalah $r + (n-1) = n + r - 1$.
+                </li>
+                <li>
+                    <b>Menghitung susunan.</b> Cukup memilih $r$ dari $n+r-1$ posisi untuk menaruh bintang. Sisa posisi
+                    otomatis diisi batang. Banyaknya cara adalah $\binom{n+r-1}{r}$.
+                </li>
+            </ol>
+            <p>
+                Karena korespondensinya satu-satu, banyak pilihan sama dengan banyak susunan, yaitu
+                $\binom{n+r-1}{r}$. $\blacksquare$
+            </p>
+            <p class="kesimpulan">
+                Jadi, memilih $r$ objek dari $n$ jenis dengan pengulangan sama dengan memilih $r$ posisi bintang
+                dari $n+r-1$ posisi.
+            </p>
+
+            <h3>Bukti alternatif: menggeser indeks</h3>
+            <p>
+                Pilih $r$ bilangan dari $\{1, 2, \dots, n\}$ dengan pengulangan, lalu urutkan:
+                $1 \le a_1 \le a_2 \le \dots \le a_r \le n$. Definisikan
+                $$b_i = a_i + (i-1), \qquad i = 1, 2, \dots, r.$$
+                Sekarang $b_1 < b_2 < \dots < b_r$ (tidak ada yang sama lagi) dan $1 \le b_i \le n + r - 1$.
+                Transformasi ini dapat dibalik dengan $a_i = b_i - (i-1)$, sehingga ia korespondensi satu-satu antara
+                <i>pilihan dengan pengulangan dari $n$ jenis</i> dan <i>pilihan tanpa pengulangan dari $n+r-1$
+                    bilangan</i>. Jumlahnya $\binom{n+r-1}{r}$.
+            </p>
+            <p>
+                Contoh: $n = 5$, $r = 3$, pilihan $(a_1, a_2, a_3) = (2, 2, 5)$ menjadi
+                $(b_1, b_2, b_3) = (2, 3, 7)$, yaitu 3 bilangan berbeda dari $\{1, \dots, 7\}$.
+            </p>
+
+            <!-- ============================================================ -->
+            <h2>5. Interpretasi Geometri: Lintasan pada Kisi</h2>
+            <p>
+                Susunan bintang dan batang dapat dibaca sebagai <b>lintasan</b> pada kisi persegi. Mulai dari titik
+                $(0,0)$, setiap bintang ★ berarti melangkah <b>satu satuan ke kanan</b>, dan setiap batang |
+                berarti melangkah <b>satu satuan ke atas</b>. Untuk $n = 3$ dan $r = 4$, lintasan berakhir di $(4, 2)$.
+            </p>
+            <div class="geo-box" id="geo-kisi"></div>
+            <p class="caption">Gambar 3. Lintasan kisi untuk susunan ★★|★|★, yaitu $(x_1,x_2,x_3) = (2,1,1)$.</p>
+            <p>
+                Setiap lintasan dari $(0,0)$ ke $(r, n-1)$ memuat $r$ langkah kanan dan $n-1$ langkah atas, total
+                $n+r-1$ langkah. Banyak lintasan adalah banyak cara memilih langkah mana yang "kanan":
+                $\binom{n+r-1}{r}$. Untuk gambar di atas: $\binom{6}{4} = 15$ lintasan, sehingga ada
+                15 cara memilih 4 objek dari 3 jenis.
+            </p>
+
+            <!-- ============================================================ -->
+            <h2>6. Hubungan dengan Segitiga Pascal dan Rekurensi</h2>
+            <p>
+                Misalkan $H(n, r)$ menyatakan banyak cara memilih $r$ objek dari $n$ jenis dengan pengulangan. Tinjau
+                jenis ke-$n$:
+            </p>
+            <ul>
+                <li><b>Jenis ke-$n$ tidak dipilih sama sekali:</b> semua $r$ objek diambil dari $n-1$ jenis lainnya,
+                    ada $H(n-1, r)$ cara.</li>
+                <li><b>Jenis ke-$n$ dipilih paling sedikit satu kali:</b> buang satu objek jenis ke-$n$, sisanya $r-1$
+                    objek dipilih dari $n$ jenis, ada $H(n, r-1)$ cara.</li>
+            </ul>
+            <p>Dua kasus ini saling lepas dan mencakup semua kemungkinan, sehingga</p>
+            $$ H(n, r) = H(n-1, r) + H(n, r-1), \qquad H(1, r) = H(n, 0) = 1. $$
+            <p>
+                Rekurensi ini identik dengan identitas Pascal $\binom{m}{r} = \binom{m-1}{r} + \binom{m-1}{r-1}$ untuk
+                $m = n + r - 1$. Tabel berikut memperlihatkan nilai $H(n, r)$; setiap sel adalah jumlah sel di atasnya
+                dan sel di kirinya.
+            </p>
+            <div class="geo-box" id="geo-pascal"></div>
+            <p class="caption">Gambar 4. Tabel nilai $H(n, r)$. Sel biru kehijauan $H(3,4) = 15$ diperoleh dari
+                $H(2,4) = 5$ dan $H(3,3) = 10$.</p>
+
+            <h3>Bukti dengan fungsi pembangkit (opsional)</h3>
+            <p>
+                Setiap jenis objek boleh dipilih $0, 1, 2, \dots$ kali, diwakili faktor
+                $1 + x + x^2 + \cdots = \dfrac{1}{1-x}$. Untuk $n$ jenis, banyak cara memilih $r$ objek adalah
+                koefisien $x^r$ pada
+                $$\left(\frac{1}{1-x}\right)^{n} = (1-x)^{-n} = \sum_{r=0}^{\infty} \binom{n+r-1}{r} x^r.$$
+            </p>
+
+            <!-- ============================================================ -->
+            <h2>7. Penerapan pada Persamaan Bilangan Bulat</h2>
+            <p>
+                Banyak solusi bilangan bulat dari persamaan $x_1 + x_2 + \dots + x_n = r$ sama dengan banyak cara
+                membagikan $r$ objek identik ke $n$ kotak berbeda. Besarnya bergantung pada syarat nilai variabel.
+            </p>
+
+            <h3>7.1 Solusi bilangan bulat tak negatif ($x_i \ge 0$)</h3>
+            $$ \binom{n+r-1}{r} $$
+
+            <h3>7.2 Solusi bilangan bulat positif ($x_i \ge 1$)</h3>
+            <p>
+                Substitusi $y_i = x_i - 1 \ge 0$ mengubah persamaan menjadi $y_1 + \dots + y_n = r - n$. Maka
+                $$\binom{(r-n) + n - 1}{r-n} = \binom{r-1}{n-1}.$$
+            </p>
+
+            <h3>7.3 Batas bawah tertentu ($x_i \ge k_i$)</h3>
+            <p>
+                Substitusi $y_i = x_i - k_i \ge 0$. Persamaan menjadi $y_1 + \dots + y_n = r - (k_1 + \dots + k_n)$.
+                Lalu pakai rumus tak negatif dengan $r' = r - \sum k_i$.
+            </p>
+
+            <h3>7.4 Pertidaksamaan ($x_1 + \dots + x_n \le r$)</h3>
+            <p>
+                Tambahkan variabel <i>slack</i> $x_{n+1} \ge 0$ sehingga
+                $x_1 + \dots + x_n + x_{n+1} = r$. Banyaknya solusi adalah
+                $\binom{(n+1) + r - 1}{r} = \binom{n+r}{r}$.
+            </p>
+
+            <h3>7.5 Batas atas tertentu ($x_i \le m$)</h3>
+            <p>
+                Gunakan <b>prinsip inklusi-eksklusi</b>: hitung semua solusi tak negatif, kurangi solusi yang melanggar
+                batas (misalnya $x_i \ge m+1$), tambah kembali yang melanggar dua batas sekaligus, dan seterusnya.
+                Contohnya ada pada Contoh Soal 5.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Syarat</th>
+                            <th>Langkah</th>
+                            <th>Banyak solusi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">$x_i \ge 0$</td>
+                            <td class="text-left">langsung</td>
+                            <td>$\binom{r+n-1}{n-1}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">$x_i \ge 1$</td>
+                            <td class="text-left">$y_i = x_i - 1$</td>
+                            <td>$\binom{r-1}{n-1}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">$x_i \ge k_i$</td>
+                            <td class="text-left">$y_i = x_i - k_i$</td>
+                            <td>$\binom{r - \sum k_i + n - 1}{n-1}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">$\sum x_i \le r$</td>
+                            <td class="text-left">tambah variabel slack</td>
+                            <td>$\binom{r+n}{n}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">$x_i \le m$</td>
+                            <td class="text-left">inklusi-eksklusi</td>
+                            <td>total $-$ pelanggaran $+ \dots$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ============================================================ -->
+            <h2>8. Penerapan Lain</h2>
+            <ul>
+                <li>
+                    <b>Banyak suku pada ekspansi multinomial.</b> $(x_1 + x_2 + \dots + x_n)^r$ memiliki
+                    $\binom{n+r-1}{r}$ suku berbeda (sebelum digabung koefisiennya), karena tiap suku berbentuk
+                    $x_1^{e_1} \cdots x_n^{e_n}$ dengan $e_1 + \dots + e_n = r$.
+                </li>
+                <li>
+                    <b>Barisan tak turun.</b> Banyak barisan $a_1 \le a_2 \le \dots \le a_r$ dengan nilai dari
+                    $\{1, \dots, n\}$ adalah $\binom{n+r-1}{r}$.
+                </li>
+                <li>
+                    <b>Hasil lemparan benda identik.</b> Melempar $r$ dadu yang tidak dapat dibedakan menghasilkan
+                    $\binom{r+5}{r}$ hasil berbeda.
+                </li>
+                <li>
+                    <b>Membagi benda identik.</b> Membagikan $r$ permen identik kepada $n$ anak (boleh ada anak yang
+                    tidak mendapat) ada $\binom{n+r-1}{r}$ cara.
+                </li>
+            </ul>
+
+            <!-- ============================================================ -->
+            <h2>9. Contoh Soal dan Pembahasan</h2>
+            <p>Klik judul contoh untuk membuka pembahasannya. Cobalah mengerjakan sendiri terlebih dahulu.</p>
+
+            <details class="contoh">
+                <summary>Contoh 1 &mdash; Memilih kue</summary>
+                <div class="isi">
+                    <p>Sebuah toko menjual 5 jenis kue. Seorang pembeli ingin membeli 8 kue, boleh dengan jenis yang
+                        sama. Berapa banyak komposisi pembelian yang mungkin?</p>
+                    <p><b>Penyelesaian.</b> Urutan membeli tidak penting dan jenis boleh berulang, sehingga
+                        kombinasi dengan pengulangan dengan $n = 5$ dan $r = 8$:</p>
+                    $$ \binom{5+8-1}{8} = \binom{12}{8} = \binom{12}{4} = \frac{12 \cdot 11 \cdot 10 \cdot 9}{4 \cdot 3
+                    \cdot 2 \cdot 1} = 495 $$
+                    <p class="kesimpulan">Jadi, ada 495 komposisi pembelian.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 2 &mdash; Persamaan tak negatif</summary>
+                <div class="isi">
+                    <p>Tentukan banyak solusi bilangan bulat tak negatif dari $x + y + z = 10$.</p>
+                    <p><b>Penyelesaian.</b> Ada $n = 3$ variabel dan $r = 10$:</p>
+                    $$ \binom{10+3-1}{10} = \binom{12}{2} = 66 $$
+                    <p class="kesimpulan">Jadi, ada 66 solusi.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 3 &mdash; Persamaan bilangan bulat positif</summary>
+                <div class="isi">
+                    <p>Tentukan banyak solusi bilangan bulat positif dari $x_1 + x_2 + x_3 + x_4 = 12$.</p>
+                    <p><b>Penyelesaian.</b> Misalkan $y_i = x_i - 1 \ge 0$. Maka
+                        $y_1 + y_2 + y_3 + y_4 = 12 - 4 = 8$ dengan $n = 4$ dan $r = 8$:</p>
+                    $$ \binom{8+4-1}{8} = \binom{11}{8} = \binom{11}{3} = 165 $$
+                    <p>Dengan rumus langsung $\binom{r-1}{n-1} = \binom{11}{3} = 165$ (hasilnya sama).</p>
+                    <p class="kesimpulan">Jadi, ada 165 solusi.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 4 &mdash; Dengan batas bawah berbeda</summary>
+                <div class="isi">
+                    <p>Tentukan banyak solusi bilangan bulat dari $x + y + z = 15$ dengan $x \ge 2$, $y \ge 3$, dan
+                        $z \ge 1$.</p>
+                    <p><b>Penyelesaian.</b> Misalkan $x' = x - 2$, $y' = y - 3$, $z' = z - 1$, semuanya tak negatif.
+                        Maka
+                        $$x' + y' + z' = 15 - (2 + 3 + 1) = 9.$$
+                        Dengan $n = 3$ dan $r = 9$:
+                        $$\binom{9+3-1}{9} = \binom{11}{2} = 55.$$</p>
+                    <p class="kesimpulan">Jadi, ada 55 solusi.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 5 &mdash; Dengan batas atas (inklusi-eksklusi)</summary>
+                <div class="isi">
+                    <p>Tentukan banyak solusi bilangan bulat dari $x + y + z = 10$ dengan $0 \le x, y, z \le 5$.</p>
+                    <p><b>Penyelesaian.</b></p>
+                    <ol>
+                        <li>Semua solusi tak negatif tanpa batas atas: $\binom{12}{2} = 66$.</li>
+                        <li>Solusi yang melanggar, misalnya $x \ge 6$: misalkan $x' = x - 6 \ge 0$, maka
+                            $x' + y + z = 4$, banyaknya $\binom{6}{2} = 15$. Ada 3 variabel yang mungkin melanggar,
+                            sehingga totalnya $3 \times 15 = 45$.</li>
+                        <li>Dua variabel melanggar sekaligus (mis. $x \ge 6$ dan $y \ge 6$) membutuhkan jumlah paling
+                            sedikit $12 > 10$, sehingga tidak mungkin: 0 solusi.</li>
+                        <li>Banyak solusi $= 66 - 45 + 0 = 21$.</li>
+                    </ol>
+                    <p><b>Pemeriksaan.</b> Substitusi $a = 5 - x$, $b = 5 - y$, $c = 5 - z$ menghasilkan
+                        $a + b + c = 5$ dengan $a, b, c \ge 0$ (batas atas $5$ otomatis terpenuhi), banyaknya
+                        $\binom{7}{2} = 21$. Cocok.</p>
+                    <p class="kesimpulan">Jadi, ada 21 solusi.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 6 &mdash; Ada syarat minimal pada satu jenis</summary>
+                <div class="isi">
+                    <p>Seorang pembeli membeli 6 donat dari 4 rasa yang tersedia. Berapa banyak komposisi yang
+                        mungkin jika paling sedikit 1 donat harus berasa cokelat?</p>
+                    <p><b>Penyelesaian.</b> Sisihkan 1 donat cokelat lebih dahulu. Sisa 5 donat dipilih bebas dari
+                        4 rasa ($n = 4$, $r = 5$):</p>
+                    $$ \binom{5+4-1}{5} = \binom{8}{5} = 56 $$
+                    <p class="kesimpulan">Jadi, ada 56 komposisi.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 7 &mdash; Pertidaksamaan</summary>
+                <div class="isi">
+                    <p>Berapa banyak solusi bilangan bulat tak negatif dari $x_1 + x_2 + x_3 \le 7$?</p>
+                    <p><b>Penyelesaian.</b> Tambahkan variabel slack $x_4 \ge 0$ sehingga
+                        $x_1 + x_2 + x_3 + x_4 = 7$. Dengan $n = 4$ dan $r = 7$:</p>
+                    $$ \binom{7+4-1}{7} = \binom{10}{7} = \binom{10}{3} = 120 $$
+                    <p class="kesimpulan">Jadi, ada 120 solusi.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 8 &mdash; Banyak suku ekspansi</summary>
+                <div class="isi">
+                    <p>Berapa banyak suku berbeda pada ekspansi $(a + b + c + d)^6$?</p>
+                    <p><b>Penyelesaian.</b> Setiap suku berbentuk $a^{p}b^{q}c^{s}d^{t}$ dengan
+                        $p + q + s + t = 6$ dan semua pangkat tak negatif. Dengan $n = 4$ dan $r = 6$:</p>
+                    $$ \binom{6+4-1}{6} = \binom{9}{6} = \binom{9}{3} = 84 $$
+                    <p class="kesimpulan">Jadi, ada 84 suku berbeda.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 9 &mdash; Hasil lemparan tiga dadu identik</summary>
+                <div class="isi">
+                    <p>Tiga dadu yang tidak dapat dibedakan dilempar bersamaan. Berapa banyak hasil berbeda yang mungkin
+                        (hanya memperhatikan angka yang muncul, bukan dadu mana)?</p>
+                    <p><b>Penyelesaian.</b> Hasilnya adalah pemilihan 3 angka dari 6 angka dengan pengulangan,
+                        $n = 6$ dan $r = 3$:</p>
+                    $$ \binom{3+6-1}{3} = \binom{8}{3} = 56 $$
+                    <p class="kesimpulan">Jadi, ada 56 hasil berbeda.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 10 &mdash; Barisan tak turun</summary>
+                <div class="isi">
+                    <p>Berapa banyak barisan $(a_1, a_2, a_3, a_4)$ dengan $1 \le a_1 \le a_2 \le a_3 \le a_4 \le 5$
+                        dan semua $a_i$ bilangan bulat?</p>
+                    <p><b>Penyelesaian.</b> Setiap pilihan 4 angka dari $\{1,\dots,5\}$ dengan pengulangan hanya
+                        menghasilkan satu barisan tak turun (setelah diurutkan). Maka $n = 5$ dan $r = 4$:</p>
+                    $$ \binom{4+5-1}{4} = \binom{8}{4} = 70 $$
+                    <p class="kesimpulan">Jadi, ada 70 barisan.</p>
+                </div>
+            </details>
+
+            <!-- ============================================================ -->
+            <h2>10. Kesalahan Umum dan Strategi</h2>
+            <ul>
+                <li><b>Tertukar $n$ dan $r$.</b> $n$ adalah banyak <i>jenis</i> (banyak kotak), $r$ adalah banyak
+                    objek yang <i>dipilih</i> (banyak bintang). Rumusnya $\binom{n+r-1}{r}$, bukan
+                    $\binom{n+r-1}{n}$.</li>
+                <li><b>Memakai $\binom{n}{r}$ padahal boleh berulang.</b> Kata kunci: "boleh sama", "boleh lebih dari
+                    satu", "setiap jenis tersedia banyak", "objek identik dibagikan".</li>
+                <li><b>Memakai $n^r$ padahal urutan tidak penting.</b> $n^r$ menghitung susunan berurutan.</li>
+                <li><b>Lupa menyesuaikan syarat minimal.</b> Selalu kurangi dulu $r$ dengan jumlah batas bawah,
+                    baru gunakan rumus.</li>
+                <li><b>Mengabaikan batas atas.</b> Jika ada ketentuan "paling banyak", rumus langsung tidak berlaku;
+                    gunakan inklusi-eksklusi atau komplemen.</li>
+            </ul>
+
+            <h3>Langkah umum menyelesaikan soal</h3>
+            <ol>
+                <li>Tentukan apa yang dipilih ($r$) dan jenis yang tersedia ($n$).</li>
+                <li>Pastikan urutan tidak penting dan pengulangan boleh.</li>
+                <li>Terapkan syarat minimal dengan substitusi ($y_i = x_i - k_i$).</li>
+                <li>Hitung $\binom{n+r'-1}{r'}$ dengan $r'$ yang sudah disesuaikan.</li>
+                <li>Jika ada batas atas, kurangi dengan inklusi-eksklusi.</li>
+            </ol>
+
+            <!-- ============================================================ -->
+            <h2>11. Ringkasan</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Konsep</th>
+                            <th>Rumus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Kombinasi dengan pengulangan</td>
+                            <td>${}_nH_r = \binom{n+r-1}{r}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Solusi $x_1 + \dots + x_n = r$, $x_i \ge 0$</td>
+                            <td>$\binom{n+r-1}{r}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Solusi $x_1 + \dots + x_n = r$, $x_i \ge 1$</td>
+                            <td>$\binom{r-1}{n-1}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Rekurensi</td>
+                            <td>$H(n,r) = H(n-1,r) + H(n,r-1)$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Banyak suku $(x_1 + \dots + x_n)^r$</td>
+                            <td>$\binom{n+r-1}{r}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Latihan mandiri</h3>
+            <ol>
+                <li>Dari 4 jenis buah, berapa cara memilih 6 buah (boleh sama)?</li>
+                <li>Berapa banyak solusi bilangan bulat tak negatif dari $a + b + c + d = 8$?</li>
+                <li>Berapa banyak solusi bilangan bulat positif dari $p + q + s = 10$?</li>
+                <li>Berapa banyak suku berbeda pada ekspansi $(x + y + z)^8$?</li>
+            </ol>
+            <details class="contoh">
+                <summary>Lihat kunci jawaban latihan</summary>
+                <div class="isi">
+                    <ol>
+                        <li>$\binom{6+4-1}{6} = \binom{9}{6} = 84$</li>
+                        <li>$\binom{8+4-1}{8} = \binom{11}{3} = 165$</li>
+                        <li>$\binom{10-1}{3-1} = \binom{9}{2} = 36$</li>
+                        <li>$\binom{8+3-1}{8} = \binom{10}{2} = 45$</li>
+                    </ol>
+                </div>
+            </details>
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- ======================================================================
+         GAMBAR GEOSVG.JS
+         Warna garis & teks memakai currentColor agar ikut Dark Mode.
+         ====================================================================== -->
+    <script>
+        (function () {
+            var TEAL = '#0d9488', AMBER = '#d97706', MERAH = '#ef4444', ABU = '#94a3b8';
+
+            // Menunggu GeoSVG siap (mendukung pemuatan cadangan dari CDN)
+            function tunggu(fn) {
+                var coba = 0;
+                (function cek() {
+                    if (window.GeoSVG) return fn();
+                    if (++coba > 100) return console.warn('GeoSVG.js gagal dimuat.');
+                    setTimeout(cek, 100);
+                })();
+            }
+
+            function kanvas(id, w, h, judul, deskripsi) {
+                var g = new GeoSVG(id, w, h, {
+                    viewBox: true,
+                    margin: 10,
+                    defaultStroke: 'currentColor',
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: 'Inter, -apple-system, "Segoe UI", sans-serif',
+                    fontSize: '14px',
+                    clearContainer: true,
+                    title: judul,
+                    description: deskripsi
+                });
+                return g;
+            }
+
+            function teks(g, x, y, s, pos, opsi) {
+                return g.buatTeks(x, y, s, Object.assign({ position: pos || 'middle-center', fill: 'currentColor' }, opsi || {}));
+            }
+
+            function kombinasi(n, k) {
+                if (k < 0 || k > n) return 0;
+                var h = 1;
+                for (var i = 1; i <= k; i++) h = h * (n - k + i) / i;
+                return Math.round(h);
+            }
+
+            /* ---------- Gambar 1: enam pesanan es krim ---------- */
+            function gambarEsKrim() {
+                var warna = { A: '#7c4a21', B: '#ef4444', C: '#fcd34d' };
+                var daftar = ['AA', 'AB', 'AC', 'BB', 'BC', 'CC'];
+                var g = kanvas('geo-es-krim', 6 * 86, 90, 'Enam pesanan es krim',
+                    'Pesanan AA, AB, AC, BB, BC, dan CC, masing-masing dua scoop dari tiga rasa.');
+                daftar.forEach(function (s, i) {
+                    var cx = 43 + i * 86;
+                    g.buatLingkaran(cx - 15, 28, 14, { fill: warna[s[0]], stroke: 'currentColor', strokeWidth: 1 });
+                    g.buatLingkaran(cx + 15, 28, 14, { fill: warna[s[1]], stroke: 'currentColor', strokeWidth: 1 });
+                    teks(g, cx, 66, s, 'middle-center', { fontWeight: 'bold' });
+                });
+            }
+
+            /* ---------- Gambar 2: bintang dan batang ---------- */
+            function gambarBintangBatang() {
+                var baris = [[2, 1, 1], [0, 3, 1], [4, 0, 0]];
+                var g = kanvas('geo-bintang-batang', 560, 190, 'Bintang dan batang',
+                    'Tiga contoh pilihan empat objek dari tiga jenis, ditulis sebagai susunan empat bintang dan dua batang.');
+                var x0 = 30, dx = 44;
+                teks(g, x0 - 14, 14, 'Susunan ★ dan |', 'middle-right', { fontWeight: 'bold' });
+                teks(g, 300, 14, 'Banyak tiap jenis', 'middle-right', { fontWeight: 'bold' });
+                baris.forEach(function (komp, b) {
+                    var y = 55 + b * 55, k = 0;
+                    komp.forEach(function (jml, j) {
+                        for (var s = 0; s < jml; s++) {
+                            g.buatLingkaran(x0 + k * dx, y, 12, { fill: TEAL, stroke: 'none' });
+                            k++;
+                        }
+                        if (j < komp.length - 1) {
+                            g.buatSegmen(x0 + k * dx, y - 19, x0 + k * dx, y + 19,
+                                { stroke: AMBER, strokeWidth: 5, strokeLinecap: 'round' });
+                            k++;
+                        }
+                    });
+                    teks(g, 300, y, '(x₁, x₂, x₃) = (' + komp.join(', ') + ')', 'middle-right');
+                });
+            }
+
+            /* ---------- Gambar 3: lintasan kisi ---------- */
+            function gambarKisi() {
+                var sel = 70, R = 4, U = 2;
+                var X = function (i) { return 40 + sel * i; };
+                var Y = function (j) { return 30 + sel * (U - j); };
+                var g = kanvas('geo-kisi', 400, 30 + sel * U + 60, 'Lintasan kisi',
+                    'Kisi 4 kali 2. Lintasan dari titik (0,0) ke (4,2) dengan langkah kanan sebagai bintang dan langkah atas sebagai batang.');
+
+                for (var j = 0; j <= U; j++) g.buatSegmen(X(0), Y(j), X(R), Y(j), { stroke: ABU, strokeWidth: 1 });
+                for (var i = 0; i <= R; i++) g.buatSegmen(X(i), Y(0), X(i), Y(U), { stroke: ABU, strokeWidth: 1 });
+
+                var langkah = 'RRURUR', cx = 0, cy = 0, titik = [[X(0), Y(0)]];
+                for (var s = 0; s < langkah.length; s++) {
+                    var c = langkah[s];
+                    var x1 = X(cx), y1 = Y(cy);
+                    if (c === 'R') cx++; else cy++;
+                    titik.push([X(cx), Y(cy)]);
+                    if (c === 'R') teks(g, (x1 + X(cx)) / 2, y1 + 17, '★', 'middle-center', { fill: TEAL, fontSize: '16px' });
+                    else teks(g, x1 + 14, (y1 + Y(cy)) / 2, '|', 'middle-center', { fill: AMBER, fontSize: '18px', fontWeight: 'bold' });
+                }
+                g.buatPolyline(titik, { stroke: TEAL, strokeWidth: 4, strokeLinejoin: 'round', strokeLinecap: 'round' });
+                g.buatTitik(X(0), Y(0), { size: 6, color: MERAH, label: '(0,0)', labelPosition: 'bottom-left' });
+                g.buatTitik(X(R), Y(U), { size: 6, color: MERAH, label: '(4,2)', labelPosition: 'top-right' });
+                teks(g, X(R / 2), Y(0) + 42, '4 langkah kanan (★)  dan  2 langkah atas (|)', 'middle-center');
+            }
+
+            /* ---------- Gambar 4: tabel H(n, r) ---------- */
+            function gambarPascal() {
+                var N = 5, Rmax = 5, w = 64, h = 40, x0 = 70, y0 = 50;
+                var g = kanvas('geo-pascal', x0 + (Rmax + 1) * w + 10, y0 + N * h + 10, 'Tabel H(n, r)',
+                    'Tabel nilai kombinasi dengan pengulangan untuk n dari 1 sampai 5 dan r dari 0 sampai 5.');
+                teks(g, x0 + (Rmax + 1) * w / 2, 12, 'r (banyak objek yang dipilih)', 'middle-center', { fontWeight: 'bold' });
+                teks(g, 22, y0 + N * h / 2, 'n', 'middle-center', { fontWeight: 'bold' });
+
+                for (var r = 0; r <= Rmax; r++) teks(g, x0 + r * w + w / 2, 36, String(r), 'middle-center', { fill: TEAL, fontWeight: 'bold' });
+                for (var n = 1; n <= N; n++) teks(g, x0 - 16, y0 + (n - 1) * h + h / 2, String(n), 'middle-center', { fill: TEAL, fontWeight: 'bold' });
+
+                var tn = 3, tr = 4;
+                for (n = 1; n <= N; n++) {
+                    for (r = 0; r <= Rmax; r++) {
+                        var x = x0 + r * w, y = y0 + (n - 1) * h;
+                        var opsi = { stroke: ABU, strokeWidth: 1 };
+                        if (n === tn && r === tr) { opsi.fill = TEAL; opsi.fillOpacity = 0.35; }
+                        else if ((n === tn - 1 && r === tr) || (n === tn && r === tr - 1)) { opsi.fill = AMBER; opsi.fillOpacity = 0.25; }
+                        g.buatPersegiPanjang(x, y, w, h, opsi);
+                        teks(g, x + w / 2, y + h / 2, String(kombinasi(n + r - 1, r)), 'middle-center',
+                            (n === tn && r === tr) ? { fontWeight: 'bold' } : {});
+                    }
+                }
+                // Panah dari dua sel penyumbang ke sel hasil
+                var cxT = x0 + tr * w + w / 2, cyT = y0 + (tn - 1) * h + h / 2;
+                g.buatVektor(cxT, y0 + (tn - 2) * h + h - 6, cxT, y0 + (tn - 1) * h + 8, { stroke: AMBER, strokeWidth: 2 });
+                g.buatVektor(x0 + (tr - 1) * w + w - 8, cyT, x0 + tr * w + 8, cyT, { stroke: AMBER, strokeWidth: 2 });
+            }
+
+            tunggu(function () {
+                gambarEsKrim();
+                gambarBintangBatang();
+                gambarKisi();
+                gambarPascal();
+            });
+        })();
+    </script>
+</body>
+
+</html>

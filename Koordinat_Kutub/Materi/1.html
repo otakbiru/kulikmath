@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Koordinat Kutub</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Koordinat Kutub</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Sistem Koordinat Kutub (Polar)</h2>
+            <p>
+                Jika pada sistem <strong>Koordinat Kartesius</strong> letak suatu titik dinyatakan berdasarkan jarak horizontal dan vertikal $(x, y)$, maka pada sistem <strong>Koordinat Kutub (Polar)</strong> letak suatu titik $P$ dinyatakan oleh pasangan berurutan jarak dan sudut:
+                $$P(r, \theta)$$
+                Sistem koordinat kutub memiliki dua unsur acuan utama:
+            </p>
+            <ul>
+                <li>
+                    <strong>Titik Kutub / Pole ($O$):</strong> Titik pusat acuan (berimpit dengan titik asal $(0,0)$ pada koordinat Kartesius).
+                </li>
+                <li>
+                    <strong>Sumbu Kutub (Polar Axis):</strong> Sinar garis horizontal yang ditarik dari titik kutub $O$ ke arah kanan (berimpit dengan sumbu-$X$ positif).
+                </li>
+                <li>
+                    <strong>Jari-Jari / Jarak Radial ($r$):</strong> Jarak terarah dari titik kutub $O$ menuju titik $P$.
+                </li>
+                <li>
+                    <strong>Sudut Kutub / Azimut ($\theta$):</strong> Sudut terarah yang dibentuk oleh sumbu kutub terhadap ruas garis $OP$:
+                    <ul>
+                        <li>Bernilai <strong>positif ($\theta > 0$)</strong> jika diukur <em>berlawanan arah jarum jam</em> dari sumbu kutub.</li>
+                        <li>Bernilai <strong>negatif ($\theta < 0$)</strong> jika diukur <em>searah jarum jam</em> dari sumbu kutub.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Hubungan Geometri dengan Segitiga Siku-Siku:</strong><br>
+                        Apabila titik kutub $O$ diimpitkan dengan titik asal $(0,0)$ dan sumbu kutub diimpitkan dengan sumbu-$X$ positif (lihat gambar di samping), proyeksi titik $P$ ke sumbu-$X$ membentuk segitiga siku-siku dengan sisi alas $x$, sisi tegak $y$, dan sisi miring $r$.
+                    </p>
+                    <p>
+                        Berdasarkan perbandingan trigonometri pada segitiga siku-siku tersebut, diperoleh:
+                        $$\cos \theta = \frac{x}{r} \quad \text{dan} \quad \sin \theta = \frac{y}{r}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-polar-basic" style="width: 100%; max-width: 350px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Konversi Koordinat Kutub $\leftrightarrow$ Koordinat Kartesius</h2>
+            <p>
+                <strong>a. Mengubah Koordinat Kutub $(r, \theta)$ ke Koordinat Kartesius $(x, y)$:</strong><br>
+                Jika diketahui jari-jari $r$ dan sudut $\theta$, koordinat Kartesius $(x, y)$ dapat dihitung langsung dengan rumus:
+                $$x = r \cos \theta \quad \text{dan} \quad y = r \sin \theta$$
+            </p>
+            <p>
+                <strong>b. Mengubah Koordinat Kartesius $(x, y)$ ke Koordinat Kutub $(r, \theta)$:</strong><br>
+                Jika diketahui absis $x$ dan ordinat $y$, maka jari-jari $r \ge 0$ dan sudut $\theta$ ditentukan oleh:
+                $$r = \sqrt{x^2 + y^2} \quad \text{dan} \quad \tan \theta = \frac{y}{x} \quad (x \neq 0)$$
+                <em>Penting!</em> Karena nilai $\tan \theta$ bernilai sama di dua kuadran yang berlawanan (misalnya Kuadran I dan III sama-sama positif), <strong>wajib memperhatikan tanda $(x, y)$ untuk menentukan kuadran sudut $\theta$</strong>:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tanda Koordinat $(x, y)$</th>
+                            <th>Letak Kuadran</th>
+                            <th>Rentang Sudut $\theta$</th>
+                            <th>Rumus Sudut $\theta$ (dengan $\alpha = \arctan\left|\frac{y}{x}\right|$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$(+, +)$</td>
+                            <td><strong>Kuadran I</strong></td>
+                            <td>$0^\circ < \theta < 90^\circ$</td>
+                            <td>$$\theta = \alpha$$</td>
+                        </tr>
+                        <tr>
+                            <td>$(-, +)$</td>
+                            <td><strong>Kuadran II</strong></td>
+                            <td>$90^\circ < \theta < 180^\circ$</td>
+                            <td>$$\theta = 180^\circ - \alpha \quad (\text{atau } \pi - \alpha)$$</td>
+                        </tr>
+                        <tr>
+                            <td>$(-, -)$</td>
+                            <td><strong>Kuadran III</strong></td>
+                            <td>$180^\circ < \theta < 270^\circ$</td>
+                            <td>$$\theta = 180^\circ + \alpha \quad (\text{atau } \pi + \alpha)$$</td>
+                        </tr>
+                        <tr>
+                            <td>$(+, -)$</td>
+                            <td><strong>Kuadran IV</strong></td>
+                            <td>$270^\circ < \theta < 360^\circ$</td>
+                            <td>$$\theta = 360^\circ - \alpha \quad (\text{atau } 2\pi - \alpha)$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Representasi Tak Tunggal & Arti Jari-Jari Negatif ($-r$)</h2>
+            <p>
+                Berbeda dengan koordinat Kartesius di mana setiap titik hanya memiliki tepat satu pasang koordinat $(x, y)$, pada koordinat kutub <strong>satu titik yang sama dapat dinyatakan dalam tak hingga banyaknya cara</strong>:
+            </p>
+            <div class="row">
+                <div class="col-2">
+                    <ol>
+                        <li>
+                            <strong>Penambahan Putaran Penuh ($360^\circ$ atau $2\pi$):</strong><br>
+                            Menambahkan kelipatan bulat dari satu putaran penuh akan kembali ke titik yang sama:
+                            $$(r, \theta) \equiv (r, \theta + k \cdot 360^\circ) \equiv (r, \theta + 2k\pi)$$
+                        </li>
+                        <li>
+                            <strong>Koordinat dengan Jari-Jari Negatif ($-r$):</strong><br>
+                            Titik $(-r, \theta)$ diartikan sebagai titik yang berjarak $|r|$ dari titik kutub $O$, tetapi <strong>berlawanan arah ($180^\circ$)</strong> dari sinar sudut $\theta$. Oleh karena itu berlaku identitas ekuivalensi:
+                            $$(r, \theta) \equiv (-r, \theta + 180^\circ) \equiv (-r, \theta + (2k+1)\pi)$$
+                            Contoh pada gambar di samping: Titik $P(3, 60^\circ)$ sama persis posisinya dengan $P(-3, 240^\circ)$ maupun $P(3, -300^\circ)$.
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-neg-r" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Jarak Antara Dua Titik dalam Koordinat Kutub</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Misalkan diketahui dua titik dalam koordinat kutub, yaitu $P_1(r_1, \theta_1)$ dan $P_2(r_2, \theta_2)$. Bagaimana cara menghitung jarak lurus $d = P_1P_2$ tanpa harus mengubahnya ke koordinat Kartesius terlebih dahulu?
+                    </p>
+                    <p>
+                        Perhatikan $\triangle OP_1P_2$ pada gambar di samping: panjang sisi $OP_1 = r_1$, panjang sisi $OP_2 = r_2$, dan besar sudut apit di titik kutub $O$ adalah $\angle P_1OP_2 = |\theta_2 - \theta_1|$.
+                    </p>
+                    <p>
+                        Dengan menerapkan <strong>Aturan Cosinus</strong> pada $\triangle OP_1P_2$, diperoleh rumus jarak dua titik kutub:
+                        $$d = \sqrt{r_1^2 + r_2^2 - 2 r_1 r_2 \cos(\theta_2 - \theta_1)}$$
+                        Sedangkan luas segitiga $\triangle OP_1P_2$ yang dibentuk dengan titik asal adalah:
+                        $$L_{\triangle OP_1P_2} = \frac{1}{2} r_1 r_2 \big|\sin(\theta_2 - \theta_1)\big|$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-polar-dist" style="width: 100%; max-width: 330px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Konversi Persamaan Kurva Kartesius $\leftrightarrow$ Kutub</h2>
+            <p>
+                Beberapa kurva geometri (seperti lingkaran dan garis lurus) memiliki bentuk persamaan yang sangat ringkas di dalam koordinat kutub. Gunakan substitusi dasar $x = r \cos\theta$, $y = r \sin\theta$, dan $x^2 + y^2 = r^2$:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Kurva Geometri</th>
+                            <th>Persamaan Kutub (Polar)</th>
+                            <th>Persamaan Kartesius Ekuivalen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Lingkaran Berpusat di $(0, 0)$</strong></td>
+                            <td>$$r = a \quad (a > 0)$$</td>
+                            <td>$$x^2 + y^2 = a^2$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Garis Lurus Melalui $(0, 0)$</strong></td>
+                            <td>$$\theta = \alpha$$</td>
+                            <td>$$y = (\tan \alpha) x$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Garis Tegak & Garis Mendatar</strong></td>
+                            <td>$r \cos\theta = a$ &nbsp; / &nbsp; $r \sin\theta = b$</td>
+                            <td>$x = a$ &nbsp; / &nbsp; $y = b$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Lingkaran Berpusat di $(a, 0)$</strong> (menyinggung sumbu-$Y$)</td>
+                            <td>$$r = 2a \cos\theta$$</td>
+                            <td>$$(x - a)^2 + y^2 = a^2 \iff x^2 + y^2 - 2ax = 0$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Lingkaran Berpusat di $(0, b)$</strong> (menyinggung sumbu-$X$)</td>
+                            <td>$$r = 2b \sin\theta$$</td>
+                            <td>$$x^2 + (y - b)^2 = b^2 \iff x^2 + y^2 - 2by = 0$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Trik Cepat Mengubah $r = a \cos\theta + b \sin\theta$ ke Kartesius:<br>
+                Kalikan kedua ruas persamaan kutub tersebut dengan $r$:
+                $$r^2 = a(r \cos\theta) + b(r \sin\theta) \implies x^2 + y^2 = ax + by \iff x^2 + y^2 - ax - by = 0$$
+                Kurva ini selalu berupa <strong>lingkaran</strong> yang melalui titik asal $(0,0)$ dengan pusat $\left(\frac{a}{2}, \frac{b}{2}\right)$ dan jari-jari $R = \frac{1}{2}\sqrt{a^2 + b^2}$.
+            </div>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Koordinat kutub dari titik $P(-4\sqrt{3}, 4)$ untuk $0^\circ \le \theta \le 360^\circ$ adalah ....
+                <ol class="pilgan">
+                    <li>$(8, 120^\circ)$</li>
+                    <li>$(8, 150^\circ)$</li>
+                    <li>$(8, 210^\circ)$</li>
+                    <li>$(8, 240^\circ)$</li>
+                    <li>$(8, 330^\circ)$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. <strong>Hitung jari-jari $r$:</strong><br>
+                    Diketahui $x = -4\sqrt{3}$ dan $y = 4$. Maka:
+                    $$r = \sqrt{x^2 + y^2} = \sqrt{(-4\sqrt{3})^2 + 4^2} = \sqrt{48 + 16} = \sqrt{64} = 8$$
+                </p>
+                <p>
+                    2. <strong>Tentukan kuadran dan sudut $\theta$:</strong><br>
+                    Karena $x < 0$ (negatif) dan $y > 0$ (positif), maka titik $P(-4\sqrt{3}, 4)$ terletak di <strong>Kuadran II</strong> ($90^\circ < \theta < 180^\circ$).
+                    $$\tan \theta = \frac{y}{x} = \frac{4}{-4\sqrt{3}} = -\frac{1}{\sqrt{3}} = -\frac{1}{3}\sqrt{3}$$
+                    Sudut lancip acuannya adalah $\alpha = 30^\circ$ (karena $\tan 30^\circ = \frac{1}{3}\sqrt{3}$). Di Kuadran II:
+                    $$\theta = 180^\circ - 30^\circ = 150^\circ$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, koordinat kutub dari titik $P(-4\sqrt{3}, 4)$ adalah $(8, 150^\circ)$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Jika titik $A$ memiliki koordinat kutub $\left(6\sqrt{2}, 225^\circ\right)$ dan dinyatakan dalam koordinat Kartesius $(a, b)$, maka nilai dari $2a - b$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$-18$</li>
+                    <li>$-6$</li>
+                    <li>$0$</li>
+                    <li>$6$</li>
+                    <li>$18$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Gunakan rumus konversi koordinat kutub ke Kartesius ($a = r \cos\theta$ dan $b = r \sin\theta$) dengan $r = 6\sqrt{2}$ dan $\theta = 225^\circ$ (Kuadran III, di mana $\sin$ dan $\cos$ keduanya negatif):
+                </p>
+                <ul>
+                    <li>
+                        $a = 6\sqrt{2} \cos 225^\circ = 6\sqrt{2} \cdot \left(-\cos 45^\circ\right) = 6\sqrt{2} \cdot \left(-\frac{1}{2}\sqrt{2}\right) = -6$
+                    </li>
+                    <li>
+                        $b = 6\sqrt{2} \sin 225^\circ = 6\sqrt{2} \cdot \left(-\sin 45^\circ\right) = 6\sqrt{2} \cdot \left(-\frac{1}{2}\sqrt{2}\right) = -6$
+                    </li>
+                </ul>
+                <p>
+                    2. Hitung nilai dari $2a - b$:
+                    $$2a - b = 2(-6) - (-6) = -12 + 6 = -6$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $2a - b$ adalah $-6$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Diketahui dua buah titik dalam koordinat kutub, yaitu titik $P\left(5, 20^\circ\right)$ dan titik $Q\left(8, 80^\circ\right)$. Jarak lurus antara titik $P$ dan titik $Q$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$6$</li>
+                    <li>$7$</li>
+                    <li>$\sqrt{69}$</li>
+                    <li>$9$</li>
+                    <li>$\sqrt{129}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Gunakan rumus jarak dua titik dalam koordinat kutub dengan $r_1 = 5$, $r_2 = 8$, $\theta_1 = 20^\circ$, dan $\theta_2 = 80^\circ$:
+                    $$PQ = \sqrt{r_1^2 + r_2^2 - 2 r_1 r_2 \cos(\theta_2 - \theta_1)}$$
+                </p>
+                <p>
+                    2. Selisih sudutnya adalah $\theta_2 - \theta_1 = 80^\circ - 20^\circ = 60^\circ$. Substitusikan ke dalam rumus:
+                    $$PQ = \sqrt{5^2 + 8^2 - 2(5)(8) \cos 60^\circ}$$
+                    $$PQ = \sqrt{25 + 64 - 80 \cdot \left(\frac{1}{2}\right)}$$
+                    $$PQ = \sqrt{89 - 40} = \sqrt{49} = 7$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, jarak lurus antara titik $P$ dan titik $Q$ adalah $7$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Sebuah kurva dalam koordinat kutub memiliki persamaan $r = 6 \cos\theta - 8 \sin\theta$. Jika kurva tersebut dinyatakan dalam sistem koordinat Kartesius, maka kurva tersebut berupa lingkaran dengan panjang jari-jari ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$3$</li>
+                    <li>$4$</li>
+                    <li>$5$</li>
+                    <li>$10$</li>
+                    <li>$25$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Kalikan kedua ruas persamaan $r = 6 \cos\theta - 8 \sin\theta$ dengan $r$:
+                    $$r^2 = 6(r \cos\theta) - 8(r \sin\theta)$$
+                </p>
+                <p>
+                    2. Substitusikan hubungan $r^2 = x^2 + y^2$, $r \cos\theta = x$, dan $r \sin\theta = y$:
+                    $$x^2 + y^2 = 6x - 8y \iff x^2 + y^2 - 6x + 8y = 0$$
+                </p>
+                <p>
+                    3. Lengkapkan kuadrat sempurna untuk menentukan pusat dan jari-jari lingkaran:
+                    $$(x^2 - 6x + 9) + (y^2 + 8y + 16) = 9 + 16$$
+                    $$(x - 3)^2 + (y + 4)^2 = 25$$
+                    Persamaan tersebut adalah lingkaran yang berpusat di $(3, -4)$ dengan jari-jari $R = \sqrt{25} = 5$.
+                </p>
+                <div class="kesimpulan">
+                    Jadi, panjang jari-jari lingkaran tersebut adalah $5$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Hubungan Koordinat Kutub P(r, theta) & Kartesius P(x, y) menggunakan GeoSVG.js (yUp: true)
+            const containerBasic = document.getElementById("geosvg-polar-basic");
+            if (containerBasic && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerBasic, 330, 250, {
+                    viewBox: "-50 -45 275 215",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Hubungan Koordinat Kutub dan Kartesius",
+                    description: "Segitiga siku-siku yang menghubungkan x = r cos theta dan y = r sin theta"
+                });
+
+                // Busur-busur lingkaran konsentris (grid polar)
+                [65, 130, 195].forEach(rad => {
+                    geo1.buatBusur([0, 0], rad, 0, 90, {
+                        stroke: "var(--border-color)",
+                        strokeWidth: 1,
+                        dashed: "4 4"
+                    });
+                });
+
+                // Sumbu X (Sumbu Kutub) dan Sumbu Y
+                geo1.buatVektor([-35, 0], [210, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatVektor([0, -30], [0, 155], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatTeks(195, -16, "Sumbu Kutub (X)", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "10.5px", position: "middle-left" });
+                geo1.buatTeks(-14, 150, "Y", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+
+                const O = [0, 0];
+                const P = [150, 110];
+                const A = [150, 0];
+                const B = [0, 110];
+
+                // Arsir segitiga siku-siku OAP
+                geo1.buatPoligon([O, A, P], {
+                    fill: "rgba(13, 148, 136, 0.12)",
+                    stroke: "none"
+                });
+                geo1.buatSiku(O, A, P, { size: 11, stroke: "var(--text-muted)" });
+
+                // Sudut kutub theta
+                geo1.buatSudut(A, O, P, {
+                    radius: 42,
+                    fill: "rgba(217, 119, 6, 0.22)",
+                    stroke: "#d97706",
+                    label: "θ",
+                    labelRadius: 55,
+                    labelColor: "#d97706",
+                    bold: true
+                });
+
+                // Garis proyeksi x dan y
+                geo1.buatSegmen(A, P, {
+                    stroke: "#d97706",
+                    strokeWidth: 2,
+                    dashed: "5 3",
+                    label: "y = r sin θ",
+                    labelPosisi: 0.5,
+                    labelSisi: "kanan",
+                    labelJarak: 8,
+                    labelColor: "#d97706",
+                    bold: true
+                });
+                geo1.buatSegmen(B, P, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: "4 4" });
+                geo1.buatSegmen(O, A, {
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.2,
+                    label: "x = r cos θ",
+                    labelPosisi: 0.5,
+                    labelSisi: "kanan",
+                    labelJarak: 12,
+                    labelColor: "var(--teal-primary)",
+                    bold: true
+                });
+
+                // Vektor jari-jari r
+                geo1.buatVektor(O, P, {
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.6,
+                    label: "r",
+                    labelPosisi: 0.52,
+                    labelSisi: "kiri",
+                    labelJarak: 10,
+                    labelColor: "var(--teal-primary)",
+                    bold: true
+                });
+
+                // Titik O, A, B, P
+                geo1.buatTitik(O, { size: 4, color: "var(--text-main)", label: "O (Kutub)", labelPosition: "bottom-left", labelDistance: 5, bold: true });
+                geo1.buatTitik(A, { size: 3.5, color: "var(--text-main)" });
+                geo1.buatTitik(B, { size: 3.5, color: "var(--text-main)", label: "y", labelPosition: "middle-left", labelDistance: 6 });
+                geo1.buatTitik(P, {
+                    size: 5,
+                    color: "var(--teal-primary)",
+                    label: "P(r, θ) ≡ P(x, y)",
+                    labelPosition: "top-center",
+                    labelDistance: 9,
+                    bold: true
+                });
+            }
+
+            // 2. Visualisasi Ekuivalensi Jari-Jari Negatif (r, theta) == (-r, theta + 180) menggunakan GeoSVG.js
+            const containerNegR = document.getElementById("geosvg-neg-r");
+            if (containerNegR && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerNegR, 300, 260, {
+                    viewBox: "-135 -130 270 260",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Representasi Jari-Jari Negatif pada Koordinat Kutub",
+                    description: "Titik P(3, 60 derajat) sama dengan titik (-3, 240 derajat) karena berlawanan arah 180 derajat"
+                });
+
+                const R = 92;
+
+                // Lingkaran jari-jari r = 3
+                geo2.buatLingkaran([0, 0], R, {
+                    stroke: "var(--border-color)",
+                    strokeWidth: 1.3,
+                    dashed: "4 4"
+                });
+
+                // Sumbu X dan Y
+                geo2.buatVektor([-120, 0], [120, 0], { stroke: "var(--text-muted)", strokeWidth: 1.4 });
+                geo2.buatVektor([0, -115], [0, 115], { stroke: "var(--text-muted)", strokeWidth: 1.4 });
+
+                const rad60 = 60 * Math.PI / 180;
+                const P = [R * Math.cos(rad60), R * Math.sin(rad60)];       // (3, 60 deg)
+                const Q = [-R * Math.cos(rad60), -R * Math.sin(rad60)];     // arah 240 deg
+
+                // Sinar arah 240 derajat (putus-putus)
+                geo2.buatSegmen([0, 0], Q, {
+                    stroke: "#d97706",
+                    strokeWidth: 1.8,
+                    dashed: "5 3"
+                });
+
+                // Vektor utama ke P(3, 60)
+                geo2.buatVektor([0, 0], P, {
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.5
+                });
+
+                // Sudut 60 derajat
+                geo2.buatSudut([60, 0], [0, 0], P, {
+                    radius: 26,
+                    fill: "rgba(13, 148, 136, 0.2)",
+                    stroke: "var(--teal-primary)",
+                    label: "60°",
+                    labelRadius: 38,
+                    labelColor: "var(--teal-primary)",
+                    fontSize: "10px",
+                    bold: true
+                });
+
+                // Busur sudut 240 derajat
+                geo2.buatBusur([0, 0], 44, 0, 240, {
+                    stroke: "#d97706",
+                    strokeWidth: 1.6,
+                    dashed: "3 2"
+                });
+                geo2.buatTeks(-48, 38, "240°", {
+                    fill: "#d97706",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    position: "middle-center"
+                });
+
+                // Titik P dan arah lawan Q
+                geo2.buatTitik([0, 0], { size: 3.5, color: "var(--text-main)" });
+                geo2.buatTitik(Q, {
+                    marker: "empty-circle",
+                    size: 4.5,
+                    color: "#d97706",
+                    label: "Arah 240° (r > 0)",
+                    labelPosition: "bottom-left",
+                    labelDistance: 6
+                });
+                geo2.buatTitik(P, {
+                    size: 5,
+                    color: "var(--teal-primary)",
+                    label: "P(3, 60°) ≡ (-3, 240°)",
+                    labelPosition: "top-center",
+                    labelDistance: 8,
+                    bold: true
+                });
+            }
+
+            // 3. Visualisasi Jarak Dua Titik dalam Koordinat Kutub (Aturan Cosinus) menggunakan GeoSVG.js
+            const containerDist = document.getElementById("geosvg-polar-dist");
+            if (containerDist && typeof GeoSVG !== "undefined") {
+                const geo3 = new GeoSVG(containerDist, 320, 245, {
+                    viewBox: "-35 -35 270 210",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Jarak Dua Titik pada Koordinat Kutub",
+                    description: "Segitiga OP1P2 dengan sisi r1, r2, dan sudut apit theta2 - theta1 untuk menghitung jarak d"
+                });
+
+                // Sumbu Kutub dan Sumbu Y
+                geo3.buatVektor([-20, 0], [220, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo3.buatVektor([0, -20], [0, 160], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+
+                const O = [0, 0];
+                const r1 = 185, ang1 = 18 * Math.PI / 180;
+                const r2 = 155, ang2 = 68 * Math.PI / 180;
+
+                const P1 = [r1 * Math.cos(ang1), r1 * Math.sin(ang1)];
+                const P2 = [r2 * Math.cos(ang2), r2 * Math.sin(ang2)];
+
+                // Segitiga OP1P2
+                geo3.buatPoligon([O, P1, P2], {
+                    fill: "rgba(13, 148, 136, 0.12)",
+                    stroke: "none"
+                });
+
+                // Sudut theta_1 dan selisih sudut (theta_2 - theta_1)
+                geo3.buatSudut([70, 0], O, P1, {
+                    radius: 42,
+                    fill: "rgba(100, 116, 139, 0.15)",
+                    stroke: "var(--text-muted)",
+                    label: "θ₁",
+                    labelRadius: 56,
+                    labelColor: "var(--text-muted)",
+                    fontSize: "10.5px",
+                    bold: true
+                });
+
+                geo3.buatSudut(P1, O, P2, {
+                    radius: 56,
+                    fill: "rgba(217, 119, 6, 0.22)",
+                    stroke: "#d97706",
+                    label: "θ₂ - θ₁",
+                    labelRadius: 76,
+                    labelColor: "#d97706",
+                    fontSize: "10.5px",
+                    bold: true
+                });
+
+                // Sisi r1, r2, dan jarak d = P1P2
+                geo3.buatSegmen(O, P1, {
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.2,
+                    label: "r₁",
+                    labelPosisi: 0.6,
+                    labelSisi: "kanan",
+                    labelJarak: 9,
+                    labelColor: "var(--teal-primary)",
+                    bold: true
+                });
+                geo3.buatSegmen(O, P2, {
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.2,
+                    label: "r₂",
+                    labelPosisi: 0.58,
+                    labelSisi: "kiri",
+                    labelJarak: 9,
+                    labelColor: "var(--teal-primary)",
+                    bold: true
+                });
+                geo3.buatSegmen(P1, P2, {
+                    stroke: "#d97706",
+                    strokeWidth: 2.6,
+                    dashed: "5 3",
+                    label: "d",
+                    labelPosisi: 0.5,
+                    labelSisi: "kiri",
+                    labelJarak: 9,
+                    labelColor: "#d97706",
+                    bold: true
+                });
+
+                // Titik O, P1, P2
+                geo3.buatTitik(O, { size: 4, color: "var(--text-main)", label: "O", labelPosition: "bottom-left", bold: true });
+                geo3.buatTitik(P1, { size: 4.5, color: "var(--teal-primary)", label: "P₁(r₁, θ₁)", labelPosition: "bottom-center", labelDistance: 8, bold: true });
+                geo3.buatTitik(P2, { size: 4.5, color: "var(--teal-primary)", label: "P₂(r₂, θ₂)", labelPosition: "top-center", labelDistance: 8, bold: true });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal Dasar - Logaritma [1]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Logaritma</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika ${}^5\log 3 = x$ dan ${}^3\log 2 = y$, maka nilai dari ${}^{18}\log 15$ sama dengan ...
+                <ol class="pilgan" type="A">
+                    <li>$\dfrac{2+x}{x(1+y)}$</li>
+                    <li>$\dfrac{1+x}{x(2+y)}$</li>
+                    <li>$\dfrac{2+y}{y(1+x)}$</li>
+                    <li>$\dfrac{1+y}{y(2+x)}$</li>
+                    <li>$\dfrac{3+x}{x(1+y)}$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">Latihan Standar Logaritma</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Berdasarkan sifat perkalian logaritma:</p>
+                    \[
+                    \begin{aligned}
+                    {}^5\log 3 \cdot {}^3\log 2 &= x \cdot y \\
+                    {}^5\log 2 &= xy
+                    \end{aligned}
+                    \]
+                    <p>Ubah basis ${}^{18}\log 15$ ke basis $5$:</p>
+                    \[
+                    \begin{aligned}
+                    {}^{18}\log 15 &= \frac{{}^5\log 15}{{}^5\log 18} \\[6pt]
+                    &= \frac{{}^5\log(5 \cdot 3)}{{}^5\log(3^2 \cdot 2)} \\[6pt]
+                    &= \frac{{}^5\log 5 + {}^5\log 3}{{}^5\log 3^2 + {}^5\log 2} \\[6pt]
+                    &= \frac{1 + {}^5\log 3}{2 \cdot {}^5\log 3 + {}^5\log 2} \\[6pt]
+                    &= \frac{1 + x}{2x + xy} \\[6pt]
+                    &= \frac{1 + x}{x(2 + y)}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, ${}^{18}\log 15 = \dfrac{1+x}{x(2+y)}$.<br><strong>Jawaban: B</strong></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika $\dfrac{2 - 6\sqrt{2}}{\sqrt{2} - 6} = x$, maka nilai dari ${}^x\log 0{,}125$ adalah ...
+            </div>
+            <div class="soal-sumber">Latihan Standar Logaritma</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Rasionalkan penyebut pada nilai $x$:</p>
+                    \[
+                    \begin{aligned}
+                    x &= \frac{2 - 6\sqrt{2}}{\sqrt{2} - 6} \cdot \frac{\sqrt{2} + 6}{\sqrt{2} + 6} \\[6pt]
+                    &= \frac{2\sqrt{2} + 12 - 12 - 36\sqrt{2}}{(\sqrt{2})^2 - 6^2} \\[6pt]
+                    &= \frac{-34\sqrt{2}}{2 - 36} \\[6pt]
+                    &= \frac{-34\sqrt{2}}{-34} = \sqrt{2}
+                    \end{aligned}
+                    \]
+                    <p>Substitusikan nilai $x = \sqrt{2} = 2^{1/2}$ dan $0{,}125 = \frac{1}{8} = 2^{-3}$:</p>
+                    \[
+                    \begin{aligned}
+                    {}^x\log 0{,}125 &= {}^{\sqrt{2}}\log \frac{1}{8} \\[6pt]
+                    &= {}^{2^{1/2}}\log 2^{-3} \\[6pt]
+                    &= \frac{-3}{\frac{1}{2}} \cdot {}^2\log 2 \\[6pt]
+                    &= -6 \cdot 1 = -6
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, nilai dari ${}^x\log 0{,}125 = -6$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika $a > 1$, $b > 1$, dan $c > 1$, maka nilai dari:
+                \[
+                \left({}^a\log \frac{1}{b}\right)\left({}^b\log \frac{1}{c}\right)\left({}^c\log \frac{1}{a}\right) = \dots
+                \]
+                <ol class="pilgan" type="A">
+                    <li>$1 - abc$</li>
+                    <li>$abc$</li>
+                    <li>$-abc$</li>
+                    <li>$1$</li>
+                    <li>$-1$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">Latihan Standar Logaritma</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan sifat eksponen pecahan $\frac{1}{x} = x^{-1}$ dan sifat logaritma ${}^p\log q^n = n \cdot {}^p\log q$:</p>
+                    \[
+                    \begin{aligned}
+                    \left({}^a\log \frac{1}{b}\right)\left({}^b\log \frac{1}{c}\right)\left({}^c\log \frac{1}{a}\right)
+                    &= \left({}^a\log b^{-1}\right)\left({}^b\log c^{-1}\right)\left({}^c\log a^{-1}\right) \\[6pt]
+                    &= (-1) \cdot (-1) \cdot (-1) \cdot ({}^a\log b)({}^b\log c)({}^c\log a) \\[6pt]
+                    &= -1 \cdot ({}^a\log a) \\[6pt]
+                    &= -1 \cdot 1 = -1
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, nilai dari ekspresi tersebut adalah $-1$.<br><strong>Jawaban: E</strong></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Nilai dari ${}^{25}\log\dfrac{1}{64} \cdot {}^4\log 10 + {}^{25}\log 8$ adalah ...
+                <ol class="pilgan" type="A">
+                    <li>$-\dfrac{3}{2}$</li>
+                    <li>$-\dfrac{1}{2}$</li>
+                    <li>$\dfrac{1}{2}$</li>
+                    <li>$1$</li>
+                    <li>$\dfrac{3}{2}$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">Latihan Standar Logaritma</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ubah bentuk $\frac{1}{64} = 4^{-3}$ dan gunakan sifat rantai logaritma:</p>
+                    \[
+                    \begin{aligned}
+                    {}^{25}\log\frac{1}{64} \cdot {}^4\log 10 + {}^{25}\log 8
+                    &= {}^{25}\log 4^{-3} \cdot {}^4\log 10 + {}^{25}\log 8 \\[6pt]
+                    &= -3 \cdot ({}^{25}\log 4 \cdot {}^4\log 10) + {}^{25}\log 8 \\[6pt]
+                    &= -3 \cdot {}^{25}\log 10 + {}^{25}\log 8 \\[6pt]
+                    &= {}^{25}\log 10^{-3} + {}^{25}\log 8 \\[6pt]
+                    &= {}^{25}\log \left(\frac{1}{1000} \cdot 8\right) \\[6pt]
+                    &= {}^{25}\log \frac{8}{1000} = {}^{25}\log \frac{1}{125} \\[6pt]
+                    &= {}^{5^2}\log 5^{-3} \\[6pt]
+                    &= \frac{-3}{2} \cdot {}^5\log 5 = -\frac{3}{2}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, nilai dari bentuk tersebut adalah $-\dfrac{3}{2}$.<br><strong>Jawaban: A</strong></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sederhanakan bentuk berikut:
+                \[
+                \log 100 + \log 0{,}1
+                \]
+            </div>
+            <div class="soal-sumber">Latihan Standar Logaritma</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan sifat penjumlahan logaritma berbaris $10$ ($\log a + \log b = \log(ab)$):</p>
+                    \[
+                    \begin{aligned}
+                    \log 100 + \log 0{,}1 &= \log(100 \cdot 0{,}1) \\
+                    &= \log 10 \\
+                    &= 1
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, $\log 100 + \log 0{,}1 = 1$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sederhanakan bentuk berikut:
+                \[
+                {}^3\log 9 - {}^3\log \frac{1}{3}
+                \]
+            </div>
+            <div class="soal-sumber">Latihan Standar Logaritma</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan sifat pengurangan logaritma (${}^a\log b - {}^a\log c = {}^a\log \frac{b}{c}$):</p>
+                    \[
+                    \begin{aligned}
+                    {}^3\log 9 - {}^3\log \frac{1}{3} &= {}^3\log \left(\frac{9}{\frac{1}{3}}\right) \\[6pt]
+                    &= {}^3\log(9 \cdot 3) \\[6pt]
+                    &= {}^3\log 27 \\[6pt]
+                    &= {}^3\log 3^3 = 3
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, ${}^3\log 9 - {}^3\log \dfrac{1}{3} = 3$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sederhanakan bentuk berikut:
+                \[
+                {}^a\log 1 + {}^a\log 1
+                \]
+            </div>
+            <div class="soal-sumber">Latihan Standar Logaritma</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ingat bahwa nilai logaritma dari $1$ dengan basis berapa pun yang terdefinisi ($a > 0, a \ne 1$) bernilai $0$:</p>
+                    \[
+                    {}^a\log 1 = 0
+                    \]
+                    <p>Maka:</p>
+                    \[
+                    {}^a\log 1 + {}^a\log 1 = 0 + 0 = 0
+                    \]
+                    <div class="kesimpulan">Jadi, ${}^a\log 1 + {}^a\log 1 = 0$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sederhanakan bentuk berikut:
+                \[
+                {}^2\log \frac{1}{8} + {}^2\log \frac{1}{64}
+                \]
+            </div>
+            <div class="soal-sumber">Latihan Standar Logaritma</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Nyatakan argumen sebagai bilangan berpangkat basis $2$:</p>
+                    \[
+                    \begin{aligned}
+                    \frac{1}{8} &= 2^{-3} \\
+                    \frac{1}{64} &= 2^{-6}
+                    \end{aligned}
+                    \]
+                    <p>Sehingga:</p>
+                    \[
+                    \begin{aligned}
+                    {}^2\log \frac{1}{8} + {}^2\log \frac{1}{64}
+                    &= {}^2\log 2^{-3} + {}^2\log 2^{-6} \\
+                    &= -3 + (-6) \\
+                    &= -9
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, ${}^2\log \dfrac{1}{8} + {}^2\log \dfrac{1}{64} = -9$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sederhanakan bentuk berikut:
+                \[
+                {}^2\log 2^8 + {}^2\log \frac{1}{8}
+                \]
+            </div>
+            <div class="soal-sumber">Latihan Standar Logaritma</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan sifat ${}^a\log a^n = n$ dan $\frac{1}{8} = 2^{-3}$:</p>
+                    \[
+                    \begin{aligned}
+                    {}^2\log 2^8 + {}^2\log \frac{1}{8}
+                    &= 8 + {}^2\log 2^{-3} \\
+                    &= 8 + (-3) \\
+                    &= 5
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, ${}^2\log 2^8 + {}^2\log \dfrac{1}{8} = 5$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sederhanakan bentuk berikut:
+                \[
+                {}^2\log 16^{1/2} + {}^2\log 8^{1/3}
+                \]
+            </div>
+            <div class="soal-sumber">Latihan Standar Logaritma</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ubah bilangan $16$ dan $8$ ke bentuk pangkat berbaris $2$:</p>
+                    \[
+                    \begin{aligned}
+                    16^{1/2} &= (2^4)^{1/2} = 2^2 \\
+                    8^{1/3} &= (2^3)^{1/3} = 2^1 = 2
+                    \end{aligned}
+                    \]
+                    <p>Maka perhitungannya adalah:</p>
+                    \[
+                    \begin{aligned}
+                    {}^2\log 16^{1/2} + {}^2\log 8^{1/3}
+                    &= {}^2\log 2^2 + {}^2\log 2 \\
+                    &= 2 + 1 \\
+                    &= 3
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">Jadi, ${}^2\log 16^{1/2} + {}^2\log 8^{1/3} = 3$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

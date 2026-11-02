@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Limas</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Limas</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Unsur-Unsur Limas Segi-$n$</h2>
+            <p>
+                <strong>Limas (<em>Pyramid</em>)</strong> adalah bangun ruang sisi datar yang dibatasi oleh sebuah
+                bidang alas berbentuk segi banyak (poligon segi-$n$) dan bidang-bidang sisi tegak berbentuk
+                <strong>segitiga</strong> yang berpotongan pada satu titik puncak yang sama di luar bidang alas.
+            </p>
+            <p>
+                Penamaan limas ditentukan oleh bentuk bidang alasnya, misalnya <em>limas segitiga</em> (bidang empat /
+                <em>tetrahedron</em>), <em>limas segi empat</em>, <em>limas segi lima</em>, dan seterusnya. Suatu limas
+                disebut <strong>limas beraturan</strong> jika alasnya berbentuk segi-$n$ beraturan dan proyeksi titik
+                puncaknya jatuh tepat di titik pusat simetri bidang alas (sehingga semua rusuk tegaknya sama panjang dan
+                semua sisi tegaknya berupa segitiga sama kaki yang kongruen).
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Unsur Limas</th>
+                            <th>Rumus Limas Segi-$n$</th>
+                            <th>Limas Segitiga ($n=3$)</th>
+                            <th>Limas Segi Empat ($n=4$)</th>
+                            <th>Limas Segi Enam ($n=6$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Banyaknya Sisi / Bidang ($S$)</strong><br>(1 alas + $n$
+                                segitiga tegak)</td>
+                            <td>$$S = n + 1$$</td>
+                            <td>$4$</td>
+                            <td>$5$</td>
+                            <td>$7$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Banyaknya Rusuk ($R$)</strong><br>($n$ rusuk alas + $n$ rusuk
+                                tegak)</td>
+                            <td>$$R = 2n$$</td>
+                            <td>$6$</td>
+                            <td>$8$</td>
+                            <td>$12$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Banyaknya Titik Sudut ($T$)</strong><br>($n$ sudut alas + 1
+                                titik puncak)</td>
+                            <td>$$T = n + 1$$</td>
+                            <td>$4$</td>
+                            <td>$5$</td>
+                            <td>$7$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Diagonal Bidang Alas ($d_b$)</strong></td>
+                            <td>$$d_b = \frac{1}{2}n(n - 3)$$</td>
+                            <td>$0$</td>
+                            <td>$2$</td>
+                            <td>$9$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Bidang Diagonal ($B_d$)</strong></td>
+                            <td>$$B_d = \frac{1}{2}n(n - 3)$$</td>
+                            <td>$0$</td>
+                            <td>$2$</td>
+                            <td>$9$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Diagonal Ruang ($d_r$)</strong></td>
+                            <td>$$d_r = 0$$</td>
+                            <td>$0$</td>
+                            <td>$0$</td>
+                            <td>$0$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                Setiap limas segi-$n$ selalu memenuhi <strong>Rumus Polihedron Euler</strong>:
+                $$S + T - R = (n + 1) + (n + 1) - 2n = 2$$
+            </p>
+
+            <h2>2. Anatomi &amp; Hubungan Pythagoras pada Limas Segi Empat Beraturan</h2>
+            <p>
+                Pada <strong>limas persegi beraturan $T.ABCD$</strong> dengan panjang rusuk alas $s$, panjang rusuk
+                tegak $r_t = TA = TB = TC = TD$, dan tinggi limas $t = TO$ (di mana $O$ adalah titik potong diagonal
+                alas $AC$ dan $BD$), serta $E$ adalah titik tengah rusuk $BC$, terdapat <strong>dua segitiga siku-siku
+                    kunci</strong> yang menghubungkan seluruh ukuran limas:
+            </p>
+            <ol>
+                <li>
+                    <strong>Segitiga Siku-Siku $\triangle TOE$ (Tinggi Limas, Apotema Alas, dan Tinggi Segitiga Sisi
+                        Tegak):</strong>
+                    <ul>
+                        <li>Jarak pusat $O$ ke titik tengah rusuk $BC$ adalah $OE = \frac{1}{2}s$.</li>
+                        <li>Tinggi segitiga sisi tegak $\triangle TBC$ adalah garis tinggi $TE = t_s$ (disebut juga
+                            <em>apotema limas</em>).</li>
+                        <li>Berlaku Teorema Pythagoras pada $\triangle TOE$ (siku-siku di $O$):
+                            $$t_s^2 = t^2 + \left(\frac{1}{2}s\right)^2 \iff TE = \sqrt{TO^2 + OE^2}$$
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Segitiga Siku-Siku $\triangle TOB$ (Tinggi Limas, Setengah Diagonal Alas, dan Rusuk
+                        Tegak):</strong>
+                    <ul>
+                        <li>Panjang diagonal persegi alas adalah $BD = s\sqrt{2}$, sehingga $OB = \frac{1}{2}BD =
+                            \frac{1}{2}s\sqrt{2}$.</li>
+                        <li>Berlaku Teorema Pythagoras pada $\triangle TOB$ (siku-siku di $O$) serta $\triangle TEB$
+                            (siku-siku di $E$):
+                            $$r_t^2 = t^2 + \left(\frac{1}{2}s\sqrt{2}\right)^2 = t^2 + \frac{1}{2}s^2 \quad \text{atau}
+                            \quad r_t^2 = t_s^2 + \left(\frac{1}{2}s\right)^2$$
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-limas-3d" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Rumus Luas Permukaan dan Volume Limas</h2>
+            <p>
+                Secara umum, luas permukaan limas adalah jumlah dari luas bidang alas dan jumlah luas seluruh bidang
+                segitiga pada sisi tegaknya, sedangkan volumenya adalah sepertiga dari hasil kali luas alas dan tinggi
+                tegak lurus limas:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besaran Geometri</th>
+                            <th>Rumus Umum Limas</th>
+                            <th>Khusus Limas Persegi Beraturan (Sisi $s$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Total Panjang Kerangka ($K_{\text{rangka}}$)</strong></td>
+                            <td>$$K_{\text{rangka}} = K_{\text{alas}} + \sum r_{\text{tegak}}$$</td>
+                            <td>$$K_{\text{rangka}} = 4s + 4r_t$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Luas Selubung / Sisi Tegak ($L_{\text{tegak}}$)</strong></td>
+                            <td>$$L_{\text{tegak}} = \sum_{i=1}^{n} L_{\Delta\text{ tegak ke-}i}$$</td>
+                            <td>$$L_{\text{tegak}} = 4 \times \left(\frac{1}{2} \cdot s \cdot t_s\right) = 2 \cdot s
+                                \cdot t_s$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Luas Permukaan Limas ($L_p$)</strong></td>
+                            <td>$$L_p = L_{\text{alas}} + \sum L_{\Delta\text{ sisi tegak}}$$</td>
+                            <td>$$L_p = s^2 + 2 \cdot s \cdot t_s = s(s + 2t_s)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Volume Limas ($V$)</strong><br>(Tinggi $t = TO \perp$ bidang
+                                alas)</td>
+                            <td>$$V = \frac{1}{3} \times L_{\text{alas}} \times t$$</td>
+                            <td>$$V = \frac{1}{3} \cdot s^2 \cdot t$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                <strong>Kasus Khusus — Bidang Empat Beraturan (<em>Regular Tetrahedron</em>):</strong><br>
+                Jika sebuah limas segitiga memiliki <strong>$6$ rusuk yang semuanya sama panjang ($s$)</strong>, maka
+                keempat sisinya merupakan segitiga sama sisi yang kongruen. Unsur-unsur istimewanya adalah:
+                $$\text{Tinggi sisi } (t_s) = \frac{1}{2}s\sqrt{3}, \qquad \text{Tinggi limas } (t) =
+                \frac{1}{3}s\sqrt{6}, \qquad L_p = s^2\sqrt{3}, \qquad V = \frac{1}{12}s^3\sqrt{2}$$
+            </p>
+
+            <h2>4. Jaring-Jaring Limas dan Limas Terpancung (Frustum)</h2>
+            <p>
+                Jika sebuah limas diiris sepanjang rusuk-rusuk tegaknya lalu direbahkan pada bidang datar, terbentuklah
+                <strong>jaring-jaring limas</strong> yang terdiri atas 1 poligon alas di bagian tengah dikelilingi oleh
+                $n$ buah segitiga sisi tegak.
+            </p>
+            <p>
+                Apabila sebuah limas dipotong oleh sebuah bidang datar yang <strong>sejajar dengan bidang
+                    alasnya</strong> dan bagian puncaknya dibuang, maka bangun ruang sisa di bagian bawah disebut
+                <strong>Limas Terpancung (<em>Frustum of a Pyramid</em>)</strong>:
+            </p>
+            <ul>
+                <li>
+                    <strong>Kesebangunan Penampang Sejajar:</strong> Jika suatu limas bervolume $V_0$ dan berlalu-luas
+                    alas $L_0$ dengan tinggi total $H$ dipotong sejajar alas pada jarak $h_1$ dari titik puncak $T$,
+                    maka rasio luas penampang dan volume limas kecil di bagian atas terhadap limas mula-mula memenuhi:
+                    $$\frac{L_{\text{atas}}}{L_{\text{alas}}} = \left(\frac{h_1}{H}\right)^2 \qquad \text{dan} \qquad
+                    \frac{V_{\text{atas}}}{V_{\text{utuh}}} = \left(\frac{h_1}{H}\right)^3$$
+                </li>
+                <li>
+                    <strong>Volume Limas Terpancung:</strong> Jika luas bidang alas bawah adalah $L_1$, luas bidang
+                    tutup atas adalah $L_2$, dan jarak tegak lurus kedua bidang sejajar tersebut adalah $t$, maka
+                    volumenya adalah:
+                    $$V_{\text{terpancung}} = \frac{1}{3} t \left(L_1 + L_2 + \sqrt{L_1 \cdot L_2}\right)$$
+                    Khusus untuk limas terpancung beralas persegi dengan sisi bawah $s_1$ dan sisi atas $s_2$:
+                    $$V_{\text{terpancung}} = \frac{1}{3} t \left(s_1^2 + s_2^2 + s_1 s_2\right)$$
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-limas-jaring" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Perbedaan Penting pada Limas yang Sering Tertukar:
+                <br>• <strong>Tinggi Limas ($t = TO$)</strong> digunakan untuk menghitung <strong>Volume</strong> ($V =
+                \frac{1}{3} L_{\text{alas}} \cdot t$).
+                <br>• <strong>Tinggi Segitiga Sisi Tegak ($t_s = TE$)</strong> digunakan untuk menghitung <strong>Luas
+                    Permukaan</strong> ($L_{\Delta} = \frac{1}{2} \cdot s \cdot t_s$).
+                <br>• <strong>Rusuk Tegak ($r_t = TB$)</strong> adalah sisi miring dari segitiga sisi tegak ($\triangle
+                TBC$), sehingga selalu berlaku $r_t > t_s > t$.
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memahami cara menghitung luas permukaan, volume, jarak pada
+                dimensi tiga, serta limas terpancung. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka
+                langkah pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Luas Permukaan & Volume dari Rusuk Alas dan Rusuk Tegak -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Sebuah limas segi empat beraturan $T.ABCD$ memiliki alas berbentuk persegi dengan panjang sisi $AB =
+                    12\text{ cm}$ dan panjang rusuk tegak $TA = TB = TC = TD = 10\text{ cm}$. Tentukan:
+                    <ol style="margin-top: 0.5rem;" type="a">
+                        <li>Tinggi segitiga sisi tegak ($TE$) dan luas permukaan limas,</li>
+                        <li>Tinggi limas ($TO$) dan volume limas tersebut.</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Bagian 1: Menghitung tinggi sisi tegak ($TE$) dan luas permukaan ($L_p$)</strong><br>
+                        Misalkan $E$ adalah titik tengah rusuk $BC$, maka $BE = \frac{1}{2}BC = \frac{1}{2}(12) =
+                        6\text{ cm}$.<br>
+                        Perhatikan segitiga siku-siku $\triangle TEB$ (siku-siku di $E$) dengan sisi miring rusuk tegak
+                        $TB = 10\text{ cm}$:
+                        $$TE = \sqrt{TB^2 - BE^2} = \sqrt{10^2 - 6^2} = \sqrt{100 - 36} = \sqrt{64} = 8\text{ cm}$$
+                        Maka luas permukaan limas adalah:
+                        $$L_p = L_{\text{alas}} + 4 \times L_{\triangle TBC} = 12^2 + 4 \times \left(\frac{1}{2} \times
+                        12 \times 8\right) = 144 + 192 = 336\text{ cm}^2$$
+                    </p>
+                    <p>
+                        <strong>Bagian 2: Menghitung tinggi limas ($TO$) dan volume ($V$)</strong><br>
+                        Misalkan $O$ adalah titik pusat persegi $ABCD$, maka $OE = \frac{1}{2}AB = 6\text{ cm}$.<br>
+                        Perhatikan segitiga siku-siku $\triangle TOE$ (siku-siku di $O$) dengan sisi miring $TE =
+                        8\text{ cm}$:
+                        $$TO = \sqrt{TE^2 - OE^2} = \sqrt{8^2 - 6^2} = \sqrt{64 - 36} = \sqrt{28} = 2\sqrt{7}\text{
+                        cm}$$
+                        Maka volume limas tersebut adalah:
+                        $$V = \frac{1}{3} \times L_{\text{alas}} \times TO = \frac{1}{3} \times 144 \times 2\sqrt{7} =
+                        48 \times 2\sqrt{7} = 96\sqrt{7}\text{ cm}^3$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, luas permukaan limas adalah $336\text{ cm}^2$ dan volumenya adalah $96\sqrt{7}\text{
+                        cm}^3$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Jarak Titik dan Sudut Kemiringan pada Limas -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Diketahui limas persegi beraturan $T.ABCD$ dengan panjang rusuk alas $16\text{ cm}$ dan tinggi limas
+                    $TO = 6\text{ cm}$. Jika $\alpha$ adalah sudut kemiringan antara bidang sisi tegak $TBC$ dengan
+                    bidang alas $ABCD$, tentukan:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Nilai $\cos \alpha$ dan $\tan \alpha$,</li>
+                        <li>Jarak dari titik pusat alas $O$ ke bidang sisi tegak $TBC$.</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Bagian 1: Menentukan nilai $\cos \alpha$ dan $\tan \alpha$</strong><br>
+                        Garis potong antara bidang tegak $TBC$ dan bidang alas $ABCD$ adalah rusuk $BC$. Jika $E$ titik
+                        tengah $BC$, maka $OE \perp BC$ dan $TE \perp BC$, sehingga sudut tumpuan antara bidang $TBC$
+                        dan $ABCD$ diwakili oleh $\alpha = \angle TEO$ pada $\triangle TOE$ (siku-siku di $O$).<br>
+                        Diketahui $TO = 6\text{ cm}$ dan $OE = \frac{1}{2}s = \frac{1}{2}(16) = 8\text{ cm}$. Maka:
+                        $$TE = \sqrt{TO^2 + OE^2} = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = 10\text{ cm}$$
+                        Sehingga:
+                        $$\cos \alpha = \frac{OE}{TE} = \frac{8}{10} = \frac{4}{5} \qquad \text{dan} \qquad \tan \alpha
+                        = \frac{TO}{OE} = \frac{6}{8} = \frac{3}{4}$$
+                    </p>
+                    <p>
+                        <strong>Bagian 2: Menghitung jarak titik $O$ ke bidang $TBC$</strong><br>
+                        Jarak titik $O$ ke bidang $TBC$ sama dengan jarak proyeksi tegak lurus titik $O$ ke garis $TE$
+                        pada segitiga siku-siku $\triangle TOE$ (misalkan $d$). Gunakan prinsip kesamaan luas $\triangle
+                        TOE$:
+                        $$\frac{1}{2} \cdot TE \cdot d = \frac{1}{2} \cdot OE \cdot TO \implies d = \frac{OE \cdot
+                        TO}{TE} = \frac{8 \times 6}{10} = 4{,}8\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, $\cos \alpha = \frac{4}{5}$, $\tan \alpha = \frac{3}{4}$, dan jarak titik pusat alas $O$
+                        ke bidang $TBC$ adalah $4{,}8\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Limas Terpancung & Rasio Pemotongan Sejajar Alas -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Sebuah monumen beton berbentuk limas persegi terpancung memiliki panjang rusuk alas bawah $s_1 =
+                    9\text{ m}$, panjang rusuk bidang atas $s_2 = 3\text{ m}$, dan tinggi tegak lurus $t = 4\text{ m}$.
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Hitunglah volume beton monumen tersebut,</li>
+                        <li>Berapakah perbandingan volume limas kecil yang terpotong di bagian atas terhadap volume
+                            limas utuh mula-mula?</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Bagian 1: Menghitung volume limas persegi terpancung</strong><br>
+                        Substitusikan $s_1 = 9\text{ m}$, $s_2 = 3\text{ m}$, dan $t = 4\text{ m}$ ke rumus volume limas
+                        terpancung:
+                        $$V_{\text{terpancung}} = \frac{1}{3} t \left(s_1^2 + s_2^2 + s_1 s_2\right)$$
+                        $$V_{\text{terpancung}} = \frac{1}{3} (4) \left(9^2 + 3^2 + 9 \times 3\right) = \frac{4}{3} (81
+                        + 9 + 27) = \frac{4}{3} (117) = 156\text{ m}^3$$
+                    </p>
+                    <p>
+                        <strong>Bagian 2: Menentukan perbandingan volume limas atas terhadap limas utuh</strong><br>
+                        Perbandingan ukuran linear antara bidang atas dan bidang bawah adalah:
+                        $$k = \frac{s_2}{s_1} = \frac{3}{9} = \frac{1}{3}$$
+                        Karena limas kecil di bagian atas sebangun dengan limas utuh mula-mula dengan faktor skala $k =
+                        \frac{1}{3}$, maka perbandingan volumenya adalah pangkat tiga dari rasio linearnya:
+                        $$\frac{V_{\text{atas}}}{V_{\text{utuh}}} = k^3 = \left(\frac{1}{3}\right)^3 = \frac{1}{27}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, volume monumen berbentuk limas terpancung tersebut adalah $156\text{ m}^3$ dan
+                        perbandingan volume limas kecil di atas terhadap limas utuh adalah $1 : 27$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiLimas() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const subtleBg = isDark ? '#0f172a' : '#f8fafc';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const tealFill = isDark ? 'rgba(20, 184, 166, 0.22)' : 'rgba(13, 148, 136, 0.14)';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const amberFill = isDark ? 'rgba(251, 191, 36, 0.24)' : 'rgba(217, 119, 6, 0.16)';
+            const roseColor = isDark ? '#fb7185' : '#e11d48';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const blueFill = isDark ? 'rgba(56, 189, 248, 0.20)' : 'rgba(2, 132, 199, 0.13)';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI ANATOMI LIMAS 3D T.ABCD & SEGITIGA SIKU-SIKU KUNCI
+               ------------------------------------------------------------- */
+            const geo3D = new GeoSVG('geosvg-limas-3d', 580, 295, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geo3D.buatPersegiPanjang(6, 6, 568, 283, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geo3D.buatSegmen(342, 18, 342, 276, {
+                stroke: borderColor, strokeWidth: 1.2, dashed: '4,4'
+            });
+
+            // --- PANEL KIRI: Limas Persegi Beraturan T.ABCD ---
+            geo3D.buatTeks(174, 25, "Limas Segi Empat Beraturan T.ABCD", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            // Titik-titik proyeksi 3D limas
+            const A = [52, 224];
+            const B = [212, 224];
+            const C = [282, 168];
+            const D = [122, 168];
+            const O = [(A[0] + C[0]) / 2, (A[1] + C[1]) / 2]; // [167, 196]
+            const E = [(B[0] + C[0]) / 2, (B[1] + C[1]) / 2]; // [247, 196]
+            const T = [167, 56];
+
+            // Arsiran alas dan segitiga kunci di dalam limas (TOE)
+            geo3D.buatPoligon([A, B, C, D], {
+                fill: tealFill, stroke: 'none'
+            });
+            geo3D.buatPoligon([T, O, E], {
+                fill: amberFill, stroke: 'none'
+            });
+
+            // Rusuk belakang & diagonal alas (putus-putus)
+            geo3D.buatSegmen(A, D, { stroke: mutedColor, strokeWidth: 1.6, dashed: '5,4' });
+            geo3D.buatSegmen(D, C, { stroke: mutedColor, strokeWidth: 1.6, dashed: '5,4' });
+            geo3D.buatSegmen(T, D, { stroke: mutedColor, strokeWidth: 1.6, dashed: '5,4' });
+            geo3D.buatSegmen(A, C, { stroke: mutedColor, strokeWidth: 1.2, dashed: '3,3' });
+            geo3D.buatSegmen(B, D, { stroke: mutedColor, strokeWidth: 1.2, dashed: '3,3' });
+
+            // Tinggi limas TO, apotema alas OE, dan tinggi sisi tegak TE
+            geo3D.buatSiku(T, O, E, { size: 9, stroke: roseColor, strokeWidth: 1.4 });
+            geo3D.buatSiku(T, E, B, { size: 8, stroke: amberColor, strokeWidth: 1.3 });
+            geo3D.buatSegmen(T, O, { stroke: roseColor, strokeWidth: 2.4 });
+            geo3D.buatSegmen(O, E, { stroke: blueColor, strokeWidth: 2.2 });
+            geo3D.buatSegmen(T, E, { stroke: amberColor, strokeWidth: 2.5 });
+
+            // Rusuk-rusuk depan yang terlihat jelas (solid)
+            geo3D.buatSegmen(A, B, { stroke: textColor, strokeWidth: 2.2 });
+            geo3D.buatSegmen(B, C, { stroke: textColor, strokeWidth: 2.2 });
+            geo3D.buatSegmen(T, A, { stroke: textColor, strokeWidth: 2.1 });
+            geo3D.buatSegmen(T, B, { stroke: textColor, strokeWidth: 2.2 });
+            geo3D.buatSegmen(T, C, { stroke: textColor, strokeWidth: 2.1 });
+
+            // Titik sudut & label
+            geo3D.buatTitik(T, { size: 4, color: roseColor, label: 'T (Puncak)', labelPosition: 'top-center', bold: true });
+            geo3D.buatTitik(A, { size: 3.5, color: textColor, label: 'A', labelPosition: 'bottom-left', bold: true });
+            geo3D.buatTitik(B, { size: 3.5, color: textColor, label: 'B', labelPosition: 'bottom-right', bold: true });
+            geo3D.buatTitik(C, { size: 3.5, color: textColor, label: 'C', labelPosition: 'middle-right', bold: true });
+            geo3D.buatTitik(D, { size: 3.5, color: mutedColor, label: 'D', labelPosition: 'top-left', bold: true });
+            geo3D.buatTitik(O, { size: 3.5, color: roseColor, label: 'O', labelPosition: 'bottom-left', bold: true });
+            geo3D.buatTitik(E, { size: 3.5, color: amberColor, label: 'E', labelPosition: 'middle-right', bold: true });
+
+            // Label ukuran pada limas
+            geo3D.buatTeks(158, 130, "t", { position: 'middle-right', fontWeight: 'bold', fontSize: '12px', fill: roseColor });
+            geo3D.buatTeks(206, 208, "½s", { position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: blueColor });
+            geo3D.buatTeks(216, 122, "t_s", { position: 'middle-left', fontWeight: 'bold', fontSize: '11.5px', fill: amberColor });
+            geo3D.buatTeks(132, 238, "Rusuk Alas = s", { position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: tealColor });
+            geo3D.buatTeks(174, 265, "O = pusat alas,  E = titik tengah BC", {
+                position: 'middle-center', fontSize: '10.5px', fill: mutedColor
+            });
+
+            // --- PANEL KANAN: Bedah Segitiga Siku-Siku Kunci ---
+            geo3D.buatTeks(458, 25, "Bedah Segitiga Siku-Siku Kunci", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            const pO = [382, 182];
+            const pT = [382, 68];
+            const pE = [516, 182];
+
+            geo3D.buatPoligon([pT, pO, pE], {
+                fill: amberFill, stroke: 'none'
+            });
+            geo3D.buatSiku(pT, pO, pE, { size: 12, stroke: roseColor, strokeWidth: 1.5 });
+            geo3D.buatSegmen(pT, pO, { stroke: roseColor, strokeWidth: 2.5 });
+            geo3D.buatSegmen(pO, pE, { stroke: blueColor, strokeWidth: 2.5 });
+            geo3D.buatSegmen(pT, pE, { stroke: amberColor, strokeWidth: 2.8 });
+
+            geo3D.buatSudut(pO, pE, pT, {
+                radius: 26, fill: blueFill, stroke: tealColor, strokeWidth: 1.4,
+                label: 'α', labelRadius: 36, labelColor: tealColor, bold: true
+            });
+
+            geo3D.buatTitik(pT, { size: 4, color: roseColor, label: 'T', labelPosition: 'top-left', bold: true });
+            geo3D.buatTitik(pO, { size: 4, color: roseColor, label: 'O', labelPosition: 'bottom-left', bold: true });
+            geo3D.buatTitik(pE, { size: 4, color: amberColor, label: 'E', labelPosition: 'bottom-right', bold: true });
+
+            geo3D.buatTeks(372, 125, "TO = t", { position: 'middle-right', fontWeight: 'bold', fontSize: '10.5px', fill: roseColor });
+            geo3D.buatTeks(449, 198, "OE = ½s", { position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: blueColor });
+            geo3D.buatTeks(462, 115, "TE = t_s", { position: 'bottom-left', fontWeight: 'bold', fontSize: '11px', fill: amberColor });
+
+            // Kotak ringkasan Pythagoras di kanan bawah
+            geo3D.buatPersegiPanjang(360, 214, 198, 56, {
+                radius: 7, fill: subtleBg, stroke: borderColor, strokeWidth: 1
+            });
+            geo3D.buatTeks(459, 232, "1) t_s² = t² + (½s)²", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: amberColor
+            });
+            geo3D.buatTeks(459, 252, "2) r_t² = t_s² + (½s)² = t² + ½s²", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: tealColor
+            });
+
+
+            /* -------------------------------------------------------------
+               2. ILUSTRASI JARING-JARING LIMAS & GEOMETRI LIMAS TERPANCUNG
+               ------------------------------------------------------------- */
+            const geoNet = new GeoSVG('geosvg-limas-jaring', 580, 290, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoNet.buatPersegiPanjang(6, 6, 568, 278, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoNet.buatSegmen(285, 18, 285, 272, {
+                stroke: borderColor, strokeWidth: 1.2, dashed: '4,4'
+            });
+
+            // --- PANEL KIRI: Jaring-Jaring Limas Persegi ---
+            geoNet.buatTeks(145, 25, "Jaring-Jaring Limas Persegi Beraturan", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            const cx = 145, cy = 144, hs = 36, hTri = 58;
+            const sqTL = [cx - hs, cy - hs];
+            const sqTR = [cx + hs, cy - hs];
+            const sqBR = [cx + hs, cy + hs];
+            const sqBL = [cx - hs, cy + hs];
+
+            // Persegi alas tengah
+            geoNet.buatPoligon([sqTL, sqTR, sqBR, sqBL], {
+                fill: tealFill, stroke: tealColor, strokeWidth: 2
+            });
+
+            // 4 Segitiga sama kaki sisi tegak
+            const tTop = [cx, cy - hs - hTri];
+            const tRight = [cx + hs + hTri, cy];
+            const tBot = [cx, cy + hs + hTri];
+            const tLeft = [cx - hs - hTri, cy];
+
+            geoNet.buatPoligon([sqTL, sqTR, tTop], { fill: amberFill, stroke: amberColor, strokeWidth: 1.8 });
+            geoNet.buatPoligon([sqTR, sqBR, tRight], { fill: amberFill, stroke: amberColor, strokeWidth: 1.8 });
+            geoNet.buatPoligon([sqBR, sqBL, tBot], { fill: amberFill, stroke: amberColor, strokeWidth: 1.8 });
+            geoNet.buatPoligon([sqBL, sqTL, tLeft], { fill: amberFill, stroke: amberColor, strokeWidth: 1.8 });
+
+            // Garis tinggi sisi tegak t_s pada segitiga atas & kanan
+            geoNet.buatSegmen([cx, cy - hs], tTop, { stroke: roseColor, strokeWidth: 1.6, dashed: '4,3' });
+            geoNet.buatSiku(tTop, [cx, cy - hs], sqTR, { size: 7, stroke: roseColor, strokeWidth: 1.2 });
+
+            geoNet.buatTeks(cx, cy, "Alas\ns × s", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: tealColor
+            });
+            geoNet.buatTeks(cx + 12, cy - hs - hTri / 2 + 4, "t_s", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '10px', fill: roseColor
+            });
+            geoNet.buatTeks(cx + hs + 26, cy - 28, "r_t", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10px', fill: amberColor
+            });
+
+            geoNet.buatTitik(tTop, { size: 3, color: roseColor, label: 'T', labelPosition: 'top-center', bold: true });
+            geoNet.buatTitik(tRight, { size: 3, color: roseColor, label: 'T', labelPosition: 'middle-right', bold: true });
+            geoNet.buatTitik(tBot, { size: 3, color: roseColor, label: 'T', labelPosition: 'bottom-center', bold: true });
+            geoNet.buatTitik(tLeft, { size: 3, color: roseColor, label: 'T', labelPosition: 'middle-left', bold: true });
+
+            geoNet.buatTeks(145, 264, "L_p = L_alas + 4·(½·s·t_s) = s² + 2·s·t_s", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: textColor
+            });
+
+            // --- PANEL KANAN: Limas Terpancung (Frustum) ---
+            geoNet.buatTeks(432, 25, "Limas Terpancung (Frustum Segi Empat)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            // Titik puncak imajiner di atas
+            const fT = [432, 46];
+
+            // Bidang atas (L2, sisi s2)
+            const uA = [386, 128], uB = [458, 128], uC = [486, 106], uD = [414, 106];
+            // Bidang bawah (L1, sisi s1)
+            const bA = [332, 220], bB = [488, 220], bC = [546, 174], bD = [390, 174];
+
+            // Garis perpanjangan ke puncak T (putus-putus)
+            geoNet.buatSegmen(uA, fT, { stroke: mutedColor, strokeWidth: 1.2, dashed: '3,3' });
+            geoNet.buatSegmen(uB, fT, { stroke: mutedColor, strokeWidth: 1.2, dashed: '3,3' });
+            geoNet.buatSegmen(uC, fT, { stroke: mutedColor, strokeWidth: 1.2, dashed: '3,3' });
+            geoNet.buatTitik(fT, { size: 3, color: mutedColor, label: 'T', labelPosition: 'top-center' });
+
+            // Arsiran bidang bawah dan bidang atas
+            geoNet.buatPoligon([bA, bB, bC, bD], { fill: tealFill, stroke: 'none' });
+            geoNet.buatPoligon([uA, uB, uC, uD], { fill: blueFill, stroke: blueColor, strokeWidth: 1.8 });
+
+            // Rusuk belakang frustum
+            geoNet.buatSegmen(bA, bD, { stroke: mutedColor, strokeWidth: 1.4, dashed: '4,4' });
+            geoNet.buatSegmen(bD, bC, { stroke: mutedColor, strokeWidth: 1.4, dashed: '4,4' });
+            geoNet.buatSegmen(uD, bD, { stroke: mutedColor, strokeWidth: 1.4, dashed: '4,4' });
+
+            // Tinggi t antara pusat atas O2 dan pusat bawah O1
+            const O2 = [436, 117];
+            const O1 = [436, 197];
+            geoNet.buatSegmen(O2, O1, { stroke: roseColor, strokeWidth: 2.3 });
+            geoNet.buatTitik(O2, { size: 3, color: blueColor });
+            geoNet.buatTitik(O1, { size: 3, color: tealColor });
+            geoNet.buatTeks(428, 158, "t", { position: 'middle-right', fontWeight: 'bold', fontSize: '11.5px', fill: roseColor });
+
+            // Rusuk depan frustum
+            geoNet.buatSegmen(bA, bB, { stroke: tealColor, strokeWidth: 2.2 });
+            geoNet.buatSegmen(bB, bC, { stroke: tealColor, strokeWidth: 2.2 });
+            geoNet.buatSegmen(uA, bA, { stroke: textColor, strokeWidth: 2 });
+            geoNet.buatSegmen(uB, bB, { stroke: textColor, strokeWidth: 2 });
+            geoNet.buatSegmen(uC, bC, { stroke: textColor, strokeWidth: 2 });
+
+            // Label L1 dan L2
+            geoNet.buatTeks(452, 117, "L₂ (s₂)", { position: 'middle-left', fontWeight: 'bold', fontSize: '10px', fill: blueColor });
+            geoNet.buatTeks(410, 232, "Luas Bawah L₁ (s₁)", { position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: tealColor });
+
+            geoNet.buatTeks(432, 264, "V = ⅓ · t · (L₁ + L₂ + √(L₁·L₂))", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.8px', fill: amberColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiLimas();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiLimas, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

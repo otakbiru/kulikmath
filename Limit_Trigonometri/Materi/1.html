@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Limit Trigonometri</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+
+    <!-- Tambahan style khusus halaman ini (tidak mengubah style.css) -->
+    <style>
+        .materi-card h3 {
+            color: var(--teal-primary);
+            margin: 1.25rem 0 0.6rem;
+            font-size: 1.1rem;
+        }
+
+        .geo-box {
+            color: var(--text-main);
+            text-align: center;
+            overflow-x: auto;
+            margin: 1rem 0 0.25rem;
+        }
+
+        .geo-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 1.25rem;
+        }
+
+        .catatan {
+            margin: 1rem 0;
+            padding: 0.75rem 1.1rem;
+            background: var(--bg-subtle);
+            border-left: 4px solid var(--teal-primary);
+            border-radius: 6px;
+        }
+
+        details.contoh {
+            margin: 0.9rem 0 1.4rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-card);
+            overflow-x: auto;
+        }
+
+        details.contoh>summary {
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            font-weight: 700;
+            color: var(--teal-primary);
+            background: var(--bg-subtle);
+        }
+
+        details.contoh>.isi {
+            padding: 0.9rem 1.1rem 0.4rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Limit Trigonometri</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+
+            <!-- ============================================================ -->
+            <h2>1. Pengertian Limit Trigonometri</h2>
+            <p>
+                <b>Limit trigonometri</b> adalah limit dari fungsi yang memuat sinus, cosinus, tangen, atau fungsi
+                trigonometri lainnya. Seperti limit pada umumnya, kita bertanya: ke nilai berapa $f(x)$ mendekat
+                ketika $x$ mendekati suatu bilangan?
+            </p>
+            <p>
+                Fungsi $\sin x$ dan $\cos x$ kontinu di semua bilangan real, sehingga untuk limit yang "ramah" kita cukup
+                menggunakan substitusi langsung:
+            </p>
+            $$ \lim_{x\to c} \sin x = \sin c, \qquad \lim_{x\to c} \cos x = \cos c, \qquad
+            \lim_{x\to c} \tan x = \tan c \ \ (\cos c \neq 0). $$
+            <p>
+                Masalah muncul pada bentuk <b>tak tentu</b> seperti $\dfrac{0}{0}$. Contohnya
+                $\displaystyle\lim_{x\to 0}\frac{\sin x}{x}$: pembilang dan penyebut sama-sama menuju 0, sehingga
+                substitusi langsung gagal. Materi ini membahas cara menyelesaikan bentuk tersebut.
+            </p>
+            <div class="catatan">
+                <b>Penting: satuan sudut adalah radian.</b> Semua rumus limit trigonometri pada materi ini berlaku
+                jika $x$ dalam <b>radian</b>. Jika $x$ dalam derajat, hasilnya berbeda (lihat bagian 9).
+            </div>
+
+            <!-- ============================================================ -->
+            <h2>2. Bekal: Identitas Trigonometri</h2>
+            <p>Identitas berikut sering dipakai untuk mengubah bentuk tak tentu menjadi bentuk yang dapat dihitung.</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Rumus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Pythagoras</td>
+                            <td>$\sin^2 x + \cos^2 x = 1$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Perbandingan</td>
+                            <td>$\tan x = \dfrac{\sin x}{\cos x}, \quad \cot x = \dfrac{\cos x}{\sin x}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Sudut rangkap</td>
+                            <td>$\sin 2x = 2\sin x\cos x$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Cosinus sudut rangkap</td>
+                            <td>$\cos 2x = 1 - 2\sin^2 x = 2\cos^2 x - 1$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Setengah sudut</td>
+                            <td>$1 - \cos x = 2\sin^2\dfrac{x}{2}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Jumlah dan selisih sudut</td>
+                            <td>$\sin(A\pm B) = \sin A\cos B \pm \cos A\sin B$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Komplemen</td>
+                            <td>$\sin\left(\tfrac{\pi}{2} - t\right) = \cos t, \quad \cos\left(\tfrac{\pi}{2} - t\right) =
+                                \sin t$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Suplemen</td>
+                            <td>$\sin(\pi - t) = \sin t, \quad \sin(\pi + t) = -\sin t$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ============================================================ -->
+            <h2>3. Limit Dasar: $\displaystyle\lim_{x\to 0}\frac{\sin x}{x} = 1$</h2>
+            <h3>3.1 Dugaan dari tabel nilai</h3>
+            <p>Hitunglah $\dfrac{\sin x}{x}$ untuk $x$ (radian) yang makin dekat dengan 0.</p>
+            <div class="table-wrapper">
+                <table class="table-auto">
+                    <thead>
+                        <tr>
+                            <th>$x$</th>
+                            <th>$1$</th>
+                            <th>$0{,}5$</th>
+                            <th>$0{,}1$</th>
+                            <th>$0{,}01$</th>
+                            <th>$0{,}001$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$\dfrac{\sin x}{x}$</td>
+                            <td>0,84147</td>
+                            <td>0,95885</td>
+                            <td>0,99833</td>
+                            <td>0,99998</td>
+                            <td>0,99999983</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Nilainya makin mendekati 1. Grafiknya memperlihatkan hal yang sama.</p>
+            <div class="geo-box" id="geo-sinc"></div>
+            <p class="caption">Gambar 1. Grafik $y = \dfrac{\sin x}{x}$. Di $x = 0$ fungsi tidak terdefinisi (lingkaran
+                kosong), tetapi nilainya mendekati 1 dari kiri maupun kanan.</p>
+
+            <h3>3.2 Bukti geometri dengan lingkaran satuan</h3>
+            <p>
+                Perhatikan lingkaran satuan berpusat di $O$ dengan jari-jari 1. Misalkan $0 &lt; x &lt;
+                \tfrac{\pi}{2}$ radian adalah besar sudut $\angle AOB$. Titik $B$ berada di lingkaran, $C$ adalah titik
+                potong perpanjangan $OB$ dengan garis singgung di $A$, dan $D$ adalah proyeksi $B$ pada $OA$.
+            </p>
+            <div class="geo-box" id="geo-lingkaran"></div>
+            <p class="caption">Gambar 2. Tiga daerah yang dibandingkan: segitiga $OAB$ (merah), juring $OAB$ (hijau),
+                dan segitiga $OAC$ (kuning).</p>
+            <p>Dari gambar diperoleh $BD = \sin x$ dan $AC = \tan x$. Hitung ketiga luas:</p>
+            <ul>
+                <li>Luas segitiga $OAB = \tfrac12 \cdot OA \cdot BD = \tfrac12 \sin x$.</li>
+                <li>Luas juring $OAB = \tfrac12 r^2 x = \tfrac12 x$.</li>
+                <li>Luas segitiga $OAC = \tfrac12 \cdot OA \cdot AC = \tfrac12 \tan x$.</li>
+            </ul>
+            <p>Segitiga $OAB$ termuat di juring, dan juring termuat di segitiga $OAC$, sehingga</p>
+            $$ \tfrac12 \sin x < \tfrac12 x < \tfrac12 \tan x \;\Longrightarrow\; \sin x < x < \tan x. $$
+            <p>
+                Bagi dengan $\sin x > 0$: $1 < \dfrac{x}{\sin x} < \dfrac{1}{\cos x}$. Ambil kebalikannya (arah
+                pertidaksamaan berbalik):
+            </p>
+            $$ \cos x < \frac{\sin x}{x} < 1 . $$
+            <p>
+                Ketika $x \to 0^+$, $\cos x \to 1$. Menurut <b>teorema apit</b>, $\dfrac{\sin x}{x} \to 1$.
+                Untuk $x \to 0^-$: karena $\dfrac{\sin(-x)}{-x} = \dfrac{\sin x}{x}$ (fungsi genap), limit kirinya juga 1.
+                Jadi limit dua sisi sama. $\blacksquare$
+            </p>
+            <p class="kesimpulan">
+                Jadi, $\displaystyle\lim_{x\to 0}\frac{\sin x}{x} = 1$.
+            </p>
+
+            <!-- ============================================================ -->
+            <h2>4. Limit Dasar Lainnya</h2>
+            <h3>4.1 $\displaystyle\lim_{x\to 0}\frac{\tan x}{x} = 1$</h3>
+            $$ \frac{\tan x}{x} = \frac{\sin x}{x}\cdot\frac{1}{\cos x} \;\longrightarrow\; 1 \cdot \frac{1}{1} = 1 . $$
+
+            <h3>4.2 $\displaystyle\lim_{x\to 0}\frac{1-\cos x}{x^2} = \frac12$</h3>
+            <p>Gunakan $1 - \cos x = 2\sin^2\frac{x}{2}$:</p>
+            $$ \frac{1-\cos x}{x^2} = \frac{2\sin^2\frac{x}{2}}{x^2}
+            = \frac{1}{2}\left(\frac{\sin\frac{x}{2}}{\frac{x}{2}}\right)^2 \;\longrightarrow\; \frac12 \cdot 1^2 =
+            \frac12 . $$
+            <div class="geo-box" id="geo-cos"></div>
+            <p class="caption">Gambar 3. Grafik $y = \dfrac{1-\cos x}{x^2}$ mendekati $\tfrac12$ ketika $x \to 0$.</p>
+
+            <h3>4.3 $\displaystyle\lim_{x\to 0}\frac{1-\cos x}{x} = 0$</h3>
+            $$ \frac{1-\cos x}{x} = x \cdot \frac{1-\cos x}{x^2} \;\longrightarrow\; 0 \cdot \frac12 = 0 . $$
+
+            <p class="kesimpulan">
+                Jadi, $\displaystyle\lim_{x\to0}\frac{\sin x}{x} = \lim_{x\to0}\frac{\tan x}{x} = 1$,
+                $\displaystyle\lim_{x\to0}\frac{1-\cos x}{x^2} = \frac12$, dan
+                $\displaystyle\lim_{x\to0}\frac{1-\cos x}{x} = 0$.
+            </p>
+
+            <!-- ============================================================ -->
+            <h2>5. Rumus Umum untuk $x \to 0$</h2>
+            <p>
+                Misalkan $a, b$ konstanta tak nol. Dengan mengubah variabel ($u = ax$) kita peroleh rumus-rumus berikut.
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Limit ($x \to 0$)</th>
+                            <th>Hasil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$\dfrac{\sin ax}{bx}$, $\ \dfrac{ax}{\sin bx}$, $\ \dfrac{\tan ax}{bx}$, $\
+                                \dfrac{ax}{\tan bx}$</td>
+                            <td>$\dfrac{a}{b}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\dfrac{\sin ax}{\sin bx}$, $\ \dfrac{\tan ax}{\tan bx}$, $\ \dfrac{\sin ax}{\tan bx}$,
+                                $\ \dfrac{\tan ax}{\sin bx}$</td>
+                            <td>$\dfrac{a}{b}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\dfrac{1-\cos ax}{x^2}$</td>
+                            <td>$\dfrac{a^2}{2}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\dfrac{1-\cos ax}{bx^2}$</td>
+                            <td>$\dfrac{a^2}{2b}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\dfrac{1-\cos ax}{1-\cos bx}$</td>
+                            <td>$\dfrac{a^2}{b^2}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\dfrac{\cos ax - \cos bx}{x^2}$</td>
+                            <td>$\dfrac{b^2 - a^2}{2}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\dfrac{\tan ax - \sin ax}{x^3}$</td>
+                            <td>$\dfrac{a^3}{2}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Bukti ringkas</h3>
+            <ul>
+                <li>
+                    $\dfrac{\sin ax}{bx} = \dfrac{a}{b}\cdot\dfrac{\sin ax}{ax} \to \dfrac{a}{b}\cdot 1$.
+                </li>
+                <li>
+                    $\dfrac{\sin ax}{\sin bx} = \dfrac{a}{b}\cdot\dfrac{\sin ax}{ax}\cdot\dfrac{bx}{\sin bx} \to
+                    \dfrac{a}{b}\cdot 1 \cdot 1$.
+                </li>
+                <li>
+                    $\dfrac{1-\cos ax}{x^2} = a^2\cdot\dfrac{1-\cos ax}{(ax)^2} \to \dfrac{a^2}{2}$.
+                </li>
+                <li>
+                    $\dfrac{1-\cos ax}{1-\cos bx} = \dfrac{(1-\cos ax)/x^2}{(1-\cos bx)/x^2} \to
+                    \dfrac{a^2/2}{b^2/2} = \dfrac{a^2}{b^2}$.
+                </li>
+                <li>
+                    $\cos ax - \cos bx = (1-\cos bx) - (1-\cos ax)$, sehingga
+                    $\dfrac{\cos ax - \cos bx}{x^2} \to \dfrac{b^2}{2} - \dfrac{a^2}{2}$.
+                </li>
+                <li>
+                    $\tan ax - \sin ax = \tan ax\,(1-\cos ax)$, sehingga
+                    $\dfrac{\tan ax - \sin ax}{x^3} = \dfrac{\tan ax}{x}\cdot\dfrac{1-\cos ax}{x^2} \to a\cdot
+                    \dfrac{a^2}{2}$.
+                </li>
+            </ul>
+            <p class="kesimpulan">
+                Jadi, pada $x \to 0$, perbandingan fungsi sinus atau tangen sama dengan perbandingan koefisien
+                sudutnya, sedangkan $1-\cos ax$ berperilaku seperti $\dfrac{a^2x^2}{2}$.
+            </p>
+
+            <!-- ============================================================ -->
+            <h2>6. Bentuk Umum: Fungsi di dalam Sinus yang Menuju 0</h2>
+            <p>
+                Rumus dasar tidak hanya berlaku untuk $x$ sendiri. Jika $g(x) \to 0$ ketika $x \to c$, maka
+            </p>
+            $$ \lim_{x\to c}\frac{\sin g(x)}{g(x)} = 1, \qquad
+            \lim_{x\to c}\frac{\tan g(x)}{g(x)} = 1, \qquad
+            \lim_{x\to c}\frac{1-\cos g(x)}{[g(x)]^2} = \frac12 . $$
+            <p>
+                Syaratnya: bagian di dalam sinus (atau tangen) harus <b>sama persis</b> dengan penyebut dan harus menuju
+                0. Jika belum sama, kalikan dan bagi dengan faktor yang diperlukan.
+            </p>
+            <h3>Limit di titik selain 0: substitusi $t = x - c$</h3>
+            <p>
+                Jika $x \to c$ dengan $c \neq 0$, misalkan $t = x - c$ sehingga $t \to 0$. Tulis $x = c + t$ lalu
+                gunakan identitas jumlah sudut atau komplemen/suplemen.
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Limit</th>
+                            <th>Substitusi</th>
+                            <th>Hasil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$\displaystyle\lim_{x\to\pi}\frac{\sin x}{\pi - x}$</td>
+                            <td>$\sin x = \sin(\pi - x)$</td>
+                            <td>$1$</td>
+                        </tr>
+                        <tr>
+                            <td>$\displaystyle\lim_{x\to\pi}\frac{\sin x}{x - \pi}$</td>
+                            <td>$\sin x = -\sin(x-\pi)$</td>
+                            <td>$-1$</td>
+                        </tr>
+                        <tr>
+                            <td>$\displaystyle\lim_{x\to\frac{\pi}{2}}\frac{\cos x}{\frac{\pi}{2}-x}$</td>
+                            <td>$\cos x = \sin\left(\tfrac{\pi}{2}-x\right)$</td>
+                            <td>$1$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ============================================================ -->
+            <h2>7. Teorema Apit dan Limit di Tak Hingga</h2>
+            <p>
+                <b>Teorema apit (squeeze).</b> Jika $g(x) \le f(x) \le h(x)$ di dekat $c$ dan
+                $\displaystyle\lim_{x\to c} g(x) = \lim_{x\to c} h(x) = L$, maka $\displaystyle\lim_{x\to c} f(x) = L$.
+            </p>
+            <p>
+                Teorema ini sangat berguna karena $-1 \le \sin(\cdot) \le 1$ dan $-1 \le \cos(\cdot) \le 1$.
+            </p>
+
+            <h3>7.1 $\displaystyle\lim_{x\to\infty}\frac{\sin x}{x} = 0$</h3>
+            <p>Untuk $x > 0$: $-\dfrac{1}{x} \le \dfrac{\sin x}{x} \le \dfrac{1}{x}$. Kedua batas menuju 0.</p>
+            <div class="geo-box" id="geo-apit"></div>
+            <p class="caption">Gambar 4. Kurva $y = \dfrac{\sin x}{x}$ (hijau) terjepit di antara $y = \dfrac{1}{x}$ dan
+                $y = -\dfrac{1}{x}$ (kuning putus-putus).</p>
+
+            <h3>7.2 $\displaystyle\lim_{x\to 0} x^2\sin\frac{1}{x} = 0$</h3>
+            <p>
+                Substitusi langsung tidak mungkin karena $\sin\frac1x$ berosilasi tanpa henti dekat 0 (limitnya sendiri
+                tidak ada). Namun $-x^2 \le x^2\sin\frac1x \le x^2$, dan kedua batas menuju 0.
+            </p>
+            <div class="geo-box" id="geo-xsin"></div>
+            <p class="caption">Gambar 5. Kurva $y = x^2\sin\frac{1}{x}$ terjepit di antara $y = x^2$ dan $y = -x^2$.</p>
+
+            <h3>7.3 $\displaystyle\lim_{x\to\infty} x\sin\frac{1}{x} = 1$</h3>
+            <p>
+                Misalkan $t = \frac1x$. Jika $x \to \infty$ maka $t \to 0^+$, sehingga
+                $x \sin\frac1x = \dfrac{\sin t}{t} \to 1$.
+            </p>
+
+            <div class="catatan">
+                <b>Limit yang tidak ada.</b> $\displaystyle\lim_{x\to\infty}\sin x$ dan $\displaystyle\lim_{x\to
+                0}\sin\frac1x$ <b>tidak ada</b> karena nilainya terus berosilasi di antara $-1$ dan $1$. Teorema apit
+                hanya boleh dipakai jika kedua batas menuju nilai yang sama.
+            </div>
+
+            <!-- ============================================================ -->
+            <h2>8. Hubungan dengan Turunan</h2>
+            <p>
+                Limit dasar $\dfrac{\sin x}{x}\to 1$ dan $\dfrac{1-\cos x}{x}\to 0$ adalah kunci rumus turunan
+                trigonometri. Dari definisi turunan,
+            </p>
+            $$ \frac{d}{dx}\sin x\Big|_{x=a} = \lim_{h\to 0}\frac{\sin(a+h) - \sin a}{h}
+            = \lim_{h\to 0}\left[\sin a\cdot\frac{\cos h - 1}{h} + \cos a\cdot\frac{\sin h}{h}\right]
+            = \sin a\cdot 0 + \cos a\cdot 1 = \cos a . $$
+            <p class="kesimpulan">
+                Jadi, $(\sin x)' = \cos x$. Dengan cara serupa diperoleh $(\cos x)' = -\sin x$.
+            </p>
+            <h3>Menggunakan turunan sebagai alat cek</h3>
+            <p>
+                Untuk bentuk $\dfrac{0}{0}$, aturan L'Hôpital dapat dipakai sebagai pemeriksa: turunkan pembilang dan
+                penyebut. Contoh: $\displaystyle\lim_{x\to0}\frac{x - \sin x}{x^3}$ memberi
+                $\dfrac{1-\cos x}{3x^2} \to \dfrac{1}{3}\cdot\dfrac12 = \dfrac16$. Pada soal sekolah, utamakan metode
+                rumus dan identitas yang dijelaskan di materi ini.
+            </p>
+
+            <!-- ============================================================ -->
+            <h2>9. Limit Satu Sisi dan Sudut dalam Derajat</h2>
+            <h3>9.1 Limit kiri dan kanan</h3>
+            <p>
+                Limit ada jika limit kiri sama dengan limit kanan. Misalnya $f(x) = \dfrac{|\sin x|}{x}$:
+            </p>
+            <ul>
+                <li>$x \to 0^+$: $|\sin x| = \sin x$, sehingga $f \to 1$.</li>
+                <li>$x \to 0^-$: $|\sin x| = -\sin x$, sehingga $f \to -1$.</li>
+            </ul>
+            <p>Karena $1 \neq -1$, $\displaystyle\lim_{x\to0}\frac{|\sin x|}{x}$ tidak ada.</p>
+
+            <h3>9.2 Sudut dalam derajat</h3>
+            <p>
+                Jika $x$ dalam derajat, maka $x^\circ = \dfrac{\pi x}{180}$ radian. Akibatnya
+            </p>
+            $$ \lim_{x\to 0}\frac{\sin x^\circ}{x} = \lim_{x\to 0}\frac{\sin\frac{\pi x}{180}}{x}
+            = \frac{\pi}{180}. $$
+            <p>Karena itulah dalam kalkulus sudut selalu diukur dalam radian.</p>
+
+            <!-- ============================================================ -->
+            <h2>10. Strategi Menyelesaikan Limit Trigonometri</h2>
+            <ol>
+                <li><b>Coba substitusi langsung.</b> Jika hasilnya bilangan, selesai. Jika $\frac00$, lanjut.</li>
+                <li><b>Ubah ke sinus dan cosinus</b> (mis. $\tan x = \frac{\sin x}{\cos x}$).</li>
+                <li><b>Gunakan identitas</b> agar muncul pola $\frac{\sin u}{u}$ atau $\frac{1-\cos u}{u^2}$.</li>
+                <li><b>Samakan bagian dalam fungsi</b> dengan penyebut (kalikan dan bagi dengan faktor yang tepat).</li>
+                <li><b>Jika $x \to c \neq 0$</b>, gunakan substitusi $t = x - c$.</li>
+                <li><b>Bentuk akar</b>: kalikan dengan sekawan.</li>
+                <li><b>Bentuk tak berhingga</b> atau fungsi terbatas: pertimbangkan teorema apit.</li>
+            </ol>
+
+            <!-- ============================================================ -->
+            <h2>11. Contoh Soal dan Pembahasan</h2>
+            <p>Klik judul contoh untuk membuka pembahasannya. Cobalah mengerjakan sendiri terlebih dahulu.</p>
+
+            <details class="contoh">
+                <summary>Contoh 1 &mdash; Rumus dasar</summary>
+                <div class="isi">
+                    <p>Hitung $\displaystyle\lim_{x\to0}\frac{\sin 5x}{3x}$.</p>
+                    <p><b>Penyelesaian.</b></p>
+                    $$ \frac{\sin 5x}{3x} = \frac{5}{3}\cdot\frac{\sin 5x}{5x} \;\longrightarrow\; \frac53\cdot 1 =
+                    \frac53 $$
+                    <p class="kesimpulan">Jadi, limitnya $\dfrac{5}{3}$.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 2 &mdash; Tangen dan sinus</summary>
+                <div class="isi">
+                    <p>Hitung $\displaystyle\lim_{x\to0}\frac{\tan 4x}{\sin 2x}$.</p>
+                    <p><b>Penyelesaian.</b> Dengan rumus umum, hasilnya adalah perbandingan koefisien:</p>
+                    $$ \frac{\tan 4x}{\sin 2x} = \frac{4}{2}\cdot\frac{\tan 4x}{4x}\cdot\frac{2x}{\sin 2x}
+                    \;\longrightarrow\; 2\cdot1\cdot1 = 2 $$
+                    <p class="kesimpulan">Jadi, limitnya $2$.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 3 &mdash; Bentuk $1-\cos$</summary>
+                <div class="isi">
+                    <p>Hitung $\displaystyle\lim_{x\to0}\frac{1-\cos 6x}{x^2}$.</p>
+                    <p><b>Penyelesaian.</b> Pakai $1-\cos 6x = 2\sin^2 3x$:</p>
+                    $$ \frac{2\sin^2 3x}{x^2} = 2\left(\frac{\sin 3x}{x}\right)^2 \;\longrightarrow\; 2\cdot 3^2 = 18 $$
+                    <p>(Sesuai rumus $\frac{a^2}{2} = \frac{36}{2} = 18$.)</p>
+                    <p class="kesimpulan">Jadi, limitnya $18$.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 4 &mdash; Kombinasi identitas</summary>
+                <div class="isi">
+                    <p>Hitung $\displaystyle\lim_{x\to0}\frac{1-\cos 2x}{x\tan x}$.</p>
+                    <p><b>Penyelesaian.</b> Karena $1-\cos 2x = 2\sin^2 x$,</p>
+                    $$ \frac{2\sin^2 x}{x\tan x} = 2\cdot\frac{\sin x}{x}\cdot\frac{\sin x}{\tan x}
+                    = 2\cdot\frac{\sin x}{x}\cdot\cos x \;\longrightarrow\; 2\cdot1\cdot1 = 2 $$
+                    <p class="kesimpulan">Jadi, limitnya $2$.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 5 &mdash; Selisih cosinus</summary>
+                <div class="isi">
+                    <p>Hitung $\displaystyle\lim_{x\to0}\frac{\cos 2x - \cos 6x}{x^2}$.</p>
+                    <p><b>Penyelesaian.</b> Tulis $\cos 2x - \cos 6x = (1-\cos 6x) - (1-\cos 2x)$:</p>
+                    $$ \frac{1-\cos 6x}{x^2} - \frac{1-\cos 2x}{x^2} \;\longrightarrow\; 18 - 2 = 16 $$
+                    <p>(Sesuai rumus $\frac{b^2-a^2}{2} = \frac{36-4}{2} = 16$.)</p>
+                    <p class="kesimpulan">Jadi, limitnya $16$.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 6 &mdash; Menuju $\frac{\pi}{2}$</summary>
+                <div class="isi">
+                    <p>Hitung $\displaystyle\lim_{x\to\frac{\pi}{2}}\frac{\cos x}{x - \frac{\pi}{2}}$.</p>
+                    <p><b>Penyelesaian.</b> Misalkan $t = x - \frac{\pi}{2}$, sehingga $t \to 0$ dan
+                        $\cos x = \cos\left(t + \tfrac{\pi}{2}\right) = -\sin t$.</p>
+                    $$ \lim_{t\to0}\frac{-\sin t}{t} = -1 $$
+                    <p class="kesimpulan">Jadi, limitnya $-1$.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 7 &mdash; Menuju $\pi$</summary>
+                <div class="isi">
+                    <p>Hitung $\displaystyle\lim_{x\to\pi}\frac{\sin x}{\pi - x}$.</p>
+                    <p><b>Penyelesaian.</b> Misalkan $t = \pi - x \to 0$. Karena $\sin x = \sin(\pi - t)=\sin t$,</p>
+                    $$ \lim_{t\to0}\frac{\sin t}{t} = 1 $$
+                    <p class="kesimpulan">Jadi, limitnya $1$.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 8 &mdash; Fungsi di dalam sinus</summary>
+                <div class="isi">
+                    <p>Hitung $\displaystyle\lim_{x\to2}\frac{\sin(x^2-4)}{x-2}$.</p>
+                    <p><b>Penyelesaian.</b> Bagian dalam sinus adalah $x^2-4$, yang menuju 0. Kalikan dan bagi dengan
+                        $x^2-4 = (x-2)(x+2)$:</p>
+                    $$ \frac{\sin(x^2-4)}{x^2-4}\cdot\frac{x^2-4}{x-2}
+                    = \frac{\sin(x^2-4)}{x^2-4}\cdot(x+2) \;\longrightarrow\; 1\cdot 4 = 4 $$
+                    <p class="kesimpulan">Jadi, limitnya $4$.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 9 &mdash; Selisih tangen dan sinus</summary>
+                <div class="isi">
+                    <p>Hitung $\displaystyle\lim_{x\to0}\frac{\tan x - \sin x}{x^3}$.</p>
+                    <p><b>Penyelesaian.</b></p>
+                    $$ \frac{\tan x - \sin x}{x^3} = \frac{\tan x\,(1-\cos x)}{x^3}
+                    = \frac{\tan x}{x}\cdot\frac{1-\cos x}{x^2} \;\longrightarrow\; 1\cdot\frac12 = \frac12 $$
+                    <p class="kesimpulan">Jadi, limitnya $\dfrac{1}{2}$.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 10 &mdash; Bentuk kotangen</summary>
+                <div class="isi">
+                    <p>Hitung $\displaystyle\lim_{x\to0} x\cot 4x$.</p>
+                    <p><b>Penyelesaian.</b></p>
+                    $$ x\cot 4x = x\cdot\frac{\cos 4x}{\sin 4x} = \frac{x}{\sin 4x}\cdot\cos 4x
+                    \;\longrightarrow\; \frac14\cdot 1 = \frac14 $$
+                    <p class="kesimpulan">Jadi, limitnya $\dfrac{1}{4}$.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 11 &mdash; Bentuk akar (sekawan)</summary>
+                <div class="isi">
+                    <p>Hitung $\displaystyle\lim_{x\to0}\frac{\sqrt{1+\sin x} - \sqrt{1-\sin x}}{x}$.</p>
+                    <p><b>Penyelesaian.</b> Kalikan dengan sekawan $\sqrt{1+\sin x} + \sqrt{1-\sin x}$:</p>
+                    $$ \frac{(1+\sin x) - (1-\sin x)}{x\left(\sqrt{1+\sin x}+\sqrt{1-\sin x}\right)}
+                    = \frac{2\sin x}{x}\cdot\frac{1}{\sqrt{1+\sin x}+\sqrt{1-\sin x}}
+                    \;\longrightarrow\; 2\cdot 1\cdot\frac{1}{1+1} = 1 $$
+                    <p class="kesimpulan">Jadi, limitnya $1$.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 12 &mdash; Limit di tak hingga</summary>
+                <div class="isi">
+                    <p>Hitung $\displaystyle\lim_{x\to\infty}\frac{3x + \sin x}{x}$ dan $\displaystyle\lim_{x\to\infty}
+                        x\sin\frac{2}{x}$.</p>
+                    <p><b>Penyelesaian.</b></p>
+                    <ol>
+                        <li>$\dfrac{3x + \sin x}{x} = 3 + \dfrac{\sin x}{x} \to 3 + 0 = 3$ (teorema apit).</li>
+                        <li>Misalkan $t = \frac2x \to 0^+$, maka $x = \frac2t$ dan
+                            $x\sin\frac2x = \dfrac{2\sin t}{t} \to 2$.</li>
+                    </ol>
+                    <p class="kesimpulan">Jadi, limitnya berturut-turut $3$ dan $2$.</p>
+                </div>
+            </details>
+
+            <details class="contoh">
+                <summary>Contoh 13 &mdash; Limit tidak ada</summary>
+                <div class="isi">
+                    <p>Selidiki $\displaystyle\lim_{x\to0}\frac{\sin|x|}{x}$.</p>
+                    <p><b>Penyelesaian.</b></p>
+                    <ul>
+                        <li>$x\to0^+$: $|x| = x$, sehingga $\dfrac{\sin x}{x}\to 1$.</li>
+                        <li>$x\to0^-$: $|x| = -x$, sehingga $\dfrac{\sin(-x)}{x} = -\dfrac{\sin x}{x}\to -1$.</li>
+                    </ul>
+                    <p class="kesimpulan">Jadi, limit kiri ($-1$) tidak sama dengan limit kanan ($1$), sehingga limitnya
+                        tidak ada.</p>
+                </div>
+            </details>
+
+            <!-- ============================================================ -->
+            <h2>12. Kesalahan Umum</h2>
+            <ul>
+                <li><b>Mencoret "sin".</b> $\dfrac{\sin 3x}{\sin 5x} \neq \dfrac{3x}{5x}$ secara aljabar. Barulah
+                    <i>limitnya</i> bernilai $\frac35$, melalui rumus.</li>
+                <li><b>Menganggap $\sin 2x = 2\sin x$.</b> Yang benar $\sin 2x = 2\sin x\cos x$.</li>
+                <li><b>Lupa mengubah arah $x\to c$.</b> Pada $x\to\pi$, jangan memakai $\frac{\sin x}{x}\to1$; gunakan
+                    substitusi $t = x-\pi$.</li>
+                <li><b>Memakai derajat.</b> Rumus $\frac{\sin x}{x}\to1$ hanya untuk radian.</li>
+                <li><b>Bagian dalam sinus tidak sama dengan penyebut.</b> $\dfrac{\sin 3x}{x}\to 3$, bukan $1$.</li>
+                <li><b>Teorema apit pada fungsi yang tidak terjepit.</b> $\sin x$ di tak hingga tidak punya limit.</li>
+            </ul>
+
+            <!-- ============================================================ -->
+            <h2>13. Ringkasan</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Limit</th>
+                            <th>Hasil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$\displaystyle\lim_{x\to0}\frac{\sin x}{x}$, $\ \displaystyle\lim_{x\to0}\frac{\tan
+                                x}{x}$</td>
+                            <td>$1$</td>
+                        </tr>
+                        <tr>
+                            <td>$\displaystyle\lim_{x\to0}\frac{\sin ax}{bx}$ dan sejenisnya</td>
+                            <td>$\dfrac{a}{b}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\displaystyle\lim_{x\to0}\frac{1-\cos ax}{x^2}$</td>
+                            <td>$\dfrac{a^2}{2}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\displaystyle\lim_{x\to0}\frac{1-\cos x}{x}$</td>
+                            <td>$0$</td>
+                        </tr>
+                        <tr>
+                            <td>$\displaystyle\lim_{x\to0}\frac{\tan ax - \sin ax}{x^3}$</td>
+                            <td>$\dfrac{a^3}{2}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\displaystyle\lim_{x\to\infty}\frac{\sin x}{x}$</td>
+                            <td>$0$</td>
+                        </tr>
+                        <tr>
+                            <td>$\displaystyle\lim_{x\to\infty}x\sin\frac{a}{x}$</td>
+                            <td>$a$</td>
+                        </tr>
+                        <tr>
+                            <td>$\displaystyle\lim_{x\to c}\frac{\sin g(x)}{g(x)}$ dengan $g(c)=0$</td>
+                            <td>$1$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Latihan mandiri</h3>
+            <ol>
+                <li>$\displaystyle\lim_{x\to0}\dfrac{\sin 7x}{\sin 2x}$</li>
+                <li>$\displaystyle\lim_{x\to0}\dfrac{1-\cos 4x}{3x^2}$</li>
+                <li>$\displaystyle\lim_{x\to0}\dfrac{x\tan 3x}{1-\cos 2x}$</li>
+                <li>$\displaystyle\lim_{x\to\pi}\dfrac{\sin 3x}{\sin 5x}$</li>
+                <li>$\displaystyle\lim_{x\to1}\dfrac{\sin(x^2-1)}{x-1}$</li>
+            </ol>
+            <details class="contoh">
+                <summary>Lihat kunci jawaban latihan</summary>
+                <div class="isi">
+                    <ol>
+                        <li>$\dfrac{7}{2}$</li>
+                        <li>$\dfrac{4^2}{2\cdot 3} = \dfrac{16}{6} = \dfrac{8}{3}$</li>
+                        <li>$\dfrac{x\tan 3x}{1-\cos 2x} = \dfrac{x\tan 3x}{2\sin^2 x}\to \dfrac{3}{2}$</li>
+                        <li>Misalkan $t = x-\pi$: $\dfrac{\sin(3t+3\pi)}{\sin(5t+5\pi)} = \dfrac{-\sin 3t}{-\sin
+                            5t}\to\dfrac35$</li>
+                        <li>$\dfrac{\sin(x^2-1)}{x^2-1}\cdot(x+1)\to 2$</li>
+                    </ol>
+                </div>
+            </details>
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- ======================================================================
+         GAMBAR GEOSVG.JS (sumbu Y ke atas: yUp). Warna mengikuti Dark Mode
+         lewat currentColor.
+         ====================================================================== -->
+    <script>
+        (function () {
+            var TEAL = '#0d9488', AMBER = '#d97706', MERAH = '#ef4444', ABU = '#94a3b8';
+            var FONT = 'Inter, -apple-system, "Segoe UI", sans-serif';
+
+            function tunggu(fn) {
+                var coba = 0;
+                (function cek() {
+                    if (window.GeoSVG) return fn();
+                    if (++coba > 100) return console.warn('GeoSVG.js gagal dimuat.');
+                    setTimeout(cek, 100);
+                })();
+            }
+
+            function teks(g, x, y, s, pos, opsi) {
+                return g.buatTeks(x, y, s, Object.assign({ position: pos || 'middle-center', fill: 'currentColor' }, opsi || {}));
+            }
+
+            // Kanvas dengan titik (0,0) matematika berada di dalam viewBox
+            function kanvas(id, L, B, W, H, judul, desk) {
+                return new GeoSVG(id, {
+                    width: W, height: H,
+                    viewBox: L + ' ' + B + ' ' + W + ' ' + H,
+                    yUp: true,
+                    defaultStroke: 'currentColor',
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: FONT,
+                    fontSize: '13px',
+                    clearContainer: true,
+                    title: judul,
+                    description: desk
+                });
+            }
+
+            // Grafik umum: sumbu, tick, dan daftar kurva
+            // c: xmin,xmax,ymin,ymax (satuan), sx,sy (piksel/satuan), xt,yt (tick), kurva
+            function plot(id, c, judul, desk, extra) {
+                var m = 26;
+                var L = c.xmin * c.sx - m, R = c.xmax * c.sx + m;
+                var B = c.ymin * c.sy - m, T = c.ymax * c.sy + m;
+                var g = kanvas(id, L, B, R - L, T - B, judul, desk);
+
+                if (extra) extra(g, c);   // garis bantu digambar lebih dulu
+
+                g.buatVektor(c.xmin * c.sx - 8, 0, c.xmax * c.sx + 10, 0, { strokeWidth: 1.2 });
+                g.buatVektor(0, c.ymin * c.sy - 8, 0, c.ymax * c.sy + 10, { strokeWidth: 1.2 });
+                teks(g, c.xmax * c.sx + 14, -4, 'x', 'bottom-left', { fontStyle: 'italic' });
+                teks(g, 8, c.ymax * c.sy + 14, 'y', 'middle-right', { fontStyle: 'italic' });
+
+                (c.xt || []).forEach(function (t) {
+                    var px = t[0] * c.sx;
+                    g.buatSegmen(px, -4, px, 4, { strokeWidth: 1 });
+                    teks(g, px, -8, t[1], 'bottom-center', { fontSize: '12px' });
+                });
+                (c.yt || []).forEach(function (t) {
+                    var py = t[0] * c.sy;
+                    g.buatSegmen(-4, py, 4, py, { strokeWidth: 1 });
+                    teks(g, -8, py, t[1], 'middle-left', { fontSize: '12px' });
+                });
+
+                c.kurva.forEach(function (k) {
+                    g.buatFungsi(k.f, k.a !== undefined ? k.a : c.xmin, k.b !== undefined ? k.b : c.xmax, {
+                        skalaX: c.sx, skalaY: c.sy,
+                        langkah: k.langkah || 600,
+                        stroke: k.w, strokeWidth: k.tebal || 2.5,
+                        strokeDasharray: k.dash || null,
+                        maksLompatan: 1e6
+                    });
+                });
+                return g;
+            }
+
+            var P = Math.PI;
+
+            /* ---------- Gambar 1: grafik sin x / x ---------- */
+            function gambarSinc() {
+                var sy = 120;
+                plot('geo-sinc', {
+                    xmin: -13, xmax: 13, ymin: -0.3, ymax: 1.1, sx: 16, sy: sy,
+                    xt: [[-4 * P, '−4π'], [-3 * P, '−3π'], [-2 * P, '−2π'], [-P, '−π'], [P, 'π'], [2 * P, '2π'], [3 * P, '3π'], [4 * P, '4π']],
+                    yt: [[1, '1'], [-0.2, '−0,2']],
+                    kurva: [{ f: function (x) { return Math.abs(x) < 1e-6 ? NaN : Math.sin(x) / x; }, w: TEAL, langkah: 900 }]
+                }, 'Grafik sin x per x',
+                    'Grafik y = sin x / x yang mendekati 1 ketika x mendekati 0 dan meredam menuju 0 untuk x besar.',
+                    function (g, c) {
+                        g.buatSegmen(c.xmin * c.sx, sy, c.xmax * c.sx, sy, { stroke: AMBER, strokeDasharray: '5 4', strokeWidth: 1.2 });
+                    }).buatTitik(0, sy, { marker: 'empty-circle', size: 4.5, color: TEAL });
+            }
+
+            /* ---------- Gambar 3: grafik (1 - cos x) / x^2 ---------- */
+            function gambarCos() {
+                var sy = 200;
+                plot('geo-cos', {
+                    xmin: -8, xmax: 8, ymin: -0.1, ymax: 0.6, sx: 26, sy: sy,
+                    xt: [[-2 * P, '−2π'], [-P, '−π'], [P, 'π'], [2 * P, '2π']],
+                    yt: [[0.5, '½']],
+                    kurva: [{
+                        f: function (x) { return Math.abs(x) < 1e-6 ? NaN : 2 * Math.pow(Math.sin(x / 2), 2) / (x * x); },
+                        w: TEAL, langkah: 700
+                    }]
+                }, 'Grafik satu kurang cos x per x kuadrat',
+                    'Grafik y = (1 - cos x) / x^2 yang mendekati 1/2 ketika x mendekati 0.',
+                    function (g, c) {
+                        g.buatSegmen(c.xmin * c.sx, 0.5 * sy, c.xmax * c.sx, 0.5 * sy, { stroke: AMBER, strokeDasharray: '5 4', strokeWidth: 1.2 });
+                    }).buatTitik(0, 0.5 * sy, { marker: 'empty-circle', size: 4.5, color: TEAL });
+            }
+
+            /* ---------- Gambar 4: teorema apit di tak hingga ---------- */
+            function gambarApit() {
+                plot('geo-apit', {
+                    xmin: 0, xmax: 30, ymin: -1, ymax: 1, sx: 14, sy: 100,
+                    xt: [[5, '5'], [10, '10'], [15, '15'], [20, '20'], [25, '25'], [30, '30']],
+                    yt: [[1, '1'], [-1, '−1']],
+                    kurva: [
+                        { f: function (x) { return 1 / x; }, a: 1, b: 30, w: AMBER, dash: '6 4', tebal: 2, langkah: 300 },
+                        { f: function (x) { return -1 / x; }, a: 1, b: 30, w: AMBER, dash: '6 4', tebal: 2, langkah: 300 },
+                        { f: function (x) { return Math.sin(x) / x; }, a: 1, b: 30, w: TEAL, langkah: 700 }
+                    ]
+                }, 'Teorema apit untuk sin x per x',
+                    'Kurva y = sin x / x berada di antara y = 1/x dan y = -1/x, sehingga menuju 0 untuk x besar.');
+            }
+
+            /* ---------- Gambar 5: x^2 sin(1/x) ---------- */
+            function gambarXsin() {
+                var sc = 420;
+                plot('geo-xsin', {
+                    xmin: -0.5, xmax: 0.5, ymin: -0.3, ymax: 0.3, sx: sc, sy: sc,
+                    xt: [[-0.5, '−0,5'], [-0.25, '−0,25'], [0.25, '0,25'], [0.5, '0,5']],
+                    yt: [[0.25, '0,25'], [-0.25, '−0,25']],
+                    kurva: [
+                        { f: function (x) { return x * x; }, w: AMBER, dash: '6 4', tebal: 2, langkah: 200 },
+                        { f: function (x) { return -x * x; }, w: AMBER, dash: '6 4', tebal: 2, langkah: 200 },
+                        { f: function (x) { return Math.abs(x) < 1e-9 ? NaN : x * x * Math.sin(1 / x); }, w: TEAL, tebal: 1.8, langkah: 2400 }
+                    ]
+                }, 'Teorema apit untuk x kuadrat sin satu per x',
+                    'Kurva y = x^2 sin(1/x) berosilasi di antara y = x^2 dan y = -x^2 dan menuju 0 di x = 0.');
+            }
+
+            /* ---------- Gambar 2: lingkaran satuan ---------- */
+            function gambarLingkaran() {
+                var R = 180, t = 35 * P / 180;
+                var g = kanvas('geo-lingkaran', -34, -40, 280, 215, 'Lingkaran satuan dan tiga daerah',
+                    'Segitiga OAB, juring OAB, dan segitiga OAC pada lingkaran satuan dengan sudut x di titik pusat O.');
+                var O = [0, 0], A = [R, 0], B = [R * Math.cos(t), R * Math.sin(t)], C = [R, R * Math.tan(t)], D = [B[0], 0];
+
+                // Daerah berwarna (urutan: terbesar di bawah)
+                g.buatPoligon([O, A, C], { fill: AMBER, fillOpacity: 0.2, stroke: AMBER, strokeWidth: 1.5 });
+                var arc = [O];
+                for (var d = 0; d <= 35; d += 1) arc.push([R * Math.cos(d * P / 180), R * Math.sin(d * P / 180)]);
+                g.buatPoligon(arc, { fill: TEAL, fillOpacity: 0.3, stroke: TEAL, strokeWidth: 1.5 });
+                g.buatPoligon([O, A, B], { fill: MERAH, fillOpacity: 0.25, stroke: MERAH, strokeWidth: 1.5 });
+
+                // Busur seperempat lingkaran (putus-putus di luar juring)
+                var busur = [];
+                for (d = 35; d <= 85; d += 1) busur.push([R * Math.cos(d * P / 180), R * Math.sin(d * P / 180)]);
+                g.buatPolyline(busur, { stroke: ABU, strokeDasharray: '4 4', strokeWidth: 1.2 });
+
+                g.buatSegmen(O, C, { strokeWidth: 1.5 });
+                g.buatSegmen(B, D, { stroke: MERAH, strokeWidth: 2.5 });
+                g.buatSegmen(A, C, { stroke: AMBER, strokeWidth: 2.5 });
+                g.buatSudut(A, O, B, { radius: 38, label: 'x', labelRadius: 56, labelColor: 'currentColor', fill: 'none', stroke: 'currentColor' });
+
+                g.buatTitik(O, { size: 3.5, color: 'currentColor', label: 'O', labelPosition: 'bottom-left' });
+                g.buatTitik(A, { size: 3.5, color: 'currentColor', label: 'A', labelPosition: 'bottom-right' });
+                g.buatTitik(B, { size: 3.5, color: 'currentColor', label: 'B', labelPosition: 'top-left' });
+                g.buatTitik(C, { size: 3.5, color: 'currentColor', label: 'C', labelPosition: 'top-right' });
+                g.buatTitik(D, { size: 3.5, color: 'currentColor', label: 'D', labelPosition: 'bottom-center' });
+
+                teks(g, B[0] + 8, B[1] / 2, 'sin x', 'middle-right', { fill: MERAH, fontWeight: 'bold' });
+                teks(g, C[0] + 8, C[1] / 2, 'tan x', 'middle-right', { fill: AMBER, fontWeight: 'bold' });
+                teks(g, D[0] / 2, -16, 'cos x', 'bottom-center');
+                teks(g, B[0] / 2 - 10, B[1] / 2 + 12, '1', 'middle-center', { fontStyle: 'italic' });
+            }
+
+            tunggu(function () {
+                gambarSinc();
+                gambarLingkaran();
+                gambarCos();
+                gambarApit();
+                gambarXsin();
+            });
+        })();
+    </script>
+</body>
+
+</html>

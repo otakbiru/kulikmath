@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Koordinat Kutub</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Koordinat Kutub</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Koordinat Cartesius untuk titik dengan koordinat kutub \((6\sqrt{2}, 300^\circ)\) adalah ....
+                </p>
+            </div>
+            <div class="soal-sumber">
+                Latihan Pra UKK Semester Genap Kelas X
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Diketahui koordinat kutub titik adalah \((r, \theta) = (6\sqrt{2}, 300^\circ)\).
+                        Maka \(r = 6\sqrt{2}\) dan \(\theta = 300^\circ\).
+                    </p>
+                    <p>
+                        Konversi ke koordinat Cartesius \((x, y)\) menggunakan rumus:
+                        \[
+                        x = r \cos \theta \quad \text{dan} \quad y = r \sin \theta
+                        \]
+                    </p>
+                    <p>
+                        <strong>1. Menentukan nilai \(x\):</strong>
+                        \[
+                        \begin{aligned}
+                        x &= 6\sqrt{2} \cos 300^\circ \\[4pt]
+                          &= 6\sqrt{2} \cos(360^\circ - 60^\circ) \\[4pt]
+                          &= 6\sqrt{2} \cos 60^\circ \\[4pt]
+                          &= 6\sqrt{2} \left(\frac{1}{2}\right) \\[4pt]
+                          &= 3\sqrt{2}
+                        \end{aligned}
+                        \]
+                    </p>
+                    <p>
+                        <strong>2. Menentukan nilai \(y\):</strong>
+                        \[
+                        \begin{aligned}
+                        y &= 6\sqrt{2} \sin 300^\circ \\[4pt]
+                          &= 6\sqrt{2} \sin(360^\circ - 60^\circ) \\[4pt]
+                          &= 6\sqrt{2} (-\sin 60^\circ) \\[4pt]
+                          &= 6\sqrt{2} \left(-\frac{1}{2}\sqrt{3}\right) \\[4pt]
+                          &= -3\sqrt{6}
+                        \end{aligned}
+                        \]
+                    </p>
+
+                    <!-- Visualisasi GeoSVG Soal 1 -->
+                    <div id="geosvg-polar-1" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+
+                    <div class="kesimpulan">
+                        Jadi, koordinat Cartesius untuk titik \((6\sqrt{2}, 300^\circ)\) adalah \((3\sqrt{2}, -3\sqrt{6})\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Koordinat kutub untuk titik Cartesius \((-\sqrt{6}, \sqrt{2})\) adalah ....
+                </p>
+            </div>
+            <div class="soal-sumber">
+                Latihan Pra UKK Semester Genap Kelas X
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Diketahui koordinat Cartesius adalah \((x, y) = (-\sqrt{6}, \sqrt{2})\).
+                        Maka \(x = -\sqrt{6}\) dan \(y = \sqrt{2}\).
+                    </p>
+                    <p>
+                        <strong>1. Menentukan jari-jari \(r\):</strong>
+                        \[
+                        \begin{aligned}
+                        r &= \sqrt{x^2 + y^2} \\[4pt]
+                          &= \sqrt{(-\sqrt{6})^2 + (\sqrt{2})^2} \\[4pt]
+                          &= \sqrt{6 + 2} \\[4pt]
+                          &= \sqrt{8} = 2\sqrt{2}
+                        \end{aligned}
+                        \]
+                    </p>
+                    <p>
+                        <strong>2. Menentukan sudut \(\theta\):</strong>
+                        \[
+                        \begin{aligned}
+                        \tan \theta &= \frac{y}{x} \\[6pt]
+                                    &= \frac{\sqrt{2}}{-\sqrt{6}} = -\frac{\sqrt{2}}{\sqrt{2}\sqrt{3}} \\[6pt]
+                                    &= -\frac{1}{\sqrt{3}} = -\frac{1}{3}\sqrt{3}
+                        \end{aligned}
+                        \]
+                        Karena \(x = -\sqrt{6} < 0\) dan \(y = \sqrt{2} > 0\), titik tersebut terletak di <strong>Kuadran II</strong>:
+                        \[
+                        \theta = 180^\circ - 30^\circ = 150^\circ
+                        \]
+                    </p>
+
+                    <!-- Visualisasi GeoSVG Soal 2 -->
+                    <div id="geosvg-polar-2" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+
+                    <div class="kesimpulan">
+                        Jadi, koordinat kutub untuk titik \((-\sqrt{6}, \sqrt{2})\) adalah \((2\sqrt{2}, 150^\circ)\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Koordinat kutub dari titik \(C(2, 2\sqrt{3})\) adalah ....
+                </p>
+            </div>
+            <div class="soal-sumber">
+                Grup Matematika Idhamdaz
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Diketahui titik \(C(2, 2\sqrt{3})\), maka \(x = 2\) dan \(y = 2\sqrt{3}\).
+                    </p>
+                    <p>
+                        <strong>1. Menentukan jari-jari \(r\):</strong>
+                        \[
+                        \begin{aligned}
+                        r &= \sqrt{x^2 + y^2} \\[4pt]
+                          &= \sqrt{2^2 + (2\sqrt{3})^2} \\[4pt]
+                          &= \sqrt{4 + 12} \\[4pt]
+                          &= \sqrt{16} = 4
+                        \end{aligned}
+                        \]
+                    </p>
+                    <p>
+                        <strong>2. Menentukan sudut \(\theta\):</strong>
+                        \[
+                        \begin{aligned}
+                        \tan \theta &= \frac{y}{x} \\[6pt]
+                                    &= \frac{2\sqrt{3}}{2} = \sqrt{3}
+                        \end{aligned}
+                        \]
+                        Karena \(x > 0\) dan \(y > 0\), titik \(C\) terletak di <strong>Kuadran I</strong>:
+                        \[
+                        \theta = 60^\circ
+                        \]
+                    </p>
+
+                    <!-- Visualisasi GeoSVG Soal 3 -->
+                    <div id="geosvg-polar-3" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+
+                    <div class="kesimpulan">
+                        Jadi, koordinat kutub dari titik \(C(2, 2\sqrt{3})\) adalah \((4, 60^\circ)\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Koordinat Cartesius dari titik \(P(6, 60^\circ)\) adalah ....
+                </p>
+                <ol class="pilgan">
+                    <li>\((3, 3\sqrt{3})\)</li>
+                    <li>\((2, 3\sqrt{3})\)</li>
+                    <li>\((4, 3\sqrt{3})\)</li>
+                    <li>\((3, 3\sqrt{2})\)</li>
+                    <li>\((3, 2\sqrt{3})\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                USP SMK Kab. Tangerang 2023
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Diketahui titik dengan koordinat kutub \((r, \theta) = (6, 60^\circ)\).
+                        Maka \(r = 6\) dan \(\theta = 60^\circ\).
+                    </p>
+                    <p>
+                        Konversi ke koordinat Cartesius \((x, y)\):
+                        \[
+                        \begin{aligned}
+                        x &= r \cos \theta = 6 \cos 60^\circ = 6 \cdot \frac{1}{2} = 3 \\[6pt]
+                        y &= r \sin \theta = 6 \sin 60^\circ = 6 \cdot \frac{1}{2}\sqrt{3} = 3\sqrt{3}
+                        \end{aligned}
+                        \]
+                    </p>
+
+                    <!-- Visualisasi GeoSVG Soal 4 -->
+                    <div id="geosvg-polar-4" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+
+                    <div class="kesimpulan">
+                        Jadi, koordinat Cartesius dari titik \(P(6, 60^\circ)\) adalah \((3, 3\sqrt{3})\).<br>
+                        <strong>Jawaban: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Koordinat titik \(P\) adalah \((4, 30^\circ)\). Posisi titik \(P\) pada koordinat Cartesius adalah ....
+                </p>
+                <ol class="pilgan">
+                    <li>\(\left(\dfrac{1}{2}\sqrt{3}, \dfrac{1}{2}\right)\)</li>
+                    <li>\(\left(\dfrac{1}{2}, \dfrac{1}{2}\sqrt{2}\right)\)</li>
+                    <li>\(\left(\dfrac{1}{2}\sqrt{3}, 2\right)\)</li>
+                    <li>\((2\sqrt{3}, 2)\)</li>
+                    <li>\((2, 2\sqrt{2})\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                USP 2024 SMK Kab. Tangerang
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Diketahui koordinat kutub titik \(P\) adalah \((r, \theta) = (4, 30^\circ)\).
+                        Maka \(r = 4\) dan \(\theta = 30^\circ\).
+                    </p>
+                    <p>
+                        Konversi ke koordinat Cartesius \((x, y)\):
+                        \[
+                        \begin{aligned}
+                        x &= r \cos \theta = 4 \cos 30^\circ = 4 \cdot \frac{1}{2}\sqrt{3} = 2\sqrt{3} \\[6pt]
+                        y &= r \sin \theta = 4 \sin 30^\circ = 4 \cdot \frac{1}{2} = 2
+                        \end{aligned}
+                        \]
+                    </p>
+
+                    <!-- Visualisasi GeoSVG Soal 5 -->
+                    <div id="geosvg-polar-5" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+
+                    <div class="kesimpulan">
+                        Jadi, posisi titik \(P\) pada koordinat Cartesius adalah \((2\sqrt{3}, 2)\).<br>
+                        <strong>Jawaban: D</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Matematika Idham Daz. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- Script Render GeoSVG & KaTeX -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Render KaTeX jika library auto-render dimuat
+            if (typeof renderMathInElement === "function") {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "\\[", right: "\\]", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false }
+                    ]
+                });
+            }
+
+            // Fungsi Inisialisasi Seluruh Diagram GeoSVG
+            function renderAllDiagrams() {
+                if (typeof GeoSVG === "undefined") {
+                    setTimeout(renderAllDiagrams, 100);
+                    return;
+                }
+
+                // ==========================================
+                // DIAGRAM 1: P(6√2, 300°) -> (3√2, -3√6) di Kuadran IV
+                // ==========================================
+                const el1 = document.getElementById("geosvg-polar-1");
+                if (el1 && !el1.dataset.rendered) {
+                    el1.dataset.rendered = "true";
+                    const W = 320, H = 270;
+                    const geo1 = new GeoSVG("geosvg-polar-1", W, H, {
+                        margin: 10,
+                        title: "Visualisasi Koordinat Kutub Titik di Kuadran IV"
+                    });
+                    if (geo1.svg) {
+                        geo1.svg.style.width = "100%";
+                        geo1.svg.style.maxWidth = `${W}px`;
+                        geo1.svg.style.height = "auto";
+                    }
+
+                    const O = [120, 90];
+                    const P = [184, 200]; // x = +64, y = +110 (kebawah)
+
+                    // Sumbu Koordinat
+                    geo1.buatSegmen([25, 90], [290, 90], { stroke: "#64748b", strokeWidth: 1.5 });
+                    geo1.buatTeks(295, 90, "X", { position: "middle-left", fill: "#475569", fontWeight: "bold" });
+
+                    geo1.buatSegmen([120, 250], [120, 25], { stroke: "#64748b", strokeWidth: 1.5 });
+                    geo1.buatTeks(120, 18, "Y", { position: "middle-center", fill: "#475569", fontWeight: "bold" });
+
+                    geo1.buatTeks(110, 102, "O", { position: "middle-right", fill: "#64748b", fontSize: "11px" });
+
+                    // Garis Proyeksi Putus-Putus
+                    geo1.buatSegmen([184, 90], [184, 200], { stroke: "#94a3b8", strokeWidth: 1.2, dashed: true });
+                    geo1.buatTeks(184, 80, "3√2", { position: "bottom-center", fill: "#334155", fontSize: "11px", fontWeight: "bold" });
+
+                    geo1.buatSegmen([120, 200], [184, 200], { stroke: "#94a3b8", strokeWidth: 1.2, dashed: true });
+                    geo1.buatTeks(112, 200, "-3√6", { position: "middle-right", fill: "#334155", fontSize: "11px", fontWeight: "bold" });
+
+                    // Jari-jari r
+                    geo1.buatSegmen(O, P, { stroke: "#2563eb", strokeWidth: 2 });
+                    geo1.buatTeks(145, 155, "r = 6√2", { position: "middle-left", fill: "#1d4ed8", fontSize: "12px", fontWeight: "bold" });
+
+                    // Sudut Relasi 60° ke sumbu X
+                    geo1.buatSudut([184, 200], O, [170, 90], {
+                        radius: 26,
+                        stroke: "#059669",
+                        fill: "rgba(16, 185, 129, 0.15)",
+                        label: "60°",
+                        labelColor: "#047857",
+                        fontSize: "11px",
+                        fontWeight: "bold"
+                    });
+
+                    // Titik P
+                    geo1.buatTitik(P, { color: "#ef4444", size: 4, label: "P(3√2, -3√6)", labelPosition: "bottom-right", fontSize: "12px", bold: true });
+                }
+
+                // ==========================================
+                // DIAGRAM 2: P(-√6, √2) -> (2√2, 150°) di Kuadran II
+                // ==========================================
+                const el2 = document.getElementById("geosvg-polar-2");
+                if (el2 && !el2.dataset.rendered) {
+                    el2.dataset.rendered = "true";
+                    const W = 320, H = 250;
+                    const geo2 = new GeoSVG("geosvg-polar-2", W, H, {
+                        margin: 10,
+                        title: "Visualisasi Koordinat Kutub Titik di Kuadran II"
+                    });
+                    if (geo2.svg) {
+                        geo2.svg.style.width = "100%";
+                        geo2.svg.style.maxWidth = `${W}px`;
+                        geo2.svg.style.height = "auto";
+                    }
+
+                    const O = [185, 160];
+                    const P = [97, 110]; // x = -88, y = -50 (keatas)
+
+                    // Sumbu Koordinat
+                    geo2.buatSegmen([25, 160], [290, 160], { stroke: "#64748b", strokeWidth: 1.5 });
+                    geo2.buatTeks(295, 160, "X", { position: "middle-left", fill: "#475569", fontWeight: "bold" });
+
+                    geo2.buatSegmen([185, 230], [185, 25], { stroke: "#64748b", strokeWidth: 1.5 });
+                    geo2.buatTeks(185, 18, "Y", { position: "middle-center", fill: "#475569", fontWeight: "bold" });
+
+                    geo2.buatTeks(195, 172, "O", { position: "middle-left", fill: "#64748b", fontSize: "11px" });
+
+                    // Garis Proyeksi Putus-Putus
+                    geo2.buatSegmen([97, 160], [97, 110], { stroke: "#94a3b8", strokeWidth: 1.2, dashed: true });
+                    geo2.buatTeks(97, 173, "-√6", { position: "top-center", fill: "#334155", fontSize: "11px", fontWeight: "bold" });
+
+                    geo2.buatSegmen([185, 110], [97, 110], { stroke: "#94a3b8", strokeWidth: 1.2, dashed: true });
+                    geo2.buatTeks(193, 110, "√2", { position: "middle-left", fill: "#334155", fontSize: "11px", fontWeight: "bold" });
+
+                    // Jari-jari r
+                    geo2.buatSegmen(O, P, { stroke: "#2563eb", strokeWidth: 2 });
+                    geo2.buatTeks(135, 126, "r = 2√2", { position: "bottom-center", fill: "#1d4ed8", fontSize: "12px", fontWeight: "bold" });
+
+                    // Sudut 150° dari sumbu X positif
+                    geo2.buatSudut([97, 110], O, [235, 160], {
+                        radius: 28,
+                        stroke: "#7c3aed",
+                        fill: "rgba(124, 58, 237, 0.15)",
+                        label: "150°",
+                        labelColor: "#6d28d9",
+                        fontSize: "11px",
+                        fontWeight: "bold"
+                    });
+
+                    // Titik P
+                    geo2.buatTitik(P, { color: "#ef4444", size: 4, label: "P(-√6, √2)", labelPosition: "top-left", fontSize: "12px", bold: true });
+                }
+
+                // ==========================================
+                // DIAGRAM 3: C(2, 2√3) -> (4, 60°) di Kuadran I
+                // ==========================================
+                const el3 = document.getElementById("geosvg-polar-3");
+                if (el3 && !el3.dataset.rendered) {
+                    el3.dataset.rendered = "true";
+                    const W = 300, H = 250;
+                    const geo3 = new GeoSVG("geosvg-polar-3", W, H, {
+                        margin: 10,
+                        title: "Visualisasi Koordinat Kutub Titik C di Kuadran I"
+                    });
+                    if (geo3.svg) {
+                        geo3.svg.style.width = "100%";
+                        geo3.svg.style.maxWidth = `${W}px`;
+                        geo3.svg.style.height = "auto";
+                    }
+
+                    const O = [75, 200];
+                    const C = [131, 103]; // x = +56, y = -97 (keatas)
+
+                    // Sumbu Koordinat
+                    geo3.buatSegmen([35, 200], [265, 200], { stroke: "#64748b", strokeWidth: 1.5 });
+                    geo3.buatTeks(270, 200, "X", { position: "middle-left", fill: "#475569", fontWeight: "bold" });
+
+                    geo3.buatSegmen([75, 230], [75, 30], { stroke: "#64748b", strokeWidth: 1.5 });
+                    geo3.buatTeks(75, 22, "Y", { position: "middle-center", fill: "#475569", fontWeight: "bold" });
+
+                    geo3.buatTeks(65, 212, "O", { position: "middle-right", fill: "#64748b", fontSize: "11px" });
+
+                    // Garis Proyeksi Putus-Putus
+                    geo3.buatSegmen([131, 200], [131, 103], { stroke: "#94a3b8", strokeWidth: 1.2, dashed: true });
+                    geo3.buatTeks(131, 213, "2", { position: "top-center", fill: "#334155", fontSize: "11px", fontWeight: "bold" });
+
+                    geo3.buatSegmen([75, 103], [131, 103], { stroke: "#94a3b8", strokeWidth: 1.2, dashed: true });
+                    geo3.buatTeks(67, 103, "2√3", { position: "middle-right", fill: "#334155", fontSize: "11px", fontWeight: "bold" });
+
+                    // Jari-jari r = 4
+                    geo3.buatSegmen(O, C, { stroke: "#2563eb", strokeWidth: 2 });
+                    geo3.buatTeks(96, 142, "r = 4", { position: "middle-right", fill: "#1d4ed8", fontSize: "12px", fontWeight: "bold" });
+
+                    // Sudut 60°
+                    geo3.buatSudut([175, 200], O, [131, 103], {
+                        radius: 26,
+                        stroke: "#059669",
+                        fill: "rgba(16, 185, 129, 0.15)",
+                        label: "60°",
+                        labelColor: "#047857",
+                        fontSize: "11px",
+                        fontWeight: "bold"
+                    });
+
+                    // Indikator siku-siku
+                    geo3.buatSiku([75, 200], [131, 200], [131, 103], { size: 10, stroke: "#94a3b8" });
+
+                    // Titik C
+                    geo3.buatTitik(C, { color: "#ef4444", size: 4, label: "C(2, 2√3)", labelPosition: "top-right", fontSize: "12px", bold: true });
+                }
+
+                // ==========================================
+                // DIAGRAM 4: P(6, 60°) -> (3, 3√3) di Kuadran I
+                // ==========================================
+                const el4 = document.getElementById("geosvg-polar-4");
+                if (el4 && !el4.dataset.rendered) {
+                    el4.dataset.rendered = "true";
+                    const W = 300, H = 250;
+                    const geo4 = new GeoSVG("geosvg-polar-4", W, H, {
+                        margin: 10,
+                        title: "Visualisasi Koordinat Cartesius Titik P(6, 60°)"
+                    });
+                    if (geo4.svg) {
+                        geo4.svg.style.width = "100%";
+                        geo4.svg.style.maxWidth = `${W}px`;
+                        geo4.svg.style.height = "auto";
+                    }
+
+                    const O = [75, 200];
+                    const P = [135, 96]; // x = +60, y = -104 (keatas)
+
+                    // Sumbu Koordinat
+                    geo4.buatSegmen([35, 200], [265, 200], { stroke: "#64748b", strokeWidth: 1.5 });
+                    geo4.buatTeks(270, 200, "X", { position: "middle-left", fill: "#475569", fontWeight: "bold" });
+
+                    geo4.buatSegmen([75, 230], [75, 30], { stroke: "#64748b", strokeWidth: 1.5 });
+                    geo4.buatTeks(75, 22, "Y", { position: "middle-center", fill: "#475569", fontWeight: "bold" });
+
+                    geo4.buatTeks(65, 212, "O", { position: "middle-right", fill: "#64748b", fontSize: "11px" });
+
+                    // Garis Proyeksi Putus-Putus
+                    geo4.buatSegmen([135, 200], [135, 96], { stroke: "#94a3b8", strokeWidth: 1.2, dashed: true });
+                    geo4.buatTeks(135, 213, "3", { position: "top-center", fill: "#334155", fontSize: "11px", fontWeight: "bold" });
+
+                    geo4.buatSegmen([75, 96], [135, 96], { stroke: "#94a3b8", strokeWidth: 1.2, dashed: true });
+                    geo4.buatTeks(67, 96, "3√3", { position: "middle-right", fill: "#334155", fontSize: "11px", fontWeight: "bold" });
+
+                    // Jari-jari r = 6
+                    geo4.buatSegmen(O, P, { stroke: "#2563eb", strokeWidth: 2 });
+                    geo4.buatTeks(98, 140, "r = 6", { position: "middle-right", fill: "#1d4ed8", fontSize: "12px", fontWeight: "bold" });
+
+                    // Sudut 60°
+                    geo4.buatSudut([175, 200], O, [135, 96], {
+                        radius: 26,
+                        stroke: "#059669",
+                        fill: "rgba(16, 185, 129, 0.15)",
+                        label: "60°",
+                        labelColor: "#047857",
+                        fontSize: "11px",
+                        fontWeight: "bold"
+                    });
+
+                    // Indikator siku-siku
+                    geo4.buatSiku([75, 200], [135, 200], [135, 96], { size: 10, stroke: "#94a3b8" });
+
+                    // Titik P
+                    geo4.buatTitik(P, { color: "#ef4444", size: 4, label: "P(3, 3√3)", labelPosition: "top-right", fontSize: "12px", bold: true });
+                }
+
+                // ==========================================
+                // DIAGRAM 5: P(4, 30°) -> (2√3, 2) di Kuadran I
+                // ==========================================
+                const el5 = document.getElementById("geosvg-polar-5");
+                if (el5 && !el5.dataset.rendered) {
+                    el5.dataset.rendered = "true";
+                    const W = 300, H = 230;
+                    const geo5 = new GeoSVG("geosvg-polar-5", W, H, {
+                        margin: 10,
+                        title: "Visualisasi Koordinat Cartesius Titik P(4, 30°)"
+                    });
+                    if (geo5.svg) {
+                        geo5.svg.style.width = "100%";
+                        geo5.svg.style.maxWidth = `${W}px`;
+                        geo5.svg.style.height = "auto";
+                    }
+
+                    const O = [65, 175];
+                    const P = [162, 119]; // x = +97, y = -56 (keatas)
+
+                    // Sumbu Koordinat
+                    geo5.buatSegmen([35, 175], [265, 175], { stroke: "#64748b", strokeWidth: 1.5 });
+                    geo5.buatTeks(270, 175, "X", { position: "middle-left", fill: "#475569", fontWeight: "bold" });
+
+                    geo5.buatSegmen([65, 210], [65, 35], { stroke: "#64748b", strokeWidth: 1.5 });
+                    geo5.buatTeks(65, 27, "Y", { position: "middle-center", fill: "#475569", fontWeight: "bold" });
+
+                    geo5.buatTeks(55, 187, "O", { position: "middle-right", fill: "#64748b", fontSize: "11px" });
+
+                    // Garis Proyeksi Putus-Putus
+                    geo5.buatSegmen([162, 175], [162, 119], { stroke: "#94a3b8", strokeWidth: 1.2, dashed: true });
+                    geo5.buatTeks(162, 188, "2√3", { position: "top-center", fill: "#334155", fontSize: "11px", fontWeight: "bold" });
+
+                    geo5.buatSegmen([65, 119], [162, 119], { stroke: "#94a3b8", strokeWidth: 1.2, dashed: true });
+                    geo5.buatTeks(57, 119, "2", { position: "middle-right", fill: "#334155", fontSize: "11px", fontWeight: "bold" });
+
+                    // Jari-jari r = 4
+                    geo5.buatSegmen(O, P, { stroke: "#2563eb", strokeWidth: 2 });
+                    geo5.buatTeks(108, 140, "r = 4", { position: "bottom-center", fill: "#1d4ed8", fontSize: "12px", fontWeight: "bold" });
+
+                    // Sudut 30°
+                    geo5.buatSudut([185, 175], O, [162, 119], {
+                        radius: 28,
+                        stroke: "#059669",
+                        fill: "rgba(16, 185, 129, 0.15)",
+                        label: "30°",
+                        labelColor: "#047857",
+                        fontSize: "11px",
+                        fontWeight: "bold"
+                    });
+
+                    // Indikator siku-siku
+                    geo5.buatSiku([65, 175], [162, 175], [162, 119], { size: 10, stroke: "#94a3b8" });
+
+                    // Titik P
+                    geo5.buatTitik(P, { color: "#ef4444", size: 4, label: "P(2√3, 2)", labelPosition: "top-right", fontSize: "12px", bold: true });
+                }
+            }
+
+            renderAllDiagrams();
+        });
+    </script>
+
+    <!-- Script Math Blog Otomatis (Navigasi Level, Penomoran, Toggle Solusi) -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
