@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Aljabar</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Aljabar</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Unsur-Unsur Bentuk Aljabar</h2>
+            <p>
+                <strong>Aljabar</strong> adalah cabang matematika yang menggunakan huruf atau simbol untuk mewakili bilangan yang belum diketahui nilainya dalam suatu operasi hitung. Suatu ekspresi yang terdiri atas kombinasi bilangan, huruf, dan operasi hitung disebut <em>bentuk aljabar</em>.
+            </p>
+            <p>
+                Perhatikan bentuk aljabar berikut sebagai ilustrasi:
+                $$3x^2 - 5x + 2y - 7$$
+                Dari bentuk aljabar di atas, terdapat beberapa unsur penting yang wajib dipahami:
+            </p>
+            <ul>
+                <li>
+                    <strong>Suku (Term):</strong> Bagian dari bentuk aljabar yang dipisahkan oleh operasi penjumlahan atau pengurangan. Pada contoh di atas, terdapat 4 suku, yaitu $3x^2$, $-5x$, $2y$, dan $-7$.
+                    <ul>
+                        <li><em>Monomial (Suku Satu):</em> $4x$, $-2ab^2$</li>
+                        <li><em>Binomial (Suku Dua):</em> $2x + 5$, $a^2 - b^2$</li>
+                        <li><em>Trinomial (Suku Tiga):</em> $x^2 - 5x + 6$</li>
+                        <li><em>Polinomial (Suku Banyak):</em> Bentuk aljabar dengan lebih dari tiga suku.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Variabel (Peubah):</strong> Lambang pengganti suatu bilangan yang belum diketahui nilainya dengan jelas, biasanya dilambangkan dengan huruf kecil. Pada contoh di atas, variabelnya adalah $x$ dan $y$.
+                </li>
+                <li>
+                    <strong>Koefisien:</strong> Bilangan yang melekat di depan variabel dan mengalikan variabel tersebut. Pada contoh di atas, koefisien dari $x^2$ adalah $3$, koefisien dari $x$ adalah $-5$, dan koefisien dari $y$ adalah $2$.
+                </li>
+                <li>
+                    <strong>Konstanta:</strong> Suku dari suatu bentuk aljabar yang berupa bilangan tetap dan tidak memuat variabel. Pada contoh di atas, konstantanya adalah $-7$.
+                </li>
+            </ul>
+
+            <p>
+                <strong>Suku Sejenis vs Suku Tak Sejenis:</strong><br>
+                Dua suku atau lebih dikatakan <em>sejenis</em> jika memiliki variabel yang sama dan pangkat dari masing-masing variabel yang bersesuaian juga sama.
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Contoh Pasangan Suku</th>
+                            <th>Jenis Suku</th>
+                            <th>Alasan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$4x$ dan $-9x$</td>
+                            <td><strong>Sejenis</strong></td>
+                            <td class="text-left">Variabelnya sama-sama $x$ berpangkat $1$.</td>
+                        </tr>
+                        <tr>
+                            <td>$3a^2b$ dan $7a^2b$</td>
+                            <td><strong>Sejenis</strong></td>
+                            <td class="text-left">Variabel dan pangkatnya persis sama ($a^2b$).</td>
+                        </tr>
+                        <tr>
+                            <td>$5x^2$ dan $5x$</td>
+                            <td><strong>Tidak Sejenis</strong></td>
+                            <td class="text-left">Meskipun variabelnya $x$, pangkatnya berbeda ($2$ dan $1$).</td>
+                        </tr>
+                        <tr>
+                            <td>$2xy^2$ dan $2x^2y$</td>
+                            <td><strong>Tidak Sejenis</strong></td>
+                            <td class="text-left">Pangkat dari masing-masing variabel $x$ dan $y$ berbeda.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>2. Sifat-Sifat Dasar Operasi Aljabar</h2>
+            <p>
+                Untuk sembarang bilangan real atau bentuk aljabar $a, b,$ dan $c$, berlaku sifat-sifat fundamental berikut:
+            </p>
+            <ol>
+                <li>
+                    <strong>Sifat Komutatif (Pertukaran):</strong>
+                    $$a + b = b + a \quad \text{dan} \quad a \cdot b = b \cdot a$$
+                </li>
+                <li>
+                    <strong>Sifat Asosiatif (Pengelompokan):</strong>
+                    $$(a + b) + c = a + (b + c) \quad \text{dan} \quad (a \cdot b) \cdot c = a \cdot (b \cdot c)$$
+                </li>
+                <li>
+                    <strong>Sifat Distributif (Penyebaran):</strong>
+                    $$a(b + c) = ab + ac \quad \text{dan} \quad a(b - c) = ab - ac$$
+                </li>
+            </ol>
+
+            <h2>3. Operasi Hitung Bentuk Aljabar</h2>
+            <p>
+                <strong>a. Penjumlahan dan Pengurangan</strong><br>
+                Operasi penjumlahan dan pengurangan pada bentuk aljabar <strong>hanya dapat dilakukan pada suku-suku yang sejenis</strong> dengan cara menjumlahkan atau mengurangkan koefisiennya.
+                $$\text{Contoh: } (5x^2 - 3xy + 4y) - (2x^2 - 7xy - y)$$
+                $$= 5x^2 - 3xy + 4y - 2x^2 + 7xy + y$$
+                $$= (5 - 2)x^2 + (-3 + 7)xy + (4 + 1)y = 3x^2 + 4xy + 5y$$
+            </p>
+            <p>
+                <strong>b. Perkalian</strong><br>
+                Perkalian suku-suku aljabar dilakukan dengan mengalikan koefisien dengan koefisien serta variabel dengan variabel (menggunakan sifat eksponen $x^m \cdot x^n = x^{m+n}$). Untuk perkalian suku dua dengan suku dua, gunakan sifat distributif (skema pelangi / FOIL):
+                $$(ax + b)(cx + d) = acx^2 + (ad + bc)x + bd$$
+            </p>
+            <p>
+                <strong>c. Pembagian</strong><br>
+                Pembagian bentuk aljabar dilakukan dengan menyederhanakan faktor persekutuan dari pembilang dan penyebut, atau menggunakan pembagian bersusun (porogapit) / skema Horner untuk polinomial derajat tinggi.
+                $$\text{Contoh: } \frac{12x^3y^2 - 8x^2y}{4xy} = \frac{12x^3y^2}{4xy} - \frac{8x^2y}{4xy} = 3x^2y - 2x$$
+            </p>
+
+            <h2>4. Identitas Aljabar Penting (Wajib Hafal)</h2>
+            <p>
+                Identitas aljabar adalah persamaan yang selalu bernilai benar untuk setiap nilai variabel di dalamnya. Penguasaan identitas berikut sangat krusial untuk mempercepat perhitungan soal-soal tingkat lanjut (SNBT maupun Olimpiade):
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Identitas</th>
+                            <th>Rumus / Jabaran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Kuadrat Jumlah</td>
+                            <td>$$(a + b)^2 = a^2 + 2ab + b^2$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Kuadrat Selisih</td>
+                            <td>$$(a - b)^2 = a^2 - 2ab + b^2$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Selisih Dua Kuadrat</td>
+                            <td>$$a^2 - b^2 = (a + b)(a - b)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Kuadrat Suku Tiga</td>
+                            <td>$$(a + b + c)^2 = a^2 + b^2 + c^2 + 2(ab + bc + ac)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Pangkat Tiga Jumlah</td>
+                            <td>$$(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3 = a^3 + b^3 + 3ab(a + b)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Pangkat Tiga Selisih</td>
+                            <td>$$(a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3 = a^3 - b^3 - 3ab(a - b)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Jumlah Dua Kubik</td>
+                            <td>$$a^3 + b^3 = (a + b)(a^2 - ab + b^2)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Selisih Dua Kubik</td>
+                            <td>$$a^3 - b^3 = (a - b)(a^2 + ab + b^2)$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Manipulasi Rumus Sering Keluar di Ujian:<br>
+                1. $a^2 + b^2 = (a + b)^2 - 2ab = (a - b)^2 + 2ab$<br>
+                2. $(a + b)^2 - (a - b)^2 = 4ab$<br>
+                3. $a^3 + b^3 = (a + b)^3 - 3ab(a + b)$<br>
+                4. $a^3 - b^3 = (a - b)^3 + 3ab(a - b)$<br>
+                5. $\left(x + \frac{1}{x}\right)^2 = x^2 + \frac{1}{x^2} + 2 \iff x^2 + \frac{1}{x^2} = \left(x + \frac{1}{x}\right)^2 - 2$
+            </div>
+
+            <h2>5. Teknik Pemfaktoran Bentuk Aljabar</h2>
+            <p>
+                Memfaktorkan bentuk aljabar berarti mengubah bentuk penjumlahan/pengurangan suku-suku menjadi bentuk perkalian faktor-faktornya.
+            </p>
+            <ol>
+                <li>
+                    <strong>Faktor Persekutuan Terbesar (Distributif):</strong><br>
+                    Keluarkan FPB dari setiap suku:
+                    $$ax + ay = a(x + y)$$
+                    $$\text{Contoh: } 6x^3y - 9x^2y^2 = 3x^2y(2x - 3y)$$
+                </li>
+                <li>
+                    <strong>Pemfaktoran Bentuk Kuadrat $x^2 + bx + c$ (dengan $a = 1$):</strong><br>
+                    Cari dua bilangan $p$ dan $q$ sedemikian sehingga $p + q = b$ dan $p \cdot q = c$:
+                    $$x^2 + bx + c = (x + p)(x + q)$$
+                    $$\text{Contoh: } x^2 - 5x - 14 = (x - 7)(x + 2) \quad (\text{karena } -7 + 2 = -5 \text{ dan } (-7)(2) = -14)$$
+                </li>
+                <li>
+                    <strong>Pemfaktoran Bentuk Kuadrat $ax^2 + bx + c$ (dengan $a \neq 1$):</strong><br>
+                    Cari dua bilangan $p$ dan $q$ sedemikian sehingga $p + q = b$ dan $p \cdot q = a \cdot c$, lalu gunakan rumus:
+                    $$ax^2 + bx + c = \frac{(ax + p)(ax + q)}{a}$$
+                    $$\text{Contoh: } 2x^2 + 7x + 3 \rightarrow p + q = 7 \text{ dan } p \cdot q = 2(3) = 6 \implies p = 6, q = 1$$
+                    $$2x^2 + 7x + 3 = \frac{(2x + 6)(2x + 1)}{2} = (x + 3)(2x + 1)$$
+                </li>
+                <li>
+                    <strong>Pemfaktoran dengan Pengelompokan (Grouping):</strong><br>
+                    Digunakan untuk bentuk bersuku empat:
+                    $$ax + ay + bx + by = a(x + y) + b(x + y) = (a + b)(x + y)$$
+                </li>
+            </ol>
+
+            <h2>6. Pecahan Bentuk Aljabar</h2>
+            <p>
+                Prinsip operasi pecahan aljabar sama dengan pecahan bilangan bulat biasa, dengan syarat penyebut tidak boleh bernilai nol.
+            </p>
+            <ul>
+                <li>
+                    <strong>Penjumlahan dan Pengurangan (Samakan Penyebut):</strong>
+                    $$\frac{A}{B} \pm \frac{C}{D} = \frac{AD \pm BC}{BD} \quad (\text{dengan } B, D \neq 0)$$
+                </li>
+                <li>
+                    <strong>Perkalian dan Pembagian:</strong>
+                    $$\frac{A}{B} \cdot \frac{C}{D} = \frac{AC}{BD} \quad \text{dan} \quad \frac{A}{B} : \frac{C}{D} = \frac{A}{B} \cdot \frac{D}{C} = \frac{AD}{BC}$$
+                </li>
+                <li>
+                    <strong>Penyederhanaan Pecahan Aljabar:</strong><br>
+                    Faktorkan pembilang dan penyebut terlebih dahulu, kemudian coret faktor yang sama:
+                    $$\text{Contoh: } \frac{x^2 - 9}{x^2 - x - 6} = \frac{(x - 3)(x + 3)}{(x - 3)(x + 2)} = \frac{x + 3}{x + 2}, \quad x \neq 3, x \neq -2$$
+                </li>
+            </ul>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Bentuk paling sederhana dari $\frac{2x^2 - 5x - 12}{4x^2 - 9}$ untuk $x \neq \pm \frac{3}{2}$ adalah ....
+                <ol class="pilgan">
+                    <li>$\frac{x - 4}{2x - 3}$</li>
+                    <li>$\frac{x - 4}{2x + 3}$</li>
+                    <li>$\frac{x + 4}{2x - 3}$</li>
+                    <li>$\frac{x + 4}{2x + 3}$</li>
+                    <li>$\frac{2x + 3}{x - 4}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    Kita faktorkan bagian pembilang dan penyebut secara terpisah:
+                </p>
+                <p>
+                    1. <strong>Pembilang:</strong> $2x^2 - 5x - 12$<br>
+                    Cari dua bilangan yang jika dijumlahkan hasilnya $-5$ dan jika dikalikan hasilnya $2 \times (-12) = -24$. Bilangan tersebut adalah $-8$ dan $3$.
+                    $$2x^2 - 5x - 12 = \frac{(2x - 8)(2x + 3)}{2} = (x - 4)(2x + 3)$$
+                </p>
+                <p>
+                    2. <strong>Penyebut:</strong> $4x^2 - 9$<br>
+                    Gunakan sifat selisih dua kuadrat $a^2 - b^2 = (a - b)(a + b)$:
+                    $$4x^2 - 9 = (2x)^2 - 3^2 = (2x - 3)(2x + 3)$$
+                </p>
+                <p>
+                    3. <strong>Sederhanakan pecahan:</strong>
+                    $$\frac{2x^2 - 5x - 12}{4x^2 - 9} = \frac{(x - 4)(2x + 3)}{(2x - 3)(2x + 3)} = \frac{x - 4}{2x - 3}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, bentuk paling sederhananya adalah $\frac{x - 4}{2x - 3}$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Jika $x$ dan $y$ adalah bilangan real yang memenuhi $x + y = 7$ dan $x^2 + y^2 = 29$, maka nilai dari $x^3 + y^3$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$112$</li>
+                    <li>$126$</li>
+                    <li>$133$</li>
+                    <li>$140$</li>
+                    <li>$154$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    Gunakan identitas kuadrat jumlah untuk mencari nilai $xy$ terlebih dahulu:
+                    $$(x + y)^2 = x^2 + y^2 + 2xy$$
+                    $$7^2 = 29 + 2xy$$
+                    $$49 - 29 = 2xy \implies 2xy = 20 \implies xy = 10$$
+                </p>
+                <p>
+                    Selanjutnya, gunakan identitas jumlah dua kubik:
+                    $$x^3 + y^3 = (x + y)^3 - 3xy(x + y)$$
+                    $$x^3 + y^3 = (7)^3 - 3(10)(7)$$
+                    $$x^3 + y^3 = 343 - 210 = 133$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $x^3 + y^3$ adalah $133$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Diketahui $x - \frac{1}{x} = 4$ dengan $x \neq 0$. Nilai dari $x^4 + \frac{1}{x^4}$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$254$</li>
+                    <li>$256$</li>
+                    <li>$322$</li>
+                    <li>$324$</li>
+                    <li>$326$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    Langkah pertama, kuadratkan kedua ruas dari persamaan $x - \frac{1}{x} = 4$:
+                    $$\left(x - \frac{1}{x}\right)^2 = 4^2$$
+                    $$x^2 - 2(x)\left(\frac{1}{x}\right) + \frac{1}{x^2} = 16$$
+                    $$x^2 - 2 + \frac{1}{x^2} = 16 \implies x^2 + \frac{1}{x^2} = 18$$
+                </p>
+                <p>
+                    Langkah kedua, kuadratkan lagi persamaan $x^2 + \frac{1}{x^2} = 18$ untuk memperoleh bentuk pangkat empat:
+                    $$\left(x^2 + \frac{1}{x^2}\right)^2 = 18^2$$
+                    $$x^4 + 2(x^2)\left(\frac{1}{x^2}\right) + \frac{1}{x^4} = 324$$
+                    $$x^4 + 2 + \frac{1}{x^4} = 324 \implies x^4 + \frac{1}{x^4} = 322$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $x^4 + \frac{1}{x^4}$ adalah $322$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
