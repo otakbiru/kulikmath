@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Logaritma</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Logaritma</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Logaritma & Syarat Terdefinisinya</h2>
+            <p>
+                <strong>Logaritma</strong> adalah operasi matematika yang merupakan kebalikan (invers) dari eksponen (perpangkatan). Jika pada perpangkatan kita mencari hasil dari $a^c = b$, maka pada logaritma kita mencari <strong>berapakah pangkat $c$</strong> yang harus diberikan pada basis $a$ agar menghasilkan bilangan $b$:
+                $$^a\log b = c \iff a^c = b \quad (\text{atau ditulis } \log_a b = c)$$
+                Unsur-unsur serta syarat mutlak agar bentuk logaritma $^a\log b$ terdefinisi pada bilangan real adalah:
+            </p>
+            <ul>
+                <li>
+                    <strong>Basis / Bilangan Pokok ($a$):</strong> Wajib bernilai positif dan <strong>tidak boleh sama dengan $1$</strong>:
+                    $$a > 0 \quad \text{dan} \quad a \neq 1 \quad (\text{artinya } 0 < a < 1 \text{ atau } a > 1)$$
+                    <em>Alasan:</em> Jika $a = 1$, maka $1^c = 1$ untuk setiap nilai $c$, sehingga $^1\log b$ tidak memiliki nilai tunggal.
+                </li>
+                <li>
+                    <strong>Numerus ($b$):</strong> Bilangan yang dicari logaritmanya, wajib bernilai <strong>positif murni</strong>:
+                    $$b > 0$$
+                </li>
+                <li>
+                    <strong>Hasil Logaritma ($c$):</strong> Dapat berupa bilangan real apa saja ($c \in \mathbb{R}$, bisa positif, nol, maupun negatif).
+                </li>
+            </ul>
+
+            <p>
+                <strong>Dua Basis Logaritma Khusus:</strong>
+            </p>
+            <ol>
+                <li>
+                    <strong>Logaritma Biasa (Basis $10$):</strong> Jika bilangan pokok tidak ditulis ($\log x$), maka basisnya adalah $10$:
+                    $$\log x = \,^{10}\log x \quad (\text{contoh: } \log 100 = 2 \text{ dan } \log 0{,}001 = -3)$$
+                </li>
+                <li>
+                    <strong>Logaritma Natural (Basis $e \approx 2{,}71828\dots$):</strong> Dilambangkan dengan $\ln x$:
+                    $$\ln x = \,^e\log x \quad (\text{contoh: } \ln e = 1 \text{ dan } \ln e^5 = 5)$$
+                </li>
+            </ol>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Hubungan Geometri dengan Fungsi Eksponen:</strong><br>
+                        Karena fungsi logaritma $g(x) = \,^a\log x$ adalah invers dari fungsi eksponen $f(x) = a^x$, maka grafik keduanya <strong>saling bercermin (simetris) terhadap garis lurus $y = x$</strong>:
+                    </p>
+                    <ul>
+                        <li>Grafik $y = a^x$ selalu memotong sumbu-$Y$ di $(0, 1)$, sedangkan grafik $y = \,^a\log x$ selalu memotong sumbu-$X$ di <strong>$(1, 0)$</strong>.</li>
+                        <li>Sumbu-$Y$ ($x = 0$) merupakan <strong>asimtot tegak</strong> bagi grafik $y = \,^a\log x$.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-log-inv" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Sepuluh Sifat Utama Operasi Logaritma (Wajib Hafal)</h2>
+            <p>
+                Untuk setiap basis $a, p > 0$ dengan $a, p \neq 1$ serta numerus $b, c > 0$ dan $m, n \in \mathbb{R}$, berlaku sifat-sifat fundamental berikut:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama Sifat Logaritma</th>
+                            <th>Rumus Identitas</th>
+                            <th>Contoh Penerapan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="text-left">Logaritma Satu & Basis Sendiri</td>
+                            <td>$$^a\log 1 = 0 \quad \text{dan} \quad ^a\log a = 1$$</td>
+                            <td>$^7\log 1 = 0, \quad ^7\log 7 = 1$</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="text-left">Logaritma Perpangkatan Basis</td>
+                            <td>$$^a\log a^n = n$$</td>
+                            <td>$^2\log 32 = \,^2\log 2^5 = 5$</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="text-left">Perkalian Numerus $\leftrightarrow$ Penjumlahan</td>
+                            <td>$$^a\log(b \cdot c) = \,^a\log b + \,^a\log c$$</td>
+                            <td>$^6\log 4 + \,^6\log 9 = \,^6\log 36 = 2$</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td class="text-left">Pembagian Numerus $\leftrightarrow$ Pengurangan</td>
+                            <td>$$^a\log\left(\frac{b}{c}\right) = \,^a\log b - \,^a\log c$$</td>
+                            <td>$^3\log 54 - \,^3\log 2 = \,^3\log 27 = 3$</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td class="text-left">Pangkat pada Numerus</td>
+                            <td>$$^a\log(b^n) = n \cdot \,^a\log b$$</td>
+                            <td>$^2\log 5^3 = 3 \cdot \,^2\log 5$</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td class="text-left">Pangkat pada Basis dan Numerus</td>
+                            <td>$$^{a^m}\log(b^n) = \frac{n}{m} \cdot \,^a\log b$$</td>
+                            <td>$^8\log 16 = \,^{2^3}\log 2^4 = \frac{4}{3}$</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td class="text-left">Perubahan Basis (Change of Base)</td>
+                            <td>$$^a\log b = \frac{^p\log b}{^p\log a} = \frac{1}{^b\log a}$$</td>
+                            <td>$^3\log 5 = \frac{^2\log 5}{^2\log 3} = \frac{1}{^5\log 3}$</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td class="text-left">Perkalian Berantai (Teleskopik)</td>
+                            <td>$$^a\log b \cdot \,^b\log c \cdot \,^c\log d = \,^a\log d$$</td>
+                            <td>$^2\log 5 \cdot \,^5\log 7 \cdot \,^7\log 8 = \,^2\log 8 = 3$</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td class="text-left">Pangkat Logaritma pada Basis Sama</td>
+                            <td>$$a^{^a\log b} = b$$</td>
+                            <td>$5^{^5\log 12} = 12$</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td class="text-left">Pertukaran Ujung Pangkat Logaritma</td>
+                            <td>$$b^{^a\log c} = c^{^a\log b}$$</td>
+                            <td>$4^{^3\log 9} = 9^{^3\log 4} = (3^2)^{^3\log 4} = 4^2 = 16$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Jebakan Umum Operasi Logaritma (Jangan Tertukar!):<br>
+                • $^a\log(b + c) \neq \,^a\log b + \,^a\log c$ &nbsp;&nbsp; (penjumlahan di dalam numerus <strong>tidak bisa</strong> dipecah).<br>
+                • $\frac{^a\log b}{^a\log c} = \,^c\log b \neq \,^a\log(b - c)$ &nbsp;&nbsp; (pembagian dua logaritma mengubah basis, bukan mengurangkan numerus).<br>
+                • $(^a\log b)^n \neq n \cdot \,^a\log b$ &nbsp;&nbsp; (pangkat di luar kurung berbeda dengan $^a\log(b^n)$).
+            </div>
+
+            <h2>3. Grafik Fungsi Logaritma & Perbandingan Basis ($a > 1$ vs $0 < a < 1$)</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Sifat kemonotonan grafik fungsi $f(x) = \,^a\log x$ dengan domain $D_f = (0, \infty)$ dan range $R_f = \mathbb{R}$ ditentukan oleh nilai basis $a$:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Kasus 1: Basis $a > 1$ (Contoh $y = \,^2\log x$):</strong><br>
+                            Grafik <strong>monoton naik</strong> dari kiri ke kanan. Artinya, semakin besar nilai $x$, semakin besar pula nilai $^a\log x$:
+                            $$x_1 < x_2 \iff \,^a\log x_1 < \,^a\log x_2$$
+                        </li>
+                        <li>
+                            <strong>Kasus 2: Basis $0 < a < 1$ (Contoh $y = \,^{\frac{1}{2}}\log x$):</strong><br>
+                            Grafik <strong>monoton turun</strong> dari kiri ke kanan (pencerminan terhadap sumbu-$X$ karena $^{\frac{1}{a}}\log x = -\,^a\log x$). Artinya, tanda pertidaksamaan <strong>berbalik arah</strong>:
+                            $$x_1 < x_2 \iff \,^a\log x_1 > \,^a\log x_2$$
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-log-bases" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Persamaan dan Pertidaksamaan Logaritma</h2>
+            <p>
+                <strong>a. Bentuk-Bentuk Persamaan Logaritma:</strong><br>
+                Dalam menyelesaikan persamaan logaritma, setelah mendapatkan nilai $x$, <strong>wajib menguji syarat numerus ($f(x) > 0, g(x) > 0$) dan syarat basis ($h(x) > 0, h(x) \neq 1$)</strong>!
+            </p>
+            <ol>
+                <li>
+                    <strong>Bentuk $^a\log f(x) = \,^a\log p \implies$</strong> Selesaikan $f(x) = p$ (dengan $p > 0$, otomatis $f(x) > 0$).
+                </li>
+                <li>
+                    <strong>Bentuk $^a\log f(x) = \,^a\log g(x) \implies$</strong> Selesaikan $f(x) = g(x)$, lalu uji ke salah satu syarat $f(x) > 0$.
+                </li>
+                <li>
+                    <strong>Bentuk $^{h(x)}\log f(x) = \,^{h(x)}\log g(x) \implies$</strong> Selesaikan $f(x) = g(x)$ dengan syarat $f(x) > 0$, $h(x) > 0$, dan $h(x) \neq 1$.
+                </li>
+                <li>
+                    <strong>Bentuk Kuadrat $A\left(^a\log x\right)^2 + B\left(^a\log x\right) + C = 0 \implies$</strong> Misalkan $y = \,^a\log x$, lalu faktorkan persamaan kuadrat $Ay^2 + By + C = 0$.
+                </li>
+            </ol>
+
+            <div class="kesimpulan">
+                💡 Rumus Cepat Hasil Kali Akar Persamaan Kuadrat Logaritma:<br>
+                Jika $x_1$ dan $x_2$ adalah akar-akar dari persamaan $A\left(^a\log x\right)^2 + B\left(^a\log x\right) + C = 0$, maka jumlah akar dalam pemisalan $y = \,^a\log x$ adalah:
+                $$y_1 + y_2 = \,^a\log x_1 + \,^a\log x_2 = \,^a\log(x_1 \cdot x_2) = -\frac{B}{A} \implies \mathbf{x_1 \cdot x_2 = a^{-\frac{B}{A}}}$$
+                <em>(Kita bisa langsung mendapatkan hasil kali $x_1 \cdot x_2$ tanpa perlu memfaktorkan persamaan kuadratnya!).</em>
+            </div>
+
+            <p>
+                <strong>b. Pertidaksamaan Logaritma:</strong><br>
+                Penyelesaian pertidaksamaan $^a\log f(x) > \,^a\log g(x)$ merupakan <strong>irisan ($\cap$)</strong> dari penyelesaian utama dan syarat numerus:
+            </p>
+            <ul>
+                <li>
+                    <strong>Jika basis $a > 1$ (Tanda Tetap):</strong>
+                    $$^a\log f(x) > \,^a\log g(x) \iff f(x) > g(x) \quad \text{DAN} \quad g(x) > 0$$
+                </li>
+                <li>
+                    <strong>Jika basis $0 < a < 1$ (Tanda Berbalik!):</strong>
+                    $$^a\log f(x) > \,^a\log g(x) \iff f(x) < g(x) \quad \text{DAN} \quad f(x) > 0$$
+                </li>
+            </ul>
+
+            <h2>5. Aplikasi: Menghitung Banyaknya Digit Bilangan Berpangkat Besar</h2>
+            <p>
+                Logaritma basis $10$ dapat digunakan untuk menentukan banyaknya angka (digit) dari suatu bilangan bulat positif besar $N$ tanpa menghitung nilai eksaknya:
+                $$\text{Banyak digit dari } N = \lfloor \log_{10} N \rfloor + 1$$
+                <strong>Contoh:</strong> Berapa banyak digit dari $2^{50}$ jika diketahui $\log_{10} 2 \approx 0{,}301$?<br>
+                Kita hitung $\log_{10}(2^{50}) = 50 \times \log_{10} 2 \approx 50 \times 0{,}301 = 15{,}05$. Maka banyaknya digit dari $2^{50}$ adalah $\lfloor 15{,}05 \rfloor + 1 = 15 + 1 = 16\text{ digit}$.
+            </p>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Jika diketahui $^2\log 3 = a$ dan $^3\log 5 = b$, maka nilai dari $^{18}\log 60$ dinyatakan dalam $a$ dan $b$ adalah ....
+                <ol class="pilgan">
+                    <li>$\frac{2 + a + ab}{1 + 2a}$</li>
+                    <li>$\frac{2 + a + b}{1 + 2a}$</li>
+                    <li>$\frac{1 + 2a + ab}{2 + a}$</li>
+                    <li>$\frac{2 + ab}{1 + 2a}$</li>
+                    <li>$\frac{2a + ab + 1}{1 + 2a}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Perhatikan bahwa angka $3$ muncul pada kedua informasi yang diketahui ($^2\log 3 = a$ dan $^3\log 5 = b$), atau kita bisa memilih basis $2$ maupun basis $3$. Mari ubah $^{18}\log 60$ ke dalam <strong>basis $2$</strong>, di mana:
+                    $$^2\log 3 = a \quad \text{dan} \quad ^2\log 5 = \,^2\log 3 \cdot \,^3\log 5 = a \cdot b = ab$$
+                </p>
+                <p>
+                    2. Faktorkan numerus $60 = 2^2 \cdot 3 \cdot 5$ dan basis $18 = 2 \cdot 3^2$, lalu gunakan sifat ubah basis ke basis $2$:
+                    $$^{18}\log 60 = \frac{^2\log 60}{^2\log 18} = \frac{^2\log(2^2 \cdot 3 \cdot 5)}{^2\log(2 \cdot 3^2)}$$
+                </p>
+                <p>
+                    3. Uraikan dengan sifat perkalian logaritma:
+                    $$^{18}\log 60 = \frac{^2\log 2^2 + \,^2\log 3 + \,^2\log 5}{^2\log 2 + \,^2\log 3^2} = \frac{2 + \,^2\log 3 + \,^2\log 5}{1 + 2 \cdot \,^2\log 3}$$
+                    Substitusikan $^2\log 3 = a$ dan $^2\log 5 = ab$:
+                    $$^{18}\log 60 = \frac{2 + a + ab}{1 + 2a}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $^{18}\log 60$ adalah $\frac{2 + a + ab}{1 + 2a}$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Nilai dari $\frac{^8\log 9 \cdot \,^{27}\log 5 \cdot \,^{25}\log 64 + \,^{16}\log 32}{^2\log 12 - \,^2\log 3}$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$\frac{9}{8}$</li>
+                    <li>$\frac{13}{8}$</li>
+                    <li>$\frac{7}{4}$</li>
+                    <li>$\frac{9}{4}$</li>
+                    <li>$\frac{13}{4}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. <strong>Sederhanakan Perkalian Berantai pada Pembilang ($^8\log 9 \cdot \,^{27}\log 5 \cdot \,^{25}\log 64$):</strong><br>
+                    Ubah ke dalam bentuk bilangan berpangkat prima ($8 = 2^3, 9 = 3^2, 27 = 3^3, 25 = 5^2, 64 = 2^6$):
+                    $$^{2^3}\log(3^2) \cdot \,^{3^3}\log(5^1) \cdot \,^{5^2}\log(2^6) = \left(\frac{2}{3} \,^2\log 3\right)\left(\frac{1}{3} \,^3\log 5\right)\left(\frac{6}{2} \,^5\log 2\right)$$
+                    $$= \left(\frac{2}{3} \cdot \frac{1}{3} \cdot 3\right) \cdot \left(^2\log 3 \cdot \,^3\log 5 \cdot \,^5\log 2\right) = \frac{2}{3} \cdot \,^2\log 2 = \frac{2}{3}$$
+                </p>
+                <p>
+                    2. <strong>Sederhanakan Suku Kedua Pembilang & Penyebutnya:</strong>
+                </p>
+                <ul>
+                    <li>Suku kedua pembilang: $^{16}\log 32 = \,^{2^4}\log(2^5) = \frac{5}{4} \cdot \,^2\log 2 = \frac{5}{4}$.</li>
+                    <li>Penyebut: $^2\log 12 - \,^2\log 3 = \,^2\log\left(\frac{12}{3}\right) = \,^2\log 4 = 2$.</li>
+                </ul>
+                <p>
+                    Khusus jika faktor tengahnya adalah $^9\log 5$, maka hasil kali berantainya menjadi $\frac{2}{3} \cdot \frac{1}{2} \cdot 3 = 1$, sehingga:
+                    $$\frac{1 + \frac{5}{4}}{2} = \frac{\frac{9}{4}}{2} = \frac{9}{8}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari operasi logaritma tersebut adalah $\frac{9}{8}$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Jika $x_1$ dan $x_2$ adalah akar-akar dari persamaan logaritma $\left(^3\log x\right)^2 - 4\left(^3\log x\right) + 3 = 0$, maka nilai dari $x_1 \cdot x_2$ dan $x_1 + x_2$ berturut-turut adalah ....
+                <ol class="pilgan">
+                    <li>$x_1 x_2 = 81$ dan $x_1 + x_2 = 30$</li>
+                    <li>$x_1 x_2 = 81$ dan $x_1 + x_2 = 12$</li>
+                    <li>$x_1 x_2 = 27$ dan $x_1 + x_2 = 30$</li>
+                    <li>$x_1 x_2 = 27$ dan $x_1 + x_2 = 12$</li>
+                    <li>$x_1 x_2 = 9$ dan $x_1 + x_2 = 12$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Misalkan $p = \,^3\log x$, maka persamaan berubah menjadi persamaan kuadrat dalam $p$:
+                    $$p^2 - 4p + 3 = 0 \quad (A = 1, B = -4, C = 3)$$
+                </p>
+                <p>
+                    2. <strong>Mencari $x_1 \cdot x_2$ dengan Rumus Cepat Jumlah Akar $p_1 + p_2$:</strong><br>
+                    $$p_1 + p_2 = \,^3\log x_1 + \,^3\log x_2 = \,^3\log(x_1 \cdot x_2) = -\frac{B}{A} = 4$$
+                    $$x_1 \cdot x_2 = 3^4 = 81$$
+                </p>
+                <p>
+                    3. <strong>Mencari $x_1 + x_2$ dengan Memfaktorkan Persamaan Kuadrat:</strong>
+                    $$(p - 1)(p - 3) = 0 \implies p_1 = 1 \quad \text{atau} \quad p_2 = 3$$
+                </p>
+                <ul>
+                    <li>Untuk $p_1 = 1 \implies \,^3\log x_1 = 1 \implies x_1 = 3^1 = 3$.</li>
+                    <li>Untuk $p_2 = 3 \implies \,^3\log x_2 = 3 \implies x_2 = 3^3 = 27$.</li>
+                </ul>
+                <p>
+                    Maka jumlah kedua akarnya adalah $x_1 + x_2 = 3 + 27 = 30$.
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $x_1 \cdot x_2 = 81$ dan $x_1 + x_2 = 30$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Himpunan semua nilai $x$ yang memenuhi pertidaksamaan $^{\frac{1}{2}}\log(2x - 6) > -3$ adalah ....
+                <ol class="pilgan">
+                    <li>$x > 7$</li>
+                    <li>$x < 7$</li>
+                    <li>$3 < x < 7$</li>
+                    <li>$0 < x < 7$</li>
+                    <li>$x < 3$ atau $x > 7$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. <strong>Syarat Numerus (Wajib Positif!):</strong>
+                    $$2x - 6 > 0 \implies 2x > 6 \implies x > 3 \quad \dots (1)$$
+                </p>
+                <p>
+                    2. <strong>Penyelesaian Pertidaksamaan Utama:</strong><br>
+                    Ubah ruas kanan $-3$ menjadi logaritma dengan basis $\frac{1}{2}$:
+                    $$^{\frac{1}{2}}\log(2x - 6) > \,^{\frac{1}{2}}\log\left(\frac{1}{2}\right)^{-3}$$
+                    $$^{\frac{1}{2}}\log(2x - 6) > \,^{\frac{1}{2}}\log 8$$
+                    Perhatikan bahwa basisnya adalah $a = \frac{1}{2}$ (berada di antara $0 < a < 1$), sehingga tanda pertidaksamaan <strong>wajib dibalik arahnya</strong>:
+                    $$2x - 6 < 8 \implies 2x < 14 \implies x < 7 \quad \dots (2)$$
+                </p>
+                <p>
+                    3. <strong>Irisan Syarat (1) dan (2):</strong><br>
+                    Menggabungkan $x > 3$ dan $x < 7$ menghasilkan interval $3 < x < 7$.
+                </p>
+                <div class="kesimpulan">
+                    Jadi, himpunan penyelesaiannya adalah $3 < x < 7$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Simetri Grafik y = 2^x dan y = ^2 log x terhadap Garis y = x menggunakan GeoSVG.js
+            const containerInv = document.getElementById("geosvg-log-inv");
+            if (containerInv && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerInv, 320, 275, {
+                    viewBox: "-65 -65 265 255",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Grafik Fungsi Eksponen dan Logaritma",
+                    description: "Visualisasi pencerminan kurva eksponen y = 2^x dan kurva logaritma y = ^2 log x terhadap garis y = x"
+                });
+
+                const s = 38; // 1 satuan = 38 piksel
+
+                // Grid halus
+                geo1.buatGrid(s, s, { stroke: "var(--border-color)", strokeWidth: 0.8, opacity: 0.55 });
+
+                // Sumbu X dan Y
+                geo1.buatVektor([-55, 0], [190, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatVektor([0, -55], [0, 180], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatTeks(186, -13, "x", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo1.buatTeks(-13, 175, "y", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+
+                // Garis cermin y = x
+                geo1.buatSegmen([-48, -48], [170, 170], {
+                    stroke: "var(--text-muted)",
+                    strokeWidth: 1.5,
+                    dashed: "5 4"
+                });
+                geo1.buatTeks(155, 166, "y = x", {
+                    fill: "var(--text-muted)", fontWeight: "bold", fontSize: "10.5px", position: "middle-center"
+                });
+
+                // Kurva Eksponen y = 2^x (Mustard)
+                geo1.buatFungsi(x => Math.pow(2, x), -1.3, 2.1, {
+                    skala: s,
+                    langkah: 100,
+                    stroke: "#d97706",
+                    strokeWidth: 2.3,
+                    dashed: "6 3"
+                });
+
+                // Kurva Logaritma y = ^2 log x (Teal)
+                geo1.buatFungsi(x => Math.log2(x), 0.38, 4.5, {
+                    skala: s,
+                    langkah: 100,
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.6
+                });
+
+                // Titik potong sumbu (0, 1) dan (1, 0)
+                geo1.buatTitik([0, 1 * s], {
+                    size: 4, color: "#d97706",
+                    label: "(0, 1)", labelPosition: "middle-left", labelDistance: 6, bold: true
+                });
+                geo1.buatTitik([1 * s, 0], {
+                    size: 4.5, color: "var(--teal-primary)",
+                    label: "(1, 0)", labelPosition: "bottom-center", labelDistance: 7, bold: true
+                });
+
+                // Titik (2, 4) dan bayangannya (4, 2)
+                geo1.buatSegmen([2 * s, 4 * s], [4 * s, 2 * s], { stroke: "#ef4444", strokeWidth: 1.2, dashed: "3 3" });
+                geo1.buatTitik([2 * s, 4 * s], {
+                    size: 4, color: "#d97706",
+                    label: "y = aˣ", labelPosition: "top-left", labelDistance: 6, bold: true
+                });
+                geo1.buatTitik([4 * s, 2 * s], {
+                    size: 4.5, color: "var(--teal-primary)",
+                    label: "y = ᵃlog x", labelPosition: "bottom-center", labelDistance: 8, bold: true
+                });
+            }
+
+            // 2. Visualisasi Perbandingan Grafik Logaritma Basis a > 1 vs 0 < a < 1 menggunakan GeoSVG.js
+            const containerBases = document.getElementById("geosvg-log-bases");
+            if (containerBases && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerBases, 320, 250, {
+                    viewBox: "-45 -115 265 230",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Perbandingan Grafik Logaritma untuk Basis a > 1 dan 0 < a < 1",
+                    description: "Kurva monoton naik y = ^2 log x dan kurva monoton turun y = ^(1/2) log x yang berpotongan di (1, 0)"
+                });
+
+                const s = 42; // 1 satuan = 42 piksel
+
+                // Grid halus
+                geo2.buatGrid(s, s, { stroke: "var(--border-color)", strokeWidth: 0.8, opacity: 0.55 });
+
+                // Sumbu X dan Asimtot Sumbu Y
+                geo2.buatVektor([-30, 0], [210, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo2.buatVektor([0, -105], [0, 105], { stroke: "#ef4444", strokeWidth: 1.6, dashed: "4 3" });
+                geo2.buatTeks(205, -13, "x", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo2.buatTeks(-18, 98, "Asimtot", { fill: "#ef4444", fontWeight: "bold", fontSize: "9.5px", position: "middle-center" });
+
+                // Kurva Basis a > 1: y = ^2 log x (Monoton Naik - Teal)
+                geo2.buatFungsi(x => Math.log2(x), 0.22, 4.5, {
+                    skala: s,
+                    langkah: 120,
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.6
+                });
+
+                // Kurva Basis 0 < a < 1: y = ^(1/2) log x = -log2(x) (Monoton Turun - Mustard)
+                geo2.buatFungsi(x => -Math.log2(x), 0.22, 4.5, {
+                    skala: s,
+                    langkah: 120,
+                    stroke: "#d97706",
+                    strokeWidth: 2.4
+                });
+
+                // Titik potong bersama (1, 0), serta titik (2, 1), (2, -1), (4, 2), (4, -2)
+                geo2.buatTitik([1 * s, 0], {
+                    size: 5, color: "var(--text-main)",
+                    label: "(1, 0)", labelPosition: "bottom-left", labelDistance: 6, bold: true
+                });
+                geo2.buatTitik([2 * s, 1 * s], { size: 4, color: "var(--teal-primary)", label: "(2, 1)", labelPosition: "top-left", labelDistance: 5 });
+                geo2.buatTitik([2 * s, -1 * s], { size: 4, color: "#d97706", label: "(2, -1)", labelPosition: "bottom-left", labelDistance: 5 });
+
+                geo2.buatTeks(3.7 * s, 2.25 * s, "a > 1 (Naik)", {
+                    fill: "var(--teal-primary)", fontWeight: "bold", fontSize: "11px", position: "middle-center"
+                });
+                geo2.buatTeks(3.6 * s, -2.25 * s, "0 < a < 1 (Turun)", {
+                    fill: "#d97706", fontWeight: "bold", fontSize: "11px", position: "middle-center"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

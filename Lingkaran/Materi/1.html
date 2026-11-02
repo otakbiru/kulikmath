@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Lingkaran</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Lingkaran</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Unsur-Unsur Lingkaran</h2>
+            <p>
+                <strong>Lingkaran</strong> adalah tempat kedudukan (himpunan) titik-titik pada bidang datar yang berjarak sama terhadap satu titik tetap. Titik tetap tersebut dinamakan <strong>Titik Pusat ($O$ atau $P$)</strong>, sedangkan jarak yang tetap tersebut dinamakan <strong>Jari-Jari ($r$)</strong>.
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Unsur-Unsur Utama Geometri Lingkaran:</strong>
+                    </p>
+                    <ul>
+                        <li><strong>Jari-Jari ($r$):</strong> Ruas garis yang menghubungkan titik pusat dengan titik pada keliling lingkaran ($OA, OB, OC$).</li>
+                        <li><strong>Diameter ($d$):</strong> Tali busur terpanjang yang melalui titik pusat lingkaran ($AB$, dengan $d = 2r$).</li>
+                        <li><strong>Tali Busur:</strong> Ruas garis yang menghubungkan dua titik pada lingkaran ($AC$ dan $BC$).</li>
+                        <li><strong>Apotema ($OD$):</strong> Jarak terpendek (tegak lurus) dari titik pusat ke tali busur. Apotema selalu membagi dua tali busur sama panjang!</li>
+                        <li><strong>Busur ($\widehat{AC}$):</strong> Garis lengkung bagian dari keliling lingkaran.</li>
+                        <li><strong>Juring (Sektor):</strong> Daerah di dalam lingkaran yang dibatasi oleh dua jari-jari dan satu busur ($BOC$).</li>
+                        <li><strong>Tembereng (Segmen):</strong> Daerah yang dibatasi oleh sebuah tali busur dan busurnya (daerah arsiran antara tali busur $AC$ dan busur $\widehat{AC}$).</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-unsur-lingkaran" style="width: 100%; max-width: 350px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Rumus Keliling, Luas, Busur, Juring & Tembereng</h2>
+            <p>
+                Untuk lingkaran berjari-jari $r$ (atau diameter $d = 2r$) dan sudut pusat $\theta$ (dalam satuan derajat) atau $\alpha$ (dalam satuan radian, di mana $\pi\text{ rad} = 180^\circ$), berlaku rumus-rumus berikut:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besaran Lingkaran</th>
+                            <th>Rumus dalam Derajat ($\theta$)</th>
+                            <th>Rumus dalam Radian ($\alpha$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Keliling Lingkaran ($K$)</strong></td>
+                            <td colspan="2">$$K = 2\pi r = \pi d$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Luas Lingkaran ($L$)</strong></td>
+                            <td colspan="2">$$L = \pi r^2 = \frac{1}{4}\pi d^2$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Panjang Busur ($s$)</strong></td>
+                            <td>$$s = \frac{\theta}{360^\circ} \cdot 2\pi r$$</td>
+                            <td>$$s = \alpha \cdot r$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Luas Juring ($L_{\text{juring}}$)</strong></td>
+                            <td>$$L_{\text{juring}} = \frac{\theta}{360^\circ} \cdot \pi r^2$$</td>
+                            <td>$$L_{\text{juring}} = \frac{1}{2} \alpha r^2 = \frac{1}{2} s \cdot r$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Luas Tembereng ($L_{\text{tembereng}}$)</strong></td>
+                            <td>$$L_{\text{juring}} - L_{\triangle} = \frac{\theta}{360^\circ}\pi r^2 - \frac{1}{2}r^2\sin\theta$$</td>
+                            <td>$$\frac{1}{2}r^2(\alpha - \sin\alpha)$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Panjang Tali Busur ($c$)</strong></td>
+                            <td colspan="2">$$c = 2r \sin\left(\frac{\theta}{2}\right) = \sqrt{2r^2(1 - \cos\theta)} = 2\sqrt{r^2 - \text{apotema}^2}$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Sifat Sudut & Teorema Tali Busur (Kuasa Titik)</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>a. Sudut Pusat, Sudut Keliling & Segiempat Tali Busur:</strong>
+                    </p>
+                    <ul>
+                        <li>Sudut pusat sama dengan dua kali sudut keliling yang menghadap busur yang sama ($\angle AOB = 2 \cdot \angle ACB$).</li>
+                        <li>Semua sudut keliling yang menghadap busur yang sama memiliki besar yang <strong>sama</strong>.</li>
+                        <li>Sudut keliling yang menghadap diameter lingkaran selalu <strong>siku-siku ($90^\circ$)</strong>.</li>
+                        <li>Pada segiempat tali busur $ABCD$, jumlah sudut yang berhadapan adalah $180^\circ$ ($\angle A + \angle C = 180^\circ$ dan $\angle B + \angle D = 180^\circ$).</li>
+                    </ul>
+                    <p>
+                        <strong>b. Perpotongan Dua Tali Busur & Garis Sekan (Power of a Point):</strong>
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Berpotongan di Dalam Lingkaran (di titik $E$):</strong>
+                            $$\angle AEB = \frac{1}{2}(\widehat{AB} + \widehat{CD}) \quad \text{dan} \quad AE \cdot EB = CE \cdot ED$$
+                        </li>
+                        <li>
+                            <strong>Berpotongan di Luar Lingkaran (di titik $P$):</strong>
+                            $$\angle BPD = \frac{1}{2}|\widehat{BD} - \widehat{AC}| \quad \text{dan} \quad PA \cdot PB = PC \cdot PD = PT^2$$
+                            (dengan $PT$ adalah panjang garis singgung dari titik $P$).
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-power-point" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Tiga Bentuk Persamaan Analitik Lingkaran</h2>
+            <p>
+                Pada bidang koordinat Kartesius, persamaan lingkaran ditentukan oleh koordinat titik pusat $P(a, b)$ dan panjang jari-jari $r$. Berdasarkan rumus jarak dua titik, terdapat tiga bentuk persamaan lingkaran:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bentuk Persamaan Lingkaran</th>
+                            <th>Rumus Persamaan</th>
+                            <th>Titik Pusat $P$ & Jari-Jari $r$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>1. Baku Berpusat di $O(0, 0)$</strong></td>
+                            <td>$$x^2 + y^2 = r^2$$</td>
+                            <td>Pusat $O(0, 0)$, jari-jari $r$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>2. Baku Berpusat di $P(a, b)$</strong></td>
+                            <td>$$(x - a)^2 + (y - b)^2 = r^2$$</td>
+                            <td>Pusat $P(a, b)$, jari-jari $r$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>3. Bentuk Umum Lingkaran</strong></td>
+                            <td>$$x^2 + y^2 + Ax + By + C = 0$$</td>
+                            <td>
+                                $$P\left(-\frac{1}{2}A, -\frac{1}{2}B\right)$$
+                                $$r = \sqrt{\left(-\frac{1}{2}A\right)^2 + \left(-\frac{1}{2}B\right)^2 - C}$$
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Kasus Khusus Jari-Jari Lingkaran yang Menyinggung Sumbu atau Garis:<br>
+                • Menyinggung <strong>Sumbu-$X$</strong> di pusat $(a, b) \implies$ jari-jarinya adalah $r = |b|$.<br>
+                • Menyinggung <strong>Sumbu-$Y$</strong> di pusat $(a, b) \implies$ jari-jarinya adalah $r = |a|$.<br>
+                • Menyinggung garis lurus $px + qy + s = 0$ di pusat $(a, b) \implies r = \frac{|pa + qb + s|}{\sqrt{p^2 + q^2}}$.<br>
+                • Diketahui ujung-ujung diameternya $A(x_1, y_1)$ dan $B(x_2, y_2) \implies$ persamaannya langsung: $(x - x_1)(x - x_2) + (y - y_1)(y - y_2) = 0$.
+            </div>
+
+            <h2>5. Kedudukan Titik dan Kedudukan Dua Lingkaran</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>a. Kedudukan Titik $T(x_1, y_1)$ terhadap Lingkaran:</strong><br>
+                        Substitusikan titik $T(x_1, y_1)$ ke ruas kiri persamaan lingkaran untuk memperoleh <strong>Nilai Kuasa Titik ($K$)</strong>:
+                        $$K = (x_1 - a)^2 + (y_1 - b)^2 - r^2 = x_1^2 + y_1^2 + Ax_1 + By_1 + C$$
+                    </p>
+                    <ul>
+                        <li>Jika $K < 0 \iff d < r \implies$ Titik $T$ berada <strong>di dalam</strong> lingkaran.</li>
+                        <li>Jika $K = 0 \iff d = r \implies$ Titik $T$ berada <strong>pada</strong> keliling lingkaran.</li>
+                        <li>Jika $K > 0 \iff d > r \implies$ Titik $T$ berada <strong>di luar</strong> lingkaran (dan panjang garis singgung dari $T$ ke lingkaran adalah $l = \sqrt{K}$).</li>
+                    </ul>
+                    <p>
+                        <strong>b. Hubungan Dua Lingkaran ($L_1$ dan $L_2$):</strong><br>
+                        Misalkan jarak antara pusat $P_1$ dan $P_2$ adalah $d = |P_1P_2|$ dengan jari-jari $R \ge r$:
+                    </p>
+                    <ul>
+                        <li><strong>Saling Lepas di Luar:</strong> $d > R + r$.</li>
+                        <li><strong>Bersinggungan Luar:</strong> $d = R + r$.</li>
+                        <li><strong>Berpotongan di Dua Titik:</strong> $R - r < d < R + r$.</li>
+                        <li><strong>Bersinggungan Dalam:</strong> $d = R - r$.</li>
+                        <li><strong>Berpotongan Tegak Lurus (Ortogonal):</strong> $d^2 = R^2 + r^2$.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-analytic-circle" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Sebuah lingkaran memiliki persamaan $x^2 + y^2 - 6x + 8y + p = 0$. Jika panjang jari-jari lingkaran tersebut adalah $6$, maka nilai $p$ dan koordinat titik pusatnya berturut-turut adalah ....
+                <ol class="pilgan">
+                    <li>$p = -11$ dan Pusat $(3, -4)$</li>
+                    <li>$p = -11$ dan Pusat $(-3, 4)$</li>
+                    <li>$p = 11$ dan Pusat $(3, -4)$</li>
+                    <li>$p = -19$ dan Pusat $(3, -4)$</li>
+                    <li>$p = 19$ dan Pusat $(-3, 4)$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Dari persamaan umum $x^2 + y^2 - 6x + 8y + p = 0$, diperoleh $A = -6$, $B = 8$, dan $C = p$. Maka koordinat titik pusatnya adalah:
+                    $$P(a, b) = \left(-\frac{1}{2}A, -\frac{1}{2}B\right) = \left(-\frac{1}{2}(-6), -\frac{1}{2}(8)\right) = (3, -4)$$
+                </p>
+                <p>
+                    2. Gunakan rumus jari-jari lingkaran $r^2 = a^2 + b^2 - C$ dengan $r = 6$:
+                    $$6^2 = 3^2 + (-4)^2 - p$$
+                    $$36 = 9 + 16 - p \implies 36 = 25 - p \implies p = 25 - 36 = -11$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai $p = -11$ dan koordinat titik pusatnya adalah $(3, -4)$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Persamaan lingkaran yang berpusat di titik $P(2, -3)$ dan menyinggung garis lurus $3x - 4y + 7 = 0$ adalah ....
+                <ol class="pilgan">
+                    <li>$x^2 + y^2 - 4x + 6y - 12 = 0$</li>
+                    <li>$x^2 + y^2 - 4x + 6y + 12 = 0$</li>
+                    <li>$x^2 + y^2 + 4x - 6y - 12 = 0$</li>
+                    <li>$x^2 + y^2 - 4x + 6y - 25 = 0$</li>
+                    <li>$x^2 + y^2 - 4x + 6y - 3 = 0$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Karena lingkaran menyinggung garis $3x - 4y + 7 = 0$, maka jari-jari lingkaran $r$ sama dengan jarak tegak lurus dari pusat $P(2, -3)$ ke garis tersebut:
+                    $$r = \frac{|3(2) - 4(-3) + 7|}{\sqrt{3^2 + (-4)^2}} = \frac{|6 + 12 + 7|}{\sqrt{9 + 16}} = \frac{25}{5} = 5$$
+                </p>
+                <p>
+                    2. Susun persamaan baku lingkaran dengan pusat $(2, -3)$ dan jari-jari $r = 5$, lalu jabarkan ke bentuk umum:
+                    $$(x - 2)^2 + (y + 3)^2 = 5^2$$
+                    $$x^2 - 4x + 4 + y^2 + 6y + 9 = 25$$
+                    $$x^2 + y^2 - 4x + 6y - 12 = 0$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, persamaan lingkaran tersebut adalah $x^2 + y^2 - 4x + 6y - 12 = 0$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Di dalam sebuah lingkaran, dua buah tali busur $AB$ dan $CD$ berpotongan di titik $E$. Jika panjang $AE = 6\text{ cm}$, $EB = 8\text{ cm}$, dan $CD = 16\text{ cm}$, maka selisih panjang antara potongan $CE$ dan $ED$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$2\text{ cm}$</li>
+                    <li>$4\text{ cm}$</li>
+                    <li>$6\text{ cm}$</li>
+                    <li>$8\text{ cm}$</li>
+                    <li>$10\text{ cm}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Misalkan panjang $CE = x$, karena total panjang $CD = CE + ED = 16\text{ cm}$, maka $ED = 16 - x$.
+                </p>
+                <p>
+                    2. Gunakan teorema perpotongan dua tali busur di dalam lingkaran ($AE \cdot EB = CE \cdot ED$):
+                    $$6 \times 8 = x(16 - x)$$
+                    $$48 = 16x - x^2 \iff x^2 - 16x + 48 = 0$$
+                    $$(x - 12)(x - 4) = 0 \implies x = 12 \text{ atau } x = 4$$
+                </p>
+                <p>
+                    3. Artinya, kedua potongan tali busur $CD$ berukuran $12\text{ cm}$ dan $4\text{ cm}$. Selisih panjang keduanya adalah:
+                    $$|CE - ED| = |12 - 4| = 8\text{ cm}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, selisih panjang antara $CE$ dan $ED$ adalah $8\text{ cm}$ (Jawaban D).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Sebuah tali busur $AB$ yang panjangnya $16\text{ cm}$ berada di dalam lingkaran yang berpusat di $O$. Jika jarak terpendek (apotema) dari pusat $O$ ke tali busur $AB$ adalah $6\text{ cm}$, maka keliling lingkaran tersebut adalah ....
+                <ol class="pilgan">
+                    <li>$10\pi\text{ cm}$</li>
+                    <li>$12\pi\text{ cm}$</li>
+                    <li>$16\pi\text{ cm}$</li>
+                    <li>$20\pi\text{ cm}$</li>
+                    <li>$100\pi\text{ cm}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Apotema $OD$ ditarik tegak lurus dari pusat $O$ ke tali busur $AB$ dan membagi dua tali busur $AB$ sama panjang:
+                    $$AD = DB = \frac{1}{2} AB = \frac{1}{2}(16) = 8\text{ cm}$$
+                </p>
+                <p>
+                    2. Pada segitiga siku-siku $\triangle ODA$ (siku-siku di $D$), panjang apotema $OD = 6\text{ cm}$ dan $AD = 8\text{ cm}$. Maka jari-jari lingkaran $r = OA$ adalah:
+                    $$r = \sqrt{OD^2 + AD^2} = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10\text{ cm}$$
+                </p>
+                <p>
+                    3. Hitung keliling lingkaran:
+                    $$K = 2\pi r = 2\pi (10) = 20\pi\text{ cm}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, keliling lingkaran tersebut adalah $20\pi\text{ cm}$ (Jawaban D).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Unsur-Unsur Lingkaran (Juring, Tembereng, Apotema, Diameter) menggunakan GeoSVG.js
+            const containerUnsur = document.getElementById("geosvg-unsur-lingkaran");
+            if (containerUnsur && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerUnsur, 340, 250, {
+                    viewBox: "0 0 340 250",
+                    clearContainer: true,
+                    title: "Unsur-Unsur Lingkaran",
+                    description: "Visualisasi Pusat O, Diameter AB, Jari-jari r, Tali Busur AC, Apotema OD, Juring BOC, dan Tembereng AC"
+                });
+
+                const O = [170, 125];
+                const r = 92;
+
+                // Lingkaran utama
+                geo1.buatLingkaran(O, r, {
+                    fill: "var(--bg-subtle)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2
+                });
+
+                // Juring BOC (dari sudut -55 derajat sampai 20 derajat) menggunakan buatJuring bawaan GeoSVG.js
+                geo1.buatJuring(O, r, -55, 20, {
+                    fill: "rgba(13, 148, 136, 0.22)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 1.8
+                });
+
+                // Tembereng di bagian kiri bawah (antara 125 derajat dan 225 derajat) menggunakan buatTembereng
+                geo1.buatTembereng(O, r, 125, 225, {
+                    fill: "rgba(217, 119, 6, 0.28)",
+                    stroke: "#d97706",
+                    strokeWidth: 2
+                });
+
+                // Titik A (200 deg), B (20 deg) sebagai Diameter AB
+                const radA = 200 * Math.PI / 180;
+                const radB = 20 * Math.PI / 180;
+                const A = [O[0] + r * Math.cos(radA), O[1] + r * Math.sin(radA)];
+                const B = [O[0] + r * Math.cos(radB), O[1] + r * Math.sin(radB)];
+                geo1.buatSegmen(A, B, { stroke: "var(--text-main)", strokeWidth: 2 });
+
+                // Titik ujung tali busur tembereng P1 (125 deg) dan P2 (225 deg) serta Apotema OD
+                const P1 = [O[0] + r * Math.cos(125 * Math.PI / 180), O[1] + r * Math.sin(125 * Math.PI / 180)];
+                const P2 = [O[0] + r * Math.cos(225 * Math.PI / 180), O[1] + r * Math.sin(225 * Math.PI / 180)];
+                const D = geo1.hitungTitikTengah(P1, P2);
+
+                geo1.buatSiku(O, D, P1, { size: 9, stroke: "#ef4444" });
+                geo1.buatSegmen(O, D, {
+                    stroke: "#ef4444",
+                    strokeWidth: 1.8,
+                    dashed: "4 3"
+                });
+
+                // Titik C pada -55 derajat
+                const C = [O[0] + r * Math.cos(-55 * Math.PI / 180), O[1] + r * Math.sin(-55 * Math.PI / 180)];
+
+                // Label unsur-unsur
+                geo1.buatTeks(218, 102, "Juring", { fill: "var(--teal-primary)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo1.buatTeks(95, 168, "Tembereng", { fill: "#d97706", fontWeight: "bold", fontSize: "10px", position: "middle-center" });
+                geo1.buatTeks((O[0] + D[0]) / 2 + 18, (O[1] + D[1]) / 2 - 4, "Apotema", { fill: "#ef4444", fontWeight: "bold", fontSize: "10px", position: "middle-center" });
+                geo1.buatTeks(132, 132, "Diameter", { fill: "var(--text-main)", fontSize: "10px", fontWeight: "bold", position: "middle-center" });
+
+                // Titik-titik sudut
+                geo1.buatTitik(O, { size: 4, color: "var(--text-main)", label: "O", labelPosition: "top-left", labelDistance: 5, bold: true });
+                geo1.buatTitik(A, { size: 3.5, color: "var(--text-main)", label: "A", labelPosition: "top-left", bold: true });
+                geo1.buatTitik(B, { size: 3.5, color: "var(--text-main)", label: "B", labelPosition: "bottom-right", bold: true });
+                geo1.buatTitik(C, { size: 3.5, color: "var(--teal-primary)", label: "C", labelPosition: "top-right", bold: true });
+                geo1.buatTitik(D, { size: 3.5, color: "#ef4444", label: "D", labelPosition: "bottom-left", labelDistance: 4, bold: true });
+            }
+
+            // 2. Visualisasi Perpotongan Dua Tali Busur (Power of a Point) menggunakan GeoSVG.js
+            const containerPower = document.getElementById("geosvg-power-point");
+            if (containerPower && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerPower, 330, 235, {
+                    viewBox: "0 0 330 235",
+                    clearContainer: true,
+                    title: "Perpotongan Dua Tali Busur di Dalam Lingkaran",
+                    description: "Tali busur AB dan CD berpotongan di E dengan sifat AE * EB = CE * ED"
+                });
+
+                geo2.buatTeks(165, 15, "Teorema Tali Busur: AE · EB = CE · ED", {
+                    fill: "var(--teal-primary)",
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    position: "middle-center"
+                });
+
+                const O = [165, 122];
+                const r = 84;
+
+                geo2.buatLingkaran(O, r, {
+                    fill: "var(--bg-subtle)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2
+                });
+
+                // 4 titik pada keliling lingkaran: A, B, C, D
+                const ptOnCircle = deg => [O[0] + r * Math.cos(deg * Math.PI / 180), O[1] + r * Math.sin(deg * Math.PI / 180)];
+                const A = ptOnCircle(155);
+                const B = ptOnCircle(-15);
+                const C = ptOnCircle(-130);
+                const D = ptOnCircle(55);
+
+                // Cari titik potong E menggunakan hitungTitikPotong bawaan GeoSVG.js
+                const potong = geo2.hitungTitikPotong([A, B], [C, D]);
+                const E = potong[0];
+
+                // Segitiga sebangun AEC dan DEB (diarsir tipis)
+                geo2.buatPoligon([A, E, C], { fill: "rgba(13, 148, 136, 0.14)", stroke: "var(--teal-primary)", strokeWidth: 1.2, dashed: "3 3" });
+                geo2.buatPoligon([D, E, B], { fill: "rgba(217, 119, 6, 0.14)", stroke: "#d97706", strokeWidth: 1.2, dashed: "3 3" });
+
+                // Tali busur utama AB dan CD
+                geo2.buatSegmen(A, B, { stroke: "var(--teal-primary)", strokeWidth: 2.3 });
+                geo2.buatSegmen(C, D, { stroke: "#d97706", strokeWidth: 2.3 });
+
+                // Titik A, B, C, D, E
+                geo2.buatTitik(A, { size: 4, color: "var(--teal-primary)", label: "A", labelPosition: "middle-left", labelDistance: 7, bold: true });
+                geo2.buatTitik(B, { size: 4, color: "var(--teal-primary)", label: "B", labelPosition: "middle-right", labelDistance: 7, bold: true });
+                geo2.buatTitik(C, { size: 4, color: "#d97706", label: "C", labelPosition: "top-left", labelDistance: 6, bold: true });
+                geo2.buatTitik(D, { size: 4, color: "#d97706", label: "D", labelPosition: "bottom-right", labelDistance: 6, bold: true });
+                geo2.buatTitik(E, { size: 4.5, color: "#ef4444", label: "E", labelPosition: "top-center", labelDistance: 8, bold: true });
+
+                geo2.buatTeks(165, 222, "△AEC ~ △DEB (Sudut Keliling Menghadap Busur Sama)", {
+                    fill: "var(--text-muted)",
+                    fontSize: "10.5px",
+                    position: "middle-center"
+                });
+            }
+
+            // 3. Visualisasi Lingkaran Analitik Pusat P(a, b) & Kedudukan Titik menggunakan GeoSVG.js (yUp: true)
+            const containerAnalytic = document.getElementById("geosvg-analytic-circle");
+            if (containerAnalytic && typeof GeoSVG !== "undefined") {
+                const geo3 = new GeoSVG(containerAnalytic, 330, 250, {
+                    viewBox: "-35 -35 280 215",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Persamaan Lingkaran Berpusat di P(a, b)",
+                    description: "Lingkaran pada bidang Kartesius dengan pusat P(a,b), jari-jari r, dan titik pada keliling (x,y)"
+                });
+
+                // Grid halus
+                geo3.buatGrid(35, 35, { stroke: "var(--border-color)", strokeWidth: 0.8, opacity: 0.55 });
+
+                // Sumbu X dan Y
+                geo3.buatVektor([-25, 0], [230, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo3.buatVektor([0, -25], [0, 168], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo3.buatTeks(225, -14, "X", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo3.buatTeks(-14, 162, "Y", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+
+                const P = [110, 82];
+                const r = 64;
+
+                // Proyeksi pusat P(a, b) ke sumbu X dan Y
+                geo3.buatSegmen([110, 0], P, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: "4 4" });
+                geo3.buatSegmen([0, 82], P, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: "4 4" });
+                geo3.buatTeks(110, -14, "a", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo3.buatTeks(-12, 82, "b", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+
+                // Lingkaran L
+                geo3.buatLingkaran(P, r, {
+                    fill: "rgba(13, 148, 136, 0.12)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.3
+                });
+
+                // Titik T(x, y) pada lingkaran (sudut 38 derajat)
+                const ang = 38 * Math.PI / 180;
+                const T = [P[0] + r * Math.cos(ang), P[1] + r * Math.sin(ang)];
+                const K = [T[0], P[1]];
+
+                // Segitiga siku-siku Pythagoras (x-a)^2 + (y-b)^2 = r^2
+                geo3.buatPoligon([P, K, T], { fill: "rgba(217, 119, 6, 0.18)", stroke: "none" });
+                geo3.buatSiku(P, K, T, { size: 9, stroke: "#d97706" });
+                geo3.buatSegmen(P, K, { stroke: "#d97706", strokeWidth: 1.6 });
+                geo3.buatSegmen(K, T, { stroke: "#d97706", strokeWidth: 1.6 });
+                geo3.buatSegmen(P, T, {
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.2,
+                    label: "r",
+                    labelPosisi: 0.5,
+                    labelSisi: "kiri",
+                    labelJarak: 8,
+                    labelColor: "var(--teal-primary)",
+                    bold: true
+                });
+
+                // Titik di luar lingkaran sebagai perbandingan
+                const T_out = [205, 135];
+                geo3.buatTitik(T_out, {
+                    size: 4,
+                    color: "#ef4444",
+                    label: "Di Luar (K > 0)",
+                    labelPosition: "top-center",
+                    labelDistance: 6,
+                    bold: true
+                });
+
+                geo3.buatTitik(P, {
+                    size: 4.5,
+                    color: "var(--teal-primary)",
+                    label: "P(a, b)",
+                    labelPosition: "bottom-left",
+                    labelDistance: 5,
+                    bold: true
+                });
+                geo3.buatTitik(T, {
+                    size: 4.5,
+                    color: "#d97706",
+                    label: "(x, y)",
+                    labelPosition: "top-right",
+                    labelDistance: 5,
+                    bold: true
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
