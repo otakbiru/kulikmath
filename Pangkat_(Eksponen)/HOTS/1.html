@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Pangkat (Eksponen)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="./scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Pangkat (Eksponen)</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika<br />
+                <e>2<sup><em>a</em></sup> = 3</e>,<br />
+                <e>3<sup><em>b</em></sup> = 4</e>,<br />
+                <e>4<sup><em>c</em></sup> = 5</e>,<br />
+                <e>5<sup><em>d</em></sup> = 6</e>,<br />
+                <e>6<sup><em>e</em></sup> = 7</e>,<br />
+                <e>7<sup><em>f</em></sup> = 8</e>, dan<br />
+                <e>8<sup><em>g</em></sup> = 9</e>,<br />
+                maka hasil dari <e><em>bcdef</em>(<em>a</em> + <em>g</em>)</e> adalah....
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">OMVN 2018</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <b>CARA 1</b><br>
+                    \(\begin{aligned}
+                    2^{abcdef}&=\left(2^a\right)^{bcdef}\\
+                    &=3^{bcdef}\\
+                    &=\left(3^b\right)^{cdef}\\
+                    &=4^{cdef}\\
+                    &=\left(4^c\right)^{def}\\
+                    &=5^{def}\\
+                    &=\left(5^d\right)^{ef}\\
+                    &=6^{ef}\\
+                    &=\left(6^e\right)^f\\
+                    &=7^f\\
+                    &=8\\
+                    &=2^3\\
+                    abcdef&=3
+                    \end{aligned}\) <br><br>
+                    \(\begin{aligned}
+                    3^{bcdefg}&=\left(3^{bcdef}\right)^g\\
+                    &=8^g\\
+                    &=9\\
+                    &=3^2\\
+                    bcdefg&=2
+                    \end{aligned}\) <br><br>
+                    \(\begin{aligned}
+                    bcdef(a+g)&=abcdef+bcdefg\\
+                    &=3+2\\
+                    &=\color{blue}\boxed{\boxed{\color{black}5}}
+                    \end{aligned}\)
+                    <br><br>
+                    <b>CARA 2</b><br>
+                    \(2^a=3\Rightarrow a={^2\negthinspace\log3}\)<br />
+                    \(3^b=4\Rightarrow b={^3\negthinspace\log4}\)<br />
+                    \(4^c=5\Rightarrow c={^4\negthinspace\log5}\)<br />
+                    \(5^d=6\Rightarrow d={^5\negthinspace\log6}\)<br />
+                    \(6^e=7\Rightarrow e={^6\negthinspace\log7}\)<br />
+                    \(7^f=8\Rightarrow f={^7\negthinspace\log8}\)<br />
+                    \(8^g=9\Rightarrow g={^8\negthinspace\log9}\)<br />
+                    <br />
+                    \(\begin{aligned}
+                    bcdef(a+g)&={^3\negthinspace\log4}\cdot{^4\negthinspace\log5}\cdot{^5\negthinspace\log6}\cdot{^6\negthinspace\log7}\cdot{^7\negthinspace\log8}\left({^2\negthinspace\log3}+{^8\negthinspace\log9}\right)\\
+                    &={^3\negthinspace\log8}\left({^2\negthinspace\log3}+{^8\negthinspace\log9}\right)\\
+                    &={^2\negthinspace\log3}\cdot{^3\negthinspace\log8}+{^3\negthinspace\log8}\cdot{^8\negthinspace\log9}\\
+                    &={^2\negthinspace\log8}+{^3\negthinspace\log9}\\
+                    &=3+2\\
+                    &=\boxed{\boxed{5}}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, <em>bcdef</em>(<em>a</em> + <em>g</em>) = 5.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diketahui <e><em>A</em> = {0, 1, 2, 3, 4};</e> <em>a</em>, <em>b</em>, <em>c</em> adalah tiga anggota yang berbeda dari <em>A</em>, dan <e>(<em>a<sup>b</sup></em>)<sup><em>c</em></sup> = <em>n</em></e>. Nilai maksimum dari <em>n</em> adalah
+                <ol class="pilgan">
+                    <li>4096</li>
+                    <li>6561</li>
+                    <li>9561</li>
+                    <li>9651</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">OSK SMP 2019</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Jika <e><em>a</em> = 0</e> maka <e><em>n</em> = 0</e><br />
+                    Jika <e><em>a</em> = 1</e> maka <e><em>n</em> = 1</e><br />
+                    Jadi kemungkinan nilai untuk <em>a</em> adalah 2, 3, atau 4. Untuk mendapatkan nilai maksimum dari <em>n</em>, maka <em>b</em> dan <em>c</em> adalah 2 bilangan terbesar selain <em>a</em>.<br />
+                    Jika <e><em>a</em> = 2</e>, maka:<br />
+                    <e><em>n</em> = (2<sup>3</sup>)<sup>4</sup> = 2<sup>12</sup> = 4096</e><br />
+                    <br />
+                    Jika <e><em>a</em> = 3</e>, maka:<br />
+                    <e><em>n</em> = (3<sup>2</sup>)<sup>4</sup> = 3<sup>8</sup> = 6561</e><br />
+                    <br />
+                    Jika <e><em>a</em> = 4</e>, maka:<br />
+                    <e><em>n</em> = (4<sup>2</sup>)<sup>3</sup> = 4<sup>6</sup> = 4096</e>
+                    <div class="kesimpulan">Jadi, nilai maksimum dari <em>n</em> adalah 6561.<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diketahui <e><em>m</em><sup><em>x</em> + 1</sup> = <em>n</em><sup>2 &minus; <em>x</em></sup> = <em>p</em></e>. Jika <em>x</em><sub>1</sub> dan <em>x</em><sub>2</sub> memenuhi persamaan <e><em>m</em> &times; <em>n</em> = <em>p</em><sup>6</sup></e>, tentukan nilai <e><em>x</em><sub>1</sub><sup>2</sup> + <em>x</em><sub>2</sub><sup>2</sup></e>.
+            </div>
+            <div class="soal-sumber"><a href="https://web.facebook.com/groups/104916573645859/permalink/518911858912993/" target="_blank">Facebook</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \(\begin{aligned}
+                    m^{x+1}&=p\\
+                    m&=p^{\frac1{x+1}}
+                    \end{aligned}\)<br />
+                    <br />
+                    \(\begin{aligned}
+                    n^{2-x}&=p\\
+                    n&=p^{\frac1{2-x}}
+                    \end{aligned}\)<br />
+                    <br />
+                    \(\begin{aligned}
+                    m\times n&=p^6\\
+                    p^{\frac1{x+1}}\times p^{\frac1{2-x}}&=p^6\\
+                    p^{\frac1{x+1}+\frac1{2-x}}&=p^6\\
+                    p^{\frac{2-x+x+1}{(x+1)(2-x)}}&=p^6\\
+                    p^{\frac3{-x^2+x+2}}&=p^6\\
+                    \frac3{-x^2+x+2}&=6\\
+                    3&=-6x^2+6x+12\\
+                    6x^2-6x-9&=0\\
+                    2x^2-2x-3&=0
+                    \end{aligned}\)<br />
+                    <br />
+                    \(x_1+x_2=-\dfrac{b}a=-\dfrac{-2}2=1\\[8pt]
+                    x_1x_2=\dfrac{c}a=\dfrac{-3}2=-\dfrac32\)<br />
+                    <br />
+                    \(\begin{aligned}
+                    {x_1}^2+{x_2}^2&=\left(x_1+x_2\right)^2-2x_1x_2\\
+                    &=(1)^2-2\left(-\dfrac32\right)\\
+                    &=1+3\\
+                    &=\boxed{\boxed{4}}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, <em>x</em><sub>1</sub><sup>2</sup> + <em>x</em><sub>2</sub><sup>2</sup> = 4.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika <em>a</em> dan <em>b</em> adalah bilangan bulat positif yang memenuhi <e><em>a<sup>b</sup></em> = 2<sup>30</sup> &minus; 2<sup>29</sup></e>, maka nilai <e><em>a</em> + <em>b</em></e> adalah
+                <ol class="pilgan">
+                    <li>29</li>
+                    <li>30</li>
+                    <li>31</li>
+                    <li>32</li>
+                    <li>33</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://www.instagram.com/p/C4f8uxuPl09/" target="_blank" rel="noopener noreferrer">Matematika Idhamdaz</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \(\begin{aligned}
+                    a^b &= 2^{30}-2^{29}\\
+                    &=2^{29}(2-1)\\
+                    &=2^{29}
+                    \end{aligned}\)<br />
+                    <br />
+                    <em>a</em> = 2<br />
+                    <em>b</em> = 29<br />
+                    <br />
+                    <e><em>a</em> + <em>b</em> = 2 + 29 = 31</e>
+                    <div class="kesimpulan">Jadi, <em>a</em> + <em>b</em> = 31.<br><b>JAWAB: C</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika <e>3<sup><em>x</em></sup> = 4<sup><em>y</em></sup> = 12<sup><em>z</em></sup></e> buktikanlah bahwa \({z=\dfrac{xy}{x+y}}\)
+            </div>
+            <div class="soal-sumber"><a href="https://chat.whatsapp.com/HIUpnicy1VA0lrtkiARqRd" target="_blank">Grup Whatsapp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <e>3<sup><em>x</em></sup> = 4<sup><em>y</em></sup> = 12<sup><em>z</em></sup> = <em>k</em></e><br>
+                    \(3=k^{\frac1x}\)<br>
+                    \(4=k^{\frac1y}\)<br>
+                    \(12=k^{\frac1z}\)<br><br>
+                    \(\begin{aligned}
+                    12&=3\cdot4\\
+                    k^{\frac1z}&=k^{\frac1x}k^{\frac1y}\\
+                    k^{\frac1z}&=k^{\frac1x+\frac1y}\\
+                    \frac1z&=\frac1x+\frac1y\\
+                    &=\dfrac{x+y}{xy}\\
+                    z&=\dfrac{xy}{x+y}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, terbukti bahwa \({z=\dfrac{xy}{x+y}}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika \({x = \left(1+\dfrac{1}{n}\right)^{n}}\) dan \({y=\left(1+\dfrac{1}{n}\right)^{n+1}}\), buktikan bahwa <e><em>y<sup>x</sup></em> = <em>x<sup>y</sup></em></e>
+            </div>
+            <div class="soal-sumber"><a href="/" target="_blank">Canadian MO 1974</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \(\begin{aligned}
+                    y^x&=x^y\\
+                    \left(\left(1+\dfrac{1}{n}\right)^{n+1}\right)^x&=\left(\left(1+\dfrac{1}{n}\right)^{n}\right)^y\\
+                    \left(1+\dfrac{1}{n}\right)^{(n+1)x}&=\left(1+\dfrac{1}{n}\right)^{ny}\\
+                    (n+1)x&=ny
+                    \end{aligned}\) <br>
+                    Perhatikan bahwa membuktikan <e><em>y<sup>x</sup></em> = <em>x<sup>y</sup></em></e> sama saja dengan membuktikan <e>(<em>n</em> + 1)<em>x</em> = <em>ny</em></e>. <br><br>
+                    \(\begin{aligned}
+                    y&=\left(1+\dfrac{1}{n}\right)^{n+1}\\
+                    &=\left(1+\dfrac{1}{n}\right)^n\cdot\left(1+\dfrac{1}{n}\right)\\
+                    &=x\left(\dfrac{n+1}{n}\right)\\
+                    ny&=(n+1)x
+                    \end{aligned}\) <br>
+                    <b>TERBUKTI</b>
+                    <div class="kesimpulan">Jadi, terbukti bahwa <e><em>y<sup>x</sup></em> = <em>x<sup>y</sup></em></e>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jika <e><em>a</em> = 60(99)<sup>99</sup> + 40(99)<sup>99</sup></e>, <e><em>b</em> = 99<sup>100</sup></e>, dan <e><em>c</em> = 90(99)<sup>99</sup></e>, maka hubungan antara <em>a</em>, <em>b</em>, <em>c</em> yang paling tepat adalah ....
+                <ol class="pilgan">
+                    <li><e><em>c</em> &lt; <em>a</em> &lt; <em>b</em></e></li>
+                    <li><e><em>b</em> &lt; <em>c</em> &lt; <em>a</em></e></li>
+                    <li><e><em>a</em> &lt; <em>b</em> &lt; <em>c</em></e></li>
+                    <li><e><em>c</em> &lt; <em>b</em> &lt; <em>a</em></e></li>
+                    <li><e><em>b</em> &lt; <em>a</em> &lt; <em>c</em></e></li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneId" target="_blank">Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \({\begin{aligned}
+                    a&=60(99)^{99}+40(99)^{99}\\
+                    &=100(99)^{99}\\
+                    \end{aligned}}\)<br><br>
+                    \(\begin{aligned} 
+                    b&=99^{100}\\
+                    &=99^{1+99}\\
+                    &=99(99)^{99}
+                    \end{aligned}
+                    \)<br><br>
+                    \(\begin{array}{rcccl}
+                    90(99)^{99}&\lt&99(99)^{99}&\lt&100(99)^{99}\\
+                    c&\lt&b&\lt&a 
+                    \end{array}\)
+                    <div class="kesimpulan">Jadi, hubungan antara <em>a</em>, <em>b</em>, <em>c</em> yang paling tepat adalah <e><em>c</em> &lt; <em>b</em> &lt; <em>a</em></e>.<br><b>JAWAB: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan bilangan bulat positif empat angka <em>A</em> dan <em>B</em> sedemikian sehingga <e><em>A</em> &times; <em>B</em> = 16<sup>5</sup> + 2<sup>10</sup></e>. Hasil dari <e><em>A</em> + <em>B</em> =</e> ....
+                <ol class="pilgan">
+                    <li>2045</li>
+                    <li>2046</li>
+                    <li>2047</li>
+                    <li>2048</li>
+                    <li>2049</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="/2021/04/c-s-c-posi-2021-matematika-sma.html" target="_blank">C S C POSI 2021</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \(\begin{aligned}
+                    A \times B&=16^5+2^{10}\\
+                    &=\left(2^4\right)^5+2^{10}\\
+                    &=2^{20}+2^{10}\\
+                    &=2^{10}\left(2^{10}+1\right)\\
+                    &=1024(1025)
+                    \end{aligned}\)<br><br>
+                    \(\begin{aligned}
+                    A+B&=1024+1025\\
+                    &=\boxed{\boxed{2049}}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, <em>A</em> + <em>B</em> = 2049.<br><b>JAWAB: E</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Bentuk paling sederhana dari \(\dfrac{3^{2018}-2\cdot3^{2015}+125}{3^{2017}-4\cdot3^{2015}+25}\) adalah ....
+                <ol class="pilgan">
+                    <li>1</li>
+                    <li>5</li>
+                    <li>10</li>
+                    <li>15</li>
+                    <li>25</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://forummatematika.freeforums.net/thread/3/kumpulan-file-soal-pengetahuan-kuantitatif" target="_blank" rel="noopener noreferrer">Forum Matematika</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \(\begin{aligned}
+                    \dfrac{3^{2018}-2\cdot3^{2015}+125}{3^{2017}-4\cdot3^{2015}+25}&=\dfrac{3^{2015}\left(3^3-2\right)+125}{3^{2015}\left(3^2-4\right)+25}\\[3.7pt]
+                    &=\dfrac{3^{2015}\left(25\right)+125}{3^{2015}\left(5\right)+25}\\[3.7pt]
+                    &=\dfrac{25\left(3^{2015}+5\right)}{5\left(3^{2015}+5\right)}\\
+                    &=\boxed{\boxed{5}}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, bentuk paling sederhana dari \(\dfrac{3^{2018}-2\cdot3^{2015}+125}{3^{2017}-4\cdot3^{2015}+25}\) adalah 5.<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Di antara bilangan-bilangan berikut ini, yang memiliki nilai terbesar adalah ....
+                <ol class="pilgan">
+                    <li>2<sup>77</sup></li>
+                    <li>3<sup>66</sup></li>
+                    <li>4<sup>55</sup></li>
+                    <li>5<sup>44</sup></li>
+                    <li>6<sup>33</sup></li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div class="row" style="align-items: flex-start;">
+                        <div class="col">
+                            2<sup>77</sup> <br>
+                            (2<sup>7</sup>)<sup>11</sup><br>
+                            128<sup>11</sup>
+                        </div>
+                        <div class="col">
+                            3<sup>66</sup><br>
+                            (3<sup>6</sup>)<sup>11</sup><br>
+                            729<sup>11</sup>
+                        </div>
+                        <div class="col">
+                            4<sup>55</sup><br>
+                            (4<sup>5</sup>)<sup>11</sup><br>
+                            1024<sup>11</sup>
+                        </div>
+                        <div class="col">
+                            5<sup>44</sup><br>
+                            (5<sup>4</sup>)<sup>11</sup><br>
+                            (625)<sup>11</sup>
+                        </div>
+                        <div class="col">
+                            6<sup>33</sup><br>
+                            (6<sup>3</sup>)<sup>11</sup><br>
+                            (216)<sup>11</sup>
+                        </div>
+                    </div>
+                    <div class="kesimpulan">Jadi, yang memiliki nilai terbesar adalah 4<sup>55</sup>.<br><b>JAWAB: C</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

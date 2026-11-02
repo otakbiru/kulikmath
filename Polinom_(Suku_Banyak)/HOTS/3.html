@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Polinom (Suku Banyak)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Polinom (Suku Banyak)</span>
+            </p>
+            <!-- Tombol Tingkat dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 21 -->
+        <article class="soal-item" id="21">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan polinom \(P(x) = x^4 + ax^3 + bx^2 + cx + d\). Jika \(P(x)\) memenuhi \(P(1) = 2\), \(P(2) = 4\), \(P(3) = 6\), dan \(P(4) = 8\), nilai dari \(P(5)\) adalah ....
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Evaluasi GMOM September 2024</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Perhatikan bahwa \(P(k) = 2k\) untuk \(k \in \{1, 2, 3, 4\}\).<br>
+                    Karena derajat \(P(x)\) adalah 4 dengan koefisien utama 1, maka:
+                    \[P(x) - 2x = (x - 1)(x - 2)(x - 3)(x - 4)\]
+                    Sehingga:
+                    \[P(x) = (x - 1)(x - 2)(x - 3)(x - 4) + 2x\]
+                    Substitusikan \(x = 5\):
+                    \[\begin{aligned}
+                    P(5) &= (5 - 1)(5 - 2)(5 - 3)(5 - 4) + 2(5)\\
+                    &= (4)(3)(2)(1) + 10\\
+                    &= 24 + 10 = 34
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, \(P(5) = 34\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 22 -->
+        <article class="soal-item" id="22">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Banyaknya polinomial \(P(x)\) yang memenuhi \(P(28) = 28!\) dan \(x P(x - 1) = (x - 28) P(x)\) adalah ....
+                <ol class="pilihan-ganda">
+                    <li>Tak hingga</li>
+                    <li>1</li>
+                    <li>0</li>
+                    <li>28</li>
+                    <li>27</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Penyisihan LMNAS SMA Ke-28</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Diberikan persamaan:
+                    \[x P(x - 1) = (x - 28) P(x)\]
+                    Substitusikan beberapa nilai \(x\):
+                    <ul>
+                        <li>Untuk \(x = 0\): \(0 \cdot P(-1) = -28 P(0) \implies P(0) = 0\)</li>
+                        <li>Untuk \(x = 1\): \(1 \cdot P(0) = -27 P(1) \implies P(1) = 0\)</li>
+                        <li>Untuk \(x = 2\): \(2 \cdot P(1) = -26 P(2) \implies P(2) = 0\)</li>
+                        <li>... dan seterusnya hingga:</li>
+                        <li>Untuk \(x = 27\): \(27 \cdot P(26) = -1 P(27) \implies P(27) = 0\)</li>
+                    </ul>
+                    Karena \(P(0) = P(1) = P(2) = \dots = P(27) = 0\), maka \(P(x)\) memiliki setidaknya 28 akar yaitu \(0, 1, 2, \dots, 27\).<br>
+                    Sehingga \(P(x)\) dapat ditulis sebagai:
+                    \[P(x) = c \cdot x(x - 1)(x - 2) \dots (x - 27)\]
+                    dengan suatu konstanta \(c\).<br><br>
+                    Diketahui \(P(28) = 28!\):
+                    \[\begin{aligned}
+                    P(28) &= c \cdot 28(27)(26) \dots (1)\\
+                    28! &= c \cdot 28!\\
+                    c &= 1
+                    \end{aligned}\]
+                    Karena \(c = 1\) ditentukan secara tunggal, maka hanya terdapat 1 polinomial yang memenuhi.
+                    <div class="kesimpulan">Jadi, banyaknya polinomial yang memenuhi adalah 1.<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 23 -->
+        <article class="soal-item" id="23">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan polinomial \(p(x)\) berderajat 2017 yang mempunyai akar-akar positif berbeda dan hasil kalinya 2017. Didefinisikan \(q(x) = p(x^2)\) dan \(b_1, b_2, \dots, b_{4034}\) adalah akar-akar \(q(x)\) dengan \(b_1 < b_2 < b_3 < \dots < b_{4034}\). Nilai dari \(b_1 b_2 \dots b_{2017}\) adalah ....
+                <ol class="pilihan-ganda">
+                    <li>\(\sqrt{2017}\)</li>
+                    <li>\(-\sqrt{2017}\)</li>
+                    <li>\(2017\)</li>
+                    <li>\(-2017\)</li>
+                    <li>\(\dfrac{\sqrt{2017}}{2017}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Penyisihan LMNAS Ke-28 SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan akar-akar positif dari \(p(x)\) adalah \(k_1 < k_2 < \dots < k_{2017}\) dengan:
+                    \[k_1 k_2 \dots k_{2017} = 2017\]
+                    Maka \(p(x) = a(x - k_1)(x - k_2)\dots(x - k_{2017})\).<br><br>
+                    Untuk \(q(x) = p(x^2)\):
+                    \[\begin{aligned}
+                    q(x) &= a(x^2 - k_1)(x^2 - k_2)\dots(x^2 - k_{2017})\\
+                    &= a(x + \sqrt{k_1})(x - \sqrt{k_1})\dots(x + \sqrt{k_{2017}})(x - \sqrt{k_{2017}})
+                    \end{aligned}\]
+                    Akar-akar dari \(q(x)\) dalam urutan naik adalah:
+                    \[-\sqrt{k_{2017}} < -\sqrt{k_{2016}} < \dots < -\sqrt{k_1} < \sqrt{k_1} < \dots < \sqrt{k_{2017}}\]
+                    Jadi 2017 akar pertama adalah semua akar negatifnya:
+                    \[b_i = -\sqrt{k_i} \quad \text{untuk } i = 1, 2, \dots, 2017\]
+                    Perkalian 2017 akar tersebut:
+                    \[\begin{aligned}
+                    b_1 b_2 \dots b_{2017} &= (-\sqrt{k_1})(-\sqrt{k_2})\dots(-\sqrt{k_{2017}})\\
+                    &= (-1)^{2017} \sqrt{k_1 k_2 \dots k_{2017}}\\
+                    &= -\sqrt{2017}
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, \(b_1 b_2 \dots b_{2017} = -\sqrt{2017}\).<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 24 -->
+        <article class="soal-item" id="24">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan polinom \(P(x)\) dengan derajat 4 di mana \(P(1) = P(2) = P(3) = P(4)\). Untuk \(n = 1, 2, 3, 4\), \(a_n\) adalah koefisien dari \(x^n\) pada \(P(x)\). Diketahui \(a_4 = 1\), nilai dari \(|a_1 + a_2 + a_3 + a_4|\) adalah ....
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan nilai \(P(1) = P(2) = P(3) = P(4) = k\).<br>
+                    Karena \(P(x)\) berderajat 4 dengan koefisien utama \(a_4 = 1\), maka:
+                    \[P(x) = (x - 1)(x - 2)(x - 3)(x - 4) + k\]
+                    Bentuk umum polinomial:
+                    \[P(x) = a_4 x^4 + a_3 x^3 + a_2 x^2 + a_1 x + a_0\]
+                    Perhatikan bahwa jumlah semua koefisien adalah:
+                    \[P(1) = a_4 + a_3 + a_2 + a_1 + a_0 = k\]
+                    Sehingga:
+                    \[a_1 + a_2 + a_3 + a_4 = P(1) - a_0 = k - a_0\]
+                    Nilai suku konstan \(a_0 = P(0)\):
+                    \[\begin{aligned}
+                    a_0 &= P(0) = (0 - 1)(0 - 2)(0 - 3)(0 - 4) + k\\
+                    &= (-1)(-2)(-3)(-4) + k\\
+                    &= 24 + k
+                    \end{aligned}\]
+                    Maka:
+                    \[\begin{aligned}
+                    a_1 + a_2 + a_3 + a_4 &= k - (24 + k) = -24\\
+                    |a_1 + a_2 + a_3 + a_4| &= |-24| = 24
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, nilai dari \(|a_1 + a_2 + a_3 + a_4|\) adalah 24.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 25 (Placeholder) -->
+        <!--
+        <article class="soal-item" id="25">
+            <div class="soal-no"></div>
+            <div class="soal-teks">Teks soal belum tersedia.</div>
+            <div class="soal-sumber">Sumber</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">Pembahasan belum tersedia.<div class="kesimpulan">Jadi, ...</div></div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 26 (Placeholder) -->
+        <!--
+        <article class="soal-item" id="26">
+            <div class="soal-no"></div>
+            <div class="soal-teks">Teks soal belum tersedia.</div>
+            <div class="soal-sumber">Sumber</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">Pembahasan belum tersedia.<div class="kesimpulan">Jadi, ...</div></div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 27 (Placeholder) -->
+        <!--
+        <article class="soal-item" id="27">
+            <div class="soal-no"></div>
+            <div class="soal-teks">Teks soal belum tersedia.</div>
+            <div class="soal-sumber">Sumber</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">Pembahasan belum tersedia.<div class="kesimpulan">Jadi, ...</div></div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 28 (Placeholder) -->
+        <!--
+        <article class="soal-item" id="28">
+            <div class="soal-no"></div>
+            <div class="soal-teks">Teks soal belum tersedia.</div>
+            <div class="soal-sumber">Sumber</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">Pembahasan belum tersedia.<div class="kesimpulan">Jadi, ...</div></div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 29 (Placeholder) -->
+        <!--
+        <article class="soal-item" id="29">
+            <div class="soal-no"></div>
+            <div class="soal-teks">Teks soal belum tersedia.</div>
+            <div class="soal-sumber">Sumber</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">Pembahasan belum tersedia.<div class="kesimpulan">Jadi, ...</div></div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 30 (Placeholder) -->
+        <!--
+        <article class="soal-item" id="30">
+            <div class="soal-no"></div>
+            <div class="soal-teks">Teks soal belum tersedia.</div>
+            <div class="soal-sumber">Sumber</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">Pembahasan belum tersedia.<div class="kesimpulan">Jadi, ...</div></div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

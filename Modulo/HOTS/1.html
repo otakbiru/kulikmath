@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Modulo</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="./scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Modulo</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Berapa sisa <e>5<sup>2021</sup> + 11<sup>2022</sup></e> dibagi oleh 64?
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">SUMBER</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    &phi;(64) = 32<br>
+                    \(\begin{aligned}
+                    5^{2021}+11^{2022}\pmod {64}&=5^{2021\pmod{32}}+11^{2022\pmod{32}}&\pmod {64}\\
+                    &=5^5+11^6&\pmod {64}\\
+                    &=5^3\cdot5^2+\left(11^2\right)^3&\pmod {64}\\
+                    &=125\cdot25+\left(121\right)^3&\pmod {64}\\
+                    &=(-3)\cdot25+\left(-7\right)^3&\pmod {64}\\
+                    &=-75-343&\pmod {64}\\
+                    &=-11-23&\pmod {64}\\
+                    &=-34&\pmod {64}\\
+                    &=\boxed{\boxed{30}}&\pmod {64}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, sisa <e>5<sup>2021</sup> + 11<sup>2022</sup></e> dibagi oleh 64 adalah 30.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan angka satuan dari bilangan <e>(2023! + 2023)<sup>2023</sup> &times; 2023<sup>2023! + 2023</sup>.</e>
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM September 2023</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Untuk <em>n</em> &ge; 5, <e><em>n</em>! mod 10 &equiv; 0 mod 10</e>.<br>
+                    \(\varphi(10)=10\left(1-\dfrac12\right)\left(1-\dfrac15\right)=10\left(\dfrac12\right)\left(\dfrac45\right)=4\) <br>
+                    2023 &equiv; 3 mod 4 <br>
+                    2023! &equiv; 0 mod 4 <br><br>
+                    \(\begin{aligned}
+                    \left(2023!+2023\right)^{2023}\times2023^{2023!+2023}&\equiv3^3\times3^3\pmod{10}\\
+                    &\equiv27\times27\pmod{10}\\
+                    &\equiv7\times7\pmod{10}\\
+                    &\equiv49\pmod{10}\\
+                    &\equiv9\pmod{10}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, angka satuan dari bilangan <e>(2023! + 2023)<sup>2023</sup> &times; 2023<sup>2023! + 2023</sup></e> adalah 9.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jumlah lima digit terakhir dari 20! adalah .....
+            </div>
+            <div class="soal-sumber"><a href="https://forummatematika.freeforums.net/" target="_blank" rel="noopener noreferrer">Forum Matematika</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \(\left\lfloor\dfrac{20}2\right\rfloor+\left\lfloor\dfrac{20}{2^2}\right\rfloor+\left\lfloor\dfrac{20}{2^3}\right\rfloor+\left\lfloor\dfrac{20}{2^4}\right\rfloor=18\) <br><br>
+                    \(\left\lfloor\dfrac{20}3\right\rfloor+\left\lfloor\dfrac{20}{3^2}\right\rfloor=8\) <br><br>
+                    \(\left\lfloor\dfrac{20}5\right\rfloor=4\) <br><br>
+                    \(\left\lfloor\dfrac{20}7\right\rfloor=2\) <br><br>
+                    20! = 2<sup>18</sup> &sdot; 3<sup>8</sup> &sdot; 5<sup>4</sup> &sdot; 7<sup>2</sup> &sdot; 11 &sdot; 13 &sdot; 17 &sdot; 19 = 2<sup>4</sup> &sdot; 5<sup>4</sup> (2<sup>14</sup> &sdot; 3<sup>8</sup> &sdot; 7<sup>2</sup> &sdot; 11 &sdot; 13 &sdot; 17 &sdot; 19) <br>
+                    Kita lihat bahwa 4 digit terakhir adalah 0, sehingga kita cukup mencari 1 digit terakhir dari <e>(2<sup>14</sup> &sdot; 3<sup>8</sup> &sdot; 7<sup>2</sup> &sdot; 11 &sdot; 13 &sdot; 17 &sdot; 19)</e>. <br>
+                    \(\begin{aligned}
+                    2^{14}\cdot3^8\cdot7^2\cdot11\cdot13\cdot17\cdot19&\equiv4\cdot1\cdot9\cdot1\cdot3\cdot7\cdot9&\pmod{10}\\
+                    &\equiv4\cdot1\cdot(-1)\cdot1\cdot1\cdot(-1)&\pmod{10}\\
+                    &\equiv4&\pmod{10}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, jumlah lima digit terakhir dari 20! adalah 4.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                \[5^{\displaystyle\sum_{n=2023}^{3000}n}\bmod1000\equiv....\]
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup Facebook</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    3000 &minus; 2023 + 1 = 978 <br><br>
+                    \(\begin{aligned}
+                    5^{\displaystyle\sum_{n=2023}^{3000}n}\bmod1000&\equiv5^{\frac{978}2(2023+3000)}\bmod1000\\
+                    &\equiv5^{489\cdot5023}\bmod\left(5^3\cdot8\right)\\
+                    &\equiv5^3\left(5^{489\cdot5023-3}\bmod8\right)\bmod1000
+                    \end{aligned}\) <br><br>
+                    &phi;(8) = 4 <br><br>
+                    \(\begin{aligned}
+                    (489\cdot5023-3)\bmod4&\equiv(1\cdot3-3)\bmod4\\
+                    &\equiv0\bmod4
+                    \end{aligned}\) <br><br>
+                    \(\begin{aligned}
+                    5^3\left(5^{489\cdot5023-3}\bmod8\right)\bmod1000&\equiv5^3\left(1\bmod8\right)\bmod1000\\
+                    &\equiv \boxed{\boxed{125\bmod1000}}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, $5^{\displaystyle\sum_{n=2023}^{3000}n}\bmod1000\equiv125\bmod1000$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan sisa pembagian <e>1 + 3<sup>3</sup> + 5<sup>5</sup> + 7<sup>7</sup> + &ctdot; + 1023<sup>1023</sup></e> oleh 1024.
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    &phi;(2<sup><em>n</em></sup>) = 2<sup><em>n</em> &minus; 1</sup> &rarr; &phi;(1024) = 512 <br><br>
+                    \(\begin{aligned}
+                    1+3^3+5^5+\cdots+1023^{1023}&\equiv 1+3^3+5^5+\cdots+511^{511}+513+515^3+517^5+\cdots+1023^{511}\pmod{1024}\\
+                    &\equiv 1+3^3+5^5+\cdots+511^{511}+(512+1)+(512+3)^3+(512+5)^5+\cdots+(512+511)^{511}\pmod{1024}\\
+                    &\equiv 1+3^3+5^5+\cdots+511^{511}+512+1+3\cdot512+3^3+5\cdot512+5^5+\cdots+511\cdot512+511^{511}\pmod{1024}\\
+                    &\equiv 2\left(1+3^3+5^5+\cdots+511^{511}\right)+512(1+3+5+\cdots+511)\pmod{1024}\\
+                    &\equiv 2\left(1+3^3+5^5+\cdots+511^{511}\right)\pmod{1024}\\
+                    &\equiv 2\left(1+3^3+5^5+\cdots+511^{511}\pmod{512}\right)\pmod{1024}\\
+                    &\equiv 2\left(2\left(1+3^3+5^5+\cdots+255^{255}\pmod{256}\right)\pmod{512}\right)\pmod{1024}\\
+                    &\equiv \cdots\\
+                    &\equiv 2\left(2\left(\cdots\left(2\left(1+3^3\pmod{4}\right)\pmod{8}\right)\cdots\right)\pmod{512}\right)\pmod{1024}\\
+                    &\equiv 2\left(2\left(\cdots\left(2\left(0\pmod{4}\right)\pmod{8}\right)\cdots\right)\pmod{512}\right)\pmod{1024}\\
+                    &\equiv 0\pmod{1024}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, sisa pembagian <e>1 + 3<sup>3</sup> + 5<sup>5</sup> + 7<sup>7</sup> + &ctdot; + 1023<sup>1023</sup></e> oleh 1024 adalah 0.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Berapakah sisa pembagian 43<sup>43<sup>43</sup></sup> oleh 100 ?
+            </div>
+            <div class="soal-sumber"><a href="https://forummatematika.freeforums.net/thread/38/" target="_blank" rel="noopener noreferrer">OSP SMA 2002</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $\varphi(100)=100\left(1-\dfrac12\right)\left(1-\dfrac15\right)=40$ <br>
+                    $\varphi(40)=40\left(1-\dfrac12\right)\left(1-\dfrac15\right)=16$ <br>
+                    43 mod 16 &equiv; 11 mod 16 <br>
+                    \(\begin{aligned}
+                    3^{11}\bmod40&\equiv \left(\left(3^4\right)^2\cdot3^3\right)\bmod40\\
+                    &\equiv \left(\left(81\right)^2\cdot27\right)\bmod40\\
+                    &\equiv27\bmod40
+                    \end{aligned}\) <br><br>
+                    \(\begin{aligned}
+                    43^{27}\bmod100&\equiv \left(\left(43^2\right)^{13}\cdot43\right)\bmod100\\
+                    &\equiv \left(\left(2\cdot4\cdot3\cdot10+3^2\right)^{13}\cdot43\right)\bmod100\\
+                    &\equiv \left(\left(49\right)^{13}\cdot43\right)\bmod100\\
+                    &\equiv \left(\left(-51\right)^{13}\cdot43\right)\bmod100\\
+                    &\equiv \left(\left((-51)^2\right)^6\cdot49\cdot43\right)\bmod100\\
+                    &\equiv \left(\left(2501\right)^6\cdot2107\right)\bmod100\\
+                    &\equiv 7\bmod100
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, sisa pembagian 43<sup>43<sup>43</sup></sup> oleh 100 adalah 7.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan tiga digit terakhir dari 7<sup>8<sup>9<sup>10<sup>0</sup></sup></sup></sup>
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    7<sup>8<sup>9<sup>10<sup>0</sup></sup></sup></sup> = 7<sup>8<sup>9</sup></sup> <br><br>
+                    &phi;(1000) = 400 <br><br>
+                    \(\begin{aligned}
+                    8^9\bmod(400)&\equiv\left(2^{27}\right)\bmod\left(2^4\cdot25\right)\\
+                    &\equiv2^4\left(2^{23}\bmod(25)\right)\bmod\left(400\right)
+                    \end{aligned}\) <br><br>
+                    &phi;(25) = 20 <br><br>
+                    \(\begin{aligned}
+                    2^4\left(2^{23}\bmod(25)\right)\bmod\left(400\right)&\equiv2^4\left(2^3\bmod(25)\right)\bmod\left(400\right)\\
+                    &\equiv128\bmod\left(400\right)
+                    \end{aligned}\) <br><br>
+                    \(\begin{aligned}
+                    7^{128}\bmod(1000)&\equiv\left(7^4\right)^{32}\bmod(1000)\\
+                    &\equiv\left(2401\right)^{32}\bmod(1000)\\
+                    &\equiv\left(401\right)^{32}\bmod(1000)\\
+                    &\equiv\left(4\cdot10^2+1\right)^{32}\bmod(1000)\\
+                    &\equiv\left(32\cdot4\cdot10^2+1\right)\bmod(1000)\\
+                    &\equiv\left(12800+1\right)\bmod(1000)\\
+                    &\equiv801\bmod(1000)
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, tiga digit terakhir dari 7<sup>8<sup>9<sup>10<sup>0</sup></sup></sup></sup> adalah 801.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Olimpiade Kreativitas Siswa (OKSI) tingkat SMP yang diselenggarakan oleh OSIS SMA Negeri 2 lintongnihuta tahun 2024 dilaksanakan hari Sabtu tanggal 24 Februari tahun 2024. Jika 2024 hari lagi akan dilaksanakan kegiatan OKSI berikutnya, maka OKSI berikutnya akan dilaksanakan pada hari...
+                <ol class="pilgan">
+                    <li>Sabtu</li>
+                    <li>Minggu</li>
+                    <li>Senin</li>
+                    <li>Selasa</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">OKSI SMAN 2 Lintongnihuta 2024</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Untuk menentukan hari apakah <em>n</em> hari lagi, kita dapat menentukan hari dengan membagi <em>n</em> dengan 7, karena ada 7 hari dalam seminggu, sehingga akan ada pengulangan hari setiap 7 hari. <br>
+                    2024 = 7&times;289 + 1 <br>
+                    2024 hari lagi sama dengan 1 hari setelah Sabtu yaitu Minggu.
+                    <div class="kesimpulan">Jadi, OKSI berikutnya akan dilaksanakan pada hari Minggu.<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sisa pembagian 2024<sup>2024</sup> oleh <e>(1 + 4 + 4 + 5)</e> adalah ....
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Bimbel ADITYA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <h1>CARA 1</h1>
+                    \(\begin{aligned}
+                    2024^{2024}\bmod(1+4+4+5)&\equiv2024^{2024}\bmod14\\
+                    &=8^{2024}\bmod14\\
+                    &=\left(2^{2024}\cdot4^{2024}\right)\bmod(2\cdot7)\\
+                    &=2\left(\left(2^{2023}\cdot4^{2024}\right)\bmod7\right)\bmod14\\
+                    &=2\left(\left(2\cdot4^2\right)\bmod7\right)\bmod14\\
+                    &=2\left(32\bmod7\right)\bmod14\\
+                    &=2\left(4\bmod7\right)\bmod14\\
+                    &=\boxed{\boxed{8\bmod14}}
+                    \end{aligned}\)
+                    <h1>CARA 2</h1>
+                    Perhatikan bahwa <e>8<sup>2</sup> &equiv; 8 mod 14,</e> sehingga <e>8<sup><em>n</em></sup> &equiv; 8 mod 14</e><br>
+                    \(\begin{aligned}
+                    2024^{2024}\bmod14&\equiv8^{2024}\bmod14\\
+                    &=\boxed{\boxed{8\bmod14}}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, sisa pembagian 2024<sup>2024</sup> oleh <e>(1 + 4 + 4 + 5)</e> adalah 8.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Bilangan asli terkecil yang digit-digitnya adalah 5 dan 7 serta merupakan kelipatan 45 adalah ....
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Evaluasi GMOM Februari 2024 tingkat SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    45 = 5&sdot;9. <br>
+                    Ciri bilangan kelipatan 5 adalah satuannya 0 atau 5. Karena digitnya hanya 5 dan 7, maka satuannya adalah 5. <br>
+                    Ciri bilangan kelipatan 9 adalah jumlah semua digitnya adalah 9. <br>
+                    Misal banyaknya digit 7 ada <em>a</em> buah, dan banyaknya digit 5 selain satuan ada <em>b</em> buah. <br>
+                    7<em>a</em> + 5<em>b</em> &equiv; 4 mod 9 <br>
+                    Jika <em>a</em> = 1, <br>
+                    \(\begin{aligned}
+                    7+5b&\equiv4\bmod9\\
+                    5b&\equiv-3\bmod9\\
+                    5b&\equiv15\bmod9\\
+                    b&\equiv3\bmod9
+                    \end{aligned}\) <br>
+                    Bilangan terkecil dengan 4 digit 5, dan 1 digit 7 dengan satuannya 5 adalah 55575. <br><br>
+                    Jika <em>a</em> = 2, agar memperoleh bilangan yang lebih kecil dari 55575, maka <e><em>b</em> &le; 2</e><br>
+                    \(\begin{aligned}
+                    14+5b&\equiv4\bmod9\\
+                    5b&\equiv-10\bmod9\\
+                    b&\equiv-2\bmod9\\
+                    b&\equiv7\bmod9
+                    \end{aligned}\) <br>
+                    Bilangan yang bisa dibentuk pasti lebih dari 55575. <br><br>
+                    Jika <em>a</em> = 3, agar memperoleh bilangan yang lebih kecil dari 55575, maka <e><em>b</em> = 0</e><br>
+                    21 &equiv; 3 mod 9 &ne; 4 mod 9.
+                    <div class="kesimpulan">Jadi, bilangan asli terkecil yang digit-digitnya adalah 5 dan 7 serta merupakan kelipatan 45 adalah 55575.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Modulo</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="./scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Modulo</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 11 -->
+        <article class="soal-item" id="11">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sisa pembagian 17<sup>202</sup> oleh 100 adalah ....
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Evaluasi GMOM Februari 2024 tingkat SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    &phi;(100) = 40 <br><br>
+                    202 mod 40 &equiv; 2 mod 40 <br><br>
+                    \(\begin{aligned}
+                    17^{202}\bmod100&\equiv17^2\bmod100\\
+                    &\equiv289\bmod100\\
+                    &\equiv89\bmod100
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, sisa pembagian 17<sup>202</sup> oleh 100 adalah 89.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 12 -->
+        <article class="soal-item" id="12">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan bilangan asli terkecil yang merupakan kelipatan 84 yang angka-angkanya hanya 6 atau 7.
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Evaluasi GMOM September 2024</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    84 = 3 &times; 4 &times; 7 <br><br>
+                    Agar habis dibagi 4, maka 2 digit terakhir adalah 76. <br>
+                    Agar habis dibagi 3, digit 7-nya dibutuhkan 2 buah lagi. Tapi bilangan 7776 tidak habis dibagi 7. Agar habis dibagi 7, maka kita cari <e>6&sdot;10<sup><em>n</em></sup> &equiv; 1 mod 7</e>, untuk <e>1 &le; <em>n</em> &le; 4</e>, atau <e>3<sup><em>n</em></sup> &equiv; &minus; 1 mod 7.</e><br>
+                    <e>3 &equiv; &minus;4 mod 7</e> <br>
+                    <e>3<sup>2</sup> = 9 &equiv; 2 mod 7 &equiv; &minus;5 mod 7</e> <br>
+                    <e>3<sup>3</sup> = 27 &equiv; 6 mod 7 &equiv; &minus;1 mod 7</e> <br>
+                    Kita tempatkan digit 6 di tempat ribuan. Sehingga bilangan yang dicari adalah 76776.
+                    <div class="kesimpulan">Jadi, bilangan asli terkecil yang merupakan kelipatan 84 yang angka-angkanya hanya 6 atau 7 adalah 76776.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 13 -->
+        <article class="soal-item" id="13">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Berapa sisa pembagian 11<sup>2024</sup> oleh 111
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Evaluasi GMOM September 2024</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \(\begin{aligned}
+                    11^{2024}\bmod111&\equiv\left(11^2\right)^{1012}\bmod111\\
+                    &\equiv121^{1012}\bmod111\\
+                    &\equiv10^{1012}\bmod111\\
+                    &\equiv10^{3n}\cdot10\bmod111\\
+                    &\equiv1000^{n}\cdot10\bmod111\\
+                    &\equiv1^{n}\cdot10\bmod111\\
+                    &\equiv10\bmod111
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, sisa pembagian 11<sup>2024</sup> oleh 111 adalah 10.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 14 -->
+        <article class="soal-item" id="14">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Suatu barisan bilangan <em>a<sub>n</sub></em> didefinisikan sebagai berikut.
+                \[a_n=\begin{cases}4,\text{ jika }n\text{ habis dibagi 2 atau 17}\\2,\text{ untuk }n\text{ lainnya}\end{cases}\]
+                Nilai dari $\displaystyle\sum_{n=1}^{2024}a_n$ adalah ....
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Evaluasi GMOM September 2024</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div class="row" style="align-items: flex-start;">
+                        <div class="col">
+                            Kita cari terlebih dahulu banyak bilangan dari 1 hingga 2024 yang habis dibagi 2 atau 17.
+                            <ul>
+                                <li><h3>Habis dibagi 2</h3>
+                                    $\left\lfloor\dfrac{2024}2\right\rfloor=1012$
+                                </li>
+                                <li><h3>Habis dibagi 17</h3>
+                                    $\left\lfloor\dfrac{2024}{17}\right\rfloor=119$
+                                </li>
+                                <li><h3>Habis dibagi 2 dan 17</h3>
+                                    alias habis dibagi 34. <br>
+                                    $\left\lfloor\dfrac{2024}{34}\right\rfloor=59$
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            1012 + 119 &minus; 59 = 1072 <br><br>
+                            Banyak bilangan yang tidak habis dibagi 2 atau 17, <br>
+                            2024 &minus; 1072 = 952 <br><br>
+                            \(\begin{aligned}
+                            \displaystyle\sum_{n=1}^{2024}a_n&=4\cdot1072+2\cdot952\\
+                            &=4288+1904\\
+                            &=\boxed{\boxed{6192}}
+                            \end{aligned}\)
+                        </div>
+                    </div>
+                    <div class="kesimpulan">Jadi, $\displaystyle\sum_{n=1}^{2024}a_n=6192$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 15 -->
+        <article class="soal-item" id="15">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukanlah sisa dari
+                <div style="text-align: center;">1 + 7 + 7<sup>2</sup> + &ctdot; + 7<sup>2404</sup></div>
+                jika dibagi 1000.
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup Whatsapp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    &phi;(1000) = 400 <br>
+                    $\dfrac{2400}{400}=6$ <br><br>
+                    \(\begin{aligned}
+                    1+7+7^2+\cdots+7^{2404}&\equiv6\left(1+7+7^2+\cdots+7^{399}\right)+1+7+7^2+7^3+7^4\bmod1000\\
+                    &\equiv6\left(\dfrac{7^{400}-1}{7-1}\right)+1+7+49+343+2401\bmod1000\\
+                    &\equiv7^{400}-1+2801\bmod1000\\
+                    &\equiv1-1+801\bmod1000\\
+                    &\equiv \boxed{\boxed{801\bmod1000}}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, sisa dari 1 + 7 + 7<sup>2</sup> + &ctdot; + 7<sup>2404</sup> jika dibagi 1000 adalah 801.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 16 -->
+        <article class="soal-item" id="16">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Berapakah digit kedua dari belakang dari 111<sup>112<sup>113</sup></sup>?
+            </div>
+            <div class="soal-sumber"><a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    &phi;(100) = 40 <br>
+                    112 mod 40 &equiv; 32 mod 40 <br>
+                    &phi;(40) = 16 <br>
+                    113 mod 16 &equiv; 1 mod 16 <br>
+                    \(\begin{aligned}
+                    111^{112^{113}}\bmod100&\equiv11^{32^1}\bmod100\\
+                    &\equiv11^{32}\bmod100\\
+                    &\equiv(10+1)^{32}\bmod100\\
+                    &\equiv\left(32\cdot10+1^{32}\right)\bmod100\\
+                    &\equiv(320+1)\bmod100\\
+                    &\equiv21\bmod100
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, digit kedua dari belakang dari 111<sup>112<sup>113</sup></sup> adalah 2.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 17 -->
+        <article class="soal-item" id="17">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Berapakah sisa ketika 7<sup>2025</sup> dibagi 11?
+                <ol class="pilgan">
+                    <li>1</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>7</li>
+                    <li>10</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Penyisihan OGM 10 Tingkat SMA</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    7 dan 11 saling prima. Karena <e>2025 &equiv; 5 mod 10</e> maka <br>
+                    \(\begin{aligned}
+                    7^{2025}\bmod11&\equiv7^5\bmod11\\
+                    &\equiv\left(7^2\right)\left(7^3\right)\bmod11\\
+                    &\equiv(49)(343)\bmod11\\
+                    &\equiv(5)(2)\bmod11\\
+                    &\equiv10\bmod11
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, sisa ketika 7<sup>2025</sup> dibagi 11 adalah 10.<br><b>JAWAB: E</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 18 
+        <article class="soal-item" id="18">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 19 
+        <article class="soal-item" id="19">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 20 
+        <article class="soal-item" id="20">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- Copy-paste blok <article class="soal-item">...</article> sampai 10 blok -->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Peluang</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="./scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Peluang</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Di dalam kotak I terdapat 12 bola putih dan 3 bola merah. Di dalam kotak II terdapat 4 bola putih dan 4 bola merah. Jika dari kotak I dan kotak II masing-masing diambil 2 bola satu per satu dengan pengembalian, maka peluang yang terambil adalah 1 bola merah adalah....
+                <ol class="pilgan">
+                    <li>0,04</li>
+                    <li>0,10</li>
+                    <li>0,16</li>
+                    <li>0,32</li>
+                    <li>0,40</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">SBMPTN 2017</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <table style="width: 100%; border-collapse: collapse; text-align: center;">
+                        <tbody>
+                            <tr>
+                                <td colspan="2" style="background-color: #555555; border: 1px solid #ccc; border-bottom: 3px solid black; padding: 6px;"></td>
+                                <th style="background-color: #1abc9c; border: 1px solid #ccc; border-bottom: 3px solid black; color: white; padding: 6px;">Kotak I</th>
+                                <th style="background-color: #1abc9c; border: 1px solid #ccc; border-bottom: 3px solid black; color: white; padding: 6px;">Kotak II</th>
+                                <th style="background-color: #1abc9c; border: 1px solid #ccc; border-bottom: 3px solid black; color: white; padding: 6px;">Peluang</th>
+                            </tr>
+                            <tr>
+                                <th rowspan="2" style="background-color: #2ecc71; border: 1px solid #ccc; border-bottom: 2px solid black; color: white; padding: 6px;">Kasus I</th>
+                                <th style="background-color: #3498db; border: 1px solid #ccc; color: white; padding: 6px;">Terambil</th>
+                                <td style="border: 1px solid #ccc; padding: 6px;">1 Putih 1 Merah</td>
+                                <td style="border: 1px solid #ccc; padding: 6px;">2 Putih</td>
+                                <td rowspan="2" style="border: 1px solid #ccc; border-bottom: 2px solid black; padding: 6px;">\(\dfrac8{25}\cdot\dfrac14=\dfrac2{25}\)</td>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #9b59b6; border: 1px solid #ccc; border-bottom: 2px solid black; color: white; padding: 6px;">Peluang</th>
+                                <td style="border: 1px solid #ccc; border-bottom: 2px solid black; padding: 6px;">\(2\cdot\dfrac{12}{15}\cdot\dfrac3{15}=\dfrac8{25}\)</td>
+                                <td style="border: 1px solid #ccc; border-bottom: 2px solid black; padding: 6px;">\(\dfrac48\cdot\dfrac48=\dfrac14\)</td>
+                            </tr>
+                            <tr>
+                                <th rowspan="2" style="background-color: #2ecc71; border: 1px solid #ccc; border-bottom: 3px solid black; color: white; padding: 6px;">Kasus II</th>
+                                <th style="background-color: #3498db; border: 1px solid #ccc; color: white; padding: 6px;">Terambil</th>
+                                <td style="border: 1px solid #ccc; padding: 6px;">2 Putih</td>
+                                <td style="border: 1px solid #ccc; padding: 6px;">1 Putih 1 Merah</td>
+                                <td rowspan="2" style="border: 1px solid #ccc; border-bottom: 3px solid black; padding: 6px;">\(\dfrac{16}{25}\cdot\dfrac12=\dfrac8{25}\)</td>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #9b59b6; border: 1px solid #ccc; border-bottom: 3px solid black; color: white; padding: 6px;">Peluang</th>
+                                <td style="border: 1px solid #ccc; border-bottom: 3px solid black; padding: 6px;">\(\dfrac{12}{15}\cdot\dfrac{12}{15}=\dfrac{16}{25}\)</td>
+                                <td style="border: 1px solid #ccc; border-bottom: 3px solid black; padding: 6px;">\(2\cdot\dfrac48\cdot\dfrac48=\dfrac12\)</td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" style="background-color: #e67e22; border: 1px solid #ccc; color: white; padding: 6px;">TOTAL PELUANG</th>
+                                <th style="background-color: #f1c40f; border: 1px solid #ccc; color: #000; padding: 6px;">\(\begin{aligned}\dfrac2{25}+\dfrac8{25}&=\dfrac{10}{25}\\&=0{,}40\end{aligned}\)</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="kesimpulan">Jadi, peluangnya adalah 0,40.<br><b>JAWAB: E</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Dua kelas masing-masing terdiri dari 30 siswa. Satu siswa dipilih dari tiap-tiap kelas. Peluang terpilih keduanya perempuan adalah \(\dfrac{23}{180}\). Peluang terpilih keduanya laki-laki adalah....
+                <ol class="pilgan">
+                    <li>\(\dfrac3{36}\)</li>
+                    <li>\(\dfrac5{36}\)</li>
+                    <li>\(\dfrac7{36}\)</li>
+                    <li>\(\dfrac{11}{36}\)</li>
+                    <li>\(\dfrac{13}{36}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://chat.whatsapp.com/LqD5uOjjYtd7UjHnmTMIUa" target="_blank" rel="noopener noreferrer">Grup Whatsapp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misal <e><em>n<sub>p</sub></em> = banyak perempuan,</e> dan <e><em>n<sub>l</sub></em> = banyak laki-laki</e><br />
+                    Peluang terpilih keduanya perempuan:<br />
+                    \(\begin{aligned}
+                    \dfrac{n_{p1}}{30}\times\dfrac{n_{p2}}{30}&=\dfrac{23}{180}\\[4pt]
+                    \dfrac{n_{p1}\times n_{p2}}{900}&=\dfrac{23}{180}\\[4pt]
+                    n_{p1}\times n_{p2}&=900\times\dfrac{23}{180}\\[4pt]
+                    n_{p1}\times n_{p2}&=5\times23
+                    \end{aligned}\)<br />
+                    jadi, <e><em>n</em><sub><em>p</em>1</sub> = 5</e> dan <e><em>n</em><sub><em>p</em>2</sub> = 23</e> (boleh juga sebaliknya)<br />
+                    sehingga, <e><em>n</em><sub><em>l</em>1</sub> = 25</e> dan <e><em>n</em><sub><em>l</em>2</sub> = 7</e>.<br />
+                    <br />
+                    Peluang terpilih keduanya laki-laki:<br />
+                    \(\begin{aligned}
+                    P&=\dfrac{n_{l1}}{30}\times\dfrac{n_{l2}}{30}\\[4pt]
+                    &=\dfrac{25\times7}{900}\\[4pt]
+                    &=\boxed{\boxed{\dfrac7{36}}}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, peluang terpilih keduanya laki-laki adalah \(\dfrac7{36}\).<br><b>JAWAB: C</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <em>L</em>(<em>a</em>) adalah luas daerah yang dibatasi oleh sumbu <em>X</em> dan parabola <e><em>y</em> = <em>ax</em> + <em>x</em><sup>2</sup></e>, <e>0 &lt; <em>a</em> &lt; 1</e>, maka peluang nilai <em>a</em> sehingga \(L(a)\geq\dfrac1{12}\) adalah ....
+                <ol class="pilgan">
+                    <li>\(\dfrac{11}{12}\)</li>
+                    <li>\(1-\dfrac1{\sqrt2}\)</li>
+                    <li>\(\dfrac56\)</li>
+                    <li>\(1-\dfrac1{\sqrt[3]{2}}\)</li>
+                    <li>\(\dfrac23\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://chat.whatsapp.com/LqD5uOjjYtd7UjHnmTMIUa" target="_blank" rel="noopener noreferrer">Grup Whatsapp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px" y="0px" viewBox="0 0 200 160" xml:space="preserve" width="200px">
+                        <path d="M70.63,110 Q110.315,141.498 150,110" fill="yellow"/>
+                        <g>
+                            <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="6.04" y1="110" x2="193.96" y2="110"/>
+                            <g>
+                                <path d="M0,110c2.84,1.05,6.36,2.85,8.55,4.76L6.83,110l1.72-4.75C6.36,107.15,2.84,108.95,0,110z"/>
+                            </g>
+                            <g>
+                                <path d="M200,110c-2.84,1.05-6.36,2.85-8.55,4.76l1.72-4.76l-1.72-4.75C193.64,107.15,197.16,108.95,200,110z"/>
+                            </g>
+                        </g>
+                        <g>
+                            <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="150" y1="6.04" x2="150" y2="153.96"/>
+                            <g>
+                                <path d="M150,0c-1.05,2.84-2.85,6.36-4.76,8.55L150,6.83l4.75,1.72C152.85,6.36,151.05,2.84,150,0z"/>
+                            </g>
+                            <g>
+                                <path d="M150,160c-1.05-2.84-2.85-6.36-4.76-8.55l4.76,1.72l4.75-1.72C152.85,153.64,151.05,157.16,150,160z"/>
+                            </g>
+                        </g>
+                        <path d="M0,4.055 Q100.135,224.685 200,45.315" stroke="red" fill="transparent"/>
+                        <text transform="matrix(1 0 0 1 144 115)">O</text>
+                        <text transform="matrix(1 0 0 1 60 123)">&minus;a</text>
+                        <text transform="matrix(1 0 0 1 30 123)">&minus;1</text>
+                        <text transform="matrix(1 0 0 1 188 124)" font-family="'TimesNewRomanPS-ItalicMT'" style="font-style: italic">X</text>
+                        <text transform="matrix(1 0 0 1 155.293 10.5586)" font-family="'TimesNewRomanPS-ItalicMT'" style="font-style: italic">Y</text>
+                    </svg><br>
+                    \(\begin{aligned}
+                    L(a)&=-\displaystyle\int_{-a}^0ax+x^2\ dx\\
+                    &=\displaystyle\int_0^{-a}ax+x^2\ dx\\
+                    &=\left[\dfrac{a}2x^2+\dfrac13x^3\right]_0^{-a}\\[4pt]
+                    &=\left[\dfrac{a}2(-a)^2+\dfrac13(-a)^3\right]-\left[\dfrac{a}2(0)^2+\dfrac13(0)^3\right]\\[4pt]
+                    &=\left[\dfrac{a^3}2-\dfrac{a^3}3\right]-\left[0\right]\\[4pt]
+                    &=\dfrac{a^3}6
+                    \end{aligned}\)<br />
+                    <br />
+                    Kita cari dulu nilai <em>a</em> sedemikian sehingga \(L(a)=\dfrac1{12}\).<br />
+                    \(\begin{aligned}
+                    \dfrac{a^3}6&=\dfrac1{12}\\[4pt]
+                    a^3&=\dfrac6{12}\\[4pt]
+                    &=\dfrac12\\[4pt]
+                    a&=\sqrt[3]{\dfrac12}\\[4pt]
+                    &=\dfrac1{\sqrt[3]2}
+                    \end{aligned}\)<br />
+                    <br />
+                    Peluangnya adalah:<br />
+                    \(\begin{aligned}
+                    P&=\dfrac{1-\dfrac1{\sqrt[3]2}}{1-0}\\
+                    &=\boxed{\boxed{1-\dfrac1{\sqrt[3]2}}}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, peluang nilai <em>a</em> sehingga \(L(a)\geq\dfrac1{12}\) adalah \(1-\dfrac1{\sqrt[3]2}\).<br><b>JAWAB: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Dua kelas masing-masing terdiri atas 25 siswa. Satu siswa dipilih dari tiap-tiap kelas. Peluang terpilih keduanya laki-laki adalah \(\dfrac{39}{125}\). Peluang terpilih keduanya perempuan adalah
+                <ol class="pilgan">
+                    <li>\(\dfrac{22}{125}\)</li>
+                    <li>\(\dfrac{24}{125}\)</li>
+                    <li>\(\dfrac{28}{125}\)</li>
+                    <li>\(\dfrac{32}{125}\)</li>
+                    <li>\(\dfrac{34}{125}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="/" target="_blank">SKMP September 2020</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misal banyak laki-laki kelas A adalah <em>a</em>, banyak perempuan kelas A adalah <em>b</em>, banyak laki-laki kelas B adalah <em>c</em>, dan banyak perempuan kelas B adalah <em>d</em>.<br /><br />
+                    <e><em>b</em> = 25 &minus; <em>a</em></e><br />
+                    <e><em>d</em> = 25 &minus; <em>c</em></e><br /><br />
+                    Peluang terpilih keduanya laki-laki<br />
+                    \(\begin{aligned}
+                    \dfrac{a}{25}\cdot\dfrac{c}{25}&=\dfrac{39}{125}\\
+                    \dfrac{ac}{625}&=\dfrac{39}{125}\\
+                    ac&=195
+                    \end{aligned}\)<br /><br />
+                    Kemungkinan untuk nilai <em>a</em> dan <em>c</em> adalah <e>(1, 195)</e>, <e>(3, 65)</e>, <e>(5, 39)</e>, dan <e>(13, 15)</e>. Kita pilih nilai yang kurang dari atau sama dengan 25. Misal <e><em>a</em> = 13</e> dan <e><em>c</em> = 15</e>.<br />
+                    <e><em>b</em> = 12</e>, <e><em>d</em> = 10</e>.<br /><br />
+                    Peluang terpilih keduanya perempuan<br />
+                    \(\begin{aligned}
+                    P&=\dfrac{12}{25}\cdot\dfrac{10}{25}\\
+                    &=\dfrac{120}{625}\\
+                    &=\boxed{\boxed{\dfrac{24}{125}}}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, peluang terpilih keduanya perempuan adalah \(\dfrac{24}{125}\).<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Peluang A tidak jadi juara adalah \(\dfrac67\). Peluang B tidak jadi juara adalah 2 kali peluang A juara, maka peluang B jadi juara adalah
+                <ol class="pilgan">
+                    <li>\(\dfrac17\)</li>
+                    <li>\(\dfrac27\)</li>
+                    <li>\(\dfrac37\)</li>
+                    <li>\(\dfrac47\)</li>
+                    <li>\(\dfrac57\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="/2020/09/skmp-sma-juli-2020.html" target="_blank">SKMP Juli 2020</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misal peluang <em>A</em> jadi juara adalah <em>P</em>(<em>A</em>) dan peluang <em>B</em> jadi juara adalah <em>P</em>(<em>B</em>)<br><br>
+                    \(\begin{aligned}
+                    P(B)&=1-P(B')\\
+                    &=1-2P(A)\\
+                    &=1-2\left(1-P(A')\right)\\
+                    &=1-2+2P(A')\\
+                    &=-1+2\left(\dfrac67\right)\\
+                    &=-1+\dfrac{12}7\\
+                    &=\boxed{\boxed{\dfrac57}}
+                    \end{aligned}\)
+                    <div class="kesimpulan">Jadi, peluang <em>B</em> jadi juara adalah \(\dfrac57\).<br><b>JAWAB: E</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Dengan mata tertutup, akan diambil 6 bola sekaligus secara acak dari suatu kotak yang terdiri dari 6 bola hijau dan 4 kuning. Diketahui <em>P</em>(<em>K</em>) adalah peluang bola yang terambil terdiri dari 1 bola berwarna kuning. <br><br>
+                Berdasarkan informasi tersebut, manakah hubungan antara kuantitas P dan Q berikut yang benar?
+                <table style="border-collapse: collapse; text-align: center; margin: 0.8rem 0;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ccc; padding: 6px 20px;"><em>P</em></th>
+                            <th style="border: 1px solid #ccc; padding: 6px 20px;"><em>Q</em></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 6px 20px;">$\dfrac12$</td>
+                            <td style="border: 1px solid #ccc; padding: 6px 20px;"><em>P</em>(<em>K</em>)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ol class="pilgan">
+                    <li><em>P</em> &gt; <em>Q</em></li>
+                    <li><em>Q</em> &gt; <em>P</em></li>
+                    <li><em>P</em> = <em>Q</em></li>
+                    <li>Tidak dapat ditentukan hubungan</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="http://" target="_blank" rel="noopener noreferrer">Cerebrum</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Sesuai dengan definisi peluang, <em>P</em>(<em>K</em>) ditentukan sebagai berikut: $$P(K)=\dfrac{n(K)}{n(S)}$$ Dimana <em>n</em>(<em>K</em>) adalah banyaknya anggota kejadian <em>K</em> dan <em>n</em>(<em>S</em>) adalah banyaknya anggota ruang sampel. <br>
+                    Jumlah bola yang akan diambil adalah 6, dari total 10 bola pada kotak (6 hijau dan 4 kuning). <br>
+                    Menentukan banyaknya anggota ruang sampel, yaitu cara memilih 6 bola dari 10 bola yang ada dengan aturan kombinasi: <br>
+                    \(\begin{aligned}
+                    n(S)&=C_6^{10}\\
+                    &=\dfrac{10!}{4!\cdot6!}\\[4pt]
+                    &=\dfrac{10\cdot9\cdot8\cdot7\cdot\cancel{6!}}{4\cdot3\cdot2\cdot1\cdot\cancel{6!}}\\[4pt]
+                    &=210\text{ cara}
+                    \end{aligned}\) <br><br>
+                    Jika 6 bola yang diambil terdiri dari 1 bola kuning, maka bola hijau yang diambil adalah 5. <br><br>
+                    Menentukan banyaknya cara memilih 1 bola kuning dari 4 bola kuning yang ada dengan kombinasi: <br>
+                    \(\begin{aligned}
+                    C_1^4&=\dfrac{4!}{3!\cdot1!}\\[4pt]
+                    &=\dfrac{4\cdot\cancel{3!}}{\cancel{3!}\cdot1}\\[4pt] 
+                    &=4
+                    \end{aligned}\)<br><br>
+                    Menentukan banyaknya cara memilih 5 bola hijau dari 6 bola hijau yang ada dengan kombinasi: <br>
+                    \(\begin{aligned}
+                    C_5^6&=\dfrac{6!}{1!\cdot5!}\\[4pt]
+                    &=\dfrac{6\cdot\cancel{5!}}{1\cdot\cancel{5!}}\\[4pt] 
+                    &=6
+                    \end{aligned}\)<br><br>
+                    <em>n</em>(<em>K</em>) = 4 &times; 6 = 24<br><br>
+                    \(\begin{aligned}
+                    P(K)&=\dfrac{n(K)}{n(S)}\\[4pt] 
+                    &=\dfrac{24}{210}\\
+                    &=\color{blue}\boxed{\boxed{\color{black}\dfrac4{35}}}
+                    \end{aligned}\) <br><br>
+                    Karena $\dfrac12\gt\dfrac4{35}$ maka <em>P</em> &gt; <em>Q</em>.
+                    <div class="kesimpulan">Jadi, <em>P</em> &gt; <em>Q</em>.<br><b>JAWAB: A</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- Copy-paste blok <article class="soal-item">...</article> sampai 10 blok -->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

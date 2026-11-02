@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latihan Soal - Permutasi dan Kombinasi</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false},{left: '\\(', right: '\\)', display: false},{left: '\\[', right: '\\]', display: true}]});"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/idhamdaz/GeoSVG@main/GeoSVG.js"
+    onerror="this.onerror=null;this.src='../../scr/GeoSVG.js'"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+  <main class="container">
+
+    <header class="page-header">
+      <h1>Kumpulan Soal <span class="topic-highlight">Permutasi dan Kombinasi</span></h1>
+      <p>Gunakan soal-soal berikut untuk menguji pemahamanmu. Jika butuh diskusi, silakan bergabung ke grup <a
+          href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener">Matematika Idhamdaz</a>.</p>
+
+      <div id="level-nav" class="level-nav"></div>
+    </header>
+
+    <div class="pagination-wrapper"></div>
+
+    <div id="soal-container">
+
+      <!-- SOAL 1 -->
+      <article class="soal-item" id="1">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Dua belas titik terletak pada keliling suatu setengah lingkaran, dengan 5 diantaranya terletak pada diameter. Dari dua belas titik tersebut dibentuk garis-garis yang melalui sepasang titik, dengan tidak ada tiga garis yang berpotongan pada satu titik. Banyaknya titik potong yang dapat diperoleh dari perpotongan dua garis adalah ...
+          <div id="tempatsvg1" style="text-align: center;"></div>
+          <script>
+            var a1 = [1, 20];
+            var listling = "";
+            for (let i = 0; i < 5; i++) {
+              listling += svglingkaran(titikpusat = [0, 2 * i + 1], jarijari = 0.2, options = { tebalgaris: 2 / a1[1], isi: "black" });
+            }
+            document.getElementById("tempatsvg1").innerHTML = String.raw`${svgawal(5, 10, a1[1], a1[0])}
+            <path d="M 0 0 A 5 5 0 0,1 0,10 z" stroke="black" stroke-width="${2 / a1[1]}" fill="none"/>
+            ${svglingkaran(titikpusat = [1, 5 - Math.sqrt(25 - 1)], jarijari = 0.2, options = { tebalgaris: 2 / a1[1], isi: "black" })}
+            ${svglingkaran(titikpusat = [2.5, 5 - Math.sqrt(25 - 2.5 * 2.5)], jarijari = 0.2, options = { tebalgaris: 2 / a1[1], isi: "black" })}
+            ${svglingkaran(titikpusat = [4, 5 - Math.sqrt(25 - 16)], jarijari = 0.2, options = { tebalgaris: 2 / a1[1], isi: "black" })}
+            ${svglingkaran(titikpusat = [4.5, 5 + Math.sqrt(25 - 4.5 * 4.5)], jarijari = 0.2, options = { tebalgaris: 2 / a1[1], isi: "black" })}
+            ${svglingkaran(titikpusat = [3, 5 + Math.sqrt(25 - 9)], jarijari = 0.2, options = { tebalgaris: 2 / a1[1], isi: "black" })}
+            ${svglingkaran(titikpusat = [2, 5 + Math.sqrt(25 - 4)], jarijari = 0.2, options = { tebalgaris: 2 / a1[1], isi: "black" })}
+            ${svglingkaran(titikpusat = [1, 5 + Math.sqrt(25 - 1)], jarijari = 0.2, options = { tebalgaris: 2 / a1[1], isi: "black" })}
+            ${listling}
+            </svg>`;
+          </script>
+        </div>
+        <div class="soal-sumber">Sumber: <a href="https://t.me/MatematikaZoneIdGrup/6772" target="_blank">Grup Telegram</a></div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            \(\begin{aligned}
+            C_2^{12}-C_2^5&=\dfrac{12!}{(12-2)!2!}-\dfrac{5!}{(5-2)!2!}\\
+            &=\dfrac{12\cdot11\cdot10!}{10!(2\cdot1)}-\dfrac{5\cdot4\cdot3!}{3!(2\cdot1)}\\
+            &=66-10\\
+            &=\boxed{\boxed{56}}
+            \end{aligned}\)
+            <div class="kesimpulan">Jadi, banyaknya titik potong yang dapat diperoleh dari perpotongan dua garis adalah 56.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+      <!-- SOAL 2 -->
+      <article class="soal-item" id="2">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Dinyatakan \({n\choose r}=\dfrac{n!}{(n-r)!r!}\), hasil dari<br>
+          \({2016\choose 1}+2^2{2016\choose 2}+3^2{2016\choose 3}+\cdots+2016^2{2016\choose 2016}=\) ....
+        </div>
+        <div class="soal-sumber">Sumber: <a href="https://t.me/MatematikaZoneIdGrup/6772" target="_blank">Grup Telegram</a></div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            \(\begin{aligned}
+            {2016\choose 1}+2^2{2016\choose 2}+3^2{2016\choose 3}+\cdots+2016^2{2016\choose 2016}&=\displaystyle\sum_{k=0}^{2016}k^2{2016\choose k}\\
+            &=\left(2016^2+2016\right)2^{2016-2}\\
+            &=2016(2016+2)2^{2014}\\
+            &=\boxed{\boxed{2016\cdot2018\cdot2^{2014}}}
+            \end{aligned}\)
+            <div class="kesimpulan">Jadi, \({2016\choose 1}+2^2{2016\choose 2}+3^2{2016\choose 3}+\cdots+2016^2{2016\choose 2016}=2016\cdot2018\cdot2^{2014}\).</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+      <!-- SOAL 3 -->
+      <article class="soal-item" id="3">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Diketahui \[\dfrac1{0!10!}+\dfrac1{1!9!}+\dfrac1{2!8!}+\cdots+\dfrac1{9!1!}+\dfrac1{10!0!}=\dfrac{m}n\] Jika <e>(<em>m</em>, <em>n</em>)</e> adalah bilangan bulat yang saling relatif prima. Nilai dari 10<em>m</em> adalah ....
+        </div>
+        <div class="soal-sumber">Sumber: <a href="https://www.pendidikmatematika.com/" target="_blank" rel="noopener noreferrer">Tryout OSN-K Matematika SMA 2023</a></div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            \(\begin{aligned}
+            \dfrac1{0!10!}+\dfrac1{1!9!}+\dfrac1{2!8!}+\cdots+\dfrac1{9!1!}+\dfrac1{10!0!}&=\dfrac{10!}{10!}\left(\dfrac1{0!10!}+\dfrac1{1!9!}+\dfrac1{2!8!}+\cdots+\dfrac1{9!1!}+\dfrac1{10!0!}\right)\\[3.8pt]
+            &=\dfrac1{10!}\left(\dfrac{10!}{0!10!}+\dfrac{10!}{1!9!}+\dfrac{10!}{2!8!}+\cdots+\dfrac{10!}{9!1!}+\dfrac{10!}{10!0!}\right)\\[3.8pt]
+            &=\dfrac1{10!}\left({10\choose0}+{10\choose1}+{10\choose2}+\cdots+{10\choose9}+{10\choose10}\right)\\[3.8pt]
+            &=\dfrac1{10!}\left(2^{10}\right)\\[3.8pt]
+            &=\dfrac{\cancel{2}\cdot\cancel{2\cdot2\cdot2}\cdot\cancel{2}\cdot\cancel{2\cdot2}\cdot\cancel2\cdot2\cdot2}{\overset{5}{\cancel{10}}\cdot9\cdot\cancel{8}\cdot7\cdot\overset{3}{\cancel{6}}\cdot5\cdot\cancel4\cdot3\cdot\cancel2}\\[3.8pt]
+            &=\dfrac4{14175}
+            \end{aligned}\) <br><br>
+            10(4) = 40
+            <div class="kesimpulan">Jadi, nilai dari 10<em>m</em> adalah 40.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+      <!-- SOAL 4 -->
+      <article class="soal-item" id="4">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Muaz akan membuat bilangan asli 4 digit dengan digit-digitnya di antara 1, 3, 4, 5, 6, 7, 8, dan hanya angka 3 yang boleh berulang. Jika bilangan tersebut harus memuat angka 1, maka banyak bilangan yang bisa dibentuk oleh Muaz adalah ....
+        </div>
+        <div class="soal-sumber">Sumber: <a href="https://www.pendidikmatematika.com/" target="_blank" rel="noopener noreferrer">GMOM</a></div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            <h2>Kasus 1, paling banyak ada 1 angka 3.</h2>
+            Memilih 3 angka dari <e>(3,4,5,6,7,8)</e> kemudian permutasi 4 angka<br>
+            \(C^6_3\times4!=480\)<br>
+            <h2>Kasus 2, ada 2 angka 3</h2>
+            Memilih 1 angka dari <e>(4,5,6,7,8)</e> kemudian permutasi 4 angka, dengan 2 angka sama<br>
+            \(C^5_1\times\dfrac{4!}{2!}=30\)<br>
+            <h2>Kasus 3, ada 3 angka 3</h2>
+            Permutasi 4 angka, dengan 3 angka sama<br>
+            \(\dfrac{4!}{3!}=4\)<br><br>
+            480 + 30 + 4 = 514
+            <div class="kesimpulan">Jadi, banyak bilangan yang bisa dibentuk oleh Muaz adalah 514.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+      <!-- SOAL 5 -->
+      <article class="soal-item" id="5">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Di dalam suatu laci terdapat 7 pasang kaos kaki yang setiap pasangnya berbeda dengan pasangan lain. Diambil 6 kaos kaki sekaligus secara acak. Banyak cara pengambilan sehingga diantara yang terambil terdapat tepat sepasang kaos kaki yang berpasangan adalah ....
+        </div>
+        <div class="soal-sumber">Sumber: <a href="/2023/04/soal-osk-matematika-sma-2023-solusi.html" target="_blank" rel="noopener noreferrer">OSK SMA 2023</a></div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            2 kaus kaki di antaranya adalah sepasang. Cara pengambilan 1 pasang dari 7 pasang adalah:\[C_1^7=7\]
+            Tersisa 6 pasang. 4 kaus kaki lainnya berbeda. Cara pengambilan 4 dari 6 kaus kaki adalah:\[C_4^6=15\]
+            Setiap pasang ada kaos kaki kiri dan kanan, sehingga kemungkinan untuk setiap pasangnya ada 2. \[2^4=16\]
+            Dengan aturan perkalian didapat: \[7\times 15 \times 16= 1680\]
+            <div class="kesimpulan">Jadi, banyak cara pengambilan sehingga diantara yang terambil terdapat tepat sepasang kaos kaki yang berpasangan adalah 1680.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+      <!-- SOAL 6 -->
+      <article class="soal-item" id="6">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Di dalam suatu laci terdapat 7 pasang kaos kaki yang setiap pasangnya berbeda dengan pasangan lain. Diambil lima kaos kaki sekaligus secara acak. Banyak cara pengambilan sehingga diantara yang terambil terdapat tepat sepasang kaos kaki yang berpasangan adalah ....
+        </div>
+        <div class="soal-sumber">Sumber: <a href="/2023/04/soal-osk-matematika-sma-2023-solusi.html" target="_blank" rel="noopener noreferrer">OSK SMA 2023</a></div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            2 kaus kaki di antaranya adalah sepasang. Cara pengambilan 1 pasang dari 7 pasang adalah:\[C_1^7=7\]
+            Tersisa 6 pasang. 3 kaus kaki lainnya berbeda. Cara pengambilan 3 dari 6 kaus kaki adalah:\[C_3^6=20\]
+            Setiap pasang ada kaos kaki kiri dan kanan, sehingga kemungkinan untuk setiap pasangnya ada 2. \[2^3=8\]
+            Dengan aturan perkalian didapat: \[7\times 20 \times 8= 1120\]
+            <div class="kesimpulan">Jadi, banyak cara pengambilan sehingga diantara yang terambil terdapat tepat sepasang kaos kaki yang berpasangan adalah 1120.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+      <!-- SOAL 7 -->
+      <article class="soal-item" id="7">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Terdapat dua puluh kartu yang dinomori satu hingga dua puluh dalam suatu tumpukan. Tentukan banyaknya cara menyusun kartu tersebut sehingga nomor pada sepuluh kartu teratas terurut turun dan sebelas kartu terbawah terurut naik.
+        </div>
+        <div class="soal-sumber">Sumber: <a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM April 2023</a></div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            Kartu ke-10 pasti kartu terendah atau kartu nomor 1. Kita tinggal memilih 9 dari 19 kartu tersisa.
+            \[C_9^{19}=\boxed{\boxed{92378}}\]
+            <div class="kesimpulan">Jadi, cara menyusun kartu tersebut sehingga nomor pada sepuluh kartu teratas terurut turun dan sebelas kartu terbawah terurut naik ada 92.378 cara.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+      <!-- SOAL 8 -->
+      <article class="soal-item" id="8">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Banyaknya bilangan 5 digit yang lebih dari 50000 dan mengandung tepat tiga digit yang sama dan dua digit lainnya berbeda adalah ...<br>
+          <i>(contoh: 50003, 55532, 61222, 70177, dan sebagainya. Sedangkan 55522, 67776, 77700, dan sebagainya bukanlah contoh)</i>
+        </div>
+        <div class="soal-sumber">Sumber: <a href="http://" target="_blank" rel="noopener noreferrer">GMOM</a></div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            angka pertama ada 5 kemungkinan yaitu <e>{5, 6, 7, 8, 9}.</e> Untuk kemungkinan 4 angka berikutnya kita bagi 2 kasus:
+            <ul>
+              <li><h3>2 angka sama dengan angka pertama</h3>
+                Pilih 2 dari 9 angka, kemudian kita cari permutasinya dimana ada 2 angka kembar. <br>
+                \[C_2^9\cdot\dfrac{4!}{2!}=\dfrac{9\cdot8}2\cdot4\cdot3=432\]
+              </li>
+              <li><h3>3 angka kembar beda dengan angka pertama</h3>
+                Pilih 1 dari 9 angka untuk jadi angka kembar, kemudian pilih 1 dari 8 angka tersisa, terakhir kita cari permutasinya dimana ada 3 angka kembar.
+                \[9\cdot8\cdot\dfrac{4!}{3!}=288\]
+              </li>
+            </ul>
+            Semuanya ada:
+            <div style="text-align: center;">5 &sdot; (432 + 288) = 3600</div>
+            <div class="kesimpulan">Jadi, ada 3600 bilangan 5 digit yang lebih dari 50000 dan mengandung tepat tiga digit yang sama dan dua digit lainnya berbeda.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+      <!-- SOAL 9 -->
+      <article class="soal-item" id="9">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Terdapat 10 kursi yang tersusun secara berjajar pada suatu ruangan. Tiga siswa yang hendak susulan ujian sumatif matematika diarahkan untuk memilih kursi dari kursi-kursi tersebut sedemikian sehingga setiap dua siswa dipisahkan oleh minimal satu kursi kosong. Banyak susunan mereka duduk yang mungkin adalah ....
+        </div>
+        <div class="soal-sumber">Sumber: <a href="http://" target="_blank" rel="noopener noreferrer">Evaluasi GMOM Oktober 2023</a></div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            Misal banyak kursi kosong sebelah kiri orang pertama adalah <em>a</em>, banyak kursi kosong antara orang pertama dan kedua adalah <em>b</em>, banyak kursi kosong antara orang kedua dan ketiga adalah <em>c</em>, dan banyak kursi kosong sebelah kanan orang ketiga adalah <em>d</em>. <br>
+            <e><em>a</em> &geq; 0,</e> <e><em>b</em> &geq; 1,</e> <e><em>c</em> &geq; 1,</e> dan <e><em>d</em> &geq; 0</e>. <br>
+            <e><em>a</em> + <em>b</em> + <em>c</em> + <em>d</em> = 7</e><br>
+            Misal <e><em>b</em> = <em>b</em>' + 1</e>, dan <e><em>c</em> = <em>c</em>' + 1</e><br>
+            <e><em>a</em> + <em>b</em>' + <em>c</em>' + <em>d</em> = 5</e><br>
+            Banyaknya susunan yang mungkin: <br>
+            \(\begin{aligned}
+            C_5^{5+4-1}&=C_5^8\\
+            &=\dfrac{8!}{(8-5)!\ 5!}\\[4pt]
+            &=\dfrac{8\cdot7\cdot\cancel{6}\cdot\cancel{5!}}{\cancel{3\cdot2}\cdot1\ \cancel{5!}}\\[4pt]
+            &=56
+            \end{aligned}\) <br><br>
+            Banyak susunan duduk dari 3 orang adalah <e>3! = 6.</e> <br><br>
+            Jadi banyak susunan duduk yang mungkin adalah : <br>
+            56 &times; 6 = 336
+            <div class="kesimpulan">Jadi, banyak susunan mereka duduk yang mungkin adalah 336.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+      <!-- SOAL 10 -->
+      <article class="soal-item" id="10">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Sebanyak 20 orang duduk dalam formasi melingkar mengitari api unggun. Jika dipilih 3 siswa di antara mereka, dengan syarat tidak ada dua orang yang duduk bersisian dipilih, maka banyaknya cara adalah ....
+        </div>
+        <div class="soal-sumber">Sumber: <a href="http://" target="_blank" rel="noopener noreferrer">GMOM September 2023</a></div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            Anggap dulu siswa tersebut duduk berjajar, beri nomor 1-20. Sehingga banyak cara memilih 3 siswa dengan tidak ada yang duduk bersisian sama dengan banyak cara memilih 3 bilangan dengan tidak ada dua bilangan berurutan dipilih, yakni ada sebanyak cara menyusun 3 bars dan 17 stars dengan tiap dua bars berurutan dipisahkan oleh minimal satu stars. Sehingga banyak cara sama seperti memasukkan 15 bola identik ke 4 keranjang berbeda yakni ada 18<em>C</em>3 = 816 cara. Tetapi pada posisi siklis, jika terpilih no 1 dan 20 artinya siswa tersebut duduk bersisian, banyaknya yang demikian ada sebanyak 16 cara. <br><br>
+            Maka banyak cara memanggil 3 siswa yang tidak duduk bersisian ada sebanyak: <e>816 &minus; 16 = <b>800 cara</b>.</e>
+            <div class="kesimpulan">Jadi, ada 800 cara.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="pagination-wrapper"></div>
+
+  </main>
+
+  <script src="../../scr/script.js"></script>
+</body>
+
+</html>
