@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Panjang Vektor</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Panjang Vektor</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Vektor dan Panjang Vektor</h2>
+            <p>
+                <strong>Vektor</strong> adalah besaran yang memiliki <strong>besar (panjang)</strong> dan <strong>arah</strong>. Secara geometris, vektor digambarkan sebagai ruas garis berarah (anak panah). Pangkal anak panah disebut <em>titik awal</em>, dan ujungnya disebut <em>titik terminal</em>.
+            </p>
+            <p>
+                Vektor biasanya ditulis dengan huruf kecil bertanda panah atau dicetak tebal, misalnya $\vec{v}$, $\vec{a}$, atau $\mathbf{u}$. Vektor yang berpangkal di titik $A$ dan berujung di titik $B$ ditulis $\overrightarrow{AB}$.
+            </p>
+            <p>
+                <strong>Panjang vektor</strong> (disebut juga <em>besar</em>, <em>norma</em>, atau <em>magnitudo</em> vektor) adalah jarak antara titik awal dan titik terminal vektor tersebut. Panjang vektor $\vec{v}$ dinotasikan dengan tanda mutlak:
+                $$|\vec{v}| \quad \text{atau} \quad \|\vec{v}\|$$
+                Panjang vektor selalu bernilai <strong>tak-negatif</strong>, yaitu $|\vec{v}| \ge 0$, dan $|\vec{v}| = 0$ jika dan hanya jika $\vec{v}$ adalah vektor nol $\vec{0}$.
+            </p>
+
+            <h2>2. Panjang Vektor di Bidang ($\mathbb{R}^2$)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Misalkan vektor $\vec{v}$ di bidang Kartesius memiliki komponen $x$ dan $y$:
+                        $$\vec{v} = \begin{pmatrix} x \\ y \end{pmatrix} = x\,\hat{i} + y\,\hat{j}$$
+                    </p>
+                    <p>
+                        Jika vektor tersebut digambar dari titik asal $O(0,0)$ ke titik $P(x, y)$, komponen $x$ (mendatar) dan komponen $y$ (tegak) membentuk segitiga siku-siku dengan $\vec{v}$ sebagai sisi miringnya. Berdasarkan <strong>Teorema Pythagoras</strong>:
+                        $$|\vec{v}| = \sqrt{x^2 + y^2}$$
+                    </p>
+                    <p>
+                        Contoh: untuk $\vec{v} = \begin{pmatrix} 4 \\ 3 \end{pmatrix}$, diperoleh $|\vec{v}| = \sqrt{4^2 + 3^2} = \sqrt{25} = 5$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-vektor-r2" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Panjang Vektor dari Dua Titik</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Jika diketahui titik $A(x_1, y_1)$ dan $B(x_2, y_2)$ dengan vektor posisi $\vec{a} = \overrightarrow{OA}$ dan $\vec{b} = \overrightarrow{OB}$, maka vektor $\overrightarrow{AB}$ adalah:
+                        $$\overrightarrow{AB} = \vec{b} - \vec{a} = \begin{pmatrix} x_2 - x_1 \\ y_2 - y_1 \end{pmatrix}$$
+                    </p>
+                    <p>
+                        Sehingga panjang vektor $\overrightarrow{AB}$ sama dengan <strong>jarak titik $A$ ke titik $B$</strong>:
+                        $$|\overrightarrow{AB}| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
+                    </p>
+                    <p>
+                        Pada gambar di samping, $A(1, 1)$ dan $B(6, 4)$, sehingga $\overrightarrow{AB} = \begin{pmatrix} 5 \\ 3 \end{pmatrix}$ dan $|\overrightarrow{AB}| = \sqrt{25 + 9} = \sqrt{34}$.
+                    </p>
+                    <p>
+                        <em>Catatan:</em> $|\overrightarrow{AB}| = |\overrightarrow{BA}|$, karena $\overrightarrow{BA} = -\overrightarrow{AB}$ hanya berlawanan arah, tetapi panjangnya sama.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-vektor-dua-titik" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Panjang Vektor di Ruang ($\mathbb{R}^3$)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Untuk vektor di ruang tiga dimensi:
+                        $$\vec{v} = \begin{pmatrix} x \\ y \\ z \end{pmatrix} = x\,\hat{i} + y\,\hat{j} + z\,\hat{k}$$
+                        panjangnya diperoleh dengan menerapkan Teorema Pythagoras <strong>dua kali</strong>:
+                    </p>
+                    <ul>
+                        <li>Diagonal alas (bidang $xy$): $d = \sqrt{x^2 + y^2}$.</li>
+                        <li>Diagonal ruang: $|\vec{v}| = \sqrt{d^2 + z^2}$.</li>
+                    </ul>
+                    <p>
+                        Sehingga:
+                        $$|\vec{v}| = \sqrt{x^2 + y^2 + z^2}$$
+                    </p>
+                    <p>
+                        Contoh: $\vec{v} = (4, 4, 2)$ memiliki diagonal alas $\sqrt{16 + 16} = 4\sqrt{2}$, dan panjang $|\vec{v}| = \sqrt{32 + 4} = \sqrt{36} = 6$.
+                    </p>
+                    <p>
+                        Untuk dua titik $A(x_1, y_1, z_1)$ dan $B(x_2, y_2, z_2)$:
+                        $$|\overrightarrow{AB}| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-vektor-r3" style="width: 100%; max-width: 350px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Vektor Satuan</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Vektor satuan</strong> adalah vektor yang panjangnya tepat $1$. Vektor satuan yang searah dengan $\vec{v}$ (dengan $\vec{v} \neq \vec{0}$) diperoleh dengan membagi vektor tersebut dengan panjangnya:
+                        $$\hat{e}_v = \frac{\vec{v}}{|\vec{v}|}$$
+                    </p>
+                    <p>
+                        Contoh: untuk $\vec{v} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}$, $|\vec{v}| = 5$, maka:
+                        $$\hat{e}_v = \frac{1}{5}\begin{pmatrix} 3 \\ 4 \end{pmatrix} = \begin{pmatrix} \tfrac{3}{5} \\[2pt] \tfrac{4}{5} \end{pmatrix}$$
+                        Periksa: $\sqrt{\left(\tfrac{3}{5}\right)^2 + \left(\tfrac{4}{5}\right)^2} = \sqrt{\tfrac{9 + 16}{25}} = 1$. ✔
+                    </p>
+                    <p>
+                        Secara geometris, ujung vektor satuan selalu terletak pada <strong>lingkaran satuan</strong> (di $\mathbb{R}^2$) atau <strong>bola satuan</strong> (di $\mathbb{R}^3$). Vektor satuan baku adalah $\hat{i} = (1,0,0)$, $\hat{j} = (0,1,0)$, dan $\hat{k} = (0,0,1)$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-vektor-satuan" style="width: 100%; max-width: 300px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Sifat-Sifat Panjang Vektor</h2>
+            <p>Untuk sembarang vektor $\vec{a}$, $\vec{b}$ dan skalar $k \in \mathbb{R}$, berlaku:</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Sifat</th>
+                            <th>Rumus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Tak-negatif</td>
+                            <td>$|\vec{a}| \ge 0$, dan $|\vec{a}| = 0 \iff \vec{a} = \vec{0}$</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Perkalian skalar</td>
+                            <td>$|k\vec{a}| = |k|\,|\vec{a}|$</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Hubungan dengan hasil kali titik</td>
+                            <td>$|\vec{a}|^2 = \vec{a} \cdot \vec{a}$</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Kuadrat jumlah / selisih</td>
+                            <td>$|\vec{a} \pm \vec{b}|^2 = |\vec{a}|^2 + |\vec{b}|^2 \pm 2\,\vec{a} \cdot \vec{b}$</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Hukum jajargenjang</td>
+                            <td>$|\vec{a} + \vec{b}|^2 + |\vec{a} - \vec{b}|^2 = 2|\vec{a}|^2 + 2|\vec{b}|^2$</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Ketaksamaan segitiga</td>
+                            <td>$\big||\vec{a}| - |\vec{b}|\big| \le |\vec{a} + \vec{b}| \le |\vec{a}| + |\vec{b}|$</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Ketaksamaan Cauchy–Schwarz</td>
+                            <td>$|\vec{a} \cdot \vec{b}| \le |\vec{a}|\,|\vec{b}|$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                <em>Bukti sifat 4:</em> Dengan sifat 3 dan distributif hasil kali titik,
+                $$|\vec{a} + \vec{b}|^2 = (\vec{a} + \vec{b}) \cdot (\vec{a} + \vec{b}) = \vec{a}\cdot\vec{a} + 2\,\vec{a}\cdot\vec{b} + \vec{b}\cdot\vec{b} = |\vec{a}|^2 + 2\,\vec{a}\cdot\vec{b} + |\vec{b}|^2$$
+                Menjumlahkan bentuk $|\vec{a} + \vec{b}|^2$ dan $|\vec{a} - \vec{b}|^2$ menghilangkan suku $2\,\vec{a}\cdot\vec{b}$ sehingga diperoleh hukum jajargenjang (sifat 5).
+            </p>
+            <p>
+                Kesamaan pada ketaksamaan segitiga $|\vec{a} + \vec{b}| = |\vec{a}| + |\vec{b}|$ terjadi jika dan hanya jika $\vec{a}$ dan $\vec{b}$ <strong>searah</strong> (salah satunya kelipatan skalar tak-negatif dari yang lain).
+            </p>
+
+            <h2>7. Panjang Resultan Dua Vektor dengan Sudut Apit</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Jika sudut antara vektor $\vec{a}$ dan $\vec{b}$ adalah $\theta$, maka $\vec{a}\cdot\vec{b} = |\vec{a}|\,|\vec{b}|\cos\theta$. Substitusi ke sifat 4 menghasilkan:
+                        $$|\vec{a} + \vec{b}| = \sqrt{|\vec{a}|^2 + |\vec{b}|^2 + 2|\vec{a}|\,|\vec{b}|\cos\theta}$$
+                        $$|\vec{a} - \vec{b}| = \sqrt{|\vec{a}|^2 + |\vec{b}|^2 - 2|\vec{a}|\,|\vec{b}|\cos\theta}$$
+                    </p>
+                    <p>
+                        Secara geometris, $\vec{a} + \vec{b}$ dan $\vec{a} - \vec{b}$ adalah <strong>kedua diagonal jajargenjang</strong> yang dibentuk oleh $\vec{a}$ dan $\vec{b}$. Rumus $|\vec{a} - \vec{b}|$ identik dengan <strong>Aturan Cosinus</strong> pada segitiga dengan sisi $|\vec{a}|$, $|\vec{b}|$, dan sudut apit $\theta$.
+                    </p>
+                    <p>
+                        Kasus khusus: jika $\vec{a} \perp \vec{b}$ ($\theta = 90^\circ$), maka $|\vec{a} + \vec{b}| = |\vec{a} - \vec{b}| = \sqrt{|\vec{a}|^2 + |\vec{b}|^2}$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-jajargenjang" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>8. Contoh Soal dan Pembahasan</h2>
+            <p>Pelajari contoh-contoh berikut untuk memahami penerapan konsep panjang vektor:</p>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item" style="margin-top: 1.5rem;">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Tentukan panjang vektor $\vec{p} = \begin{pmatrix} -6 \\ 8 \end{pmatrix}$ dan $\vec{q} = 2\hat{i} - \hat{j} + 2\hat{k}$.
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        $$|\vec{p}| = \sqrt{(-6)^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10$$
+                        $$|\vec{q}| = \sqrt{2^2 + (-1)^2 + 2^2} = \sqrt{4 + 1 + 4} = \sqrt{9} = 3$$
+                    </p>
+                    <div class="kesimpulan">Jadi, $|\vec{p}| = 10$ dan $|\vec{q}| = 3$.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Diketahui titik $A(2, -1, 3)$ dan $B(4, 1, 2)$. Tentukan panjang vektor $\overrightarrow{AB}$.
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        $$\overrightarrow{AB} = \vec{b} - \vec{a} = \begin{pmatrix} 4 - 2 \\ 1 - (-1) \\ 2 - 3 \end{pmatrix} = \begin{pmatrix} 2 \\ 2 \\ -1 \end{pmatrix}$$
+                        $$|\overrightarrow{AB}| = \sqrt{2^2 + 2^2 + (-1)^2} = \sqrt{9} = 3$$
+                    </p>
+                    <div class="kesimpulan">Jadi, panjang vektor $\overrightarrow{AB}$ adalah $3$ satuan.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Tentukan vektor satuan yang searah dengan $\vec{a} = \begin{pmatrix} 2 \\ -3 \\ 6 \end{pmatrix}$.
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        $$|\vec{a}| = \sqrt{2^2 + (-3)^2 + 6^2} = \sqrt{4 + 9 + 36} = \sqrt{49} = 7$$
+                        $$\hat{e}_a = \frac{\vec{a}}{|\vec{a}|} = \frac{1}{7}\begin{pmatrix} 2 \\ -3 \\ 6 \end{pmatrix} = \begin{pmatrix} \tfrac{2}{7} \\[2pt] -\tfrac{3}{7} \\[2pt] \tfrac{6}{7} \end{pmatrix}$$
+                    </p>
+                    <div class="kesimpulan">Jadi, vektor satuan searah $\vec{a}$ adalah $\left(\tfrac{2}{7}, -\tfrac{3}{7}, \tfrac{6}{7}\right)$.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 4 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 4</div>
+                <div class="soal-teks">
+                    Diketahui vektor $\vec{a} = \begin{pmatrix} p \\ 2 \\ -1 \end{pmatrix}$ dengan $|\vec{a}| = \sqrt{21}$. Tentukan semua nilai $p$ yang mungkin.
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        $$|\vec{a}|^2 = p^2 + 2^2 + (-1)^2 = p^2 + 5$$
+                        $$p^2 + 5 = 21 \iff p^2 = 16 \iff p = \pm 4$$
+                    </p>
+                    <div class="kesimpulan">Jadi, $p = 4$ atau $p = -4$.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 5 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 5</div>
+                <div class="soal-teks">
+                    Diketahui $|\vec{a}| = 3$, $|\vec{b}| = 5$, dan sudut antara $\vec{a}$ dan $\vec{b}$ adalah $60^\circ$. Tentukan $|\vec{a} + \vec{b}|$ dan $|\vec{a} - \vec{b}|$.
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Hitung hasil kali titik terlebih dahulu:
+                        $$\vec{a}\cdot\vec{b} = |\vec{a}|\,|\vec{b}|\cos 60^\circ = 3 \cdot 5 \cdot \tfrac{1}{2} = \tfrac{15}{2}$$
+                        $$|\vec{a} + \vec{b}|^2 = 9 + 25 + 2\left(\tfrac{15}{2}\right) = 49 \iff |\vec{a} + \vec{b}| = 7$$
+                        $$|\vec{a} - \vec{b}|^2 = 9 + 25 - 2\left(\tfrac{15}{2}\right) = 19 \iff |\vec{a} - \vec{b}| = \sqrt{19}$$
+                        Periksa dengan hukum jajargenjang: $49 + 19 = 68 = 2(9) + 2(25)$. ✔
+                    </p>
+                    <div class="kesimpulan">Jadi, $|\vec{a} + \vec{b}| = 7$ dan $|\vec{a} - \vec{b}| = \sqrt{19}$.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 6 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 6</div>
+                <div class="soal-teks">
+                    Diketahui $|\vec{a}| = 2$, $|\vec{b}| = 3$, dan $|\vec{a} + \vec{b}| = 4$. Tentukan nilai $|2\vec{a} - \vec{b}|$.
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Cari $\vec{a}\cdot\vec{b}$</strong>
+                        $$|\vec{a} + \vec{b}|^2 = |\vec{a}|^2 + 2\,\vec{a}\cdot\vec{b} + |\vec{b}|^2$$
+                        $$16 = 4 + 2\,\vec{a}\cdot\vec{b} + 9 \iff \vec{a}\cdot\vec{b} = \tfrac{3}{2}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Hitung $|2\vec{a} - \vec{b}|$</strong>
+                        $$|2\vec{a} - \vec{b}|^2 = 4|\vec{a}|^2 - 4\,\vec{a}\cdot\vec{b} + |\vec{b}|^2 = 4(4) - 4\left(\tfrac{3}{2}\right) + 9 = 16 - 6 + 9 = 19$$
+                        $$|2\vec{a} - \vec{b}| = \sqrt{19}$$
+                    </p>
+                    <div class="kesimpulan">Jadi, $|2\vec{a} - \vec{b}| = \sqrt{19}$.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Inisialisasi Ilustrasi GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const WARNA = {
+                utama: "#0f766e",
+                aksen: "#dc2626",
+                ungu: "#7c3aed",
+                oranye: "#d97706",
+                abu: "#94a3b8",
+                teks: "#0f172a",
+                grid: "#e2e8f0"
+            };
+
+            // Sumbu koordinat sederhana (koordinat layar, satu satuan = u piksel)
+            const gambarSumbu = (geo, O, lebar, tinggi) => {
+                geo.buatVektor([8, O[1]], [lebar - 8, O[1]], { stroke: "#334155", strokeWidth: 1.3 });
+                geo.buatVektor([O[0], tinggi - 8], [O[0], 10], { stroke: "#334155", strokeWidth: 1.3 });
+                geo.buatTeks(lebar - 12, O[1] + 16, "x", { fontSize: "12px", fontStyle: "italic", fill: "#334155" });
+                geo.buatTeks(O[0] - 14, 18, "y", { fontSize: "12px", fontStyle: "italic", fill: "#334155" });
+                geo.buatTeks(O[0] - 14, O[1] + 16, "O", { fontSize: "12px", fill: "#334155" });
+            };
+
+            // 1. Panjang vektor di R2
+            const el1 = document.getElementById("svg-vektor-r2");
+            if (el1 && typeof GeoSVG === "function") {
+                const W = 320, H = 260, u = 40, O = [40, 220];
+                const T = (x, y) => [O[0] + x * u, O[1] - y * u];
+                const geo = new GeoSVG(el1, W, H, { viewBox: `0 0 ${W} ${H}`, title: "Panjang vektor v = (4, 3)" });
+
+                geo.buatGrid(u, u, { stroke: WARNA.grid });
+                gambarSumbu(geo, O, W, H);
+
+                const P = T(4, 3), F = T(4, 0);
+                geo.buatSiku(O, F, P, { size: 10, stroke: WARNA.aksen, strokeWidth: 1.2, fill: "rgba(220,38,38,0.1)" });
+                geo.buatSegmen(O, F, { stroke: WARNA.oranye, strokeWidth: 2, dashed: "5 4", label: "x = 4", labelSisi: "kanan", labelJarak: 14, fontSize: "12px", bold: true, labelColor: WARNA.oranye });
+                geo.buatSegmen(F, P, { stroke: WARNA.ungu, strokeWidth: 2, dashed: "5 4", label: "y = 3", labelSisi: "kanan", labelJarak: 10, fontSize: "12px", bold: true, labelColor: WARNA.ungu });
+                geo.buatVektor(O, P, { stroke: WARNA.utama, strokeWidth: 2.6, label: "|v| = 5", labelSisi: "kiri", labelJarak: 12, fontSize: "13px", bold: true, labelColor: WARNA.utama });
+                geo.buatTitik(P, { size: 3.5, color: WARNA.teks, label: "P(4, 3)", labelPosition: "top-right", fontSize: "12px", bold: true });
+            }
+
+            // 2. Panjang vektor dari dua titik
+            const el2 = document.getElementById("svg-vektor-dua-titik");
+            if (el2 && typeof GeoSVG === "function") {
+                const W = 320, H = 260, u = 40, O = [40, 220];
+                const T = (x, y) => [O[0] + x * u, O[1] - y * u];
+                const geo = new GeoSVG(el2, W, H, { viewBox: `0 0 ${W} ${H}`, title: "Vektor AB dari titik A(1,1) ke B(6,4)" });
+
+                geo.buatGrid(u, u, { stroke: WARNA.grid });
+                gambarSumbu(geo, O, W, H);
+
+                const A = T(1, 1), B = T(6, 4), F = T(6, 1);
+                geo.buatVektor(O, A, { stroke: WARNA.abu, strokeWidth: 1.6, dashed: "4 3", label: "a", labelSisi: "kiri", labelJarak: 8, fontSize: "12px", fontStyle: "italic", bold: true, labelColor: "#64748b" });
+                geo.buatVektor(O, B, { stroke: WARNA.abu, strokeWidth: 1.6, dashed: "4 3", label: "b", labelSisi: "kiri", labelJarak: 8, fontSize: "12px", fontStyle: "italic", bold: true, labelColor: "#64748b" });
+
+                geo.buatSiku(A, F, B, { size: 10, stroke: WARNA.aksen, strokeWidth: 1.2, fill: "rgba(220,38,38,0.1)" });
+                geo.buatSegmen(A, F, { stroke: WARNA.oranye, strokeWidth: 2, dashed: "5 4", label: "5", labelSisi: "kanan", labelJarak: 12, fontSize: "12px", bold: true, labelColor: WARNA.oranye });
+                geo.buatSegmen(F, B, { stroke: WARNA.ungu, strokeWidth: 2, dashed: "5 4", label: "3", labelSisi: "kanan", labelJarak: 10, fontSize: "12px", bold: true, labelColor: WARNA.ungu });
+                geo.buatVektor(A, B, { stroke: WARNA.utama, strokeWidth: 2.6, label: "√34", labelSisi: "kiri", labelJarak: 10, fontSize: "13px", bold: true, labelColor: WARNA.utama });
+
+                geo.buatTitik(A, { size: 3.5, color: WARNA.teks, label: "A(1, 1)", labelPosition: "bottom-right", fontSize: "12px", bold: true });
+                geo.buatTitik(B, { size: 3.5, color: WARNA.teks, label: "B(6, 4)", labelPosition: "top-left", fontSize: "12px", bold: true });
+            }
+
+            // 3. Panjang vektor di R3 (proyeksi miring)
+            const el3 = document.getElementById("svg-vektor-r3");
+            if (el3 && typeof GeoSVG === "function") {
+                const W = 350, H = 290;
+                const T = (x, y, z) => [110 + 40 * y - 18 * x, 210 - 40 * z + 12 * x];
+                const geo = new GeoSVG(el3, W, H, { viewBox: `0 0 ${W} ${H}`, title: "Panjang vektor v = (4, 4, 2) di ruang" });
+
+                const O = T(0, 0, 0);
+                // Sumbu x, y, z
+                geo.buatVektor(O, T(5, 0, 0), { stroke: "#334155", strokeWidth: 1.3 });
+                geo.buatVektor(O, T(0, 5.4, 0), { stroke: "#334155", strokeWidth: 1.3 });
+                geo.buatVektor(O, T(0, 0, 3.6), { stroke: "#334155", strokeWidth: 1.3 });
+                geo.buatTeks(T(5, 0, 0)[0] - 4, T(5, 0, 0)[1] + 14, "x", { fontSize: "12px", fontStyle: "italic", fill: "#334155" });
+                geo.buatTeks(T(0, 5.4, 0)[0] - 4, T(0, 5.4, 0)[1] + 16, "y", { fontSize: "12px", fontStyle: "italic", fill: "#334155" });
+                geo.buatTeks(T(0, 0, 3.6)[0] + 8, T(0, 0, 3.6)[1] + 4, "z", { fontSize: "12px", fontStyle: "italic", fill: "#334155" });
+                geo.buatTeks(O[0] - 16, O[1] - 4, "O", { fontSize: "12px", fill: "#334155" });
+
+                // Kerangka balok 4 x 4 x 2
+                const sudut = {
+                    x: T(4, 0, 0), y: T(0, 4, 0), xy: T(4, 4, 0),
+                    z: T(0, 0, 2), xz: T(4, 0, 2), yz: T(0, 4, 2), xyz: T(4, 4, 2)
+                };
+                const rusuk = { stroke: WARNA.abu, strokeWidth: 1.2, dashed: "4 3" };
+                [["x", "xy"], ["y", "xy"], ["z", "xz"], ["z", "yz"], ["xz", "xyz"], ["yz", "xyz"], ["x", "xz"], ["y", "yz"]]
+                    .forEach(([p, q]) => geo.buatSegmen(sudut[p], sudut[q], rusuk));
+
+                // Diagonal alas dan tinggi
+                geo.buatSiku(O, sudut.xy, sudut.xyz, { size: 9, stroke: WARNA.aksen, strokeWidth: 1.2, fill: "rgba(220,38,38,0.1)" });
+                geo.buatSegmen(O, sudut.xy, { stroke: WARNA.oranye, strokeWidth: 2, dashed: "5 4", label: "4√2", labelSisi: "kanan", labelJarak: 12, fontSize: "12px", bold: true, labelColor: WARNA.oranye });
+                geo.buatSegmen(sudut.xy, sudut.xyz, { stroke: WARNA.ungu, strokeWidth: 2, label: "2", labelSisi: "kanan", labelJarak: 10, fontSize: "12px", bold: true, labelColor: WARNA.ungu });
+
+                // Vektor OP
+                geo.buatVektor(O, sudut.xyz, { stroke: WARNA.utama, strokeWidth: 2.6, label: "|v| = 6", labelSisi: "kiri", labelJarak: 12, fontSize: "13px", bold: true, labelColor: WARNA.utama });
+                geo.buatTitik(sudut.xyz, { size: 3.5, color: WARNA.teks, label: "P(4, 4, 2)", labelPosition: "top-right", fontSize: "12px", bold: true });
+            }
+
+            // 4. Vektor satuan
+            const el4 = document.getElementById("svg-vektor-satuan");
+            if (el4 && typeof GeoSVG === "function") {
+                const W = 300, H = 260, u = 40, O = [80, 220];
+                const T = (x, y) => [O[0] + x * u, O[1] - y * u];
+                const geo = new GeoSVG(el4, W, H, { viewBox: `0 0 ${W} ${H}`, title: "Vektor satuan searah v = (3, 4)" });
+
+                geo.buatGrid(u, u, { stroke: WARNA.grid });
+                geo.buatLingkaran(O, u, { stroke: WARNA.ungu, strokeWidth: 1.4, dashed: "4 3", fill: "rgba(124,58,237,0.06)" });
+                gambarSumbu(geo, O, W, H);
+
+                geo.buatVektor(O, T(3, 4), { stroke: WARNA.utama, strokeWidth: 2.2, label: "v,  |v| = 5", labelSisi: "kiri", labelJarak: 14, fontSize: "12px", bold: true, labelColor: WARNA.utama });
+                geo.buatVektor(O, T(0.6, 0.8), { stroke: WARNA.aksen, strokeWidth: 3 });
+                geo.buatTeks(T(0.6, 0.8)[0] + 8, T(0.6, 0.8)[1] + 14, "ê (panjang 1)", { fontSize: "11px", fontWeight: "bold", fill: WARNA.aksen });
+                geo.buatTeks(T(1, 0)[0] - 6, O[1] + 16, "1", { fontSize: "11px", fill: WARNA.ungu });
+                geo.buatTitik(T(3, 4), { size: 3.5, color: WARNA.teks, label: "(3, 4)", labelPosition: "top-right", fontSize: "12px", bold: true });
+            }
+
+            // 5. Jajargenjang: a + b dan a - b
+            const el5 = document.getElementById("svg-jajargenjang");
+            if (el5 && typeof GeoSVG === "function") {
+                const W = 340, H = 240;
+                const geo = new GeoSVG(el5, W, H, { viewBox: `0 0 ${W} ${H}`, title: "Diagonal jajargenjang a + b dan a - b" });
+
+                const O = [40, 200], A = [230, 190], B = [110, 70];
+                const S = [A[0] + B[0] - O[0], A[1] + B[1] - O[1]];
+
+                geo.buatPoligon([O, A, S, B], { fill: "rgba(13,148,136,0.05)", stroke: "none" });
+                geo.buatSudut(A, O, B, { radius: 26, fill: "rgba(217,119,6,0.2)", stroke: WARNA.oranye, strokeWidth: 1.3, label: "θ", labelRadius: 38, fontSize: "13px", bold: true, labelColor: WARNA.oranye });
+
+                geo.buatSegmen(A, S, { stroke: WARNA.abu, strokeWidth: 1.3, dashed: "4 3" });
+                geo.buatSegmen(B, S, { stroke: WARNA.abu, strokeWidth: 1.3, dashed: "4 3" });
+
+                geo.buatVektor(O, A, { stroke: WARNA.utama, strokeWidth: 2.4, label: "a", labelSisi: "kanan", labelJarak: 12, fontSize: "14px", fontStyle: "italic", bold: true, labelColor: WARNA.utama });
+                geo.buatVektor(O, B, { stroke: WARNA.ungu, strokeWidth: 2.4, label: "b", labelSisi: "kiri", labelJarak: 12, fontSize: "14px", fontStyle: "italic", bold: true, labelColor: WARNA.ungu });
+                geo.buatVektor(O, S, { stroke: WARNA.aksen, strokeWidth: 2.4, label: "a + b", labelSisi: "kiri", labelJarak: 10, fontSize: "13px", bold: true, labelColor: WARNA.aksen });
+                geo.buatVektor(B, A, { stroke: WARNA.oranye, strokeWidth: 2.2, dashed: "6 4", label: "a − b", labelSisi: "kiri", labelJarak: 10, fontSize: "13px", bold: true, labelColor: WARNA.oranye });
+
+                geo.buatTitik(O, { size: 3, color: WARNA.teks, label: "O", labelPosition: "bottom-left", fontSize: "12px", bold: true });
+            }
+        });
+    </script>
+</body>
+
+</html>

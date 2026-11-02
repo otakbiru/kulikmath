@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Maksimum dan Minimum</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Maksimum dan Minimum</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Nilai Ekstrem: Lokal (Relatif) vs Global (Mutlak)</h2>
+            <p>
+                Dalam matematika, istilah <strong>Nilai Ekstrem (Ekstrema)</strong> merujuk pada nilai terbesar (<strong>Maksimum</strong>) dan nilai terkecil (<strong>Minimum</strong>) yang dicapai oleh suatu fungsi $y = f(x)$ pada daerah asalnya. Penting untuk membedakan antara <em>titik pencapai ekstrem ($x = c$)</em> dan <em>nilai ekstrem ($y = f(c)$)</em>:
+            </p>
+            <ul>
+                <li>Jika soal menanyakan <strong>"Nilai maksimum/minimum fungsi"</strong>, yang dicari adalah nilai ordinat <strong>$y = f(c)$</strong>.</li>
+                <li>Jika soal menanyakan <strong>"Nilai $x$ agar fungsi mencapai maksimum/minimum"</strong>, yang dicari adalah nilai absis <strong>$x = c$</strong>.</li>
+            </ul>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Berdasarkan cakupannya, nilai maksimum dan minimum dibagi menjadi dua jenis (perhatikan visualisasi grafik di samping):
+                    </p>
+                    <ol>
+                        <li>
+                            <strong>Maksimum / Minimum Lokal (Relatif / Balik):</strong><br>
+                            Nilai $f(c)$ disebut <em>maksimum lokal</em> jika $f(c) \ge f(x)$ untuk semua $x$ di sekitar (tetangga dekat) $c$ (berupa <strong>puncak bukit</strong>). Sebaliknya, $f(c)$ disebut <em>minimum lokal</em> jika $f(c) \le f(x)$ untuk semua $x$ di sekitar $c$ (berupa <strong>dasar lembah</strong>).
+                        </li>
+                        <li>
+                            <strong>Maksimum / Minimum Global (Mutlak / Absolut):</strong><br>
+                            Nilai tertinggi atau terendah dari $f(x)$ di <strong>seluruh domain / interval</strong> yang diberikan. Nilai ekstrem global pada interval tertutup $[a, b]$ dapat terjadi di titik balik dalam interval <em>maupun</em> di titik ujung batas interval ($x = a$ atau $x = b$).
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-extrema-types" style="width: 100%; max-width: 350px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Maksimum & Minimum Tanpa Kalkulus (Aljabar, Kuadrat & Trigonometri)</h2>
+            <p>
+                Banyak soal ujian (terutama SNBT dan Olimpiade SMP/SMA) yang menanyakan nilai maksimum atau minimum dapat diselesaikan dengan sangat cepat <strong>tanpa menggunakan turunan</strong>:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bentuk Fungsi / Ekspresi</th>
+                            <th>Rumus Nilai Maksimum & Minimum</th>
+                            <th>Keterangan & Syarat Tercapai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>1. Fungsi Kuadrat (Parabola)</strong><br>$$f(x) = ax^2 + bx + c$$</td>
+                            <td>
+                                $$x_p = -\frac{b}{2a}$$
+                                $$y_{\text{ekstrem}} = -\frac{D}{4a} = \frac{4ac - b^2}{4a}$$
+                            </td>
+                            <td class="text-left">
+                                • Jika $a > 0$ (terbuka ke atas) $\to$ memiliki nilai <strong>MINIMUM</strong>.<br>
+                                • Jika $a < 0$ (terbuka ke bawah) $\to$ memiliki nilai <strong>MAKSIMUM</strong>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>2. Bentuk Kuadrat Sempurna & Mutlak</strong><br>$f(x) = a(g(x))^2 + k$ atau $a|g(x)| + k$</td>
+                            <td>
+                                Karena $(g(x))^2 \ge 0$ dan $|g(x)| \ge 0$:<br>
+                                $$y_{\text{ekstrem}} = k$$
+                            </td>
+                            <td class="text-left">
+                                Tercapai saat $g(x) = 0$.<br>
+                                Minimum jika $a > 0$, Maksimum jika $a < 0$.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>3. Fungsi Trigonometri Dasar</strong><br>$f(x) = A \sin(kx \pm b) + C$<br>$f(x) = A \cos(kx \pm b) + C$</td>
+                            <td>
+                                $$y_{\text{maks}} = |A| + C$$
+                                $$y_{\text{min}} = -|A| + C$$
+                            </td>
+                            <td class="text-left">Berdasarkan batas nilai $-1 \le \sin(\dots) \le 1$ dan $-1 \le \cos(\dots) \le 1$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>4. Kombinasi Linear Sinus & Cosinus</strong><br>$$f(x) = a \cos x + b \sin x + c$$</td>
+                            <td>
+                                $$y_{\text{maks}} = \sqrt{a^2 + b^2} + c$$
+                                $$y_{\text{min}} = -\sqrt{a^2 + b^2} + c$$
+                            </td>
+                            <td class="text-left">Diperoleh dari penggabungan gelombang $R \cos(x - \alpha)$ dengan $R = \sqrt{a^2 + b^2}$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>5. Ketaksamaan AM-GM ($u, v > 0$)</strong><br>$$f(x) = u + v$$</td>
+                            <td>
+                                $$u + v \ge 2\sqrt{u \cdot v}$$
+                                $$(u \cdot v)_{\text{maks}} = \left(\frac{u + v}{2}\right)^2$$
+                            </td>
+                            <td class="text-left">Tercapai saat kedua suku positif bernilai <strong>sama besar ($u = v$)</strong>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Pendekatan Kalkulus: Titik Stasioner, Uji Turunan Pertama & Kedua</h2>
+            <p>
+                Untuk fungsi polinomial derajat tinggi (pangkat 3 ke atas) atau fungsi umum yang terdiferensialkan (memiliki turunan), nilai ekstrem lokal dicari menggunakan <strong>turunan pertama $f'(x)$</strong> dan <strong>turunan kedua $f''(x)$</strong>.
+            </p>
+            <p>
+                <strong>Syarat Stasioner (Garis Singgung Mendatar):</strong><br>
+                Pada puncak bukit (maksimum balik) maupun dasar lembah (minimum balik), kemiringan garis singgung kurva adalah mendatar (gradien $m = 0$). Titik $(c, f(c))$ disebut <strong>Titik Stasioner</strong> jika:
+                $$f'(c) = 0$$
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>a. Uji Turunan Pertama (Perubahan Tanda $f'(x)$):</strong>
+                    </p>
+                    <ul>
+                        <li>Jika $f'(x) > 0$, fungsi sedang <strong>naik</strong> ($\nearrow$).</li>
+                        <li>Jika $f'(x) < 0$, fungsi sedang <strong>turun</strong> ($\searrow$).</li>
+                        <li><strong>Titik Balik Maksimum:</strong> Tanda $f'(x)$ di sekitar $x = c$ berubah dari <strong>Positif ($+$) ke Negatif ($-$)</strong> ($\nearrow \to \searrow$).</li>
+                        <li><strong>Titik Balik Minimum:</strong> Tanda $f'(x)$ di sekitar $x = c$ berubah dari <strong>Negatif ($-$) ke Positif ($+$)</strong> ($\searrow \to \nearrow$).</li>
+                        <li><strong>Titik Belok Stasioner:</strong> Tanda $f'(x)$ di kiri dan kanan $x = c$ <strong>tidak berubah</strong> ($+ \to +$ atau $- \to -$, contoh: $y = x^3$ di $x = 0$).</li>
+                    </ul>
+                    <p>
+                        <strong>b. Uji Turunan Kedua (Kecekungan Kurva $f''(c)$):</strong><br>
+                        Misalkan $f'(c) = 0$. Substitusikan $x = c$ ke turunan kedua $f''(x)$:
+                    </p>
+                    <ul>
+                        <li>Jika $f''(c) < 0$ (cekung ke bawah $\cap$) $\implies f(c)$ adalah <strong>Nilai Balik MAKSIMUM</strong>.</li>
+                        <li>Jika $f''(c) > 0$ (cekung ke atas $\cup$) $\implies f(c)$ adalah <strong>Nilai Balik MINIMUM</strong>.</li>
+                        <li>Jika $f''(c) = 0 \implies$ Uji turunan kedua gagal/tidak menyimpulkan (kembali gunakan Uji Turunan Pertama).</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-stationary" style="width: 100%; max-width: 350px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Prosedur Mencari Maksimum & Minimum Mutlak pada Interval Tertutup $[a, b]$:<br>
+                Jika soal membatasi domain pada interval tertutup $a \le x \le b$, <strong>JANGAN hanya menghitung titik stasioner!</strong> Ikuti 3 langkah wajib ini:<br>
+                1. Cari semua pembuat nol turunan pertama $f'(x) = 0$ yang <strong>masuk di dalam interval $(a, b)$</strong> (abaikan yang berada di luar $[a, b]$!).<br>
+                2. Hitung nilai fungsi di titik-titik stasioner tersebut <strong>DAN</strong> di kedua titik ujung interval, yaitu $f(a)$ dan $f(b)$.<br>
+                3. Bandingkan seluruh hasilnya: nilai terbesar adalah <strong>Maksimum Mutlak</strong>, dan nilai terkecil adalah <strong>Minimum Mutlak</strong>.
+            </div>
+
+            <h2>4. Aplikasi Soal Cerita Optimasi (Geometri & Ekonomi) + Rumus Cepat</h2>
+            <p>
+                Langkah sistematis menyelesaikan soal cerita maksimum/minimum (optimasi):
+            </p>
+            <ol>
+                <li><strong>Identifikasi Fungsi Sasaran (Objektif):</strong> Tentukan besaran apa yang ingin dimaksimumkan atau diminimumkan (misalnya Luas $L$, Volume $V$, Biaya $B$, atau Laba $\pi$).</li>
+                <li><strong>Substitusi Persamaan Kendala:</strong> Gunakan informasi yang diketahui di soal untuk menyatakan fungsi sasaran hanya dalam <strong>satu variabel bebas</strong> (misalnya $L(x)$ atau $V(x)$).</li>
+                <li><strong>Terapkan Syarat Stasioner:</strong> Selesaikan persamaan $L'(x) = 0$ atau $V'(x) = 0$.</li>
+            </ol>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Kasus Klasik: Kotak Tanpa Tutup dari Karton Persegi</strong><br>
+                        Selembar karton persegi berukuran $a \times a$ dipotong keempat pojoknya berupa persegi berukuran $x \times x$, lalu dilipat ke atas membentuk kotak tanpa tutup (lihat ilustrasi di samping).
+                    </p>
+                    <ul>
+                        <li>Panjang alas = $a - 2x$, lebar alas = $a - 2x$, dan tinggi = $x$.</li>
+                        <li>Volume kotak: $V(x) = x(a - 2x)^2$.</li>
+                        <li>Dengan menurunkan $V'(x) = 0$, diperoleh bahwa volume kotak mencapai <strong>maksimum</strong> tepat ketika:
+                            $$x = \frac{1}{6}a \implies V_{\text{maks}} = \frac{2}{27}a^3$$
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-opt-box" style="width: 100%; max-width: 330px;"></div>
+                </div>
+            </div>
+
+            <p>
+                <strong>Tabel Rumus Cepat Soal Cerita Optimasi (Sangat Berguna untuk SNBT!):</strong>
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kasus Soal Cerita Optimasi</th>
+                            <th>Kondisi Saat Mencapai Nilai Ekstrem</th>
+                            <th>Rumus Cepat Nilai Maksimum / Minimum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Dua Bilangan Jumlahnya Konstan</strong> ($x + y = S$)<br>Hasil kali $P = x \cdot y$ maksimum</td>
+                            <td>Kedua bilangan sama besar:<br>$$x = y = \frac{S}{2}$$</td>
+                            <td>$$P_{\text{maks}} = \frac{S^2}{4}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Kandang Persegi Panjang Keliling $K$</strong><br>(Dipagari keempat sisinya: $2p + 2l = K$)</td>
+                            <td>Berbentuk <strong>Persegi</strong>:<br>$$p = l = \frac{K}{4}$$</td>
+                            <td>$$L_{\text{maks}} = \left(\frac{K}{4}\right)^2 = \frac{K^2}{16}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Kandang di Pinggir Tembok / Sungai</strong><br>(Hanya 3 sisi dipagari sepanjang $K$: $p + 2l = K$)</td>
+                            <td>Panjang sejajar tembok = $2\times$ lebar:<br>$$p = \frac{K}{2} \quad \text{dan} \quad l = \frac{K}{4}$$</td>
+                            <td>$$L_{\text{maks}} = \frac{K}{2} \cdot \frac{K}{4} = \frac{K^2}{8}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Kotak Tanpa Tutup dari Persegi $a \times a$</strong><br>(Dipotong pojoknya sebesar $x \times x$)</td>
+                            <td>Tinggi potongan pojok:<br>$$x = \frac{1}{6}a$$</td>
+                            <td>$$V_{\text{maks}} = \frac{2}{27}a^3$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Persegi Panjang di Dalam Segitiga</strong><br>(Segitiga alas $a$ dan tinggi $t$)</td>
+                            <td>Ukuran persegi panjang adalah setengah alas dan setengah tinggi ($\frac{1}{2}a \times \frac{1}{2}t$)</td>
+                            <td>$$L_{\text{maks}} = \frac{1}{4} a \cdot t = \frac{1}{2} L_{\triangle}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Laba / Keuntungan Ekonomi Maksimum</strong><br>Pendapatan $R(x)$ dan Biaya $C(x)$</td>
+                            <td>Pendapatan marginal = Biaya marginal:<br>$$\pi'(x) = 0 \iff R'(x) = C'(x)$$</td>
+                            <td>Substitusikan jumlah unit $x$ ke fungsi laba $\pi(x) = R(x) - C(x)$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Nilai maksimum dan nilai minimum mutlak dari fungsi $f(x) = x^3 - 3x^2 - 9x + 12$ pada interval tertutup $-2 \le x \le 4$ berturut-turut adalah ....
+                <ol class="pilgan">
+                    <li>$17$ dan $-15$</li>
+                    <li>$17$ dan $-8$</li>
+                    <li>$8$ dan $-15$</li>
+                    <li>$12$ dan $-15$</li>
+                    <li>$17$ dan $-20$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. <strong>Cari titik stasioner di dalam interval $[-2, 4]$ dengan syarat $f'(x) = 0$:</strong>
+                    $$f'(x) = 3x^2 - 6x - 9 = 0$$
+                    Bagi kedua ruas dengan $3$, lalu faktorkan:
+                    $$x^2 - 2x - 3 = 0 \iff (x + 1)(x - 3) = 0 \implies x = -1 \text{ atau } x = 3$$
+                    Kedua titik stasioner ($x = -1$ dan $x = 3$) berada di dalam interval $[-2, 4]$.
+                </p>
+                <p>
+                    2. <strong>Uji nilai $f(x)$ pada titik stasioner ($x = -1, x = 3$) dan ujung interval ($x = -2, x = 4$):</strong>
+                </p>
+                <ul>
+                    <li>$f(-2) = (-2)^3 - 3(-2)^2 - 9(-2) + 12 = -8 - 12 + 18 + 12 = 10$</li>
+                    <li>$f(-1) = (-1)^3 - 3(-1)^2 - 9(-1) + 12 = -1 - 3 + 9 + 12 = \mathbf{17}$ (Maksimum)</li>
+                    <li>$f(3) = (3)^3 - 3(3)^2 - 9(3) + 12 = 27 - 27 - 27 + 12 = \mathbf{-15}$ (Minimum)</li>
+                    <li>$f(4) = (4)^3 - 3(4)^2 - 9(4) + 12 = 64 - 48 - 36 + 12 = -8$</li>
+                </ul>
+                <p>
+                    3. Bandingkan keempat nilai tersebut: nilai terbesar adalah $17$ dan nilai terkecil adalah $-15$.
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai maksimum dan minimumnya berturut-turut adalah $17$ dan $-15$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Seorang petani ingin membuat kandang berbentuk persegi panjang di tepi sebuah sungai yang lurus. Sisi kandang yang berada tepat di tepi sungai tidak memerlukan pagar. Jika petani tersebut memiliki pagar kawat sepanjang $120\text{ meter}$ untuk memagari ketiga sisi lainnya, maka luas maksimum kandang yang dapat dibuat adalah ....
+                <ol class="pilgan">
+                    <li>$900\text{ m}^2$</li>
+                    <li>$1.200\text{ m}^2$</li>
+                    <li>$1.600\text{ m}^2$</li>
+                    <li>$1.800\text{ m}^2$</li>
+                    <li>$3.600\text{ m}^2$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    <strong>Cara 1 (Menggunakan Kalkulus / Fungsi Kuadrat):</strong><br>
+                    Misalkan lebar kandang (tegak lurus sungai) adalah $x$ dan panjang kandang (sejajar sungai) adalah $y$. Karena hanya 3 sisi yang dipagari dengan total panjang $120\text{ m}$, maka persamaan kendalanya adalah:
+                    $$2x + y = 120 \iff y = 120 - 2x$$
+                    Fungsi luas kandang adalah:
+                    $$L(x) = x \cdot y = x(120 - 2x) = 120x - 2x^2$$
+                    Agar luas maksimum, turunan pertamanya harus nol ($L'(x) = 0$):
+                    $$L'(x) = 120 - 4x = 0 \implies 4x = 120 \implies x = 30\text{ m}$$
+                    Substitusikan $x = 30$ untuk mendapatkan $y = 120 - 2(30) = 60\text{ m}$. Maka luas maksimumnya adalah:
+                    $$L_{\text{maks}} = 30 \times 60 = 1.800\text{ m}^2$$
+                </p>
+                <p>
+                    <strong>Cara 2 (Menggunakan Rumus Cepat Tabel):</strong><br>
+                    Untuk kandang 3 sisi dengan panjang pagar $K = 120\text{ m}$:
+                    $$L_{\text{maks}} = \frac{K^2}{8} = \frac{120^2}{8} = \frac{14.400}{8} = 1.800\text{ m}^2$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, luas maksimum kandang yang dapat dibuat adalah $1.800\text{ m}^2$ (Jawaban D).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Suatu proyek pembangunan gedung dapat diselesaikan dalam $x$ hari dengan biaya proyek per hari sebesar $\left(2x + \frac{900}{x} - 60\right)$ juta rupiah. Agar total biaya proyek keseluruhan mencapai <strong>minimum</strong>, maka proyek tersebut harus diselesaikan dalam waktu ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$10\text{ hari}$</li>
+                    <li>$15\text{ hari}$</li>
+                    <li>$20\text{ hari}$</li>
+                    <li>$25\text{ hari}$</li>
+                    <li>$30\text{ hari}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. <strong>Hati-hati jebakan soal!</strong> Rumus yang diberikan di soal adalah biaya <em>per hari</em>. Maka fungsi <strong>Biaya Total ($B(x)$)</strong> untuk $x$ hari diperoleh dengan mengalikan biaya per hari tersebut dengan $x$:
+                    $$B(x) = x \cdot \left(2x + \frac{900}{x} - 60\right)$$
+                    $$B(x) = 2x^2 - 60x + 900$$
+                </p>
+                <p>
+                    2. Agar biaya total $B(x)$ mencapai minimum, terapkan syarat stasioner $B'(x) = 0$ (atau sumbu simetri parabola $x_p = -\frac{b}{2a}$):
+                    $$B'(x) = 4x - 60 = 0 \implies 4x = 60 \implies x = 15\text{ hari}$$
+                    <em>(Biaya total minimumnya adalah $B(15) = 2(15)^2 - 60(15) + 900 = 450 - 900 + 900 = 450\text{ juta rupiah}$).</em>
+                </p>
+                <div class="kesimpulan">
+                    Jadi, proyek tersebut harus diselesaikan dalam waktu $15\text{ hari}$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Jarak terdekat (minimum) dari titik $P(3, 0)$ ke kurva parabola $y = \sqrt{2x}$ pada bidang Kartesius adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$\sqrt{2}$</li>
+                    <li>$\sqrt{3}$</li>
+                    <li>$2$</li>
+                    <li>$\sqrt{5}$</li>
+                    <li>$\sqrt{6}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Misalkan titik pada kurva $y = \sqrt{2x}$ (dengan $x \ge 0$, sehingga $y^2 = 2x$) adalah $Q(x, y)$. Jarak antara titik $P(3, 0)$ dan titik $Q(x, y)$ menurut rumus jarak Euclid adalah:
+                    $$d = \sqrt{(x - 3)^2 + (y - 0)^2} = \sqrt{(x - 3)^2 + y^2}$$
+                </p>
+                <p>
+                    2. Substitusikan persamaan kurva $y^2 = 2x$ ke dalam fungsi kuadrat jarak $D(x) = d^2$ (meminimumkan $d$ sama dengan meminimumkan $d^2$):
+                    $$D(x) = (x - 3)^2 + 2x = x^2 - 6x + 9 + 2x$$
+                    $$D(x) = x^2 - 4x + 9$$
+                </p>
+                <p>
+                    3. Cari nilai $x$ pembuat minimum dengan syarat $D'(x) = 0$ (atau lengkapkan kuadrat sempurna $D(x) = (x - 2)^2 + 5$):
+                    $$D'(x) = 2x - 4 = 0 \implies x = 2$$
+                </p>
+                <p>
+                    4. Substitusikan $x = 2$ untuk mendapatkan nilai minimum dari $d^2$ dan $d$:
+                    $$d_{\text{min}}^2 = (2 - 2)^2 + 5 = 5 \implies d_{\text{min}} = \sqrt{5}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, jarak terdekat dari titik $P(3, 0)$ ke kurva $y = \sqrt{2x}$ adalah $\sqrt{5}$ (Jawaban D).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Ekstrem Lokal vs Ekstrem Global pada Interval [a, b] menggunakan GeoSVG.js (yUp: true)
+            const containerTypes = document.getElementById("geosvg-extrema-types");
+            if (containerTypes && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerTypes, 340, 235, {
+                    viewBox: "-30 -30 320 215",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Nilai Maksimum dan Minimum Lokal vs Global",
+                    description: "Grafik fungsi pada interval [a, b] yang menunjukkan maksimum lokal, minimum lokal/global, dan maksimum global di ujung interval"
+                });
+
+                const sx = 54;
+                const sy = 25;
+                // Fungsi kubik f(x) = 0.35*(x - 2.2)^3 - 1.15*(x - 2.2) + 2.6 pada [0.5, 4.4]
+                const f = x => {
+                    const u = x - 2.15;
+                    return 0.42 * u * u * u - 1.35 * u + 2.65;
+                };
+
+                // Sumbu X dan Y
+                geo1.buatVektor([-18, 0], [270, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatVektor([0, -18], [0, 172], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatTeks(265, -13, "x", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo1.buatTeks(-12, 166, "y", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+
+                const xA = 0.5;
+                const xB = 4.35;
+                // Titik stasioner: 1.26 * u^2 = 1.35 => u = +- 1.035 => x1 = 1.115 (Maks Lokal), x2 = 3.185 (Min Lokal & Global)
+                const xMaxLoc = 1.115;
+                const xMinLoc = 3.185;
+
+                // Garis proyeksi titik penting ke sumbu X
+                [
+                    { x: xA, label: "a" },
+                    { x: xMaxLoc, label: "c₁" },
+                    { x: xMinLoc, label: "c₂" },
+                    { x: xB, label: "b" }
+                ].forEach(pt => {
+                    geo1.buatSegmen([pt.x * sx, 0], [pt.x * sx, f(pt.x) * sy], {
+                        stroke: "var(--border-color)", strokeWidth: 1.2, dashed: "4 3"
+                    });
+                    geo1.buatTeks(pt.x * sx, -14, pt.label, {
+                        fill: "var(--text-main)", fontWeight: "bold", fontSize: "10.5px", position: "middle-center"
+                    });
+                });
+
+                // Kurva fungsi y = f(x) menggunakan buatFungsi bawaan GeoSVG.js
+                geo1.buatFungsi(f, xA, xB, {
+                    skalaX: sx,
+                    skalaY: sy,
+                    langkah: 120,
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.6
+                });
+
+                // Garis singgung mendatar di puncak lokal dan lembah lokal
+                geo1.buatSegmen([(xMaxLoc - 0.55) * sx, f(xMaxLoc) * sy], [(xMaxLoc + 0.55) * sx, f(xMaxLoc) * sy], {
+                    stroke: "#d97706", strokeWidth: 1.6, dashed: "3 2"
+                });
+                geo1.buatSegmen([(xMinLoc - 0.55) * sx, f(xMinLoc) * sy], [(xMinLoc + 0.55) * sx, f(xMinLoc) * sy], {
+                    stroke: "#ef4444", strokeWidth: 1.6, dashed: "3 2"
+                });
+
+                // Titik-titik ekstrem & ujung
+                geo1.buatTitik([xA * sx, f(xA) * sy], { size: 4, color: "var(--text-main)" });
+                geo1.buatTitik([xMaxLoc * sx, f(xMaxLoc) * sy], {
+                    size: 4.5, color: "#d97706",
+                    label: "Maks Lokal", labelPosition: "top-center", labelDistance: 7, bold: true
+                });
+                geo1.buatTitik([xMinLoc * sx, f(xMinLoc) * sy], {
+                    size: 4.5, color: "#ef4444",
+                    label: "Min Lokal & Global", labelPosition: "bottom-center", labelDistance: 8, bold: true
+                });
+                geo1.buatTitik([xB * sx, f(xB) * sy], {
+                    size: 5, color: "var(--teal-primary)",
+                    label: "Maks Global", labelPosition: "top-left", labelDistance: 6, bold: true
+                });
+            }
+
+            // 2. Visualisasi Titik Stasioner, Tanda f'(x), dan Kecekungan f''(x) menggunakan GeoSVG.js (yUp: true)
+            const containerStat = document.getElementById("geosvg-stationary");
+            if (containerStat && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerStat, 340, 235, {
+                    viewBox: "-25 -25 320 215",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Uji Turunan Pertama dan Turunan Kedua pada Titik Stasioner",
+                    description: "Visualisasi perubahan tanda turunan pertama f'(x) dan kecekungan f''(x) di titik balik maksimum dan minimum"
+                });
+
+                const sx = 52;
+                const sy = 26;
+                const f = x => {
+                    const u = x - 2.5;
+                    return 0.38 * u * u * u - 1.35 * u + 2.9;
+                };
+
+                // Sumbu X dan Y
+                geo2.buatVektor([-15, 0], [275, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo2.buatVektor([0, -15], [0, 175], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+
+                // Titik stasioner: 1.14 * u^2 = 1.35 => u = +- 1.088 => xMax = 1.412, xMin = 3.588, Titik Belok di x = 2.5
+                const xMax = 1.412;
+                const xBelok = 2.5;
+                const xMin = 3.588;
+
+                // Kurva utama
+                geo2.buatFungsi(f, 0.35, 4.65, {
+                    skalaX: sx,
+                    skalaY: sy,
+                    langkah: 120,
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.6
+                });
+
+                // Garis singgung mendatar f'(c) = 0 di puncak dan lembah
+                geo2.buatSegmen([(xMax - 0.65) * sx, f(xMax) * sy], [(xMax + 0.65) * sx, f(xMax) * sy], {
+                    stroke: "var(--teal-primary)", strokeWidth: 2, dashed: "4 3"
+                });
+                geo2.buatSegmen([(xMin - 0.65) * sx, f(xMin) * sy], [(xMin + 0.65) * sx, f(xMin) * sy], {
+                    stroke: "#d97706", strokeWidth: 2, dashed: "4 3"
+                });
+
+                // Label tanda f'(x) di sepanjang kurva
+                geo2.buatTeks(0.62 * sx, 2.2 * sy, "f' > 0 (↗)", {
+                    fill: "var(--teal-primary)", fontSize: "9.5px", fontWeight: "bold", position: "middle-center"
+                });
+                geo2.buatTeks(2.5 * sx + 28, 3.25 * sy, "f' < 0 (↘)", {
+                    fill: "#ef4444", fontSize: "9.5px", fontWeight: "bold", position: "middle-center"
+                });
+                geo2.buatTeks(4.45 * sx, 2.2 * sy, "f' > 0 (↗)", {
+                    fill: "var(--teal-primary)", fontSize: "9.5px", fontWeight: "bold", position: "middle-center"
+                });
+
+                // Titik Balik Maksimum, Titik Belok, dan Titik Balik Minimum
+                geo2.buatTitik([xMax * sx, f(xMax) * sy], {
+                    size: 5, color: "var(--teal-primary)",
+                    label: "f'=0, f''<0 (Maks)", labelPosition: "top-center", labelDistance: 8, bold: true
+                });
+                geo2.buatTitik([xBelok * sx, f(xBelok) * sy], {
+                    size: 4, color: "#ef4444",
+                    label: "Titik Belok (f''=0)", labelPosition: "bottom-left", labelDistance: 6
+                });
+                geo2.buatTitik([xMin * sx, f(xMin) * sy], {
+                    size: 5, color: "#d97706",
+                    label: "f'=0, f''>0 (Min)", labelPosition: "bottom-center", labelDistance: 9, bold: true
+                });
+            }
+
+            // 3. Visualisasi Jaring-Jaring Karton Kotak Tanpa Tutup (Optimasi Geometri) menggunakan GeoSVG.js
+            const containerBox = document.getElementById("geosvg-opt-box");
+            if (containerBox && typeof GeoSVG !== "undefined") {
+                const geo3 = new GeoSVG(containerBox, 310, 230, {
+                    viewBox: "0 0 310 230",
+                    clearContainer: true,
+                    title: "Jaring-Jaring Karton Persegi yang Dipotong Pojoknya",
+                    description: "Karton berukuran a x a yang dipotong keempat pojoknya sebesar x x x untuk dilipat menjadi kotak tanpa tutup"
+                });
+
+                geo3.buatTeks(155, 14, "Jaring-Jaring Kotak Tanpa Tutup (x = a/6)", {
+                    fill: "var(--teal-primary)", fontWeight: "bold", fontSize: "11.5px", position: "middle-center"
+                });
+
+                const startX = 75;
+                const startY = 30;
+                const S = 156; // ukuran karton total a
+                const xCut = 32; // ukuran potongan pojok x
+
+                // Karton utuh (persegi besar)
+                geo3.buatPersegi(startX, startY, S, {
+                    fill: "rgba(13, 148, 136, 0.14)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2
+                });
+
+                // 4 persegi pojok yang dipotong/dibuang (warna kuning/merah putus-putus)
+                const corners = [
+                    [startX, startY],
+                    [startX + S - xCut, startY],
+                    [startX, startY + S - xCut],
+                    [startX + S - xCut, startY + S - xCut]
+                ];
+                corners.forEach(c => {
+                    geo3.buatPersegi(c[0], c[1], xCut, {
+                        fill: "rgba(217, 119, 6, 0.24)",
+                        stroke: "#d97706",
+                        strokeWidth: 1.5,
+                        dashed: "3 2"
+                    });
+                });
+
+                // Alas kotak di bagian tengah (garis lipatan putus-putus)
+                geo3.buatPersegi(startX + xCut, startY + xCut, S - 2 * xCut, {
+                    fill: "rgba(13, 148, 136, 0.18)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 1.8,
+                    dashed: "5 3"
+                });
+
+                // Label bagian dalam alas dan pojok x
+                geo3.buatTeks(startX + S / 2, startY + S / 2 - 8, "Alas Kotak", {
+                    fill: "var(--teal-primary)", fontWeight: "bold", fontSize: "11px", position: "middle-center"
+                });
+                geo3.buatTeks(startX + S / 2, startY + S / 2 + 9, "(a - 2x) × (a - 2x)", {
+                    fill: "var(--text-main)", fontWeight: "bold", fontSize: "10px", position: "middle-center"
+                });
+
+                // Label x pada pojok
+                geo3.buatTeks(startX + xCut / 2, startY + xCut / 2, "x", {
+                    fill: "#d97706", fontWeight: "bold", fontSize: "11px", position: "middle-center"
+                });
+                geo3.buatTeks(startX + S - xCut / 2, startY + xCut / 2, "x", {
+                    fill: "#d97706", fontWeight: "bold", fontSize: "11px", position: "middle-center"
+                });
+
+                // Garis dimensi panjang total a di bawah dan sisi kiri
+                geo3.buatDimensi([startX, startY + S], [startX + S, startY + S], 18, "a", {
+                    stroke: "var(--text-main)", fontSize: "11px", fontWeight: "bold", labelJarak: 9
+                });
+                geo3.buatDimensi([startX + xCut, startY], [startX + S - xCut, startY], -10, "a - 2x", {
+                    stroke: "var(--teal-primary)", fontSize: "10px", fontWeight: "bold", labelJarak: 8
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Modulo</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Modulo (Aritmetika Modular)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Operasi Modulo dan Kekongruenan</h2>
+            <p>
+                Berdasarkan <strong>Algoritma Pembagian Euclid</strong>, untuk setiap bilangan bulat \(a\) dan bilangan bulat positif \(m\), terdapat secara tunggal bilangan bulat \(q\) (hasil bagi) dan \(r\) (sisa pembagian) sedemikian sehingga:
+                $$a = m \cdot q + r, \quad \text{dengan } 0 \le r < m$$
+                Operasi biner \(a \bmod m = r\) menghasilkan <strong>sisa pembagian tak-negatif</strong> ketika \(a\) dibagi oleh \(m\). Hati-hati untuk bilangan negatif: karena syarat \(0 \le r < m\), maka \(-17 = 5(-4) + 3\), sehingga \(-17 \bmod 5 = 3\) (bukan \(-2\)).
+            </p>
+            <p>
+                <strong>Definisi Kekongruenan (Gauss):</strong> Dua bilangan bulat \(a\) dan \(b\) dikatakan <strong>kongruen modulo \(m\)</strong> jika keduanya memiliki sisa yang sama ketika dibagi \(m\), atau ekuivalen dengan \(m\) membagi habis selisih \((a - b)\):
+                $$a \equiv b \pmod{m} \iff m \mid (a - b) \iff a - b = k \cdot m \quad (k \in \mathbb{Z})$$
+            </p>
+            <ul>
+                <li>
+                    <strong>Relasi Ekuivalensi:</strong> Kekongruenan modulo \(m\) memenuhi sifat <em>refleksif</em> (\(a \equiv a\)), <em>simetris</em> (\(a \equiv b \implies b \equiv a\)), dan <em>transitif</em> (\(a \equiv b\) dan \(b \equiv c \implies a \equiv c\)).
+                </li>
+                <li>
+                    <strong>Kelas Residu Modulo \(m\):</strong> Mengelompokkan seluruh bilangan bulat \(\mathbb{Z}\) menjadi tepat \(m\) himpunan sisa: \(\{[0], [1], [2], \dots, [m-1]\}\).
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-modulo-jam" style="width: 100%; max-width: 600px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Sifat-Sifat Operasi Aritmetika Modulo</h2>
+            <p>
+                Misalkan \(a \equiv b \pmod{m}\) dan \(c \equiv d \pmod{m}\), serta \(k, n \in \mathbb{Z}^+\). Operasi penjumlahan, pengurangan, perkalian, dan perpangkatan dapat dilakukan langsung terhadap sisanya:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Sifat</th>
+                            <th>Rumus Kekongruenan</th>
+                            <th>Contoh Penerapan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Penjumlahan & Pengurangan</strong></td>
+                            <td>$$a \pm c \equiv b \pm d \pmod{m}$$</td>
+                            <td class="text-left">\(14 \equiv 4 \pmod{5}\) dan \(8 \equiv 3 \pmod{5}\) \(\implies 22 \equiv 7 \equiv 2 \pmod{5}\).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Perkalian</strong></td>
+                            <td>$$a \cdot c \equiv b \cdot d \pmod{m}$$</td>
+                            <td class="text-left">\(14 \times 8 \equiv 4 \times 3 = 12 \equiv 2 \pmod{5}\).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Perpangkatan Bilangan Asli</strong></td>
+                            <td>$$a^n \equiv b^n \pmod{m}$$</td>
+                            <td class="text-left">Karena \(8 \equiv -1 \pmod{9}\), maka \(8^{2025} \equiv (-1)^{2025} = -1 \equiv 8 \pmod{9}\).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Hukum Kanselasi (Pembagian)</strong></td>
+                            <td>$$k \cdot a \equiv k \cdot b \pmod{m} \implies a \equiv b \pmod{\frac{m}{\text{FPB}(k, m)}}$$</td>
+                            <td class="text-left">Jika \(\text{FPB}(k, m) = 1\), maka \(k\) boleh langsung dicoret: \(ka \equiv kb \pmod m \implies a \equiv b \pmod m\).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Invers Modulo dan Kekongruenan Linear</h2>
+            <p>
+                Dalam aritmetika modulo, tidak dikenal pembagian pecahan biasa. Sebagai gantinya, digunakan <strong>Invers Perkalian Modulo</strong>:
+            </p>
+            <ul>
+                <li>
+                    <strong>Syarat Eksistensi Invers:</strong> Bilangan bulat \(a\) memiliki invers modulo \(m\) (dilambangkan \(a^{-1}\)) yang memenuhi \(a \cdot a^{-1} \equiv 1 \pmod{m}\) <strong>jika dan hanya jika \(a\) dan \(m\) saling prima</strong>, yaitu \(\text{FPB}(a, m) = 1\).
+                </li>
+                <li>
+                    <strong>Kekongruenan Linear \(ax \equiv b \pmod{m}\):</strong> Misalkan \(d = \text{FPB}(a, m)\).
+                    <ul>
+                        <li>Jika \(d \nmid b\) (\(b\) tidak habis dibagi \(d\)), maka persamaan <strong>tidak memiliki solusi</strong>.</li>
+                        <li>Jika \(d \mid b\), maka persamaan memiliki tepat <strong>\(d\) buah solusi yang tidak kongruen</strong> modulo \(m\), yang diperoleh dengan menyederhanakan persamaan menjadi \(\frac{a}{d}x \equiv \frac{b}{d} \pmod{\frac{m}{d}}\).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-modulo-residu" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Teorema-Teorema Besar dalam Aritmetika Modulo</h2>
+            <p>
+                Untuk menghitung sisa perpangkatan raksasa \(a^n \pmod{m}\), kita menggunakan tiga teorema fundamental teori bilangan berikut:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Teorema</th>
+                            <th>Syarat Berlaku</th>
+                            <th>Rumus Utama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Teorema Kecil Fermat</strong><br><em>(Fermat's Little Theorem)</em></td>
+                            <td class="text-left">\(p\) adalah bilangan <strong>prima</strong> dan \(p \nmid a\) (\(\text{FPB}(a, p) = 1\))</td>
+                            <td>$$a^{p-1} \equiv 1 \pmod{p}$$<br>Bentuk umum: \(a^p \equiv a \pmod{p}\)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Teorema Euler</strong></td>
+                            <td class="text-left">\(m \in \mathbb{Z}^+\) sembarang dan \(\text{FPB}(a, m) = 1\)</td>
+                            <td>$$a^{\phi(m)} \equiv 1 \pmod{m}$$<br>\(\phi(m) = m \prod_{p \mid m} \left(1 - \frac{1}{p}\right)\) adalah fungsi totient Euler.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Teorema Wilson</strong></td>
+                            <td class="text-left">\(p\) adalah bilangan <strong>prima</strong></td>
+                            <td>$$(p-1)! \equiv -1 \equiv p - 1 \pmod{p}$$<br>Turunan penting: \((p-2)! \equiv 1 \pmod{p}\)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Teorema Sisa Tiongkok</strong><br><em>(Chinese Remainder Theorem)</em></td>
+                            <td class="text-left">\(m_1, m_2, \dots, m_k\) saling prima pasang demi pasang</td>
+                            <td class="text-left">Sistem \(x \equiv a_i \pmod{m_i}\) memiliki solusi <strong>tunggal</strong> dalam modulo \(M = m_1 m_2 \cdots m_k\).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>5. Aplikasi Modulo: Digit Terakhir dan Uji Keterbagian</h2>
+            <ul>
+                <li>
+                    <strong>Mencari Digit Terakhir (Satuan) & Dua Digit Terakhir:</strong>
+                    <ul>
+                        <li>Digit satuan dari bilangan bulat positif \(N\) adalah nilai dari \(N \bmod 10\).</li>
+                        <li>Dua digit terakhir dari \(N\) adalah nilai dari \(N \bmod 100\).</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Bukti Uji Keterbagian dengan \(9\) dan \(11\):</strong> Misalkan bilangan desimal \(N = \overline{a_k \dots a_2 a_1 a_0} = \sum_{i=0}^{k} a_i \cdot 10^i\).
+                    <ul>
+                        <li>Karena \(10 \equiv 1 \pmod{9}\), maka \(N \equiv a_k + \dots + a_1 + a_0 \pmod{9}\) (jumlah seluruh angka penyusunnya).</li>
+                        <li>Karena \(10 \equiv -1 \pmod{11}\), maka \(N \equiv a_0 - a_1 + a_2 - a_3 + \dots \pmod{11}\) (jumlah selang-seling angka penyusunnya dari kanan).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="kesimpulan">
+                💡 Strategi Cepat Menghitung Sisa Perpangkatan \(a^n \pmod{m}\):
+                <br>• Cari pangkat terkecil \(k\) sehingga \(a^k \equiv 1 \pmod{m}\) atau \(a^k \equiv -1 \pmod{m}\) (bisa menggunakan pola siklik atau Teorema Fermat \(k = p-1\)).
+                <br>• Bagi eksponen \(n\) dengan \(k\): tulis \(n = k \cdot q + r\), sehingga \(a^n = (a^k)^q \cdot a^r \equiv (\pm 1)^q \cdot a^r \pmod{m}\).
+            </div>
+
+            <h2>6. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh soal berikut untuk melihat penerapan sifat perpangkatan modulo, kekongruenan linear, serta Teorema Kecil Fermat & Teorema Sisa Tiongkok. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Sisa Pembagian Perpangkatan Besar -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Tentukan sisa pembagian dari \(2^{2026}\) oleh \(17\), serta tentukan hari apakah \(3^{100}\) hari setelah hari Selasa!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Bagian A: Mencari sisa \(2^{2026}\) dibagi \(17\).</strong><br>
+                        Perhatikan bahwa \(2^4 = 16 \equiv -1 \pmod{17}\). Kita ubah eksponen \(2026\) dengan membaginya terhadap \(4\):
+                        $$2026 = 4 \times 506 + 2$$
+                        Gunakan sifat perpangkatan modulo:
+                        $$2^{2026} = \left(2^4\right)^{506} \cdot 2^2 \equiv (-1)^{506} \cdot 4 \equiv 1 \cdot 4 = 4 \pmod{17}$$
+                        <em>(Catatan: Dengan Teorema Kecil Fermat juga diperoleh \(2^{16} \equiv 1 \pmod{17}\), dan \(2026 = 16 \times 126 + 10 \implies 2^{10} = (2^4)^2 \cdot 2^2 \equiv (-1)^2 \cdot 4 = 4 \pmod{17}\)).</em>
+                    </p>
+                    <p>
+                        <strong>Bagian B: Mencari hari \(3^{100}\) hari setelah hari Selasa (Modulo \(7\)).</strong><br>
+                        Karena siklus nama hari berulang setiap \(7\) hari dan \(7\) adalah bilangan prima dengan \(\text{FPB}(3, 7) = 1\), berdasarkan <strong>Teorema Kecil Fermat</strong> berlaku:
+                        $$3^{7-1} = 3^6 \equiv 1 \pmod{7}$$
+                        Bagi eksponen \(100\) dengan \(6\): \(100 = 6 \times 16 + 4\). Maka:
+                        $$3^{100} = (3^6)^{16} \cdot 3^4 \equiv 1^{16} \cdot 81 = 81 \equiv 4 \pmod{7}$$
+                        Empat hari setelah hari Selasa adalah: Rabu (1), Kamis (2), Jumat (3), <strong>Sabtu (4)</strong>.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, sisa pembagian \(2^{2026}\) oleh \(17\) adalah \(4\), dan \(3^{100}\) hari setelah hari Selasa adalah hari Sabtu.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Kekongruenan Linear & Hukum Kanselasi -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Tentukan semua solusi bilangan bulat \(x\) dengan \(0 \le x < 15\) yang memenuhi kekongruenan linear:
+                    $$6x \equiv 9 \pmod{15}$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Cek nilai \(\text{FPB}(a, m)\).</strong><br>
+                        Dari persamaan \(6x \equiv 9 \pmod{15}\), kita peroleh \(a = 6\), \(b = 9\), dan \(m = 15\).
+                        $$d = \text{FPB}(6, 15) = 3$$
+                        Karena \(d = 3\) membagi habis \(b = 9\), maka persamaan ini memiliki tepat <strong>\(3\) solusi yang tidak kongruen</strong> dalam modulo \(15\).
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Gunakan Hukum Kanselasi (bagi seluruh komponen, termasuk modulus, dengan \(d = 3\)).</strong>
+                        $$\frac{6}{3}x \equiv \frac{9}{3} \pmod{\frac{15}{3}} \implies 2x \equiv 3 \pmod{5}$$
+                        <strong>Langkah 3: Selesaikan dalam modulo \(5\).</strong><br>
+                        Tambahkan kelipatan \(5\) pada ruas kanan hingga habis dibagi \(2\): karena \(3 \equiv 3 + 5 = 8 \pmod{5}\), maka:
+                        $$2x \equiv 8 \pmod{5} \implies x \equiv 4 \pmod{5} \quad (\text{boleh dibagi } 2 \text{ karena } \text{FPB}(2,5)=1)$$
+                        <strong>Langkah 4: Daftarkan semua solusi pada rentang \(0 \le x < 15\).</strong><br>
+                        Karena \(x \equiv 4 \pmod{5}\), maka \(x = 4 + 5k\) untuk \(k = 0, 1, 2\):
+                        <ul>
+                            <li>Untuk \(k = 0 \implies x_1 = 4\)</li>
+                            <li>Untuk \(k = 1 \implies x_2 = 4 + 5 = 9\)</li>
+                            <li>Untuk \(k = 2 \implies x_3 = 4 + 10 = 14\)</li>
+                        </ul>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, himpunan solusi untuk \(0 \le x < 15\) adalah \(x \in \{4, 9, 14\}\).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Sistem Kekongruenan & Teorema Wilson -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Tentukan bilangan bulat positif terkecil \(x\) yang jika dibagi \(3\) bersisa \(2\), dibagi \(5\) bersisa \(3\), dan dibagi \(7\) bersisa \(2\). Selain itu, hitunglah sisa pembagian \(26!\) oleh \(29\)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Bagian A: Sistem Kekongruenan Linear (Teorema Sisa Tiongkok).</strong><br>
+                        Kita mencari \(x > 0\) terkecil yang memenuhi:
+                        $$\begin{cases} x \equiv 2 \pmod{3} \\ x \equiv 3 \pmod{5} \\ x \equiv 2 \pmod{7} \end{cases}$$
+                        Perhatikan bahwa dari persamaan pertama dan ketiga, \(x\) memiliki sisa yang <strong>sama</strong> yaitu \(2\) ketika dibagi \(3\) maupun \(7\). Karena \(\text{FPB}(3, 7) = 1\), maka langsung dapat digabung menjadi:
+                        $$x \equiv 2 \pmod{21} \implies x = 21k + 2 \quad (k \in \mathbb{Z}_{\ge 0})$$
+                        Substitusikan ke syarat kedua \(x \equiv 3 \pmod{5}\):
+                        $$21k + 2 \equiv 3 \pmod{5} \implies 1k + 2 \equiv 3 \pmod{5} \implies k \equiv 1 \pmod{5}$$
+                        Nilai \(k \ge 0\) terkecil adalah \(k = 1\), sehingga:
+                        $$x = 21(1) + 2 = 23 \quad (\text{Solusi umum: } x \equiv 23 \pmod{105})$$
+                    </p>
+                    <p>
+                        <strong>Bagian B: Menghitung \(26! \pmod{29}\) dengan Teorema Wilson.</strong><br>
+                        Karena \(p = 29\) adalah bilangan prima, menurut <strong>Teorema Wilson</strong> berlaku \((29 - 1)! = 28! \equiv -1 \pmod{29}\). Uraikan \(28!\):
+                        $$28 \cdot 27 \cdot 26! \equiv -1 \pmod{29}$$
+                        Ubah \(28 \equiv -1 \pmod{29}\) dan \(27 \equiv -2 \pmod{29}\):
+                        $$(-1) \cdot (-2) \cdot 26! \equiv -1 \pmod{29} \implies 2 \cdot 26! \equiv -1 \equiv 28 \pmod{29}$$
+                        Karena \(\text{FPB}(2, 29) = 1\), bagi kedua ruas dengan \(2\):
+                        $$26! \equiv 14 \pmod{29}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, bilangan bulat positif terkecil \(x\) adalah \(23\), dan sisa pembagian \(26!\) oleh \(29\) adalah \(14\).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiModulo() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const roseColor = isDark ? '#fb7185' : '#e11d48';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI ARITMETIKA JAM SIKLIK (MODULO 12) & CONTOH HITUNG
+               ------------------------------------------------------------- */
+            const geoJam = new GeoSVG('geosvg-modulo-jam', 600, 275, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoJam.buatPersegiPanjang(6, 6, 588, 263, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoJam.buatSegmen(285, 16, 285, 258, { stroke: borderColor, strokeWidth: 1.2, dashed: '4,4' });
+
+            // --- PANEL KIRI: LINGKARAN SIKLIK MODULO 12 ---
+            geoJam.buatTeks(145, 24, "Aritmetika Jam Siklik (Modulo 12)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor
+            });
+
+            const cx = 145, cy = 142, rJam = 86;
+            geoJam.buatLingkaran(cx, cy, rJam, {
+                fill: isDark ? '#0f172a' : '#f8fafc', stroke: borderColor, strokeWidth: 2
+            });
+
+            // Busur lompatan +7 jam dari angka 9 ke angka 4 (sudut 9 = 180 deg, sudut 4 = -90 + 120 = 30 deg)
+            geoJam.buatBusur(cx, cy, rJam + 16, 180, 390, {
+                stroke: amberColor, strokeWidth: 2.2, dashed: '4,3', sweep: 1
+            });
+            geoJam.buatTeks(cx, cy - rJam - 23, "+ 7 langkah searah jarum jam", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '9.5px', fill: amberColor
+            });
+
+            // Render 12 titik residu [0] s/d [11]
+            for (let k = 0; k < 12; k++) {
+                const deg = -90 + k * 30;
+                const rad = deg * Math.PI / 180;
+                const px = cx + rJam * Math.cos(rad);
+                const py = cy + rJam * Math.sin(rad);
+
+                const isStart = (k === 9);
+                const isEnd = (k === 4);
+
+                let nodeFill = cardBg;
+                let nodeStroke = borderColor;
+                let txtColor = textColor;
+
+                if (isStart) {
+                    nodeFill = isDark ? 'rgba(20, 184, 166, 0.28)' : 'rgba(13, 148, 136, 0.18)';
+                    nodeStroke = tealColor;
+                    txtColor = tealColor;
+                } else if (isEnd) {
+                    nodeFill = isDark ? 'rgba(251, 191, 36, 0.28)' : 'rgba(217, 119, 6, 0.20)';
+                    nodeStroke = amberColor;
+                    txtColor = amberColor;
+                }
+
+                geoJam.buatLingkaran(px, py, 13, {
+                    fill: nodeFill, stroke: nodeStroke, strokeWidth: (isStart || isEnd) ? 2.2 : 1.2
+                });
+                geoJam.buatTeks(px, py, String(k), {
+                    position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: txtColor
+                });
+            }
+
+            // Jarum penunjuk dari pusat ke 9 (awal) dan ke 4 (akhir)
+            const rad9 = Math.PI;
+            const rad4 = 30 * Math.PI / 180;
+            geoJam.buatVektor(cx, cy, cx + 58 * Math.cos(rad9), cy + 58 * Math.sin(rad9), {
+                stroke: tealColor, strokeWidth: 2.2
+            });
+            geoJam.buatVektor(cx, cy, cx + 58 * Math.cos(rad4), cy + 58 * Math.sin(rad4), {
+                stroke: amberColor, strokeWidth: 2.4
+            });
+            geoJam.buatTitik(cx, cy, { size: 4, color: textColor });
+
+            geoJam.buatTeks(145, 250, "9 + 7 = 16 ≡ 4 (mod 12)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: tealColor
+            });
+
+            // --- PANEL KANAN: MAKNA POSITIF & NEGATIF DALAM MODULO ---
+            geoJam.buatTeks(440, 24, "Prinsip Pembungkus (Wrap-Around)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor
+            });
+
+            // Kotak 1: Bilangan Positif
+            geoJam.buatPersegiPanjang(302, 44, 276, 64, {
+                radius: 8, fill: isDark ? '#0f172a' : '#f8fafc', stroke: tealColor, strokeWidth: 1.3
+            });
+            geoJam.buatTeks(440, 62, "1. Sisa Bilangan Positif (a > 0)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: tealColor
+            });
+            geoJam.buatTeks(440, 82, "29 = 12 × 2 + 5   ⟹   29 ≡ 5 (mod 12)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor
+            });
+            geoJam.buatTeks(440, 98, "(2 putaran penuh + sisa 5 langkah)", {
+                position: 'middle-center', fontSize: '9.5px', fill: mutedColor
+            });
+
+            // Kotak 2: Bilangan Negatif (Sangat Penting!)
+            geoJam.buatPersegiPanjang(302, 118, 276, 68, {
+                radius: 8, fill: isDark ? '#0f172a' : '#f8fafc', stroke: roseColor, strokeWidth: 1.3
+            });
+            geoJam.buatTeks(440, 136, "2. Sisa Bilangan Negatif (Syarat 0 ≤ r < m)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: roseColor
+            });
+            geoJam.buatTeks(440, 156, "−17 = 5 × (−4) + 3   ⟹   −17 mod 5 = 3", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor
+            });
+            geoJam.buatTeks(440, 174, "JANGAN tulis sisa −2, tambahkan 5: −2 + 5 = 3", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '9.5px', fill: amberColor
+            });
+
+            // Kotak 3: Keuntungan Sisa Negatif untuk Pangkat
+            geoJam.buatPersegiPanjang(302, 196, 276, 58, {
+                radius: 8, fill: isDark ? '#0f172a' : '#f8fafc', stroke: blueColor, strokeWidth: 1.3
+            });
+            geoJam.buatTeks(440, 214, "3. Trik Perwakilan Negatif (a ≡ m − 1 ≡ −1)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: blueColor
+            });
+            geoJam.buatTeks(440, 236, "11²⁰²⁵ ≡ (−1)²⁰²⁵ = −1 ≡ 11 (mod 12)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor
+            });
+
+
+            /* -------------------------------------------------------------
+               2. ILUSTRASI GARIS BILANGAN & KELAS RESIDU MODULO 4
+               ------------------------------------------------------------- */
+            const geoRes = new GeoSVG('geosvg-modulo-residu', 580, 235, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoRes.buatPersegiPanjang(6, 6, 568, 223, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoRes.buatTeks(290, 25, "Partisi Garis Bilangan Bulat ke Kelas Residu Modulo 4 (Loncatan +4)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor
+            });
+
+            // Garis Bilangan Utama dari -4 sampai 7
+            const lineY = 98;
+            geoRes.buatVektor(26, lineY, 554, lineY, { stroke: textColor, strokeWidth: 1.8 });
+            geoRes.buatVektor(554, lineY, 26, lineY, { stroke: textColor, strokeWidth: 1.8 });
+
+            const nums = [-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7];
+            const startX = 52, stepX = 43;
+            const resColors = [tealColor, amberColor, blueColor, roseColor];
+
+            // Busur lompatan +4 untuk kelas residu [1]: dari -3 -> 1 -> 5
+            const xNeg3 = startX + 1 * stepX;
+            const xPos1 = startX + 5 * stepX;
+            const xPos5 = startX + 9 * stepX;
+
+            geoRes.buatKurvaBezier([[xNeg3, lineY - 14], [(xNeg3 + xPos1) / 2, lineY - 62], [xPos1, lineY - 14]], {
+                stroke: amberColor, strokeWidth: 2, dashed: '4,3'
+            });
+            geoRes.buatKurvaBezier([[xPos1, lineY - 14], [(xPos1 + xPos5) / 2, lineY - 62], [xPos5, lineY - 14]], {
+                stroke: amberColor, strokeWidth: 2, dashed: '4,3'
+            });
+            geoRes.buatTeks((xNeg3 + xPos1) / 2, lineY - 46, "+4", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: amberColor
+            });
+            geoRes.buatTeks((xPos1 + xPos5) / 2, lineY - 46, "+4", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: amberColor
+            });
+
+            // Titik-titik pada garis bilangan
+            nums.forEach((val, idx) => {
+                const px = startX + idx * stepX;
+                const rem = ((val % 4) + 4) % 4;
+                const col = resColors[rem];
+                const isHighlight = (rem === 1);
+
+                geoRes.buatSegmen(px, lineY - 5, px, lineY + 5, { stroke: textColor, strokeWidth: 1.5 });
+                geoRes.buatLingkaran(px, lineY, isHighlight ? 6 : 4.5, {
+                    fill: col, stroke: cardBg, strokeWidth: 1.5
+                });
+                geoRes.buatTeks(px, lineY + 20, String(val), {
+                    position: 'middle-center',
+                    fontWeight: isHighlight ? 'bold' : 'normal',
+                    fontSize: isHighlight ? '11.5px' : '10.5px',
+                    fill: isHighlight ? col : textColor
+                });
+                geoRes.buatTeks(px, lineY + 35, `[${rem}]`, {
+                    position: 'middle-center', fontSize: '9px', fill: col
+                });
+            });
+
+            // 4 Kotak Kelas Ekuivalensi di bagian bawah
+            const classes = [
+                { label: "[0] = {…, −4, 0, 4, …}", desc: "Habis dibagi 4 (r = 0)", col: tealColor },
+                { label: "[1] = {…, −3, 1, 5, …}", desc: "Bersisa 1 (r = 1)", col: amberColor },
+                { label: "[2] = {…, −2, 2, 6, …}", desc: "Bersisa 2 (r = 2)", col: blueColor },
+                { label: "[3] = {…, −1, 3, 7, …}", desc: "Bersisa 3 (r = 3)", col: roseColor }
+            ];
+
+            classes.forEach((cls, idx) => {
+                const bx = 18 + idx * 138;
+                geoRes.buatPersegiPanjang(bx, 155, 130, 58, {
+                    radius: 7, fill: isDark ? '#0f172a' : '#f8fafc', stroke: cls.col, strokeWidth: 1.4
+                });
+                geoRes.buatTeks(bx + 65, 174, cls.label, {
+                    position: 'middle-center', fontWeight: 'bold', fontSize: '10px', fill: cls.col
+                });
+                geoRes.buatTeks(bx + 65, 195, cls.desc, {
+                    position: 'middle-center', fontSize: '9.5px', fill: textColor
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiModulo();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiModulo, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Luas Daerah di Bawah Kurva</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Luas Daerah di Bawah Kurva</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Konsep Jumlah Riemann & Integral Tentu</h2>
+            <p>
+                Bagaimana cara menghitung luas suatu daerah pada bidang datar yang dibatasi oleh garis melengkung (kurva) $y = f(x)$? Dalam kalkulus, daerah tersebut didekati dengan membaginya menjadi $n$ buah persegi panjang tipis (disebut <strong>pias / partisi</strong>) yang masing-masing memiliki lebar $\Delta x = \frac{b - a}{n}$ dan tinggi $f(x_i)$.
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Penjumlahan luas seluruh persegi panjang tersebut dinamakan <strong>Jumlah Riemann</strong>. Ketika banyaknya pias diperbanyak menuju tak hingga ($n \to \infty \iff \Delta x \to 0$), nilai limit dari Jumlah Riemann tersebut menghasilkan <strong>Integral Tentu</strong>:
+                        $$L = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i)\,\Delta x = \int_{a}^{b} f(x)\,dx$$
+                    </p>
+                    <p>
+                        <strong>Teorema Dasar Kalkulus:</strong><br>
+                        Jika $F(x)$ adalah antiturunan (integral tak tentu) dari fungsi kontinu $f(x)$ sehingga $F'(x) = f(x)$, maka:
+                        $$\int_{a}^{b} f(x)\,dx = \Big[ F(x) \Big]_{a}^{b} = F(b) - F(a)$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-riemann" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Luas Daerah yang Dibatasi Kurva dan Sumbu-$X$</h2>
+            <p>
+                Secara geometris, <strong>luas daerah ($L$) tidak pernah bernilai negatif ($L \ge 0$)</strong>. Namun, hasil dari integral tentu $\int_{a}^{b} f(x)\,dx$ dapat bernilai negatif apabila kurva berada di bawah sumbu-$X$ (karena nilai ordinat $y = f(x) < 0$). Oleh karena itu, terdapat 3 kasus posisi kurva terhadap sumbu-$X$ pada interval $[a, b]$:
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <ol>
+                        <li>
+                            <strong>Kurva di ATAS Sumbu-$X$ ($f(x) \ge 0$):</strong><br>
+                            Luas daerah langsung sama dengan nilai integral tentunya:
+                            $$L = \int_{a}^{b} f(x)\,dx$$
+                        </li>
+                        <li>
+                            <strong>Kurva di BAWAH Sumbu-$X$ ($f(x) \le 0$):</strong><br>
+                            Agar luas bernilai positif, tambahkan tanda negatif di depan integral:
+                            $$L = -\int_{a}^{b} f(x)\,dx = \left| \int_{a}^{b} f(x)\,dx \right|$$
+                        </li>
+                        <li>
+                            <strong>Kurva MEMOTONG Sumbu-$X$ di $x = c$ ($a < c < b$):</strong><br>
+                            Jika pada $[a, c]$ kurva berada di atas sumbu-$X$ ($L_1$) dan pada $[c, b]$ kurva berada di bawah sumbu-$X$ ($L_2$), <strong>integral wajib dipecah di titik potong $x = c$</strong>:
+                            $$L_{\text{total}} = L_1 + L_2 = \int_{a}^{c} f(x)\,dx - \int_{c}^{b} f(x)\,dx$$
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-signed-area" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Perbedaan Penting: "Luas Daerah" vs "Nilai Integral Tentu"<br>
+                Pada gambar di atas (di mana $L_1$ di atas sumbu-$X$ dan $L_2$ di bawah sumbu-$X$):<br>
+                • <strong>Luas Daerah Arsir Total:</strong> $L = L_1 + L_2 = \int_{a}^{b} |f(x)|\,dx$ (dijumlahkan mutlaknya).<br>
+                • <strong>Nilai Integral Tentu Langsung:</strong> $\int_{a}^{b} f(x)\,dx = L_1 - L_2$ (luas atas dikurangi luas bawah!).<br>
+                <em>(Sifat $\int_{a}^{b} f(x)\,dx = L_{\text{atas}} - L_{\text{bawah}}$ ini sangat sering diujikan pada soal SNBT & UTBK!).</em>
+            </div>
+
+            <h2>3. Luas Daerah di Antara Dua Kurva (Pias Tegak $\Delta x$ vs Pias Mendatar $\Delta y$)</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>a. Integrasi terhadap Sumbu-$X$ (Pias Tegak / Vertikal $\Delta x$):</strong><br>
+                        Jika suatu daerah pada interval $a \le x \le b$ dibatasi di bagian atas oleh kurva $y_{\text{atas}} = f(x)$ dan di bagian bawah oleh kurva $y_{\text{bawah}} = g(x)$ (sehingga $f(x) \ge g(x)$), maka luas daerahnya adalah:
+                        $$L = \int_{a}^{b} \big(y_{\text{atas}} - y_{\text{bawah}}\big)\,dx = \int_{a}^{b} \big(f(x) - g(x)\big)\,dx$$
+                        <em>Catatan Penting:</em> Rumus $(y_{\text{atas}} - y_{\text{bawah}})$ ini <strong>selalu berlaku dan bernilai positif</strong> tanpa peduli apakah kedua kurva berada di atas sumbu-$X$, di bawah sumbu-$X$, ataupun memotong sumbu-$X$!
+                    </p>
+                    <p>
+                        <strong>b. Integrasi terhadap Sumbu-$Y$ (Pias Mendatar / Horizontal $\Delta y$):</strong><br>
+                        Jika kurva lebih mudah dinyatakan sebagai fungsi $x = f(y)$ pada interval $c \le y \le d$ dengan batas kanan $x_{\text{kanan}} = f(y)$ dan batas kiri $x_{\text{kiri}} = g(y)$, maka:
+                        $$L = \int_{c}^{d} \big(x_{\text{kanan}} - x_{\text{kiri}}\big)\,dy = \int_{c}^{d} \big(f(y) - g(y)\big)\,dy$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-two-curves" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Rumus Cepat Luas Daerah Parabola & Diskriminan (Wajib Hafal!)</h2>
+            <p>
+                Apabila suatu daerah tertutup dibatasi sepenuhnya oleh <strong>dua kurva parabola</strong> (atau <strong>satu parabola dan satu garis lurus</strong>) tanpa batas garis vertikal tambahan, kita tidak perlu melakukan pengintegralan! Ikuti langkah cepat berikut:
+            </p>
+            <ol>
+                <li>
+                    Samakan kedua persamaan kurva ($y_1 = y_2$) lalu kumpulkan ke satu ruas hingga membentuk persamaan kuadrat gabungan:
+                    $$y_1 - y_2 = ax^2 + bx + c = 0 \quad (a \neq 0)$$
+                </li>
+                <li>
+                    Hitung nilai <strong>Diskriminan ($D$)</strong> dari persamaan kuadrat gabungan tersebut:
+                    $$D = b^2 - 4ac$$
+                </li>
+                <li>
+                    Luas daerah tertutup di antara kedua kurva tersebut dapat langsung dihitung dengan rumus:
+                    $$L = \frac{D\sqrt{D}}{6a^2} = \frac{|a|}{6}(x_2 - x_1)^3$$
+                    (di mana $x_1$ dan $x_2$ adalah absis kedua titik potong kurva).
+                </li>
+            </ol>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bentuk Daerah Khusus</th>
+                            <th>Rumus Cepat Luas Daerah ($L$)</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Parabola & Garis / Dua Parabola</strong><br>(Persamaan gabungan $ax^2 + bx + c = 0$)</td>
+                            <td>$$L = \frac{D\sqrt{D}}{6a^2} \quad \text{atau} \quad L = \frac{|a|}{6}(x_2 - x_1)^3$$</td>
+                            <td class="text-left">Hanya berlaku jika batas kiri dan kanan daerah adalah <strong>titik potong kedua kurva</strong> ($x_1$ dan $x_2$).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Segmen Parabola (Rumus Archimedes)</strong><br>Lebar alas $l = x_2 - x_1$ dan tinggi puncak $t$</td>
+                            <td>$$L_{\text{dalam}} = \frac{2}{3} \cdot l \cdot t \quad \text{dan} \quad L_{\text{luar}} = \frac{1}{3} \cdot l \cdot t$$</td>
+                            <td class="text-left">Luas kubah parabola selalu $\frac{2}{3}$ dari luas persegi panjang pembungkusnya ($l \times t$).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Satu Bukit Gelombang Sinus / Cosinus</strong><br>Kurva $y = A \sin(kx)$ pada $\left[0, \frac{\pi}{k}\right]$</td>
+                            <td>$$L_{\text{1 bukit}} = \frac{2|A|}{k}$$</td>
+                            <td class="text-left">Untuk $y = \sin x$ dari $0$ sampai $\pi$, luas $1$ bukitnya adalah $\frac{2(1)}{1} = 2\text{ satuan luas}$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Luas daerah yang dibatasi oleh kurva parabola $y = x^2 - 4x + 3$, sumbu-$X$, garis $x = 0$, dan garis $x = 3$ adalah ....
+                <ol class="pilgan">
+                    <li>$\frac{4}{3}\text{ satuan luas}$</li>
+                    <li>$2\text{ satuan luas}$</li>
+                    <li>$\frac{8}{3}\text{ satuan luas}$</li>
+                    <li>$3\text{ satuan luas}$</li>
+                    <li>$\frac{10}{3}\text{ satuan luas}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. <strong>Cari titik potong kurva dengan sumbu-$X$ ($y = 0$) terlebih dahulu:</strong>
+                    $$x^2 - 4x + 3 = 0 \iff (x - 1)(x - 3) = 0 \implies x = 1 \text{ atau } x = 3$$
+                    Perhatikan bahwa pada interval $[0, 3]$, kurva memotong sumbu-$X$ di $x = 1$:
+                </p>
+                <ul>
+                    <li>Untuk $0 \le x \le 1$, uji $x = 0 \implies y = 3 > 0$ (kurva berada <strong>di atas</strong> sumbu-$X$).</li>
+                    <li>Untuk $1 \le x \le 3$, uji $x = 2 \implies y = 4 - 8 + 3 = -1 < 0$ (kurva berada <strong>di bawah</strong> sumbu-$X$).</li>
+                </ul>
+                <p>
+                    2. <strong>Pecah integral menjadi dua bagian ($L = L_1 + L_2$):</strong>
+                </p>
+                <ul>
+                    <li>
+                        Luas bagian pertama pada $[0, 1]$:
+                        $$L_1 = \int_{0}^{1} (x^2 - 4x + 3)\,dx = \left[ \frac{1}{3}x^3 - 2x^2 + 3x \right]_{0}^{1} = \left(\frac{1}{3} - 2 + 3\right) - 0 = \frac{4}{3}$$
+                    </li>
+                    <li>
+                        Luas bagian kedua pada $[1, 3]$ (bisa dihitung dengan integral atau rumus cepat $\frac{D\sqrt{D}}{6a^2}$ karena $[1, 3]$ adalah ujung akar-akarnya dengan $D = (-4)^2 - 4(1)(3) = 4$):
+                        $$L_2 = \frac{4\sqrt{4}}{6(1)^2} = \frac{8}{6} = \frac{4}{3}$$
+                    </li>
+                </ul>
+                <p>
+                    3. <strong>Jumlahkan kedua luas tersebut:</strong>
+                    $$L_{\text{total}} = L_1 + L_2 = \frac{4}{3} + \frac{4}{3} = \frac{8}{3}\text{ satuan luas}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, luas daerah tersebut adalah $\frac{8}{3}\text{ satuan luas}$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Luas daerah tertutup yang dibatasi oleh kurva parabola $y = 6 + x - x^2$ dan garis lurus $y = 2x + 4$ adalah ....
+                <ol class="pilgan">
+                    <li>$\frac{4}{3}\text{ satuan luas}$</li>
+                    <li>$\frac{9}{2}\text{ satuan luas}$</li>
+                    <li>$\frac{16}{3}\text{ satuan luas}$</li>
+                    <li>$9\text{ satuan luas}$</li>
+                    <li>$\frac{32}{3}\text{ satuan luas}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Karena daerah tertutup dibatasi sepenuhnya oleh satu parabola dan satu garis lurus tanpa batas vertikal lain, kita dapat menggunakan <strong>rumus cepat diskriminan</strong>! Samakan kedua persamaan ($y_1 = y_2$):
+                    $$6 + x - x^2 = 2x + 4$$
+                    $$x^2 + x - 2 = 0$$
+                    Diperoleh koefisien persamaan kuadrat gabungan: $a = 1$, $b = 1$, dan $c = -2$.
+                </p>
+                <p>
+                    2. Hitung nilai diskriminan $D = b^2 - 4ac$:
+                    $$D = (1)^2 - 4(1)(-2) = 1 + 8 = 9$$
+                </p>
+                <p>
+                    3. Substitusikan ke dalam rumus luas $L = \frac{D\sqrt{D}}{6a^2}$:
+                    $$L = \frac{9\sqrt{9}}{6(1)^2} = \frac{9 \times 3}{6} = \frac{27}{6} = \frac{9}{2}\text{ satuan luas}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, luas daerah tertutup tersebut adalah $\frac{9}{2}\text{ satuan luas}$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Grafik fungsi kontinu $y = f(x)$ memotong sumbu-$X$ di titik $(-1, 0)$, $(2, 0)$, dan $(5, 0)$. Pada interval $[-1, 2]$ kurva berada di atas sumbu-$X$ dengan luas daerah $L_1 = 11$ satuan luas, sedangkan pada interval $[2, 5]$ kurva berada di bawah sumbu-$X$ dengan luas daerah $L_2 = 7$ satuan luas. Nilai dari $\int_{-1}^{5} \big(3f(x) - 2\big)\,dx$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$0$</li>
+                    <li>$4$</li>
+                    <li>$12$</li>
+                    <li>$42$</li>
+                    <li>$54$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Gunakan sifat bahwa nilai integral tentu dari $-1$ sampai $5$ adalah selisih antara luas di atas sumbu-$X$ ($L_1 = 11$) dan luas di bawah sumbu-$X$ ($L_2 = 7$):
+                    $$\int_{-1}^{5} f(x)\,dx = \int_{-1}^{2} f(x)\,dx + \int_{2}^{5} f(x)\,dx = L_1 + (-L_2) = 11 - 7 = 4$$
+                </p>
+                <p>
+                    2. Uraikan integral yang ditanyakan menggunakan sifat kelinieran integral tentu:
+                    $$\int_{-1}^{5} \big(3f(x) - 2\big)\,dx = 3 \int_{-1}^{5} f(x)\,dx - \int_{-1}^{5} 2\,dx$$
+                </p>
+                <p>
+                    3. Substitusikan $\int_{-1}^{5} f(x)\,dx = 4$ dan hitung $\int_{-1}^{5} 2\,dx = 2(5 - (-1)) = 2(6) = 12$:
+                    $$= 3(4) - 12 = 12 - 12 = 0$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $\int_{-1}^{5} \big(3f(x) - 2\big)\,dx$ adalah $0$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Jika garis lurus $y = mx$ (dengan $m > 0$) membagi daerah yang dibatasi oleh parabola $y = 4x - x^2$ dan sumbu-$X$ menjadi dua bagian yang <strong>sama luasnya</strong>, maka nilai dari $(4 - m)^3$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$8$</li>
+                    <li>$16$</li>
+                    <li>$24$</li>
+                    <li>$32$</li>
+                    <li>$64$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. <strong>Hitung Luas Total ($L_{\text{total}}$) antara parabola $y = 4x - x^2$ dan sumbu-$X$ ($y = 0$):</strong><br>
+                    Titik potong parabola dengan sumbu-$X$ adalah $x_1 = 0$ dan $x_2 = 4$ ($a = -1 \implies |a| = 1$). Gunakan rumus cepat $\frac{|a|}{6}(x_2 - x_1)^3$:
+                    $$L_{\text{total}} = \frac{1}{6}(4 - 0)^3 = \frac{4^3}{6} = \frac{64}{6}$$
+                </p>
+                <p>
+                    2. <strong>Hitung Luas Bagian Atas ($L_{\text{atas}}$) antara parabola $y = 4x - x^2$ dan garis $y = mx$:</strong><br>
+                    Cari titik potong keduanya:
+                    $$4x - x^2 = mx \iff x^2 - (4 - m)x = 0 \implies x_1 = 0 \text{ dan } x_2 = 4 - m$$
+                    Maka luas daerah di antara parabola dan garis $y = mx$ adalah:
+                    $$L_{\text{atas}} = \frac{1}{6}(4 - m - 0)^3 = \frac{(4 - m)^3}{6}$$
+                </p>
+                <p>
+                    3. Karena garis $y = mx$ membagi daerah menjadi dua bagian yang sama luas, maka $L_{\text{atas}} = \frac{1}{2} L_{\text{total}}$:
+                    $$\frac{(4 - m)^3}{6} = \frac{1}{2} \cdot \frac{64}{6} \implies (4 - m)^3 = 32$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $(4 - m)^3$ adalah $32$ (Jawaban D).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Jumlah Riemann (Partisi Persegi Panjang di Bawah Kurva) menggunakan GeoSVG.js (yUp: true)
+            const containerRiemann = document.getElementById("geosvg-riemann");
+            if (containerRiemann && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerRiemann, 330, 235, {
+                    viewBox: "-35 -35 315 215",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Jumlah Riemann dan Partisi di Bawah Kurva",
+                    description: "Pendekatan luas daerah di bawah kurva y = f(x) menggunakan deretan persegi panjang (pias) selebar delta x"
+                });
+
+                const sx = 52; // 1 satuan X = 52 px
+                const sy = 34; // 1 satuan Y = 34 px
+                const f = x => 0.28 * x * x + 0.9;
+
+                // Sumbu X dan Y
+                geo1.buatVektor([-20, 0], [265, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatVektor([0, -20], [0, 168], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatTeks(260, -14, "x", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo1.buatTeks(-13, 162, "y", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+
+                // Gambar 6 persegi panjang Riemann dari x = 0.6 sampai x = 4.2 (lebar dx = 0.6)
+                const a = 0.6;
+                const b = 4.2;
+                const n = 6;
+                const dx = (b - a) / n;
+
+                for (let i = 0; i < n; i++) {
+                    const xLeft = a + i * dx;
+                    const xMid = xLeft + dx / 2;
+                    const h = f(xMid) * sy;
+                    const isHighlight = i === 3; // Sorot satu pias mewakili f(x_i) * delta x
+
+                    geo1.buatPoligon([
+                        [xLeft * sx, 0],
+                        [(xLeft + dx) * sx, 0],
+                        [(xLeft + dx) * sx, h],
+                        [xLeft * sx, h]
+                    ], {
+                        fill: isHighlight ? "rgba(217, 119, 6, 0.28)" : "rgba(13, 148, 136, 0.16)",
+                        stroke: isHighlight ? "#d97706" : "var(--teal-primary)",
+                        strokeWidth: isHighlight ? 1.8 : 1.2
+                    });
+
+                    if (isHighlight) {
+                        geo1.buatTeks(xMid * sx, h / 2, "f(xᵢ)", {
+                            fill: "#d97706", fontWeight: "bold", fontSize: "10px", position: "middle-center"
+                        });
+                        geo1.buatDimensi([xLeft * sx, 0], [(xLeft + dx) * sx, 0], 14, "Δx", {
+                            stroke: "#d97706", fontSize: "9.5px", fontWeight: "bold", labelJarak: 8
+                        });
+                    }
+                }
+
+                // Kurva mulus y = f(x) menggunakan buatFungsi bawaan GeoSVG.js
+                geo1.buatFungsi(f, 0.2, 4.6, {
+                    skalaX: sx,
+                    skalaY: sy,
+                    langkah: 100,
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.6
+                });
+
+                // Label batas a, b, dan kurva y = f(x)
+                geo1.buatTeks(a * sx, -14, "a", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo1.buatTeks(b * sx, -14, "b", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo1.buatTeks(3.8 * sx, 152, "y = f(x)", { fill: "var(--teal-primary)", fontWeight: "bold", fontSize: "11.5px", position: "middle-center" });
+            }
+
+            // 2. Visualisasi Kurva Memotong Sumbu-X (L1 di Atas Sumbu-X dan L2 di Bawah Sumbu-X) menggunakan GeoSVG.js
+            const containerSigned = document.getElementById("geosvg-signed-area");
+            if (containerSigned && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerSigned, 330, 225, {
+                    viewBox: "-25 -105 315 210",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Daerah di Atas dan di Bawah Sumbu-X",
+                    description: "Kurva yang memotong sumbu-X di x = c sehingga membentuk daerah L1 di atas sumbu-X dan L2 di bawah sumbu-X"
+                });
+
+                const sx = 38;
+                const sy = 68;
+                const twoPi = 2 * Math.PI;
+
+                // Arsiran daerah L1 (0 sampai pi, di atas sumbu-X) dan L2 (pi sampai 2pi, di bawah sumbu-X)
+                const ptsL1 = [[0, 0]];
+                for (let i = 0; i <= 40; i++) {
+                    const x = (i / 40) * Math.PI;
+                    ptsL1.push([x * sx, Math.sin(x) * sy]);
+                }
+                ptsL1.push([Math.PI * sx, 0]);
+                geo2.buatPoligon(ptsL1, {
+                    fill: "rgba(13, 148, 136, 0.2)",
+                    stroke: "none"
+                });
+
+                const ptsL2 = [[Math.PI * sx, 0]];
+                for (let i = 0; i <= 40; i++) {
+                    const x = Math.PI + (i / 40) * Math.PI;
+                    ptsL2.push([x * sx, Math.sin(x) * sy]);
+                }
+                ptsL2.push([twoPi * sx, 0]);
+                geo2.buatPoligon(ptsL2, {
+                    fill: "rgba(217, 119, 6, 0.22)",
+                    stroke: "none"
+                });
+
+                // Sumbu X dan Y
+                geo2.buatVektor([-15, 0], [twoPi * sx + 28, 0], { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                geo2.buatVektor([0, -90], [0, 92], { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                geo2.buatTeks(twoPi * sx + 22, -13, "x", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+
+                // Kurva y = f(x)
+                geo2.buatFungsi(x => Math.sin(x), 0, twoPi, {
+                    skalaX: sx,
+                    skalaY: sy,
+                    langkah: 120,
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.5
+                });
+
+                // Label L1 (+) dan L2 (-) serta titik batas a, c, b
+                geo2.buatTeks((Math.PI / 2) * sx, 28, "L₁ (+)", {
+                    fill: "var(--teal-primary)", fontWeight: "bold", fontSize: "12px", position: "middle-center"
+                });
+                geo2.buatTeks((Math.PI / 2) * sx, 12, "f(x) ≥ 0", {
+                    fill: "var(--teal-primary)", fontSize: "9.5px", position: "middle-center"
+                });
+
+                geo2.buatTeks((3 * Math.PI / 2) * sx, -24, "L₂ (-)", {
+                    fill: "#d97706", fontWeight: "bold", fontSize: "12px", position: "middle-center"
+                });
+                geo2.buatTeks((3 * Math.PI / 2) * sx, -40, "f(x) ≤ 0", {
+                    fill: "#d97706", fontSize: "9.5px", position: "middle-center"
+                });
+
+                geo2.buatTitik([0, 0], { size: 4, color: "var(--text-main)", label: "a", labelPosition: "bottom-left", bold: true });
+                geo2.buatTitik([Math.PI * sx, 0], { size: 4.5, color: "#ef4444", label: "c", labelPosition: "top-right", labelDistance: 5, bold: true });
+                geo2.buatTitik([twoPi * sx, 0], { size: 4, color: "var(--text-main)", label: "b", labelPosition: "top-left", labelDistance: 5, bold: true });
+            }
+
+            // 3. Visualisasi Luas Daerah di Antara Dua Kurva (y_atas - y_bawah) menggunakan GeoSVG.js
+            const containerTwo = document.getElementById("geosvg-two-curves");
+            if (containerTwo && typeof GeoSVG !== "undefined") {
+                const geo3 = new GeoSVG(containerTwo, 330, 240, {
+                    viewBox: "-35 -30 315 220",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Luas Daerah di Antara Dua Kurva",
+                    description: "Daerah tertutup yang dibatasi oleh kurva atas y = f(x) dan kurva bawah y = g(x) dari x = a sampai x = b"
+                });
+
+                const sx = 54;
+                const sy = 28;
+                // Kurva atas f(x) = -0.5(x - 2.3)^2 + 5.2 dan kurva bawah g(x) = 0.35(x - 2.1)^2 + 1.1
+                const fTop = x => -0.55 * (x - 2.3) * (x - 2.3) + 5.2;
+                const gBot = x => 0.4 * (x - 2.1) * (x - 2.1) + 1.1;
+
+                // Titik potong kedua kurva sekitar x1 = 0.6 dan x2 = 3.85
+                const x1 = 0.61;
+                const x2 = 3.83;
+
+                // Buat poligon arsiran di antara kedua kurva
+                const polyPts = [];
+                const steps = 40;
+                for (let i = 0; i <= steps; i++) {
+                    const x = x1 + (i / steps) * (x2 - x1);
+                    polyPts.push([x * sx, fTop(x) * sy]);
+                }
+                for (let i = steps; i >= 0; i--) {
+                    const x = x1 + (i / steps) * (x2 - x1);
+                    polyPts.push([x * sx, gBot(x) * sy]);
+                }
+                geo3.buatPoligon(polyPts, {
+                    fill: "rgba(13, 148, 136, 0.18)",
+                    stroke: "none"
+                });
+
+                // Sumbu X dan Y
+                geo3.buatVektor([-20, 0], [260, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo3.buatVektor([0, -18], [0, 175], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo3.buatTeks(255, -13, "x", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo3.buatTeks(-13, 168, "y", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+
+                // Garis proyeksi batas integrasi x = a dan x = b ke sumbu-X
+                geo3.buatSegmen([x1 * sx, 0], [x1 * sx, fTop(x1) * sy], { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: "4 3" });
+                geo3.buatSegmen([x2 * sx, 0], [x2 * sx, fTop(x2) * sy], { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: "4 3" });
+                geo3.buatTeks(x1 * sx, -13, "a", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo3.buatTeks(x2 * sx, -13, "b", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+
+                // Pias vertikal representatif (f(x) - g(x)) dx di x = 2.2
+                const xStrip = 2.2;
+                const stripW = 0.24;
+                geo3.buatPoligon([
+                    [(xStrip - stripW / 2) * sx, gBot(xStrip) * sy],
+                    [(xStrip + stripW / 2) * sx, gBot(xStrip) * sy],
+                    [(xStrip + stripW / 2) * sx, fTop(xStrip) * sy],
+                    [(xStrip - stripW / 2) * sx, fTop(xStrip) * sy]
+                ], {
+                    fill: "rgba(217, 119, 6, 0.32)",
+                    stroke: "#d97706",
+                    strokeWidth: 1.5
+                });
+
+                // Gambar kurva atas y = f(x) dan kurva bawah y = g(x)
+                geo3.buatFungsi(fTop, 0.2, 4.3, {
+                    skalaX: sx, skalaY: sy, langkah: 100, stroke: "var(--teal-primary)", strokeWidth: 2.5
+                });
+                geo3.buatFungsi(gBot, 0.2, 4.3, {
+                    skalaX: sx, skalaY: sy, langkah: 100, stroke: "#d97706", strokeWidth: 2.3
+                });
+
+                // Titik potong kedua kurva
+                geo3.buatTitik([x1 * sx, fTop(x1) * sy], { size: 4.5, color: "#ef4444" });
+                geo3.buatTitik([x2 * sx, fTop(x2) * sy], { size: 4.5, color: "#ef4444" });
+
+                // Label kurva atas dan kurva bawah
+                geo3.buatTeks(2.3 * sx, 5.65 * sy, "y_atas = f(x)", {
+                    fill: "var(--teal-primary)", fontWeight: "bold", fontSize: "11px", position: "middle-center"
+                });
+                geo3.buatTeks(2.3 * sx, 0.52 * sy, "y_bawah = g(x)", {
+                    fill: "#d97706", fontWeight: "bold", fontSize: "11px", position: "middle-center"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

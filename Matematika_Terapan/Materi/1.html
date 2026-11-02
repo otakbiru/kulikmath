@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Matematika Terapan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Matematika Terapan</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Siklus Pemodelan Matematika</h2>
+            <p>
+                <strong>Matematika Terapan</strong> (<em>Applied Mathematics</em>) adalah cabang matematika yang menerjemahkan fenomena dunia nyata—seperti ekonomi, fisika, biologi, keuangan, dan rekayasa—ke dalam bahasa simbolis (persamaan, fungsi, pertidaksamaan, atau turunan) agar dapat dianalisis dan dioptimalkan.
+            </p>
+            <p>
+                Proses penyelesaian masalah kontekstual dalam matematika terapan mengikuti 4 tahapan <strong>Pemodelan Matematika</strong>:
+            </p>
+            <ol>
+                <li><strong>Identifikasi & Abstraksi:</strong> Menentukan besaran yang diketahui, besaran yang dicari, serta memisalkan peubah (variabel bebas \(x, t\) dan variabel terikat \(y, L, V\)).</li>
+                <li><strong>Formulasi Model:</strong> Menyusun hubungan matematis berupa fungsi objektif, sistem persamaan, atau laju perubahan.</li>
+                <li><strong>Penyelesaian Matematis:</strong> Menggunakan alat aljabar, kalkulus (turunan/integral), atau geometri untuk memperoleh solusi numerik/analitik.</li>
+                <li><strong>Interpretasi & Validasi:</strong> Mengembalikan hasil hitungan ke konteks nyata (memeriksa satuan serta syarat domain seperti \(x \ge 0\)).</li>
+            </ol>
+
+            <h2>2. Matematika Ekonomi, Bisnis, dan Analisis Marjinal</h2>
+            <p>
+                Dalam produksi dan perdagangan sejumlah \(x\) unit barang (atau sering disimbolkan \(Q\) / kuantitas), terdapat tiga fungsi utama yang saling berkaitan:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besaran Ekonomi</th>
+                            <th>Rumus Matematis</th>
+                            <th>Analisis Marjinal (Turunan Pertama)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Biaya Total (<em>Total Cost</em>, \(C(x)\))</strong><br>Biaya Tetap (\(FC\)) + Biaya Variabel (\(VC(x)\))</td>
+                            <td>$$C(x) = FC + VC(x)$$<br>Biaya Rata-rata: \(\overline{C}(x) = \frac{C(x)}{x}\)</td>
+                            <td class="text-left"><strong>Biaya Marjinal (\(MC\)):</strong><br>\(MC = C'(x)\) (taksiran biaya tambahan untuk memproduksi 1 unit ke-\((x+1)\)).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Pendapatan Total (<em>Total Revenue</em>, \(R(x)\))</strong><br>Banyak barang \(x\) dikali fungsi harga jual \(p(x)\)</td>
+                            <td>$$R(x) = x \cdot p(x)$$</td>
+                            <td class="text-left"><strong>Pendapatan Marjinal (\(MR\)):</strong><br>\(MR = R'(x)\) (tambahan penerimaan per 1 unit ekstra yang terjual).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Laba / Keuntungan (<em>Profit</em>, \(\pi(x)\))</strong><br>Selisih pendapatan total dan biaya total</td>
+                            <td>$$\pi(x) = R(x) - C(x)$$</td>
+                            <td class="text-left"><strong>Syarat Laba Maksimum:</strong><br>$$\pi'(x) = 0 \iff R'(x) = C'(x) \quad (MR = MC)$$<br>dengan uji turunan kedua \(\pi''(x) < 0\).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Titik Impas (<em>Break-Even Point</em>, BEP)</strong><br>Kondisi tidak untung dan tidak rugi</td>
+                            <td>$$R(x) = C(x) \iff \pi(x) = 0$$</td>
+                            <td class="text-left">Daerah \(R(x) > C(x)\) adalah zona untung, sedangkan \(R(x) < C(x)\) adalah zona rugi.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-terapan-ekonomi" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Model Pertumbuhan Eksponensial, Bunga Majemuk, dan Peluruhan</h2>
+            <p>
+                Ketika laju perubahan suatu besaran \(N(t)\) sebanding dengan jumlah besaran itu sendiri pada saat \(t\) (\(\frac{dN}{dt} = k \cdot N\)), maka besaran tersebut mengikuti model eksponensial:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Konteks Terapan</th>
+                            <th>Rumus Model Matematika</th>
+                            <th>Keterangan Variabel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Bunga Majemuk Diskrit</strong><br>(Investasi & Perbankan)</td>
+                            <td>$$M_n = M_0 (1 + i)^n$$</td>
+                            <td class="text-left">\(M_0\): modal awal, \(i\): suku bunga per periode, \(n\): banyak periode pembungaan.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Pertumbuhan Kontinu & Populasi</strong><br>(Biologi & Demografi)</td>
+                            <td>$$P(t) = P_0 \cdot e^{kt} \quad \text{atau} \quad P(t) = P_0 \cdot r^{\frac{t}{T_g}}$$</td>
+                            <td class="text-left">\(P_0\): populasi awal, \(k > 0\): laju tumbuh kontinu, \(r\): rasio lipat (misal \(r=2\) membelah diri setiap periode \(T_g\)).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Peluruhan Radioaktif & Penyusutan</strong><br>(Fisika Inti & Farmakokinetika)</td>
+                            <td>$$N(t) = N_0 \left(\frac{1}{2}\right)^{\frac{t}{T_{1/2}}} = N_0 \cdot e^{-\lambda t}$$</td>
+                            <td class="text-left">\(T_{1/2}\): waktu paruh (waktu hingga massa tersisa separuhnya), \(\lambda = \frac{\ln 2}{T_{1/2}}\): konstanta peluruhan.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Pertumbuhan Logistik Terbatas</strong><br>(Kapasitas Daya Dukung / Epidemi)</td>
+                            <td>$$P(t) = \frac{K}{1 + A \cdot e^{-kt}}$$</td>
+                            <td class="text-left">\(K\): kapasitas tampung maksimum (<em>carrying capacity</em>). Saat \(t \to \infty\), populasi mendekati asimtot \(P(t) \to K\).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-terapan-eksponensial" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Optimasi Geometri, Konstruksi, dan Fisika Gerak</h2>
+            <p>
+                Dalam rekayasa dan fisika, turunan dan fungsi kuadrat sering digunakan untuk memaksimumkan kapasitas ruang atau meminimumkan pemakaian bahan:
+            </p>
+            <ul>
+                <li>
+                    <strong>Kandang Persegi Panjang Berpagar Kawat:</strong>
+                    <ul>
+                        <li>Jika keliling kawat \(K\) memagari <strong>4 sisi penuh</strong>, luas maksimum tercapai saat berbentuk persegi dengan \(p = l = \frac{K}{4}\) dan \(L_{\text{maks}} = \frac{K^2}{16}\).</li>
+                        <li>Jika salah satu sisi berbatasan dengan <strong>tembok lurus</strong> (hanya 3 sisi dipagari: \(p + 2l = K\)), luas maksimum tercapai saat \(p = 2l = \frac{K}{2}\) dan \(L_{\text{maks}} = \frac{K^2}{8}\).</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Kotak Tanpa Tutup dari Lembaran Karton:</strong> Jika karton berukuran \(a \times b\) dipotong persegi bersisi \(x\) di keempat pojoknya lalu dilipat, maka volume kotak adalah:
+                    $$V(x) = x(a - 2x)(b - 2x), \quad \text{dengan syarat domain } 0 < x < \frac{\min(a,b)}{2}$$
+                    Volume maksimum dicari dari akar persamaan kuadrat \(V'(x) = 0\).
+                </li>
+                <li>
+                    <strong>Gerak Parabola / Vertikal di Bawah Gravitasi:</strong> Ketinggian benda yang ditembakkan vertikal ke atas dengan kecepatan awal \(v_0\) dari ketinggian \(h_0\) memenuhi \(h(t) = h_0 + v_0 t - \frac{1}{2}gt^2\). Tinggi maksimum tercapai saat kecepatan sesaat \(v(t) = h'(t) = 0 \implies t_{\text{puncak}} = \frac{v_0}{g}\).
+                </li>
+            </ul>
+
+            <div class="kesimpulan">
+                💡 Strategi Kunci Menyelesaikan Soal Matematika Terapan:
+                <br>• Jika terdapat <strong>dua variabel</strong> (misal panjang \(x\) dan lebar \(y\)), gunakan persamaan kendala (seperti keliling atau volume tetap) untuk mensubstitusi salah satu variabel sehingga fungsi objektif hanya bergantung pada <strong>satu variabel tunggal</strong>.
+                <br>• Selalu periksa apakah titik stasioner \(f'(x) = 0\) berada di dalam domain fisik yang masuk akal (ukuran panjang, harga, dan waktu tidak boleh bernilai negatif).
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh soal berikut untuk melihat penerapan kalkulus dan aljabar pada masalah optimasi laba perusahaan, waktu paruh zat radioaktif, serta optimasi desain kemasan. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Optimasi Laba & Ekonomi Marjinal -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Sebuah pabrik memproduksi \(x\) unit komponen elektronik per hari. Fungsi harga jual per unit (dalam ribuan rupiah) mengikuti persamaan permintaan \(p(x) = 200 - 2x\), sedangkan biaya total produksi harian (dalam ribuan rupiah) dinyatakan oleh \(C(x) = x^2 + 40x + 700\). Tentukan:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Banyaknya unit yang harus diproduksi agar laba harian maksimum.</li>
+                        <li>Besar laba maksimum dan harga jual per unit pada kondisi tersebut.</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>1. Menyusun Fungsi Pendapatan \(R(x)\) dan Fungsi Laba \(\pi(x)\):</strong><br>
+                        Pendapatan total dari penjualan \(x\) unit barang adalah:
+                        $$R(x) = x \cdot p(x) = x(200 - 2x) = 200x - 2x^2$$
+                        Fungsi laba \(\pi(x)\) adalah selisih pendapatan dan biaya:
+                        $$\pi(x) = R(x) - C(x) = (200x - 2x^2) - (x^2 + 40x + 700)$$
+                        $$\pi(x) = -3x^2 + 160x - 700$$
+                        Namun, perhatikan jika biaya produksi menggunakan fungsi kuadrat \(C(x) = x^2 + 20x + 700\) atau langsung kita turunkan fungsi laba di atas:
+                        Agar koefisien mudah dihitung, mari gunakan syarat stasioner \(\pi'(x) = 0\) (atau \(MR = MC\)):<br>
+                        Pada soal di atas, jika kita turunkan:
+                        $$R'(x) = 200 - 4x \quad \text{dan} \quad C'(x) = 2x + 40$$
+                        Syarat laba maksimum \(R'(x) = C'(x)\):
+                        $$200 - 4x = 2x + 40 \implies 6x = 160 \implies x = \frac{80}{3} \approx 26{,}67 \text{ unit}$$
+                        Jika jumlah komponen harus bilangan bulat, kita uji bilangan bulat terdekat \(x = 27\) unit:
+                        $$\pi(27) = -3(27)^2 + 160(27) - 700 = -3(729) + 4320 - 700 = -2187 + 3620 = 1.433 \text{ ribu rupiah}$$
+                        (Untuk \(x = 26\), \(\pi(26) = -3(676) + 160(26) - 700 = -2028 + 3460 = 1.432\) ribu rupiah).<br>
+                        Harga jual per unit saat \(x = 27\) adalah \(p(27) = 200 - 2(27) = 146\) ribu rupiah.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, laba maksimum secara kontinu tercapai pada \(x = \frac{80}{3}\) unit (atau untuk produk diskrit bulat pada \(x = 27\) unit) dengan laba maksimum sebesar \(\text{Rp}1.433.000{,}00\) dan harga jual \(\text{Rp}146.000{,}00\) per unit.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Model Eksponensial Waktu Paruh -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Suatu isotop radioaktif memiliki waktu paruh \(T_{1/2} = 15\) hari. Jika pada awal pengamatan terdapat \(160\text{ gram}\) sampel isotop tersebut, tentukan:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Massa isotop yang tersisa setelah \(60\) hari.</li>
+                        <li>Waktu yang dibutuhkan hingga massa isotop tersisa \(5\text{ gram}\).</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Diketahui massa awal \(N_0 = 160\text{ gram}\) dan waktu paruh \(T_{1/2} = 15\text{ hari}\). Rumus peluruhan adalah:
+                        $$N(t) = N_0 \left(\frac{1}{2}\right)^{\frac{t}{T_{1/2}}} = 160 \cdot \left(\frac{1}{2}\right)^{\frac{t}{15}}$$
+                        <strong>1. Massa tersisa setelah \(t = 60\) hari:</strong>
+                        $$N(60) = 160 \cdot \left(\frac{1}{2}\right)^{\frac{60}{15}} = 160 \cdot \left(\frac{1}{2}\right)^4 = 160 \cdot \frac{1}{16} = 10\text{ gram}$$
+                        <strong>2. Waktu \(t\) saat massa tersisa \(N(t) = 5\text{ gram}\):</strong>
+                        $$5 = 160 \cdot \left(\frac{1}{2}\right)^{\frac{t}{15}}$$
+                        $$\frac{5}{160} = \left(\frac{1}{2}\right)^{\frac{t}{15}} \implies \frac{1}{32} = \left(\frac{1}{2}\right)^{\frac{t}{15}}$$
+                        Karena \(\frac{1}{32} = \left(\frac{1}{2}\right)^5\), maka dengan menyamakan eksponennya diperoleh:
+                        $$\frac{t}{15} = 5 \implies t = 75\text{ hari}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, massa yang tersisa setelah \(60\) hari adalah \(10\text{ gram}\), dan waktu yang diperlukan hingga tersisa \(5\text{ gram}\) adalah \(75\text{ hari}\).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Optimasi Geometri Kemasan Tabung -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Sebuah kaleng minuman berbentuk tabung tertutup (memiliki alas dan tutup) dirancang agar dapat menampung volume tepat \(128\pi\text{ cm}^3\). Tentukan jari-jari \(r\) dan tinggi \(t\) kaleng tersebut agar luas bahan aluminium yang digunakan untuk seluruh permukaannya <strong>seminimum mungkin</strong>!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Nyatakan variabel kendala tinggi \(t\) dalam jari-jari \(r\).</strong><br>
+                        Volume tabung adalah \(V = \pi r^2 t = 128\pi\), sehingga:
+                        $$r^2 t = 128 \implies t = \frac{128}{r^2}$$
+                        <strong>Langkah 2: Susun fungsi objektif Luas Permukaan \(L(r)\).</strong><br>
+                        Luas permukaan tabung tertutup terdiri atas 2 lingkaran (alas & tutup) dan selimut tabung:
+                        $$L = 2\pi r^2 + 2\pi r t$$
+                        Substitusikan \(t = \frac{128}{r^2}\) ke dalam persamaan luas:
+                        $$L(r) = 2\pi r^2 + 2\pi r \left(\frac{128}{r^2}\right) = 2\pi r^2 + \frac{256\pi}{r} = 2\pi r^2 + 256\pi r^{-1}$$
+                        <strong>Langkah 3: Cari nilai stasioner dengan \(L'(r) = 0\).</strong>
+                        $$L'(r) = 4\pi r - \frac{256\pi}{r^2} = 0$$
+                        $$4\pi r = \frac{256\pi}{r^2} \implies r^3 = \frac{256}{4} = 64 \implies r = \sqrt[3]{64} = 4\text{ cm}$$
+                        Uji turunan kedua: \(L''(r) = 4\pi + \frac{512\pi}{r^3} > 0\) untuk \(r > 0\) (terbukti menghasilkan nilai minimum).<br>
+                        Substitusikan \(r = 4\text{ cm}\) untuk memperoleh tinggi \(t\):
+                        $$t = \frac{128}{4^2} = \frac{128}{16} = 8\text{ cm}$$
+                        <em>(Catatan: Untuk tabung tertutup bervolume tetap, luas permukaan minimum selalu tercapai ketika tinggi tabung sama dengan diameternya, yaitu \(t = 2r\)).</em>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, luas bahan kaleng akan minimum jika jari-jari alasnya \(r = 4\text{ cm}\) dan tingginya \(t = 8\text{ cm}\) (dengan luas permukaan minimum \(L = 96\pi\text{ cm}^2\)).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiMatematikaTerapan() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const roseColor = isDark ? '#fb7185' : '#e11d48';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI GRAFIK BREAK-EVEN POINT (BEP) & LABA MAKSIMUM
+               ------------------------------------------------------------- */
+            const geoEko = new GeoSVG('geosvg-terapan-ekonomi', 580, 275, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoEko.buatPersegiPanjang(6, 6, 568, 263, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoEko.buatTeks(290, 24, "Analisis Titik Impas (BEP) dan Optimasi Laba Maksimum", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor
+            });
+
+            // Sumbu Koordinat: Kuantitas (x) dan Nilai Uang (y)
+            const ox = 68, oy = 222;
+            geoEko.buatVektor(ox, oy, 535, oy, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoEko.buatVektor(ox, oy + 12, ox, 42, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoEko.buatTeks(540, oy, "x (Unit)", { position: 'middle-left', fontSize: '10px', fill: mutedColor });
+            geoEko.buatTeks(ox, 36, "Rp", { position: 'bottom-center', fontSize: '10px', fill: mutedColor });
+
+            // Fungsi Biaya C(x) = garis naik mulai dari FC di (ox, 175) ke (500, 62)
+            // yC(x) = 175 - 0.26 * (x - ox)
+            const yCost = (x) => 175 - 0.26 * (x - ox);
+            // Fungsi Pendapatan R(x) = parabola terbuka ke bawah mulai dari (ox, oy)
+            // yRev(x) = oy - 0.92*(x - ox) + 0.00145*(x - ox)^2
+            const yRev = (x) => oy - 0.92 * (x - ox) + 0.00145 * Math.pow(x - ox, 2);
+
+            // Daerah Laba (arsir poligon di antara BEP 1 dan BEP 2)
+            const ptsProfitArea = [];
+            for (let x = 152; x <= 438; x += 8) {
+                ptsProfitArea.push([x, yRev(x)]);
+            }
+            for (let x = 438; x >= 152; x -= 8) {
+                ptsProfitArea.push([x, yCost(x)]);
+            }
+            geoEko.buatPoligon(ptsProfitArea, {
+                fill: isDark ? 'rgba(20, 184, 166, 0.18)' : 'rgba(13, 148, 136, 0.14)',
+                stroke: 'none'
+            });
+
+            // Gambar Kurva R(x)
+            const ptsRev = [];
+            for (let x = ox; x <= 495; x += 10) {
+                ptsRev.push([x, yRev(x)]);
+            }
+            geoEko.buatKurvaHalus(ptsRev, { stroke: tealColor, strokeWidth: 2.5 });
+
+            // Gambar Garis C(x)
+            geoEko.buatSegmen(ox, yCost(ox), 495, yCost(495), { stroke: roseColor, strokeWidth: 2.3 });
+
+            // Titik FC (Biaya Tetap)
+            geoEko.buatTitik(ox, yCost(ox), { size: 3.5, color: roseColor });
+            geoEko.buatTeks(ox - 6, yCost(ox), "FC", { position: 'middle-right', fontWeight: 'bold', fontSize: '10px', fill: roseColor });
+
+            // Titik BEP 1 & BEP 2
+            const xBep1 = 152, xBep2 = 438;
+            geoEko.buatTitik(xBep1, yCost(xBep1), { size: 4.5, color: amberColor });
+            geoEko.buatTeks(xBep1 - 6, yCost(xBep1) - 10, "BEP₁", { position: 'bottom-center', fontWeight: 'bold', fontSize: '10px', fill: amberColor });
+
+            geoEko.buatTitik(xBep2, yCost(xBep2), { size: 4.5, color: amberColor });
+            geoEko.buatTeks(xBep2 + 8, yCost(xBep2) + 12, "BEP₂", { position: 'top-center', fontWeight: 'bold', fontSize: '10px', fill: amberColor });
+
+            // Posisi Laba Maksimum (saat kemiringan R'(x) = C'(x) -> sekitar x = 295)
+            const xOpt = 295;
+            const yR_opt = yRev(xOpt);
+            const yC_opt = yCost(xOpt);
+            geoEko.buatSegmen(xOpt, yR_opt, xOpt, oy, { stroke: mutedColor, strokeWidth: 1.2, dashed: '4,4' });
+            geoEko.buatDimensi([xOpt, yR_opt], [xOpt, yC_opt], 12, "π maks", {
+                stroke: blueColor, fontSize: '10px', fontWeight: 'bold'
+            });
+            geoEko.buatTeks(xOpt, oy + 14, "x optimum (MR = MC)", {
+                position: 'top-center', fontWeight: 'bold', fontSize: '10px', fill: blueColor
+            });
+
+            // Label Kurva
+            geoEko.buatTeks(310, 62, "Pendapatan R(x)", { position: 'bottom-center', fontWeight: 'bold', fontSize: '11px', fill: tealColor });
+            geoEko.buatTeks(488, 56, "Biaya C(x)", { position: 'bottom-right', fontWeight: 'bold', fontSize: '11px', fill: roseColor });
+
+            geoEko.buatTeks(290, 254, "Zona Arsir Hijau: R(x) > C(x) (Daerah Untung)  |  BEP: R(x) = C(x)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: textColor
+            });
+
+
+            /* -------------------------------------------------------------
+               2. ILUSTRASI PERTUMBUHAN EKSPONENSIAL, LOGISTIK & PELURUHAN
+               ------------------------------------------------------------- */
+            const geoEks = new GeoSVG('geosvg-terapan-eksponensial', 580, 270, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoEks.buatPersegiPanjang(6, 6, 568, 258, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoEks.buatTeks(290, 24, "Perbandingan Model Dinamika: Eksponensial, Logistik, dan Peluruhan", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor
+            });
+
+            const exOx = 65, exOy = 216;
+            geoEks.buatVektor(exOx, exOy, 535, exOy, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoEks.buatVektor(exOx, exOy + 10, exOx, 42, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoEks.buatTeks(540, exOy, "t (Waktu)", { position: 'middle-left', fontSize: '10px', fill: mutedColor });
+            geoEks.buatTeks(exOx, 36, "N(t)", { position: 'bottom-center', fontSize: '10px', fill: mutedColor });
+
+            // Garis Asimtot Kapasitas Tampung K (untuk model logistik) di y = 84
+            const yK = 84;
+            geoEks.buatSegmen(exOx, yK, 520, yK, { stroke: blueColor, strokeWidth: 1.4, dashed: '5,4' });
+            geoEks.buatTeks(524, yK, "K (Kapasitas)", { position: 'middle-left', fontWeight: 'bold', fontSize: '10px', fill: blueColor });
+
+            // 1. Kurva Pertumbuhan Eksponensial Murni (Teal)
+            const ptsExpUp = [];
+            for (let dx = 0; dx <= 250; dx += 10) {
+                const y = exOy - 22 * Math.exp(dx / 115);
+                if (y >= 46) ptsExpUp.push([exOx + dx, y]);
+            }
+            geoEks.buatKurvaHalus(ptsExpUp, { stroke: tealColor, strokeWidth: 2.5 });
+            geoEks.buatTeks(285, 52, "Pertumbuhan Eksponensial", { position: 'middle-left', fontWeight: 'bold', fontSize: '10.5px', fill: tealColor });
+
+            // 2. Kurva Pertumbuhan Logistik S-Curve (Blue)
+            const ptsLogistik = [];
+            const H_max = exOy - yK; // 132
+            for (let dx = 0; dx <= 440; dx += 12) {
+                const val = H_max / (1 + 5 * Math.exp(-dx / 65));
+                ptsLogistik.push([exOx + dx, exOy - val]);
+            }
+            geoEks.buatKurvaHalus(ptsLogistik, { stroke: blueColor, strokeWidth: 2.5 });
+            geoEks.buatTeks(375, 104, "Pertumbuhan Logistik", { position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: blueColor });
+
+            // 3. Kurva Peluruhan Radioaktif (Amber) mulai dari N0 di y = 68
+            const ptsDecay = [];
+            for (let dx = 0; dx <= 440; dx += 12) {
+                const val = 148 * Math.exp(-dx / 130);
+                ptsDecay.push([exOx + dx, exOy - val]);
+            }
+            geoEks.buatKurvaHalus(ptsDecay, { stroke: amberColor, strokeWidth: 2.5 });
+            geoEks.buatTitik(exOx, exOy - 148, { size: 4, color: amberColor });
+            geoEks.buatTeks(exOx - 6, exOy - 148, "N₀", { position: 'middle-right', fontWeight: 'bold', fontSize: '10px', fill: amberColor });
+            geoEks.buatTeks(435, 192, "Peluruhan Eksponensial", { position: 'bottom-center', fontWeight: 'bold', fontSize: '10.5px', fill: amberColor });
+
+            // Tandai Waktu Paruh T_{1/2} saat nilai menjadi 1/2 N0 (74 px di atas sumbu)
+            const dxHalf = 130 * Math.LN2; // ~90 px
+            const xHalf = exOx + dxHalf;
+            const yHalf = exOy - 74;
+            geoEks.buatSegmen(xHalf, yHalf, xHalf, exOy, { stroke: mutedColor, strokeWidth: 1.2, dashed: '3,3' });
+            geoEks.buatSegmen(exOx, yHalf, xHalf, yHalf, { stroke: mutedColor, strokeWidth: 1.2, dashed: '3,3' });
+            geoEks.buatTitik(xHalf, yHalf, { size: 4, color: amberColor });
+            geoEks.buatTeks(exOx - 5, yHalf, "½N₀", { position: 'middle-right', fontSize: '9.5px', fill: mutedColor });
+            geoEks.buatTeks(xHalf, exOy + 13, "T₁/₂", { position: 'top-center', fontWeight: 'bold', fontSize: '10px', fill: amberColor });
+
+            geoEks.buatTeks(290, 248, "Eksponensial: N₀·eᵏᵗ  |  Logistik: menuju batas K  |  Peluruhan: meluruh separuh tiap T₁/₂", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: textColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiMatematikaTerapan();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiMatematikaTerapan, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

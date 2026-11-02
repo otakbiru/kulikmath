@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Nilai Mutlak</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Nilai Mutlak</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Definisi Nilai Mutlak</h2>
+            <p>
+                Secara geometris, <strong>nilai mutlak</strong> (atau harga mutlak) dari suatu bilangan real \(x\), yang dilambangkan dengan \(|x|\), adalah <strong>jarak titik \(x\) ke titik nol \((0)\)</strong> pada garis bilangan real. Karena jarak selalu bernilai tak-negatif (\(\ge 0\)), maka \(|x| \ge 0\) untuk setiap \(x \in \mathbb{R}\).
+            </p>
+            <p>
+                <strong>Definisi Aljabar (Fungsi Sepotong-Sepotong / Piecewise):</strong>
+                $$|x| = \begin{cases} x, & \text{jika } x \ge 0 \\ -x, & \text{jika } x < 0 \end{cases}$$
+                Secara lebih umum, untuk bentuk linear \(|ax + b|\) dengan titik pembuat nol \(x = -\frac{b}{a}\):
+                $$|ax + b| = \begin{cases} ax + b, & \text{jika } ax + b \ge 0 \\ -(ax + b), & \text{jika } ax + b < 0 \end{cases}$$
+            </p>
+            <ul>
+                <li>
+                    <strong>Jarak Antara Dua Titik:</strong> Untuk sembarang dua bilangan real \(x\) dan \(a\) pada garis bilangan, ekspresi \(|x - a|\) menyatakan <strong>jarak antara titik \(x\) dan titik \(a\)</strong>. Sebagai contoh, \(|x - 2| = 3\) berarti titik \(x\) berjarak \(3\) satuan dari angka \(2\) (yaitu \(x = 5\) atau \(x = -1\)).
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-mutlak-jarak" style="width: 100%; max-width: 600px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Sifat-Sifat Aljabar Nilai Mutlak dan Ketaksamaan Segitiga</h2>
+            <p>
+                Untuk setiap bilangan real \(x, y \in \mathbb{R}\), berlaku sifat-sifat fundamental nilai mutlak berikut:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Sifat</th>
+                            <th>Rumus Identitas / Ketaksamaan</th>
+                            <th>Catatan Penting</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Sifat Non-Negatif & Simetri</strong></td>
+                            <td>$$|x| \ge 0 \quad \text{dan} \quad |-x| = |x|$$</td>
+                            <td class="text-left">Akibatnya: \(|x - y| = |y - x|\).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Hubungan Kuadrat & Akar</strong></td>
+                            <td>$$|x|^2 = x^2 \quad \text{dan} \quad \sqrt{x^2} = |x|$$</td>
+                            <td class="text-left">Dasar dari metode menguadratkan kedua ruas jika kedua ruas \(\ge 0\).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Perkalian & Pembagian</strong></td>
+                            <td>$$|x \cdot y| = |x| \cdot |y| \quad \text{dan} \quad \left|\frac{x}{y}\right| = \frac{|x|}{|y|} \;\; (y \neq 0)$$</td>
+                            <td class="text-left">Nilai mutlak dapat dipecah pada operasi kali dan bagi.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Ketaksamaan Segitiga</strong><br><em>(Triangle Inequality)</em></td>
+                            <td>$$\big||x| - |y|\big| \le |x + y| \le |x| + |y|$$</td>
+                            <td class="text-left">Kesamaan \(|x+y| = |x|+|y|\) tercapai <strong>jika dan hanya jika</strong> \(x \cdot y \ge 0\) (bertanda sama).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Grafik Fungsi Nilai Mutlak</h2>
+            <p>
+                Fungsi nilai mutlak bentuk baku memiliki persamaan umum:
+                $$f(x) = a|x - h| + k \quad (a \neq 0)$$
+            </p>
+            <ul>
+                <li>
+                    <strong>Bentuk Kurva & Titik Puncak (Titik Belok Tajam):</strong> Grafik berbentuk huruf <strong>V</strong> yang simetris terhadap garis vertikal \(x = h\) dengan koordinat titik puncak (ujung lancip) di \(P(h, k)\).
+                    <ul>
+                        <li>Jika \(a > 0\), grafik membuka ke <strong>atas</strong> dengan nilai minimum \(y_{\min} = k\) dan daerah hasil \(R_f = [k, \infty)\).</li>
+                        <li>Jika \(a < 0\), grafik membuka ke <strong>bawah</strong> dengan nilai maksimum \(y_{\text{maks}} = k\) dan daerah hasil \(R_f = (-\infty, k]\).</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Transformasi Grafik \(y = |g(x)|\):</strong> Untuk menggambar grafik \(y = |g(x)|\) dari fungsi sembarang \(y = g(x)\), pertahankan bagian kurva \(g(x)\) yang berada di atas sumbu-\(X\) (\(g(x) \ge 0\)), lalu <strong>cerminkan bagian kurva yang berada di bawah sumbu-\(X\) terhadap sumbu-\(X\)</strong> ke atas.
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-mutlak-grafik" style="width: 100%; max-width: 600px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Persamaan Nilai Mutlak</h2>
+            <p>
+                Terdapat tiga bentuk utama persamaan nilai mutlak beserta metode penyelesaiannya:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bentuk Persamaan</th>
+                            <th>Syarat Berlaku</th>
+                            <th>Cara Penyelesaian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Bentuk 1:</strong> \(|f(x)| = c\)</td>
+                            <td class="text-left">Konstanta \(c \ge 0\)<br><em>(Jika \(c < 0\), himpunan penyelesaian \(\emptyset\))</em></td>
+                            <td>$$f(x) = c \quad \text{atau} \quad f(x) = -c$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Bentuk 2:</strong> \(|f(x)| = |g(x)|\)</td>
+                            <td class="text-left">Kedua ruas sudah pasti \(\ge 0\)</td>
+                            <td>$$f(x) = g(x) \quad \text{atau} \quad f(x) = -g(x)$$<br>Ekuivalen selisih kuadrat: \(\big(f(x) + g(x)\big)\big(f(x) - g(x)\big) = 0\).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Bentuk 3:</strong> \(|f(x)| = g(x)\)</td>
+                            <td class="text-left"><strong>Wajib syarat:</strong> \(g(x) \ge 0\)</td>
+                            <td class="text-left">Cari solusi \(f(x) = g(x)\) atau \(f(x) = -g(x)\), lalu <strong>uji/iriskan</strong> dengan syarat \(g(x) \ge 0\).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                <strong>Metode Analisis Interval (Untuk Penjumlahan Beberapa Nilai Mutlak, misal \(|x - a| + |x - b| = c\)):</strong><br>
+                1. Cari semua titik pembuat nol masing-masing nilai mutlak (\(x = a\) dan \(x = b\)).<br>
+                2. Bagi garis bilangan menjadi beberapa interval (misalnya \(x < a\), \(a \le x < b\), dan \(x \ge b\)).<br>
+                3. Buka tanda mutlak pada tiap interval sesuai tandanya, selesaikan persamaannya, dan pastikan solusinya berada di dalam interval tersebut.
+            </p>
+
+            <h2>5. Pertidaksamaan Nilai Mutlak</h2>
+            <p>
+                Penyelesaian pertidaksamaan nilai mutlak didasarkan pada sifat jarak terhadap titik asal (untuk konstanta \(c > 0\)):
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bentuk Pertidaksamaan</th>
+                            <th>Bentuk Ekuivalen (Tanpa Mutlak)</th>
+                            <th>Pola Daerah pada Garis Bilangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$$|f(x)| < c \quad (\text{atau } \le c)$$</td>
+                            <td>$$-c < f(x) < c$$</td>
+                            <td class="text-left"><strong>Irisan (Di antara):</strong> Daerah terkurung di tengah antara \(-c\) dan \(c\).</td>
+                        </tr>
+                        <tr>
+                            <td>$$|f(x)| > c \quad (\text{atau } \ge c)$$</td>
+                            <td>$$f(x) < -c \quad \text{atau} \quad f(x) > c$$</td>
+                            <td class="text-left"><strong>Gabungan (Menyebar):</strong> Daerah di sebelah kiri \(-c\) atau sebelah kanan \(c\).</td>
+                        </tr>
+                        <tr>
+                            <td>$$|f(x)| < |g(x)|$$</td>
+                            <td>$$\big(f(x) + g(x)\big)\big(f(x) - g(x)\big) < 0$$</td>
+                            <td class="text-left">Kuadratkan kedua ruas: \(f^2(x) - g^2(x) < 0\), lalu faktorkan dan uji garis bilangan.</td>
+                        </tr>
+                        <tr>
+                            <td>$$a < |f(x)| < b \quad (a, b > 0)$$</td>
+                            <td>$$a < f(x) < b \quad \text{atau} \quad -b < f(x) < -a$$</td>
+                            <td class="text-left">Gabungan dari dua interval simetris.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Tips Penting Pertidaksamaan Rasional Nilai Mutlak:
+                <br>• Jika terdapat bentuk pecahan \(\left|\frac{f(x)}{g(x)}\right| \le k\) dengan \(k > 0\), <strong>jangan lupa syarat penyebut \(g(x) \neq 0\)</strong>!
+                <br>• Kalikan kedua ruas dengan \(|g(x)|\) menjadi \(|f(x)| \le k|g(x)|\), lalu gunakan pemfaktoran selisih kuadrat \(\big(f(x) + k\cdot g(x)\big)\big(f(x) - k\cdot g(x)\big) \le 0\).
+            </div>
+
+            <h2>6. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh soal berikut untuk menguasai persamaan nilai mutlak bersyarat, pertidaksamaan kuadrat nilai mutlak, serta metode pembagian interval. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Persamaan Nilai Mutlak dengan Syarat Ruas Kanan -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Tentukan himpunan penyelesaian dari persamaan nilai mutlak:
+                    $$|2x - 5| = x + 1$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Tentukan syarat tak-negatif untuk ruas kanan.</strong><br>
+                        Karena nilai mutlak di ruas kiri selalu \(\ge 0\), maka ruas kanan wajib memenuhi:
+                        $$x + 1 \ge 0 \implies x \ge -1$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Pecah menjadi dua kemungkinan persamaan linear.</strong>
+                        <ul>
+                            <li>
+                                <strong>Kemungkinan I (Positif):</strong>
+                                $$2x - 5 = x + 1 \implies x = 6$$
+                                Cek syarat: karena \(6 \ge -1\) (memenuhi), maka \(x = 6\) adalah solusi yang sah.
+                            </li>
+                            <li>
+                                <strong>Kemungkinan II (Negatif):</strong>
+                                $$2x - 5 = -(x + 1) \implies 2x - 5 = -x - 1 \implies 3x = 4 \implies x = \frac{4}{3}$$
+                                Cek syarat: karena \(\frac{4}{3} \ge -1\) (memenuhi), maka \(x = \frac{4}{3}\) juga solusi yang sah.
+                            </li>
+                        </ul>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, himpunan penyelesaian dari persamaan tersebut adalah \(\text{HP} = \left\{\frac{4}{3}, 6\right\}\).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Pertidaksamaan Nilai Mutlak Bentuk Pecahan / Selisih Kuadrat -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Tentukan himpunan semua nilai \(x \in \mathbb{R}\) yang memenuhi pertidaksamaan:
+                    $$\left|\frac{2x + 1}{x - 3}\right| \le 1$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Catat syarat penyebut dan ubah bentuk pecahan.</strong><br>
+                        Penyebut tidak boleh nol, sehingga <strong>\(x \neq 3\)</strong>. Karena \(|x - 3| > 0\) untuk \(x \neq 3\), kita kalikan kedua ruas dengan \(|x - 3|\):
+                        $$|2x + 1| \le |x - 3|$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Gunakan sifat selisih kuadrat \(|f(x)| \le |g(x)| \iff (f + g)(f - g) \le 0\).</strong>
+                        $$(2x + 1)^2 - (x - 3)^2 \le 0$$
+                        $$\big((2x + 1) + (x - 3)\big)\big((2x + 1) - (x - 3)\big) \le 0$$
+                        $$(3x - 2)(x + 4) \le 0$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Tentukan titik pembuat nol dan uji garis bilangan.</strong><br>
+                        Pembuat nol adalah \(x = -4\) dan \(x = \frac{2}{3}\). Karena koefisien \(x^2\) positif dan tanda pertidaksamaan \(\le 0\), maka daerah penyelesaiannya berada di antara kedua pembuat nol tersebut:
+                        $$-4 \le x \le \frac{2}{3}$$
+                        Periksa syarat penyebut: nilai \(x = 3\) tidak berada di dalam interval \(\left[-4, \frac{2}{3}\right]\), sehingga seluruh interval tersebut aman.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, himpunan penyelesaian pertidaksamaan tersebut adalah \(\left\{x \in \mathbb{R} \;\middle|\; -4 \le x \le \frac{2}{3}\right\}\).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Persamaan Penjumlahan Dua Nilai Mutlak (Metode Interval) -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Tentukan semua nilai \(x\) yang memenuhi persamaan \(|x + 1| + |2x - 4| = 9\), serta tentukan nilai minimum dari fungsi \(h(x) = |x + 1| + |x - 5|\)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Bagian A: Menyelesaikan \(|x + 1| + |2x - 4| = 9\) dengan Metode Interval.</strong><br>
+                        Pembuat nol dari masing-masing mutlak adalah \(x + 1 = 0 \implies x = -1\) dan \(2x - 4 = 0 \implies x = 2\). Garis bilangan terbagi menjadi 3 kasus:
+                        <ul>
+                            <li>
+                                <strong>Kasus 1 (\(x < -1\)):</strong> Kedua mutlak bernilai negatif \(\implies -(x + 1) - (2x - 4) = 9\).
+                                $$-3x + 3 = 9 \implies -3x = 6 \implies x = -2$$
+                                Karena \(-2 < -1\) (masuk dalam interval Kasus 1), maka <strong>\(x = -2\) memenuhi</strong>.
+                            </li>
+                            <li>
+                                <strong>Kasus 2 (\(-1 \le x < 2\)):</strong> \(|x+1| = x+1\) dan \(|2x-4| = -(2x-4)\).
+                                $$(x + 1) - (2x - 4) = 9 \implies -x + 5 = 9 \implies x = -4$$
+                                Karena \(-4\) tidak berada di dalam interval \([-1, 2)\), maka \(x = -4\) <strong>tidak memenuhi</strong>.
+                            </li>
+                            <li>
+                                <strong>Kasus 3 (\(x \ge 2\)):</strong> Kedua mutlak bernilai positif \(\implies (x + 1) + (2x - 4) = 9\).
+                                $$3x - 3 = 9 \implies 3x = 12 \implies x = 4$$
+                                Karena \(4 \ge 2\) (masuk dalam interval Kasus 3), maka <strong>\(x = 4\) memenuhi</strong>.
+                            </li>
+                        </ul>
+                    </p>
+                    <p>
+                        <strong>Bagian B: Nilai Minimum \(h(x) = |x + 1| + |x - 5|\) dengan Ketaksamaan Segitiga.</strong><br>
+                        Berdasarkan Ketaksamaan Segitiga \(|A| + |B| \ge |A - B|\):
+                        $$h(x) = |x + 1| + |5 - x| \ge |(x + 1) + (5 - x)| = |6| = 6$$
+                        Nilai minimum \(6\) ini tercapai untuk semua \(x\) di antara kedua titik pembuat nolnya, yaitu \(-1 \le x \le 5\).
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, solusi persamaan adalah \(x \in \{-2, 4\}\), dan nilai minimum dari \(h(x) = |x + 1| + |x - 5|\) adalah \(6\).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiNilaiMutlak() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const roseColor = isDark ? '#fb7185' : '#e11d48';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI JARAK PADA GARIS BILANGAN & DAERAH PERTIDAKSAMAAN
+               ------------------------------------------------------------- */
+            const geoJarak = new GeoSVG('geosvg-mutlak-jarak', 600, 260, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoJarak.buatPersegiPanjang(6, 6, 588, 248, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoJarak.buatSegmen(20, 128, 580, 128, { stroke: borderColor, strokeWidth: 1.2, dashed: '4,4' });
+
+            // --- BAGIAN ATAS: MAKNA GEOMETRI |x - 2| = 3 (JARAK DARI TITIK 2) ---
+            geoJarak.buatTeks(300, 24, "Makna Geometri Nilai Mutlak: |x − 2| = 3 (Jarak dari titik 2 adalah 3 satuan)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            const yTop = 86;
+            geoJarak.buatVektor(40, yTop, 560, yTop, { stroke: textColor, strokeWidth: 1.8 });
+            geoJarak.buatVektor(560, yTop, 40, yTop, { stroke: textColor, strokeWidth: 1.8 });
+
+            // Skala garis bilangan atas: -2 s/d 6 (pusat di x = 2 -> px = 300, step = 52)
+            const numsTop = [-2, -1, 0, 1, 2, 3, 4, 5, 6];
+            const pxTop = val => 300 + (val - 2) * 52;
+
+            // Busur jarak 3 satuan ke kiri (dari 2 ke -1) dan ke kanan (dari 2 ke 5)
+            geoJarak.buatKurvaBezier([[pxTop(2), yTop - 10], [pxTop(0.5), yTop - 52], [pxTop(-1), yTop - 10]], {
+                stroke: tealColor, strokeWidth: 2.2, dashed: '4,3'
+            });
+            geoJarak.buatKurvaBezier([[pxTop(2), yTop - 10], [pxTop(3.5), yTop - 52], [pxTop(5), yTop - 10]], {
+                stroke: tealColor, strokeWidth: 2.2, dashed: '4,3'
+            });
+            geoJarak.buatTeks(pxTop(0.5), yTop - 38, "Jarak = 3", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10px', fill: tealColor
+            });
+            geoJarak.buatTeks(pxTop(3.5), yTop - 38, "Jarak = 3", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10px', fill: tealColor
+            });
+
+            numsTop.forEach(v => {
+                const x = pxTop(v);
+                geoJarak.buatSegmen(x, yTop - 5, x, yTop + 5, { stroke: textColor, strokeWidth: 1.4 });
+                const isCenter = (v === 2);
+                const isSol = (v === -1 || v === 5);
+
+                if (isCenter) {
+                    geoJarak.buatLingkaran(x, yTop, 5.5, { fill: amberColor, stroke: cardBg, strokeWidth: 1.5 });
+                } else if (isSol) {
+                    geoJarak.buatLingkaran(x, yTop, 6, { fill: tealColor, stroke: cardBg, strokeWidth: 1.5 });
+                }
+
+                geoJarak.buatTeks(x, yTop + 18, String(v), {
+                    position: 'middle-center',
+                    fontWeight: (isCenter || isSol) ? 'bold' : 'normal',
+                    fontSize: (isCenter || isSol) ? '11px' : '10px',
+                    fill: isCenter ? amberColor : (isSol ? tealColor : mutedColor)
+                });
+            });
+
+            // --- BAGIAN BAWAH: PERBANDINGAN |x| < c (DI ANTARA) VS |x| > c (MENYEBAR) ---
+            // Kiri Bawah: |x| <= c
+            geoJarak.buatTeks(155, 148, "Pertidaksamaan |x| ≤ c  ⟺  −c ≤ x ≤ c", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: tealColor
+            });
+            const yBot = 198;
+            geoJarak.buatVektor(30, yBot, 280, yBot, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoJarak.buatVektor(280, yBot, 30, yBot, { stroke: mutedColor, strokeWidth: 1.5 });
+
+            // Arsiran daerah tengah antara -c (95) dan c (215)
+            geoJarak.buatPersegiPanjang(95, yBot - 10, 120, 10, {
+                fill: isDark ? 'rgba(20, 184, 166, 0.28)' : 'rgba(13, 148, 136, 0.20)',
+                stroke: 'none'
+            });
+            geoJarak.buatSegmen(95, yBot, 215, yBot, { stroke: tealColor, strokeWidth: 4 });
+            geoJarak.buatLingkaran(95, yBot, 5, { fill: tealColor, stroke: cardBg, strokeWidth: 1.5 });
+            geoJarak.buatLingkaran(215, yBot, 5, { fill: tealColor, stroke: cardBg, strokeWidth: 1.5 });
+            geoJarak.buatSegmen(155, yBot - 5, 155, yBot + 5, { stroke: textColor, strokeWidth: 1.4 });
+            geoJarak.buatTeks(95, yBot + 18, "−c", { position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: tealColor });
+            geoJarak.buatTeks(155, yBot + 18, "0", { position: 'middle-center', fontSize: '10px', fill: mutedColor });
+            geoJarak.buatTeks(215, yBot + 18, "c", { position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: tealColor });
+            geoJarak.buatTeks(155, 236, "Daerah Terkurung di Tengah (Irisan)", {
+                position: 'middle-center', fontSize: '9.5px', fill: textColor
+            });
+
+            // Pemisah vertikal bawah
+            geoJarak.buatSegmen(300, 138, 300, 244, { stroke: borderColor, strokeWidth: 1.2, dashed: '4,4' });
+
+            // Kanan Bawah: |x| >= c
+            geoJarak.buatTeks(445, 148, "Pertidaksamaan |x| ≥ c  ⟺  x ≤ −c atau x ≥ c", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: roseColor
+            });
+            geoJarak.buatVektor(320, yBot, 570, yBot, { stroke: mutedColor, strokeWidth: 1.5 });
+            geoJarak.buatVektor(570, yBot, 320, yBot, { stroke: mutedColor, strokeWidth: 1.5 });
+
+            // Arsiran daerah kiri (< -c) dan kanan (> c)
+            geoJarak.buatPersegiPanjang(330, yBot - 10, 55, 10, {
+                fill: isDark ? 'rgba(251, 113, 133, 0.28)' : 'rgba(225, 29, 72, 0.18)',
+                stroke: 'none'
+            });
+            geoJarak.buatPersegiPanjang(505, yBot - 10, 55, 10, {
+                fill: isDark ? 'rgba(251, 113, 133, 0.28)' : 'rgba(225, 29, 72, 0.18)',
+                stroke: 'none'
+            });
+            geoJarak.buatSegmen(330, yBot, 385, yBot, { stroke: roseColor, strokeWidth: 4 });
+            geoJarak.buatSegmen(505, yBot, 560, yBot, { stroke: roseColor, strokeWidth: 4 });
+            geoJarak.buatLingkaran(385, yBot, 5, { fill: roseColor, stroke: cardBg, strokeWidth: 1.5 });
+            geoJarak.buatLingkaran(505, yBot, 5, { fill: roseColor, stroke: cardBg, strokeWidth: 1.5 });
+            geoJarak.buatSegmen(445, yBot - 5, 445, yBot + 5, { stroke: textColor, strokeWidth: 1.4 });
+            geoJarak.buatTeks(385, yBot + 18, "−c", { position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: roseColor });
+            geoJarak.buatTeks(445, yBot + 18, "0", { position: 'middle-center', fontSize: '10px', fill: mutedColor });
+            geoJarak.buatTeks(505, yBot + 18, "c", { position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: roseColor });
+            geoJarak.buatTeks(445, 236, "Daerah Menyebar ke Kiri & Kanan (Gabungan)", {
+                position: 'middle-center', fontSize: '9.5px', fill: textColor
+            });
+
+
+            /* -------------------------------------------------------------
+               2. ILUSTRASI GRAFIK FUNGSI NILAI MUTLAK (HURUF V & TRANSFORMASI)
+               ------------------------------------------------------------- */
+            const geoGraf = new GeoSVG('geosvg-mutlak-grafik', 600, 275, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoGraf.buatPersegiPanjang(6, 6, 588, 263, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoGraf.buatSegmen(300, 16, 300, 258, { stroke: borderColor, strokeWidth: 1.2, dashed: '4,4' });
+
+            // --- PANEL KIRI: GRAFIK HURUF V f(x) = |x - 2| - 1 ---
+            geoGraf.buatTeks(150, 24, "1. Grafik Bentuk V: f(x) = |x − 2| − 1", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            // Titik asal O1(95, 185), skala 28 px per satuan
+            const ox1 = 95, oy1 = 185, s1 = 28;
+            geoGraf.buatVektor(25, oy1, 275, oy1, { stroke: mutedColor, strokeWidth: 1.4 });
+            geoGraf.buatVektor(ox1, 235, ox1, 50, { stroke: mutedColor, strokeWidth: 1.4 });
+            geoGraf.buatTeks(278, oy1, "X", { position: 'middle-left', fontWeight: 'bold', fontSize: '10px', fill: mutedColor });
+            geoGraf.buatTeks(ox1, 45, "Y", { position: 'bottom-center', fontWeight: 'bold', fontSize: '10px', fill: mutedColor });
+
+            // Sumbu simetri x = 2
+            const vx = ox1 + 2 * s1;
+            const vy = oy1 + 1 * s1; // y = -1
+            geoGraf.buatSegmen(vx, 55, vx, 230, { stroke: amberColor, strokeWidth: 1.3, dashed: '4,4' });
+            geoGraf.buatTeks(vx + 6, 62, "Sumbu simetri x = 2", {
+                position: 'middle-left', fontSize: '9.5px', fontWeight: 'bold', fill: amberColor
+            });
+
+            // Kurva V dari x = -1.5 s/d x = 5.5
+            const pLeft = [ox1 - 1.5 * s1, oy1 - 2.5 * s1];
+            const pVertex = [vx, vy];
+            const pRight = [ox1 + 5.5 * s1, oy1 - 2.5 * s1];
+            geoGraf.buatPolyline([pLeft, pVertex, pRight], {
+                stroke: tealColor, strokeWidth: 2.6
+            });
+
+            // Titik puncak P(2, -1) dan titik potong sumbu-X di (1, 0) & (3, 0)
+            geoGraf.buatLingkaran(ox1 + 1 * s1, oy1, 4, { fill: blueColor, stroke: cardBg, strokeWidth: 1.2 });
+            geoGraf.buatLingkaran(ox1 + 3 * s1, oy1, 4, { fill: blueColor, stroke: cardBg, strokeWidth: 1.2 });
+            geoGraf.buatLingkaran(vx, vy, 5, { fill: amberColor, stroke: cardBg, strokeWidth: 1.5 });
+            geoGraf.buatTeks(vx, vy + 14, "Puncak P(2, −1)", {
+                position: 'top-center', fontWeight: 'bold', fontSize: '10px', fill: amberColor
+            });
+            geoGraf.buatTeks(ox1 + 1 * s1 - 4, oy1 + 12, "1", { position: 'top-center', fontSize: '9.5px', fill: blueColor });
+            geoGraf.buatTeks(ox1 + 3 * s1 + 4, oy1 + 12, "3", { position: 'top-center', fontSize: '9.5px', fill: blueColor });
+
+            geoGraf.buatTeks(150, 252, "Cabang kiri m = −1  |  Cabang kanan m = +1", {
+                position: 'middle-center', fontSize: '10px', fill: tealColor, fontWeight: 'bold'
+            });
+
+            // --- PANEL KANAN: TRANSFORMASI CERMIN y = |x^2 - 4| ---
+            geoGraf.buatTeks(450, 24, "2. Cermin Sumbu-X: y = |x² − 4|", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            const ox2 = 450, oy2 = 165, sx2 = 32, sy2 = 18;
+            geoGraf.buatVektor(325, oy2, 575, oy2, { stroke: mutedColor, strokeWidth: 1.4 });
+            geoGraf.buatVektor(ox2, 242, ox2, 50, { stroke: mutedColor, strokeWidth: 1.4 });
+            geoGraf.buatTeks(578, oy2, "X", { position: 'middle-left', fontWeight: 'bold', fontSize: '10px', fill: mutedColor });
+            geoGraf.buatTeks(ox2 + 8, 52, "Y", { position: 'middle-left', fontWeight: 'bold', fontSize: '10px', fill: mutedColor });
+
+            // Bagian kurva asli di bawah sumbu-X yang dicerminkan (putus-putus) untuk -2 <= x <= 2
+            const ptsBelow = [];
+            for (let x = -2; x <= 2.01; x += 0.1) {
+                const y = x * x - 4;
+                ptsBelow.push([ox2 + x * sx2, oy2 - y * sy2]);
+            }
+            geoGraf.buatPolyline(ptsBelow, {
+                stroke: mutedColor, strokeWidth: 1.6, dashed: '4,4'
+            });
+
+            // Grafik y = |x^2 - 4| (utuh di atas sumbu-X)
+            const ptsAbsLeft = [];
+            for (let x = -2.9; x <= -2.0; x += 0.1) {
+                const y = Math.abs(x * x - 4);
+                ptsAbsLeft.push([ox2 + x * sx2, oy2 - y * sy2]);
+            }
+            const ptsAbsMid = [];
+            for (let x = -2.0; x <= 2.001; x += 0.1) {
+                const y = Math.abs(x * x - 4);
+                ptsAbsMid.push([ox2 + x * sx2, oy2 - y * sy2]);
+            }
+            const ptsAbsRight = [];
+            for (let x = 2.0; x <= 2.91; x += 0.1) {
+                const y = Math.abs(x * x - 4);
+                ptsAbsRight.push([ox2 + x * sx2, oy2 - y * sy2]);
+            }
+
+            geoGraf.buatPolyline(ptsAbsLeft, { stroke: tealColor, strokeWidth: 2.5 });
+            geoGraf.buatPolyline(ptsAbsRight, { stroke: tealColor, strokeWidth: 2.5 });
+            geoGraf.buatPolyline(ptsAbsMid, { stroke: roseColor, strokeWidth: 2.6 });
+
+            // Panah pencerminan dari (0, -4) ke (0, 4)
+            geoGraf.buatVektor(ox2, oy2 + 4 * sy2 - 4, ox2, oy2 - 4 * sy2 + 8, {
+                stroke: amberColor, strokeWidth: 1.6, dashed: '3,3'
+            });
+            geoGraf.buatLingkaran(ox2, oy2 - 4 * sy2, 4.5, { fill: roseColor, stroke: cardBg, strokeWidth: 1.2 });
+            geoGraf.buatLingkaran(ox2 - 2 * sx2, oy2, 4.5, { fill: tealColor, stroke: cardBg, strokeWidth: 1.2 });
+            geoGraf.buatLingkaran(ox2 + 2 * sx2, oy2, 4.5, { fill: tealColor, stroke: cardBg, strokeWidth: 1.2 });
+
+            geoGraf.buatTeks(ox2 + 8, oy2 - 4 * sy2, "(0, 4)", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '9.5px', fill: roseColor
+            });
+            geoGraf.buatTeks(ox2 + 8, oy2 + 4 * sy2 - 4, "(0, −4) dicerminkan", {
+                position: 'middle-left', fontSize: '9px', fill: mutedColor
+            });
+            geoGraf.buatTeks(ox2 - 2 * sx2, oy2 + 13, "−2", {
+                position: 'top-center', fontWeight: 'bold', fontSize: '9.5px', fill: tealColor
+            });
+            geoGraf.buatTeks(ox2 + 2 * sx2, oy2 + 13, "2", {
+                position: 'top-center', fontWeight: 'bold', fontSize: '9.5px', fill: tealColor
+            });
+
+            geoGraf.buatTeks(450, 252, "Bagian y < 0 dicerminkan ke atas sumbu-X", {
+                position: 'middle-center', fontSize: '10px', fill: roseColor, fontWeight: 'bold'
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiNilaiMutlak();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiNilaiMutlak, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
