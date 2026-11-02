@@ -1,0 +1,666 @@
+:root {
+    --bg-body: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-subtle: #f0fdfa;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --teal-primary: #0d9488;
+    --teal-hover: #0f766e;
+    --teal-light: #ccfbf1;
+    --border-color: #e2e8f0;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] {
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --bg-subtle: #132a2e;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --teal-primary: #14b8a6;
+    --teal-hover: #2dd4bf;
+    --teal-light: #115e59;
+    --border-color: #334155;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.75;
+    transition: background-color 0.25s, color 0.25s;
+    padding-bottom: 4rem;
+}
+
+/* Header & Sticky Navbar */
+.navbar {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.nav-container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--teal-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background-color: var(--teal-primary);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.45rem 1rem;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s, transform 0.15s;
+}
+
+.home-btn:hover {
+    background-color: var(--teal-hover);
+    transform: translateY(-1px);
+}
+
+.theme-btn {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.theme-btn:hover {
+    border-color: var(--teal-primary);
+}
+
+/* Container Utama */
+.container {
+    max-width: 850px;
+    margin: 2rem auto;
+    padding: 0 1.25rem;
+}
+
+/* Header Info Soal / Materi */
+.page-header {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--teal-primary);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.intro-text {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+}
+
+.level-highlight,
+.topic-highlight {
+    font-weight: 700;
+    color: var(--teal-primary);
+}
+
+/* Navigasi Tingkat (Pills) */
+.level-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.level-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-right: 0.25rem;
+    font-weight: 600;
+}
+
+.level-pill {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    background: var(--bg-body);
+    transition: all 0.2s;
+}
+
+.level-pill:hover {
+    border-color: var(--teal-primary);
+    color: var(--teal-primary);
+}
+
+.level-pill.active {
+    background: var(--teal-primary);
+    color: #ffffff;
+    border-color: var(--teal-primary);
+}
+
+/* Blok Soal */
+.soal-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.soal-no {
+    display: inline-block;
+    background: var(--bg-subtle);
+    color: var(--teal-primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.85rem;
+    border: 1px solid var(--teal-light);
+}
+
+.soal-teks {
+    margin-bottom: 1.25rem;
+    overflow-x: auto;
+}
+
+/* List Styling pada Teks Soal & Pembahasan (Non-pilgan) */
+.soal-item ol:not(.pilgan),
+.soal-item ul {
+    padding-left: 1.5rem;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.soal-item ol:not(.pilgan) li,
+.soal-item ul li {
+    margin-bottom: 0.35rem;
+    line-height: 1.6;
+}
+
+/* Sumber Soal (Opsional) */
+.soal-sumber {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: -0.5rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+/* Otomatis sembunyikan jika div sumber dikosongkan */
+.soal-sumber:empty {
+    display: none;
+}
+
+.soal-sumber a {
+    color: var(--teal-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-style: normal;
+    border-bottom: 1px dashed var(--teal-primary);
+    transition: 0.2s;
+}
+
+.soal-sumber a:hover {
+    color: var(--teal-hover);
+    border-bottom-style: solid;
+}
+
+.btn-solusi {
+    background-color: transparent;
+    color: var(--teal-primary);
+    border: 1.5px solid var(--teal-primary);
+    padding: 0.5rem 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-solusi:hover {
+    background-color: var(--teal-primary);
+    color: #ffffff;
+}
+
+/* Kotak Pembahasan */
+.pembahasan-box {
+    display: none;
+    margin-top: 1.25rem;
+    padding: 1.25rem;
+    background-color: var(--bg-subtle);
+    border: 1px solid var(--teal-light);
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.pembahasan-box.show {
+    display: block;
+    animation: fadeIn 0.25s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pembahasan-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--teal-primary);
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   KOTAK KESIMPULAN ("JADI, ...") - KUNING MUSTARD
+   ========================================================================== */
+.kesimpulan {
+    margin-top: 1.1rem;
+    padding: 0.75rem 1.1rem;
+    background-color: #fef3c7;
+    /* Latar krem-mustard lembut */
+    color: #92400e;
+    /* Teks cokelat-mustard tua agar tajam dibaca */
+    border-left: 4px solid #d97706;
+    /* Garis tepi kuning mustard pekat */
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+/* Penyesuaian warna saat Dark Mode */
+[data-theme="dark"] .kesimpulan {
+    background-color: rgba(217, 119, 6, 0.18);
+    /* Transparan mustard gelap */
+    color: #fbbf24;
+    /* Teks kuning mustard terang */
+    border-left-color: #f59e0b;
+    /* Garis tepi mustard menyala */
+}
+
+.btn-tutup {
+    margin-top: 1rem;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    padding: 0.35rem 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-tutup:hover {
+    color: #ef4444;
+    border-color: #ef4444;
+}
+
+/* Pagination */
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 2.5rem;
+}
+
+.pagsoal {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 0.6rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+
+.page-btn:hover {
+    border-color: var(--teal-primary);
+    color: var(--teal-primary);
+}
+
+.page-btn.active {
+    background: var(--teal-primary);
+    color: #ffffff;
+    border-color: var(--teal-primary);
+}
+
+/* Konten Materi */
+.materi-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+}
+
+.materi-card h2 {
+    color: var(--teal-primary);
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.35rem;
+}
+
+.materi-card h2:first-child {
+    margin-top: 0;
+}
+
+.materi-card p,
+.materi-card ul,
+.materi-card ol {
+    margin-bottom: 1rem;
+}
+
+.materi-card ul,
+.materi-card ol {
+    padding-left: 1.5rem;
+}
+
+/* Halaman Utama (Index) */
+.search-box {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-size: 1rem;
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-card);
+    color: var(--text-main);
+    margin-bottom: 2rem;
+    outline: none;
+    transition: 0.2s;
+}
+
+.search-box:focus {
+    border-color: var(--teal-primary);
+    box-shadow: 0 0 0 3px var(--teal-light);
+}
+
+.category-block {
+    margin-bottom: 2.25rem;
+}
+
+.category-heading {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--teal-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--teal-light);
+}
+
+.topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.topic-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.15rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.15s, border-color 0.15s;
+}
+
+.topic-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--teal-primary);
+}
+
+.topic-name {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.85rem;
+}
+
+.topic-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.topic-links a {
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    background: var(--bg-subtle);
+    color: var(--teal-primary);
+    border: 1px solid var(--teal-light);
+    transition: 0.2s;
+}
+
+.topic-links a:hover {
+    background: var(--teal-primary);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   TABEL MATEMATIKA (STATISTIKA, LOGIKA, TRIGONOMETRI, DLL.)
+   ========================================================================== */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1.25rem 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Jika tabel tidak ingin melebar 100% (cukup selebar isinya & rata tengah) */
+table.table-auto {
+    width: auto;
+    min-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th,
+td {
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    /* Default rata tengah karena tabel matematika umumnya angka/simbol */
+}
+
+th {
+    background-color: var(--bg-subtle);
+    color: var(--teal-primary);
+    font-weight: 700;
+    border-bottom: 2px solid var(--teal-light);
+}
+
+/* Efek zebra-striping halus pada baris genap */
+tbody tr:nth-child(even) {
+    background-color: rgba(13, 148, 136, 0.03);
+}
+
+[data-theme="dark"] tbody tr:nth-child(even) {
+    background-color: rgba(20, 184, 166, 0.05);
+}
+
+tbody tr:hover {
+    background-color: var(--bg-subtle);
+}
+
+/* Class bantu jika ada kolom teks yang ingin rata kiri */
+.text-left {
+    text-align: left;
+}
+
+/* ==========================================================================
+   PILIHAN GANDA (5 OPSI -> 2 KOLOM: A-B-C DI KIRI, D-E DI KANAN)
+   ========================================================================== */
+ol.pilgan {
+    list-style: none;
+    counter-reset: opsi-counter;
+    padding-left: 0;
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Mengisi baris 1-3 ke bawah dulu (A, B, C), baru pindah ke kolom kanan (D, E) */
+    grid-template-rows: repeat(3, auto);
+    grid-auto-flow: column;
+    gap: 0.6rem 2rem;
+}
+
+ol.pilgan li {
+    counter-increment: opsi-counter;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+/* Membuat label A., B., C., D., E. otomatis dengan warna Teal */
+ol.pilgan li::before {
+    content: counter(opsi-counter, upper-alpha) ".";
+    font-weight: 700;
+    color: var(--teal-primary);
+    min-width: 1.4rem;
+}
+
+/* Variasi 1 Kolom ke Bawah (Jika opsi jawabannya berupa kalimat panjang/matriks besar) */
+ol.pilgan.pilgan-1kolom {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-auto-flow: row;
+}
+
+/* Variasi 3 Kolom: A-B di kolom 1, C-D di kolom 2, E di kolom 3 */
+ol.pilgan.pilgan-3kolom {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-auto-flow: column;
+    gap: 0.6rem 1.5rem;
+}
+
+/* Variasi 5 Kolom Menyamping (Jika opsi jawabannya sangat pendek, misal: 1, 2, 3, 4, 5) */
+ol.pilgan.pilgan-5kolom {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    grid-auto-flow: row;
+    gap: 0.5rem 1rem;
+}
+
+/* Responsif di Layar HP Kecil: Otomatis jadi 1 kolom agar rumus tidak terpotong */
+@media (max-width: 540px) {
+
+    ol.pilgan,
+    ol.pilgan.pilgan-3kolom,
+    ol.pilgan.pilgan-5kolom {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-auto-flow: row;
+    }
+}
+
+/* ==========================================================================
+   SISTEM ROW & COL FLEKSIBEL (UNTUK MEMBAGI KOLOM SOAL / GAMBAR GEOSVG)
+   ========================================================================== */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 1rem 0;
+    align-items: center;
+}
+
+/* Kolom otomatis membagi rata ruang yang tersedia */
+.col {
+    flex: 1 1 250px;
+    min-width: 0;
+}
+
+/* Jika ingin salah satu kolom lebih lebar (misal 2/3 teks, 1/3 gambar) */
+.col-2 {
+    flex: 2 1 320px;
+    min-width: 0;
+}
+
+.col-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+e {
+    white-space: nowrap;
+}
+
+em {
+    font-family: Cambria, Times, Cochin, Georgia, 'Times New Roman', serif;
+    font-size: 1.1em;
+}
+
+.tengah {
+    text-align: center;
+}
