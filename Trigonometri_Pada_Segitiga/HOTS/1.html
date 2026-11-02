@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Trigonometri Pada Segitiga</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="./scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">HOTS</span>
+                materi <span class="topic-highlight">Trigonometri Pada Segitiga</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Pada suatu $\triangle ABC$, besar sudut $C$ tiga kali besar sudut $A$ dan besar sudut $B$ dua kali besar sudut $A$. Berapakah perbandingan (rasio) antara panjang $AB$ dengan $BC$?
+            </div>
+            <div class="soal-sumber">Sumber: <a href="https://forummatematika.freeforums.net/thread/16/soal" target="_blank" rel="noopener noreferrer">OSK SMA 2002</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div class="row">
+                        <div class="col col-center">
+                            <div id="geo-hots-1" style="width: 100%; max-width: 250px;"></div>
+                        </div>
+                        <div class="col-2">
+                            Jumlah sudut dalam $\triangle ABC$ adalah $180^\circ$. Diketahui $\angle B = 2\angle A$ dan $\angle C = 3\angle A$, maka:
+                            $$\begin{aligned}
+                            \angle A + \angle B + \angle C &= 180^\circ\\
+                            \angle A + 2\angle A + 3\angle A &= 180^\circ\\
+                            6\angle A &= 180^\circ\\
+                            \angle A &= 30^\circ
+                            \end{aligned}$$
+                            Sehingga besar sudut $C$ adalah:
+                            $$\begin{aligned}
+                            \angle C &= 3\angle A = 3(30^\circ) = 90^\circ
+                            \end{aligned}$$
+                        </div>
+                    </div>
+                    Dengan menggunakan aturan sinus pada $\triangle ABC$:
+                    $$\begin{aligned}
+                    \frac{AB}{\sin \angle C} &= \frac{BC}{\sin \angle A}\\[4pt]
+                    \frac{AB}{\sin 90^\circ} &= \frac{BC}{\sin 30^\circ}\\[4pt]
+                    \frac{AB}{1} &= \frac{BC}{\frac{1}{2}}\\[4pt]
+                    \frac{AB}{BC} &= \frac{2}{1}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, perbandingan (rasio) antara panjang $AB$ dengan $BC$ adalah $2 : 1$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <div class="row">
+                    <div class="col col-center">
+                        <div id="geo-hots-2" style="width: 100%; max-width: 260px;"></div>
+                    </div>
+                    <div class="col-2">
+                        Perhatikan gambar segitiga siku-siku di samping. Diketahui $\triangle ABC$ siku-siku di $B$ dengan panjang $AB = 3$, $BD = x$, dan $CD = 5$. Jika $\angle ABD = \theta$ dan $\angle DBC = 45^\circ$, maka nilai $x$ yang memenuhi adalah ....
+                    </div>
+                </div>
+            </div>
+            <div class="soal-sumber">Sumber: <a href="https://s.id/matematikaidhamdaz" target="_blank" rel="noopener noreferrer">matematikaidhamdaz</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Dari segitiga siku-siku $\triangle ABD$ dan $\triangle ABC$, diperoleh:
+                    $$\tan \theta = \frac{x}{3} \quad \text{dan} \quad \tan(\theta + 45^\circ) = \frac{x + 5}{3}$$
+                    Gunakan rumus jumlah tangen dua sudut:
+                    $$\begin{aligned}
+                    \tan\left(\theta + 45^\circ\right) &= \frac{\tan\theta + \tan 45^\circ}{1 - \tan\theta\tan 45^\circ}\\[4pt]
+                    \frac{x + 5}{3} &= \frac{\frac{x}{3} + 1}{1 - \frac{x}{3}\cdot 1}\\[4pt]
+                    \frac{x + 5}{3} &= \frac{x + 3}{3 - x}\\[4pt]
+                    (x + 5)(3 - x) &= 3(x + 3)\\
+                    3x - x^2 + 15 - 5x &= 3x + 9\\
+                    x^2 + 5x - 6 &= 0\\
+                    (x - 1)(x + 6) &= 0
+                    \end{aligned}$$
+                    Diperoleh $x = 1$ atau $x = -6$ (tidak memenuhi karena panjang sisi bernilai positif).
+                    <div class="kesimpulan">Jadi, nilai $x$ yang memenuhi adalah $x = 1$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        function renderVisualisasiGeoSVG() {
+            if (typeof GeoSVG === 'undefined') {
+                setTimeout(renderVisualisasiGeoSVG, 100);
+                return;
+            }
+
+            const warnaGaris = "var(--text-main)";
+            const warnaAksen = "var(--teal-primary)";
+
+            // 1. Visualisasi HOTS Soal No. 1 (Segitiga ABC dengan A=30°, B=60°, C=90°)
+            const el1 = document.getElementById("geo-hots-1");
+            if (el1) {
+                const geo1 = new GeoSVG(el1, 220, 145, {
+                    margin: 22,
+                    clearContainer: true,
+                    defaultStroke: warnaGaris,
+                    defaultStrokeWidth: 1.8
+                });
+                const A = [15, 115];
+                const C = [180, 115];
+                const B = [180, 20];
+
+                geo1.buatSiku(A, C, B, { size: 12, stroke: warnaAksen });
+                geo1.buatSudut(C, A, B, {
+                    radius: 34,
+                    label: "30°",
+                    labelRadius: 48,
+                    stroke: warnaAksen,
+                    fill: "rgba(13, 148, 136, 0.15)",
+                    labelColor: warnaGaris,
+                    fontSize: "11px"
+                });
+                geo1.buatSudut(A, B, C, {
+                    radius: 26,
+                    label: "60°",
+                    labelRadius: 38,
+                    stroke: warnaAksen,
+                    fill: "rgba(13, 148, 136, 0.15)",
+                    labelColor: warnaGaris,
+                    fontSize: "11px"
+                });
+                geo1.buatSegitiga(A, C, B);
+                geo1.buatTitik(A, { size: 3, color: warnaGaris, label: "A", labelPosition: "bottom-left" });
+                geo1.buatTitik(C, { size: 3, color: warnaGaris, label: "C", labelPosition: "bottom-right" });
+                geo1.buatTitik(B, { size: 3, color: warnaGaris, label: "B", labelPosition: "top-right" });
+            }
+
+            // 2. Visualisasi HOTS Soal No. 2 (Segitiga siku-siku dengan sudut θ dan 45°)
+            const el2 = document.getElementById("geo-hots-2");
+            if (el2) {
+                const geo2 = new GeoSVG(el2, 230, 175, {
+                    margin: 22,
+                    clearContainer: true,
+                    defaultStroke: warnaGaris,
+                    defaultStrokeWidth: 1.8
+                });
+                const B = [20, 145];
+                const C = [200, 145];
+                const D = [65, 145];
+                const A = [20, 25];
+
+                geo2.buatSiku(C, B, A, { size: 12, stroke: warnaAksen });
+                geo2.buatSudut(B, A, D, {
+                    radius: 32,
+                    label: "θ",
+                    labelRadius: 45,
+                    stroke: warnaAksen,
+                    fill: "rgba(13, 148, 136, 0.15)",
+                    labelColor: warnaGaris,
+                    fontSize: "12px"
+                });
+                geo2.buatSudut(D, A, C, {
+                    radius: 42,
+                    label: "45°",
+                    labelRadius: 56,
+                    stroke: "#f59e0b",
+                    fill: "rgba(245, 158, 11, 0.15)",
+                    labelColor: warnaGaris,
+                    fontSize: "11px"
+                });
+
+                geo2.buatSegitiga(A, B, C);
+                geo2.buatSegmen(A, D, { dashed: true, stroke: warnaAksen });
+
+                geo2.buatTitik(A, { size: 3, color: warnaGaris, label: "A", labelPosition: "top-left" });
+                geo2.buatTitik(B, { size: 3, color: warnaGaris, label: "B", labelPosition: "bottom-left" });
+                geo2.buatTitik(D, { size: 3, color: warnaGaris, label: "D", labelPosition: "bottom-center" });
+                geo2.buatTitik(C, { size: 3, color: warnaGaris, label: "C", labelPosition: "bottom-right" });
+
+                geo2.buatLabelSisi(A, B, "3", { sisi: "kanan", jarak: 14, fill: warnaGaris, fontSize: "13px" });
+                geo2.buatLabelSisi(B, D, "x", { sisi: "kanan", jarak: 15, fill: warnaAksen, fontSize: "13px", fontWeight: "bold" });
+                geo2.buatLabelSisi(D, C, "5", { sisi: "kanan", jarak: 15, fill: warnaGaris, fontSize: "13px" });
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", renderVisualisasiGeoSVG);
+    </script>
+</body>
+
+</html>

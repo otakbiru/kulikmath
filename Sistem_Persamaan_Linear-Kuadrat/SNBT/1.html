@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNBT - Sistem Persamaan Linear-Kuadrat</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="./scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">SNBT</span>
+                materi <span class="topic-highlight">Sistem Persamaan Linear-Kuadrat</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jumlah $x$ dan $y$ dari solusi tunggal <e>$(x, y)$</e> yang memenuhi sistem persamaan:
+                $$\begin{cases}
+                x - y = a\\[4pt]
+                x^2 + 5x - y = 2
+                \end{cases}$$
+                adalah ....
+                <ol class="pilgan pilgan-3kolom">
+                    <li>$-12$</li>
+                    <li>$-10$</li>
+                    <li>$-6$</li>
+                    <li>$6$</li>
+                    <li>$10$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">Sumber: <a href="https://sfile.mobi/3I7woT3Wm41" target="_blank" rel="noopener noreferrer">SIMAK UI 2009 Kode 911</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div class="row">
+                        <div class="col">
+                            Dari persamaan linear pertama diperoleh:
+                            $$\begin{aligned}
+                            x - y &= a\\
+                            y &= x - a
+                            \end{aligned}$$
+                            Substitusikan $y = x - a$ ke persamaan kuadrat:
+                            $$\begin{aligned}
+                            x^2 + 5x - y &= 2\\
+                            x^2 + 5x - (x - a) &= 2\\
+                            x^2 + 4x + a - 2 &= 0
+                            \end{aligned}$$
+                            Tentukan diskriminan ($D$) dari persamaan kuadrat tersebut:
+                            $$\begin{aligned}
+                            D &= 4^2 - 4(1)(a - 2)\\
+                            &= 16 - 4a + 8\\
+                            &= -4a + 24
+                            \end{aligned}$$
+                            Jika $D > 0$, terdapat tak hingga nilai $a$ dan $x$ yang memenuhi. Agar sistem persamaan memiliki satu solusi tunggal $(x, y)$, maka kurva dan garis harus bersinggungan sehingga <e>$D = 0$.</e>
+                        </div>
+                        <div class="col">
+                            Dari syarat $D = 0$, diperoleh nilai $a$:
+                            $$\begin{aligned}
+                            -4a + 24 &= 0\\
+                            a &= 6
+                            \end{aligned}$$
+                            Substitusikan $a = 6$ ke persamaan kuadrat untuk mencari $x$:
+                            $$\begin{aligned}
+                            x^2 + 4x + 6 - 2 &= 0\\
+                            x^2 + 4x + 4 &= 0\\
+                            (x + 2)^2 &= 0 \implies x = -2
+                            \end{aligned}$$
+                            Selanjutnya tentukan nilai $y$:
+                            $$\begin{aligned}
+                            y &= x - a = -2 - 6 = -8
+                            \end{aligned}$$
+                            Maka jumlah $x$ dan $y$ adalah:
+                            $$\begin{aligned}
+                            x + y &= -2 + (-8) = \boxed{-10}
+                            \end{aligned}$$
+                        </div>
+                    </div>
+                    <div class="col-center" style="margin: 1rem 0;">
+                        <div id="geo-splk-1" style="width: 100%; max-width: 320px;"></div>
+                    </div>
+                    <div class="kesimpulan">Jadi, jumlah $x$ dan $y$ dari solusi $(x, y)$ yang memenuhi sistem persamaan tersebut adalah $-10$ (B).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        function renderVisualisasiSPLK() {
+            if (typeof GeoSVG === 'undefined') {
+                setTimeout(renderVisualisasiSPLK, 100);
+                return;
+            }
+
+            const el = document.getElementById("geo-splk-1");
+            if (!el) return;
+
+            const width = 300;
+            const height = 240;
+            const pad = 28;
+            const xMin = -6, xMax = 2;
+            const yMin = -11, yMax = 3;
+
+            const skalaX = (width - 2 * pad) / (xMax - xMin);
+            const skalaY = (height - 2 * pad) / (yMax - yMin);
+
+            const P = (x, y) => [
+                pad + (x - xMin) * skalaX,
+                height - pad - (y - yMin) * skalaY
+            ];
+
+            const geo = new GeoSVG(el, width, height, {
+                clearContainer: true,
+                defaultStroke: "var(--text-main)",
+                defaultStrokeWidth: 1.5
+            });
+
+            // Sumbu X dan Y
+            geo.buatVektor(P(xMin, 0), P(xMax, 0), { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+            geo.buatVektor(P(0, yMin), P(0, yMax), { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+            geo.buatTeks(P(xMax, 0)[0] + 5, P(xMax, 0)[1], "x", { position: "middle-right", fontSize: "11px", fontStyle: "italic", fill: "var(--text-main)" });
+            geo.buatTeks(P(0, yMax)[0], P(0, yMax)[1] - 5, "y", { position: "top-center", fontSize: "11px", fontStyle: "italic", fill: "var(--text-main)" });
+
+            // Kurva parabola y = x^2 + 5x - 2
+            const titikParabola = [];
+            for (let x = -5.4; x <= 0.4; x += 0.2) {
+                const y = x * x + 5 * x - 2;
+                titikParabola.push(P(x, y));
+            }
+            geo.buatKurvaHalus(titikParabola, { stroke: "var(--teal-primary)", strokeWidth: 2 });
+
+            // Garis singgung y = x - 6
+            geo.buatSegmen(P(-5, -11), P(1.5, -4.5), { stroke: "#f59e0b", strokeWidth: 1.8 });
+
+            // Garis proyeksi titik singgung (-2, -8)
+            geo.buatSegmen(P(-2, 0), P(-2, -8), { dashed: true, stroke: "var(--text-muted)", strokeWidth: 1 });
+            geo.buatSegmen(P(0, -8), P(-2, -8), { dashed: true, stroke: "var(--text-muted)", strokeWidth: 1 });
+
+            // Titik singgung (-2, -8)
+            geo.buatTitik(P(-2, -8), {
+                size: 4,
+                color: "var(--teal-primary)",
+                label: "(-2, -8)",
+                labelPosition: "bottom-right",
+                fontWeight: "bold"
+            });
+            geo.buatTitik(P(-2, 0), { size: 2.5, color: "var(--text-main)", label: "-2", labelPosition: "top-center" });
+            geo.buatTitik(P(0, -8), { size: 2.5, color: "var(--text-main)", label: "-8", labelPosition: "middle-right" });
+        }
+
+        document.addEventListener("DOMContentLoaded", renderVisualisasiSPLK);
+    </script>
+</body>
+
+</html>

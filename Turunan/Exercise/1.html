@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Turunan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="./scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Turunan</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Dengan menggunakan definisi turunan suatu fungsi, tentukan turunan pertama dari fungsi berikut.</p>
+                $$f(x)=\dfrac{-3}{x^2+1}$$
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    f'(x)&=\lim_{h\to0}\dfrac{f(x+h)-f(x)}{h}\\[3.7pt]
+                    &=\lim_{h\to0}\dfrac{\dfrac{-3}{(x+h)^2+1}-\dfrac{-3}{x^2+1}}{h}\\[3.7pt]
+                    &=\lim_{h\to0}\dfrac{\dfrac{-3}{x^2+2xh+h^2+1}+\dfrac{3}{x^2+1}}{h}\\[3.7pt]
+                    &=\lim_{h\to0}\dfrac{\dfrac{-3\left(x^2+1\right)+3\left(x^2+2xh+h^2+1\right)}{\left(x^2+2xh+h^2+1\right)\left(x^2+1\right)}}{h}\\[3.7pt]
+                    &=\lim_{h\to0}\dfrac{-3x^2-3+3x^2+6xh+3h^2+3}{h\left(x^2+2xh+h^2+1\right)\left(x^2+1\right)}\\[3.7pt]
+                    &=\lim_{h\to0}\dfrac{6xh+3h^2}{h\left(x^2+2xh+h^2+1\right)\left(x^2+1\right)}\\[3.7pt]
+                    &=\lim_{h\to0}\dfrac{6x+3h}{\left(x^2+2xh+h^2+1\right)\left(x^2+1\right)}\\[3.7pt]
+                    &=\dfrac{6x+3(0)}{\left(x^2+2x(0)+(0)^2+1\right)\left(x^2+1\right)}\\[3.7pt]
+                    &=\dfrac{6x}{\left(x^2+1\right)\left(x^2+1\right)}\\
+                    &=\boxed{\boxed{\dfrac{6x}{\left(x^2+1\right)^2}}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, turunan pertama dari $f(x)=\dfrac{-3}{x^2+1}$ adalah $\dfrac{6x}{\left(x^2+1\right)^2}$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diketahui fungsi $f$ dan $g$ dengan $f(x) = x^2 - 2x + 1$ dan $g'(x)=\sqrt{10-x^2}$ dengan $g'$
+                    menyatakan turunan pertama fungsi $g(x)$. Nilai turunan pertama fungsi $(g \circ f)(x)$ untuk
+                    $x = 0$ adalah ....</p>
+            </div>
+            <div class="soal-sumber">GANESHA OPERATION</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>$f'(x) = 2x - 2$</p>
+                    $$\begin{aligned}
+                    \left(g\circ f\right)'(x)&=f'(x)\cdot g'\left(f(x)\right)\\
+                    \left(g\circ f\right)'(0)&=f'(0)\cdot g'\left(f(0)\right)\\
+                    &=\left[2(0)-2\right]\cdot g'\left(0^2-2(0)+1\right)\\
+                    &=(-2)\cdot g'(1)\\
+                    &=(-2)\sqrt{10-1^2}\\
+                    &=-2\sqrt{9}\\
+                    &=-2\cdot3\\
+                    &=\boxed{\boxed{-6}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, nilai turunan pertama fungsi $(g \circ f)(x)$ untuk $x = 0$ adalah $-6$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Jika diketahui $f(x)=\dfrac{\left(x^6-1\right)\left(x^8+1\right)}{x^{10}}$ dan $f'(x)$ menyatakan
+                    turunan pertama $f(x)$ maka nilai $f'(1)$ adalah ....</p>
+                <ol class="pilgan">
+                    <li>$8$</li>
+                    <li>$9$</li>
+                    <li>$10$</li>
+                    <li>$11$</li>
+                    <li>$12$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://brainly.co.id/tugas/25831554" target="_blank" rel="noopener noreferrer">Brainly.co.id</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    f(x)&=\dfrac{\left(x^6-1\right)\left(x^8+1\right)}{x^{10}}\\[3.7pt]
+                    &=\dfrac{x^{14}+x^6-x^8-1}{x^{10}}\\[3.7pt]
+                    &=x^4+x^{-4}-x^{-2}-x^{-10}\\
+                    f'(x)&=4x^3-4x^{-5}+2x^{-3}+10x^{-11}\\
+                    f'(1)&=4(1)^3-4(1)^{-5}+2(1)^{-3}+10(1)^{-11}\\
+                    &=4-4+2+10\\
+                    &=\boxed{\boxed{12}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, $f'(1) = 12$. (JAWAB: E)</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Dengan memanfaatkan sifat-sifat turunan fungsi, tentukan turunan dari fungsi berikut.</p>
+                $$f(x) = (x^2 + 2x) + (x^2 - 5x)$$
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    f'(x)&=\left(2x+2\right)+(2x-5)\\
+                    &=2x+2+2x-5\\
+                    &=\boxed{\boxed{4x-3}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, turunan dari $f(x) = (x^2 + 2x) + (x^2 - 5x)$ adalah $4x - 3$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Dengan memanfaatkan sifat-sifat turunan fungsi, tentukan turunan dari fungsi berikut.</p>
+                $$f(x)=x^4+\dfrac{5}{6}x^2+2x+6$$
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    f'(x)&=4x^3+\dfrac{5}{6}\cdot2x+2\\
+                    &=\boxed{\boxed{4x^3+\dfrac{5}{3}x+2}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, turunan dari $f(x)=x^4+\dfrac{5}{6}x^2+2x+6$ adalah $4x^3+\dfrac{5}{3}x+2$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Dengan memanfaatkan sifat-sifat turunan fungsi, tentukan turunan dari fungsi berikut.</p>
+                $$f(x)=\sqrt{x}+\sqrt{\sqrt{x}}-\dfrac{4}{5}x^4$$
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    f(x)&=\sqrt{x}+\sqrt{\sqrt{x}}-\dfrac{4}{5}x^4\\[3.7pt]
+                    &=x^{\frac12}+\sqrt{x^{\frac12}}-\dfrac{4}{5}x^4\\[3.7pt]
+                    &=x^{\frac12}+x^{\frac{\frac12}{2}}-\dfrac{4}{5}x^4\\[3.7pt]
+                    &=x^{\frac12}+x^{\frac14}-\dfrac{4}{5}x^4\\[3.7pt]
+                    f'(x)&=\dfrac12x^{-\frac12}+\dfrac14x^{-\frac34}-\dfrac{4}{5}\cdot4x^3\\[3.7pt]
+                    &=\dfrac{1}{2x^{\frac12}}+\dfrac{1}{4x^{\frac34}}-\dfrac{16}{5}x^3\\
+                    &=\boxed{\boxed{\dfrac{1}{2\sqrt{x}}+\dfrac{1}{4\sqrt[4]{x^3}}-\dfrac{16}{5}x^3}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, turunan dari $f(x)=\sqrt{x}+\sqrt{\sqrt{x}}-\dfrac{4}{5}x^4$ adalah $\dfrac{1}{2\sqrt{x}}+\dfrac{1}{4\sqrt[4]{x^3}}-\dfrac{16}{5}x^3$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Dengan memanfaatkan sifat-sifat turunan fungsi, tentukan turunan dari fungsi berikut.</p>
+                $$f(x) = (3x + 2)(x - 1)$$
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    u&=3x+2\\
+                    u'&=3
+                    \end{aligned}
+                    \qquad\qquad
+                    \begin{aligned}
+                    v&=x-1\\
+                    v'&=1
+                    \end{aligned}$$
+                    $$\begin{aligned}
+                    f'(x)&=u'v+v'u\\
+                    &=3(x-1)+1(3x+2)\\
+                    &=3x-3+3x+2\\
+                    &=\boxed{\boxed{6x-1}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, turunan dari $f(x) = (3x + 2)(x - 1)$ adalah $6x - 1$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Dengan memanfaatkan sifat-sifat turunan fungsi, tentukan turunan dari fungsi berikut.</p>
+                $$f(x) = (x^4 - 2x^2 + 4x)(3x^2 - 9x - 5)$$
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    u&=x^4-2x^2+4x\\
+                    u'&=4x^3-4x+4
+                    \end{aligned}
+                    \qquad\qquad
+                    \begin{aligned}
+                    v&=3x^2-9x-5\\
+                    v'&=6x-9
+                    \end{aligned}$$
+                    $$\begin{aligned}
+                    f'(x)&=u'v+v'u\\
+                    &=\left(4x^3-4x+4\right)\left(3x^2-9x-5\right)+(6x-9)\left(x^4-2x^2+4x\right)\\
+                    &=\left(12x^5-36x^4-32x^3+48x^2-16x-20\right)+\left(6x^5-9x^4-12x^3+42x^2-36x\right)\\
+                    &=\boxed{\boxed{18x^5-45x^4-44x^3+90x^2-52x-20}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, turunan dari $f(x) = (x^4 - 2x^2 + 4x)(3x^2 - 9x - 5)$ adalah $18x^5 - 45x^4 - 44x^3 + 90x^2 - 52x - 20$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Tentukan turunan fungsi berikut:</p>
+                $$4x^3 + 7xy^2 = 2y^3$$
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/5484" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    4x^3+7xy^2&=2y^3\\
+                    d\left(4x^3\right)+d\left(7xy^2\right)&=d\left(2y^3\right)\\
+                    12x^2+7y^2+14xy\ y'&=6y^2\ y'\\
+                    12x^2+7y^2&=6y^2\ y'-14xy\ y'\\
+                    12x^2+7y^2&=\left(6y^2-14xy\right)y'\\
+                    y'&=\boxed{\boxed{\dfrac{12x^2+7y^2}{6y^2-14xy}}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, turunannya adalah $y'=\dfrac{12x^2+7y^2}{6y^2-14xy}$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Jika $f'(0) = 2$, $f'(1) = 4$, tentukan nilai $a$ dan $b$ dengan fungsi berikut</p>
+                $$f(x) = ax^2 + bx + c$$
+                <ol class="pilgan">
+                    <li>$1$ dan $2$</li>
+                    <li>$2$ dan $1$</li>
+                    <li>$-2$ dan $1$</li>
+                    <li>$-2$ dan $2$</li>
+                    <li>$2$ dan $2$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>$f'(x) = 2ax + b$</p>
+                    $$\begin{aligned}
+                    f'(0)&=2\\
+                    2a(0)+b&=2\\
+                    b&=\boxed{\boxed{2}}
+                    \end{aligned}
+                    \qquad\qquad
+                    \begin{aligned}
+                    f'(1)&=4\\
+                    2a(1)+2&=4\\
+                    2a&=2\\
+                    a&=\boxed{\boxed{1}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, $a = 1$ dan $b = 2$. (JAWAB: A)</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNBT - Segitiga</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Segitiga</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diketahui \(\triangle ABC\), titik \(D\) pada \(AB\) dengan \(AB = 8\text{ cm}\), \(BC = 6\text{ cm}\), \(AC = 4\text{ cm}\), dan \(\angle BCD = \angle CBD\). Panjang \(CD = \dots\text{ cm}\).
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>\(\dfrac{20}{7}\)</li>
+                        <li>\(\dfrac{24}{7}\)</li>
+                        <li>\(\dfrac{26}{7}\)</li>
+                        <li>\(\dfrac{30}{7}\)</li>
+                        <li>\(\dfrac{32}{7}\)</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">SBMPTN 2016</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-1" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    Karena \(\angle BCD = \angle CBD\), maka \(\triangle BCD\) adalah segitiga sama kaki dengan \(CD = BD = x\).<br>
+                    Sehingga \(AD = AB - BD = 8 - x\).<br><br>
+                    Dengan aturan cosinus pada \(\triangle BCD\) dan \(\triangle ABC\):
+                    \[\begin{aligned}
+                    \cos\angle BCD &= \cos\angle ABC \\[4pt]
+                    \dfrac{6^2 + x^2 - x^2}{2 \cdot 6 \cdot x} &= \dfrac{6^2 + 8^2 - 4^2}{2 \cdot 8 \cdot 6} \\[4pt]
+                    \dfrac{36}{12x} &= \dfrac{84}{96} \\[4pt]
+                    \dfrac{3}{x} &= \dfrac{7}{8} \\[4pt]
+                    7x &= 24 \\
+                    x &= \dfrac{24}{7}
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, panjang \(CD = \dfrac{24}{7}\text{ cm}\).<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Suatu segitiga siku-siku memiliki panjang sisi yang membentuk barisan aritmetika. Jika luas segitiga tersebut adalah \(42\text{ cm}^2\), maka kelilingnya adalah .... cm.
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>6</li>
+                        <li>12</li>
+                        <li>\(6\sqrt{7}\)</li>
+                        <li>\(12\sqrt{7}\)</li>
+                        <li>36</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">SBMPTN</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><b>CARA 1:</b></p>
+                    Misal panjang sisinya adalah \(a - b\), \(a\), dan \(a + b\). Berdasarkan teorema Pythagoras:
+                    \[\begin{aligned}
+                    (a - b)^2 + a^2 &= (a + b)^2 \\
+                    a^2 - 2ab + b^2 + a^2 &= a^2 + 2ab + b^2 \\
+                    a^2 &= 4ab \\
+                    a &= 4b
+                    \end{aligned}\]
+                    Dari luas segitiga:
+                    \[\begin{aligned}
+                    \dfrac{1}{2}(a - b)(a) &= 42 \\
+                    (4b - b)(4b) &= 84 \\
+                    12b^2 &= 84 \\
+                    b^2 &= 7 \\
+                    b &= \sqrt{7}
+                    \end{aligned}\]
+                    Sehingga \(a = 4b = 4\sqrt{7}\).<br>
+                    Keliling segitiga:
+                    \[\begin{aligned}
+                    K &= (a - b) + a + (a + b) \\
+                    &= 3a \\
+                    &= 3(4\sqrt{7}) \\
+                    &= 12\sqrt{7}
+                    \end{aligned}\]
+
+                    <p><b>CARA 2:</b></p>
+                    Setiap segitiga siku-siku yang sisi-sisinya membentuk barisan aritmetika selalu memiliki perbandingan sisi \(3 : 4 : 5\).<br>
+                    Maka sisinya dapat dimisalkan \(3k\), \(4k\), dan \(5k\).
+                    \[\begin{aligned}
+                    L = \dfrac{1}{2}(3k)(4k) &= 42 \\
+                    6k^2 &= 42 \\
+                    k^2 &= 7 \implies k = \sqrt{7}
+                    \end{aligned}\]
+                    Keliling:
+                    \[K = 3k + 4k + 5k = 12k = 12\sqrt{7}\]
+                    <div class="kesimpulan">Jadi, kelilingnya adalah \(12\sqrt{7}\text{ cm}\).<br><b>JAWAB: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <div id="svg-soal-3" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                Panjang lintasan langsung dari \(A\) ke \(C\) adalah \(a\sqrt{7}\), panjang lintasan dari \(A\) ke \(B\) adalah \(a\), maka panjang lintasan dari \(A\) ke \(C\) melalui \(B\) adalah ....
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>\(\dfrac{3}{2}a\)</li>
+                        <li>\(2a\)</li>
+                        <li>\(\dfrac{5}{2}a\)</li>
+                        <li>\(3a\)</li>
+                        <li>\(\dfrac{7}{2}a\)</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">SKB Matematika 2020</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan panjang \(BC = x\). Menggunakan aturan cosinus pada \(\triangle ABC\):
+                    \[\begin{aligned}
+                    AC^2 &= AB^2 + BC^2 - 2 \cdot AB \cdot BC \cdot \cos 120^\circ \\
+                    \left(a\sqrt{7}\right)^2 &= a^2 + x^2 - 2ax\left(-\dfrac{1}{2}\right) \\
+                    7a^2 &= a^2 + x^2 + ax \\
+                    x^2 + ax - 6a^2 &= 0 \\
+                    (x - 2a)(x + 3a) &= 0
+                    \end{aligned}\]
+                    Karena panjang selalu positif, maka \(x = 2a\).<br><br>
+                    Panjang lintasan dari \(A\) ke \(C\) melalui \(B\):
+                    \[\begin{aligned}
+                    AB + BC &= a + 2a \\
+                    &= 3a
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, panjang lintasan dari \(A\) ke \(C\) melalui \(B\) adalah \(3a\).<br><b>JAWAB: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 5 
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 6 
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- Pagination Bawah -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof GeoSVG !== "undefined") {
+                // Diagram Soal 1
+                const el1 = document.getElementById("svg-solusi-1");
+                if (el1) {
+                    const geo1 = new GeoSVG("svg-solusi-1", 280, 160, { margin: 25 });
+                    const k = 30;
+                    const yBase = 3 * Math.sqrt(15) / 4 * k; // ~ 87.14
+                    const A = [15, yBase];
+                    const B = [15 + 8 * k, yBase];
+                    const C = [15 + (11 / 4) * k, 15];
+                    const D = [15 + (8 - 24 / 7) * k, yBase];
+
+                    geo1.buatSegitiga(A, B, C);
+                    geo1.buatSegmen(C, D);
+                    geo1.buatSudut(B, C, D, { radius: 24, fill: "rgba(34, 197, 94, 0.25)", stroke: "#16a34a" });
+                    geo1.buatSudut(C, B, D, { radius: 24, fill: "rgba(34, 197, 94, 0.25)", stroke: "#16a34a" });
+                    geo1.buatTitik(A, { label: "A", labelPosition: "kiri tengah", size: 0 });
+                    geo1.buatTitik(B, { label: "B", labelPosition: "kanan tengah", size: 0 });
+                    geo1.buatTitik(C, { label: "C", labelPosition: "tengah atas", size: 0 });
+                    geo1.buatTitik(D, { label: "D", labelPosition: "tengah bawah", size: 0 });
+                    geo1.buatLabelSisi(A, C, "4");
+                    geo1.buatLabelSisi(C, B, "6");
+                    geo1.buatLabelSisi(A, D, "8 - x", { offset: 12 });
+                    geo1.buatLabelSisi(D, B, "x", { offset: 12 });
+                    geo1.buatLabelSisi(D, C, "x");
+                }
+
+                // Diagram Soal 3
+                const el3 = document.getElementById("svg-soal-3");
+                if (el3) {
+                    const geo3 = new GeoSVG("svg-soal-3", 260, 140, { margin: 25 });
+                    const tiA = [20, 20];
+                    const tiB = [20 + 40, 20 + 70];
+                    const tiC = [tiB[0] + 150, tiB[1]];
+
+                    geo3.buatSegitiga(tiA, tiB, tiC);
+                    geo3.buatSudut(tiA, tiB, tiC, { label: "120°", radius: 28, fill: "rgba(34, 197, 94, 0.25)", stroke: "#16a34a" });
+                    geo3.buatTitik(tiA, { label: "A", labelPosition: "kiri atas", size: 0 });
+                    geo3.buatTitik(tiB, { label: "B", labelPosition: "kiri bawah", size: 0 });
+                    geo3.buatTitik(tiC, { label: "C", labelPosition: "kanan tengah", size: 0 });
+                    geo3.buatLabelSisi(tiA, tiB, "a");
+                    geo3.buatLabelSisi(tiA, tiC, "a\\sqrt{7}");
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

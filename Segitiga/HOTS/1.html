@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Segitiga</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Segitiga</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Pada suatu segitiga \(ABC\), sudut \(C\) tiga kali lebih besar dari sudut \(A\) dan sudut \(B\) dua kali besar sudut \(A\). Berapakah perbandingan (rasio) antara panjang \(AB\) dengan \(BC\)?
+            </div>
+            <div class="soal-sumber">Grup Matematika Idhamdaz</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Diketahui \(\angle C = 3\angle A\) dan \(\angle B = 2\angle A\).<br><br>
+                    Jumlah sudut dalam segitiga:
+                    \[\begin{aligned}
+                    \angle A + \angle B + \angle C &= 180^\circ \\
+                    \angle A + 2\angle A + 3\angle A &= 180^\circ \\
+                    6\angle A &= 180^\circ \\
+                    \angle A &= 30^\circ
+                    \end{aligned}\]
+                    Maka \(\angle C = 3(30^\circ) = 90^\circ\).<br><br>
+                    Dengan menggunakan aturan sinus:
+                    \[\begin{aligned}
+                    \dfrac{AB}{\sin\angle C} &= \dfrac{BC}{\sin\angle A} \\[4pt]
+                    \dfrac{AB}{BC} &= \dfrac{\sin 90^\circ}{\sin 30^\circ} \\[4pt]
+                    &= \dfrac{1}{\frac{1}{2}} \\
+                    &= 2
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, perbandingan (rasio) antara panjang \(AB\) dengan \(BC\) adalah \(2 : 1\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Pada gambar berikut, \(BDEF\) adalah persegi di dalam \(\triangle ABC\). Jika \(\dfrac{AB}{BC} = \dfrac{4}{5}\), maka \(\dfrac{\text{Luas } BDEF}{\text{Luas } \triangle ABC} = \dots\)
+                <div id="svg-soal-2" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+            </div>
+            <div class="soal-sumber">Grup Matematika Idhamdaz</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-2" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    Misalkan \(AF = a\), sisi persegi \(BD = DE = EF = FB = x\), dan \(CD = b\).<br>
+                    Karena \(\triangle AFE \sim \triangle EDC \sim \triangle ABC\):
+                    \[\dfrac{a}{x} = \dfrac{x}{b} = \dfrac{AB}{BC} = \dfrac{4}{5}\]
+                    Maka \(\dfrac{a}{x} = \dfrac{4}{5}\) dan \(\dfrac{b}{x} = \dfrac{5}{4}\).<br><br>
+                    Perbandingan luas:
+                    \[\begin{aligned}
+                    \dfrac{\text{Luas } BDEF}{\text{Luas } \triangle ABC} &= \dfrac{x^2}{\dfrac{1}{2}(a + x)(x + b)} \\[4pt]
+                    &= \dfrac{2x^2}{(a + x)(x + b)} \cdot \dfrac{\frac{1}{x^2}}{\frac{1}{x^2}} \\[4pt]
+                    &= \dfrac{2}{\left(\dfrac{a}{x} + 1\right)\left(1 + \dfrac{b}{x}\right)} \\[4pt]
+                    &= \dfrac{2}{\left(\dfrac{4}{5} + 1\right)\left(1 + \dfrac{5}{4}\right)} \\[4pt]
+                    &= \dfrac{2}{\left(\dfrac{9}{5}\right)\left(\dfrac{9}{4}\right)} \\[4pt]
+                    &= \dfrac{2}{\dfrac{81}{20}} \\[4pt]
+                    &= \dfrac{40}{81}
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, \(\dfrac{\text{Luas } BDEF}{\text{Luas } \triangle ABC} = \dfrac{40}{81}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Panjang jari-jari lingkaran luar \(\triangle ABC\) pada gambar berikut adalah \(13\text{ cm}\).
+                <div id="svg-soal-3" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                Jika \(AC = BC\) dan \(AB = 24\text{ cm}\), maka panjang garis tinggi \(\triangle ABC\) dari titik \(C\) adalah .... cm.
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>5</li>
+                        <li>8</li>
+                        <li>12</li>
+                        <li>18</li>
+                        <li>21</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">Grup Matematika Idhamdaz</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misal jari-jari lingkaran luar adalah \(R = 13\), \(AC = BC = x\), dan panjang garis tinggi dari \(C\) ke \(AB\) adalah \(t\).<br>
+                    Karena \(\triangle ABC\) sama kaki, garis tinggi dari \(C\) membagi \(AB\) menjadi dua sama panjang:
+                    \[\dfrac{AB}{2} = \dfrac{24}{2} = 12\]
+                    Berdasarkan teorema Pythagoras:
+                    \[x^2 = t^2 + 12^2 = t^2 + 144\]
+                    Rumus jari-jari lingkaran luar segitiga:
+                    \[\begin{aligned}
+                    R &= \dfrac{abc}{4L} \\[4pt]
+                    13 &= \dfrac{x \cdot x \cdot 24}{4 \cdot \left(\dfrac{1}{2} \cdot 24 \cdot t\right)} \\[4pt]
+                    13 &= \dfrac{x^2}{2t} \\[4pt]
+                    26t &= x^2 \\
+                    26t &= t^2 + 144 \\
+                    t^2 - 26t + 144 &= 0 \\
+                    (t - 8)(t - 18) &= 0
+                    \end{aligned}\]
+                    Diperoleh \(t = 8\) atau \(t = 18\). (Keduanya mungkin bergantung apakah segitiga tersebut lancip atau tumpul).
+                    <div class="kesimpulan">Jadi, panjang garis tinggi \(\triangle ABC\) dari titik \(C\) adalah 8 atau 18 cm.<br><b>JAWAB: B atau D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Segitiga pada gambar dibagi menjadi sembilan garis pita sejajar dengan tinggi yang sama. Luas total seluruh pita merah adalah 145. Berapakah luas total seluruh pita biru?
+                <div id="svg-soal-4" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+            </div>
+            <div class="soal-sumber">Grup Matematika Idhamdaz</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-4" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    Misalkan segitiga puncak memiliki luas 1 satuan. Karena segitiga-segitiga sebangun memiliki perbandingan luas sebanding dengan kuadrat tingginya (\(1^2, 2^2, 3^2, \dots, 9^2\)), maka luas masing-masing pita dari atas ke bawah adalah:
+                    <br>
+                    Pita 1 (Merah): \(1^2 - 0^2 = 1\)<br>
+                    Pita 2 (Biru): \(2^2 - 1^2 = 3\)<br>
+                    Pita 3 (Merah): \(3^2 - 2^2 = 5\)<br>
+                    Pita 4 (Biru): \(4^2 - 3^2 = 7\)<br>
+                    Pita 5 (Merah): \(5^2 - 4^2 = 9\)<br>
+                    Pita 6 (Biru): \(6^2 - 5^2 = 11\)<br>
+                    Pita 7 (Merah): \(7^2 - 6^2 = 13\)<br>
+                    Pita 8 (Biru): \(8^2 - 7^2 = 15\)<br>
+                    Pita 9 (Merah): \(9^2 - 8^2 = 17\)<br><br>
+                    Total luas pita merah:
+                    \[1 + 5 + 9 + 13 + 17 = 45 \text{ satuan}\]
+                    Total luas pita biru:
+                    \[3 + 7 + 11 + 15 = 36 \text{ satuan}\]
+                    Perbandingan Luas Biru : Merah:
+                    \[\dfrac{\text{Biru}}{\text{Merah}} = \dfrac{36}{45} = \dfrac{4}{5}\]
+                    Karena total luas merah = 145:
+                    \[\text{Luas Biru} = \dfrac{4}{5} \times 145 = 116\]
+                    <div class="kesimpulan">Jadi, luas semua pita biru adalah 116.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Jumlah dari dua sudut pada suatu segitiga adalah \(95^\circ\) dan selisihnya adalah \(25^\circ\). Tentukan besar semua sudut pada segitiga tersebut.
+            </div>
+            <div class="soal-sumber">Grup Matematika Idhamdaz</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan ketiga sudut segitiga adalah \(x\), \(y\), dan \(z\).
+                    \[\begin{aligned}
+                    x + y &= 95^\circ \\
+                    x - y &= 25^\circ \\
+                    \hline
+                    2x &= 120^\circ \implies x = 60^\circ
+                    \end{aligned}\]
+                    Substitusi nilai \(x = 60^\circ\):
+                    \[\begin{aligned}
+                    60^\circ + y &= 95^\circ \\
+                    y &= 35^\circ
+                    \end{aligned}\]
+                    Sudut ketiga \(z\):
+                    \[\begin{aligned}
+                    z &= 180^\circ - (x + y) \\
+                    &= 180^\circ - 95^\circ \\
+                    &= 85^\circ
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, besar semua sudut pada segitiga tersebut adalah \(60^\circ\), \(35^\circ\), dan \(85^\circ\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Suatu segitiga siku-siku memiliki luas 3 satuan luas dan panjang hipotenusanya adalah 3 satuan. Keliling segitiga tersebut adalah ....
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>\(3 + \sqrt{18}\)</li>
+                        <li>\(3 + \sqrt{27}\)</li>
+                        <li>\(3 + \sqrt{21}\)</li>
+                        <li>\(3 + \sqrt{20}\)</li>
+                        <li>\(3 + \sqrt{25}\)</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">Grup Matematika Idhamdaz</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan dua sisi tegak lainnya adalah \(a\) dan \(t\).<br>
+                    Diketahui:
+                    \[\begin{aligned}
+                    L = \dfrac{1}{2}at = 3 &\implies at = 6 \\
+                    a^2 + t^2 = 3^2 &\implies a^2 + t^2 = 9
+                    \end{aligned}\]
+                    Bentuk aljabar kuadrat:
+                    \[\begin{aligned}
+                    (a + t)^2 &= a^2 + t^2 + 2at \\
+                    (a + t)^2 &= 9 + 2(6) \\
+                    (a + t)^2 &= 21 \\
+                    a + t &= \sqrt{21}
+                    \end{aligned}\]
+                    Keliling segitiga:
+                    \[\begin{aligned}
+                    K &= 3 + a + t \\
+                    &= 3 + \sqrt{21}
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, keliling segitiga tersebut adalah \(3 + \sqrt{21}\).<br><b>JAWAB: C</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sebuah kertas berbentuk segitiga sama sisi \(ABC\) memiliki panjang sisi 12. Kertas dilipat sehingga titik \(A\) menyentuh titik di sisi \(BC\) yang jaraknya 9 dari titik \(B\). Panjang segmen garis hasil lipatan segitiga tersebut ditulis sebagai \(\dfrac{p\sqrt{r}}{q}\), dengan \(p\), \(q\), dan \(r\) bilangan bulat positif, \(p\) dan \(q\) saling relatif prima, dan \(r\) tidak habis dibagi kuadrat dari sembarang bilangan prima. Hasil dari \(p + q + r = \dots\)
+                <div id="svg-soal-7" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/6772" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-7" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    Misalkan titik hasil lipatan pada sisi \(AB\) berjarak \(a\) dari \(B\), dan titik lipatan pada sisi \(AC\) berjarak \(b\) dari \(C\). Titik \(A\) berpindah ke \(A'\) pada sisi \(BC\) dengan \(BA' = 9\) dan \(A'C = 12 - 9 = 3\).<br><br>
+                    Pada \(\triangle A'BM\), dengan aturan cosinus di sudut \(B = 60^\circ\):
+                    \[\begin{aligned}
+                    \cos 60^\circ &= \dfrac{(12 - a)^2 + 9^2 - a^2}{2 \cdot (12 - a) \cdot 9} \\
+                    \dfrac{1}{2} &= \dfrac{144 - 24a + a^2 + 81 - a^2}{18(12 - a)} \\
+                    1 &= \dfrac{225 - 24a}{9(12 - a)} \\
+                    36 - 3a &= 75 - 8a \\
+                    5a &= 39 \implies a = \dfrac{39}{5}
+                    \end{aligned}\]
+                    Pada \(\triangle A'CN\), dengan aturan cosinus di sudut \(C = 60^\circ\):
+                    \[\begin{aligned}
+                    \cos 60^\circ &= \dfrac{(12 - b)^2 + 3^2 - b^2}{2 \cdot (12 - b) \cdot 3} \\
+                    \dfrac{1}{2} &= \dfrac{144 - 24b + 9}{6(12 - b)} \\
+                    12 - b &= 51 - 8b \\
+                    7b &= 39 \implies b = \dfrac{39}{7}
+                    \end{aligned}\]
+                    Panjang lipatan \(x = MN\):
+                    \[\begin{aligned}
+                    x &= \sqrt{a^2 + b^2 - 2ab\cos 60^\circ} \\
+                    &= \dfrac{39}{35}\sqrt{7^2 + 5^2 - 2(7)(5)\left(\dfrac{1}{2}\right)} \\
+                    &= \dfrac{39}{35}\sqrt{49 + 25 - 35} \\
+                    &= \dfrac{39\sqrt{39}}{35}
+                    \end{aligned}\]
+                    Maka \(p = 39\), \(q = 35\), dan \(r = 39\).<br>
+                    Nilai \(p + q + r = 39 + 35 + 39 = 113\).
+                    <div class="kesimpulan">Jadi, \(p + q + r = 113\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diketahui segitiga \(ABC\) siku-siku di \(B\). Pada sisi \(AC\) terdapat titik \(P\), \(Q\), \(R\), dan \(S\) sedemikian sehingga \(CP = PQ = QR = RS = SA\). Jika \(BP = 24\text{ cm}\) dan \(BS = 45\text{ cm}\), maka tentukan nilai dari \(BQ^2 + BR^2\).
+            </div>
+            <div class="soal-sumber">Grup Matematika Idhamdaz</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-8" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    Misal \(AB = c\), \(BC = a\), \(AC = b = 5k\), dan \(CP = PQ = QR = RS = SA = k\).<br>
+                    Berdasarkan Teorema Stewart:
+                    \[\begin{aligned}
+                    a^2 \cdot 4k + c^2 \cdot k &= 5k\left(BP^2 + k \cdot 4k\right) \\
+                    4a^2 + c^2 &= 5\left(24^2 + 4k^2\right) \quad \text{...(1)}
+                    \end{aligned}\]
+                    Untuk garis \(BS\):
+                    \[\begin{aligned}
+                    a^2 \cdot k + c^2 \cdot 4k &= 5k\left(BS^2 + k \cdot 4k\right) \\
+                    a^2 + 4c^2 &= 5\left(45^2 + 4k^2\right) \quad \text{...(2)}
+                    \end{aligned}\]
+                    Jumlahkan persamaan (1) dan (2):
+                    \[\begin{aligned}
+                    5(a^2 + c^2) &= 5\left(24^2 + 45^2 + 8k^2\right) \\
+                    a^2 + c^2 &= 576 + 2025 + 8k^2 \\
+                    b^2 &= 2601 + 8k^2 \\
+                    (5k)^2 &= 2601 + 8k^2 \\
+                    17k^2 &= 2601 \implies k^2 = 153
+                    \end{aligned}\]
+                    Sekarang gunakan Teorema Stewart untuk \(BQ = q\) dan \(BR = r\):
+                    \[\begin{aligned}
+                    3a^2 + 2c^2 &= 5(q^2 + 6k^2) \quad \text{...(3)} \\
+                    2a^2 + 3c^2 &= 5(r^2 + 6k^2) \quad \text{...(4)}
+                    \end{aligned}\]
+                    Jumlahkan persamaan (3) dan (4):
+                    \[\begin{aligned}
+                    5(a^2 + c^2) &= 5(q^2 + r^2 + 12k^2) \\
+                    b^2 &= q^2 + r^2 + 12k^2 \\
+                    25k^2 &= q^2 + r^2 + 12k^2 \\
+                    q^2 + r^2 &= 13k^2 \\
+                    BQ^2 + BR^2 &= 13(273) = 3549
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, \(BQ^2 + BR^2 = 3549\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan segitiga \(ABC\) dengan lingkaran luar berjarak jari-jari \(R = 4\text{ cm}\). Jika \(\angle A = 60^\circ\) dan \(AC - AB = 4\text{ cm}\), maka luas segitiga \(ABC\) tersebut adalah .... \(\text{cm}^2\).
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>\(8\sqrt{2}\)</li>
+                        <li>\(8\sqrt{3}\)</li>
+                        <li>16</li>
+                        <li>\(16\sqrt{2}\)</li>
+                        <li>\(16\sqrt{3}\)</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">Grup Matematika Idhamdaz</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Berdasarkan aturan sinus:
+                    \[\begin{aligned}
+                    \dfrac{a}{\sin\angle A} &= 2R \\
+                    \dfrac{a}{\sin 60^\circ} &= 2(4) = 8 \\
+                    a &= 8 \cdot \dfrac{1}{2}\sqrt{3} = 4\sqrt{3} \\
+                    a^2 &= 48
+                    \end{aligned}\]
+                    Aturan cosinus:
+                    \[\begin{aligned}
+                    a^2 &= b^2 + c^2 - 2bc\cos 60^\circ \\
+                    48 &= b^2 + c^2 - bc
+                    \end{aligned}\]
+                    Diketahui \(b - c = 4\):
+                    \[\begin{aligned}
+                    (b - c)^2 &= 16 \\
+                    b^2 + c^2 - 2bc &= 16 \\
+                    (b^2 + c^2 - bc) - bc &= 16 \\
+                    48 - bc &= 16 \\
+                    bc &= 32
+                    \end{aligned}\]
+                    Luas segitiga \(ABC\):
+                    \[\begin{aligned}
+                    L &= \dfrac{1}{2}bc\sin\angle A \\
+                    &= \dfrac{1}{2} \cdot 32 \cdot \sin 60^\circ \\
+                    &= 16 \cdot \dfrac{1}{2}\sqrt{3} \\
+                    &= 8\sqrt{3}
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, luas segitiga \(ABC\) tersebut adalah \(8\sqrt{3}\text{ cm}^2\).<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan segitiga \(ABC\) dengan panjang sisi \(a\), \(b\), dan \(c\). Jika \(a\) dan \(b\) akar-akar persamaan dari \(x^2 + 4(c + 2) = (c + 4)x\) dan sudut terbesar dari segitiga tersebut adalah \(w^\circ\), maka nilai \(w = \dots\)
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>60</li>
+                        <li>75</li>
+                        <li>90</li>
+                        <li>120</li>
+                        <li>135</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">CSC POSI 2021</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Persamaan kuadrat:
+                    \[x^2 - (c + 4)x + (4c + 8) = 0\]
+                    Berdasarkan rumus Vieta:
+                    \[\begin{aligned}
+                    a + b &= c + 4 \\
+                    ab &= 4c + 8
+                    \end{aligned}\]
+                    Kuadratkan \(a + b\):
+                    \[\begin{aligned}
+                    (a + b)^2 &= (c + 4)^2 \\
+                    a^2 + 2ab + b^2 &= c^2 + 8c + 16 \\
+                    a^2 + 2(4c + 8) + b^2 &= c^2 + 8c + 16 \\
+                    a^2 + 8c + 16 + b^2 &= c^2 + 8c + 16 \\
+                    a^2 + b^2 &= c^2
+                    \end{aligned}\]
+                    Karena memenuhi Teorema Pythagoras \(a^2 + b^2 = c^2\), maka \(\triangle ABC\) adalah segitiga siku-siku dengan sisi miring \(c\).<br>
+                    Sudut terbesarnya adalah sudut siku-siku yaitu \(90^\circ\).
+                    <div class="kesimpulan">Jadi, \(w = 90\).<br><b>JAWAB: C</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof GeoSVG !== "undefined") {
+                // Diagram Soal 2
+                const elSoal2 = document.getElementById("svg-soal-2");
+                if (elSoal2) {
+                    const geoSoal2 = new GeoSVG("svg-soal-2", 220, 180, { margin: 25 });
+                    const scale = 3.5;
+                    const A = [15, 15];
+                    const F = [15, 15 + 16 * scale];
+                    const B = [15, 15 + 36 * scale];
+                    const D = [15 + 20 * scale, 15 + 36 * scale];
+                    const C = [15 + 45 * scale, 15 + 36 * scale];
+                    const E = [15 + 20 * scale, 15 + 16 * scale];
+
+                    geoSoal2.buatSegitiga(A, B, C);
+                    geoSoal2.buatPoligon([B, F, E, D], { fill: "rgba(59, 130, 246, 0.15)", stroke: "#2563eb" });
+                    geoSoal2.buatTitik(A, { label: "A", labelPosition: "tengah atas", size: 0 });
+                    geoSoal2.buatTitik(B, { label: "B", labelPosition: "kiri bawah", size: 0 });
+                    geoSoal2.buatTitik(C, { label: "C", labelPosition: "kanan tengah", size: 0 });
+                    geoSoal2.buatTitik(D, { label: "D", labelPosition: "tengah bawah", size: 0 });
+                    geoSoal2.buatTitik(E, { label: "E", labelPosition: "kanan atas", size: 0 });
+                    geoSoal2.buatTitik(F, { label: "F", labelPosition: "kiri tengah", size: 0 });
+                }
+
+                const elSolusi2 = document.getElementById("svg-solusi-2");
+                if (elSolusi2) {
+                    const geoSolusi2 = new GeoSVG("svg-solusi-2", 220, 180, { margin: 25 });
+                    const scale = 3.5;
+                    const A = [15, 15];
+                    const F = [15, 15 + 16 * scale];
+                    const B = [15, 15 + 36 * scale];
+                    const D = [15 + 20 * scale, 15 + 36 * scale];
+                    const C = [15 + 45 * scale, 15 + 36 * scale];
+                    const E = [15 + 20 * scale, 15 + 16 * scale];
+
+                    geoSolusi2.buatSegitiga(A, B, C);
+                    geoSolusi2.buatPoligon([B, F, E, D], { fill: "rgba(59, 130, 246, 0.15)", stroke: "#2563eb" });
+                    geoSolusi2.buatTitik(A, { label: "A", labelPosition: "tengah atas", size: 0 });
+                    geoSolusi2.buatTitik(B, { label: "B", labelPosition: "kiri bawah", size: 0 });
+                    geoSolusi2.buatTitik(C, { label: "C", labelPosition: "kanan tengah", size: 0 });
+                    geoSolusi2.buatTitik(D, { label: "D", labelPosition: "tengah bawah", size: 0 });
+                    geoSolusi2.buatTitik(E, { label: "E", labelPosition: "kanan atas", size: 0 });
+                    geoSolusi2.buatTitik(F, { label: "F", labelPosition: "kiri tengah", size: 0 });
+                    geoSolusi2.buatLabelSisi(A, F, "a");
+                    geoSolusi2.buatLabelSisi(F, B, "x");
+                    geoSolusi2.buatLabelSisi(B, D, "x");
+                    geoSolusi2.buatLabelSisi(D, C, "b");
+                }
+
+                // Diagram Soal 3
+                const elSoal3 = document.getElementById("svg-soal-3");
+                if (elSoal3) {
+                    const geo3 = new GeoSVG("svg-soal-3", 220, 220, { margin: 20 });
+                    const O = [110, 110];
+                    const R = 85;
+                    geo3.buatLingkaran(O, R, { fill: "none", stroke: "#000" });
+                    // A and B on chord AB = 24 with radius 13 -> 12/13 of R
+                    const halfW = (12 / 13) * R;
+                    const dY = (5 / 13) * R;
+                    const A = [O[0] - halfW, O[1] + dY];
+                    const B = [O[0] + halfW, O[1] + dY];
+                    const C = [O[0], O[1] - R];
+
+                    geo3.buatSegitiga(A, B, C);
+                    geo3.buatTitik(A, { label: "A", labelPosition: "kiri tengah", size: 0 });
+                    geo3.buatTitik(B, { label: "B", labelPosition: "kanan tengah", size: 0 });
+                    geo3.buatTitik(C, { label: "C", labelPosition: "tengah atas", size: 0 });
+                }
+
+                // Diagram Soal 4
+                const renderStripes = (containerId, withParallelogram = false) => {
+                    const container = document.getElementById(containerId);
+                    if (!container) return;
+                    const geo = new GeoSVG(containerId, 240, 200, { margin: 15 });
+                    const top = [100, 15];
+                    const bL = [20, 180];
+                    const bR = [200, 180];
+                    const totalSteps = 9;
+
+                    for (let i = 0; i < totalSteps; i++) {
+                        const y1 = top[1] + (i / totalSteps) * (bL[1] - top[1]);
+                        const y2 = top[1] + ((i + 1) / totalSteps) * (bL[1] - top[1]);
+                        const xL1 = top[0] + (i / totalSteps) * (bL[0] - top[0]);
+                        const xR1 = top[0] + (i / totalSteps) * (bR[0] - top[0]);
+                        const xL2 = top[0] + ((i + 1) / totalSteps) * (bL[0] - top[0]);
+                        const xR2 = top[0] + ((i + 1) / totalSteps) * (bR[0] - top[0]);
+
+                        const isRed = i % 2 === 0;
+                        const fill = isRed ? "#ef4444" : "#3b82f6";
+                        if (i === 0) {
+                            geo.buatPoligon([[top[0], top[1]], [xR2, y2], [xL2, y2]], { fill: fill, stroke: "none" });
+                        } else {
+                            geo.buatPoligon([[xL1, y1], [xR1, y1], [xR2, y2], [xL2, y2]], { fill: fill, stroke: "none" });
+                        }
+                    }
+                    geo.buatSegitiga(top, bL, bR, { fill: "none", stroke: "#000", strokeWidth: 1.5 });
+                };
+                renderStripes("svg-soal-4");
+                renderStripes("svg-solusi-4", true);
+
+                // Diagram Soal 7
+                const elSoal7 = document.getElementById("svg-soal-7");
+                if (elSoal7) {
+                    const geo7 = new GeoSVG("svg-soal-7", 240, 200, { margin: 25 });
+                    const H = 12 * Math.sin(Math.PI / 3) * 12; // ~124
+                    const A = [120, 15];
+                    const B = [30, 150];
+                    const C = [210, 150];
+                    geo7.buatSegitiga(A, B, C);
+                    geo7.buatTitik(A, { label: "A", labelPosition: "tengah atas", size: 0 });
+                    geo7.buatTitik(B, { label: "B", labelPosition: "kiri bawah", size: 0 });
+                    geo7.buatTitik(C, { label: "C", labelPosition: "kanan bawah", size: 0 });
+                }
+
+                const elSolusi7 = document.getElementById("svg-solusi-7");
+                if (elSolusi7) {
+                    const geoSol7 = new GeoSVG("svg-solusi-7", 260, 220, { margin: 25 });
+                    const A = [130, 15];
+                    const B = [30, 170];
+                    const C = [230, 170];
+                    const Aprime = [30 + 0.75 * 200, 170]; // 9/12 along BC
+                    // Crease endpoints
+                    const M = [30 + (39 / 60) * (130 - 30), 170 - (39 / 60) * (170 - 15)];
+                    const N = [230 - (39 / 84) * (230 - 130), 170 - (39 / 84) * (170 - 15)];
+
+                    geoSol7.buatSegitiga(A, B, C);
+                    geoSol7.buatSegmen(M, N, { stroke: "#2563eb", strokeWidth: 2 });
+                    geoSol7.buatSegmen(M, Aprime, { strokeDasharray: "4 3" });
+                    geoSol7.buatSegmen(N, Aprime, { strokeDasharray: "4 3" });
+                    geoSol7.buatTitik(A, { label: "A", labelPosition: "tengah atas", size: 0 });
+                    geoSol7.buatTitik(B, { label: "B", labelPosition: "kiri bawah", size: 0 });
+                    geoSol7.buatTitik(C, { label: "C", labelPosition: "kanan bawah", size: 0 });
+                    geoSol7.buatTitik(Aprime, { label: "A'", labelPosition: "tengah bawah", size: 0 });
+                }
+
+                // Diagram Soal 8
+                const elSol8 = document.getElementById("svg-solusi-8");
+                if (elSol8) {
+                    const geo8 = new GeoSVG("svg-solusi-8", 260, 180, { margin: 25 });
+                    const B = [20, 150];
+                    const A = [20, 20];
+                    const C = [230, 150];
+                    geo8.buatSegitiga(A, B, C);
+                    geo8.buatSiku(A, B, C, { size: 10 });
+                    // Points along AC
+                    for (let i = 1; i <= 4; i++) {
+                        const pt = [A[0] + (i / 5) * (C[0] - A[0]), A[1] + (i / 5) * (C[1] - A[1])];
+                        geo8.buatSegmen(B, pt, { stroke: "#64748b" });
+                        const label = ["S", "R", "Q", "P"][i - 1];
+                        geo8.buatTitik(pt, { label: label, labelPosition: "kanan atas", size: 2 });
+                    }
+                    geo8.buatTitik(A, { label: "A", labelPosition: "tengah atas", size: 0 });
+                    geo8.buatTitik(B, { label: "B", labelPosition: "kiri bawah", size: 0 });
+                    geo8.buatTitik(C, { label: "C", labelPosition: "kanan bawah", size: 0 });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Turunan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="./scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Turunan</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diberikan $f(x) = \sin^2 x$. Jika $f'(x)$ menyatakan turunan pertama dari $f(x)$, maka
+                    $\displaystyle\lim_{h\to\infty}h\left\{f'\left(x+\dfrac{1}{h}\right)-f'(x)\right\}=$ ....</p>
+                <ol class="pilgan">
+                    <li>$\sin 2x$</li>
+                    <li>$-\cos 2x$</li>
+                    <li>$2\cos 2x$</li>
+                    <li>$2\sin x$</li>
+                    <li>$-2\cos x$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="http://www.learncy.net/problem/173/" target="_blank" rel="noopener noreferrer">Sumber soal</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    f'(x)&=2\sin x\cos x\\
+                    &=\sin 2x
+                    \end{aligned}$$
+                    <p>Misal $\dfrac{1}{h}=k$, maka untuk $h\to\infty$ berlaku $k\to 0$.</p>
+                    $$\begin{aligned}
+                    \lim_{h\to\infty}h\left\{f'\left(x+\dfrac{1}{h}\right)-f'(x)\right\}&=\lim_{k\to0}\dfrac{\sin2\left(x+k\right)-\sin2x}{k}\\[3.7pt]
+                    &=\lim_{k\to0}\dfrac{\sin(2x+2k)-\sin2x}{k}\\[3.7pt]
+                    &=\lim_{k\to0}\dfrac{\sin2x\cos2k+\cos2x\sin2k-\sin2x}{k}\\[3.7pt]
+                    &=\lim_{k\to0}\dfrac{\sin2x(\cos2k-1)+\cos2x\sin2k}{k}\\[3.7pt]
+                    &=\sin2x\lim_{k\to0}\dfrac{\cos2k-1}{k}+\cos2x\lim_{k\to0}\dfrac{\sin2k}{k}\\[3.7pt]
+                    &=\sin2x(0)+\cos2x(2)\\
+                    &=\boxed{\boxed{2\cos2x}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, $\displaystyle\lim_{h\to\infty}h\left\{f'\left(x+\dfrac{1}{h}\right)-f'(x)\right\}=2\cos2x$. (JAWAB: C)</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Fungsi $g(x) = x^3 + 3x - 2$ mempunyai invers $g^{-1}(x) = h(x)$, dan $g(1) = 2$. Nilai $h'(2) =$ ....</p>
+                <ol class="pilgan">
+                    <li>$\dfrac{1}{3}$</li>
+                    <li>$\dfrac{1}{4}$</li>
+                    <li>$\dfrac{1}{5}$</li>
+                    <li>$\dfrac{1}{6}$</li>
+                    <li>$\dfrac{1}{7}$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    g(x)&=x^3+3x-2\\
+                    g^{-1}\left(x^3+3x-2\right)&=x\\
+                    h\left(x^3+3x-2\right)&=x\\
+                    \left(3x^2+3\right)\ h'\left(x^3+3x-2\right)&=1
+                    \end{aligned}$$
+                    <p>Untuk $x = 1$,</p>
+                    $$\begin{aligned}
+                    \left(3(1)^2+3\right)\ h'\left((1)^3+3(1)-2\right)&=1\\
+                    \left(3+3\right)\ h'\left(1+3-2\right)&=1\\
+                    6\ h'(2)&=1\\
+                    h'(2)&=\boxed{\boxed{\dfrac{1}{6}}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, $h'(2)=\dfrac{1}{6}$. (JAWAB: D)</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diketahui $F(x) = (1 + a)x^3 - 3bx^2 - 9x$. Jika $F''(x)$ habis dibagi $x - 1$, maka kurva
+                    $y = F(x)$ tidak mempunyai titik ekstrem lokal jika ....</p>
+                <ol class="pilgan">
+                    <li>$-3 < b < 0$</li>
+                    <li>$0 < b < 3$</li>
+                    <li>$-4 < b < -1$</li>
+                    <li>$-4 < b < 0$</li>
+                    <li>$1 < b < 4$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><a href="https://chat.whatsapp.com/HIUpnicy1VA0lrtkiARqRd" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    F'(x)&=3(1+a)x^2-6bx-9\\
+                    F''(x)&=6(1+a)x-6b
+                    \end{aligned}$$
+                    <p>$F''(x)$ habis dibagi $x - 1$ artinya $F''(1) = 0$.</p>
+                    $$\begin{aligned}
+                    6(1+a)(1)-6b&=0\\
+                    1+a&=b
+                    \end{aligned}$$
+                    <p>Sehingga $F'(x) = 3bx^2 - 6bx - 9$.</p>
+                    <p>$F(x)$ tidak mempunyai titik ekstrem lokal artinya tidak ada nilai $x$ sehingga $F'(x) = 0$,
+                        atau dengan kata lain diskriminan dari $F'(x)$ kurang dari 0.</p>
+                    $$\begin{aligned}
+                    D&<0\\
+                    (-6b)^2-4(3b)(-9)&<0\\
+                    36b^2+108b&<0\\
+                    b^2+3b&<0\\
+                    b(b+3)&<0\\
+                    &\boxed{\boxed{-3<b<0}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, $F(x)$ tidak mempunyai titik ekstrem lokal jika $-3 < b < 0$. (JAWAB: A)</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Misalkan $f(x) = |x|$ menghasilkan $f'(x)=\dfrac{|x|}{x}$ untuk $x \neq 0$. Jika
+                    $g(x) = |x|^2 + x|x|$, dengan $x \neq 0$, maka $g'(x) =$ ....</p>
+                <ol class="pilgan">
+                    <li>$2x + 2|x|$</li>
+                    <li>$4x$</li>
+                    <li>$4|x|$</li>
+                    <li>$0$</li>
+                    <li>$-4x$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    g(x)&=|x|^2+x|x|\\
+                    g'(x)&=2|x|\dfrac{|x|}{x}+1\cdot|x|+x\dfrac{|x|}{x}\\[3.7pt]
+                    &=2\dfrac{|x|^2}{x}+|x|+|x|\\[3.7pt]
+                    &=2\dfrac{x^2}{x}+2|x|\\
+                    &=\boxed{\boxed{2x+2|x|}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, $g'(x) = 2x + 2|x|$. (JAWAB: A)</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Jika $f(x) = 2x^3 \cdot g(x)$, $g(1) = -2$, $g'(1) = 3$. Maka $f'(1) =$ ....</p>
+                <ol class="pilgan">
+                    <li>$-6$</li>
+                    <li>$6$</li>
+                    <li>$0$</li>
+                    <li>$12$</li>
+                    <li>$-12$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    f(x)&=2x^3\cdot g(x)\\
+                    f'(x)&=6x^2\cdot g(x)+2x^3\cdot g'(x)\\
+                    f'(1)&=6(1)^2\cdot g(1)+2(1)^3\cdot g'(1)\\
+                    &=6\cdot(-2)+2\cdot 3\\
+                    &=-12+6\\
+                    &=\boxed{\boxed{-6}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, $f'(1) = -6$. (JAWAB: A)</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Jika $f(x)=\sqrt{3x}\cdot g(x)$, $g(3) = 4$, $g'(3) = 2$, maka $f'(3) =$ ....</p>
+                <ol class="pilgan">
+                    <li>$4$</li>
+                    <li>$6$</li>
+                    <li>$8$</li>
+                    <li>$2$</li>
+                    <li>$1$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    f(x)&=\sqrt{3x}\cdot g(x)\\
+                    f'(x)&=\dfrac{3}{2\sqrt{3x}}\cdot g(x)+\sqrt{3x}\cdot g'(x)\\
+                    f'(3)&=\dfrac{3}{2\sqrt{3(3)}}\cdot g(3)+\sqrt{3(3)}\cdot g'(3)\\
+                    &=\dfrac{3}{2(3)}\cdot (4)+3\cdot (2)\\
+                    &=2+6\\
+                    &=\boxed{\boxed{8}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, $f'(3) = 8$. (JAWAB: C)</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Jika $f(x) = \cos x$ dan $g(x) = \csc x$, maka $\dfrac{d\left(g\circ f\right)(x)}{dx}=$ ....</p>
+                <ol class="pilgan pilgan-1kolom">
+                    <li>$-\sin x \sec(\cos x)$</li>
+                    <li>$\sin x \sec(\sin x)$</li>
+                    <li>$\sin x \csc(\cos x) \cot(\cos x)$</li>
+                    <li>$\sin x \csc(\sin x)$</li>
+                    <li>$-\sin x \sec(\sin x)$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    f(x)&=\cos x\\
+                    f'(x)&=-\sin x
+                    \end{aligned}
+                    \qquad
+                    \begin{aligned}
+                    g(x)&=\csc x\\
+                    g'(x)&=-\csc x\cot x
+                    \end{aligned}$$
+                    $$\begin{aligned}
+                    \dfrac{d\left(g\circ f\right)(x)}{dx}&=g'\left(f(x)\right)\cdot f'(x)\\
+                    &=-\csc\left(f(x)\right)\cot\left(f(x)\right)(-\sin x)\\
+                    &=\boxed{\boxed{\sin x\csc\left(\cos x\right)\cot\left(\cos x\right)}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, $\dfrac{d\left(g\circ f\right)(x)}{dx}=\sin x\csc\left(\cos x\right)\cot\left(\cos x\right)$. (JAWAB: C)</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diketahui $f$ dan $g$ memenuhi $f(x) \cdot g(x) = x^2 - 3x$ untuk setiap bilangan real $x$.
+                    Jika $g(1) = -2$, $f'(1) = f(1)$ dan $g'(1) = f(1)$, maka $g'(1) =$ ....</p>
+                <ol class="pilgan">
+                    <li>$-2$</li>
+                    <li>$-1$</li>
+                    <li>$0$</li>
+                    <li>$1$</li>
+                    <li>$2$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">SKMP Agustus 2020</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    $$\begin{aligned}
+                    f(x)\cdot g(x)&=x^2-3x\\
+                    f(1)\cdot g(1)&=1^2-3(1)\\
+                    f(1)\cdot(-2)&=1-3\\
+                    -2f(1)&=-2\\
+                    f(1)&=1
+                    \end{aligned}$$
+                    <p>Sehingga $f'(1) = g'(1) = f(1) = 1$.</p>
+                    $$\begin{aligned}
+                    f(x)\cdot g(x)&=x^2-3x\\
+                    \dfrac{d}{dx}\left(f(x)\cdot g(x)\right)&=\dfrac{d}{dx}\left(x^2-3x\right)\\
+                    f'(x)\cdot g(x)+f(x)\cdot g'(x)&=2x-3\\
+                    f'(1)\cdot g(1)+f(1)\cdot g'(1)&=2(1)-3\\
+                    1\cdot(-2)+1\cdot g'(1)&=2-3\\
+                    -2+g'(1)&=-1\\
+                    g'(1)&=\boxed{\boxed{1}}
+                    \end{aligned}$$
+                    <div class="kesimpulan">Jadi, $g'(1) = 1$. (JAWAB: D)</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Teorema Menelaus</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="./scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Teorema Menelaus</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Pada gambar berikut, <em>D</em> adalah kaki tinggi dari <em>A</em>, dan <em>E</em> titik tengah <em>CA</em>.
+                <div id="gambar1" class="tengah" style="margin: 1rem 0;"></div>
+                Jika luas segitiga <em>ABC</em> adalah \(\dfrac12\) satuan, maka panjang <em>AK</em> dapat dinyatakan sebagai ....
+                <ol class="pilgan">
+                    <li>\(\dfrac1{BC+AB\cos B}\)</li>
+                    <li>\(BC+AB\cos B\)</li>
+                    <li>\(\dfrac1{AB+BC\cos B}\)</li>
+                    <li>\(AB+BC\cos B\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">Sumber: <a href="https://chat.whatsapp.com/InkIX04eRt24DcjBEPtxXE" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Karena <em>E</em> titik tengah <em>CA</em>, maka \(AE=EC\).<br><br>
+                    Pada segitiga siku-siku <em>ABD</em>, \(BD=AB\cos B\).<br><br>
+                    Dari luas segitiga <em>ABC</em>:
+                    \[\begin{aligned}
+                    \dfrac12\cdot BC\cdot AD&=\dfrac12\\
+                    BC\cdot AD&=1
+                    \end{aligned}\]
+                    Dengan menggunakan Teorema Menelaus pada segitiga <em>ADC</em> dengan garis <em>BKE</em>:
+                    \[\begin{aligned}
+                    \dfrac{BC}{BD}\cdot\dfrac{DK}{AK}\cdot\dfrac{AE}{EC}&=1&&\times BD\\[4pt]
+                    BC\cdot\left(\dfrac{AD-AK}{AK}\right)\cdot1&=BD\\[4pt]
+                    BC\cdot\left(\dfrac{AD}{AK}-1\right)&=AB\cos B\\[4pt]
+                    \dfrac{BC\cdot AD}{AK}-BC&=AB\cos B\\[4pt]
+                    \dfrac1{AK}&=BC+AB\cos B\\
+                    AK&=\dfrac1{BC+AB\cos B}
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, \(AK=\dfrac1{BC+AB\cos B}\).<br>JAWAB: A</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Gambar soal dengan GeoSVG.js -->
+    <script>
+        (function () {
+            // Tunggu sampai GeoSVG.js (lokal atau CDN cadangan) selesai dimuat
+            function tunggu(fn, percobaan) {
+                percobaan = percobaan || 0;
+                if (typeof GeoSVG !== 'undefined') return fn();
+                if (percobaan < 100) setTimeout(function () { tunggu(fn, percobaan + 1); }, 100);
+            }
+
+            function gambarSoal1() {
+                // Sumbu Y mengarah ke atas (koordinat matematika)
+                var geo = new GeoSVG('gambar1', 490, 260, {
+                    yUp: true,
+                    viewBox: '-35 -35 490 260',
+                    clearContainer: true,
+                    defaultStroke: 'currentColor',
+                    defaultStrokeWidth: 2,
+                    title: 'Segitiga ABC dengan titik D, E, dan K',
+                    description: 'Segitiga ABC dengan AD tegak lurus BC di D, E titik tengah CA, dan K perpotongan BE dengan AD.'
+                });
+                geo.svg.style.maxWidth = '100%';
+                geo.svg.style.height = 'auto';
+
+                var rad = 50 * Math.PI / 180;           // sudut B = 50 derajat
+                var AB = 240, BC = 420;
+                var B = [0, 0];
+                var C = [BC, 0];
+                var D = [AB * Math.cos(rad), 0];
+                var A = [AB * Math.cos(rad), AB * Math.sin(rad)];
+                var E = geo.hitungTitikTengah(A, C);
+                var K = geo.hitungTitikPotong([B, E], [A, D])[0];
+
+                // Garis-garis
+                geo.buatPoligon([A, B, C], { strokeLinejoin: 'round' });
+                geo.buatSegmen(A, D);
+                geo.buatSegmen(B, E);
+
+                // Titik dan label
+                var gaya = { size: 4, color: 'currentColor', fontSize: '18px', labelDistance: 8 };
+                geo.buatTitik(A, Object.assign({ label: 'A', labelPosition: 'top-center' }, gaya));
+                geo.buatTitik(B, Object.assign({ label: 'B', labelPosition: 'middle-left' }, gaya));
+                geo.buatTitik(C, Object.assign({ label: 'C', labelPosition: 'middle-right' }, gaya));
+                geo.buatTitik(D, Object.assign({ label: 'D', labelPosition: 'bottom-center' }, gaya));
+                geo.buatTitik(E, Object.assign({ label: 'E', labelPosition: 'top-right' }, gaya));
+                geo.buatTitik(K, Object.assign({ label: 'K', labelPosition: 'top-left' }, gaya));
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                tunggu(gambarSoal1);
+            });
+        })();
+    </script>
+</body>
+
+</html>
