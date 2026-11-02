@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Integral Tak Tentu</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Integral Tak Tentu</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Antiturunan dan Integral Tak Tentu</h2>
+            <p>
+                Dalam kalkulus, <strong>Integral Tak Tentu</strong> (<em>indefinite integral</em>) merupakan operasi kebalikan (invers) dari turunan (diferensial), sehingga sering disebut sebagai <strong>antiturunan</strong> (<em>antiderivative</em>). Suatu fungsi $F(x)$ disebut sebagai antiturunan dari fungsi $f(x)$ pada suatu interval jika turunan pertama dari $F(x)$ sama dengan $f(x)$:
+                $$F'(x) = \frac{d}{dx}[F(x)] = f(x)$$
+            </p>
+            <p>
+                Karena turunan dari sembarang konstanta bernilai nol ($\frac{d}{dx}[C] = 0$), maka jika $F(x)$ adalah antiturunan dari $f(x)$, fungsi $F(x) + C$ juga merupakan antiturunan dari $f(x)$ untuk sembarang konstanta real $C$. Secara umum, himpunan semua antiturunan dari $f(x)$ dinotasikan sebagai:
+                $$\int f(x)\,dx = F(x) + C$$
+            </p>
+            <ul>
+                <li>$\int$ adalah lambang operasi integral (diperkenalkan oleh Gottfried Wilhelm Leibniz).</li>
+                <li>$f(x)$ disebut sebagai <strong>integran</strong> (fungsi yang akan diintegralkan).</li>
+                <li>$dx$ adalah diferensial yang menunjukkan bahwa proses pengintegralan dilakukan terhadap variabel $x$.</li>
+                <li>$F(x)$ adalah fungsi antiturunan khusus, dan $C$ adalah <strong>konstanta integrasi</strong>.</li>
+            </ul>
+
+            <h2>2. Makna Geometri Konstanta Integrasi ($+C$)</h2>
+            <p>
+                Mengapa hasil integral tak tentu selalu memuat $+C$? Secara geometri, $\int f(x)\,dx = F(x) + C$ merepresentasikan suatu <strong>keluarga kurva</strong> (<em>family of curves</em>) yang saling sejajar secara vertikal (hasil translasi/pergeseran ke atas atau ke bawah sejauh $C$ satuan).
+            </p>
+            <p>
+                Pada nilai absis $x = x_0$ yang sama, setiap kurva anggota keluarga $y = F(x) + C$ memiliki <strong>kemiringan (gradien) garis singgung yang persis sama</strong>, yaitu $m = F'(x_0) = f(x_0)$.
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-keluarga-kurva" style="width: 100%; max-width: 540px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Sifat Kelinearan dan Rumus Dasar Integral Tak Tentu</h2>
+            <p>
+                Untuk sembarang fungsi $f(x)$, $g(x)$ yang dapat diintegralkan dan konstanta real $k$, berlaku <strong>sifat kelinearan</strong>:
+                $$\int k \cdot f(x)\,dx = k \int f(x)\,dx \qquad \text{dan} \qquad \int \big[f(x) \pm g(x)\big]\,dx = \int f(x)\,dx \pm \int g(x)\,dx$$
+            </p>
+            <p>
+                Berikut adalah rangkuman rumus dasar integral tak tentu fungsi aljabar, trigonometri, dan eksponensial yang wajib dikuasai:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Fungsi</th>
+                            <th>Rumus Dasar Integral</th>
+                            <th>Bentuk Perluasan Linear $(ax + b)$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Konstanta</strong></td>
+                            <td>$$\int k\,dx = kx + C$$</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Pangkat Aljabar ($n \neq -1$)</strong></td>
+                            <td>$$\int x^n\,dx = \frac{1}{n+1}x^{n+1} + C$$</td>
+                            <td>$$\int (ax+b)^n\,dx = \frac{1}{a(n+1)}(ax+b)^{n+1} + C$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Resiprokal ($n = -1$)</strong></td>
+                            <td>$$\int \frac{1}{x}\,dx = \ln|x| + C$$</td>
+                            <td>$$\int \frac{1}{ax+b}\,dx = \frac{1}{a}\ln|ax+b| + C$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Eksponensial</strong></td>
+                            <td>$$\int e^x\,dx = e^x + C$$</td>
+                            <td>$$\int e^{ax+b}\,dx = \frac{1}{a}e^{ax+b} + C$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Sinus & Cosinus</strong></td>
+                            <td>
+                                $$\int \sin x\,dx = -\cos x + C$$
+                                $$\int \cos x\,dx = \sin x + C$$
+                            </td>
+                            <td>
+                                $$\int \sin(ax+b)\,dx = -\frac{1}{a}\cos(ax+b) + C$$
+                                $$\int \cos(ax+b)\,dx = \frac{1}{a}\sin(ax+b) + C$$
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Trigonometri Lainnya</strong></td>
+                            <td>
+                                $$\int \sec^2 x\,dx = \tan x + C$$
+                                $$\int \csc^2 x\,dx = -\cot x + C$$
+                            </td>
+                            <td>
+                                $$\int \sec x \tan x\,dx = \sec x + C$$
+                                $$\int \csc x \cot x\,dx = -\csc x + C$$
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kesimpulan">
+                ⚠️ Peringatan Penting: Tidak ada rumus "integral perkalian" atau "integral pembagian" secara langsung ($\int [f(x) \cdot g(x)]\,dx \neq \int f(x)\,dx \cdot \int g(x)\,dx$). Jika integran berbentuk perkalian atau pembagian aljabar, jabarkan/sederhanakan terlebih dahulu menjadi penjumlahan suku-suku pangkat, atau gunakan <strong>Metode Substitusi</strong> dan <strong>Integral Parsial</strong>.
+            </div>
+
+            <h2>4. Teknik Pengintegralan: Substitusi dan Integral Parsial</h2>
+            <p>
+                Apabila suatu fungsi tidak dapat diintegralkan langsung dengan rumus dasar, kita menggunakan dua teknik utama berikut:
+            </p>
+            <ul>
+                <li>
+                    <strong>A. Metode Substitusi (Aturan Rantai Terbalik):</strong><br>
+                    Digunakan ketika integran memuat suatu fungsi komposisi $f(g(x))$ beserta faktor turunan dalamnya $g'(x)$. Dengan memisalkan $u = g(x)$ sehingga $du = g'(x)\,dx$, integral berubah menjadi bentuk sederhana:
+                    $$\int f(g(x)) \cdot g'(x)\,dx = \int f(u)\,du = F(u) + C = F(g(x)) + C$$
+                </li>
+                <li>
+                    <strong>B. Metode Integral Parsial:</strong><br>
+                    Digunakan ketika integran berupa perkalian dua fungsi berbeda jenis yang tidak memiliki hubungan turunan (misalnya aljabar dikali trigonometri atau eksponensial, seperti $\int x \cos x\,dx$ atau $\int x^2 e^x\,dx$). Berdasarkan aturan turunan hasil kali $d(uv) = u\,dv + v\,du$, diperoleh rumus:
+                    $$\int u\,dv = u \cdot v - \int v\,du$$
+                    Prioritas pemilihan fungsi $u$ (yang mudah diturunkan hingga habis/sederhana) mengikuti akronim <strong>LIATE</strong>: <strong>L</strong>ogaritma ($\ln x$), <strong>I</strong>nvers trigonometri ($\arcsin x$), <strong>A</strong>ljabar ($x^n$), <strong>T</strong>rigonometri ($\sin x, \cos x$), dan <strong>E</strong>ksponensial ($e^x$).
+                </li>
+            </ul>
+
+            <p>
+                Khusus untuk integral parsial berbentuk $\int \text{(Polinomial)} \times \text{(Trigonometri / Eksponensial)}\,dx$, kita dapat mempercepat perhitungan menggunakan <strong>Metode Tabel (Tanzalin)</strong> dengan menurunkan kolom $u$ sampai $0$ dan mengintegralkan kolom $dv$ secara berulang:
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-tanzalin" style="width: 100%; max-width: 540px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Aplikasi: Menentukan Persamaan Kurva dan Gerak</h2>
+            <p>
+                Jika suatu soal memberikan rumus <strong>gradien garis singgung</strong> $m = \frac{dy}{dx} = f'(x)$ beserta satu titik $(x_1, y_1)$ yang dilalui kurva, maka persamaan kurva tunggal $y = f(x)$ dapat ditentukan dengan langkah:
+            </p>
+            <ol>
+                <li>Integralkan fungsi gradien untuk mendapatkan keluarga kurva: $f(x) = \int f'(x)\,dx = F(x) + C$.</li>
+                <li>Substitusikan koordinat titik $(x_1, y_1)$ ke dalam persamaan $y_1 = F(x_1) + C$ untuk mencari nilai spesifik konstanta $C$.</li>
+            </ol>
+            <p>
+                Dalam fisika kinematika, hubungan antiturunan juga berlaku antara percepatan $a(t)$, kecepatan $v(t)$, dan posisi benda $s(t)$:
+                $$v(t) = \int a(t)\,dt \qquad \text{dan} \qquad s(t) = \int v(t)\,dt$$
+            </p>
+
+            <h2>6. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk menguasai cara menyederhanakan integral aljabar, menerapkan metode substitusi, hingga mencari persamaan kurva dari gradien garis singgung. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasan lengkap.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Manipulasi Aljabar Bentuk Akar dan Pecahan -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Hasil dari integral tak tentu $\displaystyle \int \frac{6x^2 - 4x + 2}{\sqrt{x}}\,dx$ untuk $x > 0$ adalah ....
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Mengubah bentuk akar menjadi eksponen pecahan dan membagi tiap suku</strong><br>
+                        Ingat bahwa $\sqrt{x} = x^{1/2}$. Karena tidak ada rumus integral pembagian langsung, pecah pecahan tersebut menjadi penjumlahan suku-suku pangkat:
+                        $$\int \frac{6x^2 - 4x + 2}{x^{1/2}}\,dx = \int \left( \frac{6x^2}{x^{1/2}} - \frac{4x^1}{x^{1/2}} + \frac{2}{x^{1/2}} \right) dx$$
+                        $$= \int \left( 6x^{3/2} - 4x^{1/2} + 2x^{-1/2} \right) dx$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Mengintegralkan tiap suku dengan aturan pangkat $\int x^n\,dx = \frac{1}{n+1}x^{n+1} + C$</strong><br>
+                        $$= \frac{6}{\frac{3}{2} + 1}x^{\frac{3}{2} + 1} - \frac{4}{\frac{1}{2} + 1}x^{\frac{1}{2} + 1} + \frac{2}{-\frac{1}{2} + 1}x^{-\frac{1}{2} + 1} + C$$
+                        $$= \frac{6}{5/2}x^{5/2} - \frac{4}{3/2}x^{3/2} + \frac{2}{1/2}x^{1/2} + C$$
+                        $$= \frac{12}{5}x^2\sqrt{x} - \frac{8}{3}x\sqrt{x} + 4\sqrt{x} + C$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, hasil dari $\int \frac{6x^2 - 4x + 2}{\sqrt{x}}\,dx$ adalah $\frac{12}{5}x^2\sqrt{x} - \frac{8}{3}x\sqrt{x} + 4\sqrt{x} + C$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Metode Substitusi Aljabar -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Tentukan hasil dari $\displaystyle \int 12x(x^2 - 5)^5\,dx$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Memilih pemisalan fungsi dalam $u$</strong><br>
+                        Perhatikan bahwa turunan dari fungsi di dalam kurung $(x^2 - 5)$ adalah $2x$, yang sebanding dengan faktor pengali $12x$ di luar kurung. Misalkan:
+                        $$u = x^2 - 5 \implies \frac{du}{dx} = 2x \iff x\,dx = \frac{1}{2}\,du$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Mensubstitusikan $u$ dan $du$ ke dalam integral</strong><br>
+                        $$\int 12x(x^2 - 5)^5\,dx = \int 12 \cdot (x^2 - 5)^5 \cdot (x\,dx)$$
+                        $$= \int 12 \cdot u^5 \cdot \left(\frac{1}{2}\,du\right) = \int 6u^5\,du$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Mengintegralkan terhadap $u$ lalu mengembalikan ke variabel $x$</strong><br>
+                        $$\int 6u^5\,du = \frac{6}{5+1}u^{5+1} + C = u^6 + C = (x^2 - 5)^6 + C$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, hasil dari $\int 12x(x^2 - 5)^5\,dx$ adalah $(x^2 - 5)^6 + C$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Menentukan Persamaan Kurva dari Gradien Garis Singgung -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Gradien garis singgung suatu kurva $y = f(x)$ di setiap titik $(x, y)$ dinyatakan oleh rumus $\frac{dy}{dx} = 3x^2 - 4x + 2$. Jika kurva tersebut melalui titik $(2, 5)$, tentukan persamaan kurva $y = f(x)$ dan nilai dari $f(-1)$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Mengintegralkan fungsi gradien untuk memperoleh rumus umum $f(x)$</strong><br>
+                        $$f(x) = \int (3x^2 - 4x + 2)\,dx$$
+                        $$f(x) = x^3 - 2x^2 + 2x + C$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Mencari nilai konstanta $C$ menggunakan titik $(2, 5)$</strong><br>
+                        Karena kurva melalui titik $(2, 5)$, maka $f(2) = 5$:
+                        $$(2)^3 - 2(2)^2 + 2(2) + C = 5$$
+                        $$8 - 8 + 4 + C = 5 \iff 4 + C = 5 \iff C = 1$$
+                        Dengan demikian, persamaan kurva tersebut adalah $f(x) = x^3 - 2x^2 + 2x + 1$.
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menghitung nilai $f(-1)$</strong><br>
+                        $$f(-1) = (-1)^3 - 2(-1)^2 + 2(-1) + 1 = -1 - 2 - 2 + 1 = -4$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, persamaan kurvanya adalah $f(x) = x^3 - 2x^2 + 2x + 1$ dan nilai $f(-1) = -4$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiIntegralTakTentu() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const tealFill = isDark ? 'rgba(20, 184, 166, 0.16)' : 'rgba(13, 148, 136, 0.10)';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const amberFill = isDark ? 'rgba(251, 191, 36, 0.18)' : 'rgba(217, 119, 6, 0.12)';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const purpleColor = isDark ? '#c084fc' : '#7e22ce';
+            const redColor = isDark ? '#f87171' : '#dc2626';
+
+            /* -------------------------------------------------------------
+               1. KELUARGA KURVA ANTITURUNAN: ∫ 2x dx = x² + C
+               ------------------------------------------------------------- */
+            const geoKurva = new GeoSVG('geosvg-keluarga-kurva', 540, 260, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoKurva.buatPersegiPanjang(8, 8, 524, 244, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoKurva.buatTeks(270, 27, "Keluarga Kurva Antiturunan: ∫ 2x dx = x² + C", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: textColor
+            });
+
+            // Titik asal koordinat di tengah kiri
+            const ox = 165, oy = 162, sx = 42, sy = 24;
+            geoKurva.buatVektor([42, oy], [295, oy], { stroke: mutedColor, strokeWidth: 1.5 });
+            geoKurva.buatVektor([ox, 236], [ox, 44], { stroke: mutedColor, strokeWidth: 1.5 });
+            geoKurva.buatTeks(295, oy - 10, "x", { position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: mutedColor });
+            geoKurva.buatTeks(ox + 12, 46, "y", { position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: mutedColor });
+
+            // Gambar 3 parabola y = x^2 + C untuk C = +2, 0, -2
+            const daftarKurva = [
+                { c: 2, color: blueColor, label: "C = +2", yLabelOffset: -12 },
+                { c: 0, color: tealColor, label: "C = 0", yLabelOffset: -12 },
+                { c: -2, color: purpleColor, label: "C = -2", yLabelOffset: -12 }
+            ];
+
+            daftarKurva.forEach(item => {
+                const pts = [];
+                for (let x = -2.1; x <= 2.1; x += 0.15) {
+                    const y = x * x + item.c;
+                    const px = ox + x * sx;
+                    const py = oy - y * sy;
+                    if (py >= 46 && py <= 234) {
+                        pts.push([px, py]);
+                    }
+                }
+                geoKurva.buatKurvaHalus(pts, { stroke: item.color, strokeWidth: 2.3 });
+            });
+
+            // Garis vertikal x = 1 untuk menunjukkan gradien garis singgung yang sejajar (m = 2(1) = 2)
+            const x0 = 1;
+            const px0 = ox + x0 * sx;
+            geoKurva.buatSegmen([px0, 48], [px0, 232], {
+                stroke: mutedColor, strokeWidth: 1.3, dashed: '4 4'
+            });
+            geoKurva.buatTeks(px0, 241, "x = 1", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: amberColor
+            });
+
+            // Gambar segmen garis singgung sejajar di x = 1 pada masing-masing kurva
+            daftarKurva.forEach(item => {
+                const y0 = x0 * x0 + item.c;
+                const py0 = oy - y0 * sy;
+                const m = 2 * x0; // kemiringan = 2
+                const dx = 0.55;
+                const xA = px0 - dx * sx, yA = py0 + (m * dx) * sy;
+                const xB = px0 + dx * sx, yB = py0 - (m * dx) * sy;
+
+                geoKurva.buatSegmen([xA, yA], [xB, yB], {
+                    stroke: amberColor, strokeWidth: 2.2
+                });
+                geoKurva.buatTitik(px0, py0, {
+                    size: 4, color: amberColor
+                });
+                geoKurva.buatTeks(ox - 1.75 * sx, oy - (1.75 * 1.75 + item.c) * sy, item.label, {
+                    position: 'middle-left', fontWeight: 'bold', fontSize: '10.5px', fill: item.color
+                });
+            });
+
+            // Kotak penjelasan di sisi kanan
+            geoKurva.buatPersegiPanjang(312, 54, 204, 174, {
+                radius: 8, fill: tealFill, stroke: tealColor, strokeWidth: 1.5
+            });
+            geoKurva.buatTeks(414, 76, "Mengapa Gradiennya Sama?", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: tealColor
+            });
+            geoKurva.buatTeks(414, 98, "Ketiga kurva y = x² + C hanya", {
+                position: 'middle-center', fontSize: '10.5px', fill: textColor
+            });
+            geoKurva.buatTeks(414, 114, "bergeser vertikal sejauh C.", {
+                position: 'middle-center', fontSize: '10.5px', fill: textColor
+            });
+            geoKurva.buatTeks(414, 138, "Di x = 1, semua kurva punya", {
+                position: 'middle-center', fontSize: '10.5px', fill: textColor
+            });
+            geoKurva.buatTeks(414, 154, "garis singgung sejajar dengan:", {
+                position: 'middle-center', fontSize: '10.5px', fill: textColor
+            });
+            geoKurva.buatTeks(414, 176, "m = f(1) = 2(1) = 2", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor
+            });
+            geoKurva.buatTeks(414, 204, "1 titik (x₁, y₁) memilih 1 kurva!", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: blueColor
+            });
+
+            /* -------------------------------------------------------------
+               2. SKEMA METODE TABEL (TANZALIN) INTEGRAL PARSIAL
+                  Contoh: ∫ x² · eˣ dx
+               ------------------------------------------------------------- */
+            const geoTan = new GeoSVG('geosvg-tanzalin', 540, 245, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoTan.buatPersegiPanjang(8, 8, 524, 229, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoTan.buatTeks(270, 27, "Skema Metode Tabel (Tanzalin): ∫ x² · eˣ dx", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: textColor
+            });
+
+            // Header kolom: Turunkan (u) dan Integralkan (dv)
+            const colU = 95, colV = 235;
+            geoTan.buatPersegiPanjang(38, 44, 114, 26, {
+                radius: 6, fill: tealFill, stroke: tealColor, strokeWidth: 1.4
+            });
+            geoTan.buatTeks(colU, 57, "Turunkan (u)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: tealColor
+            });
+
+            geoTan.buatPersegiPanjang(178, 44, 114, 26, {
+                radius: 6, fill: amberFill, stroke: amberColor, strokeWidth: 1.4
+            });
+            geoTan.buatTeks(colV, 57, "Integralkan (dv)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: amberColor
+            });
+
+            // Baris-baris nilai u dan dv
+            const rowsY = [90, 128, 166, 204];
+            const uVals = ["x²", "2x", "2", "0"];
+            const vVals = ["eˣ", "eˣ", "eˣ", "eˣ"];
+            const signs = [
+                { s: "(+)", col: tealColor },
+                { s: "(−)", col: redColor },
+                { s: "(+)", col: tealColor }
+            ];
+
+            for (let i = 0; i < 4; i++) {
+                geoTan.buatTeks(colU, rowsY[i], uVals[i], {
+                    position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: textColor
+                });
+                geoTan.buatTeks(colV, rowsY[i], vVals[i], {
+                    position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: textColor
+                });
+            }
+
+            // Panah diagonal dari baris i di kolom u ke baris i+1 di kolom dv
+            for (let i = 0; i < 3; i++) {
+                const yStart = rowsY[i] + 4;
+                const yEnd = rowsY[i + 1] - 4;
+                geoTan.buatVektor([colU + 22, yStart], [colV - 24, yEnd], {
+                    stroke: signs[i].col, strokeWidth: 2
+                });
+                geoTan.buatTeks((colU + colV) / 2, (yStart + yEnd) / 2 - 7, signs[i].s, {
+                    position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: signs[i].col
+                });
+            }
+
+            // Kotak hasil perkalian diagonal di sebelah kanan
+            geoTan.buatPersegiPanjang(312, 52, 204, 164, {
+                radius: 8, fill: tealFill, stroke: tealColor, strokeWidth: 1.5
+            });
+            geoTan.buatTeks(414, 74, "Kalikan Menyilang Sesuai Tanda:", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: tealColor
+            });
+            geoTan.buatTeks(414, 100, "Baris 1:  +(x²)(eˣ) = +x²eˣ", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor
+            });
+            geoTan.buatTeks(414, 122, "Baris 2:  −(2x)(eˣ) = −2xeˣ", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: redColor
+            });
+            geoTan.buatTeks(414, 144, "Baris 3:  +(2)(eˣ)  = +2eˣ", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor
+            });
+            geoTan.buatSegmen([328, 164], [500, 164], { stroke: borderColor, strokeWidth: 1.2 });
+            geoTan.buatTeks(414, 184, "Hasil Akhir:", {
+                position: 'middle-center', fontSize: '10.5px', fill: mutedColor
+            });
+            geoTan.buatTeks(414, 202, "(x² − 2x + 2)eˣ + C", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiIntegralTakTentu();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiIntegralTakTentu, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

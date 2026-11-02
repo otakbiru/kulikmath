@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal SNBT - Integral Tentu (Bagian 2)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Integral Tentu</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 11 -->
+        <article class="soal-item" id="11">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int_{10}^{12} \dfrac{dx}{\sqrt{28x + 8x\sqrt{x}}} = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(\sqrt{2} + \sqrt{3} - 2 + \sqrt{5}\)</li>
+                    <li>\(\sqrt{2} + \sqrt{3} + 2 - \sqrt{5}\)</li>
+                    <li>\(-\sqrt{2} + \sqrt{3} + 2 - \sqrt{5}\)</li>
+                    <li>\(-\sqrt{2} + \sqrt{3} - 2 + \sqrt{5}\)</li>
+                    <li>\(-\sqrt{2} + \sqrt{3} + 2 + \sqrt{5}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Facebook</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorkan penyebut di dalam akar:</p>
+                    \[\begin{aligned}
+                    \sqrt{28x + 8x\sqrt{x}} &= \sqrt{4x(7 + 2\sqrt{x})} \\
+                    &= 2\sqrt{x}\sqrt{7 + 2\sqrt{x}}
+                    \end{aligned}\]
+
+                    <p>Gunakan teknik substitusi:</p>
+                    <p>
+                        Misalkan:
+                        \[u = 7 + 2\sqrt{x} \implies du = 2 \cdot \dfrac{1}{2\sqrt{x}} \, dx = \dfrac{1}{\sqrt{x}} \, dx\]
+                        Sehingga:
+                        \[\dfrac{dx}{2\sqrt{x}\sqrt{7 + 2\sqrt{x}}} = \dfrac{du}{2\sqrt{u}} = \dfrac{1}{2} u^{-\frac{1}{2}} \, du\]
+                    </p>
+
+                    <p>Integralkan:</p>
+                    \[\int \dfrac{1}{2} u^{-\frac{1}{2}} \, du = u^{\frac{1}{2}} + C = \sqrt{7 + 2\sqrt{x}} + C\]
+
+                    <p>Evaluasi pada batas \(x = 10\) sampai \(x = 12\):</p>
+                    \[\begin{aligned}
+                    \left[\sqrt{7 + 2\sqrt{x}}\right]_{10}^{12} &= \sqrt{7 + 2\sqrt{12}} - \sqrt{7 + 2\sqrt{10}} \\
+                    &= \sqrt{4 + 3 + 2\sqrt{4 \cdot 3}} - \sqrt{2 + 5 + 2\sqrt{2 \cdot 5}} \\
+                    &= (\sqrt{4} + \sqrt{3}) - (\sqrt{2} + \sqrt{5}) \\
+                    &= 2 + \sqrt{3} - \sqrt{2} - \sqrt{5} \\
+                    &= -\sqrt{2} + \sqrt{3} + 2 - \sqrt{5}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(-\sqrt{2} + \sqrt{3} + 2 - \sqrt{5}\).<br>
+                        <strong>JAWABAN: C</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 12 -->
+        <article class="soal-item" id="12">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika \(\displaystyle\int_{-3}^3 f(x)(\sin x + 1) \, dx = 10\) dengan \(f(x)\) fungsi genap dan \(\displaystyle\int_{-1}^3 f(x) \, dx = 7\), maka nilai dari \(\displaystyle\int_1^3 f(x) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(-4\)</li>
+                    <li>\(-3\)</li>
+                    <li>\(-2\)</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Facebook</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Karena \(f(x)\) genap dan \(\sin x\) ganjil, maka \(f(x)\sin x\) merupakan fungsi ganjil sehingga \(\displaystyle\int_{-3}^3 f(x)\sin x \, dx = 0\).
+                    </p>
+                    \[\begin{aligned}
+                    \int_{-3}^3 f(x)(\sin x + 1) \, dx &= \int_{-3}^3 f(x)\sin x \, dx + \int_{-3}^3 f(x) \, dx \\
+                    10 &= 0 + 2\int_0^3 f(x) \, dx \\
+                    \int_0^3 f(x) \, dx &= 5
+                    \end{aligned}\]
+
+                    <p>Karena \(f(x)\) simetris terhadap sumbu-\(y\) (fungsi genap), maka \(\displaystyle\int_{-1}^0 f(x) \, dx = \int_0^1 f(x) \, dx\):</p>
+                    \[\begin{aligned}
+                    \int_{-1}^3 f(x) \, dx &= \int_{-1}^0 f(x) \, dx + \int_0^3 f(x) \, dx \\
+                    7 &= \int_{-1}^0 f(x) \, dx + 5 \\
+                    \int_{-1}^0 f(x) \, dx &= 2 \implies \int_0^1 f(x) \, dx = 2
+                    \end{aligned}\]
+
+                    <p>Maka nilai \(\displaystyle\int_1^3 f(x) \, dx\) adalah:</p>
+                    \[\begin{aligned}
+                    \int_1^3 f(x) \, dx &= \int_0^3 f(x) \, dx - \int_0^1 f(x) \, dx \\
+                    &= 5 - 2 \\
+                    &= 3
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai \(\displaystyle\int_1^3 f(x) \, dx = 3\).<br>
+                        <strong>JAWABAN: D</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 13 -->
+        <article class="soal-item" id="13">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika nilai \(\displaystyle\int_1^2 f(x) \, dx = 4\), maka nilai dari \(\displaystyle\int_0^1 x \cdot f(x^2 + 1) \, dx\) adalah ....
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">SKMP Juli 2020</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan teknik substitusi:</p>
+                    <p>
+                        Misalkan:
+                        \[u = x^2 + 1 \implies du = 2x \, dx \implies x \, dx = \dfrac{1}{2} \, du\]
+                    </p>
+                    <p>Batas integrasi:</p>
+                    <ul>
+                        <li>Untuk \(x = 0 \implies u = 0^2 + 1 = 1\)</li>
+                        <li>Untuk \(x = 1 \implies u = 1^2 + 1 = 2\)</li>
+                    </ul>
+                    <p>Substitusikan ke integral:</p>
+                    \[\begin{aligned}
+                    \int_0^1 x \cdot f(x^2 + 1) \, dx &= \int_1^2 f(u) \cdot \dfrac{1}{2} \, du \\
+                    &= \dfrac{1}{2} \int_1^2 f(u) \, du \\
+                    &= \dfrac{1}{2} (4) \\
+                    &= 2
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(\displaystyle\int_0^1 x \cdot f(x^2 + 1) \, dx = 2\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

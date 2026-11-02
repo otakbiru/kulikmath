@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Invers Matriks</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Invers Matriks</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Invers Matriks & Matriks Identitas</h2>
+            <p>
+                Dalam aljabar matriks, tidak ada operasi pembagian secara langsung. Sebagai gantinya, konsep pembagian digantikan oleh operasi perkalian dengan <strong>invers matriks</strong>.
+            </p>
+            <p>
+                Jika $A$ adalah sebuah matriks persegi berordo $n \times n$, maka invers dari matriks $A$ (dilambangkan dengan $A^{-1}$) adalah matriks yang apabila dikalikan dengan matriks asal $A$ menghasilkan <strong>Matriks Identitas ($I$)</strong>:
+                $$A \cdot A^{-1} = A^{-1} \cdot A = I$$
+                di mana matriks identitas $I$ adalah matriks persegi yang elemen diagonal utamanya bernilai $1$ dan elemen lainnya bernilai $0$ (contoh untuk ordo $2 \times 2$ adalah $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$).
+            </p>
+
+            <h2>2. Matriks Singular vs Non-Singular</h2>
+            <p>
+                Tidak semua matriks persegi memiliki invers. Berdasarkan nilai determinannya ($\det(A)$), matriks persegi dikelompokkan menjadi dua jenis:
+            </p>
+            <ul>
+                <li>
+                    <strong>Matriks Non-Singular:</strong> Matriks yang memiliki determinan tidak nol ($\det(A) \neq 0$). Matriks jenis ini <strong>pasti memiliki invers</strong> (invertibel).
+                </li>
+                <li>
+                    <strong>Matriks Singular:</strong> Matriks yang determinannya bernilai nol ($\det(A) = 0$). Matriks jenis ini <strong>tidak memiliki invers</strong> (non-invertibel).
+                </li>
+            </ul>
+
+            <h2>3. Rumus Invers Matriks Ordo $2 \times 2$</h2>
+            <p>
+                Misalkan diketahui matriks persegi berordo $2 \times 2$:
+                $$A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$$
+                Maka invers dari matriks $A$ dirumuskan oleh:
+                $$A^{-1} = \frac{1}{\det(A)} \cdot \text{Adj}(A) = \frac{1}{ad - bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$$
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Skema Transformasi Adjoin $2 \times 2$:</strong>
+                    </p>
+                    <ul>
+                        <li><strong>Determinan:</strong> $\det(A) = ad - bc$ (hasil kali diagonal utama dikurangi hasil kali diagonal samping).</li>
+                        <li><strong>Diagonal Utama ($a$ dan $d$):</strong> Posisi keduanya ditukar ($a \leftrightarrow d$).</li>
+                        <li><strong>Diagonal Samping ($b$ dan $c$):</strong> Tanda nilainya dibalik menjadi lawan $(-b$ dan $-c$).</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-adj2" style="width: 100%; max-width: 310px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Invers Matriks Ordo $3 \times 3$ (Metode Minor, Kofaktor, Adjoin)</h2>
+            <p>
+                Untuk matriks persegi berordo $3 \times 3$, rumus umum inversnya tetap sama, yaitu:
+                $$A^{-1} = \frac{1}{\det(A)} \cdot \text{Adj}(A)$$
+                namun dengan cara mencari determinan dan adjoin yang lebih kompleks menggunakan ekspansi kofaktor:
+            </p>
+            <ol>
+                <li>
+                    <strong>Hitung Determinan $\det(A)$</strong> menggunakan metode Sarrus atau ekspansi kofaktor baris pertama. Pastikan $\det(A) \neq 0$.
+                </li>
+                <li>
+                    <strong>Cari Matriks Kofaktor ($C$):</strong> Ganti setiap elemen matriks $A$ dengan determinan minornya yang telah diberi tanda selang-seling (pola tanda $+, -, +, -, +, -, +, -, +$):
+                    $$C_{ij} = (-1)^{i+j} M_{ij}$$
+                </li>
+                <li>
+                    <strong>Tentukan Adjoin $\text{Adj}(A)$:</strong> Adjoin diperoleh dengan melakukan <em>transpose</em> dari matriks kofaktor ($C^T$).
+                </li>
+            </ol>
+
+            <div class="kesimpulan">
+                💡 Trik Cepat Invers Matriks Diagonal:<br>
+                Jika matriks $A$ adalah matriks diagonal (semua elemen di luar diagonal utama bernilai nol), maka inversnya diperoleh dengan langsung membalikkan (menginverskan) setiap elemen pada diagonal utamanya:<br>
+                Jika $A = \begin{pmatrix} x & 0 & 0 \\ 0 & y & 0 \\ 0 & 0 & z \end{pmatrix}$, maka $A^{-1} = \begin{pmatrix} \frac{1}{x} & 0 & 0 \\ 0 & \frac{1}{y} & 0 \\ 0 & 0 & \frac{1}{z} \end{pmatrix}$.
+            </div>
+
+            <h2>5. Sifat-Sifat Penting Invers Matriks</h2>
+            <p>
+                Untuk sembarang dua matriks invertibel $A$ dan $B$ berordo sama, serta konstanta real $k \neq 0$:
+            </p>
+            <ul>
+                <li>$(A^{-1})^{-1} = A$ (Invers dari invers adalah matriks itu sendiri).</li>
+                <li>$(A^T)^{-1} = (A^{-1})^T$ (Invers dari transpose sama dengan transpose dari inversnya).</li>
+                <li>
+                    <strong>Invers Perkalian Matriks (Urutan Dibalik!):</strong>
+                    $$(A \cdot B)^{-1} = B^{-1} \cdot A^{-1}$$
+                    $$(A \cdot B \cdot C)^{-1} = C^{-1} \cdot B^{-1} \cdot A^{-1}$$
+                </li>
+                <li>$\det(A^{-1}) = \frac{1}{\det(A)}$ dan $(kA)^{-1} = \frac{1}{k} A^{-1}$.</li>
+            </ul>
+
+            <h2>6. Penyelesaian Persamaan Matriks ($AX = B$ dan $XA = B$)</h2>
+            <p>
+                Dalam menyelesaikan persamaan matriks, kita harus memperhatikan posisi perkalian matriks invers (karena perkalian matriks <strong>tidak komutatif</strong> / $AB \neq BA$):
+            </p>
+            <ul>
+                <li>
+                    Jika bentuknya **$AX = B$**, kalikan ruas kiri dengan $A^{-1}$ dari sebelah kiri ($A^{-1}AX = A^{-1}B$):
+                    $$X = A^{-1}B$$
+                </li>
+                <li>
+                    Jika bentuknya **$XA = B$**, kalikan ruas kanan dengan $A^{-1}$ dari sebelah kanan ($XAA^{-1} = BA^{-1}$):
+                    $$X = B \cdot A^{-1}$$
+                </li>
+            </ul>
+
+            <h2>7. Interpretasi Geometri Determinan & Invers Matriks</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Secara geometri pada bidang Kartesius, perkalian matriks transformasi $2 \times 2$ dengan vektor posisi memetakan persegi satuan menjadi sebuah jajargenjang:
+                    </p>
+                    <ul>
+                        <li>Nilai mutlak dari determinan matriks, yaitu $|\det(A)|$, menyatakan <strong>faktor skala perubahan luas</strong> suatu bangun datar akibat transformasi matriks tersebut.</li>
+                        <li>Jika $\det(A) = 0$, bangun datar terlipat menjadi garis lurus (luasnya menjadi nol), sehingga matriks tersebut tidak memiliki invers.</li>
+                        <li>Matriks invers $A^{-1}$ bekerja melakukan <em>transformasi balik</em> (mengembalikan jajargenjang hasil transformasi ke bentuk persegi satuan semula).</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-det-geom" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Diketahui matriks $A = \begin{pmatrix} x + 1 & 3 \\ 2 & x \end{pmatrix}$. Jika matriks $A$ merupakan <strong>matriks singular</strong> untuk $x > 0$, dan matriks $B = \begin{pmatrix} x + 2 & 3 \\ 2 & x \end{pmatrix}$, maka invers dari matriks $B$ adalah $B^{-1} = \dots$
+                <ol class="pilgan">
+                    <li>$\begin{pmatrix} 2 & -3 \\ -2 & 4 \end{pmatrix}$</li>
+                    <li>$\frac{1}{2}\begin{pmatrix} 2 & -3 \\ -2 & 4 \end{pmatrix}$</li>
+                    <li>$\frac{1}{2}\begin{pmatrix} 4 & -3 \\ -2 & 2 \end{pmatrix}$</li>
+                    <li>$\frac{1}{2}\begin{pmatrix} 2 & 3 \\ 2 & 4 \end{pmatrix}$</li>
+                    <li>$\begin{pmatrix} 1 & -3 \\ -1 & 2 \end{pmatrix}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Karena matriks $A$ adalah <strong>matriks singular</strong>, maka determinannya bernilai nol ($\det(A) = 0$):
+                    $$(x + 1)(x) - (3)(2) = 0$$
+                    $$x^2 + x - 6 = 0 \iff (x + 3)(x - 2) = 0$$
+                    Karena diketahui syarat $x > 0$, maka kita pilih $x = 2$.
+                </p>
+                <p>
+                    2. Substitusikan nilai $x = 2$ ke dalam matriks $B$:
+                    $$B = \begin{pmatrix} 2 + 2 & 3 \\ 2 & 2 \end{pmatrix} = \begin{pmatrix} 4 & 3 \\ 2 & 2 \end{pmatrix}$$
+                </p>
+                <p>
+                    3. Hitung determinan dan invers dari matriks $B$:
+                    $$\det(B) = (4)(2) - (3)(2) = 8 - 6 = 2$$
+                    $$B^{-1} = \frac{1}{\det(B)} \begin{pmatrix} 2 & -3 \\ -2 & 4 \end{pmatrix} = \frac{1}{2}\begin{pmatrix} 2 & -3 \\ -2 & 4 \end{pmatrix}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, invers dari matriks $B$ adalah $\frac{1}{2}\begin{pmatrix} 2 & -3 \\ -2 & 4 \end{pmatrix}$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Diketahui matriks $P = \begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}$ dan $Q = \begin{pmatrix} 4 & 2 \\ 1 & 1 \end{pmatrix}$. Jika $X$ adalah matriks berordo $2 \times 2$ yang memenuhi persamaan $P \cdot X = Q$, maka determinan dari matriks $X$ ($\det(X)$) adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$-2$</li>
+                    <li>$-1$</li>
+                    <li>$1$</li>
+                    <li>$2$</li>
+                    <li>$6$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Dari persamaan $P \cdot X = Q$, kita dapat menggunakan sifat determinan langsung tanpa harus mencari matriks $X$ terlebih dahulu:
+                    $$\det(P \cdot X) = \det(Q) \implies \det(P) \cdot \det(X) = \det(Q)$$
+                </p>
+                <p>
+                    2. Hitung determinan matriks $P$ dan matriks $Q$:
+                    $$\det(P) = (3)(2) - (1)(5) = 6 - 5 = 1$$
+                    $$\det(Q) = (4)(1) - (2)(1) = 4 - 2 = 2$$
+                </p>
+                <p>
+                    3. Hitung $\det(X)$:
+                    $$1 \cdot \det(X) = 2 \implies \det(X) = 2$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, determinan dari matriks $X$ adalah $2$ (Jawaban D).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Jika matriks $A = \begin{pmatrix} 2 & 5 \\ 1 & 3 \end{pmatrix}$ dan $A \cdot B = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$, maka matriks $B$ adalah ....
+                <ol class="pilgan">
+                    <li>$\begin{pmatrix} 2 & -12 \\ 0 & 5 \end{pmatrix}$</li>
+                    <li>$\begin{pmatrix} 2 & -12 \\ 1 & 5 \end{pmatrix}$</li>
+                    <li>$\begin{pmatrix} 2 & 12 \\ 0 & 5 \end{pmatrix}$</li>
+                    <li>$\begin{pmatrix} -2 & 12 \\ 0 & 5 \end{pmatrix}$</li>
+                    <li>$\begin{pmatrix} 2 & -12 \\ 0 & -5 \end{pmatrix}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Dari bentuk persamaan matriks $A \cdot B = C$ (dengan $C = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$), selesaikan untuk mencari matriks $B$:
+                    $$B = A^{-1} \cdot C$$
+                </p>
+                <p>
+                    2. Hitung $A^{-1}$ untuk matriks $A = \begin{pmatrix} 2 & 5 \\ 1 & 3 \end{pmatrix}$:
+                    $$\det(A) = (2)(3) - (5)(1) = 6 - 5 = 1$$
+                    $$A^{-1} = \frac{1}{1} \begin{pmatrix} 3 & -5 \\ -1 & 2 \end{pmatrix} = \begin{pmatrix} 3 & -5 \\ -1 & 2 \end{pmatrix}$$
+                </p>
+                <p>
+                    3. Kalikan $A^{-1}$ dengan matriks $C$:
+                    $$B = \begin{pmatrix} 3 & -5 \\ -1 & 2 \end{pmatrix} \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$$
+                    $$B = \begin{pmatrix} (3)(4) + (-5)(2) & (3)(1) + (-5)(3) \\ (-1)(4) + (2)(2) & (-1)(1) + (2)(3) \end{pmatrix} = \begin{pmatrix} 12 - 10 & 3 - 15 \\ -4 + 4 & -1 + 6 \end{pmatrix} = \begin{pmatrix} 2 & -12 \\ 0 & 5 \end{pmatrix}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, matriks $B$ adalah $\begin{pmatrix} 2 & -12 \\ 0 & 5 \end{pmatrix}$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Jika matriks $A^{-1} = \begin{pmatrix} 2 & -1 \\ 3 & 1 \end{pmatrix}$ dan $B = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$, maka matriks $(A \cdot B)^{-1}$ adalah ....
+                <ol class="pilgan">
+                    <li>$\frac{1}{10}\begin{pmatrix} 3 & -4 \\ 8 & 6 \end{pmatrix}$</li>
+                    <li>$\frac{1}{10}\begin{pmatrix} 3 & 4 \\ -8 & 6 \end{pmatrix}$</li>
+                    <li>$\frac{1}{10}\begin{pmatrix} 8 & -6 \\ 7 & 1 \end{pmatrix}$</li>
+                    <li>$\frac{1}{10}\begin{pmatrix} 6 & 4 \\ -8 & 3 \end{pmatrix}$</li>
+                    <li>$\frac{1}{10}\begin{pmatrix} 3 & -4 \\ -8 & 6 \end{pmatrix}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Gunakan sifat invers perkalian dua matriks (urutan dibalik):
+                    $$(A \cdot B)^{-1} = B^{-1} \cdot A^{-1}$$
+                    Karena matriks $A^{-1}$ sudah diketahui langsung dari soal, kita <strong>tidak perlu</strong> mencari matriks $A$! Kita cukup mencari matriks $B^{-1}$.
+                </p>
+                <p>
+                    2. Hitung invers dari matriks $B = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$:
+                    $$\det(B) = (4)(3) - (1)(2) = 12 - 2 = 10$$
+                    $$B^{-1} = \frac{1}{10}\begin{pmatrix} 3 & -1 \\ -2 & 4 \end{pmatrix}$$
+                </p>
+                <p>
+                    3. Kalikan $B^{-1}$ dengan $A^{-1}$:
+                    $$(A \cdot B)^{-1} = \frac{1}{10}\begin{pmatrix} 3 & -1 \\ -2 & 4 \end{pmatrix} \begin{pmatrix} 2 & -1 \\ 3 & 1 \end{pmatrix}$$
+                    $$(A \cdot B)^{-1} = \frac{1}{10}\begin{pmatrix} (3)(2) + (-1)(3) & (3)(-1) + (-1)(1) \\ (-2)(2) + (4)(3) & (-2)(-1) + (4)(1) \end{pmatrix} = \frac{1}{10}\begin{pmatrix} 3 & -4 \\ 8 & 6 \end{pmatrix}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, matriks $(A \cdot B)^{-1}$ adalah $\frac{1}{10}\begin{pmatrix} 3 & -4 \\ 8 & 6 \end{pmatrix}$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Skema Adjoin Matriks 2x2 menggunakan GeoSVG.js
+            const containerAdj = document.getElementById("geosvg-adj2");
+            if (containerAdj && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerAdj, 310, 215, {
+                    viewBox: "0 0 310 215",
+                    clearContainer: true,
+                    title: "Skema Pertukaran Adjoin Matriks 2x2",
+                    description: "Visualisasi pertukaran diagonal utama a dan d serta perubahan tanda diagonal samping b dan c"
+                });
+
+                geo1.buatTeks(155, 16, "Skema Adjoin Matriks 2×2", {
+                    fill: "var(--teal-primary)", fontWeight: "bold", fontSize: "12px", position: "middle-center"
+                });
+
+                // Matriks asal di kiri
+                geo1.buatPersegiPanjang(20, 48, 110, 95, {
+                    radius: 8, fill: "rgba(13, 148, 136, 0.1)", stroke: "var(--teal-primary)", strokeWidth: 1.8
+                });
+                geo1.buatTeks(75, 74, "a  b", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "15px", position: "middle-center" });
+                geo1.buatTeks(75, 114, "c  d", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "15px", position: "middle-center" });
+                geo1.buatTeks(75, 158, "Matriks A", { fill: "var(--text-muted)", fontSize: "11px", position: "middle-center" });
+
+                // Panah transformasi ke kanan
+                geo1.buatVektor([136, 95.5], [174, 95.5], { stroke: "#d97706", strokeWidth: 2 });
+                geo1.buatTeks(155, 78, "Adjoin", { fill: "#d97706", fontSize: "10px", fontWeight: "bold", position: "middle-center" });
+
+                // Matriks Adjoin di kanan
+                geo1.buatPersegiPanjang(180, 48, 110, 95, {
+                    radius: 8, fill: "rgba(217, 119, 6, 0.1)", stroke: "#d97706", strokeWidth: 1.8
+                });
+                geo1.buatTeks(235, 74, "d   -b", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "15px", position: "middle-center" });
+                geo1.buatTeks(235, 114, "-c   a", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "15px", position: "middle-center" });
+                geo1.buatTeks(235, 158, "Adj(A)", { fill: "var(--text-muted)", fontSize: "11px", position: "middle-center" });
+
+                geo1.buatTeks(155, 196, "Diagonal utama ditukar (a↔d), samping dinegatifkan", {
+                    fill: "var(--text-muted)", fontSize: "10px", position: "middle-center"
+                });
+            }
+
+            // 2. Visualisasi Interpretasi Geometri Determinan Matriks menggunakan GeoSVG.js (yUp: true)
+            const containerDet = document.getElementById("geosvg-det-geom");
+            if (containerDet && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerDet, 320, 250, {
+                    viewBox: "-45 -45 265 205",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Interpretasi Geometri Determinan Matriks",
+                    description: "Visualisasi perubahan luas persegi satuan menjadi jajargenjang transformasi matriks"
+                });
+
+                const s = 45; // 1 satuan = 45 piksel
+
+                // Sumbu X dan Y
+                geo2.buatVektor([-35, 0], [230, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo2.buatVektor([0, -35], [0, 175], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+
+                const O = [0, 0];
+                const E1 = [s, 0];
+                const E2 = [0, s];
+                const P = [2.2 * s, 0.8 * s]; // Hasil transformasi kolom 1
+                const Q = [0.8 * s, 1.8 * s]; // Hasil transformasi kolom 2
+                const R = [P[0] + Q[0], P[1] + Q[1]];
+
+                // Jajargenjang hasil transformasi
+                geo2.buatPoligon([O, P, R, Q], {
+                    fill: "rgba(13, 148, 136, 0.16)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.2
+                });
+
+                // Vektor kolom matriks
+                geo2.buatVektor(O, P, { stroke: "var(--teal-primary)", strokeWidth: 2 });
+                geo2.buatVektor(O, Q, { stroke: "#d97706", strokeWidth: 2 });
+
+                // Titik-titik sudut
+                geo2.buatTitik(O, { size: 3.5, color: "var(--text-main)" });
+                geo2.buatTitik(P, { size: 4, color: "var(--teal-primary)", label: "v₁", labelPosition: "bottom-right", labelDistance: 4, bold: true });
+                geo2.buatTitik(Q, { size: 4, color: "#d97706", label: "v₂", labelPosition: "top-left", labelDistance: 4, bold: true });
+                geo2.buatTitik(R, { size: 4, color: "var(--text-main)", label: "v₁ + v₂", labelPosition: "top-right", labelDistance: 6 });
+
+                geo2.buatTeks(100, -22, "Luas Jajargenjang = |det(A)|", {
+                    fill: "var(--teal-primary)", fontWeight: "bold", fontSize: "11px", position: "middle-center"
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

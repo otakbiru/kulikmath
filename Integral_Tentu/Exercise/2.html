@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Integral Tentu (Bagian 2)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Integral Tentu</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 11 -->
+        <article class="soal-item" id="11">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika diketahui \(\displaystyle\int_1^2 f(x) \, dx = 10\), maka nilai dari \(\displaystyle\int_0^1 x \cdot f(x^2 + 1) \, dx\) adalah ....
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneIdGrup/10160" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan teknik substitusi:</p>
+                    <p>
+                        Misalkan:
+                        \[u = x^2 + 1 \implies du = 2x \, dx \implies x \, dx = \dfrac{1}{2} \, du\]
+                    </p>
+                    <p>Sesuaikan batas integrasi:</p>
+                    <ul>
+                        <li>Untuk \(x = 0 \implies u = 0^2 + 1 = 1\)</li>
+                        <li>Untuk \(x = 1 \implies u = 1^2 + 1 = 2\)</li>
+                    </ul>
+                    <p>Substitusikan ke integral:</p>
+                    \[\begin{aligned}
+                    \int_0^1 x \cdot f(x^2 + 1) \, dx &= \int_1^2 f(u) \cdot \dfrac{1}{2} \, du \\
+                    &= \dfrac{1}{2} \int_1^2 f(u) \, du \\
+                    &= \dfrac{1}{2} (10) \\
+                    &= 5
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(\displaystyle\int_0^1 x \cdot f(x^2 + 1) \, dx = 5\).<br>
+                        <strong>JAWABAN: C</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 12 -->
+        <article class="soal-item" id="12">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int_2^4 (2x^3 + 6x^2 - 2x - 5) \, dx = \dots\)
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Facebook</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Tentukan antiturunan fungsi polinomial suku demi suku:</p>
+                    \[\begin{aligned}
+                    \int (2x^3 + 6x^2 - 2x - 5) \, dx &= \dfrac{2}{4}x^4 + \dfrac{6}{3}x^3 - \dfrac{2}{2}x^2 - 5x \\
+                    &= \dfrac{1}{2}x^4 + 2x^3 - x^2 - 5x
+                    \end{aligned}\]
+
+                    <p>Evaluasi pada batas \(x = 2\) sampai \(x = 4\):</p>
+                    \[\begin{aligned}
+                    \left[\dfrac{1}{2}x^4 + 2x^3 - x^2 - 5x\right]_2^4 &= \left(\dfrac{1}{2}(4)^4 + 2(4)^3 - (4)^2 - 5(4)\right) - \left(\dfrac{1}{2}(2)^4 + 2(2)^3 - (2)^2 - 5(2)\right) \\
+                    &= \big(128 + 128 - 16 - 20\big) - \big(8 + 16 - 4 - 10\big) \\
+                    &= 220 - 10 \\
+                    &= 210
+                    \end{aligned}\]
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                        <em>(Koreksi perhitungan: \(4^4 = 256 \implies \frac{1}{2}(256) = 128\). Nilai evaluasi batas atas adalah \(128 + 128 - 16 - 20 = 220\), batas bawah adalah \(8 + 16 - 4 - 10 = 10\), sehingga \(220 - 10 = 210\)).</em>
+                    </p>
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(210\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 13 -->
+        <article class="soal-item" id="13">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari \(\displaystyle\int_1^4 (3\sqrt{x} - 2) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>2</li>
+                    <li>4</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneIdGrup/3387" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Integralkan fungsi:</p>
+                    \[\begin{aligned}
+                    \int_1^4 (3x^{\frac{1}{2}} - 2) \, dx &= \left[3 \cdot \dfrac{2}{3}x^{\frac{3}{2}} - 2x\right]_1^4 \\
+                    &= \left[2x\sqrt{x} - 2x\right]_1^4 \\
+                    &= \big(2(4)\sqrt{4} - 2(4)\big) - \big(2(1)\sqrt{1} - 2(1)\big) \\
+                    &= (16 - 8) - (2 - 2) \\
+                    &= 8 - 0 \\
+                    &= 8
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai integral tersebut adalah \(8\).<br>
+                        <strong>JAWABAN: E</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 14 -->
+        <article class="soal-item" id="14">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari \(\displaystyle\int_1^4 \dfrac{2}{x\sqrt{x}} \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(-12\)</li>
+                    <li>\(-4\)</li>
+                    <li>\(-3\)</li>
+                    <li>2</li>
+                    <li>\(\dfrac{3}{2}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneIdGrup/3387" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ubah penyebut ke bentuk eksponen pecahan:</p>
+                    \[\dfrac{2}{x\sqrt{x}} = \dfrac{2}{x \cdot x^{\frac{1}{2}}} = \dfrac{2}{x^{\frac{3}{2}}} = 2x^{-\frac{3}{2}}\]
+
+                    <p>Integralkan:</p>
+                    \[\begin{aligned}
+                    \int_1^4 2x^{-\frac{3}{2}} \, dx &= \left[2 \cdot \left(\dfrac{x^{-\frac{1}{2}}}{-\frac{1}{2}}\right)\right]_1^4 \\
+                    &= \left[-\dfrac{4}{\sqrt{x}}\right]_1^4 \\
+                    &= \left(-\dfrac{4}{\sqrt{4}}\right) - \left(-\dfrac{4}{\sqrt{1}}\right) \\
+                    &= -\dfrac{4}{2} - (-4) \\
+                    &= -2 + 4 \\
+                    &= 2
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(2\).<br>
+                        <strong>JAWABAN: D</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 15 -->
+        <article class="soal-item" id="15">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int_1^3 \left(x^2 + \dfrac{1}{6}\right) dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(9\dfrac{1}{3}\)</li>
+                    <li>9</li>
+                    <li>8</li>
+                    <li>\(\dfrac{10}{3}\)</li>
+                    <li>3</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneIdGrup/3387" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Integralkan langsung:</p>
+                    \[\begin{aligned}
+                    \int_1^3 \left(x^2 + \dfrac{1}{6}\right) dx &= \left[\dfrac{1}{3}x^3 + \dfrac{1}{6}x\right]_1^3 \\
+                    &= \left(\dfrac{1}{3}(3)^3 + \dfrac{1}{6}(3)\right) - \left(\dfrac{1}{3}(1)^3 + \dfrac{1}{6}(1)\right) \\
+                    &= \left(9 + \dfrac{1}{2}\right) - \left(\dfrac{1}{3} + \dfrac{1}{6}\right) \\
+                    &= \left(9 + \dfrac{1}{2}\right) - \dfrac{1}{2} \\
+                    &= 9
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(9\).<br>
+                        <strong>JAWABAN: B</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 16 -->
+        <article class="soal-item" id="16">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int_0^2 x^2(x + 2) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>6</li>
+                    <li>\(6\dfrac{1}{3}\)</li>
+                    <li>\(6\dfrac{2}{3}\)</li>
+                    <li>\(9\dfrac{1}{3}\)</li>
+                    <li>20</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneIdGrup/3387" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kalikan ke dalam kurung:</p>
+                    \[x^2(x + 2) = x^3 + 2x^2\]
+                    <p>Integralkan:</p>
+                    \[\begin{aligned}
+                    \int_0^2 (x^3 + 2x^2) \, dx &= \left[\dfrac{1}{4}x^4 + \dfrac{2}{3}x^3\right]_0^2 \\
+                    &= \left(\dfrac{1}{4}(2)^4 + \dfrac{2}{3}(2)^3\right) - 0 \\
+                    &= \left(\dfrac{16}{4} + \dfrac{16}{3}\right) \\
+                    &= 4 + 5\dfrac{1}{3} \\
+                    &= 9\dfrac{1}{3} = \dfrac{28}{3}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(9\dfrac{1}{3}\).<br>
+                        <strong>JAWABAN: D</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 17 -->
+        <article class="soal-item" id="17">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int_{-1}^0 3x\sqrt[7]{1 + x} \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(-\dfrac{120}{147}\)</li>
+                    <li>\(-\dfrac{157}{120}\)</li>
+                    <li>\(-\dfrac{147}{120}\)</li>
+                    <li>\(\dfrac{147}{120}\)</li>
+                    <li>\(\dfrac{120}{147}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneIdGrup/10163" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan substitusi aljabar:</p>
+                    <p>
+                        Misalkan:
+                        \[u = 1 + x \implies x = u - 1\]
+                        \[du = dx\]
+                    </p>
+                    <p>Batas integral:</p>
+                    <ul>
+                        <li>\(x = -1 \implies u = 1 + (-1) = 0\)</li>
+                        <li>\(x = 0 \implies u = 1 + 0 = 1\)</li>
+                    </ul>
+                    <p>Substitusikan ke integral:</p>
+                    \[\begin{aligned}
+                    \int_{-1}^0 3x\sqrt[7]{1 + x} \, dx &= \int_0^1 3(u - 1) u^{\frac{1}{7}} \, du \\
+                    &= \int_0^1 \left(3u^{\frac{8}{7}} - 3u^{\frac{1}{7}}\right) du \\
+                    &= \left[3 \cdot \dfrac{7}{15}u^{\frac{15}{7}} - 3 \cdot \dfrac{7}{8}u^{\frac{8}{7}}\right]_0^1 \\
+                    &= \left[\dfrac{7}{5}u^{\frac{15}{7}} - \dfrac{21}{8}u^{\frac{8}{7}}\right]_0^1 \\
+                    &= \left(\dfrac{7}{5}(1) - \dfrac{21}{8}(1)\right) - 0 \\
+                    &= \dfrac{56 - 105}{40} \\
+                    &= -\dfrac{49}{40} = -\dfrac{147}{120}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(-\dfrac{147}{120}\).<br>
+                        <strong>JAWABAN: C</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 18 -->
+        <article class="soal-item" id="18">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int_0^1 \dfrac{10(18x + 6)}{\sqrt{9x^2 + 6x + 1}} \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>40</li>
+                    <li>50</li>
+                    <li>60</li>
+                    <li>70</li>
+                    <li>80</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">SKMP Juli 2020</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan substitusi:</p>
+                    <p>
+                        Misalkan:
+                        \[u = 9x^2 + 6x + 1 \implies du = (18x + 6) \, dx\]
+                    </p>
+                    <p>Batas integral:</p>
+                    <ul>
+                        <li>\(x = 0 \implies u = 9(0)^2 + 6(0) + 1 = 1\)</li>
+                        <li>\(x = 1 \implies u = 9(1)^2 + 6(1) + 1 = 16\)</li>
+                    </ul>
+                    <p>Substitusikan ke integral:</p>
+                    \[\begin{aligned}
+                    \int_0^1 \dfrac{10(18x + 6)}{\sqrt{9x^2 + 6x + 1}} \, dx &= \int_1^{16} \dfrac{10}{\sqrt{u}} \, du \\
+                    &= 10 \int_1^{16} u^{-\frac{1}{2}} \, du \\
+                    &= \left[10 \cdot 2\sqrt{u}\right]_1^{16} \\
+                    &= \left[20\sqrt{u}\right]_1^{16} \\
+                    &= 20\sqrt{16} - 20\sqrt{1} \\
+                    &= 20(4) - 20(1) \\
+                    &= 80 - 20 \\
+                    &= 60
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(60\).<br>
+                        <strong>JAWABAN: C</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 19 -->
+        <article class="soal-item" id="19">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int_0^3 x\sqrt{1 + x} \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(\dfrac{116}{15}\)</li>
+                    <li>\(\dfrac{112}{15}\)</li>
+                    <li>\(\dfrac{124}{15}\)</li>
+                    <li>\(\dfrac{98}{15}\)</li>
+                    <li>8</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneIdGrup/10132" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan teknik substitusi aljabar:</p>
+                    <p>
+                        Misalkan:
+                        \[u = 1 + x \implies x = u - 1\]
+                        \[du = dx\]
+                    </p>
+                    <p>Batas integrasi:</p>
+                    <ul>
+                        <li>\(x = 0 \implies u = 1 + 0 = 1\)</li>
+                        <li>\(x = 3 \implies u = 1 + 3 = 4\)</li>
+                    </ul>
+                    <p>Substitusikan ke integral:</p>
+                    \[\begin{aligned}
+                    \int_0^3 x\sqrt{1 + x} \, dx &= \int_1^4 (u - 1)\sqrt{u} \, du \\
+                    &= \int_1^4 \left(u^{\frac{3}{2}} - u^{\frac{1}{2}}\right) du \\
+                    &= \left[\dfrac{2}{5}u^{\frac{5}{2}} - \dfrac{2}{3}u^{\frac{3}{2}}\right]_1^4 \\
+                    &= \left(\dfrac{2}{5}(4)^{\frac{5}{2}} - \dfrac{2}{3}(4)^{\frac{3}{2}}\right) - \left(\dfrac{2}{5}(1)^{\frac{5}{2}} - \dfrac{2}{3}(1)^{\frac{3}{2}}\right) \\
+                    &= \left(\dfrac{2}{5}(32) - \dfrac{2}{3}(8)\right) - \left(\dfrac{2}{5} - \dfrac{2}{3}\right) \\
+                    &= \left(\dfrac{64}{5} - \dfrac{16}{3}\right) - \left(-\dfrac{4}{15}\right) \\
+                    &= \left(\dfrac{192 - 80}{15}\right) + \dfrac{4}{15} \\
+                    &= \dfrac{112}{15} + \dfrac{4}{15} \\
+                    &= \dfrac{116}{15}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil dari \(\displaystyle\int_0^3 x\sqrt{1+x} \, dx = \dfrac{116}{15}\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

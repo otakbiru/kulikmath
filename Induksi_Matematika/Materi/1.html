@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Induksi Matematika</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Induksi Matematika</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Induksi Matematika</h2>
+            <p>
+                <strong>Induksi Matematika</strong> adalah metode pembuktian deduktif yang baku dalam matematika untuk membuktikan bahwa suatu pernyataan matematika $P(n)$ bernilai benar untuk <strong>semua bilangan asli</strong> $n \ge n_0$ (biasanya dimulai dari $n_0 = 1$).
+            </p>
+            <p>
+                Kita tidak mungkin menguji kebenaran rumus satu per satu hingga tak hingga ($n = 1, 2, 3, \dots, \infty$). Induksi matematika mengatasi masalah ini dengan prinsip <strong>efek domino berantai</strong>: jika domino pertama didorong hingga jatuh, dan setiap domino yang jatuh dipastikan mendorong jatuh domino tepat di depannya, maka seluruh barisan domino pasti akan jatuh.
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-domino" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Prinsip dan Langkah-Langkah Induksi Matematika</h2>
+            <p>
+                Misalkan $P(n)$ adalah suatu pernyataan matematika yang bergantung pada bilangan bulat positif $n$. Untuk membuktikan bahwa $P(n)$ benar untuk setiap bilangan asli $n \ge n_0$, kita wajib menunjukkan dua langkah berikut:
+            </p>
+            <ol>
+                <li>
+                    <strong>Langkah Dasar (Basis Induksi / <em>Base Case</em>):</strong><br>
+                    Tunjukkan bahwa pernyataan $P(n_0)$ bernilai <strong>benar</strong> untuk nilai awal $n = n_0$ (umumnya $n = 1$). Caranya adalah dengan mensubstitusikan $n = n_0$ ke ruas kiri dan ruas kanan, lalu memeriksa kesamaannya.
+                </li>
+                <li>
+                    <strong>Langkah Induksi (<em>Inductive Step</em>):</strong><br>
+                    <ul>
+                        <li><strong>Hipotesis Induksi:</strong> Asumsikan bahwa pernyataan $P(k)$ bernilai <strong>benar</strong> untuk sembarang bilangan asli $n = k \ge n_0$.</li>
+                        <li><strong>Target Pembuktian:</strong> Gunakan kebenaran $P(k)$ tersebut untuk membuktikan bahwa pernyataan $P(k+1)$ juga bernilai <strong>benar</strong>, yakni:
+                        $$P(k) \text{ benar } \implies P(k+1) \text{ benar}$$</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="kesimpulan">
+                💡 Kesimpulan Logis: Apabila <strong>Langkah Dasar</strong> dan <strong>Langkah Induksi</strong> keduanya terbukti benar, maka berdasarkan Prinsip Induksi Matematika, pernyataan $P(n)$ terbukti benar untuk seluruh bilangan asli $n \ge n_0$.
+            </div>
+
+            <h2>3. Bukti Geometri dan Tiga Jenis Penerapan Induksi</h2>
+            <p>
+                Banyak identitas deret dalam induksi matematika memiliki makna geometri yang indah. Sebagai contoh, pernyataan jumlah $n$ bilangan ganjil pertama:
+                $$P(n): \quad 1 + 3 + 5 + \dots + (2n - 1) = n^2$$
+                Secara geometri, menambahkan suku ganjil berikutnya $(2k + 1)$ pada persegi berukuran $k \times k$ sama dengan memasang sebuah lapisan siku (<em>gnomon</em>) berisi $k + k + 1 = 2k + 1$ satuan persegi sehingga terbentuk persegi baru berukuran $(k + 1) \times (k + 1)$.
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-gnomon" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <p>
+                Secara umum, soal-soal induksi matematika terbagi menjadi <strong>tiga kategori utama</strong> dengan strategi manipulasi aljabar pada langkah $n = k + 1$ sebagai berikut:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Pernyataan $P(n)$</th>
+                            <th>Bentuk Umum</th>
+                            <th>Strategi Utama pada Langkah $P(k) \implies P(k+1)$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>1. Deret Bilangan / Notasi Sigma</strong></td>
+                            <td>$$\sum_{i=1}^{n} U_i = S(n)$$</td>
+                            <td class="text-left">
+                                Pecah jumlahan hingga suku ke-$(k+1)$ menjadi:<br>
+                                $\underbrace{(U_1 + U_2 + \dots + U_k)}_{S(k)} + U_{k+1} = S(k) + U_{k+1}$, lalu sederhanakan menjadi $S(k+1)$.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>2. Keterbagian (Habis Dibagi)</strong></td>
+                            <td>$$m \mid f(n)$$ <small>($f(n)$ habis dibagi $m$)</small></td>
+                            <td class="text-left">
+                                Tulis hipotesis $f(k) = m \cdot p$ (dengan $p \in \mathbb{Z}$). Ubah bentuk $f(k+1)$ agar memunculkan suku $f(k)$ sehingga seluruh suku memiliki faktor pengali $m$.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>3. Ketaksamaan (Pertidaksamaan)</strong></td>
+                            <td>$$A(n) > B(n)$$ atau $$A(n) \le B(n)$$</td>
+                            <td class="text-left">
+                                Gunakan sifat transitif ketaksamaan:<br>
+                                Jika diketahui $A(k) > B(k)$, tunjukkan bahwa $A(k+1) > \text{Bentuk Antara} \ge B(k+1)$.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. Rumus Deret Baku yang Sering Dibuktikan dengan Induksi</h2>
+            <p>
+                Berikut adalah beberapa identitas jumlah deret terkenal yang dapat dibuktikan menggunakan induksi matematika untuk setiap $n \in \mathbb{N}$:
+            </p>
+            <ul>
+                <li>
+                    <strong>Jumlah $n$ bilangan asli pertama:</strong>
+                    $$\sum_{i=1}^{n} i = 1 + 2 + 3 + \dots + n = \frac{n(n + 1)}{2}$$
+                </li>
+                <li>
+                    <strong>Jumlah kuadrat $n$ bilangan asli pertama:</strong>
+                    $$\sum_{i=1}^{n} i^2 = 1^2 + 2^2 + 3^2 + \dots + n^2 = \frac{n(n + 1)(2n + 1)}{6}$$
+                </li>
+                <li>
+                    <strong>Jumlah pangkat tiga $n$ bilangan asli pertama:</strong>
+                    $$\sum_{i=1}^{n} i^3 = 1^3 + 2^3 + 3^3 + \dots + n^3 = \left(\frac{n(n + 1)}{2}\right)^2$$
+                </li>
+                <li>
+                    <strong>Deret teleskopik pecahan berurutan:</strong>
+                    $$\sum_{i=1}^{n} \frac{1}{i(i + 1)} = \frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \dots + \frac{1}{n(n + 1)} = \frac{n}{n + 1}$$
+                </li>
+            </ul>
+
+            <h2>5. Induksi Matematika Kuat (<em>Strong Induction</em>)</h2>
+            <p>
+                Pada beberapa masalah (seperti barisan rekursif Fibonacci $F_{n+1} = F_n + F_{n-1}$ atau faktorisasi bilangan prima), mengasumsikan $P(k)$ benar saja tidak cukup untuk membuktikan $P(k+1)$ karena suku ke-$(k+1)$ bergantung pada beberapa suku sebelumnya ($k, k-1, \dots$).
+            </p>
+            <p>
+                Untuk kasus tersebut digunakan <strong>Prinsip Induksi Kuat</strong>:
+            </p>
+            <ul>
+                <li><strong>Langkah Dasar:</strong> Buktikan $P(n_0), P(n_0+1), \dots, P(n_1)$ benar untuk sejumlah kasus awal yang diperlukan.</li>
+                <li><strong>Langkah Induksi Kuat:</strong> Asumsikan bahwa $P(m)$ benar untuk <strong>semua bilangan bulat</strong> $m$ pada rentang $n_0 \le m \le k$, lalu buktikan bahwa $P(k+1)$ juga bernilai benar.</li>
+            </ul>
+
+            <h2>6. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut yang mewakili ketiga tipe utama induksi matematika: pembuktian rumus deret, pembuktian keterbagian bilangan, dan pembuktian ketaksamaan. Klik tombol <strong>Lihat Penyelesaian</strong> untuk melihat langkah pembuktian lengkapnya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Deret Bilangan -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Buktikan dengan induksi matematika bahwa untuk setiap bilangan asli $n \ge 1$ berlaku:
+                    $$1^2 + 2^2 + 3^2 + \dots + n^2 = \frac{n(n + 1)(2n + 1)}{6}$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Misalkan $P(n)$ menyatakan persamaan $1^2 + 2^2 + 3^2 + \dots + n^2 = \frac{n(n + 1)(2n + 1)}{6}$.
+                    </p>
+                    <p>
+                        <strong>1. Langkah Dasar ($n = 1$):</strong><br>
+                        <ul>
+                            <li>Ruas kiri $= 1^2 = 1$</li>
+                            <li>Ruas kanan $= \frac{1(1 + 1)(2(1) + 1)}{6} = \frac{1 \cdot 2 \cdot 3}{6} = 1$</li>
+                        </ul>
+                        Karena ruas kiri $=$ ruas kanan, maka $P(1)$ bernilai <strong>benar</strong>.
+                    </p>
+                    <p>
+                        <strong>2. Langkah Induksi ($n = k \implies n = k + 1$):</strong><br>
+                        Asumsikan $P(k)$ benar untuk suatu bilangan asli $k \ge 1$, yaitu:
+                        $$1^2 + 2^2 + 3^2 + \dots + k^2 = \frac{k(k + 1)(2k + 1)}{6} \quad \text{...(Hipotesis Induksi)}$$
+                        Akan dibuktikan bahwa $P(k+1)$ juga benar, yaitu:
+                        $$1^2 + 2^2 + \dots + k^2 + (k + 1)^2 = \frac{(k + 1)(k + 2)(2k + 3)}{6}$$
+                    </p>
+                    <p>
+                        Jabarkan ruas kiri $P(k+1)$ lalu substitusikan Hipotesis Induksi:
+                        $$\text{Ruas Kiri} = \underbrace{\left(1^2 + 2^2 + \dots + k^2\right)}_{\text{Hipotesis } P(k)} + (k + 1)^2$$
+                        $$= \frac{k(k + 1)(2k + 1)}{6} + (k + 1)^2$$
+                        Samakan penyebutnya dan keluarkan faktor persekutuan $\frac{k + 1}{6}$:
+                        $$= \frac{k + 1}{6} \left[ k(2k + 1) + 6(k + 1) \right]$$
+                        $$= \frac{k + 1}{6} \left( 2k^2 + 7k + 6 \right)$$
+                        Faktorkan bentuk kuadrat $2k^2 + 7k + 6 = (k + 2)(2k + 3)$:
+                        $$= \frac{(k + 1)(k + 2)(2k + 3)}{6} = \text{Ruas Kanan } P(k+1)$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, karena langkah dasar $P(1)$ benar dan langkah induksi $P(k) \implies P(k+1)$ terbukti benar, maka rumus tersebut berlaku untuk semua bilangan asli $n \ge 1$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Keterbagian -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Buktikan menggunakan induksi matematika bahwa $5^n - 1$ selalu habis dibagi $4$ untuk setiap bilangan asli $n \ge 1$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Misalkan $P(n)$ adalah pernyataan "$5^n - 1$ habis dibagi $4$".
+                    </p>
+                    <p>
+                        <strong>1. Langkah Dasar ($n = 1$):</strong><br>
+                        Untuk $n = 1$, diperoleh $5^1 - 1 = 4$. Karena $4$ habis dibagi $4$ ($4 = 4 \times 1$), maka $P(1)$ bernilai <strong>benar</strong>.
+                    </p>
+                    <p>
+                        <strong>2. Langkah Induksi ($n = k \implies n = k + 1$):</strong><br>
+                        Asumsikan $P(k)$ benar untuk suatu bilangan asli $k$, artinya $5^k - 1$ habis dibagi $4$. Secara aljabar, terdapat bilangan bulat $p \in \mathbb{Z}$ sehingga:
+                        $$5^k - 1 = 4p \iff 5^k = 4p + 1 \quad \text{...(Hipotesis Induksi)}$$
+                    </p>
+                    <p>
+                        Sekarang periksa bentuk untuk $n = k + 1$, yaitu $5^{k+1} - 1$:
+                        $$5^{k+1} - 1 = 5 \cdot 5^k - 1$$
+                        Substitusikan $5^k = 4p + 1$ dari hipotesis induksi:
+                        $$5^{k+1} - 1 = 5(4p + 1) - 1$$
+                        $$5^{k+1} - 1 = 20p + 5 - 1 = 20p + 4$$
+                        $$5^{k+1} - 1 = 4(5p + 1)$$
+                        Karena $p$ adalah bilangan bulat, maka $(5p + 1)$ juga bilangan bulat. Bentuk $4(5p + 1)$ merupakan kelipatan $4$, sehingga $5^{k+1} - 1$ terbukti habis dibagi $4$.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, terbukti dengan induksi matematika bahwa $5^n - 1$ selalu habis dibagi $4$ untuk setiap bilangan asli $n \ge 1$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Ketaksamaan -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Buktikan dengan induksi matematika bahwa ketaksamaan $2^n > 2n + 1$ bernilai benar untuk setiap bilangan bulat $n \ge 3$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Perhatikan bahwa batas awal pernyataan ini dimulai dari $n_0 = 3$, bukan $n = 1$.
+                    </p>
+                    <p>
+                        <strong>1. Langkah Dasar ($n = 3$):</strong><br>
+                        Substitusikan $n = 3$ ke kedua ruas ketaksamaan:
+                        <ul>
+                            <li>Ruas kiri $= 2^3 = 8$</li>
+                            <li>Ruas kanan $= 2(3) + 1 = 7$</li>
+                        </ul>
+                        Karena $8 > 7$, maka pernyataan $P(3)$ bernilai <strong>benar</strong>.
+                    </p>
+                    <p>
+                        <strong>2. Langkah Induksi ($n = k \implies n = k + 1$):</strong><br>
+                        Asumsikan $P(k)$ benar untuk sembarang bilangan bulat $k \ge 3$, yaitu:
+                        $$2^k > 2k + 1 \quad \text{...(Hipotesis Induksi)}$$
+                        Akan dibuktikan bahwa untuk $n = k + 1$ berlaku:
+                        $$2^{k+1} > 2(k + 1) + 1 \iff 2^{k+1} > 2k + 3$$
+                    </p>
+                    <p>
+                        Kalikan kedua ruas pada Hipotesis Induksi dengan $2$:
+                        $$2^{k+1} = 2 \cdot 2^k > 2(2k + 1)$$
+                        $$2^{k+1} > 4k + 2$$
+                        Uraikan $4k + 2$ menjadi $(2k + 3) + (2k - 1)$. Karena $k \ge 3$, maka $2k - 1 \ge 2(3) - 1 = 5 > 0$, sehingga:
+                        $$2^{k+1} > 4k + 2 = (2k + 3) + \underbrace{(2k - 1)}_{> 0} > 2k + 3$$
+                        Dengan sifat transitif diperoleh $2^{k+1} > 2(k + 1) + 1$, sehingga $P(k+1)$ terbukti <strong>benar</strong>.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, berdasarkan prinsip induksi matematika, terbukti bahwa $2^n > 2n + 1$ benar untuk semua bilangan bulat $n \ge 3$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiInduksi() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const tealFill = isDark ? 'rgba(20, 184, 166, 0.22)' : 'rgba(13, 148, 136, 0.14)';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const amberFill = isDark ? 'rgba(251, 191, 36, 0.24)' : 'rgba(217, 119, 6, 0.16)';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const blueFill = isDark ? 'rgba(56, 189, 248, 0.20)' : 'rgba(2, 132, 199, 0.12)';
+            const purpleColor = isDark ? '#c084fc' : '#7e22ce';
+            const purpleFill = isDark ? 'rgba(192, 132, 252, 0.22)' : 'rgba(126, 34, 206, 0.13)';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI ANALOGI EFEK DOMINO INDUKSI MATEMATIKA
+               ------------------------------------------------------------- */
+            const geoDom = new GeoSVG('geosvg-domino', 560, 215, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoDom.buatPersegiPanjang(8, 8, 544, 199, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoDom.buatTeks(280, 28, "Analogi Efek Domino pada Prinsip Induksi Matematika", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: textColor
+            });
+
+            // Garis lantai tempat domino berpijak
+            const floorY = 160;
+            geoDom.buatSegmen([28, floorY], [532, floorY], {
+                stroke: mutedColor, strokeWidth: 2
+            });
+
+            // Fungsi pembantu menggambar balok domino yang dimiringkan terhadap titik tumpu bawah (bx, floorY)
+            function gambarDomino(bx, tiltDeg, label, strokeCol, fillCol) {
+                const w = 22, h = 76;
+                const rad = (tiltDeg * Math.PI) / 180;
+                const cosA = Math.cos(rad), sinA = Math.sin(rad);
+
+                // Empat titik sudut domino setelah diputar searah jarum jam sebesar tiltDeg
+                const p0 = [bx, floorY];
+                const p1 = [bx + w * cosA, floorY + w * sinA];
+                const p2 = [p1[0] + h * sinA, p1[1] - h * cosA];
+                const p3 = [bx + h * sinA, floorY - h * cosA];
+
+                geoDom.buatPoligon([p0, p1, p2, p3], {
+                    fill: fillCol, stroke: strokeCol, strokeWidth: 2
+                });
+
+                // Garis tengah khas kartu domino
+                const mLeft = [(p0[0] + p3[0]) / 2, (p0[1] + p3[1]) / 2];
+                const mRight = [(p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2];
+                geoDom.buatSegmen(mLeft, mRight, {
+                    stroke: strokeCol, strokeWidth: 1.2, opacity: 0.7
+                });
+
+                // Label di bawah lantai
+                geoDom.buatTeks(bx + 12, floorY + 18, label, {
+                    position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: strokeCol
+                });
+
+                // Kembalikan titik tengah atas domino untuk panah dorongan
+                return [(p2[0] + p3[0]) / 2, (p2[1] + p3[1]) / 2];
+            }
+
+            // Panah dorongan awal pada Langkah Dasar P(1)
+            geoDom.buatVektor([26, 98], [58, 98], {
+                stroke: tealColor, strokeWidth: 2.3
+            });
+            geoDom.buatTeks(56, 60, "1. Langkah Dasar", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: tealColor
+            });
+            geoDom.buatTeks(56, 74, "(Dorong P(1))", {
+                position: 'middle-center', fontSize: '10px', fill: mutedColor
+            });
+
+            // Domino P(1), P(2), P(3)
+            const top1 = gambarDomino(62, 24, "P(1)", tealColor, tealFill);
+            const top2 = gambarDomino(125, 20, "P(2)", tealColor, tealFill);
+            const top3 = gambarDomino(188, 16, "P(3)", tealColor, tealFill);
+
+            // Panah antar domino awal
+            geoDom.buatKurvaBezier([[top1[0] + 6, top1[1] - 4], [115, 72], [top2[0] - 8, top2[1] - 2]], {
+                stroke: tealColor, strokeWidth: 1.6, dashed: '3 2'
+            });
+            geoDom.buatKurvaBezier([[top2[0] + 6, top2[1] - 4], [178, 72], [top3[0] - 8, top3[1] - 2]], {
+                stroke: tealColor, strokeWidth: 1.6, dashed: '3 2'
+            });
+
+            // Titik-titik elipsis (...)
+            geoDom.buatTeks(258, 122, "• • •", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '18px', fill: mutedColor
+            });
+
+            // Domino P(k) dan P(k+1) untuk Langkah Induksi
+            const topK = gambarDomino(305, 22, "P(k)", amberColor, amberFill);
+            const topK1 = gambarDomino(382, 14, "P(k+1)", amberColor, amberFill);
+
+            // Panah lengkung implikasi P(k) => P(k+1)
+            geoDom.buatKurvaBezier([[topK[0] + 4, topK[1] - 6], [362, 55], [topK1[0] - 6, topK1[1] - 6]], {
+                stroke: amberColor, strokeWidth: 2.2
+            });
+            geoDom.buatVektor([376, 68], [topK1[0] - 4, topK1[1] - 4], {
+                stroke: amberColor, strokeWidth: 2.2
+            });
+
+            geoDom.buatTeks(362, 48, "2. Langkah Induksi: P(k) ⇒ P(k+1)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: amberColor
+            });
+
+            // Titik-titik elipsis menuju tak hingga
+            geoDom.buatTeks(452, 122, "• • •", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '18px', fill: mutedColor
+            });
+            gambarDomino(492, 6, "P(n)", blueColor, blueFill);
+
+            /* -------------------------------------------------------------
+               2. BUKTI VISUAL GEOMETRI JUMLAH BILANGAN GANJIL:
+                  1 + 3 + 5 + 7 = 4²  DAN  k² + (2k + 1) = (k + 1)²
+               ------------------------------------------------------------- */
+            const geoGno = new GeoSVG('geosvg-gnomon', 560, 240, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Panel Kiri: Lapisan Gnomon 1 + 3 + 5 + 7 = 4²
+            geoGno.buatPersegiPanjang(8, 10, 264, 220, {
+                radius: 8, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoGno.buatTeks(140, 28, "Pola Geometri: 1 + 3 + 5 + 7 = 4²", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+
+            const gx0 = 76, gy0 = 48, cell = 32;
+            const layerStyles = [
+                { stroke: tealColor, fill: tealFill, label: "1" },
+                { stroke: blueColor, fill: blueFill, label: "3" },
+                { stroke: purpleColor, fill: purpleFill, label: "5" },
+                { stroke: amberColor, fill: amberFill, label: "7" }
+            ];
+
+            // Gambar kotak 4x4, warna berdasarkan indeks maksimum max(r, c)
+            for (let r = 0; r < 4; r++) {
+                for (let c = 0; c < 4; c++) {
+                    const layer = Math.max(r, c);
+                    const st = layerStyles[layer];
+                    geoGno.buatPersegi(gx0 + c * cell, gy0 + r * cell, cell, {
+                        fill: st.fill, stroke: st.stroke, strokeWidth: 1.6
+                    });
+                }
+            }
+
+            // Label angka ganjil di setiap lapisan diagonal
+            for (let i = 0; i < 4; i++) {
+                geoGno.buatTeks(gx0 + i * cell + cell / 2, gy0 + i * cell + cell / 2, layerStyles[i].label, {
+                    position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: layerStyles[i].stroke
+                });
+            }
+
+            geoGno.buatTeks(140, 196, "Tiap tambahan bilangan ganjil ke-n", {
+                position: 'middle-center', fontSize: '11px', fill: mutedColor
+            });
+            geoGno.buatTeks(140, 212, "membentuk persegi utuh berukuran n × n", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor
+            });
+
+            // Panel Kanan: Langkah Induksi k² + (2k + 1) = (k + 1)²
+            geoGno.buatPersegiPanjang(288, 10, 264, 220, {
+                radius: 8, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoGno.buatTeks(420, 28, "Langkah Induksi: k² + (2k + 1) = (k + 1)²", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor
+            });
+
+            const kx = 342, ky = 50;
+            const kSize = 92, oneSize = 34;
+
+            // Persegi k x k (Hipotesis Induksi P(k))
+            geoGno.buatPersegi(kx, ky, kSize, {
+                fill: tealFill, stroke: tealColor, strokeWidth: 2
+            });
+            geoGno.buatTeks(kx + kSize / 2, ky + kSize / 2 - 7, "Luas = k²", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: tealColor
+            });
+            geoGno.buatTeks(kx + kSize / 2, ky + kSize / 2 + 10, "(Hipotesis P(k))", {
+                position: 'middle-center', fontSize: '10px', fill: mutedColor
+            });
+
+            // Tambahan suku ke-(k+1) sebesar 2k + 1 = k + k + 1
+            // 1) Persegi panjang kanan (1 x k)
+            geoGno.buatPersegiPanjang(kx + kSize, ky, oneSize, kSize, {
+                fill: amberFill, stroke: amberColor, strokeWidth: 2
+            });
+            geoGno.buatTeks(kx + kSize + oneSize / 2, ky + kSize / 2, "+k", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor
+            });
+
+            // 2) Persegi panjang bawah (k x 1)
+            geoGno.buatPersegiPanjang(kx, ky + kSize, kSize, oneSize, {
+                fill: amberFill, stroke: amberColor, strokeWidth: 2
+            });
+            geoGno.buatTeks(kx + kSize / 2, ky + kSize + oneSize / 2, "+k", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor
+            });
+
+            // 3) Persegi sudut kanan bawah (1 x 1)
+            geoGno.buatPersegi(kx + kSize, ky + kSize, oneSize, {
+                fill: purpleFill, stroke: purpleColor, strokeWidth: 2
+            });
+            geoGno.buatTeks(kx + kSize + oneSize / 2, ky + kSize + oneSize / 2, "+1", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: purpleColor
+            });
+
+            // Label ukuran sisi k dan 1 di sebelah kiri & atas
+            geoGno.buatTeks(kx - 12, ky + kSize / 2, "k", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+            geoGno.buatTeks(kx - 12, ky + kSize + oneSize / 2, "1", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor
+            });
+
+            geoGno.buatTeks(420, 196, "Tambahan suku ke-(k+1) = k + k + 1 = 2k + 1", {
+                position: 'middle-center', fontSize: '11px', fill: amberColor
+            });
+            geoGno.buatTeks(420, 212, "Total Luas = (k + 1) × (k + 1) = (k + 1)²", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiInduksi();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiInduksi, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

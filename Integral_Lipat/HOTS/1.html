@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Integral Lipat</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Integral Lipat</span>
+            </p>
+            <!-- Tombol Tingkat dirender otomatis oleh script.js -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Nilai dari integral lipat dua:
+\[\int_{0}^{\sqrt{\pi}} \int_{y}^{\sqrt{\pi}} \sin(x^2) \, dx \, dy\]
+adalah ....</p>
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>\(0\)</li>
+                        <li>\(\frac{1}{2}\)</li>
+                        <li>\(1\)</li>
+                        <li>\(\frac{\sqrt{\pi}}{2}\)</li>
+                        <li>\(\sqrt{\pi}\)</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">HOTS / Kalkulus Lanjutan</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Langkah 1: Menganalisis Hambatan Integrasi Langsung</strong></p>
+                    <p>Fungsi integran \(\sin(x^2)\) tidak memiliki antiturunan berupa fungsi elementer terhadap \(x\) (dikenal sebagai integral Fresnel). Oleh karena itu, integral bagian dalam terhadap \(x\) tidak dapat dihitung secara langsung dengan urutan \(dx \, dy\).</p>
+                    <p>Solusinya adalah mengubah urutan pengintegralan (Reversing the Order of Integration) menggunakan <strong>Teorema Fubini</strong> menjadi urutan \(dy \, dx\).</p>
+
+                    <p><strong>Langkah 2: Menentukan Sketsa Daerah Integrasi \(R\)</strong></p>
+                    <p>Berdasarkan batas integral pada soal:
+                    <ul>
+                        <li>Batas luar: \(0 \le y \le \sqrt{\pi}\)</li>
+                        <li>Batas dalam: \(y \le x \le \sqrt{\pi}\)</li>
+                    </ul>
+                    Artinya, daerah \(R\) pada bidang-\(xy\) dibatasi oleh:
+                    <ul>
+                        <li>Garis \(x = y\) (batas kiri)</li>
+                        <li>Garis vertikal \(x = \sqrt{\pi}\) (batas kanan)</li>
+                        <li>Garis horizontal \(y = 0\) (batas bawah)</li>
+                    </ul>
+                    Daerah ini membentuk suatu segitiga di kuadran I dengan titik-titik sudut \((0, 0)\), \((\sqrt{\pi}, 0)\), dan \((\sqrt{\pi}, \sqrt{\pi})\).</p>
+
+                    <p><strong>Langkah 3: Mengubah Urutan Integrasi (\(dy \, dx\))</strong></p>
+                    <p>Untuk mendeskripsikan daerah segitiga tersebut dengan urutan pengintegralan terhadap \(y\) terlebih dahulu:
+                    <ul>
+                        <li>Batas untuk \(x\) (luar): dari nilai minimum \(x = 0\) sampai nilai maksimum \(x = \sqrt{\pi}\).</li>
+                        <li>Batas untuk \(y\) (dalam): untuk setiap nilai \(x\) tetap, nilai \(y\) bergerak vertikal dari sumbu-\(X\) (\(y = 0\)) hingga menyentuh garis \(y = x\).</li>
+                    </ul>
+                    Maka integral dapat ditulis ulang menjadi:
+                    \[\int_{0}^{\sqrt{\pi}} \int_{0}^{x} \sin(x^2) \, dy \, dx\]
+                    </p>
+
+                    <p><strong>Langkah 4: Mengevaluasi Integral Baru</strong></p>
+                    <p>1. <em>Integral bagian dalam (terhadap \(y\)):</em><br>
+                    Karena \(\sin(x^2)\) bersifat konstan terhadap \(y\), kita peroleh:
+                    \[\int_{0}^{x} \sin(x^2) \, dy = \sin(x^2) [y]_{y=0}^{y=x} = x \sin(x^2)\]
+                    </p>
+
+                    <p>2. <em>Integral bagian luar (terhadap \(x\)):</em><br>
+                    Substitusikan hasil di atas ke integral luar:
+                    \[\int_{0}^{\sqrt{\pi}} x \sin(x^2) \, dx\]
+                    Integral ini sekarang dapat diselesaikan dengan substitusi aljabar sederhana:
+                    \[u = x^2 \implies du = 2x \, dx \iff x \, dx = \frac{1}{2} du\]
+                    Perubahan batas integrasi untuk \(u\):
+                    <ul>
+                        <li>Saat \(x = 0 \implies u = 0^2 = 0\)</li>
+                        <li>Saat \(x = \sqrt{\pi} \implies u = (\sqrt{\pi})^2 = \pi\)</li>
+                    </ul>
+                    Sehingga:
+                    \[\int_{0}^{\sqrt{\pi}} x \sin(x^2) \, dx = \int_{0}^{\pi} \sin(u) \cdot \frac{1}{2} du\]
+                    \[= \frac{1}{2} \left[ -\cos(u) \right]_{0}^{\pi}\]
+                    \[= \frac{1}{2} \left( -\cos(\pi) - (-\cos(0)) \right)\]
+                    \[= \frac{1}{2} \left( -(-1) + 1 \right) = \frac{1}{2}(1 + 1) = \frac{1}{2}(2) = 1\]
+                    </p>
+                    <div class="kesimpulan">Jadi, nilai dari integral lipat dua tersebut adalah <strong>\(1\)</strong> (Pilihan C).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <!--
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-2 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-2 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 3 -->
+        <!--
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-3 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-3 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 4 -->
+        <!--
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-4 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-4 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 5 -->
+        <!--
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-5 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-5 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 6 -->
+        <!--
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-6 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-6 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 7 -->
+        <!--
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-7 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-7 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 8 -->
+        <!--
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-8 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-8 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 9 -->
+        <!--
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-9 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-9 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- SOAL 10 -->
+        <!--
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-10 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-10 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+        -->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

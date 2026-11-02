@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Integral Lipat</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Integral Lipat</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Integral Lipat Dua dan Makna Geometrinya</h2>
+            <p>
+                Jika integral tentu satu variabel $\int_a^b f(x)\,dx$ merepresentasikan <strong>luas daerah</strong> di bawah kurva $y = f(x)$, maka <strong>Integral Lipat Dua</strong> ($\iint_D f(x, y)\,dA$) merupakan perluasan konsep integral tentu untuk fungsi dua variabel $z = f(x, y)$ yang didefinisikan pada suatu daerah tertutup dan terbatas $D$ di bidang-$XY$.
+            </p>
+            <p>
+                Secara formal, daerah $D$ dipartisi menjadi $n$ buah persegi panjang kecil dengan luas $\Delta A_k = \Delta x_k \Delta y_k$. Nilai integral lipat dua didefinisikan sebagai limit dari <strong>Jumlah Riemann Ganda</strong>:
+                $$\iint_D f(x, y)\,dA = \lim_{n \to \infty} \sum_{k=1}^{n} f(x_k^*, y_k^*)\,\Delta A_k$$
+            </p>
+            <ul>
+                <li>
+                    <strong>Volume di Bawah Permukaan:</strong> Jika $f(x, y) \ge 0$ pada daerah $D$, maka nilai $\iint_D f(x, y)\,dA$ menyatakan <strong>volume benda pejal</strong> yang terletak di atas daerah $D$ pada bidang-$XY$ dan di bawah permukaan $z = f(x, y)$.
+                </li>
+                <li>
+                    <strong>Luas Daerah Bidang:</strong> Apabila kita memilih fungsi konstan $f(x, y) = 1$, maka rumus integral lipat dua memberikan <strong>luas daerah $D$</strong> itu sendiri:
+                    $$\text{Luas}(D) = \iint_D 1\,dA = \iint_D dx\,dy$$
+                </li>
+            </ul>
+
+            <h2>2. Integral Berulang pada Daerah Persegi Panjang (Teorema Fubini)</h2>
+            <p>
+                Menghitung integral lipat dua langsung menggunakan limit jumlah Riemann sangatlah rumit. Oleh karena itu, kita menggunakan <strong>Teorema Fubini</strong> yang mengubah integral lipat dua menjadi <strong>integral berulang</strong> (<em>iterated integral</em>) satu variabel yang dihitung secara bertahap dari bagian paling dalam ke bagian luar.
+            </p>
+            <p>
+                Jika $f(x, y)$ kontinu pada daerah persegi panjang $R = [a, b] \times [c, d] = \{(x, y) \mid a \le x \le b, \, c \le y \le d\}$, maka berlaku:
+                $$\iint_R f(x, y)\,dA = \int_a^b \left[ \int_c^d f(x, y)\,dy \right] dx = \int_c^d \left[ \int_a^b f(x, y)\,dx \right] dy$$
+            </p>
+            <ul>
+                <li>Saat menghitung integral dalam terhadap $y$ ($\int_c^d f(x, y)\,dy$), variabel $x$ dianggap sebagai <strong>konstanta</strong>.</li>
+                <li>Saat menghitung integral dalam terhadap $x$ ($\int_a^b f(x, y)\,dx$), variabel $y$ dianggap sebagai <strong>konstanta</strong>.</li>
+            </ul>
+
+            <div class="kesimpulan">
+                💡 Sifat Pemisahan Variabel: Khusus pada daerah persegi panjang $R = [a, b] \times [c, d]$, jika integran dapat difaktorkan menjadi perkalian fungsi satu variabel $f(x, y) = g(x) \cdot h(y)$, maka integral lipat dua dapat dipecah menjadi perkalian dua integral tunggal:
+                $$\iint_R g(x)h(y)\,dA = \left(\int_a^b g(x)\,dx\right) \cdot \left(\int_c^d h(y)\,dy\right)$$
+            </div>
+
+            <h2>3. Integral Lipat Dua pada Daerah Umum (Tipe I dan Tipe II)</h2>
+            <p>
+                Jika daerah pengintegralan $D$ bukan persegi panjang, melainkan dibatasi oleh kurva-kurva fungsi, maka kita mengklasifikasikan daerah $D$ menjadi dua tipe berdasarkan arah pita (<em>strip</em>) pemotongannya:
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-tipe-daerah" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Karakteristik</th>
+                            <th>Daerah Tipe I (Pita Vertikal)</th>
+                            <th>Daerah Tipe II (Pita Horizontal)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Batas Daerah $D$</strong></td>
+                            <td>
+                                $a \le x \le b$ (konstan)<br>
+                                $g_1(x) \le y \le g_2(x)$ (kurva bawah ke atas)
+                            </td>
+                            <td>
+                                $c \le y \le d$ (konstan)<br>
+                                $h_1(y) \le x \le h_2(y)$ (kurva kiri ke kanan)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Urutan Diferensial</strong></td>
+                            <td>$dA = dy\,dx$ (integralkan $y$ dulu, baru $x$)</td>
+                            <td>$dA = dx\,dy$ (integralkan $x$ dulu, baru $y$)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Rumus Integral Berulang</strong></td>
+                            <td>$$\iint_D f(x, y)\,dA = \int_a^b \int_{g_1(x)}^{g_2(x)} f(x, y)\,dy\,dx$$</td>
+                            <td>$$\iint_D f(x, y)\,dA = \int_c^d \int_{h_1(y)}^{h_2(y)} f(x, y)\,dx\,dy$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                <strong>Penting — Membalik Urutan Pengintegralan:</strong><br>
+                Terkadang suatu integral berulang tidak dapat diselesaikan secara elementer pada urutan awalnya (misalnya $\int e^{y^2}\,dy$, $\int \sin(x^2)\,dx$, atau $\int \frac{\sin x}{x}\,dx$). Solusinya adalah menggambar sketsa daerah pengintegralan $D$ dari batas yang diketahui, lalu <strong>membalik urutan pengintegralan</strong> dari Tipe I ($dy\,dx$) menjadi Tipe II ($dx\,dy$) atau sebaliknya. Ingat bahwa <strong>batas integral paling luar wajib berupa bilangan konstan</strong>!
+            </p>
+
+            <h2>4. Integral Lipat Dua dalam Koordinat Polar (Kutub)</h2>
+            <p>
+                Apabila daerah pengintegralan $D$ berbentuk lingkaran, cincin (<em>annulus</em>), atau juring lingkaran, serta fungsi integrannya memuat bentuk $x^2 + y^2$, penghitungan integral akan jauh lebih mudah jika ditransformasikan ke dalam <strong>koordinat polar</strong> $(r, \theta)$ dengan hubungan:
+                $$x = r \cos \theta, \qquad y = r \sin \theta, \qquad x^2 + y^2 = r^2$$
+            </p>
+            <p>
+                Perhatikan bahwa elemen luas dalam koordinat polar <strong>bukanlah</strong> $dr\,d\theta$, melainkan wajib dikalikan dengan faktor skala (determinan matriks Jacobi) sebesar $r$:
+                $$dA = dx\,dy = r\,dr\,d\theta$$
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-polar" style="width: 100%; max-width: 520px;"></div>
+                </div>
+            </div>
+
+            <p>
+                Sehingga rumus perubahan variabel integral lipat dua ke koordinat polar pada daerah $D = \{(r, \theta) \mid \alpha \le \theta \le \beta, \, r_1(\theta) \le r \le r_2(\theta)\}$ adalah:
+                $$\iint_D f(x, y)\,dA = \int_{\alpha}^{\beta} \int_{r_1(\theta)}^{r_2(\theta)} f(r \cos \theta, \, r \sin \theta) \, \mathbf{r}\,dr\,d\theta$$
+            </p>
+
+            <h2>5. Integral Lipat Tiga dan Koordinat Ruang</h2>
+            <p>
+                Konsep integral lipat dua dapat diperluas ke ruang dimensi tiga ($\mathbb{R}^3$) menjadi <strong>Integral Lipat Tiga</strong> atas suatu benda pejal $B$:
+                $$\iiint_B f(x, y, z)\,dV$$
+                Jika $f(x, y, z) = 1$, maka $\iiint_B dV$ menyatakan <strong>volume benda pejal $B$</strong>. Jika $f(x, y, z) = \rho(x, y, z)$ menyatakan fungsi rapat massa (densitas), maka $\iiint_B \rho(x, y, z)\,dV$ menyatakan <strong>massa total benda</strong>.
+            </p>
+            <p>
+                Terdapat tiga sistem koordinat utama yang digunakan dalam integral lipat tiga sesuai dengan simetri benda pejal $B$:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sistem Koordinat</th>
+                            <th>Rumus Transformasi</th>
+                            <th>Elemen Volume ($dV$)</th>
+                            <th>Bentuk Benda yang Cocok</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>1. Kartesius $(x, y, z)$</strong></td>
+                            <td>$x, \, y, \, z$</td>
+                            <td>$$dx\,dy\,dz$$</td>
+                            <td class="text-left">Balok, bidang miring, prisma tegak</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>2. Silinder $(r, \theta, z)$</strong></td>
+                            <td>
+                                $x = r \cos \theta$<br>
+                                $y = r \sin \theta$<br>
+                                $z = z$
+                            </td>
+                            <td>$$r\,dz\,dr\,d\theta$$</td>
+                            <td class="text-left">Tabung (silinder), paraboloida ($z = x^2 + y^2$), kerucut</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>3. Bola $(\rho, \theta, \phi)$</strong></td>
+                            <td>
+                                $x = \rho \sin \phi \cos \theta$<br>
+                                $y = \rho \sin \phi \sin \theta$<br>
+                                $z = \rho \cos \phi$
+                            </td>
+                            <td>$$\rho^2 \sin \phi\,d\rho\,d\phi\,d\theta$$</td>
+                            <td class="text-left">Bola penuh ($x^2+y^2+z^2 = R^2$), kulit bola, kerucut es krim</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>6. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memahami cara menghitung integral lipat dua pada daerah yang dibatasi kurva, teknik membalik urutan pengintegralan, serta penggunaan koordinat polar. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka langkah pengerjaan lengkapnya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Daerah Dibatasi Dua Kurva -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Hitunglah nilai dari integral lipat dua:
+                    $$\iint_D (2x + y)\,dA$$
+                    dengan $D$ adalah daerah di bidang-$XY$ yang dibatasi oleh parabola $y = x^2$ dan garis lurus $y = 2x$.
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Menentukan titik potong dan batas daerah $D$</strong><br>
+                        Cari absis titik potong antara kurva $y = x^2$ dan garis $y = 2x$:
+                        $$x^2 = 2x \iff x^2 - 2x = 0 \iff x(x - 2) = 0$$
+                        Diperoleh $x = 0$ atau $x = 2$. Pada interval $0 \le x \le 2$, garis $y = 2x$ berada di <strong>atas</strong> parabola $y = x^2$. Dengan memandang $D$ sebagai Daerah Tipe I, batasnya adalah:
+                        $$0 \le x \le 2 \quad \text{dan} \quad x^2 \le y \le 2x$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menyusun dan menghitung integral dalam (terhadap $y$)</strong><br>
+                        $$\iint_D (2x + y)\,dA = \int_0^2 \left[ \int_{x^2}^{2x} (2x + y)\,dy \right] dx$$
+                        Integralkan terhadap $y$ (anggap $x$ konstan):
+                        $$\int_{x^2}^{2x} (2x + y)\,dy = \left[ 2xy + \frac{1}{2}y^2 \right]_{y=x^2}^{y=2x}$$
+                        $$= \left( 2x(2x) + \frac{1}{2}(2x)^2 \right) - \left( 2x(x^2) + \frac{1}{2}(x^2)^2 \right)$$
+                        $$= (4x^2 + 2x^2) - \left(2x^3 + \frac{1}{2}x^4\right) = 6x^2 - 2x^3 - \frac{1}{2}x^4$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menghitung integral luar (terhadap $x$)</strong><br>
+                        $$\int_0^2 \left( 6x^2 - 2x^3 - \frac{1}{2}x^4 \right) dx = \left[ 2x^3 - \frac{1}{2}x^4 - \frac{1}{10}x^5 \right]_0^2$$
+                        $$= 2(2)^3 - \frac{1}{2}(2)^4 - \frac{1}{10}(2)^5 = 16 - 8 - \frac{32}{10} = 8 - \frac{16}{5} = \frac{24}{5}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari $\iint_D (2x + y)\,dA$ pada daerah tersebut adalah $\frac{24}{5}$ atau $4{,}8$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Membalik Urutan Pengintegralan -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Hitunglah nilai dari integral berulang berikut dengan cara membalik urutan pengintegralannya:
+                    $$\int_0^1 \int_x^1 e^{y^2}\,dy\,dx$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Perhatikan bahwa integral dalam $\int e^{y^2}\,dy$ tidak memiliki antiturunan elementer. Oleh karena itu, kita harus <strong>membalik urutan pengintegralan</strong> menjadi $dx\,dy$.
+                    </p>
+                    <p>
+                        <strong>Langkah 1: Mengidentifikasi daerah $D$ dan mengubahnya dari Tipe I ke Tipe II</strong><br>
+                        Dari batas awal $\int_0^1 \int_x^1$, daerah $D$ dinyatakan sebagai Tipe I:
+                        $$D = \{(x, y) \mid 0 \le x \le 1, \, x \le y \le 1\}$$
+                        Daerah ini adalah segitiga yang dibatasi oleh garis $y = x$, garis mendatar $y = 1$, dan sumbu-$Y$ ($x = 0$).<br>
+                        Jika dibaca secara mendatar (Tipe II: dari kiri ke kanan, lalu dari bawah ke atas):
+                        <ul>
+                            <li>Batas kiri adalah sumbu-$Y$ ($x = 0$) dan batas kanan adalah garis $x = y$, sehingga $0 \le x \le y$.</li>
+                            <li>Nilai $y$ bergerak dari $y = 0$ hingga $y = 1$, sehingga $0 \le y \le 1$.</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menyusun ulang integral dengan urutan $dx\,dy$</strong><br>
+                        $$\int_0^1 \int_x^1 e^{y^2}\,dy\,dx = \int_0^1 \left[ \int_0^y e^{y^2}\,dx \right] dy$$
+                        Integralkan bagian dalam terhadap $x$ (karena $e^{y^2}$ tidak memuat $x$, ia bersifat konstan terhadap $x$):
+                        $$\int_0^y e^{y^2}\,dx = \left[ x \cdot e^{y^2} \right]_{x=0}^{x=y} = y e^{y^2}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menghitung integral luar dengan substitusi $u = y^2$</strong><br>
+                        $$\int_0^1 y e^{y^2}\,dy$$
+                        Misalkan $u = y^2 \implies du = 2y\,dy \iff y\,dy = \frac{1}{2}\,du$. Untuk $y = 0 \implies u = 0$, dan untuk $y = 1 \implies u = 1$:
+                        $$\int_0^1 \frac{1}{2} e^u\,du = \left[ \frac{1}{2} e^u \right]_0^1 = \frac{1}{2}(e^1 - e^0) = \frac{e - 1}{2}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, hasil dari $\int_0^1 \int_x^1 e^{y^2}\,dy\,dx$ adalah $\frac{1}{2}(e - 1)$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Transformasi ke Koordinat Polar -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Tentukan nilai dari integral lipat dua:
+                    $$\iint_D \sqrt{4 - x^2 - y^2}\,dA$$
+                    jika $D$ adalah daerah setengah lingkaran di kuadran I dan II yang memenuhi $x^2 + y^2 \le 4$ dan $y \ge 0$.
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Mengubah daerah $D$ dan integran ke koordinat polar</strong><br>
+                        Karena integran memuat bentuk $x^2 + y^2$ dan daerah $D$ berupa setengah lingkaran berjari-jari $R = 2$ di bagian atas sumbu-$X$ ($y \ge 0$), gunakan koordinat polar:
+                        <ul>
+                            <li>Jari-jari $r$ bergerak dari pusat hingga tepi lingkaran: $0 \le r \le 2$.</li>
+                            <li>Sudut $\theta$ menyapu kuadran I dan II ($y \ge 0$): $0 \le \theta \le \pi$.</li>
+                            <li>Integran menjadi $\sqrt{4 - (x^2 + y^2)} = \sqrt{4 - r^2}$ dan elemen luasnya $dA = r\,dr\,d\theta$.</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menyusun dan menghitung integral polar</strong><br>
+                        $$\iint_D \sqrt{4 - x^2 - y^2}\,dA = \int_0^{\pi} \int_0^2 \sqrt{4 - r^2} \cdot r\,dr\,d\theta$$
+                        Karena batasnya konstan dan fungsinya terpisah, kita dapat menghitung integral terhadap $r$ terlebih dahulu dengan substitusi $u = 4 - r^2 \implies du = -2r\,dr \iff r\,dr = -\frac{1}{2}\,du$:
+                        $$\int_0^2 (4 - r^2)^{1/2} \, r\,dr = \left[ -\frac{1}{2} \cdot \frac{2}{3} (4 - r^2)^{3/2} \right]_{r=0}^{r=2} = \left[ -\frac{1}{3} (4 - r^2)^{3/2} \right]_0^2$$
+                        $$= -\frac{1}{3}(0)^{3/2} - \left( -\frac{1}{3}(4)^{3/2} \right) = 0 + \frac{1}{3}(8) = \frac{8}{3}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Mengintegralkan terhadap sudut $\theta$</strong><br>
+                        $$\int_0^{\pi} \frac{8}{3}\,d\theta = \left[ \frac{8}{3}\theta \right]_0^{\pi} = \frac{8\pi}{3}$$
+                        <em>Catatan Geometri:</em> Nilai $\frac{8\pi}{3}$ ini sama dengan volume setengah bagian dari setengah bola ($\frac{1}{4}$ bola) berjari-jari $r = 2$, yakni $\frac{1}{4} \times \frac{4}{3}\pi(2)^3 = \frac{8\pi}{3}$.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari $\iint_D \sqrt{4 - x^2 - y^2}\,dA$ adalah $\frac{8\pi}{3}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiIntegralLipat() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const tealFill = isDark ? 'rgba(20, 184, 166, 0.20)' : 'rgba(13, 148, 136, 0.14)';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const amberFill = isDark ? 'rgba(251, 191, 36, 0.30)' : 'rgba(217, 119, 6, 0.22)';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const blueFill = isDark ? 'rgba(56, 189, 248, 0.20)' : 'rgba(2, 132, 199, 0.14)';
+            const purpleColor = isDark ? '#c084fc' : '#7e22ce';
+
+            /* -------------------------------------------------------------
+               1. PERBANDINGAN DAERAH TIPE I (PITA VERTIKAL dy dx)
+                  VS DAERAH TIPE II (PITA HORIZONTAL dx dy)
+               ------------------------------------------------------------- */
+            const geoTipe = new GeoSVG('geosvg-tipe-daerah', 560, 255, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Panel Kiri: Daerah Tipe I (Pita Vertikal)
+            geoTipe.buatPersegiPanjang(8, 8, 264, 239, {
+                radius: 8, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoTipe.buatTeks(140, 26, "Daerah Tipe I (Pita Vertikal: dy dx)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+
+            // Sumbu koordinat Panel Kiri
+            const ox1 = 38, oy1 = 195;
+            geoTipe.buatVektor([24, oy1], [252, oy1], { stroke: mutedColor, strokeWidth: 1.4 });
+            geoTipe.buatVektor([ox1, 212], [ox1, 44], { stroke: mutedColor, strokeWidth: 1.4 });
+            geoTipe.buatTeks(252, oy1 - 10, "x", { position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: mutedColor });
+            geoTipe.buatTeks(ox1 + 10, 46, "y", { position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: mutedColor });
+
+            // Fungsi batas atas g2(x) dan batas bawah g1(x) pada x in [a, b]
+            const xa = 72, xb = 216;
+            const gTop = x => 78 + 0.0022 * (x - 135) * (x - 135) - 10 * Math.sin((x - xa) / 45);
+            const gBot = x => 152 - 0.0018 * (x - 145) * (x - 145) + 8 * Math.cos((x - xa) / 50);
+
+            const polyTipe1 = [];
+            const topPts1 = [], botPts1 = [];
+            for (let x = xa; x <= xb; x += 6) {
+                const pt = [x, gTop(x)];
+                polyTipe1.push(pt);
+                topPts1.push(pt);
+            }
+            for (let x = xb; x >= xa; x -= 6) {
+                const pt = [x, gBot(x)];
+                polyTipe1.push(pt);
+                botPts1.unshift(pt);
+            }
+
+            // Daerah arsiran D
+            geoTipe.buatPoligon(polyTipe1, {
+                fill: tealFill, stroke: 'none'
+            });
+            geoTipe.buatSegmen([xa, gTop(xa)], [xa, gBot(xa)], { stroke: tealColor, strokeWidth: 1.8 });
+            geoTipe.buatSegmen([xb, gTop(xb)], [xb, gBot(xb)], { stroke: tealColor, strokeWidth: 1.8 });
+            geoTipe.buatKurvaHalus(topPts1, { stroke: tealColor, strokeWidth: 2.2 });
+            geoTipe.buatKurvaHalus(botPts1, { stroke: blueColor, strokeWidth: 2.2 });
+
+            // Garis putus-putus batas x = a dan x = b
+            geoTipe.buatSegmen([xa, gBot(xa)], [xa, oy1], { stroke: mutedColor, strokeWidth: 1.2, dashed: '4 3' });
+            geoTipe.buatSegmen([xb, gBot(xb)], [xb, oy1], { stroke: mutedColor, strokeWidth: 1.2, dashed: '4 3' });
+            geoTipe.buatTeks(xa, oy1 + 12, "a", { position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor });
+            geoTipe.buatTeks(xb, oy1 + 12, "b", { position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor });
+
+            // Pita Vertikal (dx) dan panah arah integrasi dalam (dy: bawah ke atas)
+            const xs = 142, stripW = 14;
+            const ysTop = gTop(xs + stripW / 2), ysBot = gBot(xs + stripW / 2);
+            geoTipe.buatPersegiPanjang(xs, ysTop, stripW, ysBot - ysTop, {
+                fill: amberFill, stroke: amberColor, strokeWidth: 1.6
+            });
+            geoTipe.buatVektor([xs + stripW / 2, ysBot - 6], [xs + stripW / 2, ysTop + 6], {
+                stroke: amberColor, strokeWidth: 1.8
+            });
+            geoTipe.buatTeks(xs + stripW / 2, oy1 + 12, "dx", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: amberColor
+            });
+
+            // Label kurva atas & bawah
+            geoTipe.buatTeks(145, 54, "y = g₂(x) (batas atas)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: tealColor
+            });
+            geoTipe.buatTeks(148, 174, "y = g₁(x) (batas bawah)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: blueColor
+            });
+            geoTipe.buatTeks(140, 230, "a ≤ x ≤ b,   g₁(x) ≤ y ≤ g₂(x)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor
+            });
+
+            // Panel Kanan: Daerah Tipe II (Pita Horizontal)
+            geoTipe.buatPersegiPanjang(288, 8, 264, 239, {
+                radius: 8, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoTipe.buatTeks(420, 26, "Daerah Tipe II (Pita Horizontal: dx dy)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: blueColor
+            });
+
+            // Sumbu koordinat Panel Kanan
+            const ox2 = 324, oy2 = 195;
+            geoTipe.buatVektor([310, oy2], [534, oy2], { stroke: mutedColor, strokeWidth: 1.4 });
+            geoTipe.buatVektor([ox2, 212], [ox2, 44], { stroke: mutedColor, strokeWidth: 1.4 });
+            geoTipe.buatTeks(534, oy2 - 10, "x", { position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: mutedColor });
+            geoTipe.buatTeks(ox2 + 10, 46, "y", { position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: mutedColor });
+
+            // Fungsi batas kiri h1(y) dan batas kanan h2(y) pada y in [yd, yc] (koordinat layar: yd di atas, yc di bawah)
+            const yd = 66, yc = 172;
+            const hLeft = y => 368 + 0.005 * (y - 118) * (y - 118);
+            const hRight = y => 492 - 0.006 * (y - 120) * (y - 120);
+
+            const polyTipe2 = [];
+            const leftPts2 = [], rightPts2 = [];
+            for (let y = yd; y <= yc; y += 6) {
+                const pt = [hRight(y), y];
+                polyTipe2.push(pt);
+                rightPts2.push(pt);
+            }
+            for (let y = yc; y >= yd; y -= 6) {
+                const pt = [hLeft(y), y];
+                polyTipe2.push(pt);
+                leftPts2.unshift(pt);
+            }
+
+            geoTipe.buatPoligon(polyTipe2, {
+                fill: blueFill, stroke: 'none'
+            });
+            geoTipe.buatSegmen([hLeft(yd), yd], [hRight(yd), yd], { stroke: blueColor, strokeWidth: 1.8 });
+            geoTipe.buatSegmen([hLeft(yc), yc], [hRight(yc), yc], { stroke: blueColor, strokeWidth: 1.8 });
+            geoTipe.buatKurvaHalus(leftPts2, { stroke: purpleColor, strokeWidth: 2.2 });
+            geoTipe.buatKurvaHalus(rightPts2, { stroke: tealColor, strokeWidth: 2.2 });
+
+            // Garis putus-putus batas y = c dan y = d ke sumbu-Y
+            geoTipe.buatSegmen([ox2, yd], [hLeft(yd), yd], { stroke: mutedColor, strokeWidth: 1.2, dashed: '4 3' });
+            geoTipe.buatSegmen([ox2, yc], [hLeft(yc), yc], { stroke: mutedColor, strokeWidth: 1.2, dashed: '4 3' });
+            geoTipe.buatTeks(ox2 - 10, yd, "d", { position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor });
+            geoTipe.buatTeks(ox2 - 10, yc, "c", { position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor });
+
+            // Pita Horizontal (dy) dan panah arah integrasi dalam (dx: kiri ke kanan)
+            const ys = 114, stripH = 14;
+            const xsLeft = hLeft(ys + stripH / 2), xsRight = hRight(ys + stripH / 2);
+            geoTipe.buatPersegiPanjang(xsLeft, ys, xsRight - xsLeft, stripH, {
+                fill: amberFill, stroke: amberColor, strokeWidth: 1.6
+            });
+            geoTipe.buatVektor([xsLeft + 8, ys + stripH / 2], [xsRight - 8, ys + stripH / 2], {
+                stroke: amberColor, strokeWidth: 1.8
+            });
+            geoTipe.buatTeks(ox2 - 11, ys + stripH / 2, "dy", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: amberColor
+            });
+
+            // Label kurva kiri & kanan
+            geoTipe.buatTeks(368, 92, "x = h₁(y)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: purpleColor
+            });
+            geoTipe.buatTeks(508, 92, "x = h₂(y)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '10.5px', fill: tealColor
+            });
+            geoTipe.buatTeks(420, 230, "c ≤ y ≤ d,   h₁(y) ≤ x ≤ h₂(y)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor
+            });
+
+            /* -------------------------------------------------------------
+               2. GEOMETRI ELEMEN LUAS KOORDINAT POLAR: dA = r dr dθ
+               ------------------------------------------------------------- */
+            const geoPol = new GeoSVG('geosvg-polar', 520, 235, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoPol.buatPersegiPanjang(8, 8, 504, 219, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoPol.buatTeks(260, 27, "Geometri Elemen Luas Polar: dA = (r dθ) · dr = r dr dθ", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: textColor
+            });
+
+            // Titik asal O di kiri bawah
+            const px = 64, py = 194;
+            geoPol.buatVektor([44, py], [312, py], { stroke: mutedColor, strokeWidth: 1.5 });
+            geoPol.buatVektor([px, 208], [px, 42], { stroke: mutedColor, strokeWidth: 1.5 });
+            geoPol.buatTeks(312, py + 13, "Sumbu Polar (X)", { position: 'middle-right', fontSize: '10.5px', fill: mutedColor });
+            geoPol.buatTeks(px - 10, py + 10, "O", { position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor });
+
+            // Dua sinar sudut θ dan θ + dθ (dalam derajat layar, negatif = ke atas)
+            const deg1 = -24, deg2 = -48;
+            const rad1 = deg1 * Math.PI / 180, rad2 = deg2 * Math.PI / 180;
+            const rIn = 128, rOut = 178;
+
+            // Sinar θ dan θ + dθ
+            geoPol.buatSinar([px, py], [px + Math.cos(rad1) * 100, py + Math.sin(rad1) * 100], {
+                stroke: tealColor, strokeWidth: 1.5, dashed: '4 3', clipPad: -215
+            });
+            geoPol.buatSinar([px, py], [px + Math.cos(rad2) * 100, py + Math.sin(rad2) * 100], {
+                stroke: tealColor, strokeWidth: 1.5, dashed: '4 3', clipPad: -215
+            });
+
+            // Bentuk petak polar (polar rectangle) antara rIn..rOut dan deg1..deg2
+            const patchPts = [];
+            for (let a = deg1; a >= deg2; a -= 3) {
+                const ar = a * Math.PI / 180;
+                patchPts.push([px + rOut * Math.cos(ar), py + rOut * Math.sin(ar)]);
+            }
+            for (let a = deg2; a <= deg1; a += 3) {
+                const ar = a * Math.PI / 180;
+                patchPts.push([px + rIn * Math.cos(ar), py + rIn * Math.sin(ar)]);
+            }
+            geoPol.buatPoligon(patchPts, {
+                fill: amberFill, stroke: amberColor, strokeWidth: 2.2
+            });
+
+            // Busur penanda sudut θ dan dθ dekat titik O
+            geoPol.buatBusur(px, py, 48, deg1, 0, { stroke: blueColor, strokeWidth: 1.6 });
+            geoPol.buatTeks(px + 60, py - 11, "θ", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: blueColor
+            });
+
+            geoPol.buatBusur(px, py, 72, deg2, deg1, { stroke: purpleColor, strokeWidth: 1.8 });
+            geoPol.buatTeks(px + 72, py - 42, "dθ", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: purpleColor
+            });
+
+            // Label jari-jari r, ketebalan dr, dan panjang busur r dθ
+            geoPol.buatTeks(px + (rIn / 2) * Math.cos(rad1) + 8, py + (rIn / 2) * Math.sin(rad1) + 12, "r", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+            geoPol.buatTeks(px + ((rIn + rOut) / 2) * Math.cos(rad1) + 12, py + ((rIn + rOut) / 2) * Math.sin(rad1) + 12, "dr", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor
+            });
+
+            const midDeg = (deg1 + deg2) / 2 * Math.PI / 180;
+            geoPol.buatTeks(px + (rIn - 16) * Math.cos(midDeg), py + (rIn - 16) * Math.sin(midDeg), "r dθ", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: purpleColor
+            });
+            geoPol.buatTeks(px + ((rIn + rOut) / 2) * Math.cos(midDeg), py + ((rIn + rOut) / 2) * Math.sin(midDeg), "dA", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: textColor
+            });
+
+            // Kotak penjelasan di sisi kanan
+            geoPol.buatPersegiPanjang(324, 52, 172, 148, {
+                radius: 8, fill: tealFill, stroke: tealColor, strokeWidth: 1.5
+            });
+            geoPol.buatTeks(410, 74, "Mengapa muncul faktor r?", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: tealColor
+            });
+            geoPol.buatTeks(410, 98, "Untuk dr dan dθ sangat kecil,", {
+                position: 'middle-center', fontSize: '10.5px', fill: textColor
+            });
+            geoPol.buatTeks(410, 114, "petak polar mendekati persegi", {
+                position: 'middle-center', fontSize: '10.5px', fill: textColor
+            });
+            geoPol.buatTeks(410, 130, "panjang berukuran:", {
+                position: 'middle-center', fontSize: '10.5px', fill: textColor
+            });
+            geoPol.buatTeks(410, 152, "• Panjang busur ≈ r · dθ", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: purpleColor
+            });
+            geoPol.buatTeks(410, 170, "• Lebar radial = dr", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: amberColor
+            });
+            geoPol.buatTeks(410, 188, "⇒ dA = r dr dθ", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiIntegralLipat();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiIntegralLipat, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

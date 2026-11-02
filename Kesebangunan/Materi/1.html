@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Kesebangunan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Kesebangunan</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Syarat Dua Bangun Datar Sebangun</h2>
+            <p>
+                <strong>Kesebangunan</strong> (<em>similarity</em>) adalah hubungan antara dua bangun geometri yang memiliki <strong>bentuk yang sama persis</strong>, meskipun ukurannya dapat berbeda (salah satu bangun merupakan hasil perbesaran atau pengecilan skala dari bangun lainnya). Kesebangunan dilambangkan dengan simbol $\sim$ (dibaca: <em>sebangun dengan</em>).
+            </p>
+            <p>
+                Dua buah bangun datar segi-$n$ dikatakan <strong>sebangun</strong> jika dan hanya jika memenuhi <strong>dua syarat sekaligus</strong> berikut ini:
+            </p>
+            <ol>
+                <li><strong>Sudut-sudut yang bersesuaian (seletak) sama besar:</strong> $\angle A = \angle P$, $\angle B = \angle Q$, $\angle C = \angle R$, dan seterusnya.</li>
+                <li><strong>Perbandingan panjang sisi-sisi yang bersesuaian bernilai sama (senilai / proporsional):</strong>
+                    $$\frac{AB}{PQ} = \frac{BC}{QR} = \frac{CD}{RS} = \dots = k$$
+                    dengan $k > 0$ disebut <strong>faktor skala</strong> (rasio kesebangunan).
+                </li>
+            </ol>
+            <p>
+                <em>Catatan Penting:</em> Untuk bangun datar selain segitiga (seperti segi empat), <strong>kedua syarat wajib diperiksa</strong>. Misalnya, persegi dan persegi panjang memiliki keempat sudut siku-siku ($90^\circ$), tetapi tidak selalu sebangun karena perbandingan sisinya berbeda. Begitu pula persegi dan belah ketupat memiliki keempat sisi yang sebanding, tetapi sudut-sudutnya belum tentu sama besar.
+            </p>
+
+            <h2>2. Syarat Kesebangunan pada Segitiga</h2>
+            <p>
+                Berbeda dengan segi empat, pada <strong>segitiga</strong> kita cukup memeriksa <strong>salah satu</strong> dari tiga kriteria (postulat) berikut untuk membuktikan bahwa $\triangle ABC \sim \triangle DEF$:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Postulat Kesebangunan</th>
+                            <th>Syarat Geometri yang Dipenuhi</th>
+                            <th>Kesimpulan Proporsional</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>1. Sudut-Sudut (Sd-Sd / AA)</strong></td>
+                            <td class="text-left">Minimal <strong>dua pasang sudut</strong> yang bersesuaian sama besar ($\angle A = \angle D$ dan $\angle B = \angle E$, otomatis $\angle C = \angle F$).</td>
+                            <td>$$\frac{AB}{DE} = \frac{BC}{EF} = \frac{AC}{DF}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>2. Sisi-Sisi-Sisi (S-S-S)</strong></td>
+                            <td class="text-left">Ketiga pasang sisi yang bersesuaian memiliki perbandingan yang sama: $\displaystyle \frac{AB}{DE} = \frac{BC}{EF} = \frac{AC}{DF} = k$.</td>
+                            <td>$$\angle A = \angle D, \;\angle B = \angle E, \;\angle C = \angle F$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>3. Sisi-Sudut-Sisi (S-Sd-S)</strong></td>
+                            <td class="text-left">Dua pasang sisi yang bersesuaian sebanding dan <strong>sudut yang diapit</strong> oleh kedua sisi tersebut sama besar ($\frac{AB}{DE} = \frac{AC}{DF}$ dan $\angle A = \angle D$).</td>
+                            <td>$$\triangle ABC \sim \triangle DEF$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Model Khusus Kesebangunan (Garis Sejajar &amp; Trapesium)</h2>
+            <p>
+                Dalam soal-soal geometri, terdapat tiga konfigurasi kesebangunan yang paling sering muncul dan memiliki rumus perbandingan langsung:
+            </p>
+            <ul>
+                <li>
+                    <strong>Segitiga dengan Garis Sejajar ($DE \parallel AB$):</strong><br>
+                    Jika pada $\triangle CAB$ ditarik ruas garis $DE$ yang sejajar dengan alas $AB$ ($D$ pada $CA$ dan $E$ pada $CB$), maka sudut-sudut sehadapnya sama besar sehingga $\triangle CDE \sim \triangle CAB$. Berlaku:
+                    $$\frac{CD}{CA} = \frac{CE}{CB} = \frac{DE}{AB} \implies \frac{CD}{CD + DA} = \frac{CE}{CE + EB} = \frac{DE}{AB}$$
+                    Khusus untuk ruas samping saja (Teorema Thales): $\displaystyle \frac{CD}{DA} = \frac{CE}{EB}$.
+                </li>
+                <li>
+                    <strong>Trapesium dengan Garis Sejajar Alas ($EF \parallel AB \parallel DC$):</strong><br>
+                    Jika pada trapesium $ABCD$ (dengan $AB \parallel DC$) ditarik garis $EF$ sejajar alas yang membagi kaki $AD$ dengan rasio $DE : EA = m : n$, maka panjang $EF$ dapat dihitung dengan <strong>rumus kali silang</strong>:
+                    $$EF = \frac{m \cdot AB + n \cdot DC}{m + n} = \frac{DE \cdot AB + EA \cdot DC}{DE + EA}$$
+                </li>
+                <li>
+                    <strong>Segmen Penghubung Titik Tengah Diagonal Trapesium:</strong><br>
+                    Jika $P$ dan $Q$ berturut-turut adalah titik tengah diagonal $AC$ dan $BD$ pada trapesium $ABCD$ ($AB > DC$), maka $PQ \parallel AB$ dan panjangnya adalah setengah dari selisih sisi sejajarnya:
+                    $$PQ = \frac{1}{2} |AB - DC|$$
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-sejajar-trapesium" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Kesebangunan pada Segitiga Siku-Siku (Rumus Air Mancur)</h2>
+            <p>
+                Misalkan $\triangle ABC$ siku-siku di $C$ ($\angle ACB = 90^\circ$), kemudian dari titik sudut siku-siku $C$ ditarik garis tinggi $CD$ tegak lurus hipotenusa $AB$ ($CD \perp AB$). Garis tinggi ini membagi $\triangle ABC$ menjadi dua segitiga siku-siku yang lebih kecil, di mana ketiganya saling sebangun:
+                $$\triangle ACD \sim \triangle CBD \sim \triangle ABC$$
+                Dari kesebangunan ketiga segitiga tersebut, diperoleh tiga hubungan kuadrat (sering disebut <strong>Teorema Proyeksi / Rumus Air Mancur</strong>):
+            </p>
+            <ol>
+                <li><strong>Kuadrat Garis Tinggi ($CD$):</strong> $\displaystyle CD^2 = AD \times BD$</li>
+                <li><strong>Kuadrat Sisi Siku-Siku Kiri ($AC$):</strong> $\displaystyle AC^2 = AD \times AB \quad (\text{dengan } AB = AD + BD)$</li>
+                <li><strong>Kuadrat Sisi Siku-Siku Kanan ($BC$):</strong> $\displaystyle BC^2 = BD \times BA \quad (\text{dengan } BA = BD + AD)$</li>
+                <li><strong>Hubungan Luas Segitiga:</strong> $\displaystyle AC \times BC = AB \times CD$</li>
+            </ol>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-air-mancur" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Perbandingan Keliling dan Luas Bangun yang Sebangun</h2>
+            <p>
+                Jika Bangun II sebangun dengan Bangun I dengan faktor skala perbandingan panjang sisi bersesuaian sebesar $k = \frac{s_2}{s_1}$, maka perbandingan unsur-unsur linear (keliling, garis tinggi, garis berat, diagonal) dan luasnya memenuhi:
+                $$\frac{\text{Keliling}_2}{\text{Keliling}_1} = \frac{s_2}{s_1} = k \qquad \text{dan} \qquad \frac{\text{Luas}_2}{\text{Luas}_1} = \left(\frac{s_2}{s_1}\right)^2 = k^2$$
+            </p>
+
+            <div class="kesimpulan">
+                💡 Tips Cepat &amp;jebakan Umum Kesebangunan:
+                <br>• Saat membandingkan alas segitiga kecil dan segitiga besar pada gambar garis sejajar ($DE \parallel AB$), <strong>jangan</strong> menulis $\frac{DE}{AB} = \frac{CD}{DA}$! Yang benar adalah membandingkan sisi segitiga kecil dengan <strong>sisi utuh segitiga besar</strong>: $\frac{DE}{AB} = \frac{CD}{CD + DA}$.
+                <br>• Pada soal bingkai foto dengan lebar sisa karton kiri, kanan, dan atas yang sama ($x$), lebar sisa karton bagian bawah ($y$) dapat dicari dengan menyamakan rasio $\frac{\text{Lebar Foto}}{\text{Lebar Karton}} = \frac{\text{Tinggi Foto}}{\text{Tinggi Karton}}$.
+            </div>
+
+            <h2>6. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk menguasai aplikasi kesebangunan pada segitiga, trapesium, segitiga siku-siku, serta masalah kontekstual bingkai foto. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasan lengkap.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Segitiga Garis Sejajar & Perbandingan Luas -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Pada $\triangle ABC$, titik $D$ terletak pada sisi $AC$ dan titik $E$ terletak pada sisi $BC$ sedemikian sehingga $DE \parallel AB$. Jika diketahui panjang $CD = 6\text{ cm}$, $DA = 4\text{ cm}$, dan $DE = 9\text{ cm}$, tentukanlah:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Panjang sisi alas $AB$,</li>
+                        <li>Perbandingan luas $\triangle CDE$ terhadap luas trapesium $ABED$!</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Menentukan panjang sisi utuh $CA$ dan panjang alas $AB$</strong><br>
+                        Panjang sisi $CA = CD + DA = 6 + 4 = 10\text{ cm}$.<br>
+                        Karena $DE \parallel AB$, maka $\triangle CDE \sim \triangle CAB$, sehingga:
+                        $$\frac{DE}{AB} = \frac{CD}{CA} \implies \frac{9}{AB} = \frac{6}{10} = \frac{3}{5}$$
+                        $$AB = \frac{9 \times 5}{3} = 15\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menentukan perbandingan luas $\triangle CDE$ dan trapesium $ABED$</strong><br>
+                        Faktor skala panjang sisi $\triangle CDE$ terhadap $\triangle CAB$ adalah $\frac{CD}{CA} = \frac{3}{5}$.<br>
+                        Maka perbandingan luas kedua segitiga adalah kuadrat dari rasio sisinya:
+                        $$\frac{L_{\triangle CDE}}{L_{\triangle CAB}} = \left(\frac{3}{5}\right)^2 = \frac{9}{25}$$
+                        Misalkan $L_{\triangle CDE} = 9k$, maka $L_{\triangle CAB} = 25k$. Luas trapesium $ABED$ adalah selisih keduanya:
+                        $$L_{ABED} = L_{\triangle CAB} - L_{\triangle CDE} = 25k - 9k = 16k$$
+                        Sehingga perbandingan luasnya adalah $L_{\triangle CDE} : L_{ABED} = 9 : 16$.
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, panjang sisi $AB$ adalah $15\text{ cm}$ dan perbandingan luas $\triangle CDE : \text{Luas } ABED$ adalah $9 : 16$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Trapesium & Rumus Air Mancur -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Perhatikan dua permasalahan geometri berikut:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Pada trapesium $ABCD$ dengan $AB \parallel DC$, diketahui panjang $AB = 22\text{ cm}$ dan $DC = 10\text{ cm}$. Titik $E$ pada $AD$ dan $F$ pada $BC$ sehingga $EF \parallel AB$ dan perbandingan $DE : EA = 1 : 3$. Hitunglah panjang $EF$!</li>
+                        <li>Segitiga $ABC$ siku-siku di $C$ memiliki garis tinggi $CD \perp AB$. Jika panjang $AD = 9\text{ cm}$ dan $BD = 16\text{ cm}$, hitunglah panjang $CD$, $AC$, dan $BC$!</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Bagian 1: Menghitung panjang ruas tengah trapesium ($EF$)</strong><br>
+                        Gunakan rumus kali silang trapesium dengan $DE : EA = 1 : 3$, $AB = 22\text{ cm}$, dan $DC = 10\text{ cm}$:
+                        $$EF = \frac{DE \cdot AB + EA \cdot DC}{DE + EA} = \frac{1(22) + 3(10)}{1 + 3} = \frac{22 + 30}{4} = \frac{52}{4} = 13\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>Bagian 2: Menghitung unsur segitiga siku-siku dengan Rumus Air Mancur</strong><br>
+                        Panjang hipotenusa utuh adalah $AB = AD + BD = 9 + 16 = 25\text{ cm}$.<br>
+                        • Panjang garis tinggi $CD$:
+                        $$CD = \sqrt{AD \times BD} = \sqrt{9 \times 16} = 3 \times 4 = 12\text{ cm}$$
+                        • Panjang sisi siku-siku $AC$:
+                        $$AC = \sqrt{AD \times AB} = \sqrt{9 \times 25} = 3 \times 5 = 15\text{ cm}$$
+                        • Panjang sisi siku-siku $BC$:
+                        $$BC = \sqrt{BD \times BA} = \sqrt{16 \times 25} = 4 \times 5 = 20\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, panjang $EF = 13\text{ cm}$, sedangkan pada segitiga siku-siku diperoleh $CD = 12\text{ cm}$, $AC = 15\text{ cm}$, dan $BC = 20\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Masalah Kontekstual Foto dan Karton -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Sebuah foto berukuran lebar $30\text{ cm}$ dan tinggi $40\text{ cm}$ ditempelkan pada selembar karton. Di sebelah kiri, kanan, dan atas foto masih tersisa karton selebar $3\text{ cm}$. Jika foto dan karton tersebut sebangun, berapakah lebar karton yang tersisa di bagian bawah foto?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Menentukan ukuran foto dan ukuran karton</strong><br>
+                        • Ukuran foto: lebar $L_f = 30\text{ cm}$ dan tinggi $T_f = 40\text{ cm}$.<br>
+                        • Misalkan lebar sisa karton di bagian bawah foto adalah $x\text{ cm}$.<br>
+                        • Ukuran karton:
+                        $$L_k = 30 + 3\text{ (kiri)} + 3\text{ (kanan)} = 36\text{ cm}$$
+                        $$T_k = 40 + 3\text{ (atas)} + x\text{ (bawah)} = (43 + x)\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menyusun perbandingan kesebangunan foto dan karton</strong><br>
+                        $$\frac{L_f}{L_k} = \frac{T_f}{T_k} \implies \frac{30}{36} = \frac{40}{43 + x}$$
+                        Sederhanakan pecahan di ruas kiri menjadi $\frac{5}{6}$:
+                        $$\frac{5}{6} = \frac{40}{43 + x} \implies 43 + x = \frac{40 \times 6}{5} = 48$$
+                        $$x = 48 - 43 = 5\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, lebar karton yang tersisa di bagian bawah foto adalah $5\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiKesebangunan() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const tealFill = isDark ? 'rgba(20, 184, 166, 0.16)' : 'rgba(13, 148, 136, 0.11)';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const amberFill = isDark ? 'rgba(251, 191, 36, 0.22)' : 'rgba(217, 119, 6, 0.14)';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const roseColor = isDark ? '#fb7185' : '#e11d48';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI GARIS SEJAJAR PADA SEGITIGA & TRAPESIUM
+               ------------------------------------------------------------- */
+            const geoSejajar = new GeoSVG('geosvg-sejajar-trapesium', 580, 290, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoSejajar.buatPersegiPanjang(8, 8, 564, 274, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoSejajar.buatSegmen(285, 18, 285, 272, {
+                stroke: borderColor, strokeWidth: 1.2, dashed: '5 4'
+            });
+
+            // PANEL KIRI: Segitiga dengan Garis Sejajar (DE || AB)
+            geoSejajar.buatTeks(145, 28, "(a) Segitiga Garis Sejajar (△CDE ~ △CAB)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            const C1 = [135, 55], A1 = [55, 215], B1 = [235, 215];
+            // Titik D dan E membagi CA dan CB dengan rasio 0.55 dari C
+            const tR = 0.55;
+            const D1 = [C1[0] + tR * (A1[0] - C1[0]), C1[1] + tR * (A1[1] - C1[1])];
+            const E1 = [C1[0] + tR * (B1[0] - C1[0]), C1[1] + tR * (B1[1] - C1[1])];
+
+            geoSejajar.buatPoligon([C1, A1, B1], {
+                fill: tealFill, stroke: tealColor, strokeWidth: 2.2
+            });
+            geoSejajar.buatPoligon([C1, D1, E1], {
+                fill: amberFill, stroke: tealColor, strokeWidth: 2
+            });
+            geoSejajar.buatSegmen(D1, E1, {
+                stroke: amberColor, strokeWidth: 2.6
+            });
+
+            // Sudut sehadap sama besar
+            geoSejajar.buatSudut(E1, D1, C1, { radius: 16, fill: 'none', stroke: roseColor, strokeWidth: 1.5 });
+            geoSejajar.buatSudut(B1, A1, C1, { radius: 18, fill: 'none', stroke: roseColor, strokeWidth: 1.5 });
+
+            geoSejajar.buatTitik(C1, { size: 3.8, color: textColor, label: "C", labelPosition: 'top-center', bold: true });
+            geoSejajar.buatTitik(D1, { size: 3.8, color: amberColor, label: "D", labelPosition: 'middle-left', bold: true });
+            geoSejajar.buatTitik(E1, { size: 3.8, color: amberColor, label: "E", labelPosition: 'middle-right', bold: true });
+            geoSejajar.buatTitik(A1, { size: 3.8, color: tealColor, label: "A", labelPosition: 'bottom-left', bold: true });
+            geoSejajar.buatTitik(B1, { size: 3.8, color: tealColor, label: "B", labelPosition: 'bottom-right', bold: true });
+
+            geoSejajar.buatTeks(145, 244, "CD / CA = CE / CB = DE / AB", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: amberColor
+            });
+            geoSejajar.buatTeks(145, 263, "(CA = CD + DA  dan  CB = CE + EB)", {
+                position: 'middle-center', fontSize: '10.5px', fill: mutedColor
+            });
+
+            // PANEL KANAN: Trapesium Rumus Kali Silang
+            geoSejajar.buatTeks(432, 28, "(b) Garis Sejajar pada Trapesium", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            const D2 = [365, 62], C2 = [485, 62], A2 = [325, 212], B2 = [530, 212];
+            const kR = 0.45; // DE : EA = m : n
+            const E2 = [D2[0] + kR * (A2[0] - D2[0]), D2[1] + kR * (A2[1] - D2[1])];
+            const F2 = [C2[0] + kR * (B2[0] - C2[0]), C2[1] + kR * (B2[1] - C2[1])];
+
+            geoSejajar.buatPoligon([D2, C2, B2, A2], {
+                fill: tealFill, stroke: tealColor, strokeWidth: 2.2
+            });
+            geoSejajar.buatSegmen(E2, F2, {
+                stroke: roseColor, strokeWidth: 2.6,
+                label: "EF", labelPosisi: 0.5, labelSisi: 'kiri', labelJarak: 9, labelColor: roseColor, bold: true
+            });
+
+            // Panah kali silang m ke AB dan n ke DC
+            geoSejajar.buatVektor([344, 98], [418, 198], {
+                stroke: amberColor, strokeWidth: 1.5, dashed: '4 3'
+            });
+            geoSejajar.buatVektor([330, 172], [418, 72], {
+                stroke: blueColor, strokeWidth: 1.5, dashed: '4 3'
+            });
+
+            geoSejajar.buatTeks(335, 95, "m", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '12.5px', fill: amberColor
+            });
+            geoSejajar.buatTeks(319, 172, "n", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '12.5px', fill: blueColor
+            });
+
+            geoSejajar.buatTitik(D2, { size: 3.5, color: tealColor, label: "D", labelPosition: 'top-left', bold: true });
+            geoSejajar.buatTitik(C2, { size: 3.5, color: tealColor, label: "C", labelPosition: 'top-right', bold: true });
+            geoSejajar.buatTitik(E2, { size: 3.8, color: roseColor, label: "E", labelPosition: 'middle-left', bold: true });
+            geoSejajar.buatTitik(F2, { size: 3.8, color: roseColor, label: "F", labelPosition: 'middle-right', bold: true });
+            geoSejajar.buatTitik(A2, { size: 3.5, color: tealColor, label: "A", labelPosition: 'bottom-left', bold: true });
+            geoSejajar.buatTitik(B2, { size: 3.5, color: tealColor, label: "B", labelPosition: 'bottom-right', bold: true });
+
+            geoSejajar.buatTeks(432, 244, "EF = (m · AB + n · DC) / (m + n)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: roseColor
+            });
+            geoSejajar.buatTeks(432, 263, "(Rumus Kali Silang Rasio m : n)", {
+                position: 'middle-center', fontSize: '10.5px', fill: mutedColor
+            });
+
+
+            /* -------------------------------------------------------------
+               2. ILUSTRASI SEGITIGA SIKU-SIKU (RUMUS AIR MANCUR)
+               ------------------------------------------------------------- */
+            const geoMancur = new GeoSVG('geosvg-air-mancur', 560, 275, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoMancur.buatPersegiPanjang(8, 8, 544, 259, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoMancur.buatTeks(280, 27, "Kesebangunan Segitiga Siku-Siku (Teorema Proyeksi / Rumus Air Mancur)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: textColor
+            });
+
+            // Segitiga ABC siku-siku di C: A(55, 210), B(305, 210), D(145, 210) -> AD=90, BD=160 -> CD = sqrt(90*160) = 120 -> C(145, 90)
+            const A = [55, 210], B = [305, 210], D = [145, 210], C = [145, 90];
+
+            geoMancur.buatPoligon([A, C, D], {
+                fill: tealFill, stroke: 'none'
+            });
+            geoMancur.buatPoligon([C, B, D], {
+                fill: amberFill, stroke: 'none'
+            });
+
+            // Tanda siku-siku di C dan di D
+            geoMancur.buatSiku(A, C, B, { size: 13, stroke: textColor, strokeWidth: 1.5 });
+            geoMancur.buatSiku(C, D, B, { size: 12, stroke: roseColor, strokeWidth: 1.5 });
+
+            // Sisi-sisi segitiga
+            geoMancur.buatSegmen(A, C, {
+                stroke: tealColor, strokeWidth: 2.5,
+                label: "AC", labelPosisi: 0.5, labelSisi: 'kiri', labelJarak: 12, labelColor: tealColor, bold: true
+            });
+            geoMancur.buatSegmen(C, B, {
+                stroke: amberColor, strokeWidth: 2.5,
+                label: "BC", labelPosisi: 0.5, labelSisi: 'kiri', labelJarak: 12, labelColor: amberColor, bold: true
+            });
+            geoMancur.buatSegmen(A, B, {
+                stroke: blueColor, strokeWidth: 2.4
+            });
+            geoMancur.buatSegmen(C, D, {
+                stroke: roseColor, strokeWidth: 2.6,
+                label: "CD", labelPosisi: 0.52, labelSisi: 'kanan', labelJarak: 10, labelColor: roseColor, bold: true
+            });
+
+            // Label segmen AD dan BD
+            geoMancur.buatTeks(100, 227, "AD", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+            geoMancur.buatTeks(225, 227, "BD", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor
+            });
+
+            geoMancur.buatTitik(A, { size: 4, color: tealColor, label: "A", labelPosition: 'bottom-left', bold: true });
+            geoMancur.buatTitik(B, { size: 4, color: amberColor, label: "B", labelPosition: 'bottom-right', bold: true });
+            geoMancur.buatTitik(C, { size: 4, color: textColor, label: "C (90°)", labelPosition: 'top-center', bold: true });
+            geoMancur.buatTitik(D, { size: 4, color: roseColor, label: "D", labelPosition: 'bottom-center', bold: true });
+
+            // Kotak ringkasan 4 rumus di sebelah kanan
+            geoMancur.buatPersegiPanjang(338, 56, 196, 185, {
+                radius: 8, fill: isDark ? '#0f172a' : '#f8fafc', stroke: borderColor, strokeWidth: 1.2
+            });
+            geoMancur.buatTeks(436, 78, "△ACD ~ △CBD ~ △ABC", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+            geoMancur.buatTeks(436, 108, "1) CD² = AD × BD", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: roseColor
+            });
+            geoMancur.buatTeks(436, 136, "2) AC² = AD × AB", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: tealColor
+            });
+            geoMancur.buatTeks(436, 164, "3) BC² = BD × BA", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: amberColor
+            });
+            geoMancur.buatTeks(436, 194, "4) AC × BC = AB × CD", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: blueColor
+            });
+            geoMancur.buatTeks(436, 220, "(dengan AB = AD + BD)", {
+                position: 'middle-center', fontSize: '10.5px', fill: mutedColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiKesebangunan();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiKesebangunan, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Koefisien Binomial</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Koefisien Binomial</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Rumus Dasar Koefisien Binomial</h2>
+            <p>
+                <strong>Koefisien binomial</strong>, yang dilambangkan dengan $\displaystyle \binom{n}{k}$ (dibaca "<em>$n$ pilih $k$</em>") atau $C(n, k)$ atau $_nC_k$, menyatakan banyaknya cara memilih $k$ unsur dari $n$ unsur berbeda tanpa memperhatikan urutan, sekaligus merupakan koefisien dari suku $x^{n-k}y^k$ dalam penjabaran perpangkatan dua suku $(x + y)^n$.
+            </p>
+            <p>
+                Untuk bilangan bulat tak negatif $n$ dan $k$ dengan $0 \le k \le n$, koefisien binomial dirumuskan sebagai:
+                $$\binom{n}{k} = \frac{n!}{k!(n - k)!} = \frac{n(n - 1)(n - 2)\cdots(n - k + 1)}{k!}$$
+                dengan ketentuan dasar:
+                $$\binom{n}{0} = 1, \qquad \binom{n}{n} = 1, \qquad \binom{n}{1} = n, \qquad \text{dan } \binom{n}{k} = 0 \text{ jika } k < 0 \text{ atau } k > n.$$
+            </p>
+
+            <h2>2. Segitiga Pascal dan Sifat-Sifat Koefisien Binomial</h2>
+            <p>
+                Jika nilai-nilai $\binom{n}{k}$ untuk $n = 0, 1, 2, \dots$ disusun membentuk piramida simetris, maka diperoleh <strong>Segitiga Pascal</strong>. Setiap bilangan di bagian dalam segitiga merupakan jumlah dari dua bilangan tepat di atasnya.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Sifat / Identitas</th>
+                            <th>Rumus Aljabar</th>
+                            <th>Makna &amp; Kegunaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>1. Sifat Simetri</strong></td>
+                            <td>$$\binom{n}{k} = \binom{n}{n - k}$$</td>
+                            <td class="text-left">Memilih $k$ objek untuk diambil sama artinya dengan memilih $n-k$ objek untuk ditinggalkan.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>2. Identitas Pascal</strong></td>
+                            <td>$$\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}$$</td>
+                            <td class="text-left">Dasar pembentukan Segitiga Pascal (jumlah dua suku bersebelahan di baris atas menghasilkan suku di bawahnya).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>3. Jumlah Satu Baris Penuh</strong></td>
+                            <td>$$\sum_{k=0}^{n} \binom{n}{k} = \binom{n}{0} + \binom{n}{1} + \dots + \binom{n}{n} = 2^n$$</td>
+                            <td class="text-left">Banyaknya seluruh himpunan bagian dari himpunan beranggota $n$ elemen (diperoleh dari substitusi $x=1, y=1$).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>4. Jumlah Berselang-seling</strong></td>
+                            <td>$$\sum_{k=0}^{n} (-1)^k \binom{n}{k} = \binom{n}{0} - \binom{n}{1} + \binom{n}{2} - \dots = 0$$</td>
+                            <td class="text-left">Jumlah koefisien berindeks genap sama dengan jumlah koefisien berindeks ganjil $= 2^{n-1}$ (untuk $n \ge 1$).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>5. Identitas Penyerapan (<em>Absorption</em>)</strong></td>
+                            <td>$$k\binom{n}{k} = n\binom{n - 1}{k - 1}$$</td>
+                            <td class="text-left">Sangat ampuh untuk menghitung deret berbobot seperti $\sum_{k=1}^{n} k\binom{n}{k} = n \cdot 2^{n-1}$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>6. Identitas Tongkat Hoki (<em>Hockey-Stick</em>)</strong></td>
+                            <td>$$\sum_{i=r}^{n} \binom{i}{r} = \binom{r}{r} + \binom{r+1}{r} + \dots + \binom{n}{r} = \binom{n + 1}{r + 1}$$</td>
+                            <td class="text-left">Jumlah bilangan menyusuri diagonal Segitiga Pascal mulai dari tepi $\binom{r}{r}$ akan berbelok tepat ke bawah kanan $\binom{n+1}{r+1}$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>7. Identitas Vandermonde</strong></td>
+                            <td>$$\sum_{k=0}^{r} \binom{m}{k}\binom{n}{r - k} = \binom{m + n}{r}$$</td>
+                            <td class="text-left">Khusus untuk $m = n = r$ menghasilkan jumlah kuadrat: $\displaystyle \sum_{k=0}^{n} \binom{n}{k}^2 = \binom{2n}{n}$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-pascal-hockey" style="width: 100%; max-width: 580px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Teorema Binomial Newton dan Suku ke-$r$</h2>
+            <p>
+                <strong>Teorema Binomial Newton</strong> memberikan rumus umum untuk menjabarkan perpangkatan aljabar dua suku $(a + b)^n$ untuk setiap bilangan bulat tak negatif $n$:
+                $$(a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n - k} b^k = \binom{n}{0}a^n + \binom{n}{1}a^{n-1}b + \binom{n}{2}a^{n-2}b^2 + \dots + \binom{n}{n}b^n$$
+            </p>
+            <ul>
+                <li>
+                    <strong>Banyaknya Suku:</strong> Penjabaran $(a + b)^n$ memiliki tepat $n + 1$ suku.
+                </li>
+                <li>
+                    <strong>Rumus Suku ke-$r$ ($U_r$ atau $T_r$):</strong> Karena indeks penjumlahan dimulai dari $k = 0$ (suku ke-1 menggunakan $k=0$, suku ke-2 menggunakan $k=1$, dst.), maka <strong>suku ke-$r$</strong> bersesuaian dengan $k = r - 1$:
+                    $$U_r = \binom{n}{r - 1} a^{n - (r - 1)} b^{r - 1}$$
+                </li>
+                <li>
+                    <strong>Jumlah Semua Koefisien Polinomial:</strong> Untuk mencari jumlah seluruh koefisien dari penjabaran $(px + qy)^n$, cukup substitusikan variabel $x = 1$ dan $y = 1$, sehingga jumlah semua koefisiennya adalah $(p + q)^n$.
+                </li>
+            </ul>
+
+            <h2>4. Interpretasi Geometri &amp; Ekspansi Multinomial</h2>
+            <p>
+                Koefisien binomial memiliki kaitan langsung dengan geometri lintasan pada kisi koordinat serta dapat diperluas menjadi lebih dari dua suku:
+            </p>
+            <ol>
+                <li>
+                    <strong>Lintasan Terpendek Pada Kisi (<em>Grid Paths</em>):</strong><br>
+                    Banyaknya lintasan terpendek dari titik asal $(0, 0)$ menuju titik $(a, b)$ pada jaringan jalan berbentuk kotak-kotak (hanya boleh melangkah ke <strong>Kanan</strong> atau ke <strong>Atas</strong>) sama dengan memilih posisi $a$ langkah ke kanan dari total $a + b$ langkah:
+                    $$\text{Banyak Lintasan} = \binom{a + b}{a} = \binom{a + b}{b} = \frac{(a + b)!}{a!\,b!}$$
+                </li>
+                <li>
+                    <strong>Teorema Trinomial dan Multinomial:</strong><br>
+                    Untuk penjabaran tiga suku $(a + b + c)^n$, koefisien dari suku $a^p b^q c^r$ (dengan syarat $p + q + r = n$ dan $p, q, r \ge 0$) diberikan oleh koefisien multinomial:
+                    $$\text{Koefisien } a^p b^q c^r \text{ pada } (a + b + c)^n = \binom{n}{p, q, r} = \frac{n!}{p!\,q!\,r!}$$
+                </li>
+            </ol>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-grid-paths" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Strategi Cepat Mencari Koefisien Suku Tertentu (Misal $x^m$) atau Suku Konstan:
+                <br>1. Tuliskan bentuk suku umum ke-$(k+1)$: $\displaystyle T_{k+1} = \binom{n}{k} (\text{suku pertama})^{n-k} (\text{suku kedua})^k$.
+                <br>2. Kumpulkan semua konstanta pengali di depan dan gabungkan pangkat variabel $x$ menjadi satu eksponen dalam $k$.
+                <br>3. Samakan pangkat $x$ tersebut dengan $m$ (atau samakan dengan $0$ jika mencari <strong>suku konstan / bebas dari $x$</strong>) untuk mendapatkan nilai $k$.
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk menguasai penerapan koefisien binomial dalam aljabar dan kombinatorika. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka langkah pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Mencari Suku Konstan (Bebas dari x) -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Tentukan nilai suku konstan (suku yang tidak memuat variabel $x$) dari penjabaran bentuk binomial:
+                    $$\left(2x^2 - \frac{1}{x}\right)^9$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Menuliskan rumus suku umum $T_{k+1}$</strong><br>
+                        Dari $\left(2x^2 - x^{-1}\right)^9$, diketahui $n = 9$, suku pertama $a = 2x^2$, dan suku kedua $b = -x^{-1}$.<br>
+                        Bentuk suku umum untuk indeks $k$ ($0 \le k \le 9$) adalah:
+                        $$T_{k+1} = \binom{9}{k} (2x^2)^{9 - k} (-x^{-1})^k$$
+                        Pisahkan koefisien angka dari pangkat variabel $x$:
+                        $$T_{k+1} = \binom{9}{k} \cdot 2^{9 - k} \cdot (-1)^k \cdot x^{2(9 - k)} \cdot x^{-k}$$
+                        $$T_{k+1} = \binom{9}{k} \cdot 2^{9 - k} \cdot (-1)^k \cdot x^{18 - 3k}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Mencari nilai $k$ untuk suku konstan ($x^0$)</strong><br>
+                        Agar suku tersebut tidak memuat variabel $x$, maka pangkat dari $x$ harus bernilai $0$:
+                        $$18 - 3k = 0 \implies 3k = 18 \implies k = 6$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menghitung nilai suku untuk $k = 6$</strong><br>
+                        Substitusikan $k = 6$ ke bagian koefisien:
+                        $$\text{Suku Konstan} = \binom{9}{6} \cdot 2^{9 - 6} \cdot (-1)^6 = \binom{9}{3} \cdot 2^3 \cdot 1$$
+                        $$\text{Suku Konstan} = \frac{9 \times 8 \times 7}{3 \times 2 \times 1} \times 8 = 84 \times 8 = 672$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai suku konstan dari penjabaran $\left(2x^2 - \frac{1}{x}\right)^9$ adalah $672$ (terletak pada suku ke-$7$).
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Identitas Tongkat Hoki & Deret Koefisien Binomial -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Hitunglah nilai dari kedua penjumlahan deret koefisien binomial berikut:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>$\displaystyle S_1 = \binom{3}{3} + \binom{4}{3} + \binom{5}{3} + \dots + \binom{11}{3}$</li>
+                        <li>$\displaystyle S_2 = 1\binom{10}{1} + 2\binom{10}{2} + 3\binom{10}{3} + \dots + 10\binom{10}{10}$</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Bagian 1: Menggunakan Identitas Tongkat Hoki (<em>Hockey-Stick Identity</em>)</strong><br>
+                        Perhatikan bahwa penjumlahan $S_1 = \sum_{i=3}^{11} \binom{i}{3}$ dimulai tepat dari $\binom{3}{3} = 1$ dengan angka bawah tetap $r = 3$ hingga angka atas $n = 11$. Berdasarkan identitas $\sum_{i=r}^{n} \binom{i}{r} = \binom{n+1}{r+1}$, diperoleh:
+                        $$S_1 = \binom{11 + 1}{3 + 1} = \binom{12}{4} = \frac{12 \times 11 \times 10 \times 9}{4 \times 3 \times 2 \times 1} = 495$$
+                    </p>
+                    <p>
+                        <strong>Bagian 2: Menggunakan Identitas Penyerapan $k\binom{n}{k} = n\binom{n-1}{k-1}$</strong><br>
+                        Untuk $n = 10$, setiap suku $k\binom{10}{k}$ dapat diubah menjadi $10\binom{9}{k-1}$:
+                        $$S_2 = \sum_{k=1}^{10} k\binom{10}{k} = \sum_{k=1}^{10} 10\binom{9}{k - 1} = 10 \left[\binom{9}{0} + \binom{9}{1} + \binom{9}{2} + \dots + \binom{9}{9}\right]$$
+                        Karena jumlah satu baris penuh $\sum_{j=0}^{9} \binom{9}{j} = 2^9 = 512$, maka:
+                        $$S_2 = 10 \times 2^9 = 10 \times 512 = 5.120$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari $S_1 = 495$ dan nilai dari $S_2 = 5.120$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Koefisien pada Ekspansi Trinomial -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Tentukan koefisien dari suku $x^5$ dalam hasil penjabaran trinomial $\left(1 + 2x - x^2\right)^6$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Menuliskan bentuk suku umum trinomial</strong><br>
+                        Berdasarkan rumus multinomial untuk $(1 + 2x - x^2)^6$, suku umumnya adalah:
+                        $$\frac{6!}{p!\,q!\,r!} (1)^p (2x)^q (-x^2)^r = \frac{6!}{p!\,q!\,r!} \cdot 2^q \cdot (-1)^r \cdot x^{q + 2r}$$
+                        dengan syarat bilangan bulat tak negatif $p, q, r \ge 0$ yang memenuhi:
+                        $$p + q + r = 6 \quad \text{dan} \quad q + 2r = 5$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Mencari semua kemungkinan pasangan $(p, q, r)$</strong><br>
+                        Uji nilai $r \ge 0$ yang memenuhi $q = 5 - 2r \ge 0$ dan $p = 6 - q - r \ge 0$:
+                        <ul>
+                            <li>Jika $r = 0 \implies q = 5 \implies p = 6 - 5 - 0 = 1$. Pasangan $(p, q, r) = (1, 5, 0)$.</li>
+                            <li>Jika $r = 1 \implies q = 3 \implies p = 6 - 3 - 1 = 2$. Pasangan $(p, q, r) = (2, 3, 1)$.</li>
+                            <li>Jika $r = 2 \implies q = 1 \implies p = 6 - 1 - 2 = 3$. Pasangan $(p, q, r) = (3, 1, 2)$.</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menghitung dan menjumlahkan koefisien dari ketiga kasus</strong><br>
+                        • Untuk $(1, 5, 0)$: $\displaystyle \frac{6!}{1!\,5!\,0!} \cdot 2^5 \cdot (-1)^0 = 6 \times 32 \times 1 = 192$<br>
+                        • Untuk $(2, 3, 1)$: $\displaystyle \frac{6!}{2!\,3!\,1!} \cdot 2^3 \cdot (-1)^1 = 60 \times 8 \times (-1) = -480$<br>
+                        • Untuk $(3, 1, 2)$: $\displaystyle \frac{6!}{3!\,1!\,2!} \cdot 2^1 \cdot (-1)^2 = 60 \times 2 \times 1 = 120$<br>
+                        Jumlahkan ketiga kontribusi koefisien tersebut:
+                        $$\text{Koefisien } x^5 = 192 - 480 + 120 = -168$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, koefisien dari suku $x^5$ pada penjabaran $(1 + 2x - x^2)^6$ adalah $-168$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiBinomial() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const subtleBg = isDark ? '#0f172a' : '#f8fafc';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const tealFill = isDark ? 'rgba(20, 184, 166, 0.22)' : 'rgba(13, 148, 136, 0.14)';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const amberFill = isDark ? 'rgba(251, 191, 36, 0.25)' : 'rgba(217, 119, 6, 0.18)';
+            const roseColor = isDark ? '#fb7185' : '#e11d48';
+            const roseFill = isDark ? 'rgba(251, 113, 133, 0.25)' : 'rgba(225, 29, 72, 0.16)';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI SEGITIGA PASCAL & IDENTITAS TONGKAT HOKI
+               ------------------------------------------------------------- */
+            const geoPascal = new GeoSVG('geosvg-pascal-hockey', 580, 310, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoPascal.buatPersegiPanjang(6, 6, 568, 298, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoPascal.buatTeks(290, 26, "Segitiga Pascal, Jumlah Baris (2ⁿ), & Pola Tongkat Hoki (Hockey-Stick)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor
+            });
+
+            const pascalRows = [
+                [1],
+                [1, 1],
+                [1, 2, 1],
+                [1, 3, 3, 1],
+                [1, 4, 6, 4, 1],
+                [1, 5, 10, 10, 5, 1]
+            ];
+
+            const centerX = 250;
+            const startY = 58;
+            const rowGap = 38;
+            const colGap = 52;
+
+            function getNodeCoord(n, k) {
+                const x = centerX + (k - n / 2) * colGap;
+                const y = startY + n * rowGap;
+                return [x, y];
+            }
+
+            // Gambar konektor Identitas Pascal C(3,1)+C(3,2)=C(4,2) (3 + 3 = 6)
+            const p31 = getNodeCoord(3, 1);
+            const p32 = getNodeCoord(3, 2);
+            const p42 = getNodeCoord(4, 2);
+            geoPascal.buatSegmen(p31[0], p31[1] + 13, p42[0] - 4, p42[1] - 14, { stroke: tealColor, strokeWidth: 2 });
+            geoPascal.buatSegmen(p32[0], p32[1] + 13, p42[0] + 4, p42[1] - 14, { stroke: tealColor, strokeWidth: 2 });
+
+            // Gambar lintasan Tongkat Hoki: C(1,1) + C(2,1) + C(3,1) + C(4,1) = C(5,2) -> 1 + 2 + 3 + 4 = 10
+            const hsNodes = [
+                getNodeCoord(1, 1),
+                getNodeCoord(2, 1),
+                getNodeCoord(3, 1),
+                getNodeCoord(4, 1),
+                getNodeCoord(5, 2)
+            ];
+            for (let i = 0; i < hsNodes.length - 1; i++) {
+                const isBlade = (i === hsNodes.length - 2);
+                geoPascal.buatSegmen(hsNodes[i][0], hsNodes[i][1], hsNodes[i + 1][0], hsNodes[i + 1][1], {
+                    stroke: isBlade ? roseColor : amberColor,
+                    strokeWidth: 4,
+                    strokeOpacity: 0.65
+                });
+            }
+
+            // Render seluruh sel Segitiga Pascal (n = 0 s.d. 5)
+            for (let n = 0; n < pascalRows.length; n++) {
+                const y = startY + n * rowGap;
+
+                // Label baris ke-n di sisi kiri
+                geoPascal.buatTeks(32, y, `n = ${n}`, {
+                    position: 'middle-left', fontWeight: 'bold', fontSize: '11px', fill: mutedColor
+                });
+
+                // Label jumlah baris 2^n di sisi kanan
+                geoPascal.buatTeks(455, y, `Σ = 2${['⁰','¹','²','³','⁴','⁵'][n]} = ${1 << n}`, {
+                    position: 'middle-left', fontWeight: 'bold', fontSize: '11px', fill: tealColor
+                });
+
+                for (let k = 0; k <= n; k++) {
+                    const [x, ny] = getNodeCoord(n, k);
+                    const val = pascalRows[n][k];
+
+                    // Cek apakah sel termasuk gagang tongkat hoki atau ujung bilah tongkat hoki
+                    const isShaft = (k === 1 && n >= 1 && n <= 4);
+                    const isBladeTip = (n === 5 && k === 2);
+                    const isPascalDemo = (n === 4 && k === 2);
+
+                    let boxFill = subtleBg;
+                    let boxStroke = borderColor;
+                    let textCol = textColor;
+
+                    if (isShaft) {
+                        boxFill = amberFill;
+                        boxStroke = amberColor;
+                        textCol = amberColor;
+                    } else if (isBladeTip) {
+                        boxFill = roseFill;
+                        boxStroke = roseColor;
+                        textCol = roseColor;
+                    } else if (isPascalDemo) {
+                        boxFill = tealFill;
+                        boxStroke = tealColor;
+                        textCol = tealColor;
+                    }
+
+                    geoPascal.buatLingkaran(x, ny, 14, {
+                        fill: boxFill, stroke: boxStroke, strokeWidth: (isShaft || isBladeTip || isPascalDemo) ? 2 : 1.3
+                    });
+                    geoPascal.buatTeks(x, ny, String(val), {
+                        position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textCol
+                    });
+                }
+            }
+
+            // Keterangan bawah
+            geoPascal.buatTeks(290, 282, "Tongkat Hoki (Kuning → Merah): 1 + 2 + 3 + 4 = 10   ⇔   C(1,1) + C(2,1) + C(3,1) + C(4,1) = C(5,2)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: amberColor
+            });
+
+
+            /* -------------------------------------------------------------
+               2. ILUSTRASI LINTASAN TERPENDEK PADA KISI (GRID PATHS)
+               ------------------------------------------------------------- */
+            const geoGrid = new GeoSVG('geosvg-grid-paths', 560, 255, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoGrid.buatPersegiPanjang(6, 6, 548, 243, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+
+            geoGrid.buatTeks(280, 26, "Interpretasi Geometri: Banyak Lintasan Terpendek dari A(0,0) ke B(4,3)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor
+            });
+
+            const gx0 = 55, gy0 = 205;
+            const cellW = 55, cellH = 44;
+            const cols = 4, rows = 3;
+
+            // Gambar garis kisi (4 kolom x 3 baris)
+            for (let c = 0; c <= cols; c++) {
+                const x = gx0 + c * cellW;
+                geoGrid.buatSegmen(x, gy0, x, gy0 - rows * cellH, {
+                    stroke: borderColor, strokeWidth: 1.4
+                });
+            }
+            for (let r = 0; r <= rows; r++) {
+                const y = gy0 - r * cellH;
+                geoGrid.buatSegmen(gx0, y, gx0 + cols * cellW, y, {
+                    stroke: borderColor, strokeWidth: 1.4
+                });
+            }
+
+            // Contoh 1 lintasan terpendek: K, A, K, K, A, A, K
+            const pathSteps = [
+                [0, 0], [1, 0], [1, 1], [2, 1], [3, 1], [3, 2], [3, 3], [4, 3]
+            ];
+            for (let i = 0; i < pathSteps.length - 1; i++) {
+                const [c1, r1] = pathSteps[i];
+                const [c2, r2] = pathSteps[i + 1];
+                geoGrid.buatVektor(
+                    gx0 + c1 * cellW, gy0 - r1 * cellH,
+                    gx0 + c2 * cellW, gy0 - r2 * cellH,
+                    { stroke: roseColor, strokeWidth: 3 }
+                );
+            }
+
+            // Tampilkan angka kombinasi C(c+r, c) di setiap simpul kisi
+            function comb(n, k) {
+                if (k < 0 || k > n) return 0;
+                let res = 1;
+                for (let i = 1; i <= k; i++) res = res * (n - i + 1) / i;
+                return res;
+            }
+
+            for (let c = 0; c <= cols; c++) {
+                for (let r = 0; r <= rows; r++) {
+                    const px = gx0 + c * cellW;
+                    const py = gy0 - r * cellH;
+                    const ways = comb(c + r, c);
+                    const isEndpoint = (c === 0 && r === 0) || (c === cols && r === rows);
+
+                    geoGrid.buatLingkaran(px, py, isEndpoint ? 12 : 10, {
+                        fill: isEndpoint ? tealFill : cardBg,
+                        stroke: isEndpoint ? tealColor : mutedColor,
+                        strokeWidth: isEndpoint ? 2 : 1.2
+                    });
+                    geoGrid.buatTeks(px, py, String(ways), {
+                        position: 'middle-center',
+                        fontWeight: 'bold',
+                        fontSize: '10px',
+                        fill: isEndpoint ? tealColor : textColor
+                    });
+                }
+            }
+
+            geoGrid.buatTeks(gx0, gy0 + 22, "A(0,0)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: tealColor
+            });
+            geoGrid.buatTeks(gx0 + cols * cellW, gy0 - rows * cellH - 18, "B(4,3)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: tealColor
+            });
+
+            // Panel penjelasan di sisi kanan
+            geoGrid.buatPersegiPanjang(310, 58, 228, 165, {
+                radius: 8, fill: subtleBg, stroke: borderColor, strokeWidth: 1.2
+            });
+            geoGrid.buatTeks(424, 80, "Total Langkah = 4 + 3 = 7", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+            geoGrid.buatTeks(424, 102, "• 4 langkah Kanan (K)", {
+                position: 'middle-center', fontSize: '11px', fill: mutedColor
+            });
+            geoGrid.buatTeks(424, 120, "• 3 langkah Atas (A)", {
+                position: 'middle-center', fontSize: '11px', fill: mutedColor
+            });
+            geoGrid.buatTeks(424, 148, "Contoh rute merah:", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: roseColor
+            });
+            geoGrid.buatTeks(424, 166, "K – A – K – K – A – A – K", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: roseColor
+            });
+            geoGrid.buatTeks(424, 198, "Banyak Rute = C(7, 4) = 35", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiBinomial();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiBinomial, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Integral Tentu</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Integral Tentu</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika \(\displaystyle\int_0^3 f(x) \, dx = -5\) dan \(\displaystyle\int_0^7 f(x) \, dx = 8\), maka nilai dari \(\displaystyle\int_3^7 f(x) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>3</li>
+                    <li>13</li>
+                    <li>\(-8\)</li>
+                    <li>5</li>
+                    <li>12</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Gunakan sifat <strong>penjumlahan selang (interval additivity)</strong> pada integral tentu:
+                        \[\int_a^c f(x) \, dx = \int_a^b f(x) \, dx + \int_b^c f(x) \, dx\]
+                    </p>
+                    <p>Pilih batas \(a = 0\), \(b = 3\), dan \(c = 7\):</p>
+                    \[\begin{aligned}
+                    \int_0^7 f(x) \, dx &= \int_0^3 f(x) \, dx + \int_3^7 f(x) \, dx \\
+                    8 &= -5 + \int_3^7 f(x) \, dx \\
+                    \int_3^7 f(x) \, dx &= 8 - (-5) \\
+                    &= 8 + 5 \\
+                    &= 13
+                    \end{aligned}\]
+
+                    <!-- Visualisasi GeoSVG Sifat Penjumlahan Selang -->
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div id="geosvg-aditif-selang" style="display:inline-flex; justify-content:center; max-width: 100%;"></div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+                            <em>Visualisasi sifat aditif selang: \(\int_a^c f(x) \, dx = \int_a^b f(x) \, dx + \int_b^c f(x) \, dx\)</em>
+                        </p>
+                    </div>
+
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(\displaystyle\int_3^7 f(x) \, dx = 13\).<br>
+                        <strong>JAWABAN: B</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+
+            <script>
+            (function() {
+                function gambarSelang() {
+                    const wadah = document.getElementById("geosvg-aditif-selang");
+                    if (!wadah || typeof GeoSVG === "undefined") return;
+                    wadah.innerHTML = "";
+
+                    const W = 460;
+                    const H = 240;
+                    const geo = new GeoSVG("geosvg-aditif-selang", W, H, { margin: 15 });
+                    geo.svg.style.width = "100%";
+                    geo.svg.style.maxWidth = `${W}px`;
+                    geo.svg.style.height = "auto";
+
+                    const ox = 50;
+                    const oy = 180;
+                    const scaleX = 48;
+                    const scaleY = 32;
+                    const toSvg = (x, y) => [ox + x * scaleX, oy - y * scaleY];
+
+                    // Sumbu X & Y
+                    geo.buatSegmen([ox - 15, oy], [ox + 7.6 * scaleX, oy], { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen([ox, oy + 25], [ox, oy - 4 * scaleY], { stroke: "#475569", strokeWidth: 1.5 });
+
+                    geo.buatTeks(ox + 7.6 * scaleX + 8, oy, "x", { fontSize: "13px", fill: "#334155", fontWeight: "bold", position: "middle-left" });
+                    geo.buatTeks(ox, oy - 4 * scaleY - 8, "y", { fontSize: "13px", fill: "#334155", fontWeight: "bold", position: "bottom-center" });
+
+                    // Kurva f(x)
+                    const f = x => 2.2 + 0.9 * Math.sin(0.7 * x - 0.5);
+
+                    // Daerah 1: [0, 3] (Arsir Biru Muda)
+                    const pts1 = [toSvg(0, 0)];
+                    for (let x = 0; x <= 3; x += 0.1) pts1.push(toSvg(x, f(x)));
+                    pts1.push(toSvg(3, 0));
+                    geo._el("polygon", {
+                        points: pts1.map(p => `${p[0]},${p[1]}`).join(" "),
+                        fill: "rgba(2, 132, 199, 0.18)",
+                        stroke: "none"
+                    }, geo.svg);
+
+                    // Daerah 2: [3, 7] (Arsir Hijau Muda)
+                    const pts2 = [toSvg(3, 0)];
+                    for (let x = 3; x <= 7; x += 0.1) pts2.push(toSvg(x, f(x)));
+                    pts2.push(toSvg(7, 0));
+                    geo._el("polygon", {
+                        points: pts2.map(p => `${p[0]},${p[1]}`).join(" "),
+                        fill: "rgba(16, 185, 129, 0.2)",
+                        stroke: "none"
+                    }, geo.svg);
+
+                    // Garis pembatas x = 0, x = 3, x = 7
+                    geo.buatSegmen(toSvg(3, 0), toSvg(3, f(3)), { stroke: "#0284c7", strokeWidth: 1.5, dashed: "3 3" });
+                    geo.buatSegmen(toSvg(7, 0), toSvg(7, f(7)), { stroke: "#059669", strokeWidth: 1.5, dashed: "3 3" });
+
+                    // Gambar garis kurva f(x)
+                    const curvePts = [];
+                    for (let x = 0; x <= 7.3; x += 0.1) curvePts.push(toSvg(x, f(x)));
+                    geo.buatPolyline(curvePts, { stroke: "#2563eb", strokeWidth: 2.2 });
+
+                    // Label titik batas
+                    [0, 3, 7].forEach(val => {
+                        const [px, py] = toSvg(val, 0);
+                        geo.buatSegmen([px, py - 3], [px, py + 3], { stroke: "#475569", strokeWidth: 1.2 });
+                        geo.buatTeks(px, py + 14, String(val), { fontSize: "11.5px", fill: "#334155", fontWeight: "bold", position: "top-center" });
+                    });
+
+                    // Teks Keterangan Daerah
+                    const pMid1 = toSvg(1.5, 1.2);
+                    geo.buatTeks(pMid1[0], pMid1[1], "∫₀³ f(x) dx", { fontSize: "11px", fill: "#0369a1", fontWeight: "bold", position: "middle-center" });
+
+                    const pMid2 = toSvg(5, 1.2);
+                    geo.buatTeks(pMid2[0], pMid2[1], "∫₃⁷ f(x) dx", { fontSize: "11px", fill: "#047857", fontWeight: "bold", position: "middle-center" });
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarSelang);
+                } else {
+                    gambarSelang();
+                }
+            })();
+            </script>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika \(\displaystyle\int_0^4 f(x) \, dx = 5\) dan \(\displaystyle\int_4^{10} f(x) \, dx = 10\), maka nilai dari \(2\displaystyle\int_0^{10} f(x) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>30</li>
+                    <li>32</li>
+                    <li>34</li>
+                    <li>36</li>
+                    <li>38</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gabungkan kedua interval integral:</p>
+                    \[\begin{aligned}
+                    \int_0^{10} f(x) \, dx &= \int_0^4 f(x) \, dx + \int_4^{10} f(x) \, dx \\
+                    &= 5 + 10 \\
+                    &= 15
+                    \end{aligned}\]
+                    <p>Maka nilai dari \(2\displaystyle\int_0^{10} f(x) \, dx\) adalah:</p>
+                    \[2 \cdot 15 = 30\]
+
+                    <div class="kesimpulan">
+                        Jadi, \(2\displaystyle\int_0^{10} f(x) \, dx = 30\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika \(\displaystyle\int_0^2 2f(x) \, dx = 4\) dan \(\displaystyle\int_4^2 3f(x) \, dx = 12\), maka nilai \(\displaystyle\int_0^4 f(x) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(-2\)</li>
+                    <li>\(-3\)</li>
+                    <li>\(-4\)</li>
+                    <li>\(-5\)</li>
+                    <li>\(-6\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Sederhanakan masing-masing nilai integral yang diketahui:</p>
+                    <p>1. Dari integral pertama:</p>
+                    \[2\int_0^2 f(x) \, dx = 4 \implies \int_0^2 f(x) \, dx = 2\]
+
+                    <p>2. Dari integral kedua (gunakan sifat pertukaran batas \(\int_b^a = -\int_a^b\)):</p>
+                    \[3\int_4^2 f(x) \, dx = 12 \implies \int_4^2 f(x) \, dx = 4 \implies \int_2^4 f(x) \, dx = -4\]
+
+                    <p>Gunakan sifat aditif selang integral:</p>
+                    \[\begin{aligned}
+                    \int_0^4 f(x) \, dx &= \int_0^2 f(x) \, dx + \int_2^4 f(x) \, dx \\
+                    &= 2 + (-4) \\
+                    &= -2
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai \(\displaystyle\int_0^4 f(x) \, dx = -2\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari \(\displaystyle\int_1^4 \left(2\sqrt{x} - \dfrac{3}{\sqrt{x}} - 1\right) dx\) adalah ....
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(\dfrac{1}{3}\)</li>
+                    <li>\(\dfrac{2}{3}\)</li>
+                    <li>1</li>
+                    <li>\(\dfrac{1}{2}\)</li>
+                    <li>3</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ubah fungsi ke dalam bentuk eksponen:</p>
+                    \[2\sqrt{x} - \dfrac{3}{\sqrt{x}} - 1 = 2x^{\frac{1}{2}} - 3x^{-\frac{1}{2}} - 1\]
+                    <p>Tentukan antiturunannya:</p>
+                    \[\begin{aligned}
+                    \int \left(2x^{\frac{1}{2}} - 3x^{-\frac{1}{2}} - 1\right) dx &= 2 \cdot \dfrac{2}{3}x^{\frac{3}{2}} - 3 \cdot 2x^{\frac{1}{2}} - x \\
+                    &= \dfrac{4}{3}x\sqrt{x} - 6\sqrt{x} - x
+                    \end{aligned}\]
+
+                    <p>Evaluasi pada batas \(x = 1\) sampai \(x = 4\):</p>
+                    \[\begin{aligned}
+                    \left[\dfrac{4}{3}x\sqrt{x} - 6\sqrt{x} - x\right]_1^4 &= \left[\dfrac{4}{3}(4)\sqrt{4} - 6\sqrt{4} - 4\right] - \left[\dfrac{4}{3}(1)\sqrt{1} - 6\sqrt{1} - 1\right] \\
+                    &= \left[\dfrac{16}{3}(2) - 12 - 4\right] - \left[\dfrac{4}{3} - 6 - 1\right] \\
+                    &= \left[\dfrac{32}{3} - 16\right] - \left[\dfrac{4}{3} - 7\right] \\
+                    &= \left[-\dfrac{16}{3}\right] - \left[-\dfrac{17}{3}\right] \\
+                    &= -\dfrac{16}{3} + \dfrac{17}{3} \\
+                    &= \dfrac{1}{3}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(\dfrac{1}{3}\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari \(\displaystyle\int_{-1}^1 (x^2 + 2x - 3) \, dx - \int_{-1}^1 (x^2 - 3x + 4) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>0</li>
+                    <li>7</li>
+                    <li>14</li>
+                    <li>\(-7\)</li>
+                    <li>\(-14\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena batas integral kedua suku sama (\([-1, 1]\)), gabungkan fungsi integran:</p>
+                    \[\begin{aligned}
+                    \int_{-1}^1 (x^2 + 2x - 3) \, dx - \int_{-1}^1 (x^2 - 3x + 4) \, dx &= \int_{-1}^1 \big((x^2 + 2x - 3) - (x^2 - 3x + 4)\big) dx \\
+                    &= \int_{-1}^1 (5x - 7) \, dx
+                    \end{aligned}\]
+
+                    <p>Integralkan:</p>
+                    \[\begin{aligned}
+                    \int_{-1}^1 (5x - 7) \, dx &= \left[\dfrac{5}{2}x^2 - 7x\right]_{-1}^1 \\
+                    &= \left(\dfrac{5}{2}(1)^2 - 7(1)\right) - \left(\dfrac{5}{2}(-1)^2 - 7(-1)\right) \\
+                    &= \left(\dfrac{5}{2} - 7\right) - \left(\dfrac{5}{2} + 7\right) \\
+                    &= \dfrac{5}{2} - 7 - \dfrac{5}{2} - 7 \\
+                    &= -14
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(-14\).<br>
+                        <strong>JAWABAN: E</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int_{-1}^2 x(x^2 + 1) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>5</li>
+                    <li>6</li>
+                    <li>\(\dfrac{21}{4}\)</li>
+                    <li>\(\dfrac{27}{4}\)</li>
+                    <li>\(\dfrac{25}{4}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kalikan faktor ke dalam tanda kurung:</p>
+                    \[x(x^2 + 1) = x^3 + x\]
+
+                    <p>Integralkan langsung:</p>
+                    \[\begin{aligned}
+                    \int_{-1}^2 (x^3 + x) \, dx &= \left[\dfrac{1}{4}x^4 + \dfrac{1}{2}x^2\right]_{-1}^2 \\
+                    &= \left(\dfrac{1}{4}(2)^4 + \dfrac{1}{2}(2)^2\right) - \left(\dfrac{1}{4}(-1)^4 + \dfrac{1}{2}(-1)^2\right) \\
+                    &= \left(\dfrac{16}{4} + \dfrac{4}{2}\right) - \left(\dfrac{1}{4} + \dfrac{1}{2}\right) \\
+                    &= (4 + 2) - \dfrac{3}{4} \\
+                    &= 6 - \dfrac{3}{4} \\
+                    &= \dfrac{21}{4}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai integral tersebut adalah \(\dfrac{21}{4}\).<br>
+                        <strong>JAWABAN: C</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika \(\displaystyle\int_1^p 3x\left(x + \dfrac{2}{3}\right) dx = 78\), maka nilai dari \(3p = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>18</li>
+                    <li>12</li>
+                    <li>15</li>
+                    <li>9</li>
+                    <li>6</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Jabarkan fungsi integran:</p>
+                    \[3x\left(x + \dfrac{2}{3}\right) = 3x^2 + 2x\]
+
+                    <p>Integralkan:</p>
+                    \[\begin{aligned}
+                    \int_1^p (3x^2 + 2x) \, dx &= \left[x^3 + x^2\right]_1^p \\
+                    &= (p^3 + p^2) - (1^3 + 1^2) \\
+                    &= p^3 + p^2 - 2
+                    \end{aligned}\]
+
+                    <p>Samakan dengan nilai yang diketahui:</p>
+                    \[\begin{aligned}
+                    p^3 + p^2 - 2 &= 78 \\
+                    p^3 + p^2 - 80 &= 0
+                    \end{aligned}\]
+
+                    <p>Faktorkan persamaan suku banyak (uji \(p = 4\)):</p>
+                    \[(4)^3 + (4)^2 - 80 = 64 + 16 - 80 = 0 \checkmark\]
+                    \[(p - 4)(p^2 + 5p + 20) = 0\]
+                    <p>Karena \(p^2 + 5p + 20 = 0\) memiliki diskriminan \(D = 5^2 - 4(1)(20) = -55 < 0\) (tidak ada akar real), maka satu-satunya nilai real adalah \(p = 4\).</p>
+
+                    <p>Sehingga nilai \(3p\):</p>
+                    \[3p = 3(4) = 12\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai \(3p = 12\).<br>
+                        <strong>JAWABAN: B</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari \(\displaystyle\int_2^3 (x^2 + 10x + 25) \, dx\) adalah ....
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(56\dfrac{1}{3}\)</li>
+                    <li>\(56\dfrac{2}{3}\)</li>
+                    <li>\(57\dfrac{1}{3}\)</li>
+                    <li>\(57\dfrac{2}{3}\)</li>
+                    <li>\(58\dfrac{1}{3}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Metode 1: Bentuk Kuadrat Sempurna</strong></p>
+                    <p>
+                        Perhatikan bahwa \(x^2 + 10x + 25 = (x + 5)^2\).
+                    </p>
+                    \[\begin{aligned}
+                    \int_2^3 (x + 5)^2 \, dx &= \left[\dfrac{1}{3}(x + 5)^3\right]_2^3 \\
+                    &= \dfrac{1}{3}(3 + 5)^3 - \dfrac{1}{3}(2 + 5)^3 \\
+                    &= \dfrac{1}{3}(8)^3 - \dfrac{1}{3}(7)^3 \\
+                    &= \dfrac{512 - 343}{3} \\
+                    &= \dfrac{169}{3} = 56\dfrac{1}{3}
+                    \end{aligned}\]
+
+                    <hr style="margin: 1.2rem 0; border: none; border-top: 1px dashed var(--border-color, #cbd5e1);">
+
+                    <p><strong>Metode 2: Integrasi Suku Demi Suku</strong></p>
+                    \[\begin{aligned}
+                    \int_2^3 (x^2 + 10x + 25) \, dx &= \left[\dfrac{1}{3}x^3 + 5x^2 + 25x\right]_2^3 \\
+                    &= \left(\dfrac{1}{3}(27) + 5(9) + 25(3)\right) - \left(\dfrac{1}{3}(8) + 5(4) + 25(2)\right) \\
+                    &= (9 + 45 + 75) - \left(\dfrac{8}{3} + 20 + 50\right) \\
+                    &= 129 - 72\dfrac{2}{3} = 56\dfrac{1}{3}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai integral tersebut adalah \(56\dfrac{1}{3}\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int_{\frac{1}{2}}^1 \left(\sin \pi x + \sqrt[3]{2x - 1}\right) dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(\dfrac{3\pi + 4}{4\pi}\)</li>
+                    <li>\(\dfrac{3\pi + 8}{8\pi}\)</li>
+                    <li>\(\dfrac{3\pi - 4}{4\pi}\)</li>
+                    <li>\(\dfrac{3}{4} + \pi\)</li>
+                    <li>\(\dfrac{3\pi - 8}{8\pi}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Tentukan antiturunan masing-masing suku:</p>
+                    \[\int \sin(\pi x) \, dx = -\dfrac{1}{\pi}\cos(\pi x)\]
+                    \[\int (2x - 1)^{\frac{1}{3}} \, dx = \dfrac{1}{2} \cdot \dfrac{3}{4}(2x - 1)^{\frac{4}{3}} = \dfrac{3}{8}(2x - 1)^{\frac{4}{3}}\]
+
+                    <p>Evaluasi pada batas \(x = \frac{1}{2}\) hingga \(x = 1\):</p>
+                    \[\begin{aligned}
+                    \left[-\dfrac{1}{\pi}\cos(\pi x) + \dfrac{3}{8}(2x - 1)^{\frac{4}{3}}\right]_{\frac{1}{2}}^1 &= \left(-\dfrac{1}{\pi}\cos\pi + \dfrac{3}{8}(2(1) - 1)^{\frac{4}{3}}\right) - \left(-\dfrac{1}{\pi}\cos\dfrac{\pi}{2} + \dfrac{3}{8}\big(2(\tfrac{1}{2}) - 1\big)^{\frac{4}{3}}\right) \\
+                    &= \left(-\dfrac{1}{\pi}(-1) + \dfrac{3}{8}(1)\right) - \left(-\dfrac{1}{\pi}(0) + 0\right) \\
+                    &= \dfrac{1}{\pi} + \dfrac{3}{8} \\
+                    &= \dfrac{8 + 3\pi}{8\pi} = \dfrac{3\pi + 8}{8\pi}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(\dfrac{3\pi+8}{8\pi}\).<br>
+                        <strong>JAWABAN: B</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Nilai dari \(\displaystyle\int_9^{16} \sqrt{x} \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(\dfrac{74}{3}\)</li>
+                    <li>\(\dfrac{76}{3}\)</li>
+                    <li>\(\dfrac{70}{3}\)</li>
+                    <li>24</li>
+                    <li>25</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Integralkan fungsi aljabar pangkat \(\frac{1}{2}\):</p>
+                    \[\begin{aligned}
+                    \int_9^{16} x^{\frac{1}{2}} \, dx &= \left[\dfrac{2}{3}x^{\frac{3}{2}}\right]_9^{16} \\
+                    &= \left[\dfrac{2}{3}x\sqrt{x}\right]_9^{16} \\
+                    &= \dfrac{2}{3}(16)\sqrt{16} - \dfrac{2}{3}(9)\sqrt{9} \\
+                    &= \dfrac{2}{3}(16)(4) - \dfrac{2}{3}(9)(3) \\
+                    &= \dfrac{128}{3} - 18 \\
+                    &= \dfrac{128 - 54}{3} \\
+                    &= \dfrac{74}{3} = 24\dfrac{2}{3}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil dari \(\displaystyle\int_9^{16} \sqrt{x} \, dx = \dfrac{74}{3}\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

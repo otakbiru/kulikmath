@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Integral Tak Tentu</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Integral Tak Tentu</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int \dfrac{x+2}{\sqrt{x^2+4x-6}} \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(\dfrac{1}{8}\sqrt{x^2+4x-6} + C\)</li>
+                    <li>\(\dfrac{1}{4}\sqrt{x^2+4x-6} + C\)</li>
+                    <li>\(\dfrac{1}{2}\sqrt{x^2+4x-6} + C\)</li>
+                    <li>\(\sqrt{x^2+4x-6} + C\)</li>
+                    <li>\(2\sqrt{x^2+4x-6} + C\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneId/203" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan teknik <strong>integral substitusi</strong>.</p>
+                    <p>
+                        Misalkan:
+                        \[u = x^2 + 4x - 6\]
+                        Diferensialkan kedua ruas:
+                        \[du = (2x + 4) \, dx = 2(x + 2) \, dx \implies (x + 2) \, dx = \dfrac{1}{2} \, du\]
+                    </p>
+                    <p>Substitusikan ke integral semula:</p>
+                    \[\begin{aligned}
+                    \int \dfrac{x+2}{\sqrt{x^2+4x-6}} \, dx &= \int \dfrac{1}{\sqrt{u}} \cdot \dfrac{1}{2} \, du \\
+                    &= \dfrac{1}{2} \int u^{-\frac{1}{2}} \, du \\
+                    &= \dfrac{1}{2} \cdot \left(\dfrac{u^{\frac{1}{2}}}{\frac{1}{2}}\right) + C \\
+                    &= \dfrac{1}{2} \cdot 2\sqrt{u} + C \\
+                    &= \sqrt{u} + C \\
+                    &= \sqrt{x^2+4x-6} + C
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil dari integral tersebut adalah \(\sqrt{x^2+4x-6} + C\).<br>
+                        <strong>JAWABAN: D</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int -720x^2\sqrt{9-4x^3} \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(80(9-4x^3)\sqrt{9-4x^3} + C\)</li>
+                    <li>\(60(9-4x^3)\sqrt{9-4x^3} + C\)</li>
+                    <li>\(40(9-4x^3)\sqrt{9-4x^3} + C\)</li>
+                    <li>\(20(9-4x^3)\sqrt{9-4x^3} + C\)</li>
+                    <li>\(10(9-4x^3)\sqrt{9-4x^3} + C\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneId/205" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan teknik substitusi:</p>
+                    <p>
+                        Misalkan:
+                        \[u = 9 - 4x^3\]
+                        Turunan dari \(u\) terhadap \(x\):
+                        \[du = -12x^2 \, dx\]
+                    </p>
+                    <p>
+                        Ubah bentuk koefisien \(-720x^2\) agar memuat faktor \(-12x^2\):
+                        \[-720x^2 = 60 \cdot (-12x^2)\]
+                        Sehingga \(-720x^2 \, dx = 60 \, du\).
+                    </p>
+                    <p>Substitusikan ke integral:</p>
+                    \[\begin{aligned}
+                    \int -720x^2\sqrt{9-4x^3} \, dx &= \int 60\sqrt{u} \, du \\
+                    &= 60 \int u^{\frac{1}{2}} \, du \\
+                    &= 60 \cdot \left(\dfrac{2}{3} u^{\frac{3}{2}}\right) + C \\
+                    &= 40 u^{\frac{3}{2}} + C \\
+                    &= 40 u\sqrt{u} + C \\
+                    &= 40(9 - 4x^3)\sqrt{9 - 4x^3} + C
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(40(9-4x^3)\sqrt{9-4x^3} + C\).<br>
+                        <strong>JAWABAN: C</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int \left(\dfrac{1}{\sqrt{x}} - \sqrt{x}\right)^2 \, dx\) adalah ....
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(\dfrac{1}{2}x^2 - 2x + \ln|x| + C\)</li>
+                    <li>\(x^2 - 2 + \dfrac{1}{x} + C\)</li>
+                    <li>\(x^2 - 2x + x^{-1} + C\)</li>
+                    <li>\(\dfrac{1}{2}x^2 - 2x + x^{-1} + C\)</li>
+                    <li>\(\dfrac{1}{2}x^2 - 2 + \dfrac{1}{x} + C\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneId/207" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Terlebih dahulu jabarkan bentuk kuadrat suku dua \((a - b)^2 = a^2 - 2ab + b^2\):
+                    </p>
+                    \[\begin{aligned}
+                    \left(\dfrac{1}{\sqrt{x}} - \sqrt{x}\right)^2 &= \left(\dfrac{1}{\sqrt{x}}\right)^2 - 2\left(\dfrac{1}{\sqrt{x}}\right)(\sqrt{x}) + (\sqrt{x})^2 \\
+                    &= \dfrac{1}{x} - 2 + x
+                    \end{aligned}\]
+
+                    <p>Integralkan suku demi suku:</p>
+                    \[\begin{aligned}
+                    \int \left(\dfrac{1}{\sqrt{x}} - \sqrt{x}\right)^2 \, dx &= \int \left(\dfrac{1}{x} - 2 + x\right) \, dx \\
+                    &= \int \dfrac{1}{x} \, dx - \int 2 \, dx + \int x \, dx \\
+                    &= \ln|x| - 2x + \dfrac{1}{2}x^2 + C \\
+                    &= \dfrac{1}{2}x^2 - 2x + \ln|x| + C
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(\dfrac{1}{2}x^2 - 2x + \ln|x| + C\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int 2\sqrt{x} \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(\sqrt{x} + C\)</li>
+                    <li>\(x\sqrt{x} + C\)</li>
+                    <li>\(2\sqrt{x} + C\)</li>
+                    <li>\(\dfrac{4}{3}x\sqrt{x} + C\)</li>
+                    <li>\(\dfrac{2}{3}x\sqrt{x} + C\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneId/207" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ubah bentuk akar menjadi pangkat pecahan, lalu gunakan aturan dasar integral tak tentu:</p>
+                    \[\int x^n \, dx = \dfrac{x^{n+1}}{n+1} + C \quad (n \ne -1)\]
+
+                    \[\begin{aligned}
+                    \int 2\sqrt{x} \, dx &= \int 2x^{\frac{1}{2}} \, dx \\
+                    &= 2 \cdot \dfrac{x^{\frac{1}{2} + 1}}{\frac{1}{2} + 1} + C \\
+                    &= 2 \cdot \dfrac{x^{\frac{3}{2}}}{\frac{3}{2}} + C \\
+                    &= 2 \cdot \dfrac{2}{3}x^{\frac{3}{2}} + C \\
+                    &= \dfrac{4}{3}x^{\frac{3}{2}} + C \\
+                    &= \dfrac{4}{3}x\sqrt{x} + C
+                    \end{aligned}\]
+
+                    <!-- Visualisasi GeoSVG: Keluarga Kurva Antiturunan F(x) = 4/3 x^(3/2) + C -->
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div id="geosvg-antiturunan" style="display:inline-flex; justify-content:center; max-width: 100%;"></div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+                            <em>Visualisasi geometris: Keluarga kurva antiturunan \(F(x) = \frac{4}{3}x^{3/2} + C\) yang bergeser vertikal sejauh konstanta \(C\)</em>
+                        </p>
+                    </div>
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(\dfrac{4}{3}x\sqrt{x} + C\).<br>
+                        <strong>JAWABAN: D</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+
+            <script>
+            (function() {
+                function gambarAntiturunan() {
+                    const wadah = document.getElementById("geosvg-antiturunan");
+                    if (!wadah || typeof GeoSVG === "undefined") return;
+                    wadah.innerHTML = "";
+
+                    const W = 460;
+                    const H = 280;
+                    const geo = new GeoSVG("geosvg-antiturunan", W, H, { margin: 15 });
+                    geo.svg.style.width = "100%";
+                    geo.svg.style.maxWidth = `${W}px`;
+                    geo.svg.style.height = "auto";
+
+                    const ox = 55;
+                    const oy = 210;
+                    const scaleX = 90;
+                    const scaleY = 28;
+                    const toSvg = (x, y) => [ox + x * scaleX, oy - y * scaleY];
+
+                    // Grid pembantu halus
+                    for (let gx = 1; gx <= 4; gx++) {
+                        const [p1x, p1y] = toSvg(gx, -1.5);
+                        const [p2x, p2y] = toSvg(gx, 6.5);
+                        geo.buatSegmen([p1x, p1y], [p2x, p2y], { stroke: "#e2e8f0", strokeWidth: 0.8, dashed: "2 2" });
+                    }
+                    for (let gy = -1; gy <= 6; gy++) {
+                        const [p1x, p1y] = toSvg(-0.3, gy);
+                        const [p2x, p2y] = toSvg(4.2, gy);
+                        geo.buatSegmen([p1x, p1y], [p2x, p2y], { stroke: "#e2e8f0", strokeWidth: 0.8, dashed: "2 2" });
+                    }
+
+                    // Sumbu X & Y
+                    const [ax1] = toSvg(-0.3, 0);
+                    const [ax2] = toSvg(4.3, 0);
+                    const [, ay1] = toSvg(0, -1.6);
+                    const [, ay2] = toSvg(0, 6.8);
+
+                    geo.buatSegmen([ax1, oy], [ax2, oy], { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen([ox, ay1], [ox, ay2], { stroke: "#475569", strokeWidth: 1.5 });
+
+                    // Label Sumbu
+                    geo.buatTeks(ax2 + 8, oy, "x", { fontSize: "13px", fill: "#334155", fontWeight: "bold", position: "middle-left" });
+                    geo.buatTeks(ox, ay2 - 8, "y", { fontSize: "13px", fill: "#334155", fontWeight: "bold", position: "bottom-center" });
+                    geo.buatTeks(ox - 10, oy + 14, "0", { fontSize: "11px", fill: "#64748b" });
+
+                    // Ticks sumbu X
+                    [1, 2, 3, 4].forEach(val => {
+                        const [px, py] = toSvg(val, 0);
+                        geo.buatSegmen([px, py - 3], [px, py + 3], { stroke: "#475569", strokeWidth: 1 });
+                        geo.buatTeks(px, py + 14, String(val), { fontSize: "11px", fill: "#64748b", position: "top-center" });
+                    });
+
+                    // Ticks sumbu Y
+                    [2, 4, 6].forEach(val => {
+                        const [px, py] = toSvg(0, val);
+                        geo.buatSegmen([px - 3, py], [px + 3, py], { stroke: "#475569", strokeWidth: 1 });
+                        geo.buatTeks(px - 6, py, String(val), { fontSize: "11px", fill: "#64748b", position: "middle-right" });
+                    });
+
+                    // Kurva keluarga antiturunan F(x) = (4/3)*x^(1.5) + C untuk C = 2, C = 0, C = -1
+                    const kurvaData = [
+                        { c: 2, warna: "#0284c7", label: "C = +2" },
+                        { c: 0, warna: "#16a34a", label: "C = 0" },
+                        { c: -1, warna: "#9333ea", label: "C = -1" }
+                    ];
+
+                    kurvaData.forEach(item => {
+                        const pts = [];
+                        const steps = 60;
+                        for (let i = 0; i <= steps; i++) {
+                            const x = (i / steps) * 2.8;
+                            const y = (4 / 3) * Math.pow(x, 1.5) + item.c;
+                            pts.push(toSvg(x, y));
+                        }
+                        geo.buatPolyline(pts, { stroke: item.warna, strokeWidth: 2 });
+                        const pLabel = pts[pts.length - 1];
+                        geo.buatTeks(pLabel[0] + 6, pLabel[1], `F(x), ${item.label}`, {
+                            fontSize: "11px",
+                            fill: item.warna,
+                            fontWeight: "bold",
+                            position: "middle-left"
+                        });
+                    });
+
+                    // Titik potong sumbu-Y masing-masing kurva
+                    kurvaData.forEach(item => {
+                        geo.buatTitik(toSvg(0, item.c), { size: 3.5, color: item.warna });
+                    });
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarAntiturunan);
+                } else {
+                    gambarAntiturunan();
+                }
+            })();
+            </script>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int \dfrac{e^{8+\frac{1}{x}}}{x^2} \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(\dfrac{e^{8+\frac{1}{x}}}{x^2} + C\)</li>
+                    <li>\(-\dfrac{e^{8+\frac{1}{x}}}{x^2} + C\)</li>
+                    <li>\(e^{8+\frac{1}{x}} + C\)</li>
+                    <li>\(-e^{8+\frac{1}{x}} + C\)</li>
+                    <li>\(e^{8+\frac{1}{x}} + x + C\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneId" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan teknik <strong>integral substitusi eksponensial</strong>.</p>
+                    <p>
+                        Misalkan:
+                        \[u = 8 + \dfrac{1}{x} = 8 + x^{-1}\]
+                        Diferensialkan kedua ruas:
+                        \[du = -x^{-2} \, dx = -\dfrac{1}{x^2} \, dx \implies \dfrac{1}{x^2} \, dx = -du\]
+                    </p>
+                    <p>Substitusikan ke dalam integral:</p>
+                    \[\begin{aligned}
+                    \int \dfrac{e^{8+\frac{1}{x}}}{x^2} \, dx &= \int e^u (-du) \\
+                    &= -\int e^u \, du \\
+                    &= -e^u + C \\
+                    &= -e^{8+\frac{1}{x}} + C
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(-e^{8+\frac{1}{x}} + C\).<br>
+                        <strong>JAWABAN: D</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

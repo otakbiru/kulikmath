@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Himpunan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Himpunan</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Cara Penyajian Himpunan</h2>
+            <p>
+                Dalam matematika, <strong>himpunan</strong> adalah kumpulan objek atau benda yang didefinisikan dengan jelas (<em>well-defined</em>), sehingga kita dapat menentukan dengan tegas apakah suatu objek termasuk anggota himpunan tersebut atau bukan.
+            </p>
+            <ul>
+                <li><strong>Notasi Keanggotaan:</strong> Jika objek $x$ merupakan anggota dari himpunan $A$, ditulis $x \in A$. Sebaliknya, jika $x$ bukan anggota himpunan $A$, ditulis $x \notin A$.</li>
+                <li><strong>Kardinalitas Himpunan:</strong> Banyaknya anggota yang berbeda di dalam suatu himpunan berhingga $A$ disebut kardinalitas himpunan $A$, dinotasikan dengan $n(A)$ atau $|A|$.</li>
+            </ul>
+            <p>
+                Suatu himpunan umumnya disajikan dalam tiga cara:
+            </p>
+            <ol>
+                <li><strong>Deskripsi (Kata-kata):</strong> Menyebutkan syarat atau sifat keanggotaannya, contoh: $A = \{\text{bilangan prima kurang dari } 10\}$.</li>
+                <li><strong>Tabulasi / Roster (Mendaftarkan Anggota):</strong> Menuliskan semua anggotanya di dalam kurung kurawal, contoh: $A = \{2, 3, 5, 7\}$.</li>
+                <li><strong>Notasi Pembentuk Himpunan:</strong> Menuliskan syarat variabel anggotanya secara aljabar, contoh: $A = \{x \mid x < 10, x \in \text{bilangan prima}\}$.</li>
+            </ol>
+
+            <h2>2. Jenis-Jenis Himpunan & Hubungan Antarhimpunan</h2>
+            <p>
+                Berikut adalah konsep dasar mengenai himpunan khusus dan relasi antara dua himpunan:
+            </p>
+            <ul>
+                <li>
+                    <strong>Himpunan Kosong ($\emptyset$ atau $\{\}$):</strong> Himpunan yang tidak memiliki anggota sama sekali, sehingga $n(\emptyset) = 0$.
+                </li>
+                <li>
+                    <strong>Himpunan Semesta ($S$ atau $U$):</strong> Himpunan yang memuat seluruh objek atau anggota yang sedang dibicarakan.
+                </li>
+                <li>
+                    <strong>Himpunan Bagian (Subset):</strong> Himpunan $A$ disebut himpunan bagian dari $B$ (ditulis $A \subseteq B$) jika setiap anggota $A$ juga merupakan anggota $B$.
+                    <ul>
+                        <li>Jika $n(A) = k$, maka banyaknya seluruh himpunan bagian dari $A$ adalah:
+                            $$N = 2^{n(A)} = 2^k$$
+                        </li>
+                        <li>Banyaknya himpunan bagian dari $A$ yang tepat memiliki $r$ anggota dapat dihitung menggunakan kombinasi atau Segitiga Pascal:
+                            $$C(k, r) = \binom{k}{r} = \frac{k!}{r!(k - r)!}$$
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Himpunan Kuasa (Power Set, $P(A)$):</strong> Himpunan yang seluruh anggotanya merupakan semua himpunan bagian dari $A$, dengan kardinalitas $n(P(A)) = 2^{n(A)}$.
+                </li>
+                <li>
+                    <strong>Himpunan yang Sama ($A = B$) vs Ekuivalen ($A \sim B$):</strong>
+                    <ul>
+                        <li>$A = B$ jika dan hanya jika keduanya memiliki anggota yang <strong>persis sama</strong> ($A \subseteq B$ dan $B \subseteq A$).</li>
+                        <li>$A \sim B$ (ekuivalen) jika keduanya memiliki <strong>banyak anggota yang sama</strong>, yaitu $n(A) = n(B)$.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>3. Operasi-Operasi pada Himpunan</h2>
+            <p>
+                Misalkan $A$ dan $B$ adalah himpunan-himpunan di dalam himpunan semesta $S$. Operasi dasar pada himpunan dirangkum dalam tabel berikut:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Operasi</th>
+                            <th>Simbol</th>
+                            <th>Definisi Formal</th>
+                            <th>Makna Singkat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Irisan</strong> (Intersection)</td>
+                            <td>$$A \cap B$$</td>
+                            <td>$$\{x \mid x \in A \text{ dan } x \in B\}$$</td>
+                            <td class="text-left">Anggota yang ada di $A$ <strong>sekaligus</strong> di $B$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Gabungan</strong> (Union)</td>
+                            <td>$$A \cup B$$</td>
+                            <td>$$\{x \mid x \in A \text{ atau } x \in B\}$$</td>
+                            <td class="text-left">Seluruh anggota $A$ maupun $B$.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Selisih</strong> (Difference)</td>
+                            <td>$$A - B \text{ atau } A \setminus B$$</td>
+                            <td>$$\{x \mid x \in A \text{ dan } x \notin B\}$$</td>
+                            <td class="text-left">Anggota $A$ saja (tidak termasuk anggota $B$).</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Beda Setangkup</strong> (Symmetric Diff.)</td>
+                            <td>$$A \oplus B \text{ atau } A \Delta B$$</td>
+                            <td>$$(A \cup B) - (A \cap B)$$</td>
+                            <td class="text-left">Anggota yang ada di $A$ saja atau $B$ saja, tetapi <strong>bukan keduanya</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Komplemen</strong> (Complement)</td>
+                            <td>$$A^c \text{ atau } A'$$</td>
+                            <td>$$\{x \mid x \in S \text{ dan } x \notin A\}$$</td>
+                            <td class="text-left">Anggota semesta $S$ yang berada di luar $A$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-operasi-venn" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Sifat dan Hukum-Hukum Aljabar Himpunan</h2>
+            <p>
+                Dalam menyederhanakan ekspresi himpunan yang kompleks (sering muncul pada soal SNBT dan olimpiade), berlaku hukum-hukum aljabar himpunan berikut:
+            </p>
+            <ul>
+                <li><strong>Hukum Idempoten:</strong> $A \cup A = A$ dan $A \cap A = A$</li>
+                <li><strong>Hukum Identitas:</strong> $A \cup \emptyset = A$, $A \cap S = A$, $A \cup S = S$, dan $A \cap \emptyset = \emptyset$</li>
+                <li><strong>Hukum Komplemen:</strong> $A \cup A^c = S$, $A \cap A^c = \emptyset$, dan $(A^c)^c = A$</li>
+                <li><strong>Hukum Komutatif:</strong> $A \cup B = B \cup A$ dan $A \cap B = B \cap A$</li>
+                <li><strong>Hukum Asosiatif:</strong> $(A \cup B) \cup C = A \cup (B \cup C)$ dan $(A \cap B) \cap C = A \cap (B \cap C)$</li>
+                <li><strong>Hukum Distributif:</strong>
+                    $$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$$
+                    $$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$$
+                </li>
+                <li><strong>Hukum De Morgan:</strong>
+                    $$(A \cup B)^c = A^c \cap B^c \quad \text{dan} \quad (A \cap B)^c = A^c \cup B^c$$
+                </li>
+                <li><strong>Identitas Selisih:</strong> $A - B = A \cap B^c$</li>
+            </ul>
+
+            <h2>5. Prinsip Inklusi-Eksklusi (Kardinalitas Gabungan)</h2>
+            <p>
+                Untuk menghitung banyaknya anggota dari gabungan dua atau tiga himpunan yang saling beririsan pada soal cerita survei, kita menggunakan rumus <strong>Prinsip Inklusi-Eksklusi</strong>:
+            </p>
+            <ul>
+                <li>
+                    <strong>Untuk Dua Himpunan ($A$ dan $B$) di dalam Semesta $S$:</strong>
+                    $$n(A \cup B) = n(A) + n(B) - n(A \cap B)$$
+                    $$n(S) = n(A \cup B) + n(A \cup B)^c$$
+                </li>
+                <li>
+                    <strong>Untuk Tiga Himpunan ($A$, $B$, dan $C$):</strong>
+                    $$n(A \cup B \cup C) = n(A) + n(B) + n(C) - n(A \cap B) - n(A \cap C) - n(B \cap C) + n(A \cap B \cap C)$$
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-venn3" style="width: 100%; max-width: 520px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Tips Cepat Soal Cerita Diagram Venn: Selalu mulai mengisi angka pada Diagram Venn dari daerah <strong>irisan paling dalam</strong> terlebih dahulu (yaitu $n(A \cap B)$ untuk 2 himpunan, atau $n(A \cap B \cap C)$ untuk 3 himpunan), kemudian kurangi untuk mendapatkan daerah "hanya $A$", "hanya $B$", dan seterusnya!
+            </div>
+
+            <h2>6. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memahami cara menentukan himpunan bagian, menerapkan rumus Inklusi-Eksklusi, serta menganalisis operasi daerah arsiran pada Diagram Venn. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Diketahui himpunan $P = \{x \mid 1 < x < 15, x \text{ adalah bilangan prima}\}$. Tentukan:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Banyaknya seluruh himpunan bagian dari $P$.</li>
+                        <li>Banyaknya himpunan bagian dari $P$ yang memiliki tepat $3$ anggota.</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Pertama, kita daftarkan terlebih dahulu seluruh anggota himpunan $P$ (bilangan prima antara $1$ dan $15$):
+                        $$P = \{2, 3, 5, 7, 11, 13\}$$
+                        Dari daftar tersebut, diperoleh kardinalitas himpunan $P$ adalah $n(P) = 6$.
+                    </p>
+                    <p>
+                        <strong>1. Banyaknya seluruh himpunan bagian dari $P$:</strong>
+                        $$N = 2^{n(P)} = 2^6 = 64$$
+                    </p>
+                    <p>
+                        <strong>2. Banyaknya himpunan bagian dari $P$ yang tepat memiliki $3$ anggota:</strong><br>
+                        Kita gunakan rumus kombinasi $C(6, 3)$:
+                        $$\binom{6}{3} = \frac{6!}{3!(6 - 3)!} = \frac{6 \times 5 \times 4 \times 3!}{3 \times 2 \times 1 \times 3!} = 20$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, banyaknya seluruh himpunan bagian dari $P$ adalah $64$, dan yang memiliki tepat $3$ anggota ada sebanyak $20$ himpunan.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Dari survei terhadap $50$ siswa kelas XII mengenai minat ekstrakurikuler, diketahui $28$ siswa menyukai Basket, $25$ siswa menyukai Futsal, dan $7$ siswa tidak menyukai keduanya. Tentukan banyaknya siswa yang <strong>hanya menyukai salah satu</strong> dari kedua olahraga tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Misalkan $S$ adalah himpunan seluruh siswa ($n(S) = 50$), $B$ adalah himpunan penyuka Basket ($n(B) = 28$), dan $F$ adalah himpunan penyuka Futsal ($n(F) = 25$). Banyaknya siswa yang tidak menyukai keduanya adalah $n(B \cup F)^c = 7$.
+                    </p>
+                    <p>
+                        Pertama, cari banyaknya siswa yang menyukai minimal satu olahraga, yaitu $n(B \cup F)$:
+                        $$n(B \cup F) = n(S) - n(B \cup F)^c = 50 - 7 = 43 \text{ siswa}$$
+                    </p>
+                    <p>
+                        Kedua, cari banyaknya siswa yang menyukai keduanya ($n(B \cap F)$) dengan rumus Inklusi-Eksklusi:
+                        $$n(B \cup F) = n(B) + n(F) - n(B \cap F)$$
+                        $$43 = 28 + 25 - n(B \cap F)$$
+                        $$n(B \cap F) = 53 - 43 = 10 \text{ siswa}$$
+                    </p>
+                    <p>
+                        Siswa yang <strong>hanya menyukai salah satu</strong> olahraga merupakan beda setangkup $n(B \oplus F)$:
+                        <ul>
+                            <li>Hanya menyukai Basket: $n(B - F) = 28 - 10 = 18$ siswa.</li>
+                            <li>Hanya menyukai Futsal: $n(F - B) = 25 - 10 = 15$ siswa.</li>
+                        </ul>
+                        $$n(B \oplus F) = 18 + 15 = 33 \text{ siswa}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, banyaknya siswa yang hanya menyukai tepat satu olahraga tersebut adalah $33$ siswa.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Dalam suatu seleksi beasiswa yang diikuti oleh sejumlah mahasiswa, peserta diwajibkan mengikuti tes Matematika ($M$), Bahasa Inggris ($I$), dan Penalaran Logis ($L$). Diketahui data kelulusan berikut:
+                    <ul style="margin-top: 0.4rem;">
+                        <li>$20$ orang lulus tes Matematika, $22$ orang lulus Bahasa Inggris, dan $18$ orang lulus Penalaran Logis.</li>
+                        <li>$10$ orang lulus Matematika dan Bahasa Inggris, $8$ orang lulus Matematika dan Penalaran Logis, serta $9$ orang lulus Bahasa Inggris dan Penalaran Logis.</li>
+                        <li>$5$ orang dinyatakan lulus ketiga tes tersebut, dan $4$ orang gagal di semua tes.</li>
+                    </ul>
+                    Tentukan jumlah seluruh mahasiswa yang mengikuti seleksi tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Diketahui dari soal:
+                        $$n(M) = 20, \quad n(I) = 22, \quad n(L) = 18$$
+                        $$n(M \cap I) = 10, \quad n(M \cap L) = 8, \quad n(I \cap L) = 9$$
+                        $$n(M \cap I \cap L) = 5, \quad n(M \cup I \cup L)^c = 4$$
+                    </p>
+                    <p>
+                        Gunakan rumus Prinsip Inklusi-Eksklusi untuk tiga himpunan:
+                        $$n(M \cup I \cup L) = n(M) + n(I) + n(L) - n(M \cap I) - n(M \cap L) - n(I \cap L) + n(M \cap I \cap L)$$
+                        $$n(M \cup I \cup L) = 20 + 22 + 18 - 10 - 8 - 9 + 5$$
+                        $$n(M \cup I \cup L) = 60 - 27 + 5 = 38 \text{ orang}$$
+                    </p>
+                    <p>
+                        Jumlah seluruh peserta seleksi $n(S)$ adalah gabungan mahasiswa yang lulus minimal satu tes ditambah yang gagal di semua tes:
+                        $$n(S) = n(M \cup I \cup L) + n(M \cup I \cup L)^c = 38 + 4 = 42 \text{ orang}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, jumlah seluruh mahasiswa yang mengikuti seleksi beasiswa tersebut adalah $42$ orang.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiHimpunan() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const subtleBg = isDark ? '#132a2e' : '#f0fdfa';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const shadeFill = isDark ? 'rgba(20, 184, 166, 0.38)' : 'rgba(13, 148, 136, 0.28)';
+
+            /* -------------------------------------------------------------
+               1. EMPAT PANEL OPERASI HIMPUNAN (IRISAN, GABUNGAN, SELISIH, BEDA SETANGKUP)
+               ------------------------------------------------------------- */
+            const geoOp = new GeoSVG('geosvg-operasi-venn', 560, 295, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Judul Utama
+            geoOp.buatTeks(280, 16, "Visualisasi Daerah Hasil Operasi Dua Himpunan (Diagram Venn)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: textColor
+            });
+
+            const panels = [
+                { x: 15, y: 34, title: "Irisan: A ∩ B", type: "intersect" },
+                { x: 290, y: 34, title: "Gabungan: A ∪ B", type: "union" },
+                { x: 15, y: 168, title: "Selisih: A - B", type: "diff" },
+                { x: 290, y: 168, title: "Beda Setangkup: A ⊕ B", type: "symdiff" }
+            ];
+
+            panels.forEach(p => {
+                const pw = 255, ph = 118;
+                const r = 36;
+                const cAx = p.x + 105, cAy = p.y + 56;
+                const cBx = p.x + 150, cBy = p.y + 56;
+
+                // Kotak Semesta S
+                geoOp.buatPersegiPanjang(p.x, p.y, pw, ph, {
+                    radius: 8, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+                });
+                geoOp.buatTeks(p.x + 12, p.y + 14, "S", {
+                    position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: mutedColor
+                });
+
+                // Daerah Arsiran berdasarkan Jenis Operasi
+                if (p.type === "union") {
+                    geoOp.buatLingkaran([cAx, cAy], r, { fill: shadeFill, stroke: 'none' });
+                    geoOp.buatLingkaran([cBx, cBy], r, { fill: shadeFill, stroke: 'none' });
+                } else if (p.type === "diff") {
+                    // Hanya A: arsir A lalu timpa B dengan warna latar kotak
+                    geoOp.buatLingkaran([cAx, cAy], r, { fill: shadeFill, stroke: 'none' });
+                    geoOp.buatLingkaran([cBx, cBy], r, { fill: cardBg, stroke: 'none' });
+                } else if (p.type === "intersect") {
+                    // Titik potong kedua lingkaran berjarak d = 45, r = 36
+                    const pot = geoOp.hitungTitikPotong(
+                        { pusat: [cAx, cAy], r: r },
+                        { pusat: [cBx, cBy], r: r }
+                    );
+                    if (pot && pot.length === 2) {
+                        const dLensa = `M ${pot[0][0]} ${pot[0][1]} A ${r} ${r} 0 0 1 ${pot[1][0]} ${pot[1][1]} A ${r} ${r} 0 0 1 ${pot[0][0]} ${pot[0][1]} Z`;
+                        const pathLensa = geoOp._el('path', { d: dLensa, fill: shadeFill, stroke: 'none' });
+                        geoOp._tambah(pathLensa, 'shapes');
+                    }
+                } else if (p.type === "symdiff") {
+                    // Beda setangkup: arsir A dan B, lalu timpa bagian irisan dengan warna latar kotak
+                    geoOp.buatLingkaran([cAx, cAy], r, { fill: shadeFill, stroke: 'none' });
+                    geoOp.buatLingkaran([cBx, cBy], r, { fill: shadeFill, stroke: 'none' });
+                    const pot = geoOp.hitungTitikPotong(
+                        { pusat: [cAx, cAy], r: r },
+                        { pusat: [cBx, cBy], r: r }
+                    );
+                    if (pot && pot.length === 2) {
+                        const dLensa = `M ${pot[0][0]} ${pot[0][1]} A ${r} ${r} 0 0 1 ${pot[1][0]} ${pot[1][1]} A ${r} ${r} 0 0 1 ${pot[0][0]} ${pot[0][1]} Z`;
+                        const pathClear = geoOp._el('path', { d: dLensa, fill: cardBg, stroke: 'none' });
+                        geoOp._tambah(pathClear, 'shapes');
+                    }
+                }
+
+                // Garis Tepi Lingkaran A dan B
+                geoOp.buatLingkaran([cAx, cAy], r, { fill: 'none', stroke: tealColor, strokeWidth: 2 });
+                geoOp.buatLingkaran([cBx, cBy], r, { fill: 'none', stroke: amberColor, strokeWidth: 2 });
+
+                // Label A dan B
+                geoOp.buatTeks(cAx - 20, cAy, "A", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor });
+                geoOp.buatTeks(cBx + 20, cBy, "B", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor });
+
+                // Label Judul Operasi di Bawah Panel
+                geoOp.buatTeks(p.x + pw / 2, p.y + ph - 12, p.title, {
+                    position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: textColor
+                });
+            });
+
+            /* -------------------------------------------------------------
+               2. DIAGRAM VENN 3 HIMPUNAN (PRINSIP INKLUSI-EKSKLUSI CONTOH 3)
+               ------------------------------------------------------------- */
+            const geoV3 = new GeoSVG('geosvg-venn3', 520, 290, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Kotak Semesta S
+            geoV3.buatPersegiPanjang(20, 28, 480, 250, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.8
+            });
+            geoV3.buatTeks(260, 14, "Distribusi Daerah Diagram Venn 3 Himpunan (Data Contoh 3)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: textColor
+            });
+            geoV3.buatTeks(42, 48, "S (n = 42)", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+
+            // Pusat 3 Lingkaran (M, I, L)
+            const cM = [215, 122], cI = [305, 122], cL = [260, 194];
+            const rad = 68;
+
+            // Latar transparan ketiga lingkaran
+            geoV3.buatLingkaran(cM, rad, { fill: isDark ? 'rgba(20,184,166,0.12)' : 'rgba(13,148,136,0.08)', stroke: tealColor, strokeWidth: 2.2 });
+            geoV3.buatLingkaran(cI, rad, { fill: isDark ? 'rgba(251,191,36,0.12)' : 'rgba(217,119,6,0.08)', stroke: amberColor, strokeWidth: 2.2 });
+            geoV3.buatLingkaran(cL, rad, { fill: isDark ? 'rgba(56,189,248,0.12)' : 'rgba(2,132,199,0.08)', stroke: blueColor, strokeWidth: 2.2 });
+
+            // Nama Himpunan di Luar Lingkaran
+            geoV3.buatTeks(130, 72, "Matematika (M)", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor });
+            geoV3.buatTeks(392, 72, "B. Inggris (I)", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor });
+            geoV3.buatTeks(368, 244, "Penalaran (L)", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: blueColor });
+
+            // Angka-angka tiap daerah (Sesuai Contoh Soal 3):
+            // Tengah M ∩ I ∩ L = 5
+            geoV3.buatTeks(260, 146, "5", { position: 'middle-center', fontWeight: 'bold', fontSize: '14px', fill: textColor });
+
+            // Irisan 2 himpunan saja:
+            // M ∩ I saja = 10 - 5 = 5
+            geoV3.buatTeks(260, 102, "5", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: textColor });
+            // M ∩ L saja = 8 - 5 = 3
+            geoV3.buatTeks(222, 168, "3", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: textColor });
+            // I ∩ L saja = 9 - 5 = 4
+            geoV3.buatTeks(298, 168, "4", { position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: textColor });
+
+            // Hanya 1 himpunan:
+            // Hanya M = 20 - (5 + 5 + 3) = 7
+            geoV3.buatTeks(185, 112, "7", { position: 'middle-center', fontWeight: 'bold', fontSize: '14px', fill: tealColor });
+            // Hanya I = 22 - (5 + 5 + 4) = 8
+            geoV3.buatTeks(335, 112, "8", { position: 'middle-center', fontWeight: 'bold', fontSize: '14px', fill: amberColor });
+            // Hanya L = 18 - (3 + 5 + 4) = 6
+            geoV3.buatTeks(260, 222, "6", { position: 'middle-center', fontWeight: 'bold', fontSize: '14px', fill: blueColor });
+
+            // Di luar ketiga lingkaran (Komplemen = 4)
+            geoV3.buatTeks(85, 245, "Di luar: 4", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: mutedColor });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiHimpunan();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiHimpunan, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

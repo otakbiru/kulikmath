@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Himpunan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Himpunan</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Jika \(K = \{\text{faktor dari } 9\}\) dan \(L = \{\text{bilangan prima kurang dari } 11\}\), banyak pemetaan yang mungkin dari \(L\) ke \(K\) adalah ....</p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/5938" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \[\begin{aligned}
+                    K &= \{1, 3, 9\} \implies n(K) = 3 \\[4pt]
+                    L &= \{2, 3, 5, 7\} \implies n(L) = 4
+                    \end{aligned}\]
+                    <p>Banyaknya pemetaan (fungsi) yang mungkin dari himpunan \(L\) ke himpunan \(K\) dirumuskan oleh:</p>
+                    \[n(K)^{n(L)} = 3^4 = 81\]
+                    <div class="kesimpulan">Jadi, banyak pemetaan dari \(L\) ke \(K\) adalah 81.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Di antara 100 mahasiswa, 32 orang mempelajari matematika, 20 orang mempelajari fisika, 45 orang mempelajari biologi, 15 orang mempelajari matematika dan biologi, 7 orang mempelajari matematika dan fisika, 10 orang mempelajari fisika dan biologi, serta 30 orang tidak mempelajari satu pun di antara ketiga bidang tersebut. Hitunglah banyaknya mahasiswa yang mempelajari ketiga bidang tersebut!</p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/5949" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \[\begin{aligned}
+                    n(S) &= 100 \\
+                    n(M) &= 32, \quad n(F) = 20, \quad n(B) = 45 \\
+                    n(M \cap F) &= 7, \quad n(F \cap B) = 10, \quad n(M \cap B) = 15 \\
+                    n(M \cup F \cup B)' &= 30
+                    \end{aligned}\]
+                    <p>Berdasarkan prinsip inklusi-eksklusi tiga himpunan:</p>
+                    \[\begin{aligned}
+                    n(S) &= n(M) + n(F) + n(B) - n(M \cap F) - n(F \cap B) - n(M \cap B) \\
+                    &\quad + n(M \cap F \cap B) + n(M \cup F \cup B)' \\[6pt]
+                    100 &= 32 + 20 + 45 - 7 - 10 - 15 + n(M \cap F \cap B) + 30 \\[4pt]
+                    100 &= 95 + n(M \cap F \cap B) \\[4pt]
+                    n(M \cap F \cap B) &= 100 - 95 = 5
+                    \end{aligned}\]
+                    <p>Visualisasi Diagram Venn 3 Himpunan:</p>
+                    <div id="venn-ex2" class="grafik-container" style="display:flex; justify-content:center; margin:15px 0;"></div>
+                    <div class="kesimpulan">Jadi, banyaknya mahasiswa yang mempelajari ketiga bidang tersebut ada 5 orang.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+            <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const geo = new GeoSVG("venn-ex2", 400, 310, { margin: 10 });
+                // Semesta
+                geo.buatPersegiPanjang(10, 10, 380, 290, { strokeWidth: 1.5, stroke: "#333", fill: "#f8fafc" });
+                geo.buatTeks(25, 25, "S (100)", { fontWeight: "bold", fontSize: "13px" });
+
+                // Lingkaran M (kiri), F (kanan), B (bawah)
+                geo.buatLingkaran(150, 125, 65, { fill: "rgba(59, 130, 246, 0.25)", stroke: "#2563eb", strokeWidth: 1.5 });
+                geo.buatLingkaran(245, 125, 65, { fill: "rgba(239, 68, 68, 0.25)", stroke: "#dc2626", strokeWidth: 1.5 });
+                geo.buatLingkaran(197, 195, 65, { fill: "rgba(34, 197, 94, 0.25)", stroke: "#16a34a", strokeWidth: 1.5 });
+
+                // Label Nama Himpunan
+                geo.buatTeks(115, 65, "M (32)", { fill: "#1d4ed8", fontWeight: "bold", fontSize: "12px" });
+                geo.buatTeks(280, 65, "F (20)", { fill: "#b91c1c", fontWeight: "bold", fontSize: "12px" });
+                geo.buatTeks(197, 280, "B (45)", { fill: "#15803d", fontWeight: "bold", fontSize: "12px", position: "top-center" });
+
+                // Angka dalam daerah
+                geo.buatTeks(197, 150, "5", { position: "middle-center", fontWeight: "bold", fontSize: "13px" }); // M ∩ F ∩ B
+                geo.buatTeks(197, 110, "2", { position: "middle-center", fontSize: "12px" }); // M ∩ F saja (7-5)
+                geo.buatTeks(158, 168, "10", { position: "middle-center", fontSize: "12px" }); // M ∩ B saja (15-5)
+                geo.buatTeks(237, 168, "5", { position: "middle-center", fontSize: "12px" }); // F ∩ B saja (10-5)
+                geo.buatTeks(118, 125, "15", { position: "middle-center", fontSize: "12px" }); // M saja (32 - 17)
+                geo.buatTeks(278, 125, "8", { position: "middle-center", fontSize: "12px" }); // F saja (20 - 12)
+                geo.buatTeks(197, 235, "25", { position: "middle-center", fontSize: "12px" }); // B saja (45 - 20)
+                geo.buatTeks(45, 275, "30", { position: "middle-center", fontSize: "12px", fill: "#64748b" }); // Di luar
+            });
+            </script>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diketahui:<br>
+                \(A = \{\text{bilangan prima kurang dari } 9\}\)<br>
+                \(B = \{\text{faktor dari } 6\}\)<br>
+                Tentukan hasil dari \(A - B\).</p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/6872" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \[\begin{aligned}
+                    A &= \{2, 3, 5, 7\} \\[4pt]
+                    B &= \{1, 2, 3, 6\}
+                    \end{aligned}\]
+                    <p>Selisih himpunan \(A - B\) adalah himpunan semua anggota \(A\) yang bukan merupakan anggota \(B\):</p>
+                    \[A - B = \{5, 7\}\]
+                    <div class="kesimpulan">Jadi, \(A - B = \{5, 7\}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Periksa apakah himpunan polinomial berikut bebas linear!<br>
+                \(\{6 - x^2, \; 6 + x + 4x^2\}\)</p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/6882" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Dua vektor (polinomial) dikatakan bergantung linear jika salah satu merupakan kelipatan skalar dari yang lain:</p>
+                    \[6 - x^2 = k(6 + x + 4x^2)\]
+                    \[6 + 0x - x^2 = 6k + kx + 4kx^2\]
+                    <p>Samakan koefisien-koefisien dari kedua ruas:</p>
+                    <ul>
+                        <li>Konstanta: \(6 = 6k \implies k = 1\)</li>
+                        <li>Koefisien \(x\): \(0 = k \implies k = 0\)</li>
+                        <li>Koefisien \(x^2\): \(-1 = 4k \implies k = -\dfrac{1}{4}\)</li>
+                    </ul>
+                    <p>Karena nilai \(k\) yang diperoleh kontradiktif (tidak ada skalar \(k\) tunggal yang memenuhi persamaan tersebut), maka kedua polinomial tersebut bukan kelipatan satu sama lain.</p>
+                    <div class="kesimpulan">Jadi, himpunan tersebut bebas linear.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Di dalam sebuah kelas dengan 25 siswa, 12 siswa mengambil Matematika. Dari dalam 12 siswa tersebut, 8 mengambil Matematika tetapi tidak mengambil Biologi. Tidak ada siswa di kelas yang tidak mengambil Matematika ataupun Biologi. Tentukan jumlah total siswa yang mengambil Biologi.</p>
+            </div>
+            <div class="soal-sumber"><a href="#" target="_blank" rel="noopener noreferrer">SUMBER</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \[\begin{aligned}
+                    n(S) &= 25 \\
+                    n(M) &= 12 \\
+                    n(M - B) &= 8 \\
+                    n(M \cap B) &= n(M) - n(M - B) = 12 - 8 = 4 \\
+                    n(M \cup B)' &= 0
+                    \end{aligned}\]
+                    <p>Berdasarkan rumus gabungan dua himpunan:</p>
+                    \[\begin{aligned}
+                    n(S) &= n(M) + n(B) - n(M \cap B) + n(M \cup B)' \\[4pt]
+                    25 &= 12 + n(B) - 4 + 0 \\[4pt]
+                    25 &= n(B) + 8 \\[4pt]
+                    n(B) &= 25 - 8 = 17
+                    \end{aligned}\]
+                    <p>Visualisasi Diagram Venn 2 Himpunan:</p>
+                    <div id="venn-ex5" class="grafik-container" style="display:flex; justify-content:center; margin:15px 0;"></div>
+                    <div class="kesimpulan">Jadi, jumlah total siswa yang mengambil Biologi ada 17 siswa.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+            <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const geo = new GeoSVG("venn-ex5", 380, 240, { margin: 10 });
+                geo.buatPersegiPanjang(10, 10, 360, 220, { strokeWidth: 1.5, stroke: "#333", fill: "#f8fafc" });
+                geo.buatTeks(25, 25, "S (25)", { fontWeight: "bold", fontSize: "13px" });
+
+                geo.buatLingkaran(145, 120, 65, { fill: "rgba(59, 130, 246, 0.25)", stroke: "#2563eb", strokeWidth: 2 });
+                geo.buatLingkaran(235, 120, 65, { fill: "rgba(239, 68, 68, 0.25)", stroke: "#dc2626", strokeWidth: 2 });
+
+                geo.buatTeks(115, 50, "M (12)", { fill: "#1d4ed8", fontWeight: "bold", fontSize: "12px" });
+                geo.buatTeks(265, 50, "B (17)", { fill: "#b91c1c", fontWeight: "bold", fontSize: "12px" });
+
+                geo.buatTeks(120, 120, "8", { position: "middle-center", fontSize: "14px", fontWeight: "bold" });
+                geo.buatTeks(190, 120, "4", { position: "middle-center", fontSize: "14px", fontWeight: "bold", fill: "#4338ca" });
+                geo.buatTeks(260, 120, "13", { position: "middle-center", fontSize: "14px", fontWeight: "bold" });
+                geo.buatTeks(330, 210, "0", { position: "middle-center", fontSize: "12px", fill: "#64748b" });
+            });
+            </script>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Dalam sebuah survey terhadap 200 orang siswa di sebuah sekolah, ditemukan bahwa 120 siswa belajar Matematika, 90 siswa belajar Fisika, dan 70 siswa belajar Kimia. Selain itu, 40 siswa belajar Matematika dan Fisika, 30 orang belajar Fisika dan Kimia, 50 orang belajar Kimia dan Matematika, serta 20 siswa tidak belajar ketiga mata pelajaran tersebut. Tentukan jumlah siswa yang belajar ketiga pelajaran tersebut!</p>
+            </div>
+            <div class="soal-sumber"><a href="https://t.me/MatematikaZoneIdGrup/9515" target="_blank" rel="noopener noreferrer">Grup Telegram</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    \[\begin{aligned}
+                    n(S) &= 200 \\
+                    n(M) &= 120, \quad n(F) = 90, \quad n(K) = 70 \\
+                    n(M \cap F) &= 40, \quad n(F \cap K) = 30, \quad n(M \cap K) = 50 \\
+                    n(M \cup F \cup K)' &= 20
+                    \end{aligned}\]
+                    <p>Berdasarkan prinsip inklusi-eksklusi tiga himpunan:</p>
+                    \[\begin{aligned}
+                    n(S) &= n(M) + n(F) + n(K) - n(M \cap F) - n(F \cap K) - n(M \cap K) \\
+                    &\quad + n(M \cap F \cap K) + n(M \cup F \cup K)' \\[6pt]
+                    200 &= 120 + 90 + 70 - 40 - 30 - 50 + n(M \cap F \cap K) + 20 \\[4pt]
+                    200 &= 180 + n(M \cap F \cap K) \\[4pt]
+                    n(M \cap F \cap K) &= 200 - 180 = 20
+                    \end{aligned}\]
+                    <p>Visualisasi Diagram Venn 3 Himpunan:</p>
+                    <div id="venn-ex6" class="grafik-container" style="display:flex; justify-content:center; margin:15px 0;"></div>
+                    <div class="kesimpulan">Jadi, jumlah siswa yang belajar ketiga pelajaran tersebut ada 20 siswa.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+            <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const geo = new GeoSVG("venn-ex6", 400, 310, { margin: 10 });
+                geo.buatPersegiPanjang(10, 10, 380, 290, { strokeWidth: 1.5, stroke: "#333", fill: "#f8fafc" });
+                geo.buatTeks(25, 25, "S (200)", { fontWeight: "bold", fontSize: "13px" });
+
+                geo.buatLingkaran(150, 125, 65, { fill: "rgba(59, 130, 246, 0.25)", stroke: "#2563eb", strokeWidth: 1.5 });
+                geo.buatLingkaran(245, 125, 65, { fill: "rgba(239, 68, 68, 0.25)", stroke: "#dc2626", strokeWidth: 1.5 });
+                geo.buatLingkaran(197, 195, 65, { fill: "rgba(168, 85, 247, 0.25)", stroke: "#9333ea", strokeWidth: 1.5 });
+
+                geo.buatTeks(115, 65, "M (120)", { fill: "#1d4ed8", fontWeight: "bold", fontSize: "12px" });
+                geo.buatTeks(280, 65, "F (90)", { fill: "#b91c1c", fontWeight: "bold", fontSize: "12px" });
+                geo.buatTeks(197, 280, "K (70)", { fill: "#7e22ce", fontWeight: "bold", fontSize: "12px", position: "top-center" });
+
+                geo.buatTeks(197, 150, "20", { position: "middle-center", fontWeight: "bold", fontSize: "13px" }); // M ∩ F ∩ K
+                geo.buatTeks(197, 110, "20", { position: "middle-center", fontSize: "12px" }); // M ∩ F saja (40-20)
+                geo.buatTeks(158, 168, "30", { position: "middle-center", fontSize: "12px" }); // M ∩ K saja (50-20)
+                geo.buatTeks(237, 168, "10", { position: "middle-center", fontSize: "12px" }); // F ∩ K saja (30-20)
+                geo.buatTeks(118, 125, "50", { position: "middle-center", fontSize: "12px" }); // M saja (120 - 70)
+                geo.buatTeks(278, 125, "40", { position: "middle-center", fontSize: "12px" }); // F saja (90 - 50)
+                geo.buatTeks(197, 235, "10", { position: "middle-center", fontSize: "12px" }); // K saja (70 - 60)
+                geo.buatTeks(45, 275, "20", { position: "middle-center", fontSize: "12px", fill: "#64748b" }); // Di luar
+            });
+            </script>
+        </article>
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

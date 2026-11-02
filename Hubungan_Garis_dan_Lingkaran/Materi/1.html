@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Hubungan Garis dan Lingkaran</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Hubungan Garis dan Lingkaran</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Persamaan Lingkaran (Tinjauan Dasar)</h2>
+            <p>
+                Sebelum menganalisis kedudukan suatu garis lurus terhadap lingkaran, ingat kembali tiga bentuk persamaan lingkaran dengan titik pusat $P(a, b)$ dan jari-jari $r$:
+            </p>
+            <ul>
+                <li>
+                    <strong>Pusat di $O(0, 0)$ dan jari-jari $r$:</strong>
+                    $$x^2 + y^2 = r^2$$
+                </li>
+                <li>
+                    <strong>Pusat di $P(a, b)$ dan jari-jari $r$ (Bentuk Baku):</strong>
+                    $$(x - a)^2 + (y - b)^2 = r^2$$
+                </li>
+                <li>
+                    <strong>Bentuk Umum Persamaan Lingkaran:</strong>
+                    $$x^2 + y^2 + Ax + By + C = 0$$
+                    dengan koordinat titik pusat $P\left(-\frac{1}{2}A, -\frac{1}{2}B\right)$ dan panjang jari-jari:
+                    $$r = \sqrt{\left(-\frac{1}{2}A\right)^2 + \left(-\frac{1}{2}B\right)^2 - C} = \sqrt{\frac{1}{4}A^2 + \frac{1}{4}B^2 - C}$$
+                </li>
+            </ul>
+
+            <h2>2. Kedudukan Garis terhadap Lingkaran</h2>
+            <p>
+                Jika sebuah garis lurus $g \equiv y = mx + n$ (atau $px + qy + c = 0$) dan sebuah lingkaran $L$ digambarkan pada bidang Kartesius yang sama, terdapat <strong>tiga kemungkinan kedudukan</strong> garis terhadap lingkaran tersebut:
+            </p>
+            <ol>
+                <li><strong>Memotong lingkaran di dua titik berbeda</strong> (Garis Sekan / Pemotong).</li>
+                <li><strong>Menyinggung lingkaran tepat di satu titik</strong> (Garis Singgung / Tangen).</li>
+                <li><strong>Tidak memotong maupun menyinggung lingkaran</strong> (Saling Lepas / di luar lingkaran).</li>
+            </ol>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-kedudukan" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <p>
+                Untuk menentukan kedudukan garis terhadap lingkaran tanpa harus menggambarnya, kita dapat menggunakan dua metode yang saling ekuivalen: <strong>Metode Diskriminan ($D$)</strong> dan <strong>Metode Jarak Titik Pusat ke Garis ($d$)</strong>.
+            </p>
+
+            <h2>3. Analisis Aljabar (Diskriminan $D$) vs Geometri (Jarak $d$)</h2>
+            <p>
+                <strong>A. Metode Aljabar (Substitusi & Diskriminan $D$):</strong><br>
+                Substitusikan persamaan garis $y = mx + n$ ke dalam persamaan lingkaran $L$, sehingga diperoleh persamaan kuadrat gabungan dalam variabel $x$:
+                $$ax^2 + bx + c = 0$$
+                Hitung nilai diskriminannya, yaitu $D = b^2 - 4ac$.
+            </p>
+            <p>
+                <strong>B. Metode Geometri (Jarak Titik Pusat ke Garis $d$):</strong><br>
+                Misalkan lingkaran berpusat di $P(x_p, y_p)$ dengan jari-jari $r$, dan persamaan garis ditulis dalam bentuk implisit $px + qy + c = 0$. Jarak tegak lurus dari pusat $P(x_p, y_p)$ ke garis tersebut adalah:
+                $$d = \frac{|px_p + qy_p + c|}{\sqrt{p^2 + q^2}}$$
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kedudukan Garis terhadap Lingkaran</th>
+                            <th>Banyak Titik Potong</th>
+                            <th>Syarat Diskriminan ($D$)</th>
+                            <th>Syarat Jarak Pusat ($d$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Memotong di Dua Titik</strong> (Garis Sekan)</td>
+                            <td>$2$ titik</td>
+                            <td>$$D > 0$$</td>
+                            <td>$$d < r$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Menyinggung Lingkaran</strong> (Garis Singgung)</td>
+                            <td>$1$ titik</td>
+                            <td>$$D = 0$$</td>
+                            <td>$$d = r$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Tidak Memotong / di Luar</strong> (Saling Lepas)</td>
+                            <td>$0$ titik</td>
+                            <td>$$D < 0$$</td>
+                            <td>$$d > r$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Tips Memilih Metode: Pada soal ujian (seperti SNBT), <strong>Metode Jarak Pusat ke Garis ($d$ vs $r$)</strong> hampir selalu jauh lebih cepat dan minim risiko salah hitung dibandingkan mengkuadratkan substitusi $y = mx + n$ ke dalam persamaan lingkaran!
+            </div>
+
+            <h2>4. Panjang Tali Busur dan Panjang Garis Singgung</h2>
+            <p>
+                Dengan memanfaatkan sifat bahwa jari-jari lingkaran selalu <strong>tegak lurus</strong> terhadap garis singgung di titik singgungnya serta membagi dua sama panjang tali busur jika ditarik tegak lurus dari pusat, kita dapat menurunkan rumus geometri berikut menggunakan Teorema Pythagoras:
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-talibusur" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <ul>
+                <li>
+                    <strong>Panjang Ruas Tali Busur ($AB$) oleh Garis Pemotong:</strong><br>
+                    Jika garis memotong lingkaran berjari-jari $r$ di titik $A$ dan $B$, serta berjarak $d$ dari titik pusat $P$ ($d < r$), maka titik proyeksi $M$ membagi dua tali busur $AB$ sama panjang ($AM = MB = \sqrt{r^2 - d^2}$). Akibatnya, panjang tali busur $AB$ adalah:
+                    $$|AB| = 2\sqrt{r^2 - d^2}$$
+                </li>
+                <li>
+                    <strong>Panjang Garis Singgung dari Titik $Q(x_1, y_1)$ di Luar Lingkaran:</strong><br>
+                    Jika dari titik $Q(x_1, y_1)$ di luar lingkaran ditarik garis yang menyinggung lingkaran di titik $T$, maka $\triangle PTQ$ siku-siku di $T$. Panjang ruas garis singgung $QT$ adalah:
+                    $$|QT| = \sqrt{|PQ|^2 - r^2}$$
+                    Khusus jika persamaan lingkaran diketahui dalam bentuk umum $L \equiv x^2 + y^2 + Ax + By + C = 0$, kuadrat jarak $|PQ|^2 - r^2$ sama dengan kuasa titik $Q$ terhadap lingkaran, sehingga:
+                    $$|QT| = \sqrt{x_1^2 + y_1^2 + Ax_1 + By_1 + C}$$
+                </li>
+            </ul>
+
+            <h2>5. Persamaan Garis Singgung Lingkaran (PGSL)</h2>
+            <p>
+                Garis singgung lingkaran dapat ditentukan berdasarkan informasi yang diketahui pada soal:
+            </p>
+            <ol>
+                <li>
+                    <strong>Diketahui Titik Singgung $T(x_1, y_1)$ PADA Lingkaran (Metode Bagi Adil):</strong><br>
+                    Pastikan terlebih dahulu titik $(x_1, y_1)$ terletak pada lingkaran (memenuhi persamaan lingkaran). Ganti bentuk kuadrat pada persamaan lingkaran dengan aturan "bagi adil":
+                    <ul>
+                        <li>$x^2 \longrightarrow x_1 x$ dan $y^2 \longrightarrow y_1 y$</li>
+                        <li>$(x - a)^2 \longrightarrow (x_1 - a)(x - a)$ dan $(y - b)^2 \longrightarrow (y_1 - b)(y - b)$</li>
+                        <li>$Ax \longrightarrow \frac{1}{2}A(x + x_1)$ dan $By \longrightarrow \frac{1}{2}B(y + y_1)$</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Diketahui Gradien Garis Singgung ($m$):</strong><br>
+                    Untuk setiap gradien $m \in \mathbb{R}$, selalu terdapat <strong>dua buah garis singgung yang sejajar</strong> pada lingkaran:
+                    $$y - b = m(x - a) \pm r\sqrt{m^2 + 1}$$
+                </li>
+            </ol>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Persamaan Lingkaran</th>
+                            <th>PGSL di Titik Singgung $T(x_1, y_1)$</th>
+                            <th>PGSL dengan Gradien $m$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$$x^2 + y^2 = r^2$$</td>
+                            <td>$$x_1 x + y_1 y = r^2$$</td>
+                            <td>$$y = mx \pm r\sqrt{m^2 + 1}$$</td>
+                        </tr>
+                        <tr>
+                            <td>$$(x - a)^2 + (y - b)^2 = r^2$$</td>
+                            <td>$$(x_1 - a)(x - a) + (y_1 - b)(y - b) = r^2$$</td>
+                            <td>$$y - b = m(x - a) \pm r\sqrt{m^2 + 1}$$</td>
+                        </tr>
+                        <tr>
+                            <td>$$x^2 + y^2 + Ax + By + C = 0$$</td>
+                            <td>$$x_1 x + y_1 y + \frac{A}{2}(x + x_1) + \frac{B}{2}(y + y_1) + C = 0$$</td>
+                            <td>Ubah ke pusat $P(a,b)$ dan jari-jari $r$ terlebih dahulu</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>6. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memahami cara menentukan batas parameter agar garis memotong/menyinggung lingkaran, menghitung panjang tali busur, serta menyusun persamaan garis singgung lingkaran. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasannya.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Tentukan batas-batas nilai konstanta $c$ agar garis $3x - 4y + c = 0$ memotong lingkaran $(x - 2)^2 + (y + 1)^2 = 9$ di dua titik yang berbeda!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Dari persamaan lingkaran $(x - 2)^2 + (y + 1)^2 = 9$, kita peroleh:
+                        <ul>
+                            <li>Titik pusat lingkaran: $P(a, b) = P(2, -1)$</li>
+                            <li>Jari-jari lingkaran: $r = \sqrt{9} = 3$</li>
+                        </ul>
+                    </p>
+                    <p>
+                        Agar garis $3x - 4y + c = 0$ memotong lingkaran di dua titik yang berbeda, jarak pusat $P(2, -1)$ ke garis tersebut harus lebih kecil daripada jari-jari lingkaran ($d < r$):
+                        $$d = \frac{|3(2) - 4(-1) + c|}{\sqrt{3^2 + (-4)^2}} < 3$$
+                        $$\frac{|6 + 4 + c|}{\sqrt{9 + 16}} < 3$$
+                        $$\frac{|10 + c|}{5} < 3 \iff |c + 10| < 15$$
+                    </p>
+                    <p>
+                        Selesaikan pertidaksamaan nilai mutlak tersebut:
+                        $$-15 < c + 10 < 15$$
+                        $$-15 - 10 < c < 15 - 10$$
+                        $$-25 < c < 5$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, garis tersebut akan memotong lingkaran di dua titik berbeda untuk nilai $-25 < c < 5$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Garis $x + y - 2 = 0$ memotong lingkaran $x^2 + y^2 - 4x + 2y - 20 = 0$ di titik $A$ dan $B$. Tentukan panjang ruas tali busur $AB$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Pertama, tentukan koordinat titik pusat $P$ dan jari-jari $r$ dari lingkaran $x^2 + y^2 - 4x + 2y - 20 = 0$ ($A = -4, B = 2, C = -20$):
+                        $$P = \left(-\frac{-4}{2}, -\frac{2}{2}\right) = (2, -1)$$
+                        $$r = \sqrt{2^2 + (-1)^2 - (-20)} = \sqrt{4 + 1 + 20} = \sqrt{25} = 5$$
+                    </p>
+                    <p>
+                        Kedua, hitung jarak tegak lurus $d$ dari titik pusat $P(2, -1)$ ke garis $x + y - 2 = 0$:
+                        $$d = \frac{|1(2) + 1(-1) - 2|}{\sqrt{1^2 + 1^2}} = \frac{|2 - 1 - 2|}{\sqrt{2}} = \frac{1}{\sqrt{2}}$$
+                    </p>
+                    <p>
+                        Ketiga, gunakan rumus panjang tali busur $|AB| = 2\sqrt{r^2 - d^2}$:
+                        $$|AB| = 2\sqrt{5^2 - \left(\frac{1}{\sqrt{2}}\right)^2} = 2\sqrt{25 - \frac{1}{2}} = 2\sqrt{\frac{49}{2}}$$
+                        $$|AB| = 2 \cdot \frac{7}{\sqrt{2}} = 7\sqrt{2}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, panjang ruas tali busur $AB$ adalah $7\sqrt{2}$ satuan panjang.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Tentukan persamaan garis singgung pada lingkaran $x^2 + y^2 - 2x + 6y - 10 = 0$ yang tegak lurus dengan garis $x + 2y - 5 = 0$!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Cari pusat dan jari-jari lingkaran.</strong><br>
+                        Dari $x^2 + y^2 - 2x + 6y - 10 = 0$, diperoleh pusat $P(a, b) = \left(-\frac{-2}{2}, -\frac{6}{2}\right) = (1, -3)$ dan jari-jari:
+                        $$r = \sqrt{1^2 + (-3)^2 - (-10)} = \sqrt{1 + 9 + 10} = \sqrt{20}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Tentukan gradien garis singgung ($m$).</strong><br>
+                        Garis $x + 2y - 5 = 0 \iff y = -\frac{1}{2}x + \frac{5}{2}$ memiliki gradien $m_1 = -\frac{1}{2}$. Karena garis singgung tegak lurus terhadap garis tersebut ($m_1 \cdot m = -1$), maka gradien garis singgungnya adalah:
+                        $$m = -\frac{1}{m_1} = 2$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Substitusikan ke rumus PGSL bergradien $m$.</strong>
+                        $$y - b = m(x - a) \pm r\sqrt{m^2 + 1}$$
+                        $$y - (-3) = 2(x - 1) \pm \sqrt{20}\sqrt{2^2 + 1}$$
+                        $$y + 3 = 2x - 2 \pm \sqrt{20}\cdot\sqrt{5}$$
+                        $$y + 3 = 2x - 2 \pm \sqrt{100}$$
+                        $$y = 2x - 5 \pm 10$$
+                    </p>
+                    <p>
+                        Diperoleh dua persamaan garis singgung:
+                        <ul>
+                            <li>$y = 2x - 5 + 10 \implies y = 2x + 5$ (atau $2x - y + 5 = 0$)</li>
+                            <li>$y = 2x - 5 - 10 \implies y = 2x - 15$ (atau $2x - y - 15 = 0$)</li>
+                        </ul>
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, persamaan garis singgung lingkaran tersebut adalah $y = 2x + 5$ dan $y = 2x - 15$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiGarisLingkaran() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const redColor = isDark ? '#f87171' : '#ef4444';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const circleFill = isDark ? 'rgba(20, 184, 166, 0.12)' : 'rgba(13, 148, 136, 0.08)';
+
+            /* -------------------------------------------------------------
+               1. TIGA KEDUDUKAN GARIS TERHADAP LINGKARAN (3 PANEL)
+               ------------------------------------------------------------- */
+            const geoKed = new GeoSVG('geosvg-kedudukan', 560, 225, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoKed.buatTeks(280, 15, "Tiga Kemungkinan Kedudukan Garis terhadap Lingkaran", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: textColor
+            });
+
+            const panels = [
+                {
+                    x: 10, w: 172,
+                    title: "Memotong (2 Titik)",
+                    sub: "D > 0  |  d < r",
+                    lineColor: tealColor,
+                    mode: "secant"
+                },
+                {
+                    x: 194, w: 172,
+                    title: "Menyinggung (1 Titik)",
+                    sub: "D = 0  |  d = r",
+                    lineColor: amberColor,
+                    mode: "tangent"
+                },
+                {
+                    x: 378, w: 172,
+                    title: "Tidak Memotong",
+                    sub: "D < 0  |  d > r",
+                    lineColor: redColor,
+                    mode: "disjoint"
+                }
+            ];
+
+            panels.forEach(p => {
+                const py = 32, ph = 182;
+                const cx = p.x + p.w / 2;
+                const cy = py + 82;
+                const r = 42;
+
+                // Kotak Latar Panel
+                geoKed.buatPersegiPanjang(p.x, py, p.w, ph, {
+                    radius: 8, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+                });
+
+                // Lingkaran L
+                geoKed.buatLingkaran([cx, cy], r, {
+                    fill: circleFill, stroke: textColor, strokeWidth: 2
+                });
+                geoKed.buatTitik([cx, cy], {
+                    size: 3, color: textColor, label: 'P', labelPosition: 'bottom-left', labelDistance: 3
+                });
+
+                // Arah garis miring (vektor satuan u = [0.8, -0.6], normal ke atas-kiri n = [-0.6, -0.8])
+                const ux = 0.8, uy = -0.6;
+                const nx = -0.6, ny = -0.8;
+                let dist = 0;
+                if (p.mode === "secant") dist = 20;       // d < r (20 < 42)
+                else if (p.mode === "tangent") dist = 42; // d = r (42 = 42)
+                else dist = 58;                           // d > r (58 > 42)
+
+                // Titik kaki tegak lurus M pada garis
+                const mx = cx + nx * dist;
+                const my = cy + ny * dist;
+
+                // Ujung segmen garis g di dalam panel
+                const halfLen = 68;
+                const g1 = [mx - ux * halfLen, my - uy * halfLen];
+                const g2 = [mx + ux * halfLen, my + uy * halfLen];
+
+                // Gambar Siku & Jarak d dari Pusat P ke Garis
+                geoKed.buatSiku([cx, cy], [mx, my], g2, {
+                    size: 7, stroke: mutedColor, strokeWidth: 1.2
+                });
+                geoKed.buatSegmen([cx, cy], [mx, my], {
+                    stroke: mutedColor, strokeWidth: 1.5, dashed: '3 3',
+                    label: 'd', labelPosisi: 0.5, labelSisi: 'kiri', labelJarak: 4, fontSize: '10px', labelColor: mutedColor
+                });
+
+                // Gambar Garis g
+                geoKed.buatSegmen(g1, g2, {
+                    stroke: p.lineColor, strokeWidth: 2.3
+                });
+
+                // Gambar Titik Potong / Titik Singgung menggunakan hitungTitikPotong GeoSVG
+                const potong = geoKed.hitungTitikPotong(
+                    [g1, g2],
+                    { pusat: [cx, cy], r: r }
+                );
+                if (potong && potong.length > 0) {
+                    potong.forEach((pt, idx) => {
+                        geoKed.buatTitik(pt, {
+                            size: 4, color: p.lineColor,
+                            label: potong.length === 1 ? 'T' : (idx === 0 ? 'A' : 'B'),
+                            labelPosition: 'top-left', labelDistance: 4, fontSize: '11px', bold: true
+                        });
+                    });
+                }
+
+                // Judul & Syarat di Bawah Panel
+                geoKed.buatTeks(cx, py + ph - 28, p.title, {
+                    position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: p.lineColor
+                });
+                geoKed.buatTeks(cx, py + ph - 11, p.sub, {
+                    position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: textColor
+                });
+            });
+
+            /* -------------------------------------------------------------
+               2. GEOMETRI TALI BUSUR (KIRI) & GARIS SINGGUNG LUAR (KANAN)
+               ------------------------------------------------------------- */
+            const geoTB = new GeoSVG('geosvg-talibusur', 560, 235, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            // Panel Kiri: Geometri Panjang Tali Busur AB
+            geoTB.buatPersegiPanjang(10, 12, 262, 212, {
+                radius: 8, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoTB.buatTeks(141, 30, "Geometri Panjang Tali Busur AB", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+
+            const c1 = [141, 130], r1 = 62;
+            geoTB.buatLingkaran(c1, r1, { fill: circleFill, stroke: textColor, strokeWidth: 2 });
+
+            // Garis pemotong mendatar di y = 92 (jarak d = 38 dari pusat y = 130)
+            const ySec = 92;
+            const potTB = geoTB.hitungTitikPotong(
+                [[40, ySec], [240, ySec]],
+                { pusat: c1, r: r1 }
+            );
+            const ptA = potTB[0], ptB = potTB[1];
+            const ptM = [141, ySec];
+
+            // Segitiga siku-siku PMA diarsir tipis
+            geoTB.buatPoligon([c1, ptM, ptA], {
+                fill: isDark ? 'rgba(251, 191, 36, 0.18)' : 'rgba(217, 119, 6, 0.14)',
+                stroke: 'none'
+            });
+            geoTB.buatSiku(c1, ptM, ptB, { size: 9, stroke: mutedColor, strokeWidth: 1.3 });
+
+            // Garis sekan melampaui A dan B
+            geoTB.buatSegmen([52, ySec], [230, ySec], { stroke: tealColor, strokeWidth: 2.2 });
+            // Jari-jari PA dan PB
+            geoTB.buatSegmen(c1, ptA, {
+                stroke: amberColor, strokeWidth: 2,
+                label: 'r', labelPosisi: 0.5, labelSisi: 'kiri', labelJarak: 5, fontSize: '11px', bold: true
+            });
+            geoTB.buatSegmen(c1, ptB, { stroke: amberColor, strokeWidth: 1.5, dashed: '4 3' });
+            // Jarak d = PM
+            geoTB.buatSegmen(c1, ptM, {
+                stroke: blueColor, strokeWidth: 2,
+                label: 'd', labelPosisi: 0.5, labelSisi: 'kanan', labelJarak: 5, fontSize: '11px', bold: true
+            });
+
+            // Tanda sama panjang AM = MB
+            geoTB.buatTandaSamaPanjang(ptA, ptM, { count: 1, size: 8, stroke: tealColor, strokeWidth: 1.8 });
+            geoTB.buatTandaSamaPanjang(ptM, ptB, { count: 1, size: 8, stroke: tealColor, strokeWidth: 1.8 });
+
+            geoTB.buatTitik(c1, { size: 3.5, color: textColor, label: 'P(a,b)', labelPosition: 'bottom-center', labelDistance: 5 });
+            geoTB.buatTitik(ptA, { size: 4, color: tealColor, label: 'A', labelPosition: 'top-left', labelDistance: 4, bold: true });
+            geoTB.buatTitik(ptB, { size: 4, color: tealColor, label: 'B', labelPosition: 'top-right', labelDistance: 4, bold: true });
+            geoTB.buatTitik(ptM, { size: 3, color: blueColor, label: 'M', labelPosition: 'top-center', labelDistance: 4 });
+
+            geoTB.buatTeks(141, 208, "|AB| = 2 · AM = 2√(r² - d²)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+
+            // Panel Kanan: Garis Singgung dari Titik Q di Luar Lingkaran (menggunakan buatGarisSinggung GeoSVG)
+            geoTB.buatPersegiPanjang(288, 12, 262, 212, {
+                radius: 8, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoTB.buatTeks(419, 30, "Garis Singgung dari Titik di Luar", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor
+            });
+
+            const c2 = [362, 122], r2 = 50;
+            const ptQ = [505, 122];
+
+            geoTB.buatLingkaran(c2, r2, { fill: circleFill, stroke: textColor, strokeWidth: 2 });
+
+            // Hitung titik singgung dengan method bawaan GeoSVG: hitungTitikSinggung
+            const tSinggung = geoTB.hitungTitikSinggung({ pusat: c2, r: r2 }, ptQ);
+            if (tSinggung && tSinggung.length === 2) {
+                const T1 = tSinggung[0]; // titik singgung atas
+                const T2 = tSinggung[1]; // titik singgung bawah
+
+                // Arsir segitiga siku-siku PT1Q
+                geoTB.buatPoligon([c2, T1, ptQ], {
+                    fill: isDark ? 'rgba(20, 184, 166, 0.16)' : 'rgba(13, 148, 136, 0.12)',
+                    stroke: 'none'
+                });
+
+                // Tanda siku-siku di titik singgung T1 (PT1 tegak lurus T1Q)
+                geoTB.buatSiku(c2, T1, ptQ, { size: 9, stroke: mutedColor, strokeWidth: 1.4 });
+
+                // Jari-jari PT1 dan PT2
+                geoTB.buatSegmen(c2, T1, {
+                    stroke: tealColor, strokeWidth: 2,
+                    label: 'r', labelPosisi: 0.5, labelSisi: 'kiri', labelJarak: 5, fontSize: '11px', bold: true
+                });
+                geoTB.buatSegmen(c2, T2, { stroke: tealColor, strokeWidth: 1.4, dashed: '4 3' });
+
+                // Garis hubung pusat P ke titik luar Q
+                geoTB.buatSegmen(c2, ptQ, {
+                    stroke: blueColor, strokeWidth: 1.8, dashed: '5 3'
+                });
+
+                // Gambar kedua ruas garis singgung dengan buatGarisSinggung (bentuk: 'segmen')
+                geoTB.buatGarisSinggung(
+                    { pusat: c2, r: r2 },
+                    ptQ,
+                    { bentuk: 'segmen', stroke: amberColor, strokeWidth: 2.3 }
+                );
+
+                geoTB.buatTitik(T1, { size: 4, color: amberColor, label: 'T₁', labelPosition: 'top-center', labelDistance: 5, bold: true });
+                geoTB.buatTitik(T2, { size: 4, color: amberColor, label: 'T₂', labelPosition: 'bottom-center', labelDistance: 5, bold: true });
+            }
+
+            geoTB.buatTitik(c2, { size: 3.5, color: textColor, label: 'P', labelPosition: 'middle-left', labelDistance: 6, bold: true });
+            geoTB.buatTitik(ptQ, { size: 4, color: blueColor, label: 'Q(x₁,y₁)', labelPosition: 'bottom-center', labelDistance: 6, bold: true });
+
+            geoTB.buatTeks(419, 208, "|QT₁| = √(|PQ|² - r²)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiGarisLingkaran();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiGarisLingkaran, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

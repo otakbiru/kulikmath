@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Invers Fungsi</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Invers Fungsi</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Invers Fungsi & Syarat Keberadaannya</h2>
+            <p>
+                Jika suatu fungsi $f: A \to B$ memetakan setiap anggota $x \in A$ ke suatu anggota $y \in B$ dengan hubungan $y = f(x)$, maka <strong>relasi kebalikannya</strong> yang memetakan kembali $y \in B$ ke $x \in A$ disebut sebagai <strong>invers</strong> dari $f$ dan dilambangkan dengan $f^{-1}$.
+            </p>
+            <p>
+                <em>Peringatan Notasi:</em> Lambang $f^{-1}(x)$ dibaca <strong>"f invers x"</strong> dan menyatakan fungsi balikan, <strong>bukan</strong> perpangkatan aljabar $\frac{1}{f(x)}$!
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Kapan Invers Suatu Fungsi Juga Merupakan Fungsi?</strong><br>
+                        Tidak semua fungsi memiliki invers yang berupa fungsi (disebut <em>fungsi invertibel</em>). Suatu fungsi $f: A \to B$ memiliki <strong>fungsi invers</strong> $f^{-1}: B \to A$ <strong>jika dan hanya jika</strong> fungsi $f$ merupakan fungsi <strong>Bijektif (Korespondensi Satu-Satu)</strong>, yaitu memenuhi dua syarat sekaligus:
+                    </p>
+                    <ol>
+                        <li>
+                            <strong>Injektif (Satu-Satu):</strong> Setiap anggota berbeda di $A$ dipetakan ke anggota yang berbeda di $B$ ($x_1 \neq x_2 \implies f(x_1) \neq f(x_2)$).
+                        </li>
+                        <li>
+                            <strong>Surjektif (Pada / Onto):</strong> Setiap anggota di kodomain $B$ memiliki pasangan di $A$ (daerah hasil sama dengan kodomain: $R_f = B$).
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-mapping" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Ekuivalensi Utama & Pertukaran Domain-Range:<br>
+                1. $y = f(x) \iff x = f^{-1}(y)$ &nbsp;&nbsp; (contoh: jika $f(2) = 7$, maka otomatis $f^{-1}(7) = 2$).<br>
+                2. Daerah asal (Domain) fungsi $f$ menjadi daerah hasil (Range) fungsi inversnya, dan sebaliknya:<br>
+                $$D_{f^{-1}} = R_f \quad \text{dan} \quad R_{f^{-1}} = D_f$$
+            </div>
+
+            <h2>2. Sifat Geometri: Simetri terhadap Garis $y = x$</h2>
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Jika titik $(a, b)$ terletak pada grafik fungsi $y = f(x)$, maka $b = f(a) \iff a = f^{-1}(b)$, sehingga titik <strong>$(b, a)$</strong> pasti terletak pada grafik fungsi invers $y = f^{-1}(x)$.
+                    </p>
+                    <p>
+                        Secara geometris pada bidang Kartesius, menukar absis dan ordinat $(a, b) \leftrightarrow (b, a)$ adalah transformasi <strong>pencerminan (refleksi) terhadap garis lurus $y = x$</strong>:
+                    </p>
+                    <ul>
+                        <li>Grafik $y = f^{-1}(x)$ merupakan bayangan cermin dari grafik $y = f(x)$ terhadap cermin garis $y = x$.</li>
+                        <li>Jika grafik $y = f(x)$ dan $y = f^{-1}(x)$ adalah fungsi monoton naik yang saling berpotongan, titik potongnya terletak tepat pada garis $y = x$ (sehingga dapat dicari dengan menyelesaikan $f(x) = x$).</li>
+                        <li><strong>Uji Garis Horizontal:</strong> Suatu grafik fungsi memiliki fungsi invers jika setiap garis lurus horizontal ($y = k$) memotong grafik tersebut <strong>paling banyak di satu titik</strong>.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-mirror" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Langkah Menentukan Rumus $f^{-1}(x)$ & Tabel Rumus Cepat</h2>
+            <p>
+                Untuk mencari rumus fungsi invers $f^{-1}(x)$ dari suatu fungsi $y = f(x)$ secara aljabar, ikuti 3 langkah baku berikut:
+            </p>
+            <ol>
+                <li>Ubah penulisan $f(x)$ menjadi variabel $y$, sehingga diperoleh persamaan $y = f(x)$.</li>
+                <li>Ubah persamaan tersebut hingga variabel $x$ berdiri sendiri di ruas kiri sebagai fungsi dari $y$, yaitu $x = g(y) = f^{-1}(y)$.</li>
+                <li>Ganti variabel $x$ menjadi $f^{-1}(x)$ dan ganti setiap variabel $y$ menjadi $x$, sehingga diperoleh rumus $f^{-1}(x) = g(x)$.</li>
+            </ol>
+
+            <p>
+                <strong>Tabel Rumus Cepat Invers Fungsi (Wajib Hafal untuk SNBT):</strong>
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Fungsi</th>
+                            <th>Rumus Fungsi Asal $f(x)$</th>
+                            <th>Rumus Cepat Invers $f^{-1}(x)$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Fungsi Linear</strong></td>
+                            <td>$$f(x) = ax + b \quad (a \neq 0)$$</td>
+                            <td>$$f^{-1}(x) = \frac{x - b}{a}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Fungsi Rasional (Pecahan Linear)</strong><br><em>(Tukar posisi & tanda $a$ dan $d$!)</em></td>
+                            <td>$$f(x) = \frac{ax + b}{cx + d}, \quad x \neq -\frac{d}{c}$$</td>
+                            <td>$$f^{-1}(x) = \frac{-dx + b}{cx - a}, \quad x \neq \frac{a}{c}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Fungsi Kuadrat (Domain Dibatasi)</strong><br><em>(Gunakan kuadrat sempurna)</em></td>
+                            <td>$$f(x) = a(x - p)^2 + q$$<br><small>(untuk $x \ge p$ atau $x \le p$)</small></td>
+                            <td>$$f^{-1}(x) = p \pm \sqrt{\frac{x - q}{a}}$$<br><small>(tanda $+$ jika $x \ge p$, tanda $-$ jika $x \le p$)</small></td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Fungsi Akar / Pangkat</strong></td>
+                            <td>$$f(x) = \sqrt[n]{ax + b} + c$$</td>
+                            <td>$$f^{-1}(x) = \frac{(x - c)^n - b}{a}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Fungsi Eksponen $\to$ Logaritma</strong></td>
+                            <td>$$f(x) = a^{px + q} + c$$</td>
+                            <td>$$f^{-1}(x) = \frac{^a\log(x - c) - q}{p}$$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Fungsi Logaritma $\to$ Eksponen</strong></td>
+                            <td>$$f(x) = \,^a\log(px + q) + c$$</td>
+                            <td>$$f^{-1}(x) = \frac{a^{x - c} - q}{p}$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. Sifat-Sifat Invers pada Fungsi Komposisi</h2>
+            <p>
+                Misalkan $f$ dan $g$ adalah dua fungsi yang memiliki invers, serta $I(x) = x$ adalah <em>fungsi identitas</em>. Berlaku sifat-sifat fundamental berikut:
+            </p>
+            <ol>
+                <li>
+                    <strong>Sifat Involusi (Invers dari Invers):</strong> Menginverskan fungsi invers akan mengembalikan fungsi semula:
+                    $$\left(f^{-1}\right)^{-1}(x) = f(x)$$
+                </li>
+                <li>
+                    <strong>Komposisi Fungsi dengan Inversnya Sendiri:</strong> Menghasilkan fungsi identitas $I(x) = x$:
+                    $$(f \circ f^{-1})(x) = (f^{-1} \circ f)(x) = I(x) = x$$
+                </li>
+                <li>
+                    <strong>Invers dari Komposisi Fungsi (Urutan Dibalik!):</strong><br>
+                    Seperti membuka sepatu lalu kaus kaki, invers dari komposisi fungsi harus <strong>membalik urutan komposisinya</strong> dari belakang ke depan:
+                    $$(f \circ g)^{-1}(x) = \left(g^{-1} \circ f^{-1}\right)(x)$$
+                    $$(f \circ g \circ h)^{-1}(x) = \left(h^{-1} \circ g^{-1} \circ f^{-1}\right)(x)$$
+                </li>
+                <li>
+                    <strong>Mencari Fungsi yang Belum Diketahui dengan Bantuan Invers:</strong>
+                    <ul>
+                        <li>Jika diketahui $(f \circ g)(x) = h(x)$ dan $g(x)$, maka: $f(x) = \left(h \circ g^{-1}\right)(x) = h\big(g^{-1}(x)\big)$.</li>
+                        <li>Jika diketahui $(f \circ g)(x) = h(x)$ dan $f(x)$, maka: $g(x) = \left(f^{-1} \circ h\right)(x) = f^{-1}\big(h(x)\big)$.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="kesimpulan">
+                💡 Trik Emas Menghitung Nilai $f^{-1}(k)$ Tanpa Mencari Rumus $f^{-1}(x)$:<br>
+                Jika soal hanya menanyakan nilai angka $f^{-1}(k)$ (atau $(f \circ g)^{-1}(k)$), <strong>JANGAN</strong> mencari rumus umum $f^{-1}(x)$! Cukup misalkan $f^{-1}(k) = a$, lalu selesaikan persamaan $f(a) = k$ untuk mendapatkan nilai $a$.<br>
+                Selain itu, pada pecahan linear $f(x) = \frac{ax + b}{cx + d}$, jika $d = -a$ (yaitu $f(x) = \frac{ax + b}{cx - a}$), maka fungsi tersebut adalah <strong>invers bagi dirinya sendiri</strong> ($f^{-1}(x) = f(x)$)!
+            </div>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Diketahui fungsi $f(x) = \frac{3x - 5}{2x + 4}$ untuk $x \neq -2$. Jika $f^{-1}(x)$ adalah invers dari fungsi $f(x)$, maka rumus dari $f^{-1}(x - 1)$ adalah ....
+                <ol class="pilgan">
+                    <li>$\frac{-4x - 1}{2x - 5}, \quad x \neq \frac{5}{2}$</li>
+                    <li>$\frac{-4x - 9}{2x - 5}, \quad x \neq \frac{5}{2}$</li>
+                    <li>$\frac{-4x + 1}{2x - 1}, \quad x \neq \frac{1}{2}$</li>
+                    <li>$\frac{4x - 1}{2x - 5}, \quad x \neq \frac{5}{2}$</li>
+                    <li>$\frac{-4x - 1}{2x + 5}, \quad x \neq -\frac{5}{2}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Gunakan rumus cepat invers fungsi pecahan linear $f(x) = \frac{ax + b}{cx + d} \implies f^{-1}(x) = \frac{-dx + b}{cx - a}$ dengan $a = 3, b = -5, c = 2,$ dan $d = 4$:
+                    $$f^{-1}(x) = \frac{-4x - 5}{2x - 3}, \quad x \neq \frac{3}{2}$$
+                </p>
+                <p>
+                    2. Untuk mencari $f^{-1}(x - 1)$, ganti setiap variabel $x$ pada rumus $f^{-1}(x)$ dengan $(x - 1)$:
+                    $$f^{-1}(x - 1) = \frac{-4(x - 1) - 5}{2(x - 1) - 3}$$
+                    $$f^{-1}(x - 1) = \frac{-4x + 4 - 5}{2x - 2 - 3} = \frac{-4x - 1}{2x - 5}, \quad x \neq \frac{5}{2}$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, rumus dari $f^{-1}(x - 1)$ adalah $\frac{-4x - 1}{2x - 5}$ dengan $x \neq \frac{5}{2}$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Jika fungsi $f$ memenuhi persamaan $f(2x - 3) = \frac{5x + 1}{x + 2}$ untuk $x \neq -2$, maka nilai dari $f^{-1}(4)$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$-1$</li>
+                    <li>$3$</li>
+                    <li>$5$</li>
+                    <li>$7$</li>
+                    <li>$11$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Gunakan sifat ekuivalensi invers $f^{-1}(k) = a \iff f(a) = k$. Misalkan $f^{-1}(4) = a$, maka $f(a) = 4$.
+                </p>
+                <p>
+                    2. Pada soal diketahui $f(2x - 3) = \frac{5x + 1}{x + 2}$. Kita cari nilai $x$ yang membuat hasil di ruas kanan sama dengan $4$:
+                    $$\frac{5x + 1}{x + 2} = 4$$
+                    $$5x + 1 = 4(x + 2)$$
+                    $$5x + 1 = 4x + 8 \implies x = 7$$
+                </p>
+                <p>
+                    3. Substitusikan nilai $x = 7$ ke dalam argumen $f(2x - 3)$:
+                    $$f\big(2(7) - 3\big) = 4 \iff f(11) = 4 \iff f^{-1}(4) = 11$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $f^{-1}(4)$ adalah $11$ (Jawaban E).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Diketahui fungsi kuadrat $f(x) = x^2 - 6x + 14$ dengan domain $D_f = \{x \in \mathbb{R} \mid x \le 3\}$. Rumus fungsi invers $f^{-1}(x)$ beserta daerah asalnya ($D_{f^{-1}}$) adalah ....
+                <ol class="pilgan pilgan-1kolom">
+                    <li>$f^{-1}(x) = 3 + \sqrt{x - 5}$ dengan $x \ge 5$</li>
+                    <li>$f^{-1}(x) = 3 - \sqrt{x - 5}$ dengan $x \ge 5$</li>
+                    <li>$f^{-1}(x) = 3 - \sqrt{x + 5}$ dengan $x \ge -5$</li>
+                    <li>$f^{-1}(x) = -3 + \sqrt{x - 5}$ dengan $x \ge 5$</li>
+                    <li>$f^{-1}(x) = -3 - \sqrt{x - 5}$ dengan $x \ge 5$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. <strong>Ubah $f(x)$ menjadi bentuk kuadrat sempurna:</strong>
+                    $$y = x^2 - 6x + 14$$
+                    $$y = (x^2 - 6x + 9) + 5 \iff y = (x - 3)^2 + 5$$
+                    Puncak parabola berada di $(3, 5)$ dan terbuka ke atas, sehingga untuk domain $x \le 3$, daerah hasil dari $f$ adalah $R_f = \{y \mid y \ge 5\}$. Maka domain fungsi inversnya adalah $D_{f^{-1}} = \{x \mid x \ge 5\}$.
+                </p>
+                <p>
+                    2. <strong>Nyatakan $x$ dalam $y$:</strong>
+                    $$(x - 3)^2 = y - 5$$
+                    $$x - 3 = \pm\sqrt{y - 5} \implies x = 3 \pm \sqrt{y - 5}$$
+                </p>
+                <p>
+                    3. <strong>Pilih tanda $\pm$ sesuai domain $f$:</strong><br>
+                    Karena domain fungsi asal adalah $x \le 3$ (kurang dari atau sama dengan $3$), maka kita wajib memilih tanda <strong>minus ($-$)</strong>:
+                    $$x = 3 - \sqrt{y - 5} \implies f^{-1}(x) = 3 - \sqrt{x - 5} \quad \text{untuk } x \ge 5$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, rumus inversnya adalah $f^{-1}(x) = 3 - \sqrt{x - 5}$ dengan $x \ge 5$ (Jawaban B).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Diketahui fungsi $f(x) = 2x + 5$ dan $g(x) = \frac{x - 1}{3}$. Nilai dari $(f \circ g)^{-1}(11)$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$7$</li>
+                    <li>$8$</li>
+                    <li>$9$</li>
+                    <li>$10$</li>
+                    <li>$12$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    <strong>Cara 1 (Menggunakan Sifat $(f \circ g)^{-1}(x) = (g^{-1} \circ f^{-1})(x)$):</strong><br>
+                    Kita hitung dari luar ke dalam secara bertahap:
+                    $$(f \circ g)^{-1}(11) = g^{-1}\big(f^{-1}(11)\big)$$
+                </p>
+                <ul>
+                    <li>Cari $f^{-1}(11) = p \iff f(p) = 11 \iff 2p + 5 = 11 \implies 2p = 6 \implies p = 3$.</li>
+                    <li>Substitusikan $p = 3$ untuk mencari $g^{-1}(3) = q \iff g(q) = 3 \iff \frac{q - 1}{3} = 3 \implies q - 1 = 9 \implies q = 10$.</li>
+                </ul>
+                <p>
+                    <strong>Cara 2 (Menyelesaikan $(f \circ g)(a) = 11$):</strong>
+                    $$f(g(a)) = 11 \iff 2\left(\frac{a - 1}{3}\right) + 5 = 11$$
+                    $$2\left(\frac{a - 1}{3}\right) = 6 \implies \frac{a - 1}{3} = 3 \implies a = 10$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $(f \circ g)^{-1}(11)$ adalah $10$ (Jawaban D).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Diagram Panah Pemetaan f: A -> B dan Inversnya f^-1: B -> A menggunakan GeoSVG.js
+            const containerMap = document.getElementById("geosvg-mapping");
+            if (containerMap && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerMap, 330, 225, {
+                    viewBox: "0 0 330 225",
+                    clearContainer: true,
+                    title: "Diagram Panah Fungsi dan Inversnya",
+                    description: "Pemetaan bijektif himpunan A ke B oleh fungsi f dan pemetaan balik B ke A oleh f invers"
+                });
+
+                const cxA = 75;
+                const cxB = 255;
+                const cy = 115;
+
+                // Elips Himpunan A (Domain f / Range f^-1) dan B (Range f / Domain f^-1)
+                geo1.buatElips(cxA, cy, 42, 72, {
+                    fill: "rgba(13, 148, 136, 0.12)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2
+                });
+                geo1.buatElips(cxB, cy, 42, 72, {
+                    fill: "rgba(217, 119, 6, 0.12)",
+                    stroke: "#d97706",
+                    strokeWidth: 2
+                });
+
+                // Label Himpunan A dan B
+                geo1.buatTeks(cxA, 28, "Himpunan A", { fill: "var(--teal-primary)", fontWeight: "bold", fontSize: "12px", position: "middle-center" });
+                geo1.buatTeks(cxB, 28, "Himpunan B", { fill: "#d97706", fontWeight: "bold", fontSize: "12px", position: "middle-center" });
+
+                // Elemen-elemen di dalam A dan B (Bijektif 3 pasangan)
+                const ys = [75, 115, 155];
+                const labelsA = ["x₁", "x₂", "x₃"];
+                const labelsB = ["y₁", "y₂", "y₃"];
+
+                ys.forEach((yPos, idx) => {
+                    // Panah pemetaan maju f (atas sedikit)
+                    geo1.buatVektor([cxA + 16, yPos - 4], [cxB - 16, yPos - 4], {
+                        stroke: "var(--teal-primary)",
+                        strokeWidth: 1.5
+                    });
+                    // Panah pemetaan balik f^-1 (bawah sedikit, putus-putus)
+                    geo1.buatVektor([cxB - 16, yPos + 5], [cxA + 16, yPos + 5], {
+                        stroke: "#d97706",
+                        strokeWidth: 1.5,
+                        dashed: "4 3"
+                    });
+
+                    geo1.buatTitik(cxA, yPos, {
+                        size: 4, color: "var(--teal-primary)",
+                        label: labelsA[idx], labelPosition: "middle-left", labelDistance: 8, bold: true
+                    });
+                    geo1.buatTitik(cxB, yPos, {
+                        size: 4, color: "#d97706",
+                        label: labelsB[idx], labelPosition: "middle-right", labelDistance: 8, bold: true
+                    });
+                });
+
+                // Lengkungan besar penunjuk f di atas dan f^-1 di bawah
+                geo1.buatKurvaBezier([[cxA + 20, 42], [165, 8], [cxB - 20, 42]], {
+                    stroke: "var(--teal-primary)", strokeWidth: 2
+                });
+                geo1.buatTeks(165, 14, "f : x ↦ y = f(x)", {
+                    fill: "var(--teal-primary)", fontWeight: "bold", fontSize: "11.5px", position: "middle-center"
+                });
+
+                geo1.buatKurvaBezier([[cxB - 20, 188], [165, 222], [cxA + 20, 188]], {
+                    stroke: "#d97706", strokeWidth: 2, dashed: "5 3"
+                });
+                geo1.buatTeks(165, 214, "f⁻¹ : y ↦ x = f⁻¹(y)", {
+                    fill: "#d97706", fontWeight: "bold", fontSize: "11.5px", position: "middle-center"
+                });
+            }
+
+            // 2. Visualisasi Pencerminan Grafik y = f(x) dan y = f^-1(x) terhadap Garis y = x menggunakan GeoSVG.js
+            const containerMirror = document.getElementById("geosvg-mirror");
+            if (containerMirror && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerMirror, 320, 290, {
+                    viewBox: "-65 -65 265 265",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Simetri Grafik Fungsi dan Inversnya terhadap Garis y = x",
+                    description: "Kurva eksponen f(x) = 2^x dan inversnya f^-1(x) = log_2(x) yang simetris terhadap garis cermin y = x"
+                });
+
+                const s = 38; // 1 satuan = 38 piksel
+
+                // Grid halus
+                geo2.buatGrid(s, s, { stroke: "var(--border-color)", strokeWidth: 0.8, opacity: 0.55 });
+
+                // Sumbu X dan Y
+                geo2.buatVektor([-55, 0], [190, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo2.buatVektor([0, -55], [0, 190], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo2.buatTeks(186, -13, "x", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11.5px", position: "middle-center" });
+                geo2.buatTeks(-13, 185, "y", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11.5px", position: "middle-center" });
+
+                // Garis Cermin y = x
+                geo2.buatSegmen([-48, -48], [180, 180], {
+                    stroke: "var(--text-muted)",
+                    strokeWidth: 1.6,
+                    dashed: "5 4"
+                });
+                geo2.buatTeks(162, 174, "y = x", {
+                    fill: "var(--text-muted)", fontWeight: "bold", fontSize: "11px", position: "middle-center"
+                });
+
+                // Kurva f(x) = 2^x (Teal) menggunakan buatFungsi bawaan GeoSVG.js
+                geo2.buatFungsi(x => Math.pow(2, x), -1.3, 2.2, {
+                    skala: s,
+                    langkah: 100,
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.6
+                });
+
+                // Kurva f^-1(x) = log2(x) (Mustard) menggunakan buatFungsi bawaan GeoSVG.js
+                geo2.buatFungsi(x => Math.log2(x), 0.4, 4.6, {
+                    skala: s,
+                    langkah: 100,
+                    stroke: "#d97706",
+                    strokeWidth: 2.6
+                });
+
+                // Pasangan titik cermin: P(1, 2) <-> P'(2, 1) dan Q(2, 4) <-> Q'(4, 2)
+                const P = [1 * s, 2 * s];
+                const P_inv = [2 * s, 1 * s];
+                const Q = [2 * s, 4 * s];
+                const Q_inv = [4 * s, 2 * s];
+
+                // Garis penghubung tegak lurus terhadap cermin y = x
+                geo2.buatSegmen(P, P_inv, { stroke: "#ef4444", strokeWidth: 1.2, dashed: "3 3" });
+                geo2.buatSegmen(Q, Q_inv, { stroke: "#ef4444", strokeWidth: 1.2, dashed: "3 3" });
+
+                // Titik (0, 1) dan (1, 0)
+                geo2.buatTitik([0, 1 * s], { size: 3.5, color: "var(--teal-primary)", label: "(0,1)", labelPosition: "middle-left", labelDistance: 6 });
+                geo2.buatTitik([1 * s, 0], { size: 3.5, color: "#d97706", label: "(1,0)", labelPosition: "bottom-center", labelDistance: 6 });
+
+                // Titik P(1,2) dan P'(2,1)
+                geo2.buatTitik(P, {
+                    size: 4.5, color: "var(--teal-primary)",
+                    label: "(1, 2)", labelPosition: "top-left", labelDistance: 5, bold: true
+                });
+                geo2.buatTitik(P_inv, {
+                    size: 4.5, color: "#d97706",
+                    label: "(2, 1)", labelPosition: "bottom-right", labelDistance: 5, bold: true
+                });
+
+                // Titik Q(2,4) dan Q'(4,2)
+                geo2.buatTitik(Q, {
+                    size: 4.5, color: "var(--teal-primary)",
+                    label: "y = f(x)", labelPosition: "top-left", labelDistance: 6, bold: true
+                });
+                geo2.buatTitik(Q_inv, {
+                    size: 4.5, color: "#d97706",
+                    label: "y = f⁻¹(x)", labelPosition: "bottom-center", labelDistance: 8, bold: true
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

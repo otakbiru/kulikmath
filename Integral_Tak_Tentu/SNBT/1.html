@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal SNBT - Integral Tak Tentu</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Integral Tak Tentu</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika \(\displaystyle\int g(x) \, dx = 3\sqrt{f(x)} + C\) dan diketahui \(f(1) = f'(1) = 9\), maka nilai dari \(g(1)\) adalah ....
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>1</li>
+                    <li>9</li>
+                    <li>3</li>
+                    <li>\(\dfrac{3}{2}\)</li>
+                    <li>\(\dfrac{9}{2}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Berdasarkan <strong>Teorema Dasar Kalkulus</strong>, turunan dari suatu integral tak tentu mengembalikan fungsi aslinya:
+                        \[\dfrac{d}{dx}\left(\int g(x) \, dx\right) = g(x)\]
+                    </p>
+                    <p>
+                        Diferensialkan kedua ruas terhadap \(x\) dengan menggunakan aturan rantai:
+                    </p>
+                    \[\begin{aligned}
+                    g(x) &= \dfrac{d}{dx}\left(3\sqrt{f(x)} + C\right) \\
+                    &= \dfrac{d}{dx}\left(3\big(f(x)\big)^{\frac{1}{2}} + C\right) \\
+                    &= 3 \cdot \dfrac{1}{2}\big(f(x)\big)^{-\frac{1}{2}} \cdot f'(x) \\
+                    &= \dfrac{3f'(x)}{2\sqrt{f(x)}}
+                    \end{aligned}\]
+
+                    <p>Substitusikan nilai \(x = 1\) serta nilai \(f(1) = 9\) dan \(f'(1) = 9\):</p>
+                    \[\begin{aligned}
+                    g(1) &= \dfrac{3f'(1)}{2\sqrt{f(1)}} \\
+                    &= \dfrac{3(9)}{2\sqrt{9}} \\
+                    &= \dfrac{27}{2(3)} \\
+                    &= \dfrac{27}{6} = \dfrac{9}{2}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai \(g(1) = \dfrac{9}{2}\).<br>
+                        <strong>JAWABAN: E</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int \dfrac{1}{1+e^x} \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(x - \ln(1+e^x) + C\)</li>
+                    <li>\(\ln(1+e^x) - x + C\)</li>
+                    <li>\(\dfrac{x}{1+e^x} + C\)</li>
+                    <li>\(-\ln(1+e^x) + C\)</li>
+                    <li>\(e^x - \ln(1+e^x) + C\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneId/262" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Metode 1: Menggunakan Pecahan Parsial</strong></p>
+                    <p>
+                        Misalkan:
+                        \[u = 1 + e^x \implies e^x = u - 1\]
+                        \[du = e^x \, dx = (u - 1) \, dx \implies dx = \dfrac{du}{u - 1}\]
+                    </p>
+                    <p>Substitusikan ke dalam integral:</p>
+                    \[\begin{aligned}
+                    \int \dfrac{1}{1+e^x} \, dx &= \int \dfrac{1}{u} \cdot \dfrac{du}{u - 1} \\
+                    &= \int \left(\dfrac{1}{u - 1} - \dfrac{1}{u}\right) du \\
+                    &= \ln|u - 1| - \ln|u| + C \\
+                    &= \ln|e^x| - \ln(1 + e^x) + C \\
+                    &= x - \ln(1 + e^x) + C
+                    \end{aligned}\]
+
+                    <hr style="margin: 1.2rem 0; border: none; border-top: 1px dashed var(--border-color, #cbd5e1);">
+
+                    <p><strong>Metode 2: Mengalikan Pembilang dan Penyebut dengan \(e^{-x}\)</strong></p>
+                    \[\begin{aligned}
+                    \int \dfrac{1}{1+e^x} \, dx &= \int \dfrac{e^{-x}}{e^{-x}(1 + e^x)} \, dx \\
+                    &= \int \dfrac{e^{-x}}{e^{-x} + 1} \, dx \\
+                    &= -\int \dfrac{-e^{-x}}{1 + e^{-x}} \, dx \\
+                    &= -\ln(1 + e^{-x}) + C
+                    \end{aligned}\]
+                    <p>
+                        Perhatikan kesetaraan bentuknya:
+                        \[-\ln(1 + e^{-x}) = -\ln\left(\dfrac{e^x + 1}{e^x}\right) = -\big(\ln(e^x + 1) - \ln(e^x)\big) = x - \ln(1 + e^x)\]
+                    </p>
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(x - \ln(1+e^x) + C\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int \dfrac{x^2-2x-1}{x^2-1} \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(x - \ln|x^2-1| + C\)</li>
+                    <li>\(x - 2\ln|x^2-1| + C\)</li>
+                    <li>\(2x - 2\ln|3x-1| + C\)</li>
+                    <li>\(2x - 4\ln|x^2-1| + C\)</li>
+                    <li>\(2x - 4\ln|3x-1| + C\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">SKMP September 2020</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Manipulasi bentuk pembilang agar memuat bentuk penyebut \((x^2 - 1)\):
+                    </p>
+                    \[\begin{aligned}
+                    \dfrac{x^2 - 2x - 1}{x^2 - 1} &= \dfrac{(x^2 - 1) - 2x}{x^2 - 1} \\
+                    &= \dfrac{x^2 - 1}{x^2 - 1} - \dfrac{2x}{x^2 - 1} \\
+                    &= 1 - \dfrac{2x}{x^2 - 1}
+                    \end{aligned}\]
+
+                    <p>Integralkan suku demi suku:</p>
+                    \[\begin{aligned}
+                    \int \dfrac{x^2-2x-1}{x^2-1} \, dx &= \int \left(1 - \dfrac{2x}{x^2-1}\right) dx \\
+                    &= \int 1 \, dx - \int \dfrac{2x}{x^2-1} \, dx \\
+                    &= x - \int \dfrac{d(x^2 - 1)}{x^2 - 1} \\
+                    &= x - \ln|x^2 - 1| + C
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(x - \ln|x^2-1| + C\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int \dfrac{dx}{x-\sqrt{x}} = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(2\ln|\sqrt{x}-1| + C\)</li>
+                    <li>\(\ln|\sqrt{x}-1| + C\)</li>
+                    <li>\(2\sqrt{x} - \ln|x| + C\)</li>
+                    <li>\(\dfrac{1}{2}\ln|\sqrt{x}-1| + C\)</li>
+                    <li>\(2\ln|x-\sqrt{x}| + C\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorkan penyebut dengan mengeluarkan \(\sqrt{x}\):</p>
+                    \[x - \sqrt{x} = \sqrt{x}(\sqrt{x} - 1)\]
+                    <p>Sehingga integral dapat ditulis:</p>
+                    \[\int \dfrac{dx}{x - \sqrt{x}} = \int \dfrac{dx}{\sqrt{x}(\sqrt{x} - 1)}\]
+
+                    <p>
+                        Gunakan substitusi:
+                        \[u = \sqrt{x} - 1\]
+                        Diferensialkan:
+                        \[du = \dfrac{1}{2\sqrt{x}} \, dx \implies \dfrac{dx}{\sqrt{x}} = 2 \, du\]
+                    </p>
+
+                    <p>Substitusikan ke integral:</p>
+                    \[\begin{aligned}
+                    \int \dfrac{dx}{\sqrt{x}(\sqrt{x} - 1)} &= \int \dfrac{2 \, du}{u} \\
+                    &= 2\ln|u| + C \\
+                    &= 2\ln|\sqrt{x} - 1| + C
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(2\ln|\sqrt{x}-1| + C\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Hasil dari \(\displaystyle\int \left(\dfrac{x^3}{2\sqrt{x-1}} + 3x^2\sqrt{x-1}\right) dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(x^3\sqrt{x-1} + C\)</li>
+                    <li>\(3x^3\sqrt{x-1} + C\)</li>
+                    <li>\(\dfrac{x^3}{\sqrt{x-1}} + C\)</li>
+                    <li>\(x^2\sqrt{x-1} + C\)</li>
+                    <li>\(\dfrac{1}{2}x^3\sqrt{x-1} + C\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Metode 1: Pola Turunan Hasil Kali Fungsi (Aturan Perkalian)</strong></p>
+                    <p>
+                        Ingat kembali aturan turunan perkalian:
+                        \[\dfrac{d}{dx}\big(u(x) \cdot v(x)\big) = u'(x)v(x) + u(x)v'(x)\]
+                    </p>
+                    <p>
+                        Jika kita pilih:
+                        \[u(x) = x^3 \implies u'(x) = 3x^2\]
+                        \[v(x) = \sqrt{x - 1} \implies v'(x) = \dfrac{1}{2\sqrt{x - 1}}\]
+                    </p>
+                    <p>
+                        Maka:
+                        \[\dfrac{d}{dx}\left(x^3\sqrt{x - 1}\right) = 3x^2\sqrt{x - 1} + x^3 \cdot \dfrac{1}{2\sqrt{x - 1}} = 3x^2\sqrt{x - 1} + \dfrac{x^3}{2\sqrt{x - 1}}\]
+                    </p>
+                    <p>
+                        Karena fungsi yang diintegralkan persis adalah turunan dari \(x^3\sqrt{x - 1}\), berdasarkan Teorema Dasar Kalkulus:
+                        \[\int \left(\dfrac{x^3}{2\sqrt{x-1}} + 3x^2\sqrt{x-1}\right) dx = x^3\sqrt{x - 1} + C\]
+                    </p>
+
+                    <hr style="margin: 1.2rem 0; border: none; border-top: 1px dashed var(--border-color, #cbd5e1);">
+
+                    <p><strong>Metode 2: Menggunakan Integral Parsial pada Salah Satu Suku</strong></p>
+                    <p>
+                        Tinjau suku kedua \(\displaystyle\int 3x^2\sqrt{x-1} \, dx\). Gunakan integral parsial \(\int v \, du = uv - \int u \, dv\):
+                        \[u = \sqrt{x - 1} \implies du = \dfrac{1}{2\sqrt{x - 1}} \, dx\]
+                        \[dv = 3x^2 \, dx \implies v = x^3\]
+                    </p>
+                    \[\begin{aligned}
+                    \int 3x^2\sqrt{x-1} \, dx &= x^3\sqrt{x-1} - \int x^3 \cdot \dfrac{1}{2\sqrt{x-1}} \, dx \\
+                    &= x^3\sqrt{x-1} - \int \dfrac{x^3}{2\sqrt{x-1}} \, dx
+                    \end{aligned}\]
+                    <p>Substitusikan kembali ke bentuk soal awal:</p>
+                    \[\begin{aligned}
+                    \int \left(\dfrac{x^3}{2\sqrt{x-1}} + 3x^2\sqrt{x-1}\right) dx &= \int \dfrac{x^3}{2\sqrt{x-1}} \, dx + \left(x^3\sqrt{x-1} - \int \dfrac{x^3}{2\sqrt{x-1}} \, dx\right) + C \\
+                    &= x^3\sqrt{x-1} + C
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(x^3\sqrt{x-1} + C\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

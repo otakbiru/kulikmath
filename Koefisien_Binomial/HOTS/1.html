@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soal HOTS - Koefisien Binomial</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Koefisien Binomial</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Misalkan \(S = (x - 2)^4 + 8(x - 2)^3 + 24(x - 2)^2 + 32(x - 2) + 16\).
+                    Apakah bentuk \(S\) jika dituliskan dalam sesedikit mungkin suku penjumlahan?
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://forummatematika.freeforums.net/thread/38/" target="_blank" rel="noopener noreferrer">OSP SMA 2002</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Ingat kembali ekspansi binomial Newton untuk pangkat \(4\):
+                        \[
+                        (a + b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4
+                        \]
+                    </p>
+                    <p>
+                        Perhatikan koefisien dan pola pada bentuk aljabar \(S\):
+                        \[
+                        \begin{aligned}
+                        S &= (x - 2)^4 + 8(x - 2)^3 + 24(x - 2)^2 + 32(x - 2) + 16 \\[6pt]
+                          &= (x - 2)^4 + 4 \cdot 2(x - 2)^3 + 6 \cdot 2^2(x - 2)^2 + 4 \cdot 2^3(x - 2) + 2^4
+                        \end{aligned}
+                        \]
+                    </p>
+                    <p>
+                        Dengan mengambil \(a = (x - 2)\) dan \(b = 2\), bentuk tersebut tepat mengikuti ekspansi \((a + b)^4\):
+                        \[
+                        \begin{aligned}
+                        S &= \bigl((x - 2) + 2\bigr)^4 \\[6pt]
+                          &= (x)^4 \\[6pt]
+                          &= x^4
+                        \end{aligned}
+                        \]
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, bentuk \(S\) jika dituliskan dalam sesedikit mungkin suku penjumlahan adalah \(x^4\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Tentukan nilai dari penjumlahan deret koefisien binomial berikut:
+                    \[
+                    \sum_{i=0}^{2011} (-1)^i \binom{2011}{i}
+                    \]
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://chat.whatsapp.com/LqD5uOjjYtd7UjHnmTMIUa" target="_blank" rel="noopener noreferrer">Grup WhatsApp</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Berdasarkan Teorema Binomial, bentuk ekspansi \((x + y)^n\) dinyatakan oleh rumus:
+                        \[
+                        (x + y)^n = \sum_{i=0}^{n} \binom{n}{i} x^i y^{n - i}
+                        \]
+                    </p>
+                    <p>
+                        Jika kita substitusikan nilai \(n = 2011\), \(x = -1\), dan \(y = 1\), maka diperoleh:
+                        \[
+                        \begin{aligned}
+                        (-1 + 1)^{2011} &= \sum_{i=0}^{2011} \binom{2011}{i} (-1)^i (1)^{2011 - i} \\[6pt]
+                        0^{2011} &= \sum_{i=0}^{2011} \binom{2011}{i} (-1)^i (1) \\[6pt]
+                        0 &= \sum_{i=0}^{2011} (-1)^i \binom{2011}{i}
+                        \end{aligned}
+                        \]
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(\displaystyle \sum_{i=0}^{2011} (-1)^i \binom{2011}{i} = 0\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Matematika Idham Daz. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- Script Render KaTeX -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof renderMathInElement === "function") {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "\\[", right: "\\]", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false }
+                    ]
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Math Blog Otomatis (Navigasi Level, Penomoran, Toggle Solusi) -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

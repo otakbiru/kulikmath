@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Integral Trigonometri Tak Tentu</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan komprehensif, teknik reduksi, dan substitusi geometri materi <span
+                    class="topic-highlight">Integral Trigonometri Tak Tentu</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Konsep Dasar & Rumus Standar Integral Trigonometri</h2>
+            <p>
+                Integral trigonometri tak tentu merupakan operasi balikan (antiturunan) dari fungsi-fungsi trigonometri
+                dasar. Mengingat bahwa turunan dari suatu konstanta adalah nol, setiap hasil integrasi tak tentu selalu
+                memuat konstanta integrasi sembarang $C \in \mathbb{R}$.
+            </p>
+
+            <div class="table-wrapper">
+                <table class="table-auto">
+                    <thead>
+                        <tr>
+                            <th>Fungsi Asal $f(x)$</th>
+                            <th>Antiturunan $\int f(x)\,dx$</th>
+                            <th>Dasar Turunan Terkait</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$\sin x$</td>
+                            <td>$-\cos x + C$</td>
+                            <td>$\frac{d}{dx}(-\cos x) = \sin x$</td>
+                        </tr>
+                        <tr>
+                            <td>$\cos x$</td>
+                            <td>$\sin x + C$</td>
+                            <td>$\frac{d}{dx}(\sin x) = \cos x$</td>
+                        </tr>
+                        <tr>
+                            <td>$\sec^2 x$</td>
+                            <td>$\tan x + C$</td>
+                            <td>$\frac{d}{dx}(\tan x) = \sec^2 x$</td>
+                        </tr>
+                        <tr>
+                            <td>$\csc^2 x$</td>
+                            <td>$-\cot x + C$</td>
+                            <td>$\frac{d}{dx}(-\cot x) = \csc^2 x$</td>
+                        </tr>
+                        <tr>
+                            <td>$\sec x \tan x$</td>
+                            <td>$\sec x + C$</td>
+                            <td>$\frac{d}{dx}(\sec x) = \sec x \tan x$</td>
+                        </tr>
+                        <tr>
+                            <td>$\csc x \cot x$</td>
+                            <td>$-\csc x + C$</td>
+                            <td>$\frac{d}{dx}(-\csc x) = \csc x \cot x$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                Untuk bentuk linier pada argumen sudut $ax + b$ dengan $a \neq 0$, berlaku aturan rantai terbalik:
+                $$\int \sin(ax+b)\,dx = -\frac{1}{a}\cos(ax+b) + C$$
+                $$\int \cos(ax+b)\,dx = \frac{1}{a}\sin(ax+b) + C$$
+                $$\int \sec^2(ax+b)\,dx = \frac{1}{a}\tan(ax+b) + C$$
+            </p>
+
+            <h2>2. Visualisasi Kurva Antiturunan</h2>
+            <p>
+                Visualisasi berikut menunjukkan hubungan geometris antara fungsi $\cos(x)$ dan fungsi antiturunannya
+                $F(x) = \sin(x) + C$. Pada titik puncak dan lembah dari $\sin(x)$ (gradien nol), fungsi $\cos(x)$
+                bernilai tepat di sumbu-$x$ (bernilai $0$).
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="svg-grafik" style="width: 100%; max-width: 520px; height: 260px;"></div>
+                </div>
+                <div class="col">
+                    <p><strong>Keterangan Kurva:</strong></p>
+                    <ul>
+                        <li><span style="color: #0d9488; font-weight: bold;">Kurva Hijau Tua / Cyan:</span> Kurva $y =
+                            \sin x$ (fungsi antiturunan).</li>
+                        <li><span style="color: #e11d48; font-weight: bold;">Kurva Merah Muda Putus-Putus:</span> Kurva
+                            $y = \cos x$ (fungsi integran).</li>
+                    </ul>
+                    <p>
+                        Antiturunan mendeskripsikan akumulasi luas bertanda di bawah kurva $\cos x$ dimulai dari $x=0$.
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Integral Fungsi Tangen, Kotangen, Sekan, dan Kosekan</h2>
+            <p>
+                Fungsi-fungsi ini diselesaikan dengan substitusi aljabar sederhana memanfaatkan definisi pembagian sinus
+                dan kosinus serta manipulasi aljabar:
+            </p>
+            <ul>
+                <li>
+                    <strong>Integral Tangen:</strong>
+                    $$\int \tan x\,dx = \int \frac{\sin x}{\cos x}\,dx = -\int \frac{d(\cos x)}{\cos x} =
+                    -\ln\vert{}\cos x\vert{} + C = \ln\vert{}\sec x\vert{} + C$$
+                </li>
+                <li>
+                    <strong>Integral Kotangen:</strong>
+                    $$\int \cot x\,dx = \int \frac{\cos x}{\sin x}\,dx = \int \frac{d(\sin x)}{\sin x} = \ln\vert{}\sin
+                    x\vert{} + C$$
+                </li>
+                <li>
+                    <strong>Integral Sekan:</strong>
+                    $$\int \sec x\,dx = \int \sec x \cdot \frac{\sec x + \tan x}{\sec x + \tan x}\,dx = \int
+                    \frac{\sec^2 x + \sec x \tan x}{\sec x + \tan x}\,dx = \ln\vert{}\sec x + \tan x\vert{} + C$$
+                </li>
+                <li>
+                    <strong>Integral Kosekan:</strong>
+                    $$\int \csc x\,dx = \int \csc x \cdot \frac{\csc x - \cot x}{\csc x - \cot x}\,dx = \ln\vert{}\csc x
+                    - \cot x\vert{} + C$$
+                </li>
+            </ul>
+
+            <h2>4. Bentuk $\int \sin^m x \cos^n x\,dx$</h2>
+            <p>
+                Strategi integrasi untuk produk perpangkatan sinus dan kosinus bergantung pada paritas (ganjil/genap)
+                dari eksponen $m$ dan $n$:
+            </p>
+            <ol>
+                <li>
+                    <strong>Jika pangkat Sinus ($m$) ganjil:</strong><br>
+                    Simpan satu faktor $\sin x\,dx$ untuk menjadi $-d(\cos x)$, ubah sisa pangkat genap $\sin^{m-1}x$
+                    menjadi bentuk $\cos x$ menggunakan identitas $\sin^2 x = 1 - \cos^2 x$, lalu misalkan $u = \cos x$.
+                </li>
+                <li>
+                    <strong>Jika pangkat Kosinus ($n$) ganjil:</strong><br>
+                    Simpan satu faktor $\cos x\,dx$ untuk menjadi $d(\sin x)$, ubah $\cos^{n-1}x$ menjadi $(1 - \sin^2
+                    x)$, lalu misalkan $u = \sin x$.
+                </li>
+                <li>
+                    <strong>Jika kedua pangkat $m$ dan $n$ genap tak negatif:</strong><br>
+                    Gunakan rumus sudut rangkap (reduksi pangkat):
+                    $$\sin^2 x = \frac{1 - \cos 2x}{2}, \quad \cos^2 x = \frac{1 + \cos 2x}{2}, \quad \sin x \cos x =
+                    \frac{\sin 2x}{2}$$
+                </li>
+            </ol>
+
+            <div class="kesimpulan">
+                <strong>Contoh Tipe Pangkat Ganjil:</strong>
+                $$\int \sin^3 x \cos^2 x\,dx = \int (1 - \cos^2 x)\cos^2 x \sin x\,dx$$
+                Misalkan $u = \cos x \implies du = -\sin x\,dx$:
+                $$= -\int (u^2 - u^4)\,du = -\left(\frac{u^3}{3} - \frac{u^5}{5}\right) + C = -\frac{1}{3}\cos^3 x +
+                \frac{1}{5}\cos^5 x + C$$
+            </div>
+
+            <h2>5. Perkalian Sinus dan Kosinus Berbeda Sudut</h2>
+            <p>
+                Gunakan rumus perkalian ke penjumlahan (identitas Werner):
+            </p>
+            $$\sin(ax)\cos(bx) = \frac{1}{2}\left[\sin((a+b)x) + \sin((a-b)x)\right]$$
+            $$\cos(ax)\cos(bx) = \frac{1}{2}\left[\cos((a+b)x) + \cos((a-b)x)\right]$$
+            $$\sin(ax)\sin(bx) = -\frac{1}{2}\left[\cos((a+b)x) - \cos((a-b)x)\right]$$
+
+            <h2>6. Integrasi Menggunakan Substitusi Trigonometri (Geometri Segitiga)</h2>
+            <p>
+                Teknik ini sangat ampuh untuk mengeliminasi bentuk akar aljabar kuadratik $\sqrt{a^2 - x^2}$, $\sqrt{a^2
+                + x^2}$, dan $\sqrt{x^2 - a^2}$ dengan memetakan variabel ke perbandingan sisi-sisi segitiga siku-siku.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bentuk Radikal</th>
+                            <th>Substitusi Pemisalan</th>
+                            <th>Diferensial $dx$</th>
+                            <th>Penyederhanaan Akar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$\sqrt{a^2 - x^2}$</td>
+                            <td>$x = a \sin \theta$</td>
+                            <td>$dx = a \cos \theta\,d\theta$</td>
+                            <td>$\sqrt{a^2 - a^2\sin^2\theta} = a\cos\theta$</td>
+                        </tr>
+                        <tr>
+                            <td>$\sqrt{a^2 + x^2}$</td>
+                            <td>$x = a \tan \theta$</td>
+                            <td>$dx = a \sec^2 \theta\,d\theta$</td>
+                            <td>$\sqrt{a^2 + a^2\tan^2\theta} = a\sec\theta$</td>
+                        </tr>
+                        <tr>
+                            <td>$\sqrt{x^2 - a^2}$</td>
+                            <td>$x = a \sec \theta$</td>
+                            <td>$dx = a \sec \theta \tan \theta\,d\theta$</td>
+                            <td>$\sqrt{a^2\sec^2\theta - a^2} = a\tan\theta$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                Berikut konstruksi geometris segitiga siku-siku untuk substitusi bentuk $\sqrt{a^2 - x^2}$ dengan $x =
+                a\sin\theta$:
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="svg-segitiga" style="width: 100%; max-width: 380px; height: 260px;"></div>
+                </div>
+                <div class="col">
+                    <p><strong>Hubungan Nilai Trigonometri dari Segitiga:</strong></p>
+                    <ul>
+                        <li>$\sin \theta = \frac{\text{depan}}{\text{miring}} = \frac{x}{a}$</li>
+                        <li>$\cos \theta = \frac{\text{samping}}{\text{miring}} = \frac{\sqrt{a^2 - x^2}}{a}$</li>
+                        <li>$\tan \theta = \frac{\text{depan}}{\text{samping}} = \frac{x}{\sqrt{a^2 - x^2}}$</li>
+                    </ul>
+                    <p>
+                        Setelah antiturunan dalam variabel $\theta$ diperoleh, kembalikan ke variabel $x$ menggunakan
+                        perbandingan rasio segitiga di atas.
+                    </p>
+                </div>
+            </div>
+
+            <h2>7. Rumus Reduksi Integral Trigonometri</h2>
+            <p>
+                Untuk pangkat tinggi, integrasi parsial $\int u\,dv = uv - \int v\,du$ menghasilkan relasi rekursif
+                (rumus reduksi):
+            </p>
+            $$\int \sin^n x\,dx = -\frac{\sin^{n-1}x \cos x}{n} + \frac{n-1}{n}\int \sin^{n-2} x\,dx$$
+            $$\int \cos^n x\,dx = \frac{\cos^{n-1}x \sin x}{n} + \frac{n-1}{n}\int \cos^{n-2} x\,dx$$
+            $$\int \sec^n x\,dx = \frac{\sec^{n-2}x \tan x}{n-1} + \frac{n-2}{n-1}\int \sec^{n-2} x\,dx \quad (n \ge
+            2)$$
+            $$\int \tan^n x\,dx = \frac{\tan^{n-1}x}{n-1} - \int \tan^{n-2} x\,dx \quad (n \ge 2)$$
+
+            <h2>8. Contoh Soal Pembahasan Mendalam</h2>
+            <div class="soal-item">
+                <div class="soal-no">Contoh Kasus 1</div>
+                <div class="soal-teks">
+                    Tentukan hasil dari integral tak tentu berikut:
+                    $$\int \frac{dx}{x^2 \sqrt{4 - x^2}}$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Langkah Penyelesaian Substitusi Trigonometri</div>
+                    <p>
+                        Bentuk akar pada penyebut adalah $\sqrt{2^2 - x^2}$, sehingga kita gunakan substitusi sinus:
+                        $$x = 2 \sin \theta \implies dx = 2 \cos \theta\,d\theta$$
+                    </p>
+                    <p>
+                        Bentuk akar menjadi:
+                        $$\sqrt{4 - x^2} = \sqrt{4 - 4\sin^2 \theta} = 2\sqrt{1 - \sin^2 \theta} = 2\cos \theta$$
+                    </p>
+                    <p>
+                        Substitusikan seluruh komponen ke dalam integral:
+                        $$\int \frac{2\cos\theta\,d\theta}{(2\sin\theta)^2 \cdot 2\cos\theta} = \int
+                        \frac{2\cos\theta}{4\sin^2\theta \cdot 2\cos\theta}\,d\theta = \frac{1}{4} \int
+                        \frac{1}{\sin^2\theta}\,d\theta$$
+                        $$= \frac{1}{4} \int \csc^2 \theta\,d\theta = -\frac{1}{4}\cot \theta + C$$
+                    </p>
+                    <p>
+                        Kembalikan ke variabel $x$ melalui segitiga trigonometri:
+                        Karena $\sin \theta = \frac{x}{2}$, maka sisi depan $= x$, sisi miring $= 2$, dan sisi samping
+                        $= \sqrt{4 - x^2}$.
+                        $$\cot \theta = \frac{\text{samping}}{\text{depan}} = \frac{\sqrt{4 - x^2}}{x}$$
+                    </p>
+                    <div class="kesimpulan">
+                        $$\int \frac{dx}{x^2 \sqrt{4 - x^2}} = -\frac{\sqrt{4 - x^2}}{4x} + C$$
+                    </div>
+                    <button class="btn-tutup">Tutup Pembahasan</button>
+                </div>
+            </div>
+
+            <div class="soal-item">
+                <div class="soal-no">Contoh Kasus 2</div>
+                <div class="soal-teks">
+                    Tentukan hasil integral:
+                    $$\int \sec^3 x\,dx$$
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian Integrasi Parsial Melingkar</div>
+                    <p>
+                        Pecah integran menjadi $\int \sec x \cdot \sec^2 x\,dx$. Terapkan integrasi parsial:
+                        $$u = \sec x \implies du = \sec x \tan x\,dx$$
+                        $$dv = \sec^2 x\,dx \implies v = \tan x$$
+                    </p>
+                    <p>
+                        Maka:
+                        $$\int \sec^3 x\,dx = \sec x \tan x - \int \tan x (\sec x \tan x)\,dx$$
+                        $$= \sec x \tan x - \int \sec x \tan^2 x\,dx$$
+                    </p>
+                    <p>
+                        Gunakan identitas $\tan^2 x = \sec^2 x - 1$:
+                        $$\int \sec^3 x\,dx = \sec x \tan x - \int \sec x (\sec^2 x - 1)\,dx$$
+                        $$\int \sec^3 x\,dx = \sec x \tan x - \int \sec^3 x\,dx + \int \sec x\,dx$$
+                    </p>
+                    <p>
+                        Pindahkan $-\int \sec^3 x\,dx$ ke ruas kiri (teknik integral melingkar):
+                        $$2 \int \sec^3 x\,dx = \sec x \tan x + \ln\vert{}\sec x + \tan x\vert{} + C_1$$
+                    </p>
+                    <div class="kesimpulan">
+                        $$\int \sec^3 x\,dx = \frac{1}{2}\sec x \tan x + \frac{1}{2}\ln\vert{}\sec x + \tan x\vert{} +
+                        C$$
+                    </div>
+                    <button class="btn-tutup">Tutup Pembahasan</button>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Skrip Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Pembuatan Visualisasi dengan GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Gambar Visualisasi Grafik Fungsi y = sin(x) dan y = cos(x)
+            try {
+                const geoGrafik = new GeoSVG("svg-grafik", 500, 240, {
+                    viewBox: "-30 -120 540 240",
+                    yUp: true,
+                    defaultStroke: "#0d9488"
+                });
+
+                // Garis grid halus
+                geoGrafik.buatGrid(40, 40, { stroke: "rgba(100, 116, 139, 0.2)", strokeWidth: 1 });
+
+                // Sumbu koordinat
+                geoGrafik.buatSumbuKoordinat(-20, 480, -100, 100, 40, { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+
+                // Skala koordinat: 1 rad = 60 px, amplitudo 1 unit = 70 px
+                const scaleX = 60;
+                const scaleY = 70;
+
+                // Kurva Turunan: f(x) = cos(x) [Putus-putus Merah Muda]
+                geoGrafik.buatFungsi(x => Math.cos(x), 0, 7.5, {
+                    skalaX: scaleX,
+                    skalaY: scaleY,
+                    langkah: 250,
+                    stroke: "#e11d48",
+                    strokeWidth: 2,
+                    dashed: "6 4"
+                });
+
+                // Kurva Antiturunan: F(x) = sin(x) [Hijau Tua / Teal]
+                geoGrafik.buatFungsi(x => Math.sin(x), 0, 7.5, {
+                    skalaX: scaleX,
+                    skalaY: scaleY,
+                    langkah: 250,
+                    stroke: "#0d9488",
+                    strokeWidth: 2.5
+                });
+
+                // Label Sumbu dan Persamaan
+                geoGrafik.buatLatex(455, 10, "x", { fontSize: "13px", color: "var(--text-main)" });
+                geoGrafik.buatLatex(15, 85, "y", { fontSize: "13px", color: "var(--text-main)" });
+                geoGrafik.buatLatex(100, 78, "y = \\sin x", { fontSize: "12px", color: "#0d9488" });
+                geoGrafik.buatLatex(260, 78, "y = \\cos x", { fontSize: "12px", color: "#e11d48" });
+            } catch (err) {
+                console.warn("Gagal merender grafik fungsi GeoSVG:", err);
+            }
+
+            // 2. Gambar Visualisasi Segitiga Siku-Siku untuk Substitusi x = a sin(theta)
+            try {
+                const geoTri = new GeoSVG("svg-segitiga", 360, 240, {
+                    viewBox: "0 0 360 240",
+                    yUp: false,
+                    defaultStroke: "#0d9488"
+                });
+
+                const A = [60, 180];   // Titik sudut theta
+                const B = [280, 180];  // Sudut siku-siku
+                const C = [280, 50];   // Titik atas
+
+                // Poligon Segitiga Siku-Siku
+                geoTri.buatPoligon([A, B, C], {
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.5,
+                    fill: "rgba(13, 148, 136, 0.08)"
+                });
+
+                // Tanda siku-siku di titik B
+                geoTri.buatSiku(A, B, C, {
+                    size: 16,
+                    stroke: "#d97706",
+                    strokeWidth: 1.5,
+                    fill: "rgba(217, 119, 6, 0.15)"
+                });
+
+                // Sudut theta di A
+                geoTri.buatSudut(B, A, C, {
+                    radius: 36,
+                    stroke: "#0d9488",
+                    fill: "rgba(13, 148, 136, 0.2)",
+                    strokeWidth: 1.5
+                });
+
+                // Titik-titik sudut
+                geoTri.buatTitik(A, { size: 3.5, color: "var(--teal-primary)" });
+                geoTri.buatTitik(B, { size: 3.5, color: "var(--teal-primary)" });
+                geoTri.buatTitik(C, { size: 3.5, color: "var(--teal-primary)" });
+
+                // Label Sisi dan Sudut
+                geoTri.buatLatex(105, 155, "\\theta", { fontSize: "14px", color: "var(--teal-primary)" });
+                geoTri.buatLatex(300, 115, "x", { fontSize: "14px", color: "var(--text-main)" });
+                geoTri.buatLatex(155, 100, "a", { fontSize: "14px", color: "var(--text-main)" });
+                geoTri.buatLatex(140, 202, "\\sqrt{a^2 - x^2}", { fontSize: "14px", color: "var(--text-main)" });
+            } catch (err) {
+                console.warn("Gagal merender segitiga GeoSVG:", err);
+            }
+        });
+    </script>
+</body>
+
+</html>

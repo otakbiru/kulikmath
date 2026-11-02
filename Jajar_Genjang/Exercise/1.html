@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Jajar Genjang</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Jajar Genjang</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \(ABCD\) adalah jajar genjang dengan panjang sisi \(8\text{ cm}\) dan \(10\text{ cm}\). Jika besar salah satu sudutnya adalah \(75^\circ\), maka luas jajar genjang tersebut adalah .... \(\text{cm}^2\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(10\left(\sqrt{6}-\sqrt{2}\right)\)</li>
+                    <li>\(60\)</li>
+                    <li>\(20\left(\sqrt{6}+\sqrt{2}\right)\)</li>
+                    <li>\(80\)</li>
+                    <li>\(40\left(\sqrt{6}+\sqrt{2}\right)\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://kpm.read1institute.org/" target="_blank" rel="noopener noreferrer">Penyisihan OGM 10 Tingkat SMA</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Luas jajar genjang dengan panjang dua sisi berdekatan \(a\) dan \(b\) serta sudut apit \(\theta\) dirumuskan sebagai:
+                        \[L = a \cdot b \cdot \sin \theta\]
+                    </p>
+
+                    <!-- Visualisasi GeoSVG Jajar Genjang -->
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div id="geosvg-jajar-genjang" style="display:inline-flex; justify-content:center; max-width: 100%;"></div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+                            <em>Ilustrasi jajar genjang \(ABCD\) dengan \(AB = 10\text{ cm}\), \(AD = 8\text{ cm}\), garis tinggi \(t\), dan \(\angle DAB = 75^\circ\)</em>
+                        </p>
+                    </div>
+
+                    <p>Hitung nilai dari \(\sin 75^\circ\) menggunakan rumus penjumlahan dua sudut trigonometri:</p>
+                    \[\begin{aligned}
+                    \sin 75^\circ &= \sin(45^\circ + 30^\circ) \\
+                    &= \sin 45^\circ \cos 30^\circ + \cos 45^\circ \sin 30^\circ \\
+                    &= \left(\dfrac{1}{2}\sqrt{2}\right)\left(\dfrac{1}{2}\sqrt{3}\right) + \left(\dfrac{1}{2}\sqrt{2}\right)\left(\dfrac{1}{2}\right) \\
+                    &= \dfrac{\sqrt{6} + \sqrt{2}}{4}
+                    \end{aligned}\]
+
+                    <p>Substitusikan nilai \(a = 10\text{ cm}\), \(b = 8\text{ cm}\), dan \(\sin 75^\circ\) ke dalam rumus luas:</p>
+                    \[\begin{aligned}
+                    L &= 10 \cdot 8 \cdot \sin 75^\circ \\
+                    &= 80 \cdot \left(\dfrac{\sqrt{6} + \sqrt{2}}{4}\right) \\
+                    &= 20\left(\sqrt{6} + \sqrt{2}\right)\text{ cm}^2
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, luas jajar genjang tersebut adalah \(20\left(\sqrt{6} + \sqrt{2}\right)\text{ cm}^2\).<br>
+                        <strong>JAWABAN: C</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+
+            <script>
+            (function() {
+                function gambarJajarGenjang() {
+                    const wadah = document.getElementById("geosvg-jajar-genjang");
+                    if (!wadah || typeof GeoSVG === "undefined") return;
+                    wadah.innerHTML = "";
+
+                    const W = 360;
+                    const H = 240;
+                    const geo = new GeoSVG("geosvg-jajar-genjang", W, H, {
+                        margin: 15,
+                        title: "Ilustrasi Jajar Genjang ABCD"
+                    });
+                    if (geo.svg) {
+                        geo.svg.style.width = "100%";
+                        geo.svg.style.maxWidth = `${W}px`;
+                        geo.svg.style.height = "auto";
+                    }
+
+                    const pA = [50, 195];
+                    const pB = [250, 195];
+                    const pC = [291.4, 40.5];
+                    const pD = [91.4, 40.5];
+                    const pE = [91.4, 195];
+
+                    // Poligon jajar genjang ABCD
+                    geo.buatPoligon([pA, pB, pC, pD], {
+                        fill: "rgba(37, 99, 235, 0.08)",
+                        stroke: "#2563eb",
+                        strokeWidth: 2
+                    });
+
+                    // Garis tinggi t dari D tegak lurus ke alas AB
+                    geo.buatSegmen(pD, pE, {
+                        stroke: "#dc2626",
+                        strokeWidth: 1.5,
+                        dashed: true
+                    });
+
+                    // Tanda siku-siku di E
+                    geo.buatSiku(pD, pE, pB, {
+                        size: 10,
+                        stroke: "#dc2626"
+                    });
+
+                    // Label tinggi t
+                    geo.buatTeks(98, 118, "t", {
+                        fontSize: "13px",
+                        fill: "#dc2626",
+                        fontStyle: "italic",
+                        fontWeight: "bold"
+                    });
+
+                    // Busur dan label sudut 75 derajat di titik A
+                    geo.buatSudut(pB, pA, pD, {
+                        radius: 30,
+                        stroke: "#ea580c",
+                        strokeWidth: 1.5,
+                        fill: "rgba(234, 88, 12, 0.15)",
+                        label: "75°",
+                        labelColor: "#c2410c",
+                        labelRadius: 46
+                    });
+
+                    // Label panjang sisi alas AB = 10 cm
+                    geo.buatTeks(150, 215, "10 cm", {
+                        position: "top-center",
+                        fontSize: "12px",
+                        fill: "#1e293b",
+                        fontWeight: "bold"
+                    });
+
+                    // Label sisi miring AD = 8 cm
+                    geo.buatTeks(60, 115, "8 cm", {
+                        position: "middle-right",
+                        fontSize: "12px",
+                        fill: "#1e293b",
+                        fontWeight: "bold"
+                    });
+
+                    // Titik-titik sudut
+                    geo.buatTitik(pA[0], pA[1], { label: "A", labelPosition: "bottom-left", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pB[0], pB[1], { label: "B", labelPosition: "bottom-right", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pC[0], pC[1], { label: "C", labelPosition: "top-right", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pD[0], pD[1], { label: "D", labelPosition: "top-left", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pE[0], pE[1], { label: "E", labelPosition: "bottom-center", radius: 2.5, fill: "#dc2626" });
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarJajarGenjang);
+                } else {
+                    gambarJajarGenjang();
+                }
+            })();
+            </script>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

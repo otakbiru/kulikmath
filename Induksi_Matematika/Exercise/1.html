@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Induksi Matematika</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Induksi Matematika</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Buktikan dengan induksi matematika bahwa untuk \(n \ge 5\) bilangan asli berlaku:
+                    \[2n - 3 < 2^{n - 2}\]
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Langkah 1: Basis Induksi (Membuktikan untuk nilai awal \(n = 5\))</strong></p>
+                    <p>
+                        Substitusikan \(n = 5\) ke kedua ruas pertidaksamaan:
+                    </p>
+                    \[\begin{aligned}
+                    \text{Ruas Kiri} &= 2(5) - 3 = 10 - 3 = 7 \\
+                    \text{Ruas Kanan} &= 2^{5 - 2} = 2^3 = 8
+                    \end{aligned}\]
+                    <p>
+                        Karena \(7 < 8\), maka pernyataan <strong>bernilai BENAR</strong> untuk \(n = 5\).
+                    </p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); background: var(--bg-card); padding: 0.6rem 0.8rem; border-left: 3px solid #0284c7; border-radius: 4px;">
+                        <em>Catatan Penjelasan:</em> Mengapa dibatasi untuk \(n \ge 5\)? Sebab untuk \(n = 3\), \(2(3) - 3 = 3 > 2^{3-2} = 2\) (salah). Untuk \(n = 4\), \(2(4) - 3 = 5 > 2^{4-2} = 4\) (salah). Pertidaksamaan baru mulai benar pada \(n = 5\).
+                    </p>
+
+                    <p><strong>Langkah 2: Hipotesis Induksi</strong></p>
+                    <p>
+                        Asumsikan pernyataan bernilai <strong>benar</strong> untuk \(n = k \ge 5\) bilangan asli, yaitu:
+                    </p>
+                    \[2k - 3 < 2^{k - 2}\]
+
+                    <p><strong>Langkah 3: Langkah Induksi (Membuktikan benar untuk \(n = k + 1\))</strong></p>
+                    <p>
+                        Akan dibuktikan bahwa untuk \(n = k + 1\) berlaku:
+                        \[2(k + 1) - 3 < 2^{(k + 1) - 2} = 2^{k - 1}\]
+                    </p>
+                    <p>
+                        Jabarkan ruas kiri:
+                    </p>
+                    \[\begin{aligned}
+                    2(k + 1) - 3 &= 2k + 2 - 3 \\
+                    &= (2k - 3) + 2
+                    \end{aligned}\]
+                    <p>
+                        Gunakan hipotesis induksi bahwa \(2k - 3 < 2^{k - 2}\):
+                    </p>
+                    \[(2k - 3) + 2 < 2^{k - 2} + 2\]
+                    <p>
+                        Karena \(k \ge 5\), maka pangkat \(k - 2 \ge 3\), sehingga \(2^{k - 2} \ge 2^3 = 8 > 2\).
+                        Akibatnya berlaku \(2 < 2^{k - 2}\). Dengan mengganti konstanta \(2\) dengan bentuk yang lebih besar (\(2^{k - 2}\)), diperoleh:
+                    </p>
+                    \[\begin{aligned}
+                    2(k + 1) - 3 &< 2^{k - 2} + 2 \\
+                    &< 2^{k - 2} + 2^{k - 2} \\
+                    &= 2 \cdot 2^{k - 2} \\
+                    &= 2^{1 + (k - 2)} \\
+                    &= 2^{k - 1}
+                    \end{aligned}\]
+                    <p>
+                        Dengan demikian, terbukti benar bahwa \(2(k + 1) - 3 < 2^{k - 1}\).
+                    </p>
+
+                    <!-- Visualisasi GeoSVG Soal 1 -->
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div id="geosvg-induksi-1" style="display:inline-flex; justify-content:center; max-width: 100%;"></div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+                            <em>Visualisasi grafik perbandingan \(f(n) = 2n - 3\) dan \(g(n) = 2^{n - 2}\) yang menunjukkan awal keabsahan induksi pada \(n \ge 5\)</em>
+                        </p>
+                    </div>
+
+                    <div class="kesimpulan">
+                        Jadi, terbukti benar bahwa untuk setiap bilangan asli \(n \ge 5\) berlaku \(2n - 3 < 2^{n - 2}\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+
+            <script>
+            (function() {
+                function gambarSoal1() {
+                    const wadah = document.getElementById("geosvg-induksi-1");
+                    if (!wadah || typeof GeoSVG === "undefined") return;
+                    wadah.innerHTML = "";
+
+                    const W = 460;
+                    const H = 340;
+                    const geo = new GeoSVG("geosvg-induksi-1", W, H, { margin: 15 });
+                    geo.svg.style.width = "100%";
+                    geo.svg.style.maxWidth = `${W}px`;
+                    geo.svg.style.height = "auto";
+
+                    const ox = 55;
+                    const oy = 280;
+                    const scaleX = 58;
+                    const scaleY = 13.5;
+                    const toSvg = (n, y) => [ox + n * scaleX, oy - y * scaleY];
+
+                    // Daerah arsir n >= 5 (Domain induksi)
+                    const [rx1, ryTop] = toSvg(4.7, 18);
+                    const [rx2, ryBot] = toSvg(6.3, -2);
+                    geo._el("rect", {
+                        x: rx1,
+                        y: ryTop,
+                        width: rx2 - rx1,
+                        height: ryBot - ryTop,
+                        fill: "rgba(16, 185, 129, 0.08)",
+                        rx: 4
+                    }, geo.svg);
+
+                    // Grid garis horizontal & vertikal halus
+                    [0, 4, 8, 12, 16].forEach(val => {
+                        const [px1, py] = toSvg(0.5, val);
+                        const [px2] = toSvg(6.3, val);
+                        geo.buatSegmen([px1, py], [px2, py], { stroke: "#e2e8f0", strokeWidth: 0.8, dashed: "2 2" });
+                    });
+
+                    // Sumbu N & Y
+                    const [ax1] = toSvg(0.5, 0);
+                    const [ax2] = toSvg(6.4, 0);
+                    const [, ay1] = toSvg(0, -2);
+                    const [, ay2] = toSvg(0, 18.5);
+
+                    geo.buatSegmen([ax1, oy], [ax2, oy], { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen([ox, ay1], [ox, ay2], { stroke: "#475569", strokeWidth: 1.5 });
+
+                    // Label Sumbu
+                    geo.buatTeks(ax2 + 8, oy, "n", { fontSize: "13px", fill: "#334155", fontWeight: "bold", position: "middle-left" });
+                    geo.buatTeks(ox, ay2 - 8, "Nilai", { fontSize: "13px", fill: "#334155", fontWeight: "bold", position: "bottom-center" });
+
+                    // Ticks sumbu N (1 sampai 6)
+                    [1, 2, 3, 4, 5, 6].forEach(val => {
+                        const [px, py] = toSvg(val, 0);
+                        geo.buatSegmen([px, py - 3], [px, py + 3], { stroke: "#475569", strokeWidth: 1 });
+                        geo.buatTeks(px, py + 14, String(val), { fontSize: "11px", fill: "#64748b", position: "top-center" });
+                    });
+
+                    // Ticks sumbu Y
+                    [4, 8, 12, 16].forEach(val => {
+                        const [px, py] = toSvg(0, val);
+                        geo.buatSegmen([px - 3, py], [px + 3, py], { stroke: "#475569", strokeWidth: 1 });
+                        geo.buatTeks(px - 6, py, String(val), { fontSize: "11px", fill: "#64748b", position: "middle-right" });
+                    });
+
+                    // Garis f(n) = 2n - 3 (Warna Biru)
+                    const pLin1 = toSvg(0.8, 2 * 0.8 - 3);
+                    const pLin2 = toSvg(6.3, 2 * 6.3 - 3);
+                    geo.buatSegmen(pLin1, pLin2, { stroke: "#2563eb", strokeWidth: 2, dashed: "4 3" });
+
+                    // Kurva g(n) = 2^(n-2) (Warna Merah/Ungu)
+                    const curvePts = [];
+                    for (let n = 0.8; n <= 6.2; n += 0.1) {
+                        const val = Math.pow(2, n - 2);
+                        curvePts.push(toSvg(n, val));
+                    }
+                    geo.buatPolyline(curvePts, { stroke: "#dc2626", strokeWidth: 2.2 });
+
+                    // Plot titik-titik diskret n = 1 .. 6
+                    [1, 2, 3, 4, 5, 6].forEach(n => {
+                        const yLin = 2 * n - 3;
+                        const yExp = Math.pow(2, n - 2);
+
+                        geo.buatTitik(toSvg(n, yLin), { size: 3.5, color: "#2563eb" });
+                        geo.buatTitik(toSvg(n, yExp), { size: 3.5, color: "#dc2626" });
+                    });
+
+                    // Sorotan pada n = 5 (Basis Induksi: f(5)=7, g(5)=8)
+                    const ptF5 = toSvg(5, 7);
+                    const ptG5 = toSvg(5, 8);
+                    geo.buatTitik(ptF5, { size: 4.5, color: "#1d4ed8" });
+                    geo.buatTitik(ptG5, { size: 4.5, color: "#b91c1c" });
+
+                    geo.buatSegmen(ptF5, ptG5, { stroke: "#059669", strokeWidth: 2 });
+                    geo.buatTeks(ptG5[0] + 8, ptG5[1] - 4, "g(5) = 8", { fontSize: "11px", fill: "#dc2626", fontWeight: "bold", position: "middle-left" });
+                    geo.buatTeks(ptF5[0] + 8, ptF5[1] + 6, "f(5) = 7", { fontSize: "11px", fill: "#2563eb", fontWeight: "bold", position: "middle-left" });
+
+                    // Teks Keterangan Domain n >= 5
+                    const pKet = toSvg(5.5, 17);
+                    geo.buatTeks(pKet[0], pKet[1], "n ≥ 5: 2^(n-2) > 2n - 3", {
+                        fontSize: "11px",
+                        fill: "#059669",
+                        fontWeight: "bold",
+                        position: "middle-center"
+                    });
+
+                    // Legenda Grafik
+                    const [legX, legY] = toSvg(0.8, 16.5);
+                    geo.buatSegmen([legX, legY], [legX + 22, legY], { stroke: "#dc2626", strokeWidth: 2 });
+                    geo.buatTitik([legX + 11, legY], { size: 3, color: "#dc2626" });
+                    geo.buatTeks(legX + 28, legY, "g(n) = 2^(n - 2)", { fontSize: "11px", fill: "#dc2626", fontWeight: "bold", position: "middle-left" });
+
+                    geo.buatSegmen([legX, legY + 18], [legX + 22, legY + 18], { stroke: "#2563eb", strokeWidth: 2, dashed: "4 3" });
+                    geo.buatTitik([legX + 11, legY + 18], { size: 3, color: "#2563eb" });
+                    geo.buatTeks(legX + 28, legY + 18, "f(n) = 2n - 3", { fontSize: "11px", fill: "#2563eb", fontWeight: "bold", position: "middle-left" });
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarSoal1);
+                } else {
+                    gambarSoal1();
+                }
+            })();
+            </script>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Buktikan bahwa untuk \(n\) bilangan bulat positif berlaku:
+                    \[4 + 8 + 12 + \dots + 4n = 2n^2 + 2n\]
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneIdGrup/5655" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Langkah 1: Basis Induksi (Membuktikan untuk \(n = 1\))</strong></p>
+                    <p>
+                        Substitusikan \(n = 1\) ke kedua ruas:
+                    </p>
+                    \[\begin{aligned}
+                    \text{Ruas Kiri} &= 4(1) = 4 \\
+                    \text{Ruas Kanan} &= 2(1)^2 + 2(1) = 2(1) + 2 = 4
+                    \end{aligned}\]
+                    <p>
+                        Karena kedua ruas menghasilkan nilai yang sama (\(4 = 4\)), maka pernyataan <strong>bernilai BENAR</strong> untuk \(n = 1\).
+                    </p>
+
+                    <p><strong>Langkah 2: Hipotesis Induksi</strong></p>
+                    <p>
+                        Asumsikan pernyataan bernilai <strong>benar</strong> untuk \(n = k\) dengan \(k\) bilangan bulat positif, yaitu:
+                    </p>
+                    \[4 + 8 + 12 + \dots + 4k = 2k^2 + 2k\]
+
+                    <p><strong>Langkah 3: Langkah Induksi (Membuktikan benar untuk \(n = k + 1\))</strong></p>
+                    <p>
+                        Akan dibuktikan bahwa rumus berlaku untuk \(n = k + 1\), yaitu:
+                        \[4 + 8 + 12 + \dots + 4k + 4(k + 1) = 2(k + 1)^2 + 2(k + 1)\]
+                    </p>
+                    <p>
+                        Buktikan dengan mengolah ruas kiri:
+                    </p>
+                    \[\begin{aligned}
+                    \underbrace{4 + 8 + 12 + \dots + 4k}_{\text{Hipotesis Induksi}} + 4(k + 1) &= (2k^2 + 2k) + 4(k + 1) \\
+                    &= 2k^2 + 2k + 4k + 4 \\
+                    &= 2k^2 + 6k + 4
+                    \end{aligned}\]
+                    <p>
+                        Faktorkan bentuk kuadrat tersebut ke dalam suku-suku \((k + 1)\):
+                    </p>
+                    \[\begin{aligned}
+                    2k^2 + 6k + 4 &= 2(k^2 + 3k + 2) \\
+                    &= 2(k + 1)(k + 2) \\
+                    &= 2(k + 1)\big((k + 1) + 1\big) \\
+                    &= 2(k + 1)(k + 1) + 2(k + 1) \\
+                    &= 2(k + 1)^2 + 2(k + 1)
+                    \end{aligned}\]
+                    <p>
+                        Hasil di atas persis sama dengan bentuk ruas kanan untuk \(n = k + 1\). Dengan demikian, langkah induksi <strong>TERBUKTI BENAR</strong>.
+                    </p>
+
+                    <!-- Visualisasi GeoSVG Soal 2 -->
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div id="geosvg-induksi-2" style="display:inline-flex; justify-content:center; max-width: 100%;"></div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+                            <em>Visualisasi geometris luas: persegi panjang \(2k \times (k + 1)\) dengan luas \(2k^2 + 2k\) bertambah lapisan tepi sebesar \(4(k + 1)\) menjadi \(2(k + 1) \times (k + 2)\)</em>
+                        </p>
+                    </div>
+
+                    <div class="kesimpulan">
+                        Jadi, terbukti benar bahwa untuk setiap bilangan bulat positif \(n\) berlaku:<br>
+                        \(4 + 8 + 12 + \dots + 4n = 2n^2 + 2n\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+
+            <script>
+            (function() {
+                function gambarSoal2() {
+                    const wadah = document.getElementById("geosvg-induksi-2");
+                    if (!wadah || typeof GeoSVG === "undefined") return;
+                    wadah.innerHTML = "";
+
+                    const W = 460;
+                    const H = 250;
+                    const geo = new GeoSVG("geosvg-induksi-2", W, H, { margin: 15 });
+                    geo.svg.style.width = "100%";
+                    geo.svg.style.maxWidth = `${W}px`;
+                    geo.svg.style.height = "auto";
+
+                    // Ilustrasi geometris untuk k = 3
+                    // Ukuran blok: 2k x (k+1) = 6 kolom x 4 baris = 24 kotak
+                    // Ditambah border suku 4(k+1) = 16 kotak (menjadi 8 kolom x 5 baris = 40 kotak)
+                    const startX = 65;
+                    const startY = 35;
+                    const size = 32;
+
+                    // 1. Gambar Area S_k = 2k^2 + 2k (Ukuran 6 kolom x 4 baris)
+                    for (let c = 0; c < 6; c++) {
+                        for (let r = 0; r < 4; r++) {
+                            const x = startX + c * size;
+                            const y = startY + r * size;
+                            geo._el("rect", {
+                                x: x,
+                                y: y,
+                                width: size,
+                                height: size,
+                                fill: "rgba(37, 99, 235, 0.18)",
+                                stroke: "#2563eb",
+                                "stroke-width": 1
+                            }, geo.svg);
+                        }
+                    }
+
+                    // 2. Gambar Area Penambahan +4(k+1) = 16 kotak
+                    // Tambahan kolom ke kanan (2 kolom x 4 baris = 8 kotak)
+                    for (let c = 6; c < 8; c++) {
+                        for (let r = 0; r < 4; r++) {
+                            const x = startX + c * size;
+                            const y = startY + r * size;
+                            geo._el("rect", {
+                                x: x,
+                                y: y,
+                                width: size,
+                                height: size,
+                                fill: "rgba(245, 158, 11, 0.28)",
+                                stroke: "#d97706",
+                                "stroke-width": 1
+                            }, geo.svg);
+                        }
+                    }
+
+                    // Tambahan baris ke bawah (8 kolom x 1 baris = 8 kotak)
+                    for (let c = 0; c < 8; c++) {
+                        const x = startX + c * size;
+                        const y = startY + 4 * size;
+                        geo._el("rect", {
+                            x: x,
+                            y: y,
+                            width: size,
+                            height: size,
+                            fill: "rgba(245, 158, 11, 0.28)",
+                            stroke: "#d97706",
+                            "stroke-width": 1
+                        }, geo.svg);
+                    }
+
+                    // Label dimensi horizontal
+                    // Dimensi 2k (6 kolom = 192px)
+                    const midX1 = startX + (6 * size) / 2;
+                    geo.buatTeks(midX1, startY - 12, "2k = 6 kotak", {
+                        fontSize: "11px",
+                        fill: "#1d4ed8",
+                        fontWeight: "bold",
+                        position: "bottom-center"
+                    });
+
+                    // Tambahan +2 kotak
+                    const midX2 = startX + 6 * size + size;
+                    geo.buatTeks(midX2, startY - 12, "+2", {
+                        fontSize: "11px",
+                        fill: "#d97706",
+                        fontWeight: "bold",
+                        position: "bottom-center"
+                    });
+
+                    // Label dimensi vertikal
+                    // Dimensi k+1 (4 baris = 128px)
+                    const midY1 = startY + (4 * size) / 2;
+                    geo.buatTeks(startX - 10, midY1, "k+1 = 4", {
+                        fontSize: "11px",
+                        fill: "#1d4ed8",
+                        fontWeight: "bold",
+                        position: "middle-right"
+                    });
+
+                    // Tambahan +1 baris
+                    const midY2 = startY + 4 * size + size / 2;
+                    geo.buatTeks(startX - 10, midY2, "+1", {
+                        fontSize: "11px",
+                        fill: "#d97706",
+                        fontWeight: "bold",
+                        position: "middle-right"
+                    });
+
+                    // Teks Keterangan di tengah area
+                    geo.buatTeks(midX1, midY1, "S_k = 2k² + 2k (24 kotak)", {
+                        fontSize: "12px",
+                        fill: "#1e40af",
+                        fontWeight: "bold",
+                        position: "middle-center"
+                    });
+
+                    // Keterangan Legenda
+                    const legY = startY + 5 * size + 22;
+                    geo._el("rect", {
+                        x: startX + 20,
+                        y: legY - 10,
+                        width: 14,
+                        height: 14,
+                        fill: "rgba(37, 99, 235, 0.2)",
+                        stroke: "#2563eb",
+                        "stroke-width": 1.2
+                    }, geo.svg);
+                    geo.buatTeks(startX + 40, legY - 2, "Luas awal S_k = 2k² + 2k", {
+                        fontSize: "11px",
+                        fill: "#334155",
+                        position: "middle-left"
+                    });
+
+                    geo._el("rect", {
+                        x: startX + 200,
+                        y: legY - 10,
+                        width: 14,
+                        height: 14,
+                        fill: "rgba(245, 158, 11, 0.3)",
+                        stroke: "#d97706",
+                        "stroke-width": 1.2
+                    }, geo.svg);
+                    geo.buatTeks(startX + 220, legY - 2, "Suku ke-(k+1): +4(k+1) = 16 kotak", {
+                        fontSize: "11px",
+                        fill: "#334155",
+                        position: "middle-left"
+                    });
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarSoal2);
+                } else {
+                    gambarSoal2();
+                }
+            })();
+            </script>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

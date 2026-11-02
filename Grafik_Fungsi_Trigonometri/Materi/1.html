@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Grafik Fungsi Trigonometri</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Grafik Fungsi Trigonometri</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Karakteristik Grafik Dasar ($\sin x, \cos x, \tan x$)</h2>
+            <p>
+                <strong>Fungsi Trigonometri</strong> adalah fungsi periodik (berulang secara teratur pada setiap selang sudut tertentu) yang memetakan besar sudut $x$ (dalam radian atau derajat) ke nilai perbandingan trigonometrinya. Satu putaran penuh pada lingkaran satuan setara dengan $2\pi\text{ radian} = 360^\circ$.
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Perbandingan Kurva Baku $y = \sin x$ dan $y = \cos x$:</strong>
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Grafik $y = \sin x$ (Hijau Teal):</strong> Dimulai dari titik asal $(0, 0)$, naik mencapai puncak maksimum $(90^\circ, 1)$, turun memotong sumbu-$X$ di $(180^\circ, 0)$, mencapai lembah minimum $(270^\circ, -1)$, dan kembali ke $(360^\circ, 0)$. Satu gelombang penuh terdiri dari <strong>1 bukit dan 1 lembah</strong>.
+                        </li>
+                        <li>
+                            <strong>Grafik $y = \cos x$ (Kuning Mustard):</strong> Dimulai dari puncak maksimum $(0, 1)$, turun ke $(90^\circ, 0)$, mencapai lembah minimum $(180^\circ, -1)$, naik ke $(270^\circ, 0)$, dan kembali ke puncak $(360^\circ, 1)$. Kurva $\cos x$ sebenarnya adalah kurva $\sin x$ yang digeser ke kiri sejauh $90^\circ$ ($\cos x = \sin(x + 90^\circ)$).
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-sincos" style="width: 100%; max-width: 360px;"></div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Karakteristik</th>
+                            <th>Fungsi Sinus ($y = \sin x$)</th>
+                            <th>Fungsi Cosinus ($y = \cos x$)</th>
+                            <th>Fungsi Tangen ($y = \tan x$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Domain (Daerah Asal)</strong></td>
+                            <td>$x \in \mathbb{R}$</td>
+                            <td>$x \in \mathbb{R}$</td>
+                            <td>$x \neq \frac{\pi}{2} + k\pi \quad (k \in \mathbb{Z})$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Range (Daerah Hasil)</strong></td>
+                            <td>$[-1, 1]$</td>
+                            <td>$[-1, 1]$</td>
+                            <td>$(-\infty, \infty)$ atau $y \in \mathbb{R}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Nilai Maksimum & Minimum</strong></td>
+                            <td>$y_{\text{maks}} = 1, \quad y_{\text{min}} = -1$</td>
+                            <td>$y_{\text{maks}} = 1, \quad y_{\text{min}} = -1$</td>
+                            <td>Tidak memiliki nilai maks/min ($\pm\infty$)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Periode Dasar ($T$)</strong></td>
+                            <td>$2\pi$ atau $360^\circ$</td>
+                            <td>$2\pi$ atau $360^\circ$</td>
+                            <td>$\pi$ atau $180^\circ$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Simetri Fungsi</strong></td>
+                            <td>Fungsi Ganjil: $\sin(-x) = -\sin x$</td>
+                            <td>Fungsi Genap: $\cos(-x) = \cos x$</td>
+                            <td>Fungsi Ganjil: $\tan(-x) = -\tan x$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        <strong>Karakteristik Khusus Grafik $y = \tan x$:</strong>
+                    </p>
+                    <ul>
+                        <li>Karena $\tan x = \frac{\sin x}{\cos x}$, nilai fungsi tidak terdefinisi ketika penyebutnya bernilai nol ($\cos x = 0$).</li>
+                        <li>Akibatnya, grafik $y = \tan x$ memiliki <strong>asimtot tegak (vertikal)</strong> pada garis $x = \pm 90^\circ, \pm 270^\circ, \dots$ atau $x = (2k + 1)\frac{\pi}{2}$.</li>
+                        <li>Grafik selalu monoton naik di setiap interval di antara dua asimtot tegaknya dan berulang setiap periode $T = \pi = 180^\circ$.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-tan" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Unsur-Unsur Transformasi Grafik Fungsi Trigonometri</h2>
+            <p>
+                Secara umum, fungsi trigonometri yang telah mengalami peregangan (dilatasi) dan pergeseran (translasi) dituliskan dalam bentuk umum:
+                $$y = A \sin(kx \pm b) + C \quad \text{atau} \quad y = A \cos(kx \pm b) + C$$
+                Untuk membaca pergeseran horizontal dengan tepat, <strong>keluarkan koefisien $k$ terlebih dahulu</strong> sehingga bentuknya menjadi:
+                $$y = A \sin\big(k(x - \alpha)\big) + C \quad \text{dengan } \alpha = \mp\frac{b}{k}$$
+            </p>
+
+            <div class="row">
+                <div class="col-2">
+                    <p>
+                        Berikut adalah arti geometris dari setiap parameter pada persamaan di atas (perhatikan anatomi gelombang di samping):
+                    </p>
+                    <ol>
+                        <li>
+                            <strong>Amplitudo ($|A|$):</strong> Simpangan terjauh gelombang dari garis setimbangnya:
+                            $$\text{Amplitudo} = |A| = \frac{y_{\text{maks}} - y_{\text{min}}}{2}$$
+                            <em>Catatan:</em> Jika $A < 0$, grafik mengalami pencerminan (terbalik) terhadap garis tengahnya.
+                        </li>
+                        <li>
+                            <strong>Garis Tengah / Pergeseran Vertikal ($C$):</strong> Menggeser grafik ke atas ($C > 0$) atau ke bawah ($C < 0$):
+                            $$C = \frac{y_{\text{maks}} + y_{\text{min}}}{2}$$
+                        </li>
+                        <li>
+                            <strong>Nilai Maksimum & Minimum:</strong>
+                            $$y_{\text{maks}} = |A| + C \quad \text{dan} \quad y_{\text{min}} = -|A| + C$$
+                        </li>
+                        <li>
+                            <strong>Periode ($T$):</strong> Panjang satu gelombang penuh (untuk $\sin$ dan $\cos$):
+                            $$T = \frac{2\pi}{|k|} = \frac{360^\circ}{|k|} \iff |k| = \frac{2\pi}{T} = \frac{360^\circ}{T}$$
+                            Sedangkan untuk fungsi tangen dan cotangen ($y = A \tan(kx \pm b) + C$), periodenya adalah:
+                            $$T_{\tan} = \frac{\pi}{|k|} = \frac{180^\circ}{|k|}$$
+                        </li>
+                        <li>
+                            <strong>Pergeseran Fase / Horizontal ($\alpha$):</strong> Pada bentuk $k(x - \alpha)$, jika $\alpha > 0$ (tanda di dalam kurung minus, yaitu $x - \alpha$), grafik bergeser ke <strong>kanan</strong> sejauh $\alpha$. Jika tanda di dalam kurung plus ($x + \alpha$), grafik bergeser ke <strong>kiri</strong> sejauh $\alpha$.
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="geosvg-transform" style="width: 100%; max-width: 360px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Hubungan Cepat Jarak Antar Titik Ekstrem pada Grafik Sinus/Cosinus:<br>
+                • Jarak horizontal antara <strong>dua puncak berurutan</strong> (atau dua lembah berurutan) adalah <strong>$1$ periode ($T$)</strong>.<br>
+                • Jarak horizontal antara <strong>puncak ke lembah terdekat</strong> adalah <strong>setengah periode ($\frac{1}{2}T$)</strong>.<br>
+                • Jarak horizontal antara <strong>puncak ke titik potong garis tengah terdekat</strong> adalah <strong>seperempat periode ($\frac{1}{4}T$)</strong>.
+            </div>
+
+            <h2>3. Strategi Menyusun Persamaan dari Gambar Grafik</h2>
+            <p>
+                Jika di dalam soal diberikan gambar grafik gelombang dan kita diminta menentukan rumus fungsinya, ikuti 4 langkah sistematis berikut:
+            </p>
+            <ol>
+                <li>
+                    <strong>Langkah 1 (Cari $A$ dan $C$ dari Puncak & Lembah):</strong><br>
+                    Baca nilai tertinggi $y_{\text{maks}}$ dan nilai terendah $y_{\text{min}}$ pada sumbu-$Y$, lalu hitung:
+                    $$|A| = \frac{y_{\text{maks}} - y_{\text{min}}}{2} \quad \text{dan} \quad C = \frac{y_{\text{maks}} + y_{\text{min}}}{2}$$
+                </li>
+                <li>
+                    <strong>Langkah 2 (Cari $k$ dari Periode $T$):</strong><br>
+                    Hitung panjang 1 gelombang penuh $T$ (atau gunakan $T = 2 \times |x_{\text{puncak}} - x_{\text{lembah}}|$), lalu tentukan $k = \frac{360^\circ}{T}$ atau $k = \frac{2\pi}{T}$.
+                </li>
+                <li>
+                    <strong>Langkah 3 (Pilih Acuan Awal Fase $x = \alpha$):</strong><br>
+                    Perhatikan titik awal gelombang yang paling mudah dibaca koordinatnya:
+                    <ul>
+                        <li>Jika memilih titik pada garis tengah $y = C$ yang sedang <strong>bergerak naik</strong> di $x = \alpha$, gunakan <strong>$+A \sin\big(k(x - \alpha)\big) + C$</strong>.</li>
+                        <li>Jika memilih titik <strong>puncak maksimum</strong> $y = y_{\text{maks}}$ di $x = \alpha$, paling praktis gunakan <strong>$+A \cos\big(k(x - \alpha)\big) + C$</strong>.</li>
+                        <li>Jika memilih titik <strong>lembah minimum</strong> $y = y_{\text{min}}$ di $x = \alpha$, gunakan <strong>$-A \cos\big(k(x - \alpha)\big) + C$</strong>.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Langkah 4 (Uji Titik / Konversi Sudut Berelasi):</strong><br>
+                    Jika pilihan ganda meminta fungsi $\sin$ padahal kita menyusunnya dalam $\cos$, gunakan identitas konversi:
+                    $$\cos \theta = \sin(\theta + 90^\circ) \quad \text{atau} \quad -\cos \theta = \sin(\theta - 90^\circ)$$
+                </li>
+            </ol>
+
+            <h2>4. Nilai Maksimum & Minimum Bentuk $y = a \cos x + b \sin x + c$</h2>
+            <p>
+                Dalam soal SNBT dan seleksi mandiri, fungsi trigonometri sering disajikan sebagai penjumlahan sinus dan cosinus dengan frekuensi yang sama:
+                $$y = a \cos(kx) + b \sin(kx) + c$$
+                Bentuk $a \cos(kx) + b \sin(kx)$ dapat digabungkan menjadi gelombang tunggal $R \cos(kx - \alpha)$ dengan amplitudo gabungan $R = \sqrt{a^2 + b^2}$. Oleh karena itu, nilai ekstremnya dapat dihitung langsung tanpa perlu mencari sudut $\alpha$:
+                $$y_{\text{maks}} = \sqrt{a^2 + b^2} + c \quad \text{dan} \quad y_{\text{min}} = -\sqrt{a^2 + b^2} + c$$
+            </p>
+        </article>
+
+        <!-- Contoh Soal & Pembahasan Interaktif -->
+        <h2 style="color: var(--teal-primary); margin: 2rem 0 1rem; font-size: 1.35rem;">Contoh Soal & Pembahasan</h2>
+
+        <!-- Contoh Soal 1 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Diketahui fungsi trigonometri $f(x) = -3 \cos\left(2x - \frac{\pi}{3}\right) + 4$. Amplitudo ($A$), periode ($T$), nilai maksimum ($y_{\text{maks}}$), dan pergeseran fase horizontal dari grafik fungsi tersebut berturut-turut adalah ....
+                <ol class="pilgan pilgan-1kolom">
+                    <li>$A = -3$, $T = \pi$, $y_{\text{maks}} = 7$, bergeser ke kanan sejauh $\frac{\pi}{3}$</li>
+                    <li>$A = 3$, $T = 2\pi$, $y_{\text{maks}} = 7$, bergeser ke kanan sejauh $\frac{\pi}{6}$</li>
+                    <li>$A = 3$, $T = \pi$, $y_{\text{maks}} = 7$, bergeser ke kanan sejauh $\frac{\pi}{6}$</li>
+                    <li>$A = 3$, $T = \pi$, $y_{\text{maks}} = 1$, bergeser ke kiri sejauh $\frac{\pi}{6}$</li>
+                    <li>$A = 3$, $T = \pi$, $y_{\text{maks}} = 7$, bergeser ke kanan sejauh $\frac{\pi}{3}$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Faktorkan koefisien $k = 2$ di dalam tanda kurung terlebih dahulu agar bentuknya menjadi $A \cos\big(k(x - \alpha)\big) + C$:
+                    $$f(x) = -3 \cos\left(2\left(x - \frac{\pi}{6}\right)\right) + 4$$
+                </p>
+                <p>
+                    2. Tentukan masing-masing unsur grafiknya:
+                </p>
+                <ul>
+                    <li><strong>Amplitudo:</strong> Selalu bernilai positif, yaitu $|A| = |-3| = 3$.</li>
+                    <li><strong>Periode:</strong> $T = \frac{2\pi}{|k|} = \frac{2\pi}{2} = \pi$.</li>
+                    <li><strong>Nilai Maksimum:</strong> $y_{\text{maks}} = |A| + C = 3 + 4 = 7$ (sedangkan $y_{\text{min}} = -3 + 4 = 1$).</li>
+                    <li><strong>Pergeseran Fase:</strong> Karena di dalam kurung berbentuk $\left(x - \frac{\pi}{6}\right)$, maka grafik bergeser ke <strong>kanan sejauh $\frac{\pi}{6}$</strong> (hati-hati: bukan $\frac{\pi}{3}$!).</li>
+                </ul>
+                <div class="kesimpulan">
+                    Jadi, unsurnya adalah $A = 3$, $T = \pi$, $y_{\text{maks}} = 7$, dan bergeser ke kanan sejauh $\frac{\pi}{6}$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 2 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Suatu grafik fungsi sinus/cosinus mencapai titik puncak maksimum di koordinat $(15^\circ, 5)$ dan mencapai titik lembah minimum terdekatnya di koordinat $(75^\circ, -1)$. Persamaan yang menyatakan grafik fungsi tersebut adalah ....
+                <ol class="pilgan">
+                    <li>$y = 3 \cos(3x - 45^\circ) + 2$</li>
+                    <li>$y = 3 \cos(3x + 45^\circ) + 2$</li>
+                    <li>$y = 3 \cos(6x - 90^\circ) + 2$</li>
+                    <li>$y = 2 \cos(3x - 45^\circ) + 3$</li>
+                    <li>$y = 3 \sin(3x - 45^\circ) + 2$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. <strong>Hitung Amplitudo ($A$) dan Pergeseran Vertikal ($C$):</strong><br>
+                    Diketahui $y_{\text{maks}} = 5$ dan $y_{\text{min}} = -1$:
+                    $$A = \frac{y_{\text{maks}} - y_{\text{min}}}{2} = \frac{5 - (-1)}{2} = 3$$
+                    $$C = \frac{y_{\text{maks}} + y_{\text{min}}}{2} = \frac{5 + (-1)}{2} = 2$$
+                </p>
+                <p>
+                    2. <strong>Hitung Periode ($T$) dan Koefisien $k$:</strong><br>
+                    Jarak horizontal dari puncak ke lembah terdekat adalah setengah periode ($\frac{1}{2}T$):
+                    $$\frac{1}{2}T = 75^\circ - 15^\circ = 60^\circ \implies T = 120^\circ$$
+                    Maka nilai $k$ adalah:
+                    $$k = \frac{360^\circ}{T} = \frac{360^\circ}{120^\circ} = 3$$
+                </p>
+                <p>
+                    3. <strong>Susun Persamaan Fungsi:</strong><br>
+                    Karena grafik mencapai puncak maksimum di $x = \alpha = 15^\circ$, gunakan bentuk cosinus positif:
+                    $$y = A \cos\big(k(x - \alpha)\big) + C$$
+                    $$y = 3 \cos\big(3(x - 15^\circ)\big) + 2 = 3 \cos(3x - 45^\circ) + 2$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, persamaan grafik fungsi tersebut adalah $y = 3 \cos(3x - 45^\circ) + 2$ (Jawaban A).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 3 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Jika grafik fungsi $y = a \sin(bx) + c$ dengan $a, b > 0$ memiliki periode $\frac{\pi}{2}$, nilai maksimum $8$, dan nilai minimum $-2$, maka nilai dari $a + 2b + c$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$12$</li>
+                    <li>$14$</li>
+                    <li>$16$</li>
+                    <li>$18$</li>
+                    <li>$20$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Karena $a > 0$, kita dapat langsung menghitung $a$ dan $c$ dari nilai maksimum ($8$) dan nilai minimum ($-2$):
+                    $$a = \frac{y_{\text{maks}} - y_{\text{min}}}{2} = \frac{8 - (-2)}{2} = \frac{10}{2} = 5$$
+                    $$c = \frac{y_{\text{maks}} + y_{\text{min}}}{2} = \frac{8 + (-2)}{2} = \frac{6}{2} = 3$$
+                </p>
+                <p>
+                    2. Karena $b > 0$ dan periode fungsi sinus adalah $T = \frac{2\pi}{b} = \frac{\pi}{2}$, maka:
+                    $$\frac{2\pi}{b} = \frac{\pi}{2} \implies b = 4$$
+                </p>
+                <p>
+                    3. Hitung nilai dari $a + 2b + c$:
+                    $$a + 2b + c = 5 + 2(4) + 3 = 5 + 8 + 3 = 16$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, nilai dari $a + 2b + c$ adalah $16$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Contoh Soal 4 -->
+        <div class="soal-item">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Jumlah dari nilai maksimum dan dua kali nilai minimum dari fungsi $f(x) = 8 \cos x - 6 \sin x + 5$ untuk $x \in \mathbb{R}$ adalah ....
+                <ol class="pilgan pilgan-5kolom">
+                    <li>$-5$</li>
+                    <li>$0$</li>
+                    <li>$5$</li>
+                    <li>$10$</li>
+                    <li>$15$</li>
+                </ol>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Penyelesaian:</div>
+                <p>
+                    1. Fungsi $f(x) = 8 \cos x - 6 \sin x + 5$ berbentuk $a \cos x + b \sin x + c$ dengan $a = 8$, $b = -6$, dan $c = 5$.
+                </p>
+                <p>
+                    2. Hitung amplitudo gabungan $R = \sqrt{a^2 + b^2}$:
+                    $$R = \sqrt{8^2 + (-6)^2} = \sqrt{64 + 36} = \sqrt{100} = 10$$
+                </p>
+                <p>
+                    3. Tentukan nilai maksimum dan nilai minimum dari $f(x)$:
+                </p>
+                <ul>
+                    <li>$y_{\text{maks}} = R + c = 10 + 5 = 15$</li>
+                    <li>$y_{\text{min}} = -R + c = -10 + 5 = -5$</li>
+                </ul>
+                <p>
+                    4. Hitung nilai dari $y_{\text{maks}} + 2 y_{\text{min}}$:
+                    $$y_{\text{maks}} + 2 y_{\text{min}} = 15 + 2(-5) = 15 - 10 = 5$$
+                </p>
+                <div class="kesimpulan">
+                    Jadi, hasil dari $y_{\text{maks}} + 2 y_{\text{min}}$ adalah $5$ (Jawaban C).
+                </div>
+                <button class="btn-tutup">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Pagination Otomatis -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Visualisasi Perbandingan Grafik y = sin x dan y = cos x pada [0, 2pi] menggunakan GeoSVG.js
+            const containerSinCos = document.getElementById("geosvg-sincos");
+            if (containerSinCos && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(containerSinCos, 350, 225, {
+                    viewBox: "-32 -105 350 215",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Grafik Fungsi y = sin x dan y = cos x",
+                    description: "Perbandingan gelombang satu periode penuh y = sin x dan y = cos x dari 0 sampai 2 pi"
+                });
+
+                const sx = 42; // 1 radian = 42 px (sehingga 2*pi ~ 264 px)
+                const sy = 62; // 1 satuan vertikal = 62 px
+                const twoPi = 2 * Math.PI;
+
+                // Garis bantu maksimum y = 1 dan minimum y = -1
+                geo1.buatSegmen([0, sy], [twoPi * sx, sy], { stroke: "var(--border-color)", strokeWidth: 1, dashed: "4 4" });
+                geo1.buatSegmen([0, -sy], [twoPi * sx, -sy], { stroke: "var(--border-color)", strokeWidth: 1, dashed: "4 4" });
+
+                // Sumbu X dan Y
+                geo1.buatVektor([-15, 0], [twoPi * sx + 28, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatVektor([0, -90], [0, 95], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo1.buatTeks(twoPi * sx + 25, -14, "x", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo1.buatTeks(-12, 88, "y", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+
+                // Label sumbu Y (1 dan -1)
+                geo1.buatTeks(-12, sy, "1", { fill: "var(--text-main)", fontSize: "10.5px", fontWeight: "bold", position: "middle-center" });
+                geo1.buatTeks(-14, -sy, "-1", { fill: "var(--text-main)", fontSize: "10.5px", fontWeight: "bold", position: "middle-center" });
+
+                // Tanda sudut kuadran pada sumbu X (pi/2, pi, 3pi/2, 2pi)
+                const ticks = [
+                    { rad: Math.PI / 2, label: "π/2" },
+                    { rad: Math.PI, label: "π" },
+                    { rad: 3 * Math.PI / 2, label: "3π/2" },
+                    { rad: 2 * Math.PI, label: "2π" }
+                ];
+                ticks.forEach(t => {
+                    const px = t.rad * sx;
+                    geo1.buatSegmen([px, -4], [px, 4], { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+                    geo1.buatTeks(px, -16, t.label, { fill: "var(--text-muted)", fontSize: "10px", fontWeight: "bold", position: "middle-center" });
+                });
+
+                // Gambar kurva y = cos x (Mustard) dan y = sin x (Teal) menggunakan buatFungsi bawaan GeoSVG.js
+                geo1.buatFungsi(x => Math.cos(x), 0, twoPi, {
+                    skalaX: sx,
+                    skalaY: sy,
+                    langkah: 160,
+                    stroke: "#d97706",
+                    strokeWidth: 2.2,
+                    dashed: "6 3"
+                });
+
+                geo1.buatFungsi(x => Math.sin(x), 0, twoPi, {
+                    skalaX: sx,
+                    skalaY: sy,
+                    langkah: 160,
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.5
+                });
+
+                // Titik ekstrem utama
+                geo1.buatTitik([Math.PI / 2 * sx, sy], {
+                    size: 4, color: "var(--teal-primary)",
+                    label: "sin x", labelPosition: "top-right", labelDistance: 5, bold: true
+                });
+                geo1.buatTitik([0, sy], {
+                    size: 4, color: "#d97706",
+                    label: "cos x", labelPosition: "top-right", labelDistance: 6, bold: true
+                });
+                geo1.buatTitik([3 * Math.PI / 2 * sx, -sy], { size: 3.5, color: "var(--teal-primary)" });
+                geo1.buatTitik([Math.PI * sx, -sy], { size: 3.5, color: "#d97706" });
+            }
+
+            // 2. Visualisasi Grafik y = tan x beserta Asimtot Tegaknya menggunakan GeoSVG.js
+            const containerTan = document.getElementById("geosvg-tan");
+            if (containerTan && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(containerTan, 320, 220, {
+                    viewBox: "-155 -105 310 210",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Grafik Fungsi y = tan x dan Asimtot Tegak",
+                    description: "Kurva y = tan x dengan asimtot vertikal di x = -pi/2 dan x = pi/2"
+                });
+
+                const sx = 42;
+                const sy = 26;
+                const halfPi = Math.PI / 2;
+
+                // Sumbu X dan Y
+                geo2.buatVektor([-145, 0], [145, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo2.buatVektor([0, -95], [0, 95], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo2.buatTeks(142, -13, "x", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+                geo2.buatTeks(-12, 90, "y", { fill: "var(--text-main)", fontWeight: "bold", fontSize: "11px", position: "middle-center" });
+
+                // Asimtot tegak di x = -pi/2 dan x = pi/2
+                [-halfPi, halfPi].forEach(a => {
+                    const ax = a * sx;
+                    geo2.buatSegmen([ax, -90], [ax, 90], {
+                        stroke: "#ef4444",
+                        strokeWidth: 1.5,
+                        dashed: "4 4"
+                    });
+                });
+                geo2.buatTeks(-halfPi * sx - 18, -82, "-π/2", { fill: "#ef4444", fontSize: "10px", fontWeight: "bold", position: "middle-center" });
+                geo2.buatTeks(halfPi * sx + 16, -82, "π/2", { fill: "#ef4444", fontSize: "10px", fontWeight: "bold", position: "middle-center" });
+                geo2.buatTeks(Math.PI * sx, -14, "π", { fill: "var(--text-muted)", fontSize: "10px", fontWeight: "bold", position: "middle-center" });
+                geo2.buatTeks(-Math.PI * sx, -14, "-π", { fill: "var(--text-muted)", fontSize: "10px", fontWeight: "bold", position: "middle-center" });
+
+                // Gambar 3 cabang kurva y = tan x (dibatasi agar tidak melewati tinggi kanvas)
+                const eps = 0.22;
+                geo2.buatFungsi(x => Math.tan(x), -halfPi + eps, halfPi - eps, {
+                    skalaX: sx, skalaY: sy, langkah: 100, stroke: "var(--teal-primary)", strokeWidth: 2.4
+                });
+                geo2.buatFungsi(x => Math.tan(x), halfPi + eps, Math.PI + 0.65, {
+                    skalaX: sx, skalaY: sy, langkah: 70, stroke: "var(--teal-primary)", strokeWidth: 2.2
+                });
+                geo2.buatFungsi(x => Math.tan(x), -Math.PI - 0.65, -halfPi - eps, {
+                    skalaX: sx, skalaY: sy, langkah: 70, stroke: "var(--teal-primary)", strokeWidth: 2.2
+                });
+
+                geo2.buatTitik([0, 0], { size: 3.5, color: "var(--teal-primary)" });
+                geo2.buatTitik([Math.PI * sx, 0], { size: 3.5, color: "var(--teal-primary)" });
+                geo2.buatTitik([-Math.PI * sx, 0], { size: 3.5, color: "var(--teal-primary)" });
+            }
+
+            // 3. Visualisasi Anatomi Transformasi Gelombang y = A sin(k(x - alpha)) + C menggunakan GeoSVG.js
+            const containerTrans = document.getElementById("geosvg-transform");
+            if (containerTrans && typeof GeoSVG !== "undefined") {
+                const geo3 = new GeoSVG(containerTrans, 350, 240, {
+                    viewBox: "-35 -25 350 240",
+                    yUp: true,
+                    clearContainer: true,
+                    title: "Anatomi Transformasi Gelombang Sinus",
+                    description: "Visualisasi Amplitudo A, Garis Tengah C, Pergeseran Fase alpha, Nilai Maksimum dan Minimum, serta Periode T"
+                });
+
+                const sx = 38;
+                const sy = 26;
+                const alpha = 0.6; // pergeseran fase ke kanan
+                const C = 3.2;     // garis setimbang y = C
+                const A = 2.0;     // amplitudo
+
+                const yMid = C * sy;
+                const yMax = (C + A) * sy;
+                const yMin = (C - A) * sy;
+                const xStart = alpha * sx;
+                const xEnd = (alpha + 2 * Math.PI) * sx;
+
+                // Sumbu X dan Y
+                geo3.buatVektor([-15, 0], [300, 0], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                geo3.buatVektor([0, -12], [0, 198], { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+
+                // Garis batas y_maks, garis tengah y = C, dan y_min
+                geo3.buatSegmen([0, yMax], [290, yMax], { stroke: "var(--border-color)", strokeWidth: 1.1, dashed: "4 3" });
+                geo3.buatSegmen([0, yMid], [290, yMid], { stroke: "#d97706", strokeWidth: 1.5, dashed: "5 3" });
+                geo3.buatSegmen([0, yMin], [290, yMin], { stroke: "var(--border-color)", strokeWidth: 1.1, dashed: "4 3" });
+
+                // Label di Sumbu Y
+                geo3.buatTeks(-16, yMax, "C+A", { fill: "var(--teal-primary)", fontSize: "9.5px", fontWeight: "bold", position: "middle-center" });
+                geo3.buatTeks(-14, yMid, "C", { fill: "#d97706", fontSize: "10.5px", fontWeight: "bold", position: "middle-center" });
+                geo3.buatTeks(-16, yMin, "C-A", { fill: "var(--teal-primary)", fontSize: "9.5px", fontWeight: "bold", position: "middle-center" });
+
+                // Garis vertikal fase awal x = alpha
+                geo3.buatSegmen([xStart, 0], [xStart, yMid], { stroke: "#d97706", strokeWidth: 1.3, dashed: "3 3" });
+                geo3.buatTeks(xStart, -12, "α", { fill: "#d97706", fontSize: "11px", fontWeight: "bold", position: "middle-center" });
+
+                // Kurva gelombang 1 periode penuh dari x = alpha sampai x = alpha + 2pi
+                geo3.buatFungsi(x => C + A * Math.sin(x - alpha), alpha, alpha + 2 * Math.PI, {
+                    skalaX: sx,
+                    skalaY: sy,
+                    langkah: 160,
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2.8
+                });
+
+                // Panah Amplitudo |A| pada posisi puncak
+                const xPeak = (alpha + Math.PI / 2) * sx;
+                geo3.buatDimensi([xPeak, yMid], [xPeak, yMax], -18, "|A|", {
+                    stroke: "var(--teal-primary)",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    labelJarak: 12
+                });
+
+                // Garis Dimensi 1 Periode (T = 2pi/k) di bagian atas gelombang
+                geo3.buatDimensi([xStart, yMax], [xEnd, yMax], 20, "1 Periode (T = 2π/k)", {
+                    stroke: "#d97706",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    labelJarak: 11
+                });
+
+                // Titik-titik penting gelombang
+                geo3.buatTitik([xStart, yMid], { size: 4.5, color: "#d97706" });
+                geo3.buatTitik([xPeak, yMax], {
+                    size: 4.5, color: "var(--teal-primary)",
+                    label: "Puncak", labelPosition: "bottom-right", labelDistance: 5, bold: true
+                });
+                const xValley = (alpha + 3 * Math.PI / 2) * sx;
+                geo3.buatTitik([xValley, yMin], {
+                    size: 4.5, color: "var(--teal-primary)",
+                    label: "Lembah", labelPosition: "top-center", labelDistance: 6, bold: true
+                });
+                geo3.buatTitik([xEnd, yMid], { size: 4.5, color: "#d97706" });
+            }
+        });
+    </script>
+</body>
+
+</html>

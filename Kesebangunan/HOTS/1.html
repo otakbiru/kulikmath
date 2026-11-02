@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal HOTS - Kesebangunan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Kesebangunan</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Diberikan sebuah persegi panjang \(ABCD\) dengan panjang sisi \(AB = 7\) dan \(BC = 4\). Titik \(E\) terletak pada segmen garis \(AB\) sedemikian sehingga \(BC = BE\). Titik \(F\) terletak pada perpanjangan sinar garis \(BC\) sehingga \(ED \perp DF\). Jika luas segitiga \(\triangle EDF\) dapat dinyatakan dalam bentuk pecahan paling sederhana \(\dfrac{a}{b}\) dengan \(a\) dan \(b\) merupakan bilangan asli yang relatif prima, tentukan nilai dari \(a - b\)!
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://www.ktom-tomi.or.id/" target="_blank" rel="noopener noreferrer">KTOM Februari 2023</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <!-- Visualisasi GeoSVG Soal 1 -->
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div id="geosvg-hots-1" style="display:inline-flex; justify-content:center; max-width: 100%;"></div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+                            <em>Ilustrasi persegi panjang \(ABCD\) dengan \(\triangle ADE \sim \triangle CDF\)</em>
+                        </p>
+                    </div>
+
+                    <p><strong>1. Menentukan panjang sisi-sisi yang relevan:</strong></p>
+                    <ul>
+                        <li>Pada persegi panjang \(ABCD\), \(AB = CD = 7\) dan \(AD = BC = 4\).</li>
+                        <li>Diketahui \(BE = BC = 4\), sehingga:
+                            \[AE = AB - BE = 7 - 4 = 3\]
+                        </li>
+                        <li>Pada segitiga siku-siku \(\triangle ADE\) di \(A\):
+                            \[DE = \sqrt{AD^2 + AE^2} = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5\]
+                        </li>
+                    </ul>
+
+                    <p><strong>2. Menunjukkan kesebangunan \(\triangle ADE \sim \triangle CDF\):</strong></p>
+                    <ul>
+                        <li>\(\angle DAE = \angle DCF = 90^\circ\).</li>
+                        <li>Karena \(ED \perp DF\), maka \(\angle EDF = 90^\circ\).</li>
+                        <li>Perhatikan sudut-sudut di titik \(D\):
+                            \[\angle ADE + \angle CDE = 90^\circ \quad \text{dan} \quad \angle CDE + \angle CDF = 90^\circ\]
+                            Akibatnya, diperoleh:
+                            \[\angle ADE = \angle CDF\]
+                        </li>
+                        <li>Berdasarkan kriteria sudut-sudut (\(sd - sd\)), maka \(\triangle ADE \sim \triangle CDF\).</li>
+                    </ul>
+
+                    <p><strong>3. Menghitung panjang \(DF\):</strong></p>
+                    <p>Berdasarkan perbandingan sisi-sisi yang bersesuaian pada kedua segitiga sebangun tersebut:</p>
+                    \[\begin{aligned}
+                    \dfrac{CD}{AD} &= \dfrac{DF}{DE} \\
+                    \dfrac{7}{4} &= \dfrac{DF}{5} \\
+                    DF &= \dfrac{35}{4}
+                    \end{aligned}\]
+
+                    <p><strong>4. Menghitung luas \(\triangle EDF\):</strong></p>
+                    <p>Karena \(\triangle EDF\) merupakan segitiga siku-siku di \(D\) (\(ED \perp DF\)):</p>
+                    \[\begin{aligned}
+                    \text{Luas }\triangle EDF &= \dfrac{1}{2} \times DE \times DF \\
+                    &= \dfrac{1}{2} \times 5 \times \dfrac{35}{4} \\
+                    &= \dfrac{175}{8}
+                    \end{aligned}\]
+
+                    <p>
+                        Bentuk \(\dfrac{175}{8}\) sudah merupakan pecahan paling sederhana (\(\text{FPB}(175, 8) = 1\)), sehingga \(a = 175\) dan \(b = 8\).
+                    </p>
+                    \[a - b = 175 - 8 = 167\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(a - b\) adalah \(167\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+
+            <script>
+            (function() {
+                function gambarHots1() {
+                    const wadah = document.getElementById("geosvg-hots-1");
+                    if (!wadah || typeof GeoSVG === "undefined") return;
+                    wadah.innerHTML = "";
+
+                    const W = 360;
+                    const H = 340;
+                    const geo = new GeoSVG("geosvg-hots-1", W, H, {
+                        margin: 15,
+                        title: "Ilustrasi Persegi Panjang ABCD dan Segitiga EDF"
+                    });
+                    if (geo.svg) {
+                        geo.svg.style.width = "100%";
+                        geo.svg.style.maxWidth = `${W}px`;
+                        geo.svg.style.height = "auto";
+                    }
+
+                    // Skala: 25 px per satuan
+                    // A di [60, 290]
+                    // B = [60 + 7 * 25, 290] = [235, 290]
+                    // C = [235, 290 - 4 * 25] = [235, 190]
+                    // D = [60, 190]
+                    // E di AB: AE = 3 -> [60 + 3 * 25, 290] = [135, 290]
+                    // F di perpanjangan BC: CF = 5.25 (21/4) -> [235, 190 - 5.25 * 25] = [235, 58.75]
+                    const pA = [60, 290];
+                    const pB = [235, 290];
+                    const pC = [235, 190];
+                    const pD = [60, 190];
+                    const pE = [135, 290];
+                    const pF = [235, 59];
+
+                    // Persegi panjang ABCD
+                    geo.buatPoligon([pA, pB, pC, pD], {
+                        fill: "rgba(100, 116, 139, 0.05)",
+                        stroke: "#475569",
+                        strokeWidth: 1.5
+                    });
+
+                    // Perpanjangan sinar garis BC ke F
+                    geo.buatSegmen(pC, pF, {
+                        stroke: "#475569",
+                        strokeWidth: 1.5,
+                        dashed: true
+                    });
+
+                    // Segitiga siku-siku EDF
+                    geo.buatPoligon([pE, pF, pD], {
+                        fill: "rgba(37, 99, 235, 0.12)",
+                        stroke: "#2563eb",
+                        strokeWidth: 2
+                    });
+
+                    // Siku-siku di D (ED ⊥ DF)
+                    geo.buatSiku(pE, pD, pF, {
+                        size: 11,
+                        stroke: "#16a34a"
+                    });
+
+                    // Siku-siku di A dan C
+                    geo.buatSiku(pD, pA, pB, { size: 9, stroke: "#64748b" });
+                    geo.buatSiku(pD, pC, pF, { size: 9, stroke: "#64748b" });
+
+                    // Label panjang sisi
+                    geo.buatTeks(97, 305, "3", { position: "top-center", fontSize: "11px", fill: "#1e293b", fontWeight: "bold" });
+                    geo.buatTeks(185, 305, "4", { position: "top-center", fontSize: "11px", fill: "#1e293b", fontWeight: "bold" });
+                    geo.buatTeks(45, 240, "4", { position: "middle-right", fontSize: "11px", fill: "#1e293b", fontWeight: "bold" });
+                    geo.buatTeks(147, 178, "7", { position: "bottom-center", fontSize: "11px", fill: "#1e293b", fontWeight: "bold" });
+                    geo.buatTeks(247, 240, "4", { position: "middle-left", fontSize: "11px", fill: "#1e293b", fontWeight: "bold" });
+                    geo.buatTeks(90, 230, "5", { position: "middle-left", fontSize: "12px", fill: "#2563eb", fontWeight: "bold" });
+                    geo.buatTeks(140, 112, "DF = 35/4", { position: "middle-center", fontSize: "12px", fill: "#2563eb", fontWeight: "bold" });
+
+                    // Titik sudut dan label
+                    geo.buatTitik(pA[0], pA[1], { label: "A", labelPosition: "bottom-left", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pB[0], pB[1], { label: "B", labelPosition: "bottom-right", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pC[0], pC[1], { label: "C", labelPosition: "middle-right", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pD[0], pD[1], { label: "D", labelPosition: "top-left", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pE[0], pE[1], { label: "E", labelPosition: "bottom-center", radius: 3, fill: "#2563eb" });
+                    geo.buatTitik(pF[0], pF[1], { label: "F", labelPosition: "top-right", radius: 3, fill: "#2563eb" });
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarHots1);
+                } else {
+                    gambarHots1();
+                }
+            })();
+            </script>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Garis \(AB\) dan garis \(CD\) sejajar serta berjarak \(4\) satuan. Garis \(AD\) berpotongan dengan garis \(BC\) di titik \(P\) yang terletak di antara kedua garis tersebut. Jika panjang \(AB = 4\) dan \(CD = 12\), berapakah jarak dari titik \(P\) ke garis \(CD\)?
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://forummatematika.freeforums.net/thread/16/soal" target="_blank" rel="noopener noreferrer">OSK SMA 2002</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <!-- Visualisasi GeoSVG Soal 2 -->
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div id="geosvg-hots-2" style="display:inline-flex; justify-content:center; max-width: 100%;"></div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+                            <em>Ilustrasi garis sejajar \(AB \parallel CD\) dan segitiga sebangun \(\triangle PAB \sim \triangle PDC\)</em>
+                        </p>
+                    </div>
+
+                    <p><strong>1. Mengidentifikasi segitiga yang sebangun:</strong></p>
+                    <ul>
+                        <li>Karena garis \(AB \parallel CD\), maka sudut-sudut dalam berseberangannya sama besar:
+                            \[\angle PAB = \angle PDC \quad \text{dan} \quad \angle PBA = \angle PCD\]
+                        </li>
+                        <li>Sudut-sudut di titik \(P\) saling bertolak belakang:
+                            \[\angle APB = \angle DPC\]
+                        </li>
+                        <li>Oleh karena itu, \(\triangle PAB \sim \triangle PDC\) (sudut-sudut-sudut).</li>
+                    </ul>
+
+                    <p><strong>2. Menentukan perbandingan tinggi segitiga:</strong></p>
+                    <p>
+                        Tarik garis tinggi yang melalui titik \(P\) dan tegak lurus terhadap kedua garis sejajar tersebut, sehingga memotong \(AB\) di titik \(E\) dan memotong \(CD\) di titik \(F\).
+                    </p>
+                    <ul>
+                        <li>Jarak antara kedua garis adalah \(EF = EP + PF = 4\).</li>
+                        <li>Jarak titik \(P\) ke garis \(AB\) adalah \(EP\).</li>
+                        <li>Jarak titik \(P\) ke garis \(CD\) adalah \(PF\).</li>
+                    </ul>
+                    <p>
+                        Berdasarkan sifat kesebangunan \(\triangle PAB \sim \triangle PDC\), rasio tinggi kedua segitiga sama dengan rasio alasnya:
+                    </p>
+                    \[\begin{aligned}
+                    \dfrac{PF}{EP} &= \dfrac{CD}{AB} \\
+                    \dfrac{PF}{EP} &= \dfrac{12}{4} = 3 \\
+                    PF &= 3EP
+                    \end{aligned}\]
+
+                    <p><strong>3. Menghitung nilai \(PF\):</strong></p>
+                    \[\begin{aligned}
+                    EP + PF &= 4 \\
+                    EP + 3EP &= 4 \\
+                    4EP &= 4 \\
+                    EP &= 1
+                    \end{aligned}\]
+                    <p>Sehingga jarak dari titik \(P\) ke garis \(CD\) adalah:</p>
+                    \[PF = 3 \times EP = 3 \times 1 = 3\text{ satuan}\]
+
+                    <div class="kesimpulan">
+                        Jadi, jarak titik \(P\) dari garis \(CD\) adalah \(3\) satuan.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+
+            <script>
+            (function() {
+                function gambarHots2() {
+                    const wadah = document.getElementById("geosvg-hots-2");
+                    if (!wadah || typeof GeoSVG === "undefined") return;
+                    wadah.innerHTML = "";
+
+                    const W = 380;
+                    const H = 240;
+                    const geo = new GeoSVG("geosvg-hots-2", W, H, {
+                        margin: 15,
+                        title: "Ilustrasi Jarak Titik P ke Garis CD"
+                    });
+                    if (geo.svg) {
+                        geo.svg.style.width = "100%";
+                        geo.svg.style.maxWidth = `${W}px`;
+                        geo.svg.style.height = "auto";
+                    }
+
+                    // Koordinat presisi
+                    // Garis atas AB: panjang 4 -> skala 18 px -> 72 px, tengah di x = 190, y = 45
+                    // A = [154, 45], B = [226, 45]
+                    // Garis bawah CD: panjang 12 -> 216 px, tengah di x = 190, y = 185
+                    // C = [82, 185], D = [298, 185]
+                    // P di x = 190, y = 80 (jarak vertikal: EP = 35 px, PF = 105 px -> rasio 1 : 3)
+                    const pA = [154, 45];
+                    const pB = [226, 45];
+                    const pC = [82, 185];
+                    const pD = [298, 185];
+                    const pP = [190, 80];
+                    const pE = [190, 45];
+                    const pF = [190, 185];
+
+                    // Daerah segitiga PAB dan PDC
+                    geo.buatPoligon([pP, pA, pB], {
+                        fill: "rgba(37, 99, 235, 0.1)",
+                        stroke: "none"
+                    });
+                    geo.buatPoligon([pP, pD, pC], {
+                        fill: "rgba(234, 88, 12, 0.1)",
+                        stroke: "none"
+                    });
+
+                    // Garis AB dan CD
+                    geo.buatSegmen(pA, pB, { stroke: "#1e293b", strokeWidth: 2.2 });
+                    geo.buatSegmen(pC, pD, { stroke: "#1e293b", strokeWidth: 2.2 });
+
+                    // Garis diagonal AD dan BC
+                    geo.buatSegmen(pA, pD, { stroke: "#2563eb", strokeWidth: 1.8 });
+                    geo.buatSegmen(pB, pC, { stroke: "#2563eb", strokeWidth: 1.8 });
+
+                    // Garis tinggi EF tegak lurus
+                    geo.buatSegmen(pE, pF, {
+                        stroke: "#dc2626",
+                        strokeWidth: 1.5,
+                        dashed: true
+                    });
+
+                    // Siku-siku di E dan F
+                    geo.buatSiku(pA, pE, pP, { size: 8, stroke: "#dc2626" });
+                    geo.buatSiku(pC, pF, pP, { size: 8, stroke: "#dc2626" });
+
+                    // Label panjang sisi
+                    geo.buatTeks(190, 32, "AB = 4", { position: "bottom-center", fontSize: "12px", fill: "#1e293b", fontWeight: "bold" });
+                    geo.buatTeks(190, 202, "CD = 12", { position: "top-center", fontSize: "12px", fill: "#1e293b", fontWeight: "bold" });
+                    geo.buatTeks(198, 62, "EP = 1", { position: "middle-left", fontSize: "11px", fill: "#dc2626", fontWeight: "bold" });
+                    geo.buatTeks(198, 132, "PF = 3", { position: "middle-left", fontSize: "12px", fill: "#dc2626", fontWeight: "bold" });
+
+                    // Titik sudut dan label
+                    geo.buatTitik(pA[0], pA[1], { label: "A", labelPosition: "top-left", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pB[0], pB[1], { label: "B", labelPosition: "top-right", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pC[0], pC[1], { label: "C", labelPosition: "bottom-left", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pD[0], pD[1], { label: "D", labelPosition: "bottom-right", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pP[0], pP[1], { label: "P", labelPosition: "middle-left", radius: 3.5, fill: "#ea580c" });
+                    geo.buatTitik(pE[0], pE[1], { label: "E", labelPosition: "top-center", radius: 2.5, fill: "#dc2626" });
+                    geo.buatTitik(pF[0], pF[1], { label: "F", labelPosition: "bottom-center", radius: 2.5, fill: "#dc2626" });
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarHots2);
+                } else {
+                    gambarHots2();
+                }
+            })();
+            </script>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

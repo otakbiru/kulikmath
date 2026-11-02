@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Kesebangunan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Kesebangunan</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Perhatikan dua buah bangun trapesium \(ABCD\) dan \(PQRS\) berikut.
+                </p>
+                <p>
+                    Jika diketahui panjang sisi-sisi yang bersesuaian adalah \(AB = PS\), \(BC = PQ\), dan \(AD = RS\), tentukan hubungan kekongruenan antara kedua bangun trapesium tersebut serta sebutkan pasangan sisi dan sudut yang saling bersesuaian!
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneIdGrup/10259" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <!-- Visualisasi GeoSVG Trapesium Kongruen -->
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div id="geosvg-trapesium-kongruen" style="display:inline-flex; justify-content:center; max-width: 100%;"></div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+                            <em>Ilustrasi dua trapesium kongruen: \(ABCD \cong SPQR\)</em>
+                        </p>
+                    </div>
+
+                    <p>
+                        Dua buah bangun datar dikatakan <strong>kongruen</strong> (\(\cong\)) jika memenuhi dua syarat utama:
+                    </p>
+                    <ol>
+                        <li><strong>Sisi-sisi yang bersesuaian sama panjang:</strong>
+                            <ul>
+                                <li>\(AB = PS\)</li>
+                                <li>\(BC = PQ\)</li>
+                                <li>\(CD = QR\)</li>
+                                <li>\(AD = RS\)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sudut-sudut yang bersesuaian sama besar:</strong>
+                            <ul>
+                                <li>\(\angle A = \angle S\)</li>
+                                <li>\(\angle B = \angle P\)</li>
+                                <li>\(\angle C = \angle Q\)</li>
+                                <li>\(\angle D = \angle R\)</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p>
+                        Karena seluruh sisi dan sudut yang bersesuaian memiliki ukuran yang sama, maka trapesium \(ABCD\) dan trapesium \(PQRS\) adalah kongruen.
+                    </p>
+
+                    <div class="kesimpulan">
+                        Jadi, kedua bangun trapesium tersebut <strong>kongruen</strong> (\(ABCD \cong SPQR\)).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+
+            <script>
+            (function() {
+                function gambarTrapesiumKongruen() {
+                    const wadah = document.getElementById("geosvg-trapesium-kongruen");
+                    if (!wadah || typeof GeoSVG === "undefined") return;
+                    wadah.innerHTML = "";
+
+                    const W = 460;
+                    const H = 210;
+                    const geo = new GeoSVG("geosvg-trapesium-kongruen", W, H, {
+                        margin: 15,
+                        title: "Ilustrasi Dua Trapesium Kongruen"
+                    });
+                    if (geo.svg) {
+                        geo.svg.style.width = "100%";
+                        geo.svg.style.maxWidth = `${W}px`;
+                        geo.svg.style.height = "auto";
+                    }
+
+                    // Trapesium 1: ABCD
+                    const pA = [40, 175];
+                    const pB = [180, 175];
+                    const pC = [145, 60];
+                    const pD = [65, 60];
+
+                    geo.buatPoligon([pA, pB, pC, pD], {
+                        fill: "rgba(37, 99, 235, 0.08)",
+                        stroke: "#2563eb",
+                        strokeWidth: 2
+                    });
+
+                    geo.buatTitik(pA[0], pA[1], { label: "A", labelPosition: "bottom-left", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pB[0], pB[1], { label: "B", labelPosition: "bottom-right", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pC[0], pC[1], { label: "C", labelPosition: "top-right", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pD[0], pD[1], { label: "D", labelPosition: "top-left", radius: 3, fill: "#1e3a8a" });
+
+                    geo.buatTeks(110, 195, "Trapesium ABCD", { position: "top-center", fontSize: "11px", fill: "#2563eb", fontWeight: "bold" });
+
+                    // Trapesium 2: SPQR (posisi dicerminkan/diputar agar melatih pemahaman korespondensi)
+                    const pS = [280, 175];
+                    const pP = [420, 175];
+                    const pQ = [385, 60];
+                    const pR = [305, 60];
+
+                    geo.buatPoligon([pS, pP, pQ, pR], {
+                        fill: "rgba(16, 185, 129, 0.08)",
+                        stroke: "#059669",
+                        strokeWidth: 2
+                    });
+
+                    geo.buatTitik(pS[0], pS[1], { label: "S", labelPosition: "bottom-left", radius: 3, fill: "#065f46" });
+                    geo.buatTitik(pP[0], pP[1], { label: "P", labelPosition: "bottom-right", radius: 3, fill: "#065f46" });
+                    geo.buatTitik(pQ[0], pQ[1], { label: "Q", labelPosition: "top-right", radius: 3, fill: "#065f46" });
+                    geo.buatTitik(pR[0], pR[1], { label: "R", labelPosition: "top-left", radius: 3, fill: "#065f46" });
+
+                    geo.buatTeks(350, 195, "Trapesium SPQR", { position: "top-center", fontSize: "11px", fill: "#059669", fontWeight: "bold" });
+
+                    // Tanda kesamaan panjang sisi
+                    geo.buatTandaSamaPanjang(pA, pB, { count: 1, stroke: "#2563eb" });
+                    geo.buatTandaSamaPanjang(pS, pP, { count: 1, stroke: "#059669" });
+
+                    geo.buatTandaSamaPanjang(pB, pC, { count: 2, stroke: "#2563eb" });
+                    geo.buatTandaSamaPanjang(pP, pQ, { count: 2, stroke: "#059669" });
+
+                    geo.buatTandaSamaPanjang(pD, pA, { count: 3, stroke: "#2563eb" });
+                    geo.buatTandaSamaPanjang(pR, pS, { count: 3, stroke: "#059669" });
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarTrapesiumKongruen);
+                } else {
+                    gambarTrapesiumKongruen();
+                }
+            })();
+            </script>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Perhatikan gambar trapesium \(ABCD\) berikut.
+                </p>
+                <p>
+                    Garis \(KL\) sejajar dengan sisi alas \(AB\) dan sisi atas \(CD\). Jika diketahui panjang \(AB = 18\text{ cm}\), \(CD = 13\text{ cm}\), \(CL = 6\text{ cm}\), dan \(LB = 4\text{ cm}\), maka panjang \(KL\) adalah ....
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(14\text{ cm}\)</li>
+                    <li>\(15\text{ cm}\)</li>
+                    <li>\(16\text{ cm}\)</li>
+                    <li>\(17\text{ cm}\)</li>
+                    <li>\(18\text{ cm}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneIdGrup/15455" target="_blank" rel="noopener noreferrer">Matematika Zone Id</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <!-- Visualisasi GeoSVG Trapesium KL -->
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div id="geosvg-trapesium-kl" style="display:inline-flex; justify-content:center; max-width: 100%;"></div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+                            <em>Ilustrasi trapesium \(ABCD\) dengan garis sejajar \(KL\)</em>
+                        </p>
+                    </div>
+
+                    <p>
+                        Pada trapesium dengan garis yang sejajar dengan kedua sisi sejajar lainnya (\(CD \parallel KL \parallel AB\)), panjang garis tengah \(KL\) dapat ditentukan menggunakan formula perbandingan kesebangunan:
+                    </p>
+                    \[KL = \dfrac{CL \cdot AB + LB \cdot CD}{CL + LB}\]
+
+                    <p>Substitusikan nilai-nilai yang diketahui ke dalam rumus:</p>
+                    \[\begin{aligned}
+                    KL &= \dfrac{6 \cdot 18 + 4 \cdot 13}{6 + 4} \\
+                    &= \dfrac{108 + 52}{10} \\
+                    &= \dfrac{160}{10} \\
+                    &= 16\text{ cm}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, panjang \(KL\) adalah \(16\text{ cm}\).<br>
+                        <strong>JAWABAN: C</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+
+            <script>
+            (function() {
+                function gambarTrapesiumKL() {
+                    const wadah = document.getElementById("geosvg-trapesium-kl");
+                    if (!wadah || typeof GeoSVG === "undefined") return;
+                    wadah.innerHTML = "";
+
+                    const W = 380;
+                    const H = 230;
+                    const geo = new GeoSVG("geosvg-trapesium-kl", W, H, {
+                        margin: 15,
+                        title: "Ilustrasi Trapesium ABCD dengan Garis Sejajar KL"
+                    });
+                    if (geo.svg) {
+                        geo.svg.style.width = "100%";
+                        geo.svg.style.maxWidth = `${W}px`;
+                        geo.svg.style.height = "auto";
+                    }
+
+                    // Koordinat trapesium presisi
+                    const pA = [50, 190];
+                    const pB = [320, 190];
+                    const pD = [90, 40];
+                    const pC = [285, 40];
+
+                    // Titik K dan L
+                    const pK = [66, 130];
+                    const pL = [306, 130];
+
+                    // Gambar bidang trapesium ABCD
+                    geo.buatPoligon([pA, pB, pC, pD], {
+                        fill: "rgba(37, 99, 235, 0.06)",
+                        stroke: "#2563eb",
+                        strokeWidth: 2
+                    });
+
+                    // Garis sejajar KL
+                    geo.buatSegmen(pK, pL, {
+                        stroke: "#dc2626",
+                        strokeWidth: 2
+                    });
+
+                    // Label panjang sisi
+                    // CD = 13 cm
+                    geo.buatTeks(187, 28, "CD = 13 cm", { position: "bottom-center", fontSize: "12px", fill: "#1e293b", fontWeight: "bold" });
+                    // KL = 16 cm
+                    geo.buatTeks(186, 120, "KL = 16 cm", { position: "bottom-center", fontSize: "12px", fill: "#dc2626", fontWeight: "bold" });
+                    // AB = 18 cm
+                    geo.buatTeks(185, 210, "AB = 18 cm", { position: "top-center", fontSize: "12px", fill: "#1e293b", fontWeight: "bold" });
+
+                    // Label sisi samping kanan
+                    geo.buatTeks(302, 82, "6 cm", { position: "middle-left", fontSize: "11px", fill: "#7c3aed", fontWeight: "bold" });
+                    geo.buatTeks(320, 160, "4 cm", { position: "middle-left", fontSize: "11px", fill: "#7c3aed", fontWeight: "bold" });
+
+                    // Titik sudut dan label
+                    geo.buatTitik(pA[0], pA[1], { label: "A", labelPosition: "bottom-left", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pB[0], pB[1], { label: "B", labelPosition: "bottom-right", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pC[0], pC[1], { label: "C", labelPosition: "top-right", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pD[0], pD[1], { label: "D", labelPosition: "top-left", radius: 3, fill: "#1e3a8a" });
+                    geo.buatTitik(pK[0], pK[1], { label: "K", labelPosition: "middle-left", radius: 3, fill: "#dc2626" });
+                    geo.buatTitik(pL[0], pL[1], { label: "L", labelPosition: "middle-right", radius: 3, fill: "#dc2626" });
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarTrapesiumKL);
+                } else {
+                    gambarTrapesiumKL();
+                }
+            })();
+            </script>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

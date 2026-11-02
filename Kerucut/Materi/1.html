@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Kerucut</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Kerucut</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Unsur-Unsur Kerucut</h2>
+            <p>
+                <strong>Kerucut</strong> (<em>cone</em>) adalah bangun ruang sisi lengkung yang dapat dipandang sebagai limas beraturan yang bidang alasnya berbentuk lingkaran, atau sebagai bangun ruang hasil perputaran sebuah segitiga siku-siku sejauh $360^\circ$ mengelilingi salah satu sisi siku-sikunya sebagai poros.
+            </p>
+            <p>
+                Pada sebuah kerucut lingkaran tegak dengan titik puncak $T$ dan pusat alas $O$, terdapat unsur-unsur geometri utama berikut:
+            </p>
+            <ul>
+                <li><strong>Bidang Alas:</strong> Sisi datar berbentuk lingkaran dengan pusat $O$ dan jari-jari $r$ (diameter $d = 2r$).</li>
+                <li><strong>Selimut Kerucut:</strong> Sisi lengkung yang menyelimuti kerucut dari keliling lingkaran alas menuju titik puncak $T$.</li>
+                <li><strong>Titik Puncak ($T$):</strong> Titik tertinggi kerucut tempat bertemunya semua garis pelukis ($1$ titik sudut/puncak).</li>
+                <li><strong>Rusuk Lengkung:</strong> Kerucut hanya memiliki <strong>$1$ rusuk lengkung</strong>, yaitu keliling lingkaran alasnya, dan <strong>$2$ sisi</strong> (alas dan selimut).</li>
+                <li><strong>Tinggi Kerucut ($t$):</strong> Jarak tegak lurus dari titik puncak $T$ ke titik pusat lingkaran alas $O$ ($TO \perp \text{alas}$).</li>
+                <li><strong>Garis Pelukis / Apotema ($s$):</strong> Ruas garis yang menghubungkan titik puncak $T$ ke titik pada keliling lingkaran alas (misalnya $TA$ atau $TB$).</li>
+            </ul>
+            <p>
+                Karena garis tinggi $t$ tegak lurus terhadap jari-jari alas $r$, maka jari-jari ($r$), tinggi ($t$), dan garis pelukis ($s$) membentuk segitiga siku-siku $\triangle TOB$ yang memenuhi <strong>Teorema Pythagoras</strong>:
+                $$s^2 = r^2 + t^2 \iff s = \sqrt{r^2 + t^2}, \qquad r = \sqrt{s^2 - t^2}, \qquad t = \sqrt{s^2 - r^2}$$
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-anatomi-kerucut" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Jaring-Jaring Kerucut dan Sudut Pusat Selimut</h2>
+            <p>
+                Jika sebuah kerucut dibelah sepanjang salah satu garis pelukisnya ($s$) dan direbahkan pada bidang datar, diperoleh <strong>jaring-jaring kerucut</strong> yang terdiri atas:
+            </p>
+            <ol>
+                <li>Sebuah <strong>lingkaran alas</strong> berjari-jari $r$, dan</li>
+                <li>Sebuah <strong>juring lingkaran</strong> (selimut kerucut) yang berjari-jari $R_{\text{juring}} = s$ dengan panjang busur yang tepat sama dengan keliling lingkaran alas ($2\pi r$).</li>
+            </ol>
+            <p>
+                Dari kesamaan panjang busur juring selimut dan keliling lingkaran alas, kita dapat menurunkan hubungan sudut pusat juring selimut ($\theta$, dalam derajat) serta rumus luas selimut kerucut:
+                $$\text{Panjang Busur Juring} = \text{Keliling Alas} \iff \frac{\theta}{360^\circ} \cdot 2\pi s = 2\pi r \iff \frac{\theta}{360^\circ} = \frac{r}{s}$$
+                Sehingga besar sudut pusat juring selimut kerucut dan luas selimutnya adalah:
+                $$\theta = \frac{r}{s} \times 360^\circ \quad (\text{atau } \theta = \frac{2\pi r}{s}\text{ radian})$$
+                $$L_{\text{selimut}} = \frac{\theta}{360^\circ} \cdot \pi s^2 = \left(\frac{r}{s}\right) \cdot \pi s^2 = \pi r s$$
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-jaring-kerucut" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Rumus Luas Permukaan dan Volume Kerucut</h2>
+            <p>
+                Volume kerucut sama dengan sepertiga dari volume tabung yang memiliki jari-jari alas $r$ dan tinggi $t$ yang sama. Berikut adalah rangkuman rumus-rumus pada kerucut:
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besaran Geometri</th>
+                            <th>Rumus Matematika</th>
+                            <th>Keterangan Unsur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Luas Alas ($L_a$)</strong></td>
+                            <td>$$L_a = \pi r^2$$</td>
+                            <td class="text-left">$r$ = jari-jari alas lingkaran</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Luas Selimut ($L_s$)</strong></td>
+                            <td>$$L_s = \pi r s$$</td>
+                            <td class="text-left">$s = \sqrt{r^2 + t^2}$ = panjang garis pelukis</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Luas Permukaan Lengkap ($L_p$)</strong></td>
+                            <td>$$L_p = L_a + L_s = \pi r (r + s)$$</td>
+                            <td class="text-left">Luas kerucut utuh (memiliki tutup alas)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Volume Kerucut ($V$)</strong></td>
+                            <td>$$V = \frac{1}{3} \cdot L_a \cdot t = \frac{1}{3} \pi r^2 t$$</td>
+                            <td class="text-left">$t$ = tinggi kerucut ($t \perp r$)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Perbandingan Perubahan Ukuran</strong></td>
+                            <td>$$\frac{V_2}{V_1} = \left(\frac{r_2}{r_1}\right)^2 \cdot \left(\frac{t_2}{t_1}\right)$$</td>
+                            <td class="text-left">Perbandingan volume dua kerucut</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. Kerucut Terpancung (Frustum Kerucut)</h2>
+            <p>
+                Jika bagian puncak sebuah kerucut dipotong oleh bidang datar yang sejajar dengan alasnya (seperti bentuk kap lampu atau ember), bangun ruang sisa di bagian bawah disebut <strong>Kerucut Terpancung</strong> (<em>frustum</em>). Misalkan jari-jari alas bawah adalah $R$, jari-jari bidang atas adalah $r$ ($R > r$), tinggi kerucut terpancung adalah $t$, dan garis pelukisnya adalah $s$:
+            </p>
+            <ul>
+                <li><strong>Garis Pelukis Kerucut Terpancung:</strong> $\displaystyle s = \sqrt{t^2 + (R - r)^2}$</li>
+                <li><strong>Luas Selimut Kerucut Terpancung:</strong> $\displaystyle L_s = \pi (R + r) s$</li>
+                <li><strong>Luas Permukaan Kerucut Terpancung:</strong> $\displaystyle L_p = \pi R^2 + \pi r^2 + \pi (R + r)s$</li>
+                <li><strong>Volume Kerucut Terpancung:</strong> $\displaystyle V = \frac{1}{3} \pi t \left(R^2 + Rr + r^2\right)$</li>
+            </ul>
+
+            <div class="kesimpulan">
+                💡 Tips Cepat &amp; Konsep Kesebangunan:
+                <br>• Jika kerucut dipotong sejajar alas pada ketinggian $t_1$ dari puncak sehingga rasio ketinggian kerucut kecil terhadap kerucut utuh adalah $\frac{t_1}{t_2} = k$, maka berdasarkan kesebangunan berlaku $\frac{r_1}{r_2} = \frac{s_1}{s_2} = k$, rasio luas selimut $\frac{L_{s1}}{L_{s2}} = k^2$, dan rasio volume $\frac{V_1}{V_2} = k^3$.
+                <br>• Selalu perhatikan konteks soal cerita: benda berbentuk kerucut <strong>tanpa alas</strong> (seperti topi ulang tahun, caping petani, atau corong) hanya menghitung <strong>Luas Selimut ($\pi r s$)</strong>!
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memahami penerapan rumus luas permukaan, volume, konversi juring lingkaran menjadi kerucut, serta kerucut terpancung. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasan lengkap.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Luas Permukaan & Volume Kerucut -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Sebuah kerucut memiliki keliling alas $44\text{ cm}$ dan tinggi $24\text{ cm}$. Dengan menggunakan $\pi = \frac{22}{7}$, tentukanlah:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Panjang garis pelukis ($s$) dan luas selimut kerucut,</li>
+                        <li>Luas permukaan lengkap dan volume kerucut tersebut!</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Menentukan jari-jari alas ($r$) dari keliling lingkaran</strong><br>
+                        $$K_{\text{alas}} = 2\pi r \implies 44 = 2 \times \frac{22}{7} \times r \implies 44 = \frac{44}{7}r \implies r = 7\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menghitung garis pelukis ($s$) dan luas selimut ($L_s$)</strong><br>
+                        Dengan $r = 7\text{ cm}$ dan $t = 24\text{ cm}$ (tripel Pythagoras $7, 24, 25$):
+                        $$s = \sqrt{r^2 + t^2} = \sqrt{7^2 + 24^2} = \sqrt{49 + 576} = \sqrt{625} = 25\text{ cm}$$
+                        $$L_s = \pi r s = \frac{22}{7} \times 7 \times 25 = 550\text{ cm}^2$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menghitung luas permukaan lengkap ($L_p$) dan volume ($V$)</strong><br>
+                        $$L_p = \pi r(r + s) = \frac{22}{7} \times 7 \times (7 + 25) = 22 \times 32 = 704\text{ cm}^2$$
+                        $$V = \frac{1}{3} \pi r^2 t = \frac{1}{3} \times \frac{22}{7} \times 7^2 \times 24 = 22 \times 7 \times 8 = 1.232\text{ cm}^3$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, garis pelukis kerucut adalah $25\text{ cm}$, luas selimutnya $550\text{ cm}^2$, luas permukaannya $704\text{ cm}^2$, dan volumenya $1.232\text{ cm}^3$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Membentuk Kerucut dari Juring Lingkaran -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Selembar karton berbentuk juring lingkaran dengan sudut pusat $216^\circ$ dan jari-jari $15\text{ cm}$ digulung dan direkatkan kedua jari-jarinya sehingga membentuk sebuah topi kerucut tanpa alas. Tinggi topi kerucut yang terbentuk adalah ....
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Menghubungkan unsur juring lingkaran dengan unsur kerucut</strong><br>
+                        Ketika juring lingkaran digulung menjadi selimut kerucut, maka:<br>
+                        • Jari-jari juring menjadi <strong>garis pelukis kerucut</strong>: $s = R_{\text{juring}} = 15\text{ cm}$.<br>
+                        • Sudut pusat juring adalah $\theta = 216^\circ$.
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Mencari jari-jari alas kerucut ($r$)</strong><br>
+                        Gunakan rumus perbandingan sudut pusat juring selimut kerucut:
+                        $$\frac{r}{s} = \frac{\theta}{360^\circ} \implies \frac{r}{15} = \frac{216^\circ}{360^\circ} = \frac{3}{5}$$
+                        $$r = \frac{3}{5} \times 15 = 9\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menghitung tinggi kerucut ($t$)</strong><br>
+                        Gunakan teorema Pythagoras pada segitiga siku-siku $(r, t, s)$:
+                        $$t = \sqrt{s^2 - r^2} = \sqrt{15^2 - 9^2} = \sqrt{225 - 81} = \sqrt{144} = 12\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, tinggi topi kerucut yang terbentuk adalah $12\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Kerucut Terpancung (Frustum) -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Sebuah kap lampu berbentuk kerucut terpancung tanpa tutup atas dan bawah memiliki jari-jari lingkaran bawah $R = 14\text{ cm}$, jari-jari lingkaran atas $r = 7\text{ cm}$, dan tinggi $t = 24\text{ cm}$. Tentukan luas bahan kain yang dibutuhkan untuk membuat selimut kap lampu tersebut dan volume ruang di dalam kap lampu! ($\pi = \frac{22}{7}$)
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Menghitung panjang garis pelukis kerucut terpancung ($s$)</strong><br>
+                        Selisih jari-jari bawah dan atas adalah $R - r = 14 - 7 = 7\text{ cm}$, dengan tinggi $t = 24\text{ cm}$:
+                        $$s = \sqrt{t^2 + (R - r)^2} = \sqrt{24^2 + 7^2} = \sqrt{576 + 49} = \sqrt{625} = 25\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menghitung luas selimut kap lampu ($L_s$)</strong><br>
+                        $$L_s = \pi (R + r) s = \frac{22}{7} \times (14 + 7) \times 25 = \frac{22}{7} \times 21 \times 25 = 22 \times 3 \times 25 = 1.650\text{ cm}^2$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menghitung volume kerucut terpancung ($V$)</strong><br>
+                        $$V = \frac{1}{3} \pi t (R^2 + Rr + r^2)$$
+                        $$V = \frac{1}{3} \times \frac{22}{7} \times 24 \times (14^2 + 14 \cdot 7 + 7^2)$$
+                        $$V = \frac{176}{7} \times (196 + 98 + 49) = \frac{176}{7} \times 343 = 176 \times 49 = 8.624\text{ cm}^3$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, luas bahan selimut kap lampu tersebut adalah $1.650\text{ cm}^2$ dan volumenya adalah $8.624\text{ cm}^3$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiKerucut() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const tealFill = isDark ? 'rgba(20, 184, 166, 0.16)' : 'rgba(13, 148, 136, 0.11)';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const amberFill = isDark ? 'rgba(251, 191, 36, 0.22)' : 'rgba(217, 119, 6, 0.15)';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const roseColor = isDark ? '#fb7185' : '#e11d48';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI ANATOMI KERUCUT & SEGITIGA PYTHAGORAS (r, t, s)
+               ------------------------------------------------------------- */
+            const geoAnatomi = new GeoSVG('geosvg-anatomi-kerucut', 560, 290, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoAnatomi.buatPersegiPanjang(8, 8, 544, 274, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoAnatomi.buatTeks(280, 27, "Anatomi Bangun Ruang Kerucut & Segitiga Siku-Siku (r, t, s)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: textColor
+            });
+
+            // Titik puncak T, pusat alas O, titik kiri A, titik kanan B
+            const T = [205, 55];
+            const O = [205, 215];
+            const rx = 110, ry = 32;
+            const A = [O[0] - rx, O[1]];
+            const B = [O[0] + rx, O[1]];
+
+            // Isi selimut kerucut dan alas elips
+            geoAnatomi.buatPoligon([T, A, B], {
+                fill: tealFill, stroke: 'none'
+            });
+            geoAnatomi.buatElips(O, rx, ry, {
+                fill: isDark ? 'rgba(20, 184, 166, 0.24)' : 'rgba(13, 148, 136, 0.18)',
+                stroke: tealColor, strokeWidth: 1.5, dashed: '5 4'
+            });
+
+            // Busur depan elips (tebal utuh) menggunakan kurva halus / poligon bawah
+            const titikBusurDepan = [];
+            for (let deg = 0; deg <= 180; deg += 10) {
+                const rad = deg * Math.PI / 180;
+                titikBusurDepan.push([O[0] + rx * Math.cos(rad), O[1] + ry * Math.sin(rad)]);
+            }
+            geoAnatomi.buatPolyline(titikBusurDepan, {
+                stroke: tealColor, strokeWidth: 2.3
+            });
+
+            // Segitiga siku-siku TOB di dalam kerucut (diarsir kuning lembut)
+            geoAnatomi.buatPoligon([T, O, B], {
+                fill: amberFill, stroke: 'none'
+            });
+            geoAnatomi.buatSiku(T, O, B, {
+                size: 13, stroke: amberColor, strokeWidth: 1.6
+            });
+
+            // Garis pelukis kiri TA dan kanan TB
+            geoAnatomi.buatSegmen(T, A, { stroke: tealColor, strokeWidth: 2.3 });
+            geoAnatomi.buatSegmen(T, B, {
+                stroke: roseColor, strokeWidth: 2.5,
+                label: "s (garis pelukis)", labelPosisi: 0.5, labelSisi: 'kiri', labelJarak: 12,
+                labelColor: roseColor, bold: true
+            });
+
+            // Tinggi TO dan jari-jari OB
+            geoAnatomi.buatSegmen(T, O, {
+                stroke: amberColor, strokeWidth: 2.2, dashed: '5 4',
+                label: "t (tinggi)", labelPosisi: 0.52, labelSisi: 'kanan', labelJarak: 8,
+                labelColor: amberColor, bold: true
+            });
+            geoAnatomi.buatSegmen(O, B, {
+                stroke: blueColor, strokeWidth: 2.3,
+                label: "r (jari-jari)", labelPosisi: 0.5, labelSisi: 'kanan', labelJarak: 12,
+                labelColor: blueColor, bold: true
+            });
+            geoAnatomi.buatSegmen(A, O, {
+                stroke: mutedColor, strokeWidth: 1.2, dashed: '4 4'
+            });
+
+            // Titik-titik utama T, O, A, B
+            geoAnatomi.buatTitik(T, { size: 4.2, color: textColor, label: "T (Puncak)", labelPosition: 'top-center', bold: true });
+            geoAnatomi.buatTitik(O, { size: 4, color: amberColor, label: "O", labelPosition: 'bottom-left', bold: true });
+            geoAnatomi.buatTitik(A, { size: 3.5, color: tealColor, label: "A", labelPosition: 'middle-left', bold: true });
+            geoAnatomi.buatTitik(B, { size: 4, color: roseColor, label: "B", labelPosition: 'middle-right', bold: true });
+
+            // Kotak informasi hubungan Pythagoras di sebelah kanan
+            geoAnatomi.buatPersegiPanjang(365, 72, 168, 138, {
+                radius: 8, fill: isDark ? '#0f172a' : '#f8fafc', stroke: borderColor, strokeWidth: 1.2
+            });
+            geoAnatomi.buatTeks(449, 95, "Segitiga Siku-Siku TOB:", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+            geoAnatomi.buatTeks(449, 120, "s² = r² + t²", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '13.5px', fill: roseColor
+            });
+            geoAnatomi.buatTeks(449, 148, "r² = s² − t²", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: blueColor
+            });
+            geoAnatomi.buatTeks(449, 172, "t² = s² − r²", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: amberColor
+            });
+            geoAnatomi.buatTeks(449, 195, "(TO ⊥ OB di pusat O)", {
+                position: 'middle-center', fontSize: '10.5px', fill: mutedColor
+            });
+
+            geoAnatomi.buatTeks(280, 265, "Kerucut memiliki 2 sisi (alas & selimut), 1 rusuk lengkung, dan 1 titik puncak", {
+                position: 'middle-center', fontSize: '11.5px', fill: mutedColor, fontWeight: 'bold'
+            });
+
+
+            /* -------------------------------------------------------------
+               2. ILUSTRASI JARING-JARING KERUCUT (JURING SELIMUT & ALAS)
+               ------------------------------------------------------------- */
+            const geoJaring = new GeoSVG('geosvg-jaring-kerucut', 560, 285, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoJaring.buatPersegiPanjang(8, 8, 544, 269, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoJaring.buatTeks(280, 27, "Jaring-Jaring Kerucut: Juring Selimut (L = πrs) & Lingkaran Alas (L = πr²)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: textColor
+            });
+
+            // Pusat juring T' dan jari-jari juring s = 115, membentang dari sudut 25° sampai 155° (sekitar bawah)
+            const Tp = [195, 58];
+            const sLen = 115;
+            const startDeg = 25, endDeg = 155;
+
+            geoJaring.buatJuring(Tp, sLen, startDeg, endDeg, {
+                fill: tealFill, stroke: tealColor, strokeWidth: 2.2
+            });
+
+            // Busur sudut pusat θ di T'
+            const pKanan = [
+                Tp[0] + sLen * Math.cos(startDeg * Math.PI / 180),
+                Tp[1] + sLen * Math.sin(startDeg * Math.PI / 180)
+            ];
+            const pKiri = [
+                Tp[0] + sLen * Math.cos(endDeg * Math.PI / 180),
+                Tp[1] + sLen * Math.sin(endDeg * Math.PI / 180)
+            ];
+            geoJaring.buatSudut(pKanan, Tp, pKiri, {
+                radius: 34, fill: amberFill, stroke: amberColor, strokeWidth: 1.5,
+                label: "θ", labelRadius: 46, labelColor: amberColor, bold: true
+            });
+
+            // Label jari-jari juring = s dan panjang busur = 2πr
+            geoJaring.buatTeks(120, 82, "s", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: roseColor
+            });
+            geoJaring.buatTeks(270, 82, "s", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: roseColor
+            });
+            geoJaring.buatTeks(195, 134, "Selimut Kerucut", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+            geoJaring.buatTeks(195, 152, "Lₛ = π · r · s", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+            geoJaring.buatTeks(195, 187, "Panjang busur AB = 2πr", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: amberColor
+            });
+
+            // Lingkaran alas menempel di titik tengah busur bawah (90 derajat -> [195, 173])
+            const rAlas = 38;
+            const pusatAlas = [195, Tp[1] + sLen + rAlas + 12];
+            geoJaring.buatLingkaran(pusatAlas, rAlas, {
+                fill: isDark ? 'rgba(56, 189, 248, 0.18)' : 'rgba(2, 132, 199, 0.12)',
+                stroke: blueColor, strokeWidth: 2.2
+            });
+            geoJaring.buatSegmen(pusatAlas, [pusatAlas[0] + rAlas, pusatAlas[1]], {
+                stroke: blueColor, strokeWidth: 2,
+                label: "r", labelPosisi: 0.5, labelSisi: 'kiri', labelJarak: 8, labelColor: blueColor, bold: true
+            });
+            geoJaring.buatTitik(pusatAlas, { size: 3.5, color: blueColor });
+            geoJaring.buatTeks(pusatAlas[0] - rAlas - 12, pusatAlas[1], "Alas (Lₐ = πr²)", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '11.5px', fill: blueColor
+            });
+
+            // Titik T', A, B pada juring
+            geoJaring.buatTitik(Tp, { size: 4, color: textColor, label: "T", labelPosition: 'top-center', bold: true });
+            geoJaring.buatTitik(pKiri, { size: 3.5, color: tealColor, label: "A", labelPosition: 'middle-left', bold: true });
+            geoJaring.buatTitik(pKanan, { size: 3.5, color: tealColor, label: "B", labelPosition: 'middle-right', bold: true });
+
+            // Kotak rumus sudut pusat juring di sisi kanan
+            geoJaring.buatPersegiPanjang(350, 68, 185, 165, {
+                radius: 8, fill: isDark ? '#0f172a' : '#f8fafc', stroke: borderColor, strokeWidth: 1.2
+            });
+            geoJaring.buatTeks(442, 92, "Rumus Juring Selimut:", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: textColor
+            });
+            geoJaring.buatTeks(442, 118, "θ = (r / s) × 360°", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '13px', fill: amberColor
+            });
+            geoJaring.buatTeks(442, 148, "Keliling Alas = Busur:", {
+                position: 'middle-center', fontSize: '11px', fill: mutedColor
+            });
+            geoJaring.buatTeks(442, 168, "2πr = (θ / 360°) × 2πs", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11.5px', fill: tealColor
+            });
+            geoJaring.buatTeks(442, 198, "Luas Permukaan Total:", {
+                position: 'middle-center', fontSize: '11px', fill: mutedColor
+            });
+            geoJaring.buatTeks(442, 216, "Lₚ = πr(r + s)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: blueColor
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiKerucut();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiKerucut, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

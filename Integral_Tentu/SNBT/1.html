@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal SNBT - Integral Tentu</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Integral Tentu</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika \(\displaystyle\int_{-4}^4 f(x)(\sin x + 1) \, dx = 8\), dengan \(f(x)\) merupakan fungsi genap dan diketahui \(\displaystyle\int_{-2}^4 f(x) \, dx = 4\), maka nilai dari \(\displaystyle\int_{-2}^0 f(x) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">SBMPTN 2017</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Uraikan integral yang diketahui:</p>
+                    \[\begin{aligned}
+                    \int_{-4}^4 f(x)(\sin x + 1) \, dx &= \int_{-4}^4 f(x)\sin x \, dx + \int_{-4}^4 f(x) \, dx = 8
+                    \end{aligned}\]
+
+                    <p><strong>1. Sifat Fungsi Ganjil:</strong></p>
+                    <p>
+                        Karena \(f(x)\) adalah fungsi genap (\(f(-x) = f(x)\)) dan \(\sin x\) adalah fungsi ganjil (\(\sin(-x) = -\sin x\)), maka hasil kalinya \(g(x) = f(x)\sin x\) merupakan <strong>fungsi ganjil</strong>:
+                        \[g(-x) = f(-x)\sin(-x) = f(x)(-\sin x) = -f(x)\sin x = -g(x)\]
+                        Berdasarkan kesimetrian, integral dari fungsi ganjil pada selang simetris \([-a, a]\) selalu bernilai <strong>nol</strong>:
+                        \[\int_{-4}^4 f(x)\sin x \, dx = 0\]
+                    </p>
+
+                    <p><strong>2. Sifat Fungsi Genap:</strong></p>
+                    <p>
+                        Karena \(f(x)\) genap, maka:
+                        \[\int_{-4}^4 f(x) \, dx = 2\int_0^4 f(x) \, dx = 8 \implies \int_0^4 f(x) \, dx = 4\]
+                    </p>
+
+                    <p><strong>3. Hitung \(\displaystyle\int_{-2}^0 f(x) \, dx\):</strong></p>
+                    <p>
+                        Gunakan informasi \(\displaystyle\int_{-2}^4 f(x) \, dx = 4\):
+                        \[\begin{aligned}
+                        \int_{-2}^4 f(x) \, dx &= \int_{-2}^0 f(x) \, dx + \int_0^4 f(x) \, dx \\
+                        4 &= \int_{-2}^0 f(x) \, dx + 4 \\
+                        \int_{-2}^0 f(x) \, dx &= 4 - 4 = 0
+                        \end{aligned}\]
+                    </p>
+
+                    <!-- Visualisasi GeoSVG Sifat Simetri -->
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div id="geosvg-simetri" style="display:inline-flex; justify-content:center; max-width: 100%;"></div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+                            <em>Visualisasi kesimetrian: integral fungsi ganjil bernilai nol pada selang \([-a, a]\) karena luas di atas dan di bawah sumbu-\(x\) saling menghilangkan</em>
+                        </p>
+                    </div>
+
+                    <div class="kesimpulan">
+                        Jadi, nilai \(\displaystyle\int_{-2}^0 f(x) \, dx = 0\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+
+            <script>
+            (function() {
+                function gambarSimetri() {
+                    const wadah = document.getElementById("geosvg-simetri");
+                    if (!wadah || typeof GeoSVG === "undefined") return;
+                    wadah.innerHTML = "";
+
+                    const W = 460;
+                    const H = 220;
+                    const geo = new GeoSVG("geosvg-simetri", W, H, { margin: 15 });
+                    geo.svg.style.width = "100%";
+                    geo.svg.style.maxWidth = `${W}px`;
+                    geo.svg.style.height = "auto";
+
+                    const ox = 230;
+                    const oy = 110;
+                    const scaleX = 42;
+                    const scaleY = 32;
+                    const toSvg = (x, y) => [ox + x * scaleX, oy - y * scaleY];
+
+                    // Sumbu X & Y
+                    geo.buatSegmen([ox - 4.8 * scaleX, oy], [ox + 4.8 * scaleX, oy], { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen([ox, oy + 2.6 * scaleY], [ox, oy - 2.6 * scaleY], { stroke: "#475569", strokeWidth: 1.5 });
+
+                    geo.buatTeks(ox + 4.8 * scaleX + 8, oy, "x", { fontSize: "13px", fill: "#334155", fontWeight: "bold", position: "middle-left" });
+                    geo.buatTeks(ox, oy - 2.6 * scaleY - 6, "y", { fontSize: "13px", fill: "#334155", fontWeight: "bold", position: "bottom-center" });
+
+                    // Fungsi ganjil g(x) = sin(x) pada [-4, 4]
+                    const g = x => 1.8 * Math.sin(0.78 * x);
+
+                    // Daerah negatif di kiri [-4, 0]
+                    const ptsNeg = [toSvg(-4, 0)];
+                    for (let x = -4; x <= 0; x += 0.1) ptsNeg.push(toSvg(x, g(x)));
+                    ptsNeg.push(toSvg(0, 0));
+                    geo._el("polygon", {
+                        points: ptsNeg.map(p => `${p[0]},${p[1]}`).join(" "),
+                        fill: "rgba(225, 29, 72, 0.2)",
+                        stroke: "none"
+                    }, geo.svg);
+
+                    // Daerah positif di kanan [0, 4]
+                    const ptsPos = [toSvg(0, 0)];
+                    for (let x = 0; x <= 4; x += 0.1) ptsPos.push(toSvg(x, g(x)));
+                    ptsPos.push(toSvg(4, 0));
+                    geo._el("polygon", {
+                        points: ptsPos.map(p => `${p[0]},${p[1]}`).join(" "),
+                        fill: "rgba(16, 185, 129, 0.2)",
+                        stroke: "none"
+                    }, geo.svg);
+
+                    // Kurva g(x)
+                    const curvePts = [];
+                    for (let x = -4.3; x <= 4.3; x += 0.1) curvePts.push(toSvg(x, g(x)));
+                    geo.buatPolyline(curvePts, { stroke: "#2563eb", strokeWidth: 2 });
+
+                    // Ticks batas -4 dan 4
+                    [-4, 4].forEach(val => {
+                        const [px, py] = toSvg(val, 0);
+                        geo.buatSegmen([px, py - 3], [px, py + 3], { stroke: "#475569", strokeWidth: 1.2 });
+                        geo.buatTeks(px, py + 14, String(val), { fontSize: "11px", fill: "#334155", fontWeight: "bold", position: "top-center" });
+                    });
+
+                    // Label Luas
+                    const pL1 = toSvg(-2, -0.9);
+                    geo.buatTeks(pL1[0], pL1[1], "Luas = -L", { fontSize: "11px", fill: "#be123c", fontWeight: "bold", position: "middle-center" });
+
+                    const pL2 = toSvg(2, 0.9);
+                    geo.buatTeks(pL2[0], pL2[1], "Luas = +L", { fontSize: "11px", fill: "#047857", fontWeight: "bold", position: "middle-center" });
+
+                    // Keterangan total
+                    geo.buatTeks(ox, oy + 2.5 * scaleY, "Total: (-L) + (+L) = 0", {
+                        fontSize: "11.5px",
+                        fill: "#1e293b",
+                        fontWeight: "bold",
+                        position: "middle-center"
+                    });
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarSimetri);
+                } else {
+                    gambarSimetri();
+                }
+            })();
+            </script>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Diberikan fungsi \(f\) dan \(g\) yang memenuhi sistem:
+                    \[\int_0^1 f(x) \, dx + \left(\int_0^2 g(x) \, dx\right)^2 = 3\]
+                    \[f(x) = 3x^2 + 4x + \int_0^2 g(x) \, dx, \quad \text{dengan } \int_0^2 g(x) \, dx \ne 0\]
+                    Nilai dari \(f(1) = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(-6\)</li>
+                    <li>\(-3\)</li>
+                    <li>0</li>
+                    <li>3</li>
+                    <li>6</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Misalkan konstanta \(\displaystyle\int_0^2 g(x) \, dx = A\) dengan \(A \ne 0\).
+                    </p>
+                    <p>Maka fungsi \(f(x)\) dapat dituliskan sebagai:</p>
+                    \[f(x) = 3x^2 + 4x + A\]
+
+                    <p>Integralkan \(f(x)\) dari \(0\) sampai \(1\):</p>
+                    \[\begin{aligned}
+                    \int_0^1 f(x) \, dx &= \int_0^1 (3x^2 + 4x + A) \, dx \\
+                    &= \left[x^3 + 2x^2 + Ax\right]_0^1 \\
+                    &= 1 + 2 + A \\
+                    &= 3 + A
+                    \end{aligned}\]
+
+                    <p>Substitusikan ke persamaan pertama sistem:</p>
+                    \[\begin{aligned}
+                    (3 + A) + A^2 &= 3 \\
+                    A^2 + A &= 0 \\
+                    A(A + 1) &= 0
+                    \end{aligned}\]
+                    <p>
+                        Karena disyaratkan \(A \ne 0\), maka diperoleh \(A = -1\).
+                    </p>
+
+                    <p>Sehingga rumus fungsi \(f(x)\) adalah:</p>
+                    \[f(x) = 3x^2 + 4x - 1\]
+                    <p>Maka untuk \(x = 1\):</p>
+                    \[f(1) = 3(1)^2 + 4(1) - 1 = 3 + 4 - 1 = 6\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai \(f(1) = 6\).<br>
+                        <strong>JAWABAN: E</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    \(f(x)\) adalah fungsi yang terdefinisi pada himpunan bilangan real dan \(f'(x)\) adalah turunan pertamanya. Jika diketahui \(f(0) = f(2) = 3\) dan \(f'(0) = f'(2) = -1\), maka nilai dari \(\displaystyle\int_0^2 x \cdot f''(x) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(-3\)</li>
+                    <li>\(-2\)</li>
+                    <li>\(-1\)</li>
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan teknik <strong>integral parsial</strong>:</p>
+                    \[\int u \, dv = uv - \int v \, du\]
+                    <p>
+                        Pilih:
+                        \[u = x \implies du = dx\]
+                        \[dv = f''(x) \, dx \implies v = f'(x)\]
+                    </p>
+                    \[\begin{aligned}
+                    \int_0^2 x \cdot f''(x) \, dx &= \left[x \cdot f'(x)\right]_0^2 - \int_0^2 f'(x) \, dx \\
+                    &= \left(2f'(2) - 0 \cdot f'(0)\right) - \left[f(x)\right]_0^2 \\
+                    &= 2f'(2) - \big(f(2) - f(0)\big)
+                    \end{aligned}\]
+
+                    <p>Substitusikan nilai yang diketahui (\(f'(2) = -1\), \(f(2) = 3\), \(f(0) = 3\)):</p>
+                    \[\begin{aligned}
+                    \int_0^2 x \cdot f''(x) \, dx &= 2(-1) - (3 - 3) \\
+                    &= -2 - 0 \\
+                    &= -2
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai \(\displaystyle\int_0^2 x \cdot f''(x) \, dx = -2\).<br>
+                        <strong>JAWABAN: B</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Diberikan fungsi \(f(x)\) yang simetris terhadap sumbu-\(y\). Jika diketahui \(\displaystyle\int_3^4 f(x) \, dx = 12\), maka nilai dari \(\displaystyle\int_1^2 f(5 - x) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>24</li>
+                    <li>16</li>
+                    <li>12</li>
+                    <li>8</li>
+                    <li>4</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Ganesha Operation</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan teknik substitusi:</p>
+                    <p>
+                        Misalkan:
+                        \[u = 5 - x \implies du = -dx \iff dx = -du\]
+                    </p>
+                    <p>Batas integral:</p>
+                    <ul>
+                        <li>Untuk \(x = 1 \implies u = 5 - 1 = 4\)</li>
+                        <li>Untuk \(x = 2 \implies u = 5 - 2 = 3\)</li>
+                    </ul>
+                    <p>Substitusikan ke integral:</p>
+                    \[\begin{aligned}
+                    \int_1^2 f(5 - x) \, dx &= \int_4^3 f(u) (-du) \\
+                    &= \int_3^4 f(u) \, du \\
+                    &= \int_3^4 f(x) \, dx \\
+                    &= 12
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(\displaystyle\int_1^2 f(5 - x) \, dx = 12\).<br>
+                        <strong>JAWABAN: C</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika diketahui \((f \circ g)(x) = \dfrac{6x + 3}{2x - 5}\) dan \(g(x) = 4x - 11\), maka hasil dari \(\displaystyle\int_5^8 \dfrac{f^{-1}(x - 1)}{g(3)} \, dx\) adalah ....
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(72\ln 2 - 3\)</li>
+                    <li>\(36\ln 3 - 2\)</li>
+                    <li>\(36\ln 2 - 6\)</li>
+                    <li>\(36\ln 2 - 3\)</li>
+                    <li>\(72\ln 3 - 2\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>1. Menentukan Fungsi \(f(x)\) dan Inversnya:</strong></p>
+                    \[(f \circ g)(x) = f(4x - 11) = \dfrac{6x + 3}{2x - 5} = \dfrac{12x + 6}{4x - 10}\]
+                    <p>
+                        Misalkan \(u = 4x - 11 \implies 4x = u + 11\):
+                        \[f(u) = \dfrac{3(u + 11) + 6}{(u + 11) - 10} = \dfrac{3u + 39}{u + 1} \implies f(x) = \dfrac{3x + 39}{x + 1}\]
+                    </p>
+                    <p>
+                        Rumus invers fungsi rasional \(\frac{ax+b}{cx+d} \to \frac{-dx+b}{cx-a}\):
+                        \[f^{-1}(x) = \dfrac{-x + 39}{x - 3}\]
+                    </p>
+                    <p>
+                        Maka:
+                        \[f^{-1}(x - 1) = \dfrac{-(x - 1) + 39}{(x - 1) - 3} = \dfrac{-x + 40}{x - 4}\]
+                    </p>
+
+                    <p><strong>2. Menghitung Penyebut \(g(3)\):</strong></p>
+                    \[g(3) = 4(3) - 11 = 12 - 11 = 1\]
+
+                    <p><strong>3. Menghitung Integral:</strong></p>
+                    \[\begin{aligned}
+                    \int_5^8 \dfrac{f^{-1}(x - 1)}{g(3)} \, dx &= \int_5^8 \dfrac{-x + 40}{x - 4} \, dx \\
+                    &= \int_5^8 \left(-1 + \dfrac{36}{x - 4}\right) dx \\
+                    &= \left[-x + 36\ln|x - 4|\right]_5^8 \\
+                    &= \big(-8 + 36\ln 4\big) - \big(-5 + 36\ln 1\big) \\
+                    &= -8 + 36\ln(2^2) - (-5 + 0) \\
+                    &= -8 + 72\ln 2 + 5 \\
+                    &= 72\ln 2 - 3
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil integral tersebut adalah \(72\ln 2 - 3\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika diketahui \(\dfrac{df(x)}{dx} = g(x)\) kontinu pada selang \(p \le x \le q\), maka nilai dari \(\displaystyle\int_p^q f(x)g(x) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(\dfrac{[f(q)]^2 - [f(p)]^2}{3}\)</li>
+                    <li>\(\dfrac{[f(q)]^2 - [f(p)]^2}{2}\)</li>
+                    <li>\(\dfrac{[g(q)]^2 - [g(p)]^2}{3}\)</li>
+                    <li>\(\dfrac{[g(q)]^2 - [g(p)]^2}{2}\)</li>
+                    <li>\(\dfrac{[f(q)]^2 - [g(p)]^2}{2}\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Gunakan substitusi langsung:
+                        \[u = f(x) \implies du = f'(x) \, dx = g(x) \, dx\]
+                    </p>
+                    <p>Batas integrasi:</p>
+                    <ul>
+                        <li>\(x = p \implies u = f(p)\)</li>
+                        <li>\(x = q \implies u = f(q)\)</li>
+                    </ul>
+                    <p>Integralkan:</p>
+                    \[\begin{aligned}
+                    \int_p^q f(x)g(x) \, dx &= \int_{f(p)}^{f(q)} u \, du \\
+                    &= \left[\dfrac{1}{2}u^2\right]_{f(p)}^{f(q)} \\
+                    &= \dfrac{1}{2}[f(q)]^2 - \dfrac{1}{2}[f(p)]^2 \\
+                    &= \dfrac{[f(q)]^2 - [f(p)]^2}{2}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilainya adalah \(\dfrac{[f(q)]^2 - [f(p)]^2}{2}\).<br>
+                        <strong>JAWABAN: B</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika \(\displaystyle\int_{-4}^4 f(x)(\sin x + 1) \, dx = 8\), dengan \(f(x)\) fungsi genap dan \(\displaystyle\int_{-2}^4 f(x)(\sin x + 1) \, dx = 4\), maka nilai dari \(\displaystyle\int_{-2}^0 f(x)(\sin x + 1) \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan sifat aditif selang pada interval \([-2, 4]\):</p>
+                    \[\int_{-2}^4 f(x)(\sin x + 1) \, dx = \int_{-2}^0 f(x)(\sin x + 1) \, dx + \int_0^4 f(x)(\sin x + 1) \, dx\]
+
+                    <p>Karena \(f(x)\) genap dan \(\sin x\) ganjil, maka \(\int_{-4}^4 f(x)\sin x \, dx = 0\):</p>
+                    \[\int_{-4}^4 f(x) \, dx = 8 \implies 2\int_0^4 f(x) \, dx = 8 \implies \int_0^4 f(x) \, dx = 4\]
+                    <p>Perhatikan bahwa pada \(\int_0^4\), nilai \(\int_0^4 f(x) \, dx = 4\). Dengan demikian:</p>
+                    \[4 = \int_{-2}^0 f(x)(\sin x + 1) \, dx + 4 \implies \int_{-2}^0 f(x)(\sin x + 1) \, dx = 0\]
+
+                    <div class="kesimpulan">
+                        Jadi, \(\displaystyle\int_{-2}^0 f(x)(\sin x + 1) \, dx = 0\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Diketahui fungsi \(f(x) = x^3 + 3x^2 - 5x + \displaystyle\int_{-1}^1 f(x) \, dx\). Nilai dari \(f(1) = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(-3\)</li>
+                    <li>\(-2\)</li>
+                    <li>\(-1\)</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Misalkan konstanta \(\displaystyle\int_{-1}^1 f(x) \, dx = c\).
+                    </p>
+                    <p>Maka fungsi menjadi:</p>
+                    \[f(x) = x^3 + 3x^2 - 5x + c\]
+
+                    <p>Integralkan \(f(x)\) pada selang \([-1, 1]\):</p>
+                    \[\begin{aligned}
+                    \int_{-1}^1 (x^3 + 3x^2 - 5x + c) \, dx &= c
+                    \end{aligned}\]
+                    <p>
+                        Gunakan sifat simetri selang: suku berpangkat ganjil (\(x^3\) dan \(-5x\)) berintegral nol pada \([-1, 1]\):
+                    </p>
+                    \[\begin{aligned}
+                    2\int_0^1 (3x^2 + c) \, dx &= c \\
+                    2\left[x^3 + cx\right]_0^1 &= c \\
+                    2(1 + c) &= c \\
+                    2 + 2c &= c \\
+                    c &= -2
+                    \end{aligned}\]
+
+                    <p>Sehingga rumus fungsi adalah:</p>
+                    \[f(x) = x^3 + 3x^2 - 5x - 2\]
+                    <p>Untuk \(x = 1\):</p>
+                    \[f(1) = (1)^3 + 3(1)^2 - 5(1) - 2 = 1 + 3 - 5 - 2 = -3\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai \(f(1) = -3\).<br>
+                        <strong>JAWABAN: A</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Misalkan \(f(x) = 3x + b\). Jika \(\displaystyle\int_{-1}^1 f(x) \, dx\), \(\displaystyle\int_{-1}^1 [f(x)]^2 \, dx\), dan \(\displaystyle\int_{-1}^1 [f(x)]^3 \, dx\) membentuk suatu barisan geometri, maka nilai \(b^2\) adalah ....
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">SBMPTN 2016, Kode 207</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Hitung ketiga suku barisan geometri:</p>
+                    <p><strong>1. Suku Pertama (\(U_1\)):</strong></p>
+                    \[U_1 = \int_{-1}^1 (3x + b) \, dx = [0 + 2b] = 2b\]
+
+                    <p><strong>2. Suku Kedua (\(U_2\)):</strong></p>
+                    \[(3x + b)^2 = 9x^2 + 6bx + b^2\]
+                    \[U_2 = \int_{-1}^1 (9x^2 + 6bx + b^2) \, dx = 2\left[\dfrac{9}{3}x^3 + b^2x\right]_0^1 = 2(3 + b^2) = 2b^2 + 6\]
+
+                    <p><strong>3. Suku Ketiga (\(U_3\)):</strong></p>
+                    \[(3x + b)^3 = 27x^3 + 27bx^2 + 9b^2x + b^3\]
+                    \[U_3 = \int_{-1}^1 (3x + b)^3 \, dx = 2\left[\dfrac{27b}{3}x^3 + b^3x\right]_0^1 = 2(9b + b^3) = 2b^3 + 18b\]
+
+                    <p><strong>4. Syarat Barisan Geometri (\(U_2^2 = U_1 \cdot U_3\)):</strong></p>
+                    \[\begin{aligned}
+                    (2b^2 + 6)^2 &= (2b)(2b^3 + 18b) \\
+                    4b^4 + 24b^2 + 36 &= 4b^4 + 36b^2 \\
+                    36 &= 36b^2 - 24b^2 \\
+                    12b^2 &= 36 \\
+                    b^2 &= 3
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai \(b^2 = 3\).<br>
+                        <strong>JAWABAN: B</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Jika diketahui \(\displaystyle\int_0^1 \dfrac{x}{1 - x} \, dx = b\), maka nilai dari \(\displaystyle\int_0^1 \dfrac{1}{1 - x} \, dx = \dots\)
+                </p>
+                <ol class="pilgan" type="A">
+                    <li>\(2b\)</li>
+                    <li>\(b\)</li>
+                    <li>\(1 - b\)</li>
+                    <li>\(1 + b\)</li>
+                    <li>\(b^2\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ubah bentuk pecahan \(\dfrac{1}{1 - x}\):</p>
+                    \[\dfrac{1}{1 - x} = \dfrac{(1 - x) + x}{1 - x} = \dfrac{1 - x}{1 - x} + \dfrac{x}{1 - x} = 1 + \dfrac{x}{1 - x}\]
+
+                    <p>Integralkan kedua ruas:</p>
+                    \[\begin{aligned}
+                    \int_0^1 \dfrac{1}{1 - x} \, dx &= \int_0^1 \left(1 + \dfrac{x}{1 - x}\right) dx \\
+                    &= \int_0^1 1 \, dx + \int_0^1 \dfrac{x}{1 - x} \, dx \\
+                    &= [x]_0^1 + b \\
+                    &= (1 - 0) + b \\
+                    &= 1 + b
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(\displaystyle\int_0^1 \dfrac{1}{1 - x} \, dx = 1 + b\).<br>
+                        <strong>JAWABAN: D</strong>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

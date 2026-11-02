@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Himpunan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="./scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Himpunan</span>
+            </p>
+            <!-- Tombol Tingkat dirender otomatis oleh script.js -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Dalam sebuah survei terhadap \(100\) orang siswa mengenai keikutsertaan kegiatan ekstrakurikuler di sekolah, diperoleh data sebagai berikut:</p>
+                <ul>
+                    <li>\(45\) siswa mengikuti ekstrakurikuler <b>Robotik</b></li>
+                    <li>\(40\) siswa mengikuti ekstrakurikuler <b>Karya Ilmiah Remaja (KIR)</b></li>
+                    <li>\(35\) siswa mengikuti ekstrakurikuler <b>Debat</b></li>
+                    <li>\(18\) siswa mengikuti <b>Robotik</b> dan <b>KIR</b></li>
+                    <li>\(15\) siswa mengikuti <b>Robotik</b> dan <b>Debat</b></li>
+                    <li>\(12\) siswa mengikuti <b>KIR</b> dan <b>Debat</b></li>
+                    <li>\(8\) siswa mengikuti <b>ketiga kegiatan ekstrakurikuler tersebut</b></li>
+                </ul>
+                <p>Banyaknya siswa yang <b>hanya mengikuti tepat satu</b> kegiatan ekstrakurikuler adalah ....</p>
+                <div class="opsi-wrapper">
+                    <ol class="opsi-list" type="A">
+                        <li>\(38\) orang</li>
+                        <li>\(44\) orang</li>
+                        <li>\(50\) orang</li>
+                        <li>\(54\) orang</li>
+                        <li>\(62\) orang</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="soal-sumber">SNBT / UTBK</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan:</p>
+                    <ul>
+                        <li>\(R\) = himpunan siswa yang mengikuti Robotik \(\implies n(R) = 45\)</li>
+                        <li>\(K\) = himpunan siswa yang mengikuti KIR \(\implies n(K) = 40\)</li>
+                        <li>\(D\) = himpunan siswa yang mengikuti Debat \(\implies n(D) = 35\)</li>
+                        <li>Irisan ketiga himpunan: \(n(R \cap K \cap D) = 8\)</li>
+                    </ul>
+
+                    <p><b>Langkah 1: Menentukan jumlah siswa yang mengikuti tepat dua kegiatan</b></p>
+                    <p>Untuk tiap pasangan dua kegiatan, kurangkan siswa yang mengikuti ketiganya:</p>
+                    <ul>
+                        <li>Hanya Robotik dan KIR:
+                            \[n(R \cap K)_{\text{saja}} = n(R \cap K) - n(R \cap K \cap D) = 18 - 8 = 10\]
+                        </li>
+                        <li>Hanya Robotik dan Debat:
+                            \[n(R \cap D)_{\text{saja}} = n(R \cap D) - n(R \cap K \cap D) = 15 - 8 = 7\]
+                        </li>
+                        <li>Hanya KIR dan Debat:
+                            \[n(K \cap D)_{\text{saja}} = n(K \cap D) - n(R \cap K \cap D) = 12 - 8 = 4\]
+                        </li>
+                    </ul>
+
+                    <p><b>Langkah 2: Menghitung siswa yang hanya mengikuti tepat satu kegiatan</b></p>
+                    <ul>
+                        <li><b>Hanya Robotik:</b>
+                            \[
+                            \begin{aligned}
+                            n(R)_{\text{hanya}} &= n(R) - \left[ n(R \cap K)_{\text{saja}} + n(R \cap D)_{\text{saja}} + n(R \cap K \cap D) \right] \\
+                            &= 45 - (10 + 7 + 8) \\
+                            &= 45 - 25 = 20
+                            \end{aligned}
+                            \]
+                        </li>
+                        <li><b>Hanya KIR:</b>
+                            \[
+                            \begin{aligned}
+                            n(K)_{\text{hanya}} &= n(K) - \left[ n(R \cap K)_{\text{saja}} + n(K \cap D)_{\text{saja}} + n(R \cap K \cap D) \right] \\
+                            &= 40 - (10 + 4 + 8) \\
+                            &= 40 - 22 = 18
+                            \end{aligned}
+                            \]
+                        </li>
+                        <li><b>Hanya Debat:</b>
+                            \[
+                            \begin{aligned}
+                            n(D)_{\text{hanya}} &= n(D) - \left[ n(R \cap D)_{\text{saja}} + n(K \cap D)_{\text{saja}} + n(R \cap K \cap D) \right] \\
+                            &= 35 - (7 + 4 + 8) \\
+                            &= 35 - 19 = 16
+                            \end{aligned}
+                            \]
+                        </li>
+                    </ul>
+
+                    <p><b>Langkah 3: Menjumlahkan siswa yang hanya mengikuti tepat satu kegiatan</b></p>
+                    \[
+                    \begin{aligned}
+                    \text{Total Tepat Satu} &= n(R)_{\text{hanya}} + n(K)_{\text{hanya}} + n(D)_{\text{hanya}} \\
+                    &= 20 + 18 + 16 \\
+                    &= 54\text{ orang}
+                    \end{aligned}
+                    \]
+
+                    <p><b>Visualisasi Diagram Venn:</b></p>
+                    <div style="display: flex; justify-content: center; margin: 1.5rem 0;">
+                        <svg viewBox="0 0 420 270" width="380" height="240" style="max-width: 100%; height: auto; display: block; margin: 0 auto; background: var(--bg-card, #ffffff); border-radius: 8px; border: 1px solid var(--border-color, #e2e8f0);">
+    <!-- Kotak Semesta -->
+    <rect x="20" y="20" width="380" height="230" fill="none" stroke="var(--text-primary, #334155)" stroke-width="2" rx="6" />
+    <text x="35" y="44" fill="var(--text-primary, #334155)" font-size="14" font-weight="bold">S</text>
+    
+    <!-- Lingkaran Robotik (R) -->
+    <circle cx="170" cy="115" r="70" fill="rgba(59, 130, 246, 0.15)" stroke="#3b82f6" stroke-width="2" />
+    
+    <!-- Lingkaran KIR (K) -->
+    <circle cx="250" cy="115" r="70" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="2" />
+    
+    <!-- Lingkaran Debat (D) -->
+    <circle cx="210" cy="175" r="70" fill="rgba(245, 158, 11, 0.15)" stroke="#f59e0b" stroke-width="2" />
+    
+    <!-- Label Himpunan -->
+    <text x="120" y="55" fill="#2563eb" font-size="13" font-weight="bold" text-anchor="middle">Robotik (R)</text>
+    <text x="300" y="55" fill="#059669" font-size="13" font-weight="bold" text-anchor="middle">KIR (K)</text>
+    <text x="210" y="240" fill="#d97706" font-size="13" font-weight="bold" text-anchor="middle">Debat (D)</text>
+    
+    <!-- Nilai Angka di setiap Wilayah -->
+    <!-- Irisan ketiga himpunan (R ∩ K ∩ D) -->
+    <text x="210" y="140" fill="#ef4444" font-size="13" font-weight="bold" text-anchor="middle">8</text>
+    
+    <!-- Irisan dua himpunan saja -->
+    <text x="210" y="100" fill="var(--text-primary, #1e293b)" font-size="12" font-weight="bold" text-anchor="middle">10</text>
+    <text x="172" y="160" fill="var(--text-primary, #1e293b)" font-size="12" font-weight="bold" text-anchor="middle">7</text>
+    <text x="248" y="160" fill="var(--text-primary, #1e293b)" font-size="12" font-weight="bold" text-anchor="middle">4</text>
+    
+    <!-- Tepat satu himpunan saja -->
+    <text x="135" y="118" fill="#2563eb" font-size="14" font-weight="bold" text-anchor="middle">20</text>
+    <text x="285" y="118" fill="#059669" font-size="14" font-weight="bold" text-anchor="middle">18</text>
+    <text x="210" y="200" fill="#d97706" font-size="14" font-weight="bold" text-anchor="middle">16</text>
+    
+    <!-- Di luar ketiga himpunan -->
+    <text x="365" y="235" fill="#64748b" font-size="12" font-weight="bold">17</text>
+</svg>
+                    </div>
+
+                    <div class="kesimpulan">
+                        Jadi, banyak siswa yang hanya mengikuti tepat satu kegiatan ekstrakurikuler adalah <b>\(54\) orang</b>.<br>
+                        <b>JAWAB: D</b>
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-2 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-2 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 3 
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-3 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-3 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 4 
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-4 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-4 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 5 
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-5 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-5 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 6 
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-6 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-6 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-7 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-7 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-8 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-8 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-9 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-9 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal ke-10 di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal ke-10 di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

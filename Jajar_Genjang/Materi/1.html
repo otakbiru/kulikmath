@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Jajar Genjang</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Jajar Genjang</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian dan Sifat-Sifat Jajar Genjang</h2>
+            <p>
+                <strong>Jajar Genjang</strong> (<em>parallelogram</em>) adalah bangun datar segi empat yang memiliki dua pasang sisi berhadapan yang sejajar dan sama panjang. Jajar genjang juga dapat dipandang sebagai gabungan dari sebuah segitiga dan bayangannya setelah diputar sebesar $180^\circ$ terhadap titik tengah salah satu sisinya.
+            </p>
+            <p>
+                Pada jajar genjang $ABCD$ dengan sisi alas $AB = a$ dan sisi miring $BC = b$, berlaku sifat-sifat geometri utama berikut:
+            </p>
+            <ul>
+                <li><strong>Sisi Berhadapan Sejajar dan Sama Panjang:</strong> $AB \parallel DC$ dengan $|AB| = |DC| = a$, serta $AD \parallel BC$ dengan $|AD| = |BC| = b$.</li>
+                <li><strong>Sudut Berhadapan Sama Besar:</strong> $\angle A = \angle C = \alpha$ dan $\angle B = \angle D = \beta$.</li>
+                <li><strong>Sudut Berdekatan Berjumlah $180^\circ$ (Berpelurus):</strong> Karena diapit oleh dua garis sejajar, maka $\angle A + \angle B = 180^\circ$, $\angle B + \angle C = 180^\circ$, dan seterusnya ($\alpha + \beta = 180^\circ$).</li>
+                <li><strong>Kedua Diagonal Saling Membagi Dua Sama Panjang:</strong> Jika diagonal $AC$ dan $BD$ berpotongan di titik $O$, maka $O$ adalah titik tengah kedua diagonal tersebut ($|AO| = |OC|$ dan $|BO| = |OD|$).</li>
+                <li><strong>Simetri Bangun:</strong> Jajar genjang secara umum memiliki <strong>$2$ simetri putar</strong> (orde $2$, yaitu putaran $180^\circ$ dan $360^\circ$) dan <strong>$0$ simetri lipat</strong> (tidak memiliki sumbu simetri, kecuali jika berbentuk belah ketupat atau persegi panjang).</li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-anatomi-jajargenjang" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Rumus Keliling dan Luas Jajar Genjang</h2>
+            <p>
+                Terdapat beberapa cara untuk menghitung luas jajar genjang bergantung pada unsur-unsur yang diketahui pada soal (alas dan tinggi, dua sisi dan sudut apit, atau kedua diagonalnya):
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Besaran / Kondisi Diketahui</th>
+                            <th>Rumus Matematika</th>
+                            <th>Keterangan Unsur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Keliling ($K$)</strong></td>
+                            <td>$$K = 2(a + b)$$</td>
+                            <td class="text-left">$a, b$ = panjang dua sisi yang berdekatan</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Luas dari Alas &amp; Tinggi</strong></td>
+                            <td>$$L = a \cdot t_a = b \cdot t_b$$</td>
+                            <td class="text-left">$t_a \perp a$ (tinggi terhadap sisi $a$)<br>$t_b \perp b$ (tinggi terhadap sisi $b$)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Luas dari Dua Sisi &amp; Sudut</strong></td>
+                            <td>$$L = a \cdot b \cdot \sin \alpha$$</td>
+                            <td class="text-left">$\alpha$ = sudut apit antara sisi $a$ dan $b$ ($\sin \alpha = \sin(180^\circ - \alpha)$)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Luas dari Dua Diagonal</strong></td>
+                            <td>$$L = \frac{1}{2} \cdot d_1 \cdot d_2 \cdot \sin \theta$$</td>
+                            <td class="text-left">$d_1, d_2$ = panjang diagonal $AC$ dan $BD$<br>$\theta$ = sudut perpotongan kedua diagonal</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                <strong>Prinsip Kesamaan Luas ($a \cdot t_a = b \cdot t_b$):</strong> Rumus ini sangat sering digunakan untuk mencari panjang garis tinggi kedua ($t_b$) apabila panjang kedua sisi ($a$ dan $b$) serta salah satu garis tinggi ($t_a$) sudah diketahui:
+                $$t_b = \frac{a \cdot t_a}{b}$$
+            </p>
+
+            <h2>3. Panjang Diagonal dan Hukum Jajar Genjang</h2>
+            <p>
+                Berbeda dengan persegi panjang, kedua diagonal jajar genjang umumnya <strong>tidak sama panjang</strong> ($d_1 \neq d_2$). Dengan menerapkan Aturan Cosinus pada $\triangle ABD$ dan $\triangle ABC$ (di mana $\cos \beta = \cos(180^\circ - \alpha) = -\cos \alpha$), diperoleh rumus panjang kedua diagonal:
+            </p>
+            <ul>
+                <li><strong>Diagonal di hadapan sudut lancip $\alpha$:</strong> $\displaystyle d_1^2 = a^2 + b^2 - 2ab \cos \alpha$</li>
+                <li><strong>Diagonal di hadapan sudut tumpul $\beta$:</strong> $\displaystyle d_2^2 = a^2 + b^2 - 2ab \cos \beta = a^2 + b^2 + 2ab \cos \alpha$</li>
+            </ul>
+            <p>
+                Jika kedua persamaan di atas dijumlahkan, suku $2ab \cos \alpha$ akan saling menghilangkan sehingga menghasilkan identitas terkenal yang disebut <strong>Hukum Jajar Genjang (<em>Parallelogram Law</em>)</strong>:
+                $$d_1^2 + d_2^2 = 2(a^2 + b^2)$$
+                <em>"Jumlah kuadrat panjang kedua diagonal jajar genjang sama dengan jumlah kuadrat panjang keempat sisinya."</em>
+            </p>
+
+            <div class="row">
+                <div class="col col-center">
+                    <div id="geosvg-diagonal-jajargenjang" style="width: 100%; max-width: 560px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Jajar Genjang pada Bidang Koordinat Kartesius</h2>
+            <p>
+                Jika titik-titik sudut jajar genjang $ABCD$ ditulis secara berurutan (berlawanan atau searah jarum jam) sebagai $A(x_A, y_A)$, $B(x_B, y_B)$, $C(x_C, y_C)$, dan $D(x_D, y_D)$, maka karena titik tengah diagonal $AC$ berimpit dengan titik tengah diagonal $BD$, berlaku hubungan koordinat:
+                $$\left(\frac{x_A + x_C}{2}, \frac{y_A + y_C}{2}\right) = \left(\frac{x_B + x_D}{2}, \frac{y_B + y_D}{2}\right)$$
+                Sehingga diperoleh rumus cepat menentukan titik sudut keempat:
+                $$x_A + x_C = x_B + x_D \quad \text{dan} \quad y_A + y_C = y_B + y_D$$
+            </p>
+            <p>
+                Selain itu, jika diketahui vektor sisi $\vec{u} = \overrightarrow{AB} = (u_1, u_2)$ dan $\vec{v} = \overrightarrow{AD} = (v_1, v_2)$ pada bidang datar $\mathbb{R}^2$, luas jajar genjang $ABCD$ sama dengan nilai mutlak determinan matriks kedua vektor tersebut:
+                $$L = |\det(\vec{u}, \vec{v})| = |u_1 v_2 - u_2 v_1|$$
+            </p>
+
+            <div class="kesimpulan">
+                💡 Tips Penting: Persegi Panjang, Belah Ketupat, dan Persegi merupakan kasus khusus dari Jajar Genjang!
+                <br>• Jajar genjang dengan salah satu sudut $90^\circ$ (atau diagonal sama panjang $d_1 = d_2$) adalah <strong>Persegi Panjang</strong>.
+                <br>• Jajar genjang dengan sisi berdekatan sama panjang $a = b$ (atau diagonal saling tegak lurus $d_1 \perp d_2$) adalah <strong>Belah Ketupat</strong>.
+            </div>
+
+            <h2>5. Contoh Soal dan Pembahasan</h2>
+            <p>
+                Pelajari contoh-contoh soal berikut untuk memahami cara menggunakan perbandingan garis tinggi, Hukum Jajar Genjang untuk diagonal, serta sifat koordinat titik sudut. Klik tombol <strong>Lihat Penyelesaian</strong> untuk membuka pembahasan lengkap.
+            </p>
+        </article>
+
+        <!-- Daftar Contoh Soal Interaktif -->
+        <div style="margin-top: 2rem;">
+
+            <!-- Contoh Soal 1: Kesamaan Luas & Dua Garis Tinggi -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Diketahui jajar genjang $ABCD$ memiliki panjang sisi $AB = 15\text{ cm}$ dan $BC = 10\text{ cm}$. Jika jarak antara sisi $AB$ dan $DC$ adalah $8\text{ cm}$, tentukanlah:
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Luas dan keliling jajar genjang $ABCD$,</li>
+                        <li>Jarak antara sisi sejajar $AD$ dan $BC$!</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Mengidentifikasi unsur yang diketahui</strong><br>
+                        Panjang alas $a = AB = 15\text{ cm}$ dan sisi miring $b = BC = 10\text{ cm}$.<br>
+                        Jarak antara sisi sejajar $AB$ dan $DC$ merupakan tinggi terhadap alas $AB$, yaitu $t_a = 8\text{ cm}$.
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menghitung luas dan keliling jajar genjang</strong><br>
+                        $$\text{Luas } (L) = a \cdot t_a = 15 \times 8 = 120\text{ cm}^2$$
+                        $$\text{Keliling } (K) = 2(a + b) = 2(15 + 10) = 2(25) = 50\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menghitung jarak antara sisi $AD$ dan $BC$ ($t_b$)</strong><br>
+                        Jarak antara sisi $AD$ dan $BC$ adalah garis tinggi $t_b$ yang tegak lurus terhadap sisi $BC$. Gunakan prinsip kesamaan luas:
+                        $$b \cdot t_b = L \iff 10 \cdot t_b = 120 \iff t_b = \frac{120}{10} = 12\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, luas jajar genjang adalah $120\text{ cm}^2$, kelilingnya $50\text{ cm}$, dan jarak antara sisi $AD$ dan $BC$ adalah $12\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Hukum Jajar Genjang (Panjang Diagonal) -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Sebuah jajar genjang memiliki panjang sisi-sisi yang berdekatan $7\text{ cm}$ dan $9\text{ cm}$. Jika panjang salah satu diagonalnya adalah $8\text{ cm}$, maka panjang diagonal yang lainnya adalah ....
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Mengidentifikasi ukuran sisi dan diagonal</strong><br>
+                        Diketahui panjang sisi $a = 7\text{ cm}$, $b = 9\text{ cm}$, dan salah satu diagonal $d_1 = 8\text{ cm}$.
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menerapkan rumus Hukum Jajar Genjang</strong><br>
+                        Hubungan antara kedua diagonal dan sisi-sisi jajar genjang memenuhi:
+                        $$d_1^2 + d_2^2 = 2(a^2 + b^2)$$
+                        Substitusikan nilai yang diketahui ke dalam rumus:
+                        $$8^2 + d_2^2 = 2(7^2 + 9^2)$$
+                        $$64 + d_2^2 = 2(49 + 81)$$
+                        $$64 + d_2^2 = 2(130) = 260$$
+                        $$d_2^2 = 260 - 64 = 196$$
+                        $$d_2 = \sqrt{196} = 14\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, panjang diagonal jajar genjang yang lainnya adalah $14\text{ cm}$.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Koordinat Titik Sudut & Luas dengan Determinan Vektor -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Diketahui titik $A(1, 2)$, $B(6, 4)$, dan $C(8, 9)$ adalah tiga titik sudut berurutan dari jajar genjang $ABCD$. Tentukanlah koordinat titik $D$ serta luas jajar genjang $ABCD$ tersebut!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        <strong>Langkah 1: Menentukan koordinat titik $D(x_D, y_D)$</strong><br>
+                        Karena titik sudut $ABCD$ berurutan, maka diagonalnya adalah $AC$ dan $BD$. Berdasarkan sifat titik tengah diagonal:
+                        $$x_A + x_C = x_B + x_D \implies 1 + 8 = 6 + x_D \implies x_D = 9 - 6 = 3$$
+                        $$y_A + y_C = y_B + y_D \implies 2 + 9 = 4 + y_D \implies y_D = 11 - 4 = 7$$
+                        Maka koordinat titik sudut keempat adalah $D(3, 7)$.
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menghitung luas jajar genjang menggunakan vektor sisi</strong><br>
+                        Bentuk dua vektor sisi yang berpangkal di titik $A(1, 2)$:
+                        $$\vec{u} = \overrightarrow{AB} = B - A = (6 - 1, 4 - 2) = (5, 2)$$
+                        $$\vec{v} = \overrightarrow{AD} = D - A = (3 - 1, 7 - 2) = (2, 5)$$
+                        Gunakan rumus nilai mutlak determinan matriks $2 \times 2$:
+                        $$L = |u_1 v_2 - u_2 v_1| = |(5)(5) - (2)(2)| = |25 - 4| = 21\text{ satuan luas}$$
+                    </p>
+                    <div class="kesimpulan">
+                        Jadi, koordinat titik $D$ adalah $(3, 7)$ dan luas jajar genjang $ABCD$ adalah $21$ satuan luas.
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script Utama Blog -->
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Ilustrasi GeoSVG.js -->
+    <script>
+        function renderIlustrasiJajarGenjang() {
+            if (typeof GeoSVG === 'undefined') return;
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#f1f5f9' : '#0f172a';
+            const mutedColor = isDark ? '#94a3b8' : '#64748b';
+            const cardBg = isDark ? '#1e293b' : '#ffffff';
+            const borderColor = isDark ? '#334155' : '#cbd5e1';
+            const tealColor = isDark ? '#14b8a6' : '#0d9488';
+            const tealFill = isDark ? 'rgba(20, 184, 166, 0.16)' : 'rgba(13, 148, 136, 0.10)';
+            const amberColor = isDark ? '#fbbf24' : '#d97706';
+            const amberFill = isDark ? 'rgba(251, 191, 36, 0.22)' : 'rgba(217, 119, 6, 0.15)';
+            const blueColor = isDark ? '#38bdf8' : '#0284c7';
+            const roseColor = isDark ? '#fb7185' : '#e11d48';
+
+            /* -------------------------------------------------------------
+               1. ILUSTRASI ANATOMI JAJAR GENJANG & DUA GARIS TINGGI
+               ------------------------------------------------------------- */
+            const geoAnatomi = new GeoSVG('geosvg-anatomi-jajargenjang', 560, 275, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoAnatomi.buatPersegiPanjang(8, 8, 544, 259, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoAnatomi.buatTeks(280, 27, "Unsur Jajar Genjang ABCD: Sisi Sejajar, Sudut, dan Dua Garis Tinggi", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: textColor
+            });
+
+            // Titik-titik sudut Jajar Genjang ABCD (y layar ke bawah)
+            const A = [95, 220];
+            const B = [355, 220];
+            const D = [175, 75];
+            const C = [435, 75];
+
+            // Poligon utama Jajar Genjang ABCD
+            geoAnatomi.buatPoligon([A, B, C, D], {
+                fill: tealFill, stroke: tealColor, strokeWidth: 2.3
+            });
+
+            // Busur sudut lancip α di A dan sudut tumpul β di B
+            geoAnatomi.buatSudut(B, A, D, {
+                radius: 28, fill: amberFill, stroke: amberColor, strokeWidth: 1.5,
+                label: "α", labelRadius: 40, labelColor: amberColor, bold: true
+            });
+            geoAnatomi.buatSudut(C, B, A, {
+                radius: 26, fill: 'rgba(56, 189, 248, 0.18)', stroke: blueColor, strokeWidth: 1.5,
+                label: "β", labelRadius: 38, labelColor: blueColor, bold: true
+            });
+
+            // Tanda sama panjang pada sisi berhadapan (AB = DC strip 1, AD = BC strip 2)
+            geoAnatomi.buatTandaSamaPanjang(A, B, { count: 1, size: 10, stroke: tealColor, strokeWidth: 1.8 });
+            geoAnatomi.buatTandaSamaPanjang(D, C, { count: 1, size: 10, stroke: tealColor, strokeWidth: 1.8 });
+            geoAnatomi.buatTandaSamaPanjang(A, D, { count: 2, size: 10, spacing: 5, stroke: tealColor, strokeWidth: 1.8 });
+            geoAnatomi.buatTandaSamaPanjang(B, C, { count: 2, size: 10, spacing: 5, stroke: tealColor, strokeWidth: 1.8 });
+
+            // Garis tinggi pertama: t_a dari D tegak lurus ke alas AB di E
+            const E = geoAnatomi.hitungKakiTegakLurus(D, A, B);
+            geoAnatomi.buatSiku(D, E, B, { size: 11, stroke: amberColor, strokeWidth: 1.4 });
+            geoAnatomi.buatSegmen(D, E, {
+                stroke: amberColor, strokeWidth: 1.8, dashed: '5 4',
+                label: "tₐ", labelPosisi: 0.52, labelSisi: 'kanan', labelJarak: 10,
+                labelColor: amberColor, bold: true
+            });
+            geoAnatomi.buatTitik(E, {
+                size: 3, color: amberColor, label: "E", labelPosition: 'bottom-center', fontSize: '11px'
+            });
+
+            // Garis tinggi kedua: t_b dari D tegak lurus ke sisi miring BC di F
+            const F = geoAnatomi.hitungKakiTegakLurus(D, B, C);
+            geoAnatomi.buatSiku(D, F, B, { size: 11, stroke: roseColor, strokeWidth: 1.4 });
+            geoAnatomi.buatSegmen(D, F, {
+                stroke: roseColor, strokeWidth: 1.8, dashed: '5 4',
+                label: "t_b", labelPosisi: 0.55, labelSisi: 'kiri', labelJarak: 11,
+                labelColor: roseColor, bold: true
+            });
+            geoAnatomi.buatTitik(F, {
+                size: 3, color: roseColor, label: "F", labelPosition: 'middle-right', fontSize: '11px'
+            });
+
+            // Label sisi a dan b
+            geoAnatomi.buatTeks(245, 238, "alas a", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+            geoAnatomi.buatTeks(422, 155, "sisi b", {
+                position: 'middle-left', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+            geoAnatomi.buatTeks(280, 255, "Luas L = a · tₐ = b · t_b  dan  α + β = 180°", {
+                position: 'middle-center', fontSize: '11.5px', fill: mutedColor, fontWeight: 'bold'
+            });
+
+            // Titik sudut A, B, C, D
+            geoAnatomi.buatTitik(A, { size: 4, color: textColor, label: "A", labelPosition: 'bottom-left', bold: true });
+            geoAnatomi.buatTitik(B, { size: 4, color: textColor, label: "B", labelPosition: 'bottom-right', bold: true });
+            geoAnatomi.buatTitik(C, { size: 4, color: textColor, label: "C", labelPosition: 'top-right', bold: true });
+            geoAnatomi.buatTitik(D, { size: 4, color: textColor, label: "D", labelPosition: 'top-left', bold: true });
+
+
+            /* -------------------------------------------------------------
+               2. ILUSTRASI DIAGONAL SALING MEMBAGI DUA & HUKUM JAJAR GENJANG
+               ------------------------------------------------------------- */
+            const geoDiag = new GeoSVG('geosvg-diagonal-jajargenjang', 560, 265, {
+                clearContainer: true,
+                defaultStroke: textColor,
+                fontFamily: 'Inter, sans-serif'
+            });
+
+            geoDiag.buatPersegiPanjang(8, 8, 544, 249, {
+                radius: 10, fill: cardBg, stroke: borderColor, strokeWidth: 1.5
+            });
+            geoDiag.buatTeks(280, 27, "Perpotongan Diagonal (AO = OC, BO = OD) & Hukum Jajar Genjang", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12.5px', fill: textColor
+            });
+
+            const pA = [85, 208];
+            const pB = [335, 208];
+            const pD = [165, 72];
+            const pC = [415, 72];
+
+            geoDiag.buatPoligon([pA, pB, pC, pD], {
+                fill: tealFill, stroke: tealColor, strokeWidth: 2
+            });
+
+            // Titik potong kedua diagonal O
+            const O = geoDiag.hitungTitikTengah(pA, pC);
+
+            // Sudut perpotongan diagonal θ di titik O
+            geoDiag.buatSudut(pB, O, pC, {
+                radius: 24, fill: amberFill, stroke: amberColor, strokeWidth: 1.4,
+                label: "θ", labelRadius: 34, labelColor: amberColor, bold: true
+            });
+
+            // Diagonal AC (d2) dan BD (d1)
+            geoDiag.buatSegmen(pA, pC, { stroke: blueColor, strokeWidth: 2 });
+            geoDiag.buatSegmen(pB, pD, { stroke: roseColor, strokeWidth: 2 });
+
+            // Tanda sama panjang AO = OC (1 strip) dan BO = OD (2 strip)
+            geoDiag.buatTandaSamaPanjang(pA, O, { count: 1, size: 9, stroke: blueColor, strokeWidth: 1.8 });
+            geoDiag.buatTandaSamaPanjang(O, pC, { count: 1, size: 9, stroke: blueColor, strokeWidth: 1.8 });
+            geoDiag.buatTandaSamaPanjang(pB, O, { count: 2, size: 9, spacing: 4, stroke: roseColor, strokeWidth: 1.8 });
+            geoDiag.buatTandaSamaPanjang(O, pD, { count: 2, size: 9, spacing: 4, stroke: roseColor, strokeWidth: 1.8 });
+
+            // Titik-titik sudut & pusat O
+            geoDiag.buatTitik(pA, { size: 4, color: textColor, label: "A", labelPosition: 'bottom-left', bold: true });
+            geoDiag.buatTitik(pB, { size: 4, color: textColor, label: "B", labelPosition: 'bottom-right', bold: true });
+            geoDiag.buatTitik(pC, { size: 4, color: textColor, label: "C", labelPosition: 'top-right', bold: true });
+            geoDiag.buatTitik(pD, { size: 4, color: textColor, label: "D", labelPosition: 'top-left', bold: true });
+            geoDiag.buatTitik(O, { size: 4.2, color: amberColor, label: "O", labelPosition: 'top-center', labelDistance: 8, bold: true });
+
+            // Label diagonal d1 & d2 serta kotak ringkasan rumus di sisi kanan
+            geoDiag.buatTeks(195, 108, "d₁", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: roseColor });
+            geoDiag.buatTeks(325, 106, "d₂", { position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: blueColor });
+
+            geoDiag.buatPersegiPanjang(425, 92, 112, 95, {
+                radius: 8, fill: isDark ? '#0f172a' : '#f8fafc', stroke: borderColor, strokeWidth: 1.2
+            });
+            geoDiag.buatTeks(481, 114, "Identitas:", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '11px', fill: mutedColor
+            });
+            geoDiag.buatTeks(481, 136, "d₁² + d₂² =", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+            geoDiag.buatTeks(481, 156, "2(a² + b²)", {
+                position: 'middle-center', fontWeight: 'bold', fontSize: '12px', fill: tealColor
+            });
+
+            geoDiag.buatTeks(280, 240, "Titik O membagi dua diagonal sama panjang: |AO| = |OC| dan |BO| = |OD|", {
+                position: 'middle-center', fontSize: '11.5px', fill: mutedColor, fontWeight: 'bold'
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIlustrasiJajarGenjang();
+
+            // Render ulang warna GeoSVG saat pengguna menekan tombol Dark / Light Mode
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(renderIlustrasiJajarGenjang, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

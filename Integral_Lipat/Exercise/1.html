@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Integral Lipat</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Integral Lipat</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Tentukan nilai dari integral lipat dua berikut:
+                    \[\int_0^4 \int_{\pi}^{\frac{3\pi}{2}} x\sin(xy) \, dx \, dy\]
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/MatematikaZoneId/140" target="_blank" rel="noopener noreferrer">Grup Telegram</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Daerah integrasi pada soal adalah persegi panjang tertutup pada bidang \(xy\):
+                        \[R = \left\{(x, y) \;\middle|\; \pi \le x \le \frac{3\pi}{2}, \quad 0 \le y \le 4\right\}\]
+                    </p>
+
+                    <!-- Visualisasi GeoSVG Daerah R -->
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div id="geosvg-intlipat-1" style="display:inline-flex; justify-content:center; max-width: 100%;"></div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+                            <em>Visualisasi daerah integrasi \(R = [\pi, \, \frac{3\pi}{2}] \times [0, \, 4]\) pada bidang Kartesius</em>
+                        </p>
+                    </div>
+
+                    <p><strong>Metode 1: Menukar Urutan Integrasi (Teorema Fubini) &mdash; Cara Cerdas & Elegan</strong></p>
+                    <p>
+                        Karena fungsi integran \(f(x, y) = x\sin(xy)\) kontinu pada daerah persegi panjang \(R\), berdasarkan <strong>Teorema Fubini</strong> kita dapat menukar urutan integrasi menjadi \(dy \, dx\):
+                    </p>
+                    \[
+                    \int_0^4 \int_{\pi}^{\frac{3\pi}{2}} x\sin(xy) \, dx \, dy = \int_{\pi}^{\frac{3\pi}{2}} \left( \int_0^4 x\sin(xy) \, dy \right) dx
+                    \]
+
+                    <p><strong>Langkah 1: Selesaikan integral dalam terhadap \(y\) (anggap \(x\) sebagai konstanta):</strong></p>
+                    \[\begin{aligned}
+                    \int_0^4 x\sin(xy) \, dy &= x \cdot \left[ -\dfrac{\cos(xy)}{x} \right]_{y=0}^{y=4} \\
+                    &= \left[ -\cos(xy) \right]_{y=0}^{y=4} \\
+                    &= -\cos(4x) - \big(-\cos(0)\big) \\
+                    &= 1 - \cos(4x)
+                    \end{aligned}\]
+
+                    <p><strong>Langkah 2: Selesaikan integral luar terhadap \(x\):</strong></p>
+                    \[\begin{aligned}
+                    \int_{\pi}^{\frac{3\pi}{2}} \big(1 - \cos(4x)\big) \, dx &= \left[ x - \dfrac{\sin(4x)}{4} \right]_{\pi}^{\frac{3\pi}{2}} \\
+                    &= \left( \dfrac{3\pi}{2} - \dfrac{\sin\left(4 \cdot \frac{3\pi}{2}\right)}{4} \right) - \left( \pi - \dfrac{\sin(4\pi)}{4} \right) \\
+                    &= \left( \dfrac{3\pi}{2} - \dfrac{\sin(6\pi)}{4} \right) - \left( \pi - \dfrac{\sin(4\pi)}{4} \right) \\
+                    &= \left( \dfrac{3\pi}{2} - 0 \right) - (\pi - 0) \\
+                    &= \dfrac{3\pi}{2} - \pi \\
+                    &= \dfrac{\pi}{2}
+                    \end{aligned}\]
+
+                    <hr style="margin: 1.2rem 0; border: none; border-top: 1px dashed var(--border-color, #cbd5e1);">
+
+                    <p><strong>Metode 2: Sesuai Urutan Asli (\(dx\) lalu \(dy\) menggunakan Integral Parsial)</strong></p>
+                    <p>
+                        Jika dikerjakan langsung sesuai urutan aslinya, integral dalam terhadap \(x\) memerlukan teknik <em>integral parsial</em>:
+                        \[\int x\sin(xy) \, dx\]
+                        Misalkan:
+                        \[u = x \implies du = dx\]
+                        \[dv = \sin(xy) \, dx \implies v = -\dfrac{1}{y}\cos(xy)\]
+                    </p>
+                    \[\begin{aligned}
+                    \int x\sin(xy) \, dx &= uv - \int v \, du \\
+                    &= -\dfrac{x\cos(xy)}{y} - \int \left(-\dfrac{1}{y}\cos(xy)\right) dx \\
+                    &= -\dfrac{x\cos(xy)}{y} + \dfrac{\sin(xy)}{y^2}
+                    \end{aligned}\]
+                    <p>
+                        Evaluasi pada batas \(x = \pi\) sampai \(x = \frac{3\pi}{2}\):
+                    </p>
+                    \[
+                    \left[ -\dfrac{x\cos(xy)}{y} + \dfrac{\sin(xy)}{y^2} \right]_{\pi}^{\frac{3\pi}{2}} = \dfrac{1}{y^2} \left[ -\dfrac{3\pi}{2}y\cos\left(\dfrac{3\pi}{2}y\right) + \sin\left(\dfrac{3\pi}{2}y\right) + \pi y\cos(\pi y) - \sin(\pi y) \right]
+                    \]
+                    <p>
+                        Kemudian integrasikan ekspresi tersebut terhadap \(y\) pada rentang \([0, 4]\) menggunakan integrasi parsial kembali serta menghitung limit saat \(y \to 0^+\):
+                    </p>
+                    \[\begin{aligned}
+                    \int_0^4 \dots dy &= \left[ \dfrac{-\sin\left(\frac{3\pi}{2}y\right) + \sin(\pi y)}{y} \right]_0^4 \\
+                    &= \dfrac{-\sin(6\pi) + \sin(4\pi)}{4} - \lim_{y \to 0^+} \left( \dfrac{-\sin\left(\frac{3\pi}{2}y\right) + \sin(\pi y)}{y} \right) \\
+                    &= 0 - \left( -\dfrac{3\pi}{2} + \pi \right) \\
+                    &= -\left( -\dfrac{\pi}{2} \right) = \dfrac{\pi}{2}
+                    \end{aligned}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai dari integral lipat dua tersebut adalah:
+                        \[\int_0^4 \int_{\pi}^{\frac{3\pi}{2}} x\sin(xy) \, dx \, dy = \dfrac{\pi}{2}\]
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+
+            <script>
+            (function() {
+                function gambarSoal1() {
+                    const wadah = document.getElementById("geosvg-intlipat-1");
+                    if (!wadah || typeof GeoSVG === "undefined") return;
+                    wadah.innerHTML = "";
+
+                    const W = 460;
+                    const H = 340;
+                    const geo = new GeoSVG("geosvg-intlipat-1", W, H, { margin: 15 });
+                    geo.svg.style.width = "100%";
+                    geo.svg.style.maxWidth = `${W}px`;
+                    geo.svg.style.height = "auto";
+
+                    // Pusat koordinat Kartesius
+                    const ox = 55;
+                    const oy = 280;
+                    const scaleX = 64;
+                    const scaleY = 56;
+                    const toSvg = (x, y) => [ox + x * scaleX, oy - y * scaleY];
+
+                    const pi = Math.PI;
+                    const pi15 = 1.5 * Math.PI;
+
+                    // Grid pembantu halus
+                    for (let gx = 1; gx <= 5; gx++) {
+                        const [p1x, p1y] = toSvg(gx, 0);
+                        const [p2x, p2y] = toSvg(gx, 4.4);
+                        geo.buatSegmen([p1x, p1y], [p2x, p2y], { stroke: "#e2e8f0", strokeWidth: 0.8, dashed: "2 2" });
+                    }
+                    for (let gy = 1; gy <= 4; gy++) {
+                        const [p1x, p1y] = toSvg(0, gy);
+                        const [p2x, p2y] = toSvg(5.5, gy);
+                        geo.buatSegmen([p1x, p1y], [p2x, p2y], { stroke: "#e2e8f0", strokeWidth: 0.8, dashed: "2 2" });
+                    }
+
+                    // Daerah integrasi persegi panjang R = [pi, 1.5*pi] x [0, 4]
+                    const [rx1, ryTop] = toSvg(pi, 4);
+                    const [rx2, ryBot] = toSvg(pi15, 0);
+                    const rectW = rx2 - rx1;
+                    const rectH = ryBot - ryTop;
+
+                    geo._el("rect", {
+                        x: rx1,
+                        y: ryTop,
+                        width: rectW,
+                        height: rectH,
+                        fill: "rgba(14, 165, 233, 0.16)",
+                        stroke: "#0284c7",
+                        "stroke-width": 2,
+                        rx: 2
+                    }, geo.svg);
+
+                    // Garis-garis batas putus-putus
+                    const [pTopLeftX, pTopLeftY] = toSvg(pi, 4);
+                    const [, pY4] = toSvg(0, 4);
+                    geo.buatSegmen([ox, pY4], [pTopLeftX, pTopLeftY], { stroke: "#0284c7", strokeWidth: 1.2, dashed: "3 3" });
+
+                    // Sumbu X & Y
+                    const [ax1] = toSvg(-0.2, 0);
+                    const [ax2] = toSvg(5.6, 0);
+                    const [, ay1] = toSvg(0, -0.3);
+                    const [, ay2] = toSvg(0, 4.6);
+
+                    geo.buatSegmen([ax1, oy], [ax2, oy], { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen([ox, ay1], [ox, ay2], { stroke: "#475569", strokeWidth: 1.5 });
+
+                    // Label Sumbu
+                    geo.buatTeks(ax2 + 8, oy, "x", { fontSize: "14px", fill: "#334155", fontWeight: "bold", position: "middle-left" });
+                    geo.buatTeks(ox, ay2 - 8, "y", { fontSize: "14px", fill: "#334155", fontWeight: "bold", position: "bottom-center" });
+                    geo.buatTeks(ox - 8, oy + 15, "0", { fontSize: "12px", fill: "#64748b" });
+
+                    // Ticks sumbu X reguler
+                    [1, 2, 3, 5].forEach(val => {
+                        const [px, py] = toSvg(val, 0);
+                        geo.buatSegmen([px, py - 3], [px, py + 3], { stroke: "#94a3b8", strokeWidth: 1 });
+                        geo.buatTeks(px, py + 14, String(val), { fontSize: "10px", fill: "#94a3b8", position: "top-center" });
+                    });
+
+                    // Ticks khusus pi dan 3pi/2 pada sumbu X
+                    const [pPiX, pPiY] = toSvg(pi, 0);
+                    geo.buatSegmen([pPiX, pPiY - 4], [pPiX, pPiY + 4], { stroke: "#0284c7", strokeWidth: 1.5 });
+                    geo.buatTeks(pPiX, pPiY + 16, "π", { fontSize: "13px", fill: "#0369a1", fontWeight: "bold", position: "top-center" });
+
+                    const [p15PiX, p15PiY] = toSvg(pi15, 0);
+                    geo.buatSegmen([p15PiX, p15PiY - 4], [p15PiX, p15PiY + 4], { stroke: "#0284c7", strokeWidth: 1.5 });
+                    geo.buatTeks(p15PiX, p15PiY + 16, "3π/2", { fontSize: "13px", fill: "#0369a1", fontWeight: "bold", position: "top-center" });
+
+                    // Ticks sumbu Y
+                    [1, 2, 3].forEach(val => {
+                        const [px, py] = toSvg(0, val);
+                        geo.buatSegmen([px - 3, py], [px + 3, py], { stroke: "#94a3b8", strokeWidth: 1 });
+                        geo.buatTeks(px - 8, py, String(val), { fontSize: "10px", fill: "#94a3b8", position: "middle-right" });
+                    });
+                    const [pY4X, pY4Y] = toSvg(0, 4);
+                    geo.buatSegmen([pY4X - 4, pY4Y], [pY4X + 4, pY4Y], { stroke: "#0284c7", strokeWidth: 1.5 });
+                    geo.buatTeks(pY4X - 8, pY4Y, "4", { fontSize: "12px", fill: "#0369a1", fontWeight: "bold", position: "middle-right" });
+
+                    // Panah arah integrasi vertikal (dy terlebih dahulu: y=0 ke y=4)
+                    const midX = (rx1 + rx2) / 2;
+                    const arrY1 = oy - 25;
+                    const arrY2 = ryTop + 25;
+                    geo.buatSegmen([midX, arrY1], [midX, arrY2], { stroke: "#0284c7", strokeWidth: 2 });
+                    // Kepala panah vertikal
+                    geo._el("polygon", {
+                        points: `${midX},${arrY2 - 8} ${midX - 5},${arrY2 + 3} ${midX + 5},${arrY2 + 3}`,
+                        fill: "#0284c7"
+                    }, geo.svg);
+                    geo.buatTeks(midX + 10, (arrY1 + arrY2) / 2, "arah dy (0 → 4)", {
+                        fontSize: "11px",
+                        fill: "#0369a1",
+                        fontWeight: "bold",
+                        position: "middle-left"
+                    });
+
+                    // Label Daerah R
+                    geo.buatTeks(midX, ryTop + 35, "Daerah R", {
+                        fontSize: "13px",
+                        fill: "#0c4a6e",
+                        fontWeight: "bold",
+                        position: "middle-center"
+                    });
+                    geo.buatTeks(midX, ryTop + 55, "[π, 3π/2] × [0, 4]", {
+                        fontSize: "11px",
+                        fill: "#0284c7",
+                        position: "middle-center"
+                    });
+
+                    // Penjelasan Teorema Fubini di bawah daerah
+                    geo.buatTeks(midX, arrY1 + 18, "Teorema Fubini: integrasikan dy terlebih dahulu", {
+                        fontSize: "10.5px",
+                        fill: "#059669",
+                        fontWeight: "bold",
+                        position: "middle-center"
+                    });
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarSoal1);
+                } else {
+                    gambarSoal1();
+                }
+            })();
+            </script>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

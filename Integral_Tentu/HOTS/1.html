@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal HOTS - Integral Tentu</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Integral Tentu</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Tentukan nilai dari:
+                    \[\displaystyle\int_0^{\frac{\pi}{2}} \sqrt{1 - \sin(2020x)} \, dx\]
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>
+                        Gunakan substitusi variabel \(t = 2020x \implies dx = \dfrac{dt}{2020}\).
+                    </p>
+                    <p>
+                        Untuk \(x = 0 \implies t = 0\), dan untuk \(x = \dfrac{\pi}{2} \implies t = 2020 \cdot \dfrac{\pi}{2} = 1010\pi = 505(2\pi)\).
+                    </p>
+                    \[\int_0^{\frac{\pi}{2}} \sqrt{1 - \sin(2020x)} \, dx = \dfrac{1}{2020} \int_0^{1010\pi} \sqrt{1 - \sin t} \, dt\]
+
+                    <p>
+                        Perhatikan bahwa fungsi \(f(t) = \sqrt{1 - \sin t}\) memiliki periode \(T = 2\pi\). Karena selang pengintegralan \([0, 1010\pi]\) memuat tepat \(505\) periode penuh:
+                    </p>
+                    \[\begin{aligned}
+                    \dfrac{1}{2020} \int_0^{505(2\pi)} \sqrt{1 - \sin t} \, dt &= \dfrac{505}{2020} \int_0^{2\pi} \sqrt{1 - \sin t} \, dt \\
+                    &= \dfrac{1}{4} \int_0^{2\pi} \sqrt{1 - \sin t} \, dt
+                    \end{aligned}\]
+
+                    <p>
+                        Gunakan identitas trigonometri:
+                        \[1 - \sin t = \sin^2\left(\dfrac{t}{2}\right) + \cos^2\left(\dfrac{t}{2}\right) - 2\sin\left(\dfrac{t}{2}\right)\cos\left(\dfrac{t}{2}\right) = \left(\sin\dfrac{t}{2} - \cos\dfrac{t}{2}\right)^2\]
+                        Maka:
+                        \[\sqrt{1 - \sin t} = \left|\sin\dfrac{t}{2} - \cos\dfrac{t}{2}\right|\]
+                    </p>
+                    <p>
+                        Bisa juga menggunakan sifat simetri pergeseran sumbu:
+                        \[\int_0^{2\pi} \sqrt{1 - \sin t} \, dt = \int_0^{2\pi} \sqrt{1 - \cos t} \, dt\]
+                        Dengan identitas setengah sudut \(1 - \cos t = 2\sin^2\left(\dfrac{t}{2}\right)\):
+                        \[\sqrt{1 - \cos t} = \sqrt{2}\sin\left(\dfrac{t}{2}\right) \quad \text{untuk } t \in [0, 2\pi]\]
+                    </p>
+                    <p>Maka:</p>
+                    \[\begin{aligned}
+                    \int_0^{2\pi} \sqrt{1 - \sin t} \, dt &= \int_0^{2\pi} \sqrt{2}\sin\left(\dfrac{t}{2}\right) dt \\
+                    &= \left[-2\sqrt{2}\cos\left(\dfrac{t}{2}\right)\right]_0^{2\pi} \\
+                    &= -2\sqrt{2}\cos(\pi) - \big(-2\sqrt{2}\cos(0)\big) \\
+                    &= -2\sqrt{2}(-1) + 2\sqrt{2}(1) \\
+                    &= 2\sqrt{2} + 2\sqrt{2} = 4\sqrt{2}
+                    \end{aligned}\]
+
+                    <p>Kalikan dengan faktor \(\dfrac{1}{4}\):</p>
+                    \[\dfrac{1}{4} \cdot 4\sqrt{2} = \sqrt{2}\]
+
+                    <div class="kesimpulan">
+                        Jadi, hasil dari \(\displaystyle\int_0^{\frac{\pi}{2}} \sqrt{1 - \sin(2020x)} \, dx = \sqrt{2}\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>
+                    Misalkan fungsi \(f\) memenuhi persamaan \(x = f(x)e^{f(x)}\). Tentukan nilai dari:
+                    \[\displaystyle\int_0^e f(x) \, dx\]
+                </p>
+            </div>
+            <div class="soal-sumber">
+                <a href="https://t.me/matematikazoneidgrup" target="_blank" rel="noopener noreferrer">Grup Matematika Idhamdaz</a>
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Metode Geometris & Integrasi Fungsi Invers:</strong></p>
+                    <p>
+                        Diketahui relasi \(x = f(x)e^{f(x)}\). Misalkan \(y = f(x)\), maka fungsi inversnya adalah:
+                        \[x = g(y) = y e^y\]
+                    </p>
+                    <p>Tentukan batas nilai \(y = f(x)\):</p>
+                    <ul>
+                        <li>Untuk \(x = 0 \implies 0 = y e^y \implies y = 0\)</li>
+                        <li>Untuk \(x = e \implies e = y e^y \implies y = 1\) (karena \(1 \cdot e^1 = e\))</li>
+                    </ul>
+
+                    <p>
+                        Berdasarkan hubungan luas daerah integral suatu fungsi dan inversnya (Teorema Integrasi Fungsi Invers):
+                        \[\int_0^e f(x) \, dx = [x \cdot f(x)]_0^e - \int_0^1 g(y) \, dy\]
+                    </p>
+                    \[[x \cdot f(x)]_0^e = e \cdot f(e) - 0 \cdot f(0) = e(1) - 0 = e\]
+
+                    <p>Hitung integral dari \(g(y) = y e^y\) pada rentang \([0, 1]\) menggunakan integral parsial:</p>
+                    \[\begin{aligned}
+                    \int_0^1 y e^y \, dy &= \left[y e^y - e^y\right]_0^1 \\
+                    &= \left(1e^1 - e^1\right) - \left(0e^0 - e^0\right) \\
+                    &= (e - e) - (0 - 1) \\
+                    &= 0 - (-1) \\
+                    &= 1
+                    \end{aligned}\]
+
+                    <p>Maka hasil akhirnya adalah:</p>
+                    \[\int_0^e f(x) \, dx = e - 1\]
+
+                    <!-- Visualisasi GeoSVG Fungsi Invers & Luas Integral -->
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div id="geosvg-invers-lambert" style="display:inline-flex; justify-content:center; max-width: 100%;"></div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+                            <em>Visualisasi geometris: Luas di bawah kurva \(\int_0^e f(x) \, dx = e - 1\) diperoleh dari Luas Persegi Panjang \([0, e] \times [0, 1]\) dikurangi \(\int_0^1 y e^y \, dy = 1\)</em>
+                        </p>
+                    </div>
+
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(\displaystyle\int_0^e f(x) \, dx = e - 1\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+
+            <script>
+            (function() {
+                function gambarInvers() {
+                    const wadah = document.getElementById("geosvg-invers-lambert");
+                    if (!wadah || typeof GeoSVG === "undefined") return;
+                    wadah.innerHTML = "";
+
+                    const W = 460;
+                    const H = 260;
+                    const geo = new GeoSVG("geosvg-invers-lambert", W, H, { margin: 15 });
+                    geo.svg.style.width = "100%";
+                    geo.svg.style.maxWidth = `${W}px`;
+                    geo.svg.style.height = "auto";
+
+                    const ox = 55;
+                    const oy = 210;
+                    const scaleX = 120;
+                    const scaleY = 140;
+                    const toSvg = (x, y) => [ox + x * scaleX, oy - y * scaleY];
+
+                    const eVal = Math.E; // approx 2.718
+
+                    // 1. Persegi panjang pembatas [0, e] x [0, 1]
+                    const [pOrigin] = toSvg(0, 0);
+                    const [pTopRightX, pTopRightY] = toSvg(eVal, 1);
+                    const rectW = pTopRightX - ox;
+                    const rectH = oy - pTopRightY;
+
+                    geo._el("rect", {
+                        x: ox,
+                        y: pTopRightY,
+                        width: rectW,
+                        height: rectH,
+                        fill: "none",
+                        stroke: "#cbd5e1",
+                        "stroke-width": 1.5,
+                        "stroke-dasharray": "3 3"
+                    }, geo.svg);
+
+                    // 2. Arsiran daerah integral \int_0^e f(x) dx (Biru)
+                    const ptsUnder = [toSvg(0, 0)];
+                    for (let u = 0; u <= 1; u += 0.02) {
+                        const x = u * Math.exp(u);
+                        ptsUnder.push(toSvg(x, u));
+                    }
+                    ptsUnder.push(toSvg(eVal, 0));
+                    geo._el("polygon", {
+                        points: ptsUnder.map(p => `${p[0]},${p[1]}`).join(" "),
+                        fill: "rgba(2, 132, 199, 0.22)",
+                        stroke: "none"
+                    }, geo.svg);
+
+                    // 3. Arsiran daerah integral invers \int_0^1 y e^y dy = 1 (Kuning/Oranye)
+                    const ptsAbove = [toSvg(0, 0)];
+                    for (let u = 0; u <= 1; u += 0.02) {
+                        const x = u * Math.exp(u);
+                        ptsAbove.push(toSvg(x, u));
+                    }
+                    ptsAbove.push(toSvg(0, 1));
+                    geo._el("polygon", {
+                        points: ptsAbove.map(p => `${p[0]},${p[1]}`).join(" "),
+                        fill: "rgba(245, 158, 11, 0.2)",
+                        stroke: "none"
+                    }, geo.svg);
+
+                    // 4. Kurva x = y e^y
+                    const curvePts = [];
+                    for (let u = 0; u <= 1.05; u += 0.02) {
+                        const x = u * Math.exp(u);
+                        curvePts.push(toSvg(x, u));
+                    }
+                    geo.buatPolyline(curvePts, { stroke: "#2563eb", strokeWidth: 2.2 });
+
+                    // Sumbu X & Y
+                    geo.buatSegmen([ox - 10, oy], [ox + 3.1 * scaleX, oy], { stroke: "#475569", strokeWidth: 1.5 });
+                    geo.buatSegmen([ox, oy + 15], [ox, oy - 1.3 * scaleY], { stroke: "#475569", strokeWidth: 1.5 });
+
+                    geo.buatTeks(ox + 3.1 * scaleX + 8, oy, "x", { fontSize: "13px", fill: "#334155", fontWeight: "bold", position: "middle-left" });
+                    geo.buatTeks(ox, oy - 1.3 * scaleY - 6, "y", { fontSize: "13px", fill: "#334155", fontWeight: "bold", position: "bottom-center" });
+
+                    // Label ticks
+                    const pEX = toSvg(eVal, 0);
+                    geo.buatSegmen([pEX[0], pEX[1] - 3], [pEX[0], pEX[1] + 3], { stroke: "#0284c7", strokeWidth: 1.5 });
+                    geo.buatTeks(pEX[0], pEX[1] + 15, "e ≈ 2.718", { fontSize: "11px", fill: "#0369a1", fontWeight: "bold", position: "top-center" });
+
+                    const pY1 = toSvg(0, 1);
+                    geo.buatSegmen([pY1[0] - 3, pY1[1]], [pY1[0] + 3, pY1[1]], { stroke: "#0284c7", strokeWidth: 1.5 });
+                    geo.buatTeks(pY1[0] - 8, pY1[1], "1", { fontSize: "11px", fill: "#0369a1", fontWeight: "bold", position: "middle-right" });
+
+                    // Titik pojok (e, 1)
+                    geo.buatTitik(toSvg(eVal, 1), { size: 4, color: "#2563eb" });
+                    geo.buatTeks(pTopRightX + 6, pTopRightY - 4, "(e, 1)", { fontSize: "11px", fill: "#1e40af", fontWeight: "bold", position: "bottom-left" });
+
+                    // Label Daerah
+                    const pTeksBiru = toSvg(1.6, 0.35);
+                    geo.buatTeks(pTeksBiru[0], pTeksBiru[1], "∫₀ᵉ f(x) dx = e - 1", { fontSize: "11px", fill: "#0369a1", fontWeight: "bold", position: "middle-center" });
+
+                    const pTeksKuning = toSvg(0.6, 0.7);
+                    geo.buatTeks(pTeksKuning[0], pTeksKuning[1], "∫₀¹ y eʸ dy = 1", { fontSize: "11px", fill: "#b45309", fontWeight: "bold", position: "middle-center" });
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarInvers);
+                } else {
+                    gambarInvers();
+                }
+            })();
+            </script>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
