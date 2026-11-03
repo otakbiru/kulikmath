@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Pertidaksamaan Linear Dua Variabel</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Pertidaksamaan Linear Dua Variabel</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper pagsoal"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Luas daerah penyelesaian yang memenuhi sistem pertidaksamaan linear dua variabel berikut:
+                $$\begin{cases}
+                x + 2y \le 12 \\
+                2x + y \le 12 \\
+                x + y \ge 4 \\
+                x \ge 0, \quad y \ge 0
+                \end{cases}$$
+                adalah ....
+                <ol class="pilgan">
+                    <li>$14\text{ satuan luas}$</li>
+                    <li>$16\text{ satuan luas}$</li>
+                    <li>$18\text{ satuan luas}$</li>
+                    <li>$20\text{ satuan luas}$</li>
+                    <li>$24\text{ satuan luas}$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Untuk menentukan luas daerah himpunan penyelesaian, kita cari terlebih dahulu titik-titik batas dan titik potong antargaris pada kuadran I ($x \ge 0, y \ge 0$).<br><br>
+                    <strong>1. Menentukan persamaan garis pembatas:</strong><br>
+                    <ul>
+                        <li>Garis $g_1: x + 2y = 12 \implies$ memotong sumbu-$y$ di $(0, 6)$ dan memotong sumbu-$x$ di $(12, 0)$.</li>
+                        <li>Garis $g_2: 2x + y = 12 \implies$ memotong sumbu-$x$ di $(6, 0)$ dan memotong sumbu-$y$ di $(0, 12)$.</li>
+                        <li>Garis $g_3: x + y = 4 \implies$ memotong sumbu-$x$ di $(4, 0)$ dan memotong sumbu-$y$ di $(0, 4)$.</li>
+                    </ul>
+
+                    <strong>2. Menentukan titik potong antara $g_1$ dan $g_2$:</strong><br>
+                    $$\begin{aligned}
+                    x + 2y &= 12 \\
+                    2x + y &= 12
+                    \end{aligned}$$
+                    Kurangkan kedua persamaan:
+                    $$-x + y = 0 \implies x = y$$
+                    Substitusikan $x = y$ ke persamaan $x + 2x = 12 \implies 3x = 12 \implies x = 4, y = 4$.<br>
+                    Titik potong $g_1$ dan $g_2$ adalah $(4, 4)$.<br><br>
+
+                    <!-- Visualisasi Grafik Daerah Penyelesaian -->
+                    <div id="grafik-pembahasan-1" style="display: flex; justify-content: center; margin: 1.25rem 0;"></div>
+
+                    <strong>3. Menghitung luas daerah himpunan penyelesaian:</strong><br>
+                    Berdasarkan grafik di atas, daerah penyelesaian (DP) dibatasi oleh titik-titik sudut $(4, 0)$, $(6, 0)$, $(4, 4)$, $(0, 6)$, dan $(0, 4)$. Luas daerah ini sama dengan luas total di bawah kurva pembatas atas ($g_1$ dan $g_2$) dikurangi luas segitiga di bawah garis batas bawah ($g_3$):
+                    <br><br>
+                    &bull; <strong>Luas di bawah garis pembatas atas pada kuadran I:</strong><br>
+                    - Untuk interval $0 \le x \le 4$, dibatasi oleh garis $y = 6 - \frac{1}{2}x$ (trapesium siku-siku dengan tinggi $4$ serta sisi sejajar $y(0)=6$ dan $y(4)=4$):
+                    $$L_{\text{trapesium}} = \frac{6 + 4}{2} \times 4 = 20$$
+                    - Untuk interval $4 \le x \le 6$, dibatasi oleh garis $y = 12 - 2x$ (segitiga siku-siku dengan alas $6 - 4 = 2$ dan tinggi $y(4)=4$):
+                    $$L_{\text{segitiga atas}} = \frac{1}{2} \times 2 \times 4 = 4$$
+                    Total luas daerah di bawah batas atas:
+                    $$L_{\text{atas}} = 20 + 4 = 24$$
+
+                    &bull; <strong>Luas segitiga di bawah garis batas bawah ($x + y \le 4$ pada kuadran I):</strong><br>
+                    Segitiga siku-siku dengan alas $4$ dan tinggi $4$:
+                    $$L_{\text{bawah}} = \frac{1}{2} \times 4 \times 4 = 8$$
+
+                    &bull; <strong>Luas daerah penyelesaian ($L$):</strong><br>
+                    $$L = L_{\text{atas}} - L_{\text{bawah}} = 24 - 8 = 16\text{ satuan luas}$$
+                    <div class="kesimpulan">Jadi, luas daerah penyelesaian sistem pertidaksamaan tersebut adalah $16\text{ satuan luas}$.<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 3
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 4 
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 5 
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 6 
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Visualisasi Grafik Pembahasan dengan GeoSVG.js -->
+    <script>
+        function gambarGrafik() {
+            if (typeof GeoSVG === "undefined") {
+                setTimeout(gambarGrafik, 100);
+                return;
+            }
+
+            const container = document.getElementById("grafik-pembahasan-1");
+            if (!container) return;
+
+            const width = 380;
+            const height = 310;
+            const geo = new GeoSVG("grafik-pembahasan-1", width, height, {
+                margin: 25,
+                defaultStrokeWidth: 1.5,
+                fontFamily: "Rubik, sans-serif",
+                fontSize: "12px",
+                clearContainer: true
+            });
+
+            // Konfigurasi sistem koordinat
+            const ox = 45;
+            const oy = 265;
+            const sx = 23;
+            const sy = 18;
+            const toSVG = (x, y) => [ox + x * sx, oy - y * sy];
+
+            // 1. Poligon Daerah Penyelesaian (DP)
+            const polyMath = [
+                [4, 0],
+                [6, 0],
+                [4, 4],
+                [0, 6],
+                [0, 4]
+            ];
+            const polySVG = polyMath.map(p => toSVG(p[0], p[1]));
+            geo.buatPoligon(polySVG, {
+                fill: "#14b8a6",
+                fillOpacity: 0.35,
+                stroke: "#0d9488",
+                strokeWidth: 1.5
+            });
+
+            // Label DP
+            const ptDP = toSVG(2.5, 3.2);
+            geo.buatTeks(ptDP[0], ptDP[1], "DP", {
+                position: "middle-center",
+                fontSize: "14px",
+                fontWeight: "bold",
+                fill: "#0f766e"
+            });
+
+            // 2. Garis Pembatas
+            // Garis g1: x + 2y = 12
+            geo.buatSegmen(toSVG(-0.8, 6.4), toSVG(12.8, -0.4), {
+                stroke: "#2563eb",
+                strokeWidth: 2
+            });
+
+            // Garis g2: 2x + y = 12
+            geo.buatSegmen(toSVG(-0.4, 12.8), toSVG(6.4, -0.8), {
+                stroke: "#d97706",
+                strokeWidth: 2
+            });
+
+            // Garis g3: x + y = 4
+            geo.buatSegmen(toSVG(-0.6, 4.6), toSVG(4.6, -0.6), {
+                stroke: "#dc2626",
+                strokeWidth: 2
+            });
+
+            // Label Persamaan Garis
+            const lblG1 = toSVG(9.2, 1.4);
+            geo.buatTeks(lblG1[0], lblG1[1], "x + 2y = 12", {
+                position: "middle-left",
+                fontSize: "11px",
+                fontWeight: "bold",
+                fill: "#1d4ed8"
+            });
+
+            const lblG2 = toSVG(5.2, 3.5);
+            geo.buatTeks(lblG2[0], lblG2[1], "2x + y = 12", {
+                position: "middle-left",
+                fontSize: "11px",
+                fontWeight: "bold",
+                fill: "#b45309"
+            });
+
+            const lblG3 = toSVG(2.3, 0.7);
+            geo.buatTeks(lblG3[0], lblG3[1], "x + y = 4", {
+                position: "middle-left",
+                fontSize: "11px",
+                fontWeight: "bold",
+                fill: "#b91c1c"
+            });
+
+            // 3. Garis Putus-putus Proyeksi Titik (4, 4)
+            const pt44 = toSVG(4, 4);
+            const pt40 = toSVG(4, 0);
+            const pt04 = toSVG(0, 4);
+            geo.buatSegmen(pt44, pt40, { stroke: "#64748b", strokeWidth: 1.2, strokeDasharray: "3,3" });
+            geo.buatSegmen(pt44, pt04, { stroke: "#64748b", strokeWidth: 1.2, strokeDasharray: "3,3" });
+
+            // Titik potong (4, 4)
+            geo.buatTitik(pt44, { r: 3.5, fill: "#0f766e", stroke: "#ffffff", strokeWidth: 1.5 });
+            geo.buatTeks(pt44[0] + 6, pt44[1] - 8, "(4, 4)", {
+                fontSize: "11px",
+                fontWeight: "bold",
+                fill: "#0f766e"
+            });
+
+            // 4. Sumbu Koordinat Kartesius
+            geo.buatVektor(toSVG(-1.2, 0), toSVG(13.8, 0), { stroke: "#334155", strokeWidth: 1.8 });
+            geo.buatVektor(toSVG(0, -1.2), toSVG(0, 13.8), { stroke: "#334155", strokeWidth: 1.8 });
+
+            // Label Sumbu
+            const lblX = toSVG(13.8, 0);
+            geo.buatTeks(lblX[0] + 6, lblX[1] + 4, "x", { fontSize: "13px", fontWeight: "bold" });
+            const lblY = toSVG(0, 13.8);
+            geo.buatTeks(lblY[0] - 14, lblY[1] - 4, "y", { fontSize: "13px", fontWeight: "bold" });
+            const lblO = toSVG(0, 0);
+            geo.buatTeks(lblO[0] - 12, lblO[1] + 15, "0", { fontSize: "12px" });
+
+            // 5. Tanda & Angka pada Sumbu
+            [4, 6, 12].forEach(val => {
+                const pt = toSVG(val, 0);
+                geo.buatSegmen([pt[0], pt[1] - 3], [pt[0], pt[1] + 3], { stroke: "#334155", strokeWidth: 1.5 });
+                geo.buatTeks(pt[0], pt[1] + 16, String(val), {
+                    position: "top-center",
+                    fontSize: "11px",
+                    fontWeight: "bold"
+                });
+            });
+
+            [4, 6, 12].forEach(val => {
+                const pt = toSVG(0, val);
+                geo.buatSegmen([pt[0] - 3, pt[1]], [pt[0] + 3, pt[1]], { stroke: "#334155", strokeWidth: 1.5 });
+                geo.buatTeks(pt[0] - 14, pt[1], String(val), {
+                    position: "middle-right",
+                    fontSize: "11px",
+                    fontWeight: "bold"
+                });
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            gambarGrafik();
+            const btnSolusi = document.querySelector(".btn-solusi");
+            if (btnSolusi) {
+                btnSolusi.addEventListener("click", () => {
+                    setTimeout(gambarGrafik, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

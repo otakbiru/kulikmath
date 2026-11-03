@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Peluang</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Peluang</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Percobaan, Ruang Sampel, dan Kejadian</h2>
+            <p>
+                <strong>Teori Peluang (Probabilitas)</strong> adalah cabang matematika yang mempelajari ukuran kemungkinan terjadinya suatu peristiwa acak.
+            </p>
+            <ul>
+                <li><strong>Percobaan Acak:</strong> Suatu kegiatan atau pengamatan yang hasilnya tidak dapat dipastikan sebelumnya, namun seluruh kemungkinan hasilnya dapat didaftar. Contoh: melempar sekeping uang logam atau sebuah dadu.</li>
+                <li><strong>Ruang Sampel ($S$):</strong> Himpunan dari semua kemungkinan hasil yang dapat terjadi pada suatu percobaan acak. Banyaknya anggota ruang sampel dinotasikan dengan $n(S)$.</li>
+                <li><strong>Titik Sampel:</strong> Setiap elemen atau anggota tunggal dari ruang sampel $S$.</li>
+                <li><strong>Kejadian / Peristiwa ($A$):</strong> Himpunan bagian dari ruang sampel ($A \subseteq S$). Kejadian dikatakan terjadi jika hasil percobaan merupakan salah satu anggota dari $A$. Banyaknya anggota kejadian dinotasikan dengan $n(A)$.</li>
+            </ul>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Contoh Ruang Sampel:</strong>
+                    </p>
+                    <ul>
+                        <li>Pelemparan sebuah dadu bersisi enam:
+                            $$S = \{1, 2, 3, 4, 5, 6\} \implies n(S) = 6$$
+                        </li>
+                        <li>Kejadian munculnya mata dadu prima ganjil ($A$):
+                            $$A = \{3, 5\} \implies n(A) = 2$$
+                        </li>
+                        <li>Pelemparan dua koin logam ($A = \text{Angka}$, $G = \text{Gambar}$):
+                            $$S = \{(A, A), (A, G), (G, A), (G, G)\} \implies n(S) = 4$$
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-ruang-sampel" style="width: 100%; max-width: 300px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Peluang Teoretik (Klasik) dan Komplemen</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Jika setiap titik sampel pada ruang sampel $S$ memiliki peluang yang sama untuk muncul (<em>equally likely outcomes</em>), maka peluang terjadinya kejadian $A$ didefinisikan sebagai:
+                        $$P(A) = \frac{n(A)}{n(S)}$$
+                    </p>
+                    <p><strong>Sifat-Sifat Nilai Peluang:</strong></p>
+                    <ul>
+                        <li>Rentang nilai peluang selalu berada di antara $0$ dan $1$:
+                            $$0 \le P(A) \le 1$$
+                        </li>
+                        <li>Jika $P(A) = 0$, kejadian $A$ disebut <strong>kemustahilan</strong> (mustahil terjadi).</li>
+                        <li>Jika $P(A) = 1$, kejadian $A$ disebut <strong>kepastian</strong> (pasti terjadi).</li>
+                    </ul>
+                    <p><strong>Peluang Komplemen Suatu Kejadian:</strong></p>
+                    <p>
+                        Komplemen dari kejadian $A$ (dinotasikan $A'$ atau $A^c$) adalah kejadian <em>tidak terjadinya</em> $A$. Karena $A$ dan $A^c$ saling lepas dan memenuhi $A \cup A^c = S$, maka berlaku:
+                        $$P(A) + P(A^c) = 1 \iff P(A^c) = 1 - P(A)$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-komplemen" style="width: 100%; max-width: 300px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Frekuensi Harapan</h2>
+            <p>
+                <strong>Frekuensi harapan ($F_h$)</strong> adalah perkiraan banyaknya kemunculan suatu kejadian $A$ dari sekumpulan percobaan yang dilakukan berulang kali sebanyak $n$ kali:
+                $$F_h(A) = n \times P(A)$$
+            </p>
+            <p>
+                <em>Contoh:</em> Sebuah dadu bermata enam dilempar sebanyak $120$ kali. Peluang muncul mata dadu faktor dari $6$ adalah $A = \{1, 2, 3, 6\} \implies P(A) = \frac{4}{6} = \frac{2}{3}$.<br>
+                Frekuensi harapan muncul mata dadu faktor dari 6 adalah:
+                $$F_h(A) = 120 \times \frac{2}{3} = 80\text{ kali}$$
+            </p>
+
+            <h2>4. Peluang Kejadian Majemuk: Aturan Penjumlahan</h2>
+            <p>
+                Kejadian majemuk adalah gabungan atau irisan dari dua atau lebih kejadian.
+            </p>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>1. Aturan Penjumlahan Umum:</strong><br>
+                        Untuk sembarang dua kejadian $A$ dan $B$ dalam ruang sampel $S$:
+                        $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+                        dengan $P(A \cap B)$ adalah peluang terjadinya kejadian $A$ <strong>dan</strong> $B$ secara bersamaan.
+                    </p>
+                    <p>
+                        <strong>2. Kejadian Saling Lepas (Mutually Exclusive):</strong><br>
+                        Dua kejadian $A$ dan $B$ dikatakan <em>saling lepas</em> jika kedua kejadian tersebut tidak mungkin terjadi secara bersamaan ($A \cap B = \emptyset$, sehingga $P(A \cap B) = 0$):
+                        $$P(A \cup B) = P(A) + P(B)$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-irisan-gabungan" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Peluang Bersyarat dan Aturan Perkalian</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Peluang Bersyarat (Conditional Probability):</strong><br>
+                        Peluang terjadinya kejadian $A$ dengan syarat kejadian $B$ telah terjadi terlebih dahulu ditulis dengan notasi $P(A \mid B)$ dan dirumuskan:
+                        $$P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \quad \text{dengan } P(B) > 0$$
+                    </p>
+                    <p>
+                        Dari rumus di atas, diperoleh <strong>Aturan Perkalian Umum</strong>:
+                        $$P(A \cap B) = P(B) \times P(A \mid B) = P(A) \times P(B \mid A)$$
+                    </p>
+                    <p>
+                        <strong>Kejadian Saling Bebas (Independent Events):</strong><br>
+                        Dua kejadian $A$ dan $B$ dikatakan <em>saling bebas</em> jika terjadinya kejadian $A$ tidak mempengaruhi peluang terjadinya kejadian $B$, dan sebaliknya:
+                        $$P(A \mid B) = P(A)$$
+                        Sehingga aturan perkalian untuk dua kejadian saling bebas menjadi sangat sederhana:
+                        $$P(A \cap B) = P(A) \times P(B)$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-pohon-peluang" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Peluang Geometris (Geometric Probability)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Dalam situasi di mana ruang sampel $S$ bersifat kontinu (seperti waktu, panjang garis, luas bidang, atau volume ruang), peluang suatu titik acak jatuh pada daerah target $A$ dihitung berdasarkan perbandingan ukuran geometri:
+                        $$P(A) = \frac{\text{Ukuran } (A)}{\text{Ukuran } (S)}$$
+                    </p>
+                    <ul>
+                        <li><strong>Satu Dimensi (Panjang):</strong> $P(A) = \dfrac{\text{Panjang sub-interval } A}{\text{Panjang total interval } S}$</li>
+                        <li><strong>Dua Dimensi (Luas):</strong> $P(A) = \dfrac{\text{Luas daerah target } A}{\text{Luas daerah total } S}$</li>
+                        <li><strong>Tiga Dimensi (Volume):</strong> $P(A) = \dfrac{\text{Volume daerah target } A}{\text{Volume total } S}$</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-peluang-geometris" style="width: 100%; max-width: 300px;"></div>
+                </div>
+            </div>
+
+            <h2>7. Rangkuman Rumus Penting</h2>
+            <div class="pembahasan-box show" style="margin-bottom: 2rem;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                            <th style="padding: 0.5rem;">Konsep</th>
+                            <th style="padding: 0.5rem;">Rumus Matematis</th>
+                            <th style="padding: 0.5rem;">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.5rem;"><strong>Peluang Klasik</strong></td>
+                            <td style="padding: 0.5rem;">$P(A) = \dfrac{n(A)}{n(S)}$</td>
+                            <td style="padding: 0.5rem;">$0 \le P(A) \le 1$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.5rem;"><strong>Komplemen</strong></td>
+                            <td style="padding: 0.5rem;">$P(A^c) = 1 - P(A)$</td>
+                            <td style="padding: 0.5rem;">Peluang tidak terjadinya $A$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.5rem;"><strong>Frekuensi Harapan</strong></td>
+                            <td style="padding: 0.5rem;">$F_h(A) = n \times P(A)$</td>
+                            <td style="padding: 0.5rem;">$n = $ banyak percobaan</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.5rem;"><strong>Gabungan Umum</strong></td>
+                            <td style="padding: 0.5rem;">$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</td>
+                            <td style="padding: 0.5rem;">Kejadian tidak saling lepas</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.5rem;"><strong>Saling Lepas</strong></td>
+                            <td style="padding: 0.5rem;">$P(A \cup B) = P(A) + P(B)$</td>
+                            <td style="padding: 0.5rem;">$A \cap B = \emptyset$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.5rem;"><strong>Saling Bebas</strong></td>
+                            <td style="padding: 0.5rem;">$P(A \cap B) = P(A) \times P(B)$</td>
+                            <td style="padding: 0.5rem;">Hasil $A$ tak pengaruhi $B$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.5rem;"><strong>Peluang Bersyarat</strong></td>
+                            <td style="padding: 0.5rem;">$P(A \mid B) = \dfrac{P(A \cap B)}{P(B)}$</td>
+                            <td style="padding: 0.5rem;">$P(B) > 0$</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem;"><strong>Peluang Geometri</strong></td>
+                            <td style="padding: 0.5rem;">$P(A) = \dfrac{\text{Luas } A}{\text{Luas } S}$</td>
+                            <td style="padding: 0.5rem;">Ruang sampel kontinu (luas)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>8. Contoh Soal Terbimbing</h2>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Dua buah dadu bermata enam seimbang dilempar secara bersamaan satu kali. Tentukan peluang munculnya jumlah kedua mata dadu sama dengan $7$ atau $10$.
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Banyaknya anggota ruang sampel pelemparan $2$ dadu adalah:
+                        $$n(S) = 6 \times 6 = 36$$
+                        Misalkan:
+                        <ul>
+                            <li>$A$ adalah kejadian jumlah kedua mata dadu $7$:
+                                $$A = \{(1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1)\} \implies n(A) = 6$$
+                            </li>
+                            <li>$B$ adalah kejadian jumlah kedua mata dadu $10$:
+                                $$B = \{(4, 6), (5, 5), (6, 4)\} \implies n(B) = 3$$
+                            </li>
+                        </ul>
+                        Karena tidak ada pasangan mata dadu yang jumlahnya sekaligus $7$ dan $10$, maka kejadian $A$ dan $B$ <strong>saling lepas</strong> ($A \cap B = \emptyset$):
+                        $$P(A \cup B) = P(A) + P(B) = \frac{6}{36} + \frac{3}{36} = \frac{9}{36} = \frac{1}{4}$$
+                    </p>
+                    <div class="kesimpulan">Jadi, peluang muncul jumlah mata dadu 7 atau 10 adalah $\dfrac{1}{4}$.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Sebuah kantong berisi $5$ kelereng merah dan $3$ kelereng putih. Diambil $2$ kelereng satu demi satu <strong>tanpa pengembalian</strong>. Berapakah peluang terambilnya kelereng pertama merah dan kelereng kedua putih?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Total kelereng mula-mula $= 5 + 3 = 8$ butir.<br><br>
+                        <strong>Pengambilan 1 (Merah):</strong>
+                        $$P(M_1) = \frac{5}{8}$$
+                        Setelah 1 kelereng merah diambil tanpa pengembalian, sisa kelereng di dalam kantong menjadi $7$ butir ($4$ merah dan $3$ putih).<br><br>
+                        <strong>Pengambilan 2 (Putih bersyarat):</strong>
+                        $$P(P_2 \mid M_1) = \frac{3}{7}$$
+                        Berdasarkan aturan perkalian peluang bersyarat:
+                        $$P(M_1 \cap P_2) = P(M_1) \times P(P_2 \mid M_1) = \frac{5}{8} \times \frac{3}{7} = \frac{15}{56}$$
+                    </p>
+                    <div class="kesimpulan">Jadi, peluang terambilnya kelereng pertama merah dan kedua putih adalah $\dfrac{15}{56}$.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Sebuah sasaran panahan berbentuk persegi dengan panjang sisi $20\text{ cm}$. Di bagian dalam persegi terdapat lingkaran target dengan diameter $14\text{ cm}$. Jika sebuah anak panah dipastikan menancap pada bidang persegi secara acak, berapakah peluang anak panah tersebut mengenai area lingkaran target? (Gunakan $\pi \approx \frac{22}{7}$).
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Masalah ini diselesaikan menggunakan konsep <strong>Peluang Geometris (Luas)</strong>.<br><br>
+                        <strong>1. Luas Ruang Sampel ($S$):</strong><br>
+                        Luas seluruh bidang sasaran persegi bersisi $s = 20\text{ cm}$:
+                        $$L(S) = s^2 = 20^2 = 400\text{ cm}^2$$
+                        <br>
+                        <strong>2. Luas Daerah Target ($A$):</strong><br>
+                        Jari-jari lingkaran target adalah $r = \frac{14}{2} = 7\text{ cm}$.
+                        $$L(A) = \pi r^2 = \frac{22}{7} \times 7^2 = 154\text{ cm}^2$$
+                        <br>
+                        <strong>3. Menghitung Peluang:</strong><br>
+                        $$P(A) = \frac{L(A)}{L(S)} = \frac{154}{400} = \frac{77}{200} = 0{,}385$$
+                    </p>
+                    <div class="kesimpulan">Jadi, peluang anak panah mengenai area lingkaran target adalah $\dfrac{77}{200} = 0{,}385$.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Visualisasi Diagram Matematika dengan GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0f766e",
+                utamaMuda: "#ccfbf1",
+                aksen: "#2563eb",
+                aksenMuda: "#dbeafe",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                merah: "#dc2626",
+                merahMuda: "#fee2e2",
+                bingkai: "#334155",
+                latar: "#f8fafc",
+                teks: "#0f172a"
+            };
+
+            // 1. Ruang Sampel & Titik Sampel (Koin & Dadu)
+            const elRuang = document.getElementById("svg-ruang-sampel");
+            if (elRuang && typeof GeoSVG === "function") {
+                const W = 280, H = 190;
+                const geo = new GeoSVG("svg-ruang-sampel", W, H, {
+                    margin: 10,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                // Kotak Ruang Sampel S
+                geo.buatPersegiPanjang(10, 10, 260, 170, { fill: TEMA.latar, stroke: TEMA.bingkai, strokeWidth: 1.8, rx: 8, ry: 8 });
+                geo.buatTeks(25, 32, "S", { fontSize: "16px", fontWeight: "bold", fill: TEMA.bingkai });
+
+                // Himpunan Kejadian A (Mata Dadu Genap: 2, 4, 6)
+                geo.buatElips(130, 95, 75, 55, { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 2 });
+                geo.buatTeks(130, 58, "A = {genap}", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Titik-titik sampel di dalam A
+                const titikA = [
+                    { pt: [95, 95], lbl: "2" },
+                    { pt: [130, 115], lbl: "4" },
+                    { pt: [165, 95], lbl: "6" }
+                ];
+                titikA.forEach(t => {
+                    geo.buatTitik(t.pt, { r: 3, fill: TEMA.utama, stroke: "#fff", strokeWidth: 1.5 });
+                    geo.buatTeks(t.pt[0] + 7, t.pt[1] + 4, t.lbl, { fontSize: "12px", fontWeight: "bold", fill: TEMA.teks });
+                });
+
+                // Titik-titik sampel di luar A (Ganjil: 1, 3, 5)
+                const titikLuar = [
+                    { pt: [40, 80], lbl: "1" },
+                    { pt: [45, 140], lbl: "3" },
+                    { pt: [225, 110], lbl: "5" }
+                ];
+                titikLuar.forEach(t => {
+                    geo.buatTitik(t.pt, { r: 3, fill: TEMA.bingkai, stroke: "#fff", strokeWidth: 1.5 });
+                    geo.buatTeks(t.pt[0] + 7, t.pt[1] + 4, t.lbl, { fontSize: "12px", fontWeight: "bold", fill: TEMA.teks });
+                });
+            }
+
+            // 2. Komplemen Himpunan A^c
+            const elKomp = document.getElementById("svg-komplemen");
+            if (elKomp && typeof GeoSVG === "function") {
+                const W = 280, H = 190;
+                const geo = new GeoSVG("svg-komplemen", W, H, {
+                    margin: 10,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                // Ruang Sampel S (Latar A^c)
+                geo.buatPersegiPanjang(10, 10, 260, 170, { fill: TEMA.oranyeMuda, stroke: TEMA.bingkai, strokeWidth: 1.8, rx: 8, ry: 8 });
+                geo.buatTeks(25, 32, "S", { fontSize: "16px", fontWeight: "bold", fill: TEMA.bingkai });
+
+                // Lingkaran Kejadian A
+                geo.buatLingkaran([135, 100], 50, { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 2 });
+                geo.buatTeks(135, 95, "Kejadian A", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.utama });
+                geo.buatTeks(135, 115, "P(A)", { position: "middle-center", fontSize: "12px", fill: TEMA.utama });
+
+                // Label Komplemen di Luar Lingkaran
+                geo.buatTeks(220, 45, "A^c", { position: "middle-center", fontSize: "14px", fontWeight: "bold", fill: TEMA.oranye });
+                geo.buatTeks(200, 155, "P(A^c) = 1 - P(A)", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.oranye });
+            }
+
+            // 3. Diagram Irisan & Gabungan Peluang
+            const elIris = document.getElementById("svg-irisan-gabungan");
+            if (elIris && typeof GeoSVG === "function") {
+                const W = 300, H = 190;
+                const geo = new GeoSVG("svg-irisan-gabungan", W, H, {
+                    margin: 10,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                // Kotak Semesta
+                geo.buatPersegiPanjang(10, 10, 280, 170, { fill: TEMA.latar, stroke: TEMA.bingkai, strokeWidth: 1.8, rx: 8, ry: 8 });
+                geo.buatTeks(25, 32, "S", { fontSize: "16px", fontWeight: "bold", fill: TEMA.bingkai });
+
+                // Lingkaran A dan B beririsan
+                geo.buatLingkaran([115, 100], 50, { fill: "rgba(15, 118, 110, 0.25)", stroke: TEMA.utama, strokeWidth: 2 });
+                geo.buatLingkaran([185, 100], 50, { fill: "rgba(37, 99, 235, 0.25)", stroke: TEMA.aksen, strokeWidth: 2 });
+
+                // Label A, B, dan Irisan A ∩ B
+                geo.buatTeks(95, 100, "A", { position: "middle-center", fontSize: "14px", fontWeight: "bold", fill: TEMA.utama });
+                geo.buatTeks(205, 100, "B", { position: "middle-center", fontSize: "14px", fontWeight: "bold", fill: TEMA.aksen });
+                geo.buatTeks(150, 100, "A ∩ B", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: "#4338ca" });
+
+                geo.buatTeks(150, 162, "P(A ∪ B) = P(A) + P(B) - P(A ∩ B)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.bingkai
+                });
+            }
+
+            // 4. Diagram Pohon Peluang (Tree Diagram)
+            const elPohon = document.getElementById("svg-pohon-peluang");
+            if (elPohon && typeof GeoSVG === "function") {
+                const W = 300, H = 190;
+                const geo = new GeoSVG("svg-pohon-peluang", W, H, {
+                    margin: 10,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                const root = [25, 95];
+                const nodeM1 = [130, 50];
+                const nodeP1 = [130, 140];
+
+                const nodeM2_1 = [250, 30];
+                const nodeP2_1 = [250, 75];
+                const nodeM2_2 = [250, 115];
+                const nodeP2_2 = [250, 160];
+
+                // Cabang Pertama
+                geo.buatSegmen(root, nodeM1, { stroke: TEMA.merah, strokeWidth: 1.8 });
+                geo.buatSegmen(root, nodeP1, { stroke: TEMA.aksen, strokeWidth: 1.8 });
+
+                // Cabang Kedua
+                geo.buatSegmen(nodeM1, nodeM2_1, { stroke: TEMA.merah, strokeWidth: 1.5 });
+                geo.buatSegmen(nodeM1, nodeP2_1, { stroke: TEMA.aksen, strokeWidth: 1.5 });
+                geo.buatSegmen(nodeP1, nodeM2_2, { stroke: TEMA.merah, strokeWidth: 1.5 });
+                geo.buatSegmen(nodeP1, nodeP2_2, { stroke: TEMA.aksen, strokeWidth: 1.5 });
+
+                // Titik Node
+                [root, nodeM1, nodeP1, nodeM2_1, nodeP2_1, nodeM2_2, nodeP2_2].forEach(p => {
+                    geo.buatTitik(p, { r: 3.5, fill: TEMA.bingkai, stroke: "#fff", strokeWidth: 1.5 });
+                });
+
+                // Label Cabang 1
+                geo.buatTeks(65, 62, "M (5/8)", { fontSize: "10px", fontWeight: "bold", fill: TEMA.merah });
+                geo.buatTeks(65, 128, "P (3/8)", { fontSize: "10px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Label Cabang 2
+                geo.buatTeks(180, 32, "M (4/7)", { fontSize: "9px", fill: TEMA.merah });
+                geo.buatTeks(180, 72, "P (3/7)", { fontSize: "9px", fontWeight: "bold", fill: TEMA.aksen });
+                geo.buatTeks(180, 118, "M (5/7)", { fontSize: "9px", fill: TEMA.merah });
+                geo.buatTeks(180, 158, "P (2/7)", { fontSize: "9px", fill: TEMA.aksen });
+
+                // Label Hasil
+                geo.buatTeks(nodeM2_1[0] + 8, nodeM2_1[1] + 3, "MM", { fontSize: "10px", fill: TEMA.teks });
+                geo.buatTeks(nodeP2_1[0] + 8, nodeP2_1[1] + 3, "MP", { fontSize: "10px", fontWeight: "bold", fill: TEMA.utama });
+                geo.buatTeks(nodeM2_2[0] + 8, nodeM2_2[1] + 3, "PM", { fontSize: "10px", fill: TEMA.teks });
+                geo.buatTeks(nodeP2_2[0] + 8, nodeP2_2[1] + 3, "PP", { fontSize: "10px", fill: TEMA.teks });
+            }
+
+            // 5. Peluang Geometri (Target Panahan Persegi & Lingkaran)
+            const elGeom = document.getElementById("svg-peluang-geometris");
+            if (elGeom && typeof GeoSVG === "function") {
+                const W = 260, H = 200;
+                const geo = new GeoSVG("svg-peluang-geometris", W, H, {
+                    margin: 10,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                const cx = 130, cy = 100, s = 140, r = 50;
+
+                // Persegi Luar
+                geo.buatPersegiPanjang(cx - s / 2, cy - s / 2, s, s, {
+                    fill: TEMA.oranyeMuda,
+                    stroke: TEMA.oranye,
+                    strokeWidth: 2,
+                    rx: 4,
+                    ry: 4
+                });
+
+                // Lingkaran Target Dalam
+                geo.buatLingkaran([cx, cy], r, {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2
+                });
+
+                // Titik Pusat & Jari-jari
+                geo.buatTitik([cx, cy], { r: 3, fill: TEMA.utama });
+                geo.buatSegmen([cx, cy], [cx + r, cy], { stroke: TEMA.utama, strokeWidth: 1.5, strokeDasharray: "3,2" });
+                geo.buatTeks(cx + 22, cy - 6, "r", { fontSize: "11px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Label Sisi Persegi
+                geo.buatTeks(cx, cy + s / 2 + 16, "sisi = 20 cm", { position: "top-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Label Target
+                geo.buatTeks(cx, cy + 22, "Area Target", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.utama });
+            }
+        });
+    </script>
+</body>
+
+</html>

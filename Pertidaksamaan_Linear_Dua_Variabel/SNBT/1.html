@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Pertidaksamaan Linear Dua Variabel</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Pertidaksamaan Linear Dua Variabel</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper pagsoal"></div>
+
+        <!-- ================= DAFTAR 10 SOAL ================= -->
+
+        <!-- SOAL 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sebuah pabrik roti memproduksi dua jenis roti, yaitu Roti A ($x$) dan Roti B ($y$). 
+                Untuk membuat satu bungkus Roti A diperlukan $200\text{ gram}$ tepung dan $50\text{ gram}$ mentega.
+                Untuk membuat satu bungkus Roti B diperlukan $100\text{ gram}$ tepung dan $75\text{ gram}$ mentega.
+                Bahan yang tersedia setiap hari adalah paling banyak $6\text{ kg}$ tepung dan $3\text{ kg}$ mentega.
+                Jika keuntungan penjualan satu bungkus Roti A adalah $\text{Rp}5.000,00$ dan Roti B adalah $\text{Rp}4.000,00$, maka keuntungan maksimum yang dapat diperoleh pabrik tersebut per hari adalah ....
+                <ol class="pilgan">
+                    <li>$\text{Rp}150.000,00$</li>
+                    <li>$\text{Rp}160.000,00$</li>
+                    <li>$\text{Rp}180.000,00$</li>
+                    <li>$\text{Rp}195.000,00$</li>
+                    <li>$\text{Rp}210.000,00$</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan banyaknya Roti A yang diproduksi adalah $x$ bungkus dan Roti B adalah $y$ bungkus ($x \ge 0, y \ge 0$).<br><br>
+                    <strong>1. Model matematika kendala bahan baku:</strong><br>
+                    <ul>
+                        <li>Persediaan tepung ($6\text{ kg} = 6.000\text{ gram}$):
+                        $$200x + 100y \le 6.000 \iff 2x + y \le 60$$
+                        </li>
+                        <li>Persediaan mentega ($3\text{ kg} = 3.000\text{ gram}$):
+                        $$50x + 75y \le 3.000 \iff 2x + 3y \le 120$$
+                        </li>
+                    </ul>
+
+                    <strong>2. Fungsi objektif (keuntungan maksimum):</strong><br>
+                    $$Z(x, y) = 5.000x + 4.000y$$
+
+                    <strong>3. Menentukan titik pojok daerah penyelesaian:</strong><br>
+                    <ul>
+                        <li>Titik potong sumbu-$x$ dari garis $2x + y = 60 \implies (30, 0)$.</li>
+                        <li>Titik potong sumbu-$y$ dari garis $2x + 3y = 120 \implies (0, 40)$.</li>
+                        <li>Titik potong kedua garis batas:
+                        $$\begin{aligned}
+                        2x + 3y &= 120 \\
+                        2x + y &= 60
+                        \end{aligned}$$
+                        Kurangkan kedua persamaan:
+                        $$2y = 60 \implies y = 30$$
+                        Substitusikan nilai $y = 30$ ke persamaan $2x + 30 = 60 \implies 2x = 30 \implies x = 15$.<br>
+                        Titik potong adalah $(15, 30)$.
+                        </li>
+                        <li>Titik asal: $(0, 0)$.</li>
+                    </ul>
+
+                    <!-- Visualisasi Grafik Daerah Penyelesaian SNBT -->
+                    <div id="grafik-pembahasan-snbt-1" style="display: flex; justify-content: center; margin: 1.25rem 0;"></div>
+
+                    <strong>4. Uji nilai fungsi objektif pada setiap titik pojok:</strong><br>
+                    <ul>
+                        <li>$Z(0, 0) = 0$</li>
+                        <li>$Z(30, 0) = 5.000(30) + 4.000(0) = \text{Rp}150.000,00$</li>
+                        <li>$Z(0, 40) = 5.000(0) + 4.000(40) = \text{Rp}160.000,00$</li>
+                        <li>$Z(15, 30) = 5.000(15) + 4.000(30) = 75.000 + 120.000 = \text{Rp}195.000,00$ <strong>(Maksimum)</strong></li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, keuntungan maksimum yang dapat diperoleh pabrik tersebut per hari adalah $\text{Rp}195.000,00$.<br><b>JAWAB: D</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 3
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 4 
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 5 
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 6 
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 7 
+        <article class="soal-item" id="7">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 8 
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 9 
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- SOAL 10 
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tulis teks soal kedua di sini...
+            </div>
+            <div class="soal-sumber"></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Tulis pembahasan soal kedua di sini...
+                    <div class="kesimpulan">Jadi, </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+-->
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Visualisasi Grafik Pembahasan SNBT dengan GeoSVG.js -->
+    <script>
+        function gambarGrafikSNBT() {
+            if (typeof GeoSVG === "undefined") {
+                setTimeout(gambarGrafikSNBT, 100);
+                return;
+            }
+
+            const container = document.getElementById("grafik-pembahasan-snbt-1");
+            if (!container) return;
+
+            const width = 390;
+            const height = 320;
+            const geo = new GeoSVG("grafik-pembahasan-snbt-1", width, height, {
+                margin: 25,
+                defaultStrokeWidth: 1.5,
+                fontFamily: "Rubik, sans-serif",
+                fontSize: "12px",
+                clearContainer: true
+            });
+
+            // Konfigurasi sistem koordinat
+            // Rentang x: 0 - 65, Rentang y: 0 - 65
+            const ox = 45;
+            const oy = 265;
+            const sx = 4.8;
+            const sy = 3.8;
+            const toSVG = (x, y) => [ox + x * sx, oy - y * sy];
+
+            // 1. Poligon Daerah Penyelesaian (DP)
+            // Titik pojok: (0, 0), (30, 0), (15, 30), (0, 40)
+            const polyMath = [
+                [0, 0],
+                [30, 0],
+                [15, 30],
+                [0, 40]
+            ];
+            const polySVG = polyMath.map(p => toSVG(p[0], p[1]));
+            geo.buatPoligon(polySVG, {
+                fill: "#14b8a6",
+                fillOpacity: 0.35,
+                stroke: "#0d9488",
+                strokeWidth: 1.5
+            });
+
+            // Label DP
+            const ptDP = toSVG(10, 15);
+            geo.buatTeks(ptDP[0], ptDP[1], "DP", {
+                position: "middle-center",
+                fontSize: "14px",
+                fontWeight: "bold",
+                fill: "#0f766e"
+            });
+
+            // 2. Garis Pembatas
+            // Garis 1: 2x + y = 60 -> y = 60 - 2x
+            geo.buatSegmen(toSVG(-2, 64), toSVG(32, -4), {
+                stroke: "#2563eb",
+                strokeWidth: 2
+            });
+
+            // Garis 2: 2x + 3y = 120 -> y = 40 - (2/3)x
+            geo.buatSegmen(toSVG(-3, 42), toSVG(64, -2.67), {
+                stroke: "#d97706",
+                strokeWidth: 2
+            });
+
+            // Label Persamaan Garis
+            const lblG1 = toSVG(22, 20);
+            geo.buatTeks(lblG1[0], lblG1[1], "2x + y = 60", {
+                position: "middle-left",
+                fontSize: "11px",
+                fontWeight: "bold",
+                fill: "#1d4ed8"
+            });
+
+            const lblG2 = toSVG(40, 16);
+            geo.buatTeks(lblG2[0], lblG2[1], "2x + 3y = 120", {
+                position: "middle-left",
+                fontSize: "11px",
+                fontWeight: "bold",
+                fill: "#b45309"
+            });
+
+            // 3. Garis Putus-putus Proyeksi Titik Potong (15, 30)
+            const pt1530 = toSVG(15, 30);
+            const pt1500 = toSVG(15, 0);
+            const pt0030 = toSVG(0, 30);
+            geo.buatSegmen(pt1530, pt1500, { stroke: "#64748b", strokeWidth: 1.2, strokeDasharray: "3,3" });
+            geo.buatSegmen(pt1530, pt0030, { stroke: "#64748b", strokeWidth: 1.2, strokeDasharray: "3,3" });
+
+            // Titik Pojok
+            const cornerPts = [
+                { pt: toSVG(0, 0), lbl: "(0, 0)", pos: [-12, 15] },
+                { pt: toSVG(30, 0), lbl: "(30, 0)", pos: [0, -12] },
+                { pt: toSVG(15, 30), lbl: "(15, 30)", pos: [6, -8] },
+                { pt: toSVG(0, 40), lbl: "(0, 40)", pos: [8, 0] }
+            ];
+
+            cornerPts.forEach(c => {
+                geo.buatTitik(c.pt, { r: 3.5, fill: "#0f766e", stroke: "#ffffff", strokeWidth: 1.5 });
+                geo.buatTeks(c.pt[0] + c.pos[0], c.pt[1] + c.pos[1], c.lbl, {
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: "#0f766e"
+                });
+            });
+
+            // 4. Sumbu Koordinat Kartesius
+            geo.buatVektor(toSVG(-4, 0), toSVG(68, 0), { stroke: "#334155", strokeWidth: 1.8 });
+            geo.buatVektor(toSVG(0, -4), toSVG(0, 68), { stroke: "#334155", strokeWidth: 1.8 });
+
+            // Label Sumbu
+            const lblX = toSVG(68, 0);
+            geo.buatTeks(lblX[0] + 6, lblX[1] + 4, "x", { fontSize: "13px", fontWeight: "bold" });
+            const lblY = toSVG(0, 68);
+            geo.buatTeks(lblY[0] - 14, lblY[1] - 4, "y", { fontSize: "13px", fontWeight: "bold" });
+
+            // 5. Tanda & Angka Skala pada Sumbu
+            [15, 30, 60].forEach(val => {
+                const pt = toSVG(val, 0);
+                geo.buatSegmen([pt[0], pt[1] - 3], [pt[0], pt[1] + 3], { stroke: "#334155", strokeWidth: 1.5 });
+                geo.buatTeks(pt[0], pt[1] + 16, String(val), {
+                    position: "top-center",
+                    fontSize: "11px",
+                    fontWeight: "bold"
+                });
+            });
+
+            [30, 40, 60].forEach(val => {
+                const pt = toSVG(0, val);
+                geo.buatSegmen([pt[0] - 3, pt[1]], [pt[0] + 3, pt[1]], { stroke: "#334155", strokeWidth: 1.5 });
+                geo.buatTeks(pt[0] - 14, pt[1], String(val), {
+                    position: "middle-right",
+                    fontSize: "11px",
+                    fontWeight: "bold"
+                });
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            gambarGrafikSNBT();
+            const btnSolusi = document.querySelector(".btn-solusi");
+            if (btnSolusi) {
+                btnSolusi.addEventListener("click", () => {
+                    setTimeout(gambarGrafikSNBT, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

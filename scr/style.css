@@ -573,6 +573,12 @@ ol.pilgan {
     gap: 0.6rem 2rem;
 }
 
+/* Otomatis 2 baris jika hanya ada 4 opsi: A-B di kiri, C-D di kanan */
+ol.pilgan:has(> li:nth-child(4):last-child),
+ol.pilgan.pilgan-4opsi {
+    grid-template-rows: repeat(2, auto);
+}
+
 ol.pilgan li {
     counter-increment: opsi-counter;
     display: flex;
@@ -615,6 +621,8 @@ ol.pilgan.pilgan-5kolom {
 @media (max-width: 540px) {
 
     ol.pilgan,
+    ol.pilgan:has(> li:nth-child(4):last-child),
+    ol.pilgan.pilgan-4opsi,
     ol.pilgan.pilgan-3kolom,
     ol.pilgan.pilgan-5kolom {
         grid-template-columns: 1fr;

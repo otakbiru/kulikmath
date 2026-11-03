@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Perbandingan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+
+    <style>
+        /* Styling tambahan khusus halaman materi agar visualisasi GeoSVG lebih rapi */
+        .geosvg-box {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: auto;
+        }
+
+        .geosvg-caption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .materi-card h3 {
+            color: var(--text-main);
+            margin: 1.25rem 0 0.5rem;
+            font-size: 1.15rem;
+            border-left: 3px solid var(--teal-primary);
+            padding-left: 0.6rem;
+        }
+
+        .rumus-box {
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--teal-light);
+            border-left: 4px solid var(--teal-primary);
+            padding: 1rem 1.25rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .contoh-box {
+            background-color: var(--bg-body);
+            border: 1px dashed var(--border-color);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .contoh-title {
+            font-weight: 700;
+            color: var(--teal-primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Perbandingan</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Rasio dan Perbandingan</h2>
+            <p>
+                <strong>Perbandingan (Rasio)</strong> adalah cara matematika untuk membandingkan dua besaran atau lebih yang sejenis. Jika terdapat dua besaran $a$ dan $b$ yang memiliki satuan yang sama (dengan $b \neq 0$), maka perbandingan antara $a$ dan $b$ dapat dinyatakan dalam tiga bentuk:
+            </p>
+            <ul>
+                <li>Menggunakan kata: "$a$ berbanding $b$"</li>
+                <li>Menggunakan tanda titik dua: $a : b$</li>
+                <li>Menggunakan bentuk pecahan: $\dfrac{a}{b}$</li>
+            </ul>
+
+            <h3>Syarat Menyederhanakan Perbandingan</h3>
+            <ol>
+                <li><strong>Satuan harus sama:</strong> Jika membandingkan $50\text{ cm}$ dengan $2\text{ m}$, ubah terlebih dahulu ke satuan yang sama menjadi $50\text{ cm} : 200\text{ cm}$.</li>
+                <li><strong>Bentuk paling sederhana:</strong> Bagi kedua bilangan dengan Faktor Persekutuan Terbesar ($\text{FPB}$)-nya hingga keduanya menjadi bilangan bulat terkecil yang saling prima ($\text{FPB}(a,b) = 1$). Contoh: $50 : 200 = 1 : 4$.</li>
+            </ol>
+
+            <div class="geosvg-box">
+                <div id="svg-rasio-segmen"></div>
+                <div class="geosvg-caption">
+                    Gambar 1.1: Visualisasi perbandingan ruas garis $AP : PB = 3 : 2$. Panjang total $AB$ terbagi menjadi $3 + 2 = 5$ bagian sama panjang.
+                </div>
+            </div>
+
+            <h3>Menentukan Nilai Besaran dari Rasio yang Diketahui</h3>
+            <p>
+                Misalkan perbandingan dua besaran adalah $A : B = m : n$. Kita dapat memisalkan nilai sebenarnya dengan suatu pengali (konstanta proporsionalitas) $k$, sehingga $A = mk$ dan $B = nk$. Secara langsung berlaku rumus berikut:
+            </p>
+            <div class="rumus-box">
+                <ul>
+                    <li>Jika diketahui <strong>Jumlah</strong> ($A + B$):
+                        $$A = \frac{m}{m + n} \times (A + B) \quad \text{dan} \quad B = \frac{n}{m + n} \times (A + B)$$
+                    </li>
+                    <li>Jika diketahui <strong>Selisih</strong> ($|A - B|$):
+                        $$A = \frac{m}{|m - n|} \times |A - B| \quad \text{dan} \quad B = \frac{n}{|m - n|} \times |A - B|$$
+                    </li>
+                </ul>
+            </div>
+
+            <h2>2. Perbandingan Bertingkat (Tiga Besaran atau Lebih)</h2>
+            <p>
+                Seringkali kita diberikan dua perbandingan terpisah yang memuat satu variabel perantara yang sama, misalnya diketahui rasio $A : B = p : q$ dan $B : C = r : s$. Untuk menggabungkannya menjadi rasio tunggal $A : B : C$, kita harus menyamakan nilai perbandingan pada variabel yang beririsan ($B$) menggunakan $\text{KPK}$ dari $q$ dan $r$, atau dengan metode perkalian silang-bawah (<strong>Metode Petir / Huruf N</strong>):
+            </p>
+            <div class="rumus-box">
+                $$\left. \begin{array}{c} A : B = p : q \\ B : C = r : s \end{array} \right\} \implies A : B : C = (p \cdot r) : (q \cdot r) : (q \cdot s)$$
+            </div>
+
+            <div class="contoh-box">
+                <span class="contoh-title">Contoh 2.1:</span>
+                <p>
+                    Perbandingan uang Andi dan Budi adalah $2 : 3$, sedangkan perbandingan uang Budi dan Cici adalah $4 : 5$. Jika jumlah uang mereka bertiga adalah $\text{Rp}700.000,00$, tentukan uang Budi!
+                </p>
+                <p><strong>Penyelesaian:</strong></p>
+                <p>
+                    Kita setarakan bagian Budi ($3$ dan $4$) ke $\text{KPK}(3,4) = 12$:
+                    $$A : B : C = (2 \times 4) : (3 \times 4) : (3 \times 5) = 8 : 12 : 15$$
+                    Total bagian $= 8 + 12 + 15 = 35$ bagian. Maka uang Budi adalah:
+                    $$\text{Uang Budi} = \frac{12}{35} \times \text{Rp}700.000,00 = \text{Rp}240.000,00$$
+                </p>
+            </div>
+
+            <h2>3. Perbandingan Senilai (Berbanding Lurus)</h2>
+            <p>
+                Dua besaran $x$ dan $y$ dikatakan memiliki <strong>perbandingan senilai</strong> (<em>direct proportion</em>) jika ketika nilai besaran $x$ <strong>bertambah</strong>, nilai besaran $y$ juga <strong>bertambah</strong> dengan laju rasio yang tetap (dan sebaliknya).
+            </p>
+            <div class="row">
+                <div class="col-2">
+                    <div class="rumus-box">
+                        <p><strong>Sifat Matematis Perbandingan Senilai:</strong></p>
+                        <ul>
+                            <li>Hasil bagi kedua besaran selalu konstan: $\dfrac{y}{x} = k \iff y = kx$</li>
+                            <li>Hubungan dua keadaan $(x_1, y_1)$ dan $(x_2, y_2)$:
+                                $$\frac{x_1}{x_2} = \frac{y_1}{y_2} \iff x_1 y_2 = x_2 y_1$$
+                            </li>
+                            <li>Grafik hubungan $x$ dan $y$ pada bidang Kartesius berupa <strong>garis lurus</strong> yang melewati titik pangkal $(0,0)$.</li>
+                        </ul>
+                    </div>
+                    <p><strong>Contoh kejadian perbandingan senilai:</strong></p>
+                    <ul>
+                        <li>Banyak barang yang dibeli dengan total harga yang harus dibayar.</li>
+                        <li>Jarak tempuh kendaraan dengan bahan bakar yang dihabiskan.</li>
+                        <li>Jumlah pekerja dengan banyaknya produk yang dihasilkan (dalam waktu tetap).</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <div class="geosvg-box">
+                        <div id="svg-grafik-senilai"></div>
+                        <div class="geosvg-caption">Gambar 3.1: Grafik Perbandingan Senilai ($y = kx$) berupa garis lurus melalui $(0,0)$.</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>4. Perbandingan Berbalik Nilai</h2>
+            <p>
+                Dua besaran $x$ dan $y$ dikatakan memiliki <strong>perbandingan berbalik nilai</strong> (<em>inverse proportion</em>) jika ketika nilai besaran $x$ <strong>bertambah</strong>, nilai besaran $y$ justru <strong>berkurang</strong> sedemikian sehingga hasil kali keduanya selalu konstan.
+            </p>
+            <div class="row">
+                <div class="col-2">
+                    <div class="rumus-box">
+                        <p><strong>Sifat Matematis Perbandingan Berbalik Nilai:</strong></p>
+                        <ul>
+                            <li>Hasil kali kedua besaran selalu konstan: $x \cdot y = k \iff y = \dfrac{k}{x}$</li>
+                            <li>Hubungan dua keadaan $(x_1, y_1)$ dan $(x_2, y_2)$:
+                                $$\frac{x_1}{x_2} = \frac{y_2}{y_1} \iff x_1 y_1 = x_2 y_2$$
+                            </li>
+                            <li>Grafik hubungan $x$ dan $y$ (untuk $x, y > 0$) berupa kurva lengkung mulus (<strong>hiperbola</strong>) yang mendekati sumbu-sumbu koordinat (asimtotik).</li>
+                        </ul>
+                    </div>
+                    <p><strong>Contoh kejadian perbandingan berbalik nilai:</strong></p>
+                    <ul>
+                        <li>Kecepatan rata-rata kendaraan dengan waktu tempuh untuk jarak yang tetap ($s = v \cdot t$).</li>
+                        <li>Banyaknya pekerja dengan waktu yang dibutuhkan untuk menyelesaikan suatu proyek.</li>
+                        <li>Banyaknya hewan ternak dengan lama waktu habisnya persediaan pakan di gudang.</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <div class="geosvg-box">
+                        <div id="svg-grafik-berbalik"></div>
+                        <div class="geosvg-caption">Gambar 4.1: Grafik Perbandingan Berbalik Nilai ($x \cdot y = k$) berupa kurva hiperbola.</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Tabel Perbedaan Perbandingan Senilai vs Berbalik Nilai</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspek Pembanding</th>
+                            <th>Perbandingan Senilai</th>
+                            <th>Perbandingan Berbalik Nilai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Arah Perubahan Nilai</strong></td>
+                            <td>$x \uparrow \implies y \uparrow$ &nbsp;atau&nbsp; $x \downarrow \implies y \downarrow$</td>
+                            <td>$x \uparrow \implies y \downarrow$ &nbsp;atau&nbsp; $x \downarrow \implies y \uparrow$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Besaran yang Konstan ($k$)</strong></td>
+                            <td>Rasio / Hasil Bagi $\left(\dfrac{y}{x} = k\right)$</td>
+                            <td>Hasil Kali $(x \cdot y = k)$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Persamaan Proporsi</strong></td>
+                            <td>$\dfrac{x_1}{x_2} = \dfrac{y_1}{y_2}$</td>
+                            <td>$\dfrac{x_1}{x_2} = \dfrac{y_2}{y_1}$</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Bentuk Grafik ($x, y > 0$)</strong></td>
+                            <td>Garis lurus melalui $(0,0)$</td>
+                            <td>Kurva lengkung hiperbola</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>5. Perbandingan Campuran & Masalah Proyek (Pekerjaan)</h2>
+            <p>
+                Dalam soal-soal seleksi seperti SNBT dan olimpiade, sering muncul masalah perbandingan yang melibatkan <strong>tiga variabel sekaligus</strong>: <em>Beban Pekerjaan / Objek</em> ($O$), <em>Jumlah Pekerja / Subjek</em> ($S$), dan <em>Waktu</em> ($T$).
+            </p>
+            <p>
+                Berdasarkan analisis fisik: banyaknya objek yang selesai ($O$) berbanding lurus dengan jumlah pekerja ($S$) dan waktu kerja ($T$). Dengan demikian, rasio $\dfrac{O}{S \cdot T}$ bernilai konstan:
+            </p>
+            <div class="rumus-box">
+                $$\frac{O_1}{S_1 \cdot T_1} = \frac{O_2}{S_2 \cdot T_2}$$
+                <p style="margin-top: 0.5rem; margin-bottom: 0; font-size: 0.9rem;">
+                    <strong>Keterangan:</strong><br>
+                    $O = $ Objek / Hasil kerja (misal: jumlah rumah dibangun, luas lahan digarap, panjang jalan diaspal)<br>
+                    $S = $ Subjek / Pelaku (misal: jumlah pekerja, banyaknya mesin)<br>
+                    $T = $ Waktu pengerjaan (misal: jumlah hari, jam kerja)
+                </p>
+            </div>
+
+            <h3>Kasus Proyek Terhenti (Kendala di Tengah Jalan)</h3>
+            <p>
+                Misalkan suatu proyek direncanakan selesai oleh $P_1$ orang pekerja dalam waktu $H_{\text{rencana}}$ hari. Setelah dikerjakan selama $H_{\text{kerja}}$ hari, proyek terhenti selama $H_{\text{libur}}$ hari. Agar proyek tetap selesai tepat waktu, diperlukan tambahan pekerja $(\Delta P)$ yang dapat dihitung dengan menyamakan total "orang-hari" (beban kerja) atau menggunakan rumus cepat:
+            </p>
+            <div class="rumus-box">
+                $$\text{Beban Kerja Total} = \text{Beban Terlaksana} \implies P_1 \cdot H_{\text{rencana}} = (P_1 \cdot H_{\text{kerja}}) + (P_2 \cdot H_{\text{sisa}})$$
+                $$\text{Tambahan Pekerja } (\Delta P) = P_2 - P_1 = \frac{P_1 \times H_{\text{libur}}}{H_{\text{sisa}}}$$
+                <p style="margin-top: 0.5rem; margin-bottom: 0; font-size: 0.9rem;">
+                    dengan $H_{\text{sisa}} = H_{\text{rencana}} - H_{\text{kerja}} - H_{\text{libur}}$ adalah sisa hari efektif yang tersedia.
+                </p>
+            </div>
+
+            <div class="contoh-box">
+                <span class="contoh-title">Contoh 5.1:</span>
+                <p>
+                    Suatu proyek jembatan direncanakan selesai dalam $40$ hari oleh $25$ pekerja. Setelah dikerjakan selama $16$ hari, pekerjaan dihentikan selama $4$ hari karena cuaca buruk. Berapa pekerja tambahan yang dibutuhkan agar proyek selesai tepat waktu?
+                </p>
+                <p><strong>Penyelesaian:</strong></p>
+                <p>
+                    Diketahui $P_1 = 25$, $H_{\text{rencana}} = 40$, $H_{\text{kerja}} = 16$, dan $H_{\text{libur}} = 4$.<br>
+                    Sisa hari efektif: $H_{\text{sisa}} = 40 - 16 - 4 = 20\text{ hari}$.<br>
+                    Tambahan pekerja yang diperlukan:
+                    $$\Delta P = \frac{P_1 \times H_{\text{libur}}}{H_{\text{sisa}}} = \frac{25 \times 4}{20} = 5\text{ orang pekerja.}$$
+                </p>
+            </div>
+
+            <h3>Penggabungan Laju Kerja (Harmonik)</h3>
+            <p>
+                Jika pekerja $A$ sendirian dapat menyelesaikan suatu pekerjaan dalam waktu $t_A$, dan pekerja $B$ sendirian dapat menyelesaikannya dalam waktu $t_B$, maka dalam $1$ satuan waktu, $A$ menyelesaikan $\dfrac{1}{t_A}$ bagian dan $B$ menyelesaikan $\dfrac{1}{t_B}$ bagian. Jika mereka bekerja bersama-sama, waktu total $t_{\text{total}}$ memenuhi:
+            </p>
+            <div class="rumus-box">
+                $$\frac{1}{t_{\text{total}}} = \frac{1}{t_A} + \frac{1}{t_B} \iff t_{\text{total}} = \frac{t_A \cdot t_B}{t_A + t_B}$$
+            </div>
+
+            <h2>6. Skala dan Perbandingan Ukuran Geometri</h2>
+            <p>
+                <strong>Skala</strong> adalah perbandingan antara ukuran gambar pada peta/maket ($J_p$) dengan ukuran sebenarnya di lapangan ($J_s$) dalam satuan panjang yang sama (umumnya dalam $\text{cm}$).
+            </p>
+            <div class="rumus-box">
+                $$\text{Skala} = \frac{\text{Jarak pada Peta } (J_p)}{\text{Jarak Sebenarnya } (J_s)} = 1 : k$$
+            </div>
+
+            <h3>Perbandingan Keliling, Luas, dan Volume pada Dilatasi / Skala</h3>
+            <p>
+                Perhatikan bahwa skala $1 : k$ adalah perbandingan untuk <strong>dimensi panjang (linier / 1D)</strong>. Ketika suatu bangun datar atau bangun ruang diperbesar dengan faktor skala panjang $k_1 : k_2$, maka keliling, luas, dan volumenya akan berubah mengikuti pangkat dimensinya:
+            </p>
+            <ul>
+                <li><strong>Perbandingan Panjang / Keliling (1 Dimensi):</strong> $\dfrac{K_1}{K_2} = \dfrac{s_1}{s_2} = \dfrac{k_1}{k_2}$</li>
+                <li><strong>Perbandingan Luas (2 Dimensi):</strong> $\dfrac{L_1}{L_2} = \left(\dfrac{s_1}{s_2}\right)^2 = \left(\dfrac{k_1}{k_2}\right)^2$</li>
+                <li><strong>Perbandingan Volume (3 Dimensi):</strong> $\dfrac{V_1}{V_2} = \left(\dfrac{s_1}{s_2}\right)^3 = \left(\dfrac{k_1}{k_2}\right)^3$</li>
+            </ul>
+            <p>
+                Oleh karena itu, jika sebuah peta memiliki skala $1 : k$, maka hubungan antara <strong>Luas pada Peta ($L_p$)</strong> dan <strong>Luas Sebenarnya ($L_s$)</strong> adalah:
+                $$L_s = k^2 \times L_p$$
+            </p>
+
+            <div class="geosvg-box">
+                <div id="svg-skala-luas"></div>
+                <div class="geosvg-caption">
+                    Gambar 6.1: Jika perbandingan sisi dua persegi adalah $1 : 3$, maka perbandingan luasnya adalah $1^2 : 3^2 = 1 : 9$ (persegi besar memuat $9$ petak persegi satuan).
+                </div>
+            </div>
+
+            <h2>7. Perbandingan dalam Geometri (Kesebangunan & Garis Sejajar)</h2>
+            <p>
+                Konsep perbandingan sangat erat kaitannya dengan geometri bidang, khususnya pada <strong>Teorema Proporsionalitas Thales</strong> dan <strong>Kesebangunan Segitiga</strong>.
+            </p>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Pada $\triangle ABC$, jika ditarik garis $DE$ yang sejajar dengan sisi alas $BC$ ($DE \parallel BC$), maka garis $DE$ membagi sisi $AB$ dan $AC$ secara proporsional, serta membentuk $\triangle ADE$ yang sebangun dengan $\triangle ABC$ ($\triangle ADE \sim \triangle ABC$).
+                    </p>
+                    <div class="rumus-box">
+                        <p><strong>1. Perbandingan Ruas Sisi Samping (Thales):</strong></p>
+                        $$\frac{AD}{DB} = \frac{AE}{EC}$$
+                        <p><strong>2. Perbandingan Sisi Segitiga Sebangun (termasuk sisi sejajar):</strong></p>
+                        $$\frac{AD}{AB} = \frac{AE}{AC} = \frac{DE}{BC} \quad \text{dengan } AB = AD + DB$$
+                        <p><strong>3. Perbandingan Luas Segitiga:</strong></p>
+                        $$\frac{\text{Luas }\triangle ADE}{\text{Luas }\triangle ABC} = \left(\frac{AD}{AB}\right)^2 = \left(\frac{DE}{BC}\right)^2$$
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="geosvg-box">
+                        <div id="svg-thales"></div>
+                        <div class="geosvg-caption">Gambar 7.1: Teorema Thales dan Kesebangunan pada $\triangle ABC$ dengan $DE \parallel BC$.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kesimpulan">
+                💡 Tips Penting: Saat menyelesaikan soal cerita perbandingan, langkah pertama yang wajib dilakukan adalah menguji logika soal: "Jika besaran A diperbesar, apakah besaran B ikut membesar (Senilai) atau justru mengecil (Berbalik Nilai)?" Jangan langsung mengalikan silang sebelum menentukan jenis perbandingannya!
+            </div>
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Script Visualisasi Geometri dengan GeoSVG.js -->
+    <script>
+        function renderAllGeoSVG() {
+            const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+            const cText = isDark ? "#f1f5f9" : "#0f172a";
+            const cMuted = isDark ? "#94a3b8" : "#64748b";
+            const cGrid = isDark ? "#334155" : "#e2e8f0";
+            const cTeal = isDark ? "#2dd4bf" : "#0d9488";
+            const cAmber = isDark ? "#fbbf24" : "#d97706";
+            const cBlue = isDark ? "#60a5fa" : "#2563eb";
+            const cRose = isDark ? "#fb7185" : "#e11d48";
+
+            /* ==============================================================
+               1. VISUALISASI PEMBAGIAN RUAS GARIS (RASIO 3 : 2)
+               ============================================================== */
+            const elSegmen = document.getElementById("svg-rasio-segmen");
+            if (elSegmen && typeof GeoSVG !== "undefined") {
+                const geo1 = new GeoSVG(elSegmen, 520, 130, {
+                    clearContainer: true,
+                    defaultStroke: cText,
+                    fontFamily: "Inter, sans-serif"
+                });
+
+                const yLine = 65;
+                const xStart = 50;
+                const step = 84; // 5 bagian x 84 = 420px
+                const xP = xStart + 3 * step;
+                const xEnd = xStart + 5 * step;
+
+                // Segmen AP (3 bagian) dan PB (2 bagian)
+                geo1.buatSegmen(xStart, yLine, xP, yLine, { stroke: cTeal, strokeWidth: 4 });
+                geo1.buatSegmen(xP, yLine, xEnd, yLine, { stroke: cAmber, strokeWidth: 4 });
+
+                // Titik-titik pembagi 5 bagian sama panjang + tanda sama panjang
+                for (let i = 0; i <= 5; i++) {
+                    const xi = xStart + i * step;
+                    if (i > 0 && i < 5 && i !== 3) {
+                        geo1.buatSegmen(xi, yLine - 6, xi, yLine + 6, { stroke: cMuted, strokeWidth: 1.5 });
+                    }
+                    if (i < 5) {
+                        const xiNext = xStart + (i + 1) * step;
+                        geo1.buatTandaSamaPanjang([xi, yLine], [xiNext, yLine], {
+                            count: 1,
+                            size: 8,
+                            stroke: i < 3 ? cTeal : cAmber,
+                            strokeWidth: 1.5
+                        });
+                    }
+                }
+
+                // Titik utama A, P, B
+                geo1.buatTitik(xStart, yLine, { color: cTeal, size: 5, label: "A", labelPosition: "top-center", labelDistance: 12, bold: true, labelColor: cText, fontSize: "14px" });
+                geo1.buatTitik(xP, yLine, { color: cText, size: 5, label: "P", labelPosition: "top-center", labelDistance: 12, bold: true, labelColor: cText, fontSize: "14px" });
+                geo1.buatTitik(xEnd, yLine, { color: cAmber, size: 5, label: "B", labelPosition: "top-center", labelDistance: 12, bold: true, labelColor: cText, fontSize: "14px" });
+
+                // Dimensi / Keterangan bagian di bawah garis
+                geo1.buatDimensi([xStart, yLine], [xP, yLine], 28, "3 bagian (3k)", { stroke: cTeal, fontSize: "12px", fontWeight: "bold", labelJarak: 12 });
+                geo1.buatDimensi([xP, yLine], [xEnd, yLine], 28, "2 bagian (2k)", { stroke: cAmber, fontSize: "12px", fontWeight: "bold", labelJarak: 12 });
+            }
+
+            /* ==============================================================
+               2. GRAFIK PERBANDINGAN SENILAI (y = kx)
+               ============================================================== */
+            const elSenilai = document.getElementById("svg-grafik-senilai");
+            if (elSenilai && typeof GeoSVG !== "undefined") {
+                const geo2 = new GeoSVG(elSenilai, 270, 230, {
+                    clearContainer: true,
+                    viewBox: "-35 -25 265 225",
+                    yUp: true,
+                    defaultStroke: cText,
+                    fontFamily: "Inter, sans-serif"
+                });
+
+                // Grid dan Sumbu
+                geo2.buatGrid(40, 40, { stroke: cGrid, strokeWidth: 1 });
+                geo2.buatSumbuKoordinat(0, 210, 0, 180, 40, { stroke: cMuted, labelColor: cMuted, fill: cMuted });
+
+                // Label Sumbu
+                geo2.buatTeks(215, -5, "x", { fill: cText, fontWeight: "bold", fontSize: "13px", position: "middle-left" });
+                geo2.buatTeks(0, 188, "y", { fill: cText, fontWeight: "bold", fontSize: "13px", position: "bottom-center" });
+
+                // Garis lurus y = 0.8x
+                geo2.buatSegmen(0, 0, 200, 160, { stroke: cTeal, strokeWidth: 3 });
+
+                // Titik sampel (x1, y1) dan (x2, y2)
+                const p1 = [80, 64];
+                const p2 = [160, 128];
+
+                geo2.buatSegmen(p1[0], 0, p1[0], p1[1], { stroke: cMuted, dashed: "4 4", strokeWidth: 1.2 });
+                geo2.buatSegmen(0, p1[1], p1[0], p1[1], { stroke: cMuted, dashed: "4 4", strokeWidth: 1.2 });
+
+                geo2.buatSegmen(p2[0], 0, p2[0], p2[1], { stroke: cMuted, dashed: "4 4", strokeWidth: 1.2 });
+                geo2.buatSegmen(0, p2[1], p2[0], p2[1], { stroke: cMuted, dashed: "4 4", strokeWidth: 1.2 });
+
+                geo2.buatTitik(p1, { color: cAmber, size: 4.5, label: "(x₁, y₁)", labelPosition: "bottom-right", labelColor: cText, fontSize: "12px", bold: true });
+                geo2.buatTitik(p2, { color: cAmber, size: 4.5, label: "(x₂, y₂)", labelPosition: "bottom-right", labelColor: cText, fontSize: "12px", bold: true });
+                geo2.buatTeks(135, 152, "y = k·x", { fill: cTeal, fontWeight: "bold", fontSize: "13px" });
+            }
+
+            /* ==============================================================
+               3. GRAFIK PERBANDINGAN BERBALIK NILAI (y = k/x)
+               ============================================================== */
+            const elBerbalik = document.getElementById("svg-grafik-berbalik");
+            if (elBerbalik && typeof GeoSVG !== "undefined") {
+                const geo3 = new GeoSVG(elBerbalik, 270, 230, {
+                    clearContainer: true,
+                    viewBox: "-35 -25 265 225",
+                    yUp: true,
+                    defaultStroke: cText,
+                    fontFamily: "Inter, sans-serif"
+                });
+
+                // Grid dan Sumbu
+                geo3.buatGrid(40, 40, { stroke: cGrid, strokeWidth: 1 });
+                geo3.buatSumbuKoordinat(0, 210, 0, 180, 40, { stroke: cMuted, labelColor: cMuted, fill: cMuted });
+
+                // Label Sumbu
+                geo3.buatTeks(215, -5, "x", { fill: cText, fontWeight: "bold", fontSize: "13px", position: "middle-left" });
+                geo3.buatTeks(0, 188, "y", { fill: cText, fontWeight: "bold", fontSize: "13px", position: "bottom-center" });
+
+                // Kurva Hiperbola x * y = 6400
+                geo3.buatFungsi(x => 6400 / x, 36, 200, { stroke: cRose, strokeWidth: 3, langkah: 120 });
+
+                // Titik sampel (x1, y1) = (40, 160) dan (x2, y2) = (160, 40)
+                const q1 = [40, 160];
+                const q2 = [160, 40];
+
+                geo3.buatSegmen(q1[0], 0, q1[0], q1[1], { stroke: cMuted, dashed: "4 4", strokeWidth: 1.2 });
+                geo3.buatSegmen(0, q1[1], q1[0], q1[1], { stroke: cMuted, dashed: "4 4", strokeWidth: 1.2 });
+
+                geo3.buatSegmen(q2[0], 0, q2[0], q2[1], { stroke: cMuted, dashed: "4 4", strokeWidth: 1.2 });
+                geo3.buatSegmen(0, q2[1], q2[0], q2[1], { stroke: cMuted, dashed: "4 4", strokeWidth: 1.2 });
+
+                geo3.buatTitik(q1, { color: cBlue, size: 4.5, label: "(x₁, y₁)", labelPosition: "top-right", labelColor: cText, fontSize: "12px", bold: true });
+                geo3.buatTitik(q2, { color: cBlue, size: 4.5, label: "(x₂, y₂)", labelPosition: "top-right", labelColor: cText, fontSize: "12px", bold: true });
+                geo3.buatTeks(125, 115, "x · y = k", { fill: cRose, fontWeight: "bold", fontSize: "13px" });
+            }
+
+            /* ==============================================================
+               4. VISUALISASI SKALA PANJANG VS LUAS (1 : 3 -> 1 : 9)
+               ============================================================== */
+            const elSkala = document.getElementById("svg-skala-luas");
+            if (elSkala && typeof GeoSVG !== "undefined") {
+                const geo4 = new GeoSVG(elSkala, 460, 200, {
+                    clearContainer: true,
+                    defaultStroke: cText,
+                    fontFamily: "Inter, sans-serif"
+                });
+
+                const u = 42; // ukuran 1 satuan = 42px
+
+                // Persegi Kecil (1 x 1) di sebelah kiri
+                const x1 = 45, y1 = 80;
+                geo4.buatPersegi(x1, y1, u, {
+                    stroke: cTeal,
+                    strokeWidth: 2.5,
+                    fill: cTeal,
+                    fillOpacity: 0.2
+                });
+                geo4.buatTeks(x1 + u / 2, y1 + u / 2, "1L", { fill: cText, fontWeight: "bold", fontSize: "13px", position: "middle-center" });
+                geo4.buatDimensi([x1, y1 + u], [x1 + u, y1 + u], 22, "s₁ = 1", { stroke: cTeal, fontSize: "12px", fontWeight: "bold" });
+                geo4.buatTeks(x1 + u / 2, y1 - 16, "Luas = 1 satuan", { fill: cText, fontSize: "12px", fontWeight: "bold", position: "middle-center" });
+
+                // Panah perbesaran di tengah
+                geo4.buatVektor(135, 101, 215, 101, {
+                    stroke: cAmber,
+                    strokeWidth: 2.5,
+                    label: "Skala 1 : 3",
+                    labelPosisi: "tengah",
+                    labelSisi: "kiri",
+                    labelJarak: 10,
+                    fontSize: "12px",
+                    bold: true,
+                    labelColor: cAmber
+                });
+
+                // Persegi Besar (3 x 3) di sebelah kanan
+                const x2 = 265, y2 = 38;
+                const u3 = 3 * u;
+
+                // Buat 9 petak satuan di dalam persegi besar
+                for (let row = 0; row < 3; row++) {
+                    for (let col = 0; col < 3; col++) {
+                        geo4.buatPersegi(x2 + col * u, y2 + row * u, u, {
+                            stroke: cTeal,
+                            strokeWidth: 1,
+                            dashed: "3 3",
+                            fill: (row + col) % 2 === 0 ? cTeal : "none",
+                            fillOpacity: (row + col) % 2 === 0 ? 0.15 : 0
+                        });
+                    }
+                }
+                // Bingkai luar persegi 3x3
+                geo4.buatPersegi(x2, y2, u3, { stroke: cTeal, strokeWidth: 2.5, fill: "none" });
+                geo4.buatTeks(x2 + u3 / 2, y2 + u3 / 2, "9L", { fill: cText, fontWeight: "bold", fontSize: "15px", position: "middle-center" });
+                geo4.buatDimensi([x2, y2 + u3], [x2 + u3, y2 + u3], 22, "s₂ = 3", { stroke: cTeal, fontSize: "12px", fontWeight: "bold" });
+                geo4.buatTeks(x2 + u3 / 2, y2 - 16, "Luas = 3² = 9 satuan", { fill: cText, fontSize: "12px", fontWeight: "bold", position: "middle-center" });
+            }
+
+            /* ==============================================================
+               5. VISUALISASI TEOREMA THALES & KESEBANGUNAN SEGITIGA
+               ============================================================== */
+            const elThales = document.getElementById("svg-thales");
+            if (elThales && typeof GeoSVG !== "undefined") {
+                const geo5 = new GeoSVG(elThales, 320, 250, {
+                    clearContainer: true,
+                    defaultStroke: cText,
+                    fontFamily: "Inter, sans-serif"
+                });
+
+                const A = [150, 25];
+                const B = [35, 215];
+                const C = [285, 215];
+
+                // Titik D pada AB dan E pada AC dengan rasio AD : AB = 3 : 5 (t = 0.6)
+                const t = 0.58;
+                const D = [A[0] + t * (B[0] - A[0]), A[1] + t * (B[1] - A[1])];
+                const E = [A[0] + t * (C[0] - A[0]), A[1] + t * (C[1] - A[1])];
+
+                // Segitiga besar ABC dan segitiga kecil ADE
+                geo5.buatSegitiga(A, B, C, { stroke: cText, strokeWidth: 2, fill: cTeal, fillOpacity: 0.06 });
+                geo5.buatSegitiga(A, D, E, { stroke: cTeal, strokeWidth: 2, fill: cTeal, fillOpacity: 0.16 });
+
+                // Garis sejajar DE dan BC dipertegas dengan tanda panah sejajar di tengah
+                geo5.buatSegmen(D, E, { stroke: cAmber, strokeWidth: 2.8 });
+                geo5.buatSegmen(B, C, { stroke: cAmber, strokeWidth: 2.8 });
+
+                // Sudut sehadap yang sama besar (Sudut ADE = Sudut ABC)
+                geo5.buatSudut(E, D, A, { radius: 18, stroke: cBlue, fill: cBlue, fillOpacity: 0.25 });
+                geo5.buatSudut(C, B, A, { radius: 22, stroke: cBlue, fill: cBlue, fillOpacity: 0.25 });
+
+                // Label sisi proporsional
+                geo5.buatLabelSisi(A, D, "a", { sisi: "kiri", jarak: 14, color: cTeal, fontWeight: "bold", fontSize: "13px" });
+                geo5.buatLabelSisi(D, B, "b", { sisi: "kiri", jarak: 14, color: cText, fontWeight: "bold", fontSize: "13px" });
+                geo5.buatLabelSisi(A, E, "c", { sisi: "kanan", jarak: 14, color: cTeal, fontWeight: "bold", fontSize: "13px" });
+                geo5.buatLabelSisi(E, C, "d", { sisi: "kanan", jarak: 14, color: cText, fontWeight: "bold", fontSize: "13px" });
+
+                // Titik sudut
+                geo5.buatTitik(A, { color: cText, size: 4, label: "A", labelPosition: "top-center", bold: true, labelColor: cText, fontSize: "13px" });
+                geo5.buatTitik(B, { color: cText, size: 4, label: "B", labelPosition: "bottom-left", bold: true, labelColor: cText, fontSize: "13px" });
+                geo5.buatTitik(C, { color: cText, size: 4, label: "C", labelPosition: "bottom-right", bold: true, labelColor: cText, fontSize: "13px" });
+                geo5.buatTitik(D, { color: cAmber, size: 4.5, label: "D", labelPosition: "middle-left", labelDistance: 8, bold: true, labelColor: cText, fontSize: "13px" });
+                geo5.buatTitik(E, { color: cAmber, size: 4.5, label: "E", labelPosition: "middle-right", labelDistance: 8, bold: true, labelColor: cText, fontSize: "13px" });
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderAllGeoSVG();
+
+            // Render ulang GeoSVG ketika tombol Dark Mode ditekan agar warna teks & garis otomatis menyesuaikan tema
+            const themeBtn = document.getElementById("theme-toggle");
+            if (themeBtn) {
+                themeBtn.addEventListener("click", () => {
+                    setTimeout(renderAllGeoSVG, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
