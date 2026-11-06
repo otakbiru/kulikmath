@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Refleksi (Pencerminan)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Refleksi (Pencerminan)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Sifat-Sifat Isometri Refleksi</h2>
+            <p>
+                <strong>Refleksi (Pencerminan)</strong> adalah transformasi geometri bidang yang memetakan setiap titik pada bangun datar ke titik bayangannya menggunakan sifat cermin datar. Garis acuan pencerminan disebut <strong>garis cermin (sumbu refleksi)</strong>.
+            </p>
+
+            <h3>Aksioma Geometri Refleksi</h3>
+            <ol>
+                <li>Garis cermin merupakan <strong>garis sumbu (garis bagi tegak lurus / perpendicular bisector)</strong> dari ruas garis yang menghubungkan titik asal dengan titik bayangannya:
+                    $$PP' \perp \text{Garis Cermin} \quad \text{dan} \quad \text{Jarak}(P, \text{Cermin}) = \text{Jarak}(P', \text{Cermin})$$
+                </li>
+                <li>Setiap titik yang terletak tepat pada garis cermin bersifat <strong>invarian</strong> (titik tetap), artinya titik tersebut tidak berpindah tempat ($P' = P$).</li>
+                <li><strong>Sifat Isometri (Kekongruenan):</strong>
+                    Refleksi mempertahankan jarak antar titik (panjang sisi bangun tidak berubah), mempertahankan besar sudut, dan mempertahankan luas bangun datar.
+                </li>
+                <li><strong>Pembalikan Orientasi (Opposite Isometry):</strong>
+                    Refleksi membalik orientasi arah putaran titik-titik sudut bangun datar. Bangun datar yang berorientasi berlawanan arah jarum jam (<em>counter-clockwise</em>) akan memiliki bayangan yang berorientasi searah jarum jam (<em>clockwise</em>).
+                </li>
+            </ol>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Visualisasi Geometri Refleksi Titik</h3>
+                    <p>
+                        Perhatikan pencerminan titik $P(2, 4)$ terhadap garis cermin diagonal $y = x$:
+                    </p>
+                    <ul>
+                        <li>Garis cermin $y = x$ membagi bidang dengan kemiringan $45^\circ$.</li>
+                        <li>Ruas garis $PP'$ tegak lurus terhadap garis $y = x$ (gradien garis $PP'$ adalah $-1$, dan $(1)(-1) = -1$).</li>
+                        <li>Titik potong $M(3, 3)$ tepat berada di tengah-tengah antara $P$ dan $P'$ ($PM = P'M$).</li>
+                        <li>Diperoleh koordinat bayangan: $P'(4, 2)$.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-refleksi-titik-dasar" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Tujuh Rumus Baku Refleksi pada Bidang Kartesius</h2>
+            <p>
+                Hubungan koordinat titik asal $P(x, y)$ dan bayangannya $P'(x', y')$ serta representasi matriks transformasinya:
+            </p>
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                            <th style="padding: 6px;">Refleksi Terhadap</th>
+                            <th style="padding: 6px;">Titik Bayangan $(x', y')$</th>
+                            <th style="padding: 6px;">Representasi Matriks Transformasi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 6px;">Sumbu-$X$ ($y = 0$)</td>
+                            <td style="padding: 6px;">$(x, -y)$</td>
+                            <td style="padding: 6px;">$\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 6px;">Sumbu-$Y$ ($x = 0$)</td>
+                            <td style="padding: 6px;">$(-x, y)$</td>
+                            <td style="padding: 6px;">$\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 6px;">Titik Asal $O(0, 0)$</td>
+                            <td style="padding: 6px;">$(-x, -y)$</td>
+                            <td style="padding: 6px;">$\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$ (ekuivalen rotasi $180^\circ$)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 6px;">Garis $y = x$</td>
+                            <td style="padding: 6px;">$(y, x)$</td>
+                            <td style="padding: 6px;">$\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 6px;">Garis $y = -x$</td>
+                            <td style="padding: 6px;">$(-y, -x)$</td>
+                            <td style="padding: 6px;">$\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 6px;">Garis Vertikal $x = h$</td>
+                            <td style="padding: 6px;">$(2h - x, y)$</td>
+                            <td style="padding: 6px;">$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} 2h \\ 0 \end{pmatrix}$</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px;">Garis Horizontal $y = k$</td>
+                            <td style="padding: 6px;">$(x, 2k - y)$</td>
+                            <td style="padding: 6px;">$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} 0 \\ 2k \end{pmatrix}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>3. Refleksi Bangun Datar Poligon</h2>
+                    <p>
+                        Untuk mencerminkan bangun datar (seperti segitiga $\triangle ABC$):
+                    </p>
+                    <ol>
+                        <li>Tentukan bayangan dari setiap titik sudutnya ($A', B', C'$) menggunakan rumus pencerminan yang sesuai.</li>
+                        <li>Hubungkan titik-titik sudut bayangan tersebut sehingga membentuk poligon bayangan $\triangle A'B'C'$.</li>
+                    </ol>
+                    <p>
+                        Pada diagram di samping, segitiga biru $\triangle ABC$ dengan verteks $A(2, 1), B(5, 2), C(3, 5)$ dicerminkan terhadap sumbu-$Y$ ($x = 0$):
+                        $$A'( -2, 1), \quad B'(-5, 2), \quad C'(-3, 5)$$
+                    </p>
+                    <p>
+                        Perhatikan bahwa luas kedua segitiga kongruen persis sama, namun arah orientasi siklik verteksnya terbalik.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-refleksi-bangun-segitiga" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>4. Komposisi Dua Refleksi Berurutan</h2>
+                    <h3>A. Dua Cermin Saling Sejajar</h3>
+                    <p>
+                        Pencerminan terhadap dua garis cermin sejajar $x = h_1$ dilanjutkan terhadap $x = h_2$ <strong>ekuivalen dengan Translasi (pergeseran)</strong> sejauh dua kali jarak antarcermin ke arah tegak lurus cermin:
+                        $$T = \begin{pmatrix} 2(h_2 - h_1) \\ 0 \end{pmatrix}$$
+                    </p>
+
+                    <h3>B. Dua Cermin Saling Berpotongan</h3>
+                    <p>
+                        Pencerminan terhadap garis $L_1$ dilanjutkan terhadap garis $L_2$ yang saling berpotongan di titik $P$ dengan sudut apit $\alpha$ <strong>ekuivalen dengan Rotasi</strong> yang berpusat di titik potong $P$ sebesar $2\alpha$:
+                        $$R(P, \; 2\alpha)$$
+                        Arah putaran rotasi bergerak dari cermin pertama $L_1$ menuju cermin kedua $L_2$.
+                    </p>
+                    <p>
+                        <em>Kasus Khusus Cermin Tegak Lurus ($\alpha = 90^\circ$):</em><br>
+                        Rotasi sebesar $2(90^\circ) = 180^\circ$, yang ekuivalen dengan <strong>refleksi terhadap titik potong kedua cermin</strong>!
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-komposisi-refleksi-rotasi" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Refleksi pada Kurva & Persamaan Aljabar</h2>
+            <p>
+                Untuk menentukan persamaan bayangan kurva $F(x, y) = 0$ setelah dicerminkan:
+            </p>
+            <ol>
+                <li>Gunakan hubungan refleksi untuk menyatakan variabel lama $x$ dan $y$ dalam variabel baru $x'$ dan $y'$ (melalui invers matriks transformasi).</li>
+                <li>Substitusikan ekspresi $x$ dan $y$ tersebut ke dalam persamaan kurva asal.</li>
+                <li>Sederhanakan persamaan aljabar yang diperoleh (tanda aksen dihilangkan pada persamaan akhir).</li>
+            </ol>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Lengkap</h2>
+
+            <!-- CONTOH 1 (DASAR) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Refleksi Titik terhadap Garis Vertikal & Horizontal (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Titik $A(3, -5)$ direfleksikan berturut-turut:
+                    <br>a) Terhadap garis vertikal $x = -2$.
+                    <br>b) Hasil bayangan dari langkah (a) kemudian direfleksikan lagi terhadap garis horizontal $y = 3$.
+                    <br>Tentukan koordinat akhir bayangan titik $A$ tersebut!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Refleksi Terhadap Garis $x = h$ dengan $h = -2$</strong><br>
+                        Rumus refleksi terhadap garis vertikal $x = h$:
+                        $$\begin{cases} x' = 2h - x \\ y' = y \end{cases}$$
+                        Substitusikan koordinat titik $A(3, -5)$ dan $h = -2$:
+                        $$\begin{aligned}
+                        x' &= 2(-2) - 3 = -4 - 3 = -7 \\
+                        y' &= -5
+                        \end{aligned}$$
+                        Diperoleh titik bayangan pertama: $A'(-7, -5)$.
+                        <br><br>
+                        <strong>Langkah 2: Refleksi Bayangan $A'$ Terhadap Garis $y = k$ dengan $k = 3$</strong><br>
+                        Rumus refleksi terhadap garis horizontal $y = k$:
+                        $$\begin{cases} x'' = x' \\ y'' = 2k - y' \end{cases}$$
+                        Substitusikan koordinat titik $A'(-7, -5)$ dan $k = 3$:
+                        $$\begin{aligned}
+                        x'' &= -7 \\
+                        y'' &= 2(3) - (-5) = 6 + 5 = 11
+                        \end{aligned}$$
+                        Diperoleh titik bayangan akhir: $A''(-7, 11)$.
+                        <div class="kesimpulan">
+                            Jadi, koordinat bayangan akhir dari titik $A$ adalah <strong>$A''(-7, 11)$</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Refleksi Komposit pada Kurva Parabola (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Diberikan kurva parabola $y = x^2 - 4x + 3$.
+                    Tentukan persamaan kurva bayangan jika kurva tersebut dicerminkan terhadap garis $y = -x$, kemudian dilanjutkan dengan pencerminan terhadap sumbu-$X$!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Menentukan Matriks Transformasi Komposisi</strong><br>
+                        Transformasi 1 ($T_1$): Refleksi terhadap garis $y = -x$
+                        $$M_1 = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}$$
+                        Transformasi 2 ($T_2$): Refleksi terhadap sumbu-$X$
+                        $$M_2 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$$
+                        Matriks komposisi total $M = M_2 \cdot M_1$:
+                        $$M = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} = \begin{pmatrix} (1)(0) + (0)(-1) & (1)(-1) + (0)(0) \\ (0)(0) + (-1)(-1) & (0)(-1) + (-1)(0) \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$$
+                        <br>
+                        <strong>Langkah 2: Hubungan Koordinat Baru dan Lama</strong><br>
+                        $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -y \\ x \end{pmatrix}$$
+                        Dari kesamaan matriks:
+                        $$x' = -y \implies y = -x'$$
+                        $$y' = x \implies x = y'$$
+                        <br>
+                        <strong>Langkah 3: Substitusi ke Persamaan Parabola Asal</strong><br>
+                        Substitusikan $x = y'$ dan $y = -x'$ ke dalam persamaan $y = x^2 - 4x + 3$:
+                        $$\begin{aligned}
+                        -x' &= (y')^2 - 4(y') + 3 \\
+                        x' &= -(y')^2 + 4y' - 3
+                        \end{aligned}$$
+                        Hilangkan tanda aksen untuk menuliskan persamaan kurva bayangan:
+                        $$x = -y^2 + 4y - 3$$
+                        <div class="kesimpulan">
+                            Jadi, persamaan bayangan kurva parabola tersebut adalah <strong>$x = -y^2 + 4y - 3$</strong> (parabola horizontal terbuka ke kiri).
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Dua Cermin Berpotongan & Rotasi Ekuivalen (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    Dua garis cermin $L_1$ dan $L_2$ saling berpotongan di titik pusat koordinat $O(0, 0)$.
+                    Garis $L_1$ adalah sumbu-$X$ ($y = 0$), dan garis $L_2$ memiliki persamaan $y = \sqrt{3} x$.
+                    <br>a) Tentukan besar sudut lancip $\alpha$ antara kedua garis cermin tersebut!
+                    <br>b) Jika titik $P(5, 2)$ dicerminkan terhadap garis $L_1$ menghasilkan bayangan $P'$, lalu $P'$ dicerminkan lagi terhadap garis $L_2$ menghasilkan bayangan $P''$, buktikan bahwa transformasi tunggal yang memetakan $P$ langsung ke $P''$ adalah sebuah rotasi, dan tentukan pusat serta sudut rotasinya!
+                    <br>c) Tentukan koordinat eksak dari titik bayangan akhir $P''$!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Menentukan Sudut Antara Dua Garis Cermin</strong><br>
+                        Garis $L_1$ adalah sumbu-$X$ sehingga kemiringannya $\theta_1 = 0^\circ$.<br>
+                        Garis $L_2$ memiliki gradien $m = \sqrt{3} \implies \tan \theta_2 = \sqrt{3} \implies \theta_2 = 60^\circ$.<br>
+                        Sudut antara kedua cermin adalah:
+                        $$\alpha = \theta_2 - \theta_1 = 60^\circ - 0^\circ = \mathbf{60^\circ}$$
+                        <br>
+                        <strong>b) Teorema Komposisi Dua Refleksi Berpotongan</strong><br>
+                        Berdasarkan teorema geometri transformasi:
+                        <em>"Komposisi dua refleksi terhadap dua garis yang berpotongan di titik $O$ dengan sudut apit $\alpha$ ekuivalen dengan rotasi yang berpusat di titik potong $O$ sebesar sudut $2\alpha$ dengan arah putaran dari cermin pertama ke cermin kedua."</em><br>
+                        Karena pergerakan dari $L_1$ ke $L_2$ berlawanan arah jarum jam (positif), maka:
+                        <ul>
+                            <li>Pusat rotasi: $O(0, 0)$</li>
+                            <li>Besar sudut rotasi: $\theta = 2\alpha = 2(60^\circ) = \mathbf{120^\circ}$ (berlawanan arah jarum jam).</li>
+                        </ul>
+                        Transformasi tunggal yang ekuivalen adalah rotasi $R(O, \; 120^\circ)$.
+                        <br><br>
+                        <strong>c) Menghitung Koordinat Eksak $P''$</strong><br>
+                        Matriks rotasi sebesar $120^\circ$ terhadap titik asal:
+                        $$\begin{pmatrix} x'' \\ y'' \end{pmatrix} = \begin{pmatrix} \cos 120^\circ & -\sin 120^\circ \\ \sin 120^\circ & \cos 120^\circ \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}$$
+                        Nilai trigonometri sudut $120^\circ$:
+                        $$\cos 120^\circ = -\frac{1}{2}, \quad \sin 120^\circ = \frac{\sqrt{3}}{2}$$
+                        Substitusikan koordinat titik $P(5, 2)$:
+                        $$\begin{aligned}
+                        \begin{pmatrix} x'' \\ y'' \end{pmatrix} &= \begin{pmatrix} -\frac{1}{2} & -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & -\frac{1}{2} \end{pmatrix} \begin{pmatrix} 5 \\ 2 \end{pmatrix} \\
+                        &= \begin{pmatrix} -\frac{1}{2}(5) - \frac{\sqrt{3}}{2}(2) \\ \frac{\sqrt{3}}{2}(5) - \frac{1}{2}(2) \end{pmatrix} \\
+                        &= \begin{pmatrix} -\frac{5}{2} - \sqrt{3} \\ \frac{5\sqrt{3}}{2} - 1 \end{pmatrix} = \begin{pmatrix} \frac{-5 - 2\sqrt{3}}{2} \\ \frac{5\sqrt{3} - 2}{2} \end{pmatrix}
+                        \end{aligned}$$
+                        <div class="kesimpulan">
+                            a) Sudut antara kedua garis cermin adalah <strong>$60^\circ$</strong>.<br>
+                            b) Transformasi ekuivalen adalah rotasi <strong>$R(O, 120^\circ)$</strong> berpusat di <strong>$O(0, 0)$</strong>.<br>
+                            c) Koordinat eksak titik bayangan akhir adalah <strong>$P''\left(\dfrac{-5 - 2\sqrt{3}}{2}, \; \dfrac{5\sqrt{3} - 2}{2}\right)$</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // ==========================================
+            // 1. Refleksi Titik terhadap Garis y = x
+            // P(2, 4) -> P'(4, 2)
+            // ==========================================
+            const elTitik = document.getElementById("svg-refleksi-titik-dasar");
+            if (elTitik) {
+                const geo1 = new GeoSVG(elTitik, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Refleksi Titik terhadap Garis y = x"
+                });
+
+                const Ox = 80, Oy = 160, u = 24;
+                const toPx = (x, y) => [Ox + x * u, Oy - y * u];
+
+                // Sumbu Kartesius
+                geo1.buatVektor(toPx(-1, 0), toPx(6.5, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor(toPx(0, -1), toPx(0, 6.2), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo1.buatTeks(Ox + 6.6 * u, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo1.buatTeks(Ox, Oy - 6.3 * u, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Garis Cermin y = x (Sudut 45 Derajat)
+                const ptCermin1 = toPx(-0.5, -0.5);
+                const ptCermin2 = toPx(5.8, 5.8);
+                geo1.buatSegmen(ptCermin1, ptCermin2, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo1.buatTeks(ptCermin2[0] + 4, ptCermin2[1] - 4, "Cermin: y = x", {
+                    position: "bottom-left",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Titik P(2, 4) dan P'(4, 2)
+                const ptP = toPx(2, 4);
+                const ptPprime = toPx(4, 2);
+                const ptMid = toPx(3, 3);
+
+                // Segmen Penghubung PP' (Tegak Lurus Cermin)
+                geo1.buatSegmen(ptP, ptPprime, { stroke: TEMA.merah, strokeWidth: 1.6, strokeDasharray: "4 2" });
+
+                // Titik P
+                geo1.buatLingkaran(ptP, 5, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptP[0] - 8, ptP[1], "P(2, 4)", { position: "middle-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Titik P'
+                geo1.buatLingkaran(ptPprime, 5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptPprime[0] + 8, ptPprime[1], "P'(4, 2)", { position: "middle-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Tengah M(3, 3) pada Cermin
+                geo1.buatLingkaran(ptMid, 3.5, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1 });
+                geo1.buatTeks(ptMid[0] - 8, ptMid[1] + 12, "M(3, 3)", { position: "top-right", fontSize: "8px", fill: TEMA.teks });
+
+                // Tanda Siku-Siku di M
+                // Vektor cermin u = (1, 1), normal v = (-1, 1). Panjang step = 6px.
+                const s = 6;
+                geo1.buatPolyline([
+                    [ptMid[0] - s * 0.707, ptMid[1] - s * 0.707],
+                    [ptMid[0] - s * 0.707 - s * 0.707, ptMid[1]],
+                    [ptMid[0] - s * 0.707, ptMid[1] + s * 0.707]
+                ], { stroke: TEMA.merah, strokeWidth: 1, fill: "none" });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 198, "PP' ⊥ Cermin  dan  Panjang PM = P'M", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+
+            // ==========================================
+            // 2. Refleksi Segitiga ABC terhadap Sumbu-Y
+            // A(2,1), B(5,2), C(3,5) -> A'(-2,1), B'(-5,2), C'(-3,5)
+            // ==========================================
+            const elSegitiga = document.getElementById("svg-refleksi-bangun-segitiga");
+            if (elSegitiga) {
+                const geo2 = new GeoSVG(elSegitiga, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Refleksi Segitiga terhadap Sumbu-Y"
+                });
+
+                const Ox = 160, Oy = 165, ux = 18, uy = 18;
+                const toPx = (x, y) => [Ox + x * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo2.buatVektor(toPx(-7.2, 0), toPx(7.2, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                // Sumbu-Y adalah Garis Cermin
+                geo2.buatVektor(toPx(0, -1.2), toPx(0, 7.2), { stroke: TEMA.gelap, strokeWidth: 2.2 });
+
+                geo2.buatTeks(Ox + 7.3 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo2.buatTeks(Ox + 6, Oy - 7.3 * uy, "y (Cermin)", { position: "bottom-left", fontSize: "9.5px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Segitiga Asal ABC
+                const ptA = toPx(2, 1);
+                const ptB = toPx(5, 2);
+                const ptC = toPx(3, 5);
+                geo2.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.75
+                });
+
+                // Segitiga Bayangan A'B'C'
+                const ptAp = toPx(-2, 1);
+                const ptBp = toPx(-5, 2);
+                const ptCp = toPx(-3, 5);
+                geo2.buatPoligon([ptAp, ptBp, ptCp], {
+                    fill: TEMA.merahMuda,
+                    stroke: TEMA.merah,
+                    strokeWidth: 2,
+                    opacity: 0.75
+                });
+
+                // Garis Proyeksi Putus-Putus
+                geo2.buatSegmen(ptAp, ptA, { stroke: "#94a3b8", strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo2.buatSegmen(ptBp, ptB, { stroke: "#94a3b8", strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo2.buatSegmen(ptCp, ptC, { stroke: "#94a3b8", strokeWidth: 1.2, strokeDasharray: "3 2" });
+
+                // Titik-Titik Sudut Asal
+                geo2.buatLingkaran(ptA, 3.5, { fill: TEMA.utama });
+                geo2.buatTeks(ptA[0] + 6, ptA[1] + 6, "A(2,1)", { position: "top-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo2.buatLingkaran(ptB, 3.5, { fill: TEMA.utama });
+                geo2.buatTeks(ptB[0] + 6, ptB[1], "B(5,2)", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo2.buatLingkaran(ptC, 3.5, { fill: TEMA.utama });
+                geo2.buatTeks(ptC[0] + 4, ptC[1] - 8, "C(3,5)", { position: "bottom-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Titik-Titik Sudut Bayangan
+                geo2.buatLingkaran(ptAp, 3.5, { fill: TEMA.merah });
+                geo2.buatTeks(ptAp[0] - 6, ptAp[1] + 6, "A'(-2,1)", { position: "top-right", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                geo2.buatLingkaran(ptBp, 3.5, { fill: TEMA.merah });
+                geo2.buatTeks(ptBp[0] - 6, ptBp[1], "B'(-5,2)", { position: "middle-right", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                geo2.buatLingkaran(ptCp, 3.5, { fill: TEMA.merah });
+                geo2.buatTeks(ptCp[0] - 4, ptCp[1] - 8, "C'(-3,5)", { position: "bottom-right", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 198, "Luas Kongruen Sama, Orientasi Berbalik (Arah Putar Terbalik)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Komposisi Dua Refleksi Berpotongan Ekuivalen Rotasi
+            // Cermin 1: Sumbu-X, Cermin 2: y = x (Sudut 45 Derajat) -> Rotasi 90 Derajat
+            // ==========================================
+            const elKomposisi = document.getElementById("svg-komposisi-refleksi-rotasi");
+            if (elKomposisi) {
+                const geo3 = new GeoSVG(elKomposisi, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Komposisi Dua Cermin Berpotongan = Rotasi"
+                });
+
+                const Ox = 150, Oy = 120, u = 20;
+                const toPx = (x, y) => [Ox + x * u, Oy - y * u];
+
+                // Sumbu Kartesius (Sumbu-X = Cermin 1)
+                geo3.buatVektor(toPx(-2.5, 0), toPx(5.5, 0), { stroke: TEMA.utama, strokeWidth: 2 });
+                geo3.buatVektor(toPx(0, -3.2), toPx(0, 5.2), { stroke: "#64748b", strokeWidth: 1.2 });
+
+                geo3.buatTeks(Ox + 5.6 * u, Oy, "x (Cermin 1)", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo3.buatTeks(Ox, Oy - 5.3 * u, "y", { position: "bottom-center", fontSize: "10px", fontStyle: "italic", fill: "#64748b" });
+
+                // Cermin 2: Garis y = x (Sudut 45 Derajat)
+                geo3.buatSegmen(toPx(-2.2, -2.2), toPx(4.8, 4.8), { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo3.buatTeks(toPx(4.8, 4.8)[0] + 4, toPx(4.8, 4.8)[1], "Cermin 2: y = x (45°)", {
+                    position: "middle-left",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // Sudut Antar Cermin: α = 45 Derajat
+                geo3.buatBusur([Ox, Oy], 28, 0, 45, { stroke: TEMA.oranye, strokeWidth: 1.5, fill: "none" });
+                geo3.buatTeks(Ox + 34, Oy - 12, "α=45°", { position: "middle-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik P(4, 1)
+                const ptP = toPx(4, 1);
+                // Titik P1(4, -1) - Hasil Refleksi Cermin 1
+                const ptP1 = toPx(4, -1);
+                // Titik P2(-1, 4) - Hasil Refleksi Cermin 2
+                const ptP2 = toPx(-1, 4);
+
+                // Garis Refleksi 1 (PP1 tegak lurus sumbu-X)
+                geo3.buatSegmen(ptP, ptP1, { stroke: "#94a3b8", strokeWidth: 1.2, strokeDasharray: "2 2" });
+
+                // Garis Refleksi 2 (P1P2 tegak lurus garis y=x)
+                geo3.buatSegmen(ptP1, ptP2, { stroke: "#94a3b8", strokeWidth: 1.2, strokeDasharray: "2 2" });
+
+                // Jari-Jari Rotasi dari O ke P dan O ke P2
+                geo3.buatSegmen(toPx(0, 0), ptP, { stroke: TEMA.merah, strokeWidth: 1.4 });
+                geo3.buatSegmen(toPx(0, 0), ptP2, { stroke: TEMA.merah, strokeWidth: 1.4 });
+
+                // Busur Rotasi 90 Derajat dari P ke P2
+                const rRot = Math.hypot(4 * u, 1 * u);
+                const angleP = Math.atan2(1, 4) * 180 / Math.PI; // ~14°
+                const angleP2 = angleP + 90; // ~104°
+                const arcPts = [];
+                for (let a = angleP; a <= angleP2; a += 5) {
+                    const rad = a * Math.PI / 180;
+                    arcPts.push([Ox + rRot * Math.cos(rad), Oy - rRot * Math.sin(rad)]);
+                }
+                geo3.buatPolyline(arcPts, { stroke: TEMA.merah, strokeWidth: 2, strokeDasharray: "3 2" });
+
+                // Titik P
+                geo3.buatLingkaran(ptP, 4.5, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo3.buatTeks(ptP[0] + 6, ptP[1], "P(4, 1)", { position: "middle-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Titik P1
+                geo3.buatLingkaran(ptP1, 4, { fill: "#64748b", stroke: "#ffffff", strokeWidth: 1 });
+                geo3.buatTeks(ptP1[0] + 6, ptP1[1], "P₁(4, -1)", { position: "middle-left", fontSize: "7.5px", fill: "#64748b" });
+
+                // Titik P2
+                geo3.buatLingkaran(ptP2, 5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(ptP2[0] - 6, ptP2[1] - 6, "P₂(-1, 4)", { position: "bottom-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 200, "Refleksi Berturut-Turut = Rotasi 2α = 90° Berpusat di O", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

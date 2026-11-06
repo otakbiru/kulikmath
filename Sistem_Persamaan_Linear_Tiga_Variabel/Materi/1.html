@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Sistem Persamaan Linear Tiga Variabel (SPLTV)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Sistem Persamaan Linear Tiga Variabel (SPLTV)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Bentuk Baku SPLTV</h2>
+            <p>
+                <strong>Sistem Persamaan Linear Tiga Variabel (SPLTV)</strong> adalah himpunan tiga persamaan linear berderajat satu yang memuat tiga peubah (umumnya $x, y,$ dan $z$). Solusi dari SPLTV adalah tripel terurut $(x, y, z) \in \mathbb{R}^3$ yang <strong>memenuhi ketiga persamaan secara simultan (serentak)</strong>.
+            </p>
+            <p>
+                Bentuk umum baku SPLTV dinyatakan oleh:
+                $$\begin{cases} a_1 x + b_1 y + c_1 z = d_1 \\ a_2 x + b_2 y + c_2 z = d_2 \\ a_3 x + b_3 y + c_3 z = d_3 \end{cases}$$
+                dengan $a_i, b_i, c_i, d_i \in \mathbb{R}$ serta syarat $a_i^2 + b_i^2 + c_i^2 \ne 0$ untuk setiap $i \in \{1, 2, 3\}$.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Interpretasi Geometris pada Ruang Dimensi Tiga ($\mathbb{R}^3$):</strong><br>
+                    Masing-masing persamaan linear satu derajat $a_i x + b_i y + c_i z = d_i$ merepresentasikan sebuah <strong>bidang datar (plane)</strong> tak berbatas di ruang $\mathbb{R}^3$, dengan vektor normal $\vec{n}_i = \begin{pmatrix} a_i \\ b_i \\ c_i \end{pmatrix}$.
+                    Solusi SPLTV merepresentasikan <strong>himpunan titik persekutuan antara ketiga bidang datar tersebut</strong>.
+                </p>
+            </div>
+
+            <h2>2. Geometri Solusi: Kedudukan Relatif Tiga Bidang Datar</h2>
+            <p>
+                Berdasarkan hubungan posisi spasial antara ketiga bidang dan nilai determinan matriks koefisien $D = \det(A)$, terdapat tiga kategori solusi utama:
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <ol>
+                        <li><strong>Tepat Satu Solusi Unik (Konsisten & Independen):</strong>
+                            <br>
+                            Ketiga bidang berpotongan di tepat satu titik tunggal $(x_0, y_0, z_0)$. Terjadi jika dan hanya jika ketiga vektor normal tidak koplanar:
+                            $$\det(A) = D \ne 0$$
+                        </li>
+                        <li><strong>Tak Hingga Banyak Solusi (Konsisten & Dependen):</strong>
+                            <ul>
+                                <li><strong>Derajat Kebebasan 1 (Garis Potong Bersama):</strong> Ketiga bidang saling berpotongan pada satu garis lurus persekutuan ($r(A) = r([A|\vec{d}]) = 2$). Solusi memuat 1 parameter bebas ($t$).</li>
+                                <li><strong>Derajat Kebebasan 2 (Bidang Berhimpit):</strong> Ketiga persamaan merupakan kelipatan skalar yang sama ($r(A) = 1$). Solusi memuat 2 parameter bebas ($s, t$).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tidak Ada Solusi (Inkonsisten, $HP = \emptyset$):</strong>
+                            <br>
+                            Ketiga bidang tidak memiliki titik temu bersama ($D = 0$ dengan minimal salah satu $D_x, D_y, D_z \ne 0$):
+                            <ul>
+                                <li>Ketiga bidang membentuk prisma segitiga (setiap pasang berpotongan pada garis yang saling sejajar).</li>
+                                <li>Dua atau tiga bidang sejajar dan saling lepas.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-tiga-bidang-potong" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Tiga bidang datar di ruang $\mathbb{R}^3$ saling berpotongan di tepat 1 titik unik $P(x_0, y_0, z_0)$ ($D \ne 0$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Metode Penyelesaian Sistem Linear Tiga Variabel</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Metode Eliminasi-Substitusi (Campuran)</h3>
+                    <p>
+                        Langkah sistematis:
+                    </p>
+                    <ol>
+                        <li>Pilihlah satu variabel yang paling mudah dieliminasi (misalnya variabel dengan koefisien $\pm 1$).</li>
+                        <li>Eliminasi variabel tersebut dari persamaan (1) & (2), serta persamaan (1) & (3) (atau kombinasi lainnya), menghasilkan <strong>sistem SPLDV baru dalam 2 variabel</strong>.</li>
+                        <li>Selesaikan SPLDV tersebut untuk memperoleh dua nilai variabel.</li>
+                        <li>Substitusikan kedua nilai variabel yang diperoleh ke salah satu persamaan awal untuk menemukan nilai variabel ketiga.</li>
+                    </ol>
+
+                    <h3>B. Metode Eliminasi Gauss (Matriks Augmented)</h3>
+                    <p>
+                        Tuliskan sistem ke dalam matriks augmented $[A | \vec{d}]$, lalu terapkan <em>Operasi Baris Elementer (OBE)</em>:
+                        $$\left(\begin{array}{ccc|c} a_1 & b_1 & c_1 & d_1 \\ a_2 & b_2 & c_2 & d_2 \\ a_3 & b_3 & c_3 & d_3 \end{array}\right) \xrightarrow{\text{OBE}} \left(\begin{array}{ccc|c} 1 & * & * & * \\ 0 & 1 & * & * \\ 0 & 0 & 1 & * \end{array}\right)$$
+                        Bentuk eselon baris segitiga atas ini memungkinkan solusi diperoleh secara instan melalui substitusi mundur (<em>back substitution</em>).
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-aturan-sarrus" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Metode Sarrus untuk menghitung determinan matriks $3 \times 3$ — diagonal turun bertanda $(+)$ dan diagonal naik bertanda $(-)$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>4. Aturan Cramer $3 \times 3$ (Metode Determinan)</h2>
+            <p>
+                Jika determinan matriks koefisien $D \ne 0$, solusi unik SPLTV dapat dihitung langsung menggunakan perbandingan determinan:
+                $$x = \frac{D_x}{D}, \quad y = \frac{D_y}{D}, \quad z = \frac{D_z}{D}$$
+            </p>
+            <p>
+                Perhitungan determinan $3 \times 3$ menggunakan <strong>Aturan Sarrus</strong>:
+                $$D = \begin{vmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{vmatrix} = (a_1 b_2 c_3 + b_1 c_2 a_3 + c_1 a_2 b_3) - (c_1 b_2 a_3 + a_1 c_2 b_3 + b_1 a_2 c_3)$$
+                Matriks $D_x, D_y, D_z$ diperoleh dengan mengganti kolom yang bersesuaian dengan kolom vektor konstanta $\vec{d} = \begin{pmatrix} d_1 \\ d_2 \\ d_3 \end{pmatrix}$.
+            </p>
+
+            <div style="text-align: center; margin: 1.2rem 0;">
+                <div id="svg-prisma-segitiga-inkonsisten" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                    <em>Gambar 3: Kasus Inkonsisten (Prisma Segitiga) — Tiga bidang saling berpotongan pada 3 garis sejajar terpisah tanpa titik temu bersama ($HP = \emptyset$).</em>
+                </p>
+            </div>
+
+            <h2>5. SPLTV Khusus: Pecahan & Sistem Simetris Siklis</h2>
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>1. SPLTV Bentuk Pecahan:</strong><br>
+                    Bentuk $\frac{A_i}{x} + \frac{B_i}{y} + \frac{C_i}{z} = D_i$ diselesaikan dengan substitusi variabel linier pembantu:
+                    $$u = \frac{1}{x}, \quad v = \frac{1}{y}, \quad w = \frac{1}{z}$$
+                    Setelah $u, v, w$ diperoleh, nilai $x, y, z$ adalah kebalikannya ($x = \frac{1}{u}$, dst).
+                </p>
+                <p style="margin: 0.5rem 0 0 0; font-weight: normal;">
+                    <strong>2. Sistem Simetris Siklis:</strong><br>
+                    Jika koefisien persamaan memiliki pola siklis, <strong>jumlahkan seluruh persamaan secara serentak</strong> untuk memperoleh nilai $(x + y + z)$, lalu kurangkan setiap persamaan awal dari hasil jumlah tersebut.
+                </p>
+            </div>
+
+            <h2>6. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Sistem Siklis Simetris & Eliminasi Cepat</h3>
+                <p>
+                    Tentukan himpunan penyelesaian $(x, y, z)$ dari sistem persamaan linear tiga variabel berikut:
+                    $$\begin{cases} 2x + y + z = 13 \quad \text{--- (1)} \\ x + 2y + z = 12 \quad \text{--- (2)} \\ x + y + 2z = 11 \quad \text{--- (3)} \end{cases}$$
+                    serta tentukan nilai dari bentuk aljabar $x + 2y + 3z$.
+                </p>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>Langkah 1: Menjumlahkan Ketiga Persamaan</strong><br>
+                        Perhatikan kesimetrisan koefisien pada sistem. Jumlahkan persamaan (1), (2), dan (3) secara serentak:
+                        $$(2x + x + x) + (y + 2y + y) + (z + z + 2z) = 13 + 12 + 11$$
+                        $$4x + 4y + 4z = 36$$
+                        Bagi kedua ruas dengan 4:
+                        $$x + y + z = 9 \quad \text{--- (4)}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menentukan Masing-masing Variabel</strong><br>
+                        Kurangkan persamaan (4) dari masing-masing persamaan awal:
+                        <ul>
+                            <li><strong>Mencari $x$:</strong> Kurangkan persamaan (1) dengan persamaan (4):
+                                $$(2x + y + z) - (x + y + z) = 13 - 9 \implies x = 4$$
+                            </li>
+                            <li><strong>Mencari $y$:</strong> Kurangkan persamaan (2) dengan persamaan (4):
+                                $$(x + 2y + z) - (x + y + z) = 12 - 9 \implies y = 3$$
+                            </li>
+                            <li><strong>Mencari $z$:</strong> Kurangkan persamaan (3) dengan persamaan (4):
+                                $$(x + y + 2z) - (x + y + z) = 11 - 9 \implies z = 2$$
+                            </li>
+                        </ul>
+                        Himpunan penyelesaian unik adalah $HP = \{(4, 3, 2)\}$.
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menghitung Nilai $x + 2y + 3z$</strong><br>
+                        $$x + 2y + 3z = 4 + 2(3) + 3(2) = 4 + 6 + 6 = 16$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Solusi sistem $(x, y, z) = (4, 3, 2)$ dan nilai $x + 2y + 3z = 16$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat SNBT / UTBK — SPLTV Bentuk Pecahan Tiga Variabel</h3>
+                <p>
+                    Diberikan sistem persamaan pecahan sebagai berikut:
+                    $$\begin{cases} \frac{1}{x} + \frac{1}{y} + \frac{1}{z} = 6 \\ \frac{2}{x} + \frac{3}{y} - \frac{1}{z} = 5 \\ \frac{3}{x} - \frac{1}{y} + \frac{2}{z} = 7 \end{cases}$$
+                </p>
+                <ol type="a">
+                    <li>Tentukan nilai dari $x, y,$ dan $z$.</li>
+                    <li>Hitung nilai dari ekspresi rasional $\frac{xyz}{x + y + z}$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>Langkah 1: Substitusi Variabel Linier</strong><br>
+                        Misalkan:
+                        $$u = \frac{1}{x}, \quad v = \frac{1}{y}, \quad w = \frac{1}{z}$$
+                        Sistem berubah menjadi SPLTV linier standar:
+                        $$\begin{cases} u + v + w = 6 \quad \text{--- (1)} \\ 2u + 3v - w = 5 \quad \text{--- (2)} \\ 3u - v + 2w = 7 \quad \text{--- (3)} \end{cases}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Eliminasi Variabel $w$</strong><br>
+                        Jumlahkan persamaan (1) dan persamaan (2):
+                        $$(u + v + w) + (2u + 3v - w) = 6 + 5$$
+                        $$3u + 4v = 11 \quad \text{--- (4)}$$
+                        Kalikan persamaan (1) dengan 2 lalu kurangkan dengan persamaan (3):
+                        $$2(u + v + w) = 2u + 2v + 2w = 12$$
+                        $$(2u + 2v + 2w) - (3u - v + 2w) = 12 - 7$$
+                        $$-u + 3v = 5 \implies u = 3v - 5 \quad \text{--- (5)}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menyelesaikan Nilai $u, v, w$</strong><br>
+                        Substitusikan persamaan (5) ke persamaan (4):
+                        $$3(3v - 5) + 4v = 11$$
+                        $$9v - 15 + 4v = 11 \implies 13v = 26 \implies v = 2$$
+                        Hitung nilai $u$:
+                        $$u = 3(2) - 5 = 6 - 5 = 1$$
+                        Hitung nilai $w$ menggunakan persamaan (1):
+                        $$1 + 2 + w = 6 \implies 3 + w = 6 \implies w = 3$$
+                    </p>
+                    <p>
+                        <strong>Langkah 4: Menentukan Nilai $x, y, z$</strong><br>
+                        $$x = \frac{1}{u} = 1, \quad y = \frac{1}{v} = \frac{1}{2}, \quad z = \frac{1}{w} = \frac{1}{3}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 5: Menghitung Nilai $\frac{xyz}{x + y + z}$</strong><br>
+                        Hasil kali variabel:
+                        $$xyz = 1 \times \frac{1}{2} \times \frac{1}{3} = \frac{1}{6}$$
+                        Jumlah variabel:
+                        $$x + y + z = 1 + \frac{1}{2} + \frac{1}{3} = \frac{6 + 3 + 2}{6} = \frac{11}{6}$$
+                        Nilai ekspresi:
+                        $$\frac{xyz}{x + y + z} = \frac{\frac{1}{6}}{\frac{11}{6}} = \frac{1}{11}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Nilai $(x, y, z) = \left(1, \frac{1}{2}, \frac{1}{3}\right)$ dan rasio $\frac{xyz}{x+y+z} = \frac{1}{11}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Analisis SPLTV Berparameter & Rank Matriks</h3>
+                <p>
+                    Diberikan sistem persamaan linear tiga variabel yang memuat parameter real $a$ dan $b$:
+                    $$\begin{cases} x + y + z = 6 \\ 2x + 3y + az = 16 \\ x + 2y + 3z = b \end{cases}$$
+                </p>
+                <ol type="a">
+                    <li>Tentukan nilai parameter $a$ dan $b$ agar sistem memiliki <strong>tak hingga banyak solusi (konsisten dependen)</strong>.</li>
+                    <li>Tentukan nilai parameter $a$ dan $b$ agar sistem <strong>tidak memiliki solusi sama sekali (inkonsisten)</strong>.</li>
+                    <li>Tentukan solusi unik $(x, y, z)$ dari sistem jika diberikan nilai parameter $a = 5$ dan $b = 11$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>Langkah 1: Operasi Baris Elementer pada Matriks Augmented</strong><br>
+                        Tuliskan matriks augmented dari sistem tersebut:
+                        $$[A | \vec{d}] = \left(\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 2 & 3 & a & 16 \\ 1 & 2 & 3 & b \end{array}\right)$$
+                        Terapkan eliminasi Gauss baris per baris:
+                        <ul>
+                            <li>$R_2 \leftarrow R_2 - 2R_1$:
+                                $$\begin{pmatrix} 2 - 2 & 3 - 2 & a - 2 & | & 16 - 12 \end{pmatrix} = \begin{pmatrix} 0 & 1 & a - 2 & | & 4 \end{pmatrix}$$
+                            </li>
+                            <li>$R_3 \leftarrow R_3 - R_1$:
+                                $$\begin{pmatrix} 1 - 1 & 2 - 1 & 3 - 1 & | & b - 6 \end{pmatrix} = \begin{pmatrix} 0 & 1 & 2 & | & b - 6 \end{pmatrix}$$
+                            </li>
+                        </ul>
+                        Matriks menjadi:
+                        $$\left(\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 0 & 1 & a - 2 & 4 \\ 0 & 1 & 2 & b - 6 \end{array}\right)$$
+                        Eliminasi elemen baris ketiga menggunakan baris kedua ($R_3 \leftarrow R_3 - R_2$):
+                        $$\begin{pmatrix} 0 - 0 & 1 - 1 & 2 - (a - 2) & | & (b - 6) - 4 \end{pmatrix} = \begin{pmatrix} 0 & 0 & 4 - a & | & b - 10 \end{pmatrix}$$
+                        Bentuk eselon baris akhir:
+                        $$\left(\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 0 & 1 & a - 2 & 4 \\ 0 & 0 & 4 - a & b - 10 \end{array}\right)$$
+                        Persamaan baris ketiga ekuivalen dengan:
+                        $$(4 - a) z = b - 10$$
+                    </p>
+                    <p>
+                        <strong>(a) Syarat Tak Hingga Banyak Solusi:</strong><br>
+                        Sistem memiliki tak hingga solusi jika baris terakhir berbentuk pernyataan identitas $0 \cdot z = 0$ ($0 = 0$).
+                        Maka:
+                        $$4 - a = 0 \implies a = 4$$
+                        $$b - 10 = 0 \implies b = 10$$
+                        Jadi, sistem memiliki tak hingga banyak solusi jika <strong>$a = 4$ dan $b = 10$</strong>.
+                    </p>
+                    <p>
+                        <strong>(b) Syarat Tidak Memiliki Solusi (Inkonsisten):</strong><br>
+                        Sistem tidak memiliki solusi jika baris terakhir berbentuk kontradiksi $0 \cdot z = \text{konstanta } \ne 0$.
+                        Maka:
+                        $$4 - a = 0 \implies a = 4$$
+                        $$b - 10 \ne 0 \implies b \ne 10$$
+                        Jadi, sistem tidak memiliki solusi jika <strong>$a = 4$ dan $b \ne 10$</strong>.
+                    </p>
+                    <p>
+                        <strong>(c) Menentukan Solusi Unik untuk $a = 5$ dan $b = 11$:</strong><br>
+                        Karena $a = 5 \ne 4$, sistem memiliki tepat satu solusi unik.
+                        Substitusikan $a = 5$ dan $b = 11$ ke bentuk eselon baris:
+                        $$(4 - 5)z = 11 - 10 \implies -z = 1 \implies z = -1$$
+                        Substitusi $z = -1$ ke baris kedua ($y + (a - 2)z = 4$):
+                        $$y + (5 - 2)(-1) = 4 \implies y - 3 = 4 \implies y = 7$$
+                        Substitusi $y = 7$ dan $z = -1$ ke baris pertama ($x + y + z = 6$):
+                        $$x + 7 + (-1) = 6 \implies x + 6 = 6 \implies x = 0$$
+                        Tripel solusi unik adalah $(x, y, z) = (0, 7, -1)$.
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Tak hingga solusi saat $a = 4$ dan $b = 10$; tidak ada solusi saat $a = 4$ dan $b \ne 10$; serta solusi unik $(x, y, z) = (0, 7, -1)$ saat $a = 5$ dan $b = 11$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Tiga Bidang Datar Berpotongan di 1 Titik (3D Isometrik)
+            // ==========================================
+            const elBidang = document.getElementById("svg-tiga-bidang-potong");
+            if (elBidang) {
+                const geo1 = new GeoSVG(elBidang, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Perpotongan Tiga Bidang Datar pada Ruang Dimensi Tiga"
+                });
+
+                const cx = 160, cy = 110;
+
+                // Sumbu Ruang 3D (x, y, z)
+                geo1.buatSegmen([cx, cy], [cx - 80, cy + 50], { stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "3 2" }); // sumbu x
+                geo1.buatSegmen([cx, cy], [cx + 80, cy + 50], { stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "3 2" }); // sumbu y
+                geo1.buatSegmen([cx, cy], [cx, cy - 80], { stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "3 2" });      // sumbu z
+                geo1.buatTeks(cx - 85, cy + 55, "x", { fontSize: "8.5px", fill: TEMA.abu });
+                geo1.buatTeks(cx + 85, cy + 55, "y", { fontSize: "8.5px", fill: TEMA.abu });
+                geo1.buatTeks(cx + 6, cy - 80, "z", { fontSize: "8.5px", fill: TEMA.abu });
+
+                // Bidang 1: Horizontal (Cyan/Biru)
+                geo1.buatPoligon([
+                    [cx - 70, cy + 15],
+                    [cx + 30, cy + 45],
+                    [cx + 70, cy - 15],
+                    [cx - 30, cy - 45]
+                ], { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 1.5, opacity: 0.5 });
+                geo1.buatTeks(cx + 72, cy - 18, "π₁", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Bidang 2: Vertikal Miring (Hijau Emerald)
+                geo1.buatPoligon([
+                    [cx - 40, cy - 65],
+                    [cx + 40, cy - 25],
+                    [cx + 40, cy + 65],
+                    [cx - 40, cy + 25]
+                ], { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 1.5, opacity: 0.45 });
+                geo1.buatTeks(cx + 42, cy - 28, "π₂", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Bidang 3: Melintang (Oranye)
+                geo1.buatPoligon([
+                    [cx - 55, cy - 40],
+                    [cx + 55, cy - 40],
+                    [cx + 55, cy + 50],
+                    [cx - 55, cy + 50]
+                ], { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.5, opacity: 0.4 });
+                geo1.buatTeks(cx - 58, cy - 42, "π₃", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik Potong Persekutuan P(x₀, y₀, z₀)
+                geo1.buatLingkaran([cx, cy], 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(cx + 8, cy - 6, "P(x₀, y₀, z₀)", { position: "bottom-left", fontSize: "9.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 208, "Sistem Konsisten & Independen: Tepat 1 Titik Potong Bersama (D ≠ 0)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Visualisasi Aturan Sarrus 3x3
+            // ==========================================
+            const elSarrus = document.getElementById("svg-aturan-sarrus");
+            if (elSarrus) {
+                const geo2 = new GeoSVG(elSarrus, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Skema Diagonal Aturan Sarrus Matriks 3x3"
+                });
+
+                // Posisi Kolom
+                const colX = [55, 95, 135, 175, 215];
+                const rowY = [65, 105, 145];
+
+                // Garis Pembatas Matriks Determinan Utama
+                geo2.buatSegmen([42, 50], [42, 160], { stroke: TEMA.gelap, strokeWidth: 2 });
+                geo2.buatSegmen([148, 50], [148, 160], { stroke: TEMA.gelap, strokeWidth: 2 });
+
+                // Elemen Matriks
+                const elemen = [
+                    ["a₁", "b₁", "c₁", "a₁", "b₁"],
+                    ["a₂", "b₂", "c₂", "a₂", "b₂"],
+                    ["a₃", "b₃", "c₃", "a₃", "b₃"]
+                ];
+
+                for (let r = 0; r < 3; r++) {
+                    for (let c = 0; c < 5; c++) {
+                        const isRep = c >= 3;
+                        geo2.buatTeks(colX[c], rowY[r], elemen[r][c], {
+                            position: "middle-center",
+                            fontSize: "9.5px",
+                            fontWeight: isRep ? "normal" : "bold",
+                            fill: isRep ? TEMA.abu : TEMA.gelap
+                        });
+                    }
+                }
+
+                // 3 Diagonal Turun Bertanda (+) Warna Hijau
+                for (let i = 0; i < 3; i++) {
+                    geo2.buatSegmen([colX[i] - 8, rowY[0] - 10], [colX[i + 2] + 8, rowY[2] + 10], {
+                        stroke: TEMA.aksen,
+                        strokeWidth: 1.8
+                    });
+                    geo2.buatTeks(colX[i + 2] + 10, rowY[2] + 16, "(+)", {
+                        position: "middle-center",
+                        fontSize: "7.5px",
+                        fontWeight: "bold",
+                        fill: TEMA.aksen
+                    });
+                }
+
+                // 3 Diagonal Naik Bertanda (-) Warna Merah
+                for (let i = 0; i < 3; i++) {
+                    geo2.buatSegmen([colX[i] - 8, rowY[2] + 10], [colX[i + 2] + 8, rowY[0] - 10], {
+                        stroke: TEMA.merah,
+                        strokeWidth: 1.8,
+                        strokeDasharray: "4 2"
+                    });
+                    geo2.buatTeks(colX[i + 2] + 10, rowY[0] - 16, "(−)", {
+                        position: "middle-center",
+                        fontSize: "7.5px",
+                        fontWeight: "bold",
+                        fill: TEMA.merah
+                    });
+                }
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 208, "D = (∑ Diagonal Turun +) − (∑ Diagonal Naik −)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+
+            // ==========================================
+            // 3. Kasus Inkonsisten (Prisma Segitiga 3 Bidang)
+            // ==========================================
+            const elPrisma = document.getElementById("svg-prisma-segitiga-inkonsisten");
+            if (elPrisma) {
+                const geo3 = new GeoSVG(elPrisma, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Kasus Inkonsisten: Tiga Bidang Membentuk Prisma Segitiga"
+                });
+
+                // Penampang Prisma Segitiga di Ruang
+                // Garis 1 (Bawah)
+                geo3.buatSegmen([60, 160], [260, 160], { stroke: TEMA.utama, strokeWidth: 2 });
+                // Garis 2 (Kiri Miring)
+                geo3.buatSegmen([60, 160], [160, 50], { stroke: TEMA.aksen, strokeWidth: 2 });
+                // Garis 3 (Kanan Miring)
+                geo3.buatSegmen([160, 50], [260, 160], { stroke: TEMA.oranye, strokeWidth: 2 });
+
+                // Arsir Terowongan Prisma
+                geo3.buatPoligon([[60, 160], [160, 50], [260, 160]], {
+                    fill: TEMA.merahMuda,
+                    stroke: "none",
+                    opacity: 0.35
+                });
+
+                // Garis-garis Sejajar Memanjang ke Belakang (Proyeksi 3D)
+                geo3.buatSegmen([60, 160], [100, 120], { stroke: TEMA.utama, strokeWidth: 1.4, strokeDasharray: "3 2" });
+                geo3.buatSegmen([260, 160], [300, 120], { stroke: TEMA.utama, strokeWidth: 1.4, strokeDasharray: "3 2" });
+                geo3.buatSegmen([160, 50], [200, 20], { stroke: TEMA.aksen, strokeWidth: 1.4, strokeDasharray: "3 2" });
+
+                // Tiga Garis Potong Sejajar l1, l2, l3
+                geo3.buatTeks(52, 165, "ℓ₁", { fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo3.buatTeks(268, 165, "ℓ₂", { fontSize: "9px", fontWeight: "bold", fill: TEMA.oranye });
+                geo3.buatTeks(160, 40, "ℓ₃", { position: "bottom-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Label Bidang
+                geo3.buatTeks(160, 172, "Bidang π₁ (Alas)", { position: "top-center", fontSize: "8px", fill: TEMA.utama });
+                geo3.buatTeks(95, 95, "Bidang π₂", { position: "middle-right", fontSize: "8px", fill: TEMA.aksen });
+                geo3.buatTeks(225, 95, "Bidang π₃", { position: "middle-left", fontSize: "8px", fill: TEMA.oranye });
+
+                // Tanda Silang Inkonsisten di Tengah
+                geo3.buatTeks(160, 115, "HP = ∅ (Inkonsisten)", {
+                    position: "middle-center",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 208, "Setiap Pasang Berpotongan di Garis Sejajar, Tidak Ada Titik Temu Bersama", {
+                    position: "middle-center",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

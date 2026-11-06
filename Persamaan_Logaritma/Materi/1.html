@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Persamaan Logaritma</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Persamaan Logaritma</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Logaritma & Syarat Terdefinisi (Eksistensi)</h2>
+            <p>
+                <strong>Logaritma</strong> pada hakikatnya adalah operasi kebalikan (invers) dari perpangkatan (eksponensial). Jika $a^c = b$, maka nilai pangkat $c$ tersebut dinyatakan sebagai logaritma dari $b$ dengan bilangan pokok (basis) $a$:
+                $$^a\log b = c \iff a^c = b \quad (\text{atau ditulis } \log_a b = c)$$
+            </p>
+            <p>
+                <strong>Persamaan Logaritma</strong> adalah persamaan aljabar yang memuat variabel (peubah) di dalam <strong>numerus</strong> atau di dalam <strong>basis (bilangan pokok)</strong> logaritma.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Syarat Mutlak Eksistensi Logaritma ($^a\log b$):</strong>
+                    <ol style="margin-bottom: 0;">
+                        <li><strong>Syarat Numerus:</strong> $b > 0$ (numerus <em>wajib selalu bernilai positif</em>, karena hasil perpangkatan $a^c$ untuk basis positif tidak pernah bernilai nol atau negatif).</li>
+                        <li><strong>Syarat Basis (Bilangan Pokok):</strong> $a > 0$ dan $a \neq 1$ (basis harus positif dan tidak boleh bernilai satu, karena $1^c$ selalu bernilai 1 sehingga tidak memiliki invers).</li>
+                    </ol>
+                </p>
+            </div>
+
+            <h2>2. Logaritma sebagai Refleksi Invers Fungsi Eksponen Terhadap Garis $y = x$</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Secara geometris pada bidang Cartesius, grafik fungsi logaritma $y = \,^a\log x$ merupakan hasil <strong>refleksi simetri sempurna</strong> dari grafik fungsi eksponen $y = a^x$ terhadap garis diagonal cermin $y = x$:
+                    </p>
+                    <ul>
+                        <li>Titik potong sumbu-$Y$ pada eksponen $(0, 1)$ bertransformasi menjadi titik potong sumbu-$X$ pada logaritma $(1, 0)$ karena $^a\log 1 = 0$.</li>
+                        <li>Asimtot datar $y = 0$ (sumbu-$X$) pada eksponen bertransformasi menjadi <strong>asimtot tegak $x = 0$ (sumbu-$Y$)</strong> pada fungsi logaritma.</li>
+                        <li>Domain logaritma dibatasi secara ketat oleh $x \in (0, \infty)$, dengan daerah hasil (range) mencakup seluruh bilangan real $\mathbb{R}$.</li>
+                        <li>Karena fungsi logaritma bersifat <em>injektif (satu-satu)</em> dan monoton murni, maka berlaku:
+                            $$^a\log f(x) = \,^a\log g(x) \iff f(x) = g(x)$$
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-kurva-invers" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Sifat-Sifat Aljabar Logaritma Penting</h2>
+            <p>
+                Untuk basis $a, c > 0$ ($a, c \neq 1$) serta numerus $b, d > 0$:
+            </p>
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li>$^a\log 1 = 0$ &nbsp;dan&nbsp; $^a\log a = 1$</li>
+                        <li>$^a\log(b \cdot d) = \,^a\log b + \,^a\log d$</li>
+                        <li>$^a\log\left(\dfrac{b}{d}\right) = \,^a\log b - \,^a\log d$</li>
+                        <li>$^a\log(b^n) = n \cdot \,^a\log b$</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <ul>
+                        <li>$^{a^m}\log(b^n) = \dfrac{n}{m} \cdot \,^a\log b$</li>
+                        <li>$^a\log b = \dfrac{^c\log b}{^c\log a} = \dfrac{1}{^b\log a}$</li>
+                        <li>$^a\log b \cdot \,^b\log d = \,^a\log d$</li>
+                        <li>$a^{^a\log b} = b$</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>4. Analisis Syarat Numerus & Bahaya Akar Palsu (Extraneous Roots)</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Dalam menyelesaikan persamaan logaritma, kita sering menggunakan sifat perkalian logaritma:
+                        $$^a\log f(x) + \,^a\log g(x) = \,^a\log(f(x) \cdot g(x))$$
+                    </p>
+                    <p>
+                        <strong>Peringatan Matematis:</strong> Menggabungkan suku logaritma dapat <strong>memperluas domain secara semu</strong>. Perkalian dua bilangan negatif menghasilkan bilangan positif:
+                        $$(-2) \times (-4) = +8 > 0$$
+                        Akibatnya, bentuk $^2\log((-2)(-4)) = \,^2\log 8 = 3$ memiliki nilai, padahal suku awal $^2\log(-2)$ dan $^2\log(-4)$ sama sekali <strong>tidak terdefinisi</strong> dalam semesta bilangan real!
+                    </p>
+                    <p>
+                        Oleh karena itu, setiap nilai $x$ yang diperoleh dari manipulasi aljabar <strong>wajib diuji terhadap irisan syarat numerus awal</strong>. Nilai yang melanggar syarat numerus disebut <em>akar palsu (extraneous root)</em> dan harus dibuang.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-syarat-numerus" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Ragam Bentuk Baku Persamaan Logaritma</h2>
+
+            <h3>Bentuk 1: $^a\log f(x) = \,^a\log p \implies f(x) = p$</h3>
+            <p>
+                Syarat: $f(x) > 0$. Basis kedua ruas berupa konstanta positif yang sama ($a > 0, a \neq 1$).
+            </p>
+
+            <h3>Bentuk 2: $^a\log f(x) = \,^a\log g(x) \implies f(x) = g(x)$</h3>
+            <p>
+                Syarat wajib: $f(x) > 0$ dan $g(x) > 0$.
+            </p>
+
+            <h3>Bentuk 3: $^a\log f(x) = \,^b\log f(x)$ dengan $a \neq b \implies f(x) = 1$</h3>
+            <p>
+                Dua logaritma dengan basis berbeda bernilai sama jika dan hanya jika numerusnya bernilai satu, karena $^a\log 1 = \,^b\log 1 = 0$.
+            </p>
+
+            <h3>Bentuk 4: $^{h(x)}\log f(x) = \,^{h(x)}\log g(x)$ (Basis Berupa Fungsi)</h3>
+            <p>
+                Penyelesaian $f(x) = g(x)$ dengan himpunan syarat komprehensif:
+            </p>
+            <ol>
+                <li>Syarat numerus: $f(x) > 0$ dan $g(x) > 0$.</li>
+                <li>Syarat basis: $h(x) > 0$ dan $h(x) \neq 1$.</li>
+            </ol>
+
+            <h3>Bentuk 5: Bentuk Kuadrat Terselubung ($A(^a\log x)^2 + B(^a\log x) + C = 0$)</h3>
+            <p>
+                Selesaikan menggunakan pemisalan variabel baru:
+                $$u = \,^a\log x \quad (u \in \mathbb{R})$$
+                Persamaan berubah menjadi persamaan kuadrat $A u^2 + B u + C = 0$. Setelah memperoleh akar $u_1$ dan $u_2$, kembalikan ke nilai $x = a^u$.
+            </p>
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Hasil Kali Akar pada Persamaan Kuadrat Logaritma:</strong><br>
+                    Berdasarkan Teorema Vieta:
+                    $$u_1 + u_2 = \,^a\log x_1 + \,^a\log x_2 = \,^a\log(x_1 \cdot x_2) = -\frac{B}{A}$$
+                    Maka hasil kali seluruh akar persamaan kuadrat logaritma adalah:
+                    $$x_1 \cdot x_2 = a^{-\frac{B}{A}}$$
+                </p>
+            </div>
+
+            <h3>Bentuk 6: Persamaan Pangkat Logaritmik ($x^{^a\log x} = f(x)$)</h3>
+            <p>
+                Selesaikan dengan cara menarik logaritma berbasis $a$ ($^a\log$) pada kedua ruas persamaan untuk menurunkan variabel pangkat ke baris utama:
+                $$^a\log\left(x^{^a\log x}\right) = \,^a\log(f(x)) \iff (^a\log x) \cdot (^a\log x) = \,^a\log(f(x))$$
+            </p>
+
+            <h2>6. Karakteristik Kurva Logaritma Berdasarkan Nilai Basis</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Arah kemiringan kurva logaritma ditentukan oleh nilai basisnya:
+                    </p>
+                    <ul>
+                        <li><strong>Basis $a > 1$ (misal $y = \,^2\log x$):</strong> Kurva <strong>monoton naik</strong>. Jika $x \to 0^+$, nilai $y \to -\infty$. Jika $x \to \infty$, nilai $y \to \infty$.</li>
+                        <li><strong>Basis $0 < a < 1$ (misal $y = \,^{1/2}\log x$):</strong> Kurva <strong>monoton turun</strong>. Jika $x \to 0^+$, nilai $y \to \infty$. Jika $x \to \infty$, nilai $y \to -\infty$.</li>
+                    </ul>
+                    <p>
+                        Kedua kurva berpotongan tepat di titik $(1, 0)$ dan sama-sama memiliki garis $x = 0$ sebagai asimtot tegak.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-basis-logaritma" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>7. Tabel Ringkasan Rumus & Kondisi Solusi Persamaan Logaritma</h2>
+            <div class="table-container">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead>
+                        <tr style="background: var(--card-bg, #f8fafc); border-bottom: 2px solid var(--border-color, #e2e8f0);">
+                            <th style="padding: 10px; text-align: left;">Bentuk Persamaan</th>
+                            <th style="padding: 10px; text-align: left;">Syarat Keharusan (Domain)</th>
+                            <th style="padding: 10px; text-align: left;">Prinsip Penyelesaian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;">$^a\log f(x) = \,^a\log p$</td>
+                            <td style="padding: 10px;">$f(x) > 0, p > 0$</td>
+                            <td style="padding: 10px;">$f(x) = p$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;">$^a\log f(x) = \,^a\log g(x)$</td>
+                            <td style="padding: 10px;">$f(x) > 0$ dan $g(x) > 0$</td>
+                            <td style="padding: 10px;">$f(x) = g(x)$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;">$^a\log f(x) = \,^b\log f(x)$ ($a \neq b$)</td>
+                            <td style="padding: 10px;">$f(x) > 0$</td>
+                            <td style="padding: 10px;">$f(x) = 1$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;">$^{h(x)}\log f(x) = \,^{h(x)}\log g(x)$</td>
+                            <td style="padding: 10px;">$h(x) > 0, h(x) \neq 1$, $f(x) > 0, g(x) > 0$</td>
+                            <td style="padding: 10px;">$f(x) = g(x)$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;">$A(^a\log x)^2 + B(^a\log x) + C = 0$</td>
+                            <td style="padding: 10px;">$x > 0$</td>
+                            <td style="padding: 10px;">Substitusi $u = \,^a\log x \implies x_1 x_2 = a^{-B/A}$</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;">$x^{\log x} = f(x)$</td>
+                            <td style="padding: 10px;">$x > 0$</td>
+                            <td style="padding: 10px;">Terapkan $\log$ pada kedua ruas</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>8. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- CONTOH 1 (Dasar) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Penjumlahan Logaritma & Eliminasi Akar Palsu (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan himpunan penyelesaian dari persamaan logaritma berikut:
+                    $$^2\log(x - 1) + \,^2\log(x - 3) = 3$$
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Tentukan syarat numerus awal</strong>
+                        $$\begin{aligned}
+                        x - 1 > 0 &\implies x > 1 \\
+                        x - 3 > 0 &\implies x > 3
+                        \end{aligned}$$
+                        Irisan syarat numerus adalah: <strong>$x > 3$</strong>.<br><br>
+                        <strong>Langkah 2: Selesaikan persamaan aljabar</strong><br>
+                        Gunakan sifat perkalian numerus $^a\log b + \,^a\log c = \,^a\log(bc)$, dan nyatakan $3 = \,^2\log(2^3) = \,^2\log 8$:
+                        $$\begin{aligned}
+                        ^2\log((x - 1)(x - 3)) &= \,^2\log 8 \\
+                        (x - 1)(x - 3) &= 8 \\
+                        x^2 - 4x + 3 &= 8 \\
+                        x^2 - 4x - 5 &= 0 \\
+                        (x - 5)(x + 1) &= 0
+                        \end{aligned}$$
+                        Diperoleh calon nilai: $x = 5$ atau $x = -1$.<br><br>
+                        <strong>Langkah 3: Uji terhadap syarat numerus ($x > 3$)</strong>
+                        <ul>
+                            <li>$x = -1$ <strong>gugur (akar palsu)</strong> karena $-1 \ngtr 3$ (menyebabkan numerus bernilai negatif).</li>
+                            <li>$x = 5$ <strong>sah (memenuhi)</strong> karena $5 > 3$.</li>
+                        </ul>
+                        <div class="kesimpulan">
+                            Jadi, himpunan penyelesaian dari persamaan tersebut adalah $\{5\}$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Persamaan Kuadrat Basis Fungsi (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Jika $x_1$ dan $x_2$ adalah akar-akar yang memenuhi persamaan $(^{(x - 1)}\log 4)^2 = 4$, tentukan nilai dari $x_1 + x_2$.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Syarat basis</strong><br>
+                        Basis adalah $x - 1$:
+                        $$x - 1 > 0 \implies x > 1$$
+                        $$x - 1 \neq 1 \implies x \neq 2$$
+                        Domain sah: $x > 1$ dan $x \neq 2$.<br><br>
+                        <strong>Langkah 2: Selesaikan persamaan kuadrat</strong><br>
+                        $$(^{(x - 1)}\log 4)^2 = 4 \implies \,^{(x - 1)}\log 4 = \pm 2$$
+                        <br>
+                        <strong>Kasus 1:</strong> $^{(x - 1)}\log 4 = 2$<br>
+                        $$\begin{aligned}
+                        (x - 1)^2 &= 4 \\
+                        x - 1 &= 2 \quad (\text{karena basis } x - 1 > 0) \\
+                        x_1 &= 3 \quad (\text{memenuhi syarat } x > 1, x \neq 2)
+                        \end{aligned}$$
+                        <br>
+                        <strong>Kasus 2:</strong> $^{(x - 1)}\log 4 = -2$<br>
+                        $$\begin{aligned}
+                        (x - 1)^{-2} &= 4 \\
+                        \frac{1}{(x - 1)^2} &= 4 \\
+                        (x - 1)^2 &= \frac{1}{4} \\
+                        x - 1 &= \frac{1}{2} \quad (\text{karena basis } x - 1 > 0) \\
+                        x_2 &= 1 + \frac{1}{2} = \frac{3}{2} = 1{,}5 \quad (\text{memenuhi syarat } x > 1, x \neq 2)
+                        \end{aligned}$$
+                        <br>
+                        <strong>Langkah 3: Hitung $x_1 + x_2$</strong>
+                        $$x_1 + x_2 = 3 + \frac{3}{2} = \frac{9}{2} = 4\frac{1}{2}$$
+                        <div class="kesimpulan">
+                            Jadi, nilai dari $x_1 + x_2$ adalah $4\dfrac{1}{2}$ (atau $4{,}5$).
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Persamaan Pangkat Logaritmik (Tingkat HOTS / Olimpiade)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan semua bilangan real positif $x$ yang memenuhi persamaan logaritma:
+                    $$x^{\log x} = \frac{x^7}{10^{12}}$$
+                    (dengan $\log x$ menyatakan logaritma umum berbasis $10$).
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Syarat terdefinisi: $x > 0$.<br><br>
+                        <strong>Langkah 1: Terapkan $\log$ (basis 10) pada kedua ruas</strong><br>
+                        $$\begin{aligned}
+                        \log\left(x^{\log x}\right) &= \log\left(\frac{x^7}{10^{12}}\right) \\
+                        (\log x) \cdot (\log x) &= \log(x^7) - \log(10^{12}) \\
+                        (\log x)^2 &= 7\log x - 12
+                        \end{aligned}$$
+                        <br>
+                        <strong>Langkah 2: Selesaikan persamaan kuadrat dalam $\log x$</strong><br>
+                        Misalkan $u = \log x$:
+                        $$\begin{aligned}
+                        u^2 - 7u + 12 &= 0 \\
+                        (u - 3)(u - 4) &= 0
+                        \end{aligned}$$
+                        Diperoleh dua kemungkinan nilai $u$:
+                        $$u_1 = 3 \quad \text{atau} \quad u_2 = 4$$
+                        <br>
+                        <strong>Langkah 3: Tentukan nilai $x$</strong>
+                        <ul>
+                            <li>Untuk $u_1 = 3 \implies \log x = 3 \implies x_1 = 10^3 = 1.000$</li>
+                            <li>Untuk $u_2 = 4 \implies \log x = 4 \implies x_2 = 10^4 = 10.000$</li>
+                        </ul>
+                        Kedua nilai memenuhi syarat $x > 0$.
+                        <div class="kesimpulan">
+                            Jadi, nilai $x$ yang memenuhi persamaan tersebut adalah $x = 1.000$ atau $x = 10.000$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // 1. Visualisasi Kurva Invers: y = 2^x vs y = ^2log(x) terhadap Garis Simetri y = x
+            const elInvers = document.getElementById("svg-kurva-invers");
+            if (elInvers && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elInvers, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Logaritma sebagai Invers Eksponensial (Refleksi terhadap y = x)"
+                });
+
+                const Ox = 110, Oy = 160, u = 24;
+                const toPx = (x, y) => [Ox + x * u, Oy - y * u];
+
+                // Sumbu Kartesius X dan Y
+                geo1.buatVektor(toPx(-2.5, 0), toPx(7.5, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor(toPx(0, -2.5), toPx(0, 6.2), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo1.buatTeks(Ox + 7.7 * u, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo1.buatTeks(Ox, Oy - 6.4 * u, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Garis Refleksi Diagonal y = x
+                const pLine1 = toPx(-2.0, -2.0);
+                const pLine2 = toPx(5.5, 5.5);
+                geo1.buatSegmen(pLine1, pLine2, { stroke: "#94a3b8", strokeWidth: 1.4, strokeDasharray: "4 3" });
+                geo1.buatTeks(pLine2[0] + 4, pLine2[1] - 4, "y = x", {
+                    position: "bottom-left",
+                    fontSize: "10px",
+                    fontStyle: "italic",
+                    fill: "#64748b"
+                });
+
+                // Kurva Eksponen y = 2^x (x dari -2.5 sampai 2.4)
+                const ptsExp = [];
+                for (let x = -2.5; x <= 2.4; x += 0.15) {
+                    ptsExp.push(toPx(x, Math.pow(2, x)));
+                }
+                geo1.buatPolyline(ptsExp, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo1.buatTeks(toPx(2.2, Math.pow(2, 2.2))[0] - 8, toPx(2.2, Math.pow(2, 2.2))[1] - 12, "y = 2^x", {
+                    position: "bottom-right",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Kurva Logaritma y = ^2log(x) (x dari 0.15 sampai 6.5)
+                const ptsLog = [];
+                for (let x = 0.15; x <= 6.8; x += 0.15) {
+                    const y = Math.log2(x);
+                    ptsLog.push(toPx(x, y));
+                }
+                geo1.buatPolyline(ptsLog, { stroke: TEMA.merah, strokeWidth: 2.2 });
+                geo1.buatTeks(toPx(6.2, Math.log2(6.2))[0] - 6, toPx(6.2, Math.log2(6.2))[1] - 14, "y = ²log x", {
+                    position: "bottom-right",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Titik Simetri (0, 1) dan (1, 0)
+                const ptExp = toPx(0, 1);
+                const ptLog = toPx(1, 0);
+                geo1.buatLingkaran(ptExp, 4.5, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptExp[0] - 6, ptExp[1] - 8, "(0, 1)", { position: "middle-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo1.buatLingkaran(ptLog, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptLog[0] + 6, ptLog[1] + 12, "(1, 0)", { position: "top-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Segmen penghubung cermin antara (0, 1) dan (1, 0)
+                geo1.buatSegmen(ptExp, ptLog, { stroke: TEMA.ungu, strokeWidth: 1, strokeDasharray: "3 2" });
+
+                // Keterangan Bawah
+                geo1.buatTeks(170, 214, "Logaritma Adalah Refleksi Invers Eksponensial Terhadap y = x", {
+                    position: "middle-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 2. Visualisasi Uji Domain Numerus & Akar Palsu (^2log(x-1) + ^2log(x-3) = 3)
+            const elNumerus = document.getElementById("svg-syarat-numerus");
+            if (elNumerus && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elNumerus, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Uji Domain Syarat Numerus dan Eliminasi Akar Palsu"
+                });
+
+                const Y_line = 110;
+                const Ox = 60, u = 32;
+                const toX = x => Ox + (x + 2) * u;
+
+                // Garis Bilangan Horizontal
+                geo2.buatVektor([30, Y_line], [295, Y_line], { stroke: "#64748b", strokeWidth: 1.5 });
+
+                // Titik-titik angka di garis bilangan (-2 sampai 6)
+                [-2, -1, 0, 1, 2, 3, 4, 5, 6].forEach(val => {
+                    const xpx = toX(val);
+                    geo2.buatSegmen([xpx, Y_line - 4], [xpx, Y_line + 4], { stroke: "#64748b", strokeWidth: 1 });
+                    geo2.buatTeks(xpx, Y_line + 14, String(val), {
+                        position: "middle-center",
+                        fontSize: "9px",
+                        fill: (val === -1 || val === 5 || val === 1 || val === 3) ? "#0f172a" : "#94a3b8",
+                        fontWeight: (val === -1 || val === 5) ? "bold" : "normal"
+                    });
+                });
+
+                // Garis Syarat 1: x > 1 (garis panah ke kanan dari x = 1 di Y = 70)
+                const yS1 = 75;
+                geo2.buatLingkaran([toX(1), yS1], 4, { fill: "#ffffff", stroke: TEMA.oranye, strokeWidth: 1.8 });
+                geo2.buatVektor([toX(1) + 4, yS1], [285, yS1], { stroke: TEMA.oranye, strokeWidth: 2 });
+                geo2.buatTeks(toX(1) - 8, yS1, "x - 1 > 0 ⟹ x > 1", { position: "middle-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Garis Syarat 2: x > 3 (garis panah ke kanan dari x = 3 di Y = 50)
+                const yS2 = 50;
+                geo2.buatLingkaran([toX(3), yS2], 4, { fill: "#ffffff", stroke: TEMA.aksen, strokeWidth: 1.8 });
+                geo2.buatVektor([toX(3) + 4, yS2], [285, yS2], { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo2.buatTeks(toX(3) - 8, yS2, "x - 3 > 0 ⟹ x > 3", { position: "middle-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Wilayah Irisan Domain Sah: x > 3 di sumbu (arsiran tebal hijau)
+                geo2.buatSegmen([toX(3), Y_line], [285, Y_line], { stroke: TEMA.aksen, strokeWidth: 4, strokeLinecap: "round" });
+                geo2.buatTeks(285, Y_line - 14, "Domain Sah (x > 3)", { position: "middle-right", fontSize: "9.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Titik Calon Akar x = 5 (Sah)
+                const ptSah = [toX(5), Y_line];
+                geo2.buatLingkaran(ptSah, 5.5, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptSah[0], ptSah[1] - 18, "x = 5 (Sah)", { position: "bottom-center", fontSize: "10px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Titik Calon Akar x = -1 (Palsu)
+                const ptPalsu = [toX(-1), Y_line];
+                geo2.buatLingkaran(ptPalsu, 5, { fill: "#ffffff", stroke: TEMA.merah, strokeWidth: 2 });
+                geo2.buatTeks(ptPalsu[0], ptPalsu[1] - 18, "x = -1 (Palsu)", { position: "bottom-center", fontSize: "10px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 202, "x = -1 Gugur Karena Berada di Luar Domain Numerus (x > 3)", {
+                    position: "middle-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 3. Visualisasi Karakteristik Kurva Logaritma Berdasarkan Nilai Basis (a > 1 vs 0 < a < 1)
+            const elBasis = document.getElementById("svg-basis-logaritma");
+            if (elBasis && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elBasis, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Karakteristik Kurva Logaritma: Basis a > 1 vs 0 < a < 1"
+                });
+
+                const Ox = 75, Oy = 110, ux = 32, uy = 22;
+                const toPx = (x, y) => [Ox + x * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo3.buatVektor(toPx(-0.6, 0), toPx(6.8, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo3.buatVektor(toPx(0, -4.2), toPx(0, 4.2), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo3.buatTeks(Ox + 7.0 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo3.buatTeks(Ox, Oy - 4.4 * uy, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Asimtot Tegak x = 0 (Garis putus-putus)
+                geo3.buatSegmen(toPx(0, -3.8), toPx(0, 3.8), { stroke: "#94a3b8", strokeWidth: 2, strokeDasharray: "3 2" });
+
+                // Kurva 1: y = ^2log(x) (basis a = 2 > 1, monoton naik)
+                const ptsNaik = [];
+                for (let x = 0.12; x <= 6.2; x += 0.15) {
+                    ptsNaik.push(toPx(x, Math.log2(x)));
+                }
+                geo3.buatPolyline(ptsNaik, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo3.buatTeks(toPx(5.8, Math.log2(5.8))[0] - 6, toPx(5.8, Math.log2(5.8))[1] - 12, "y = ²log x (a > 1)", {
+                    position: "bottom-right",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Kurva 2: y = ^(1/2)log(x) = -^2log(x) (basis 0 < a < 1, monoton turun)
+                const ptsTurun = [];
+                for (let x = 0.12; x <= 6.2; x += 0.15) {
+                    ptsTurun.push(toPx(x, -Math.log2(x)));
+                }
+                geo3.buatPolyline(ptsTurun, { stroke: TEMA.oranye, strokeWidth: 2.2 });
+                geo3.buatTeks(toPx(5.8, -Math.log2(5.8))[0] - 6, toPx(5.8, -Math.log2(5.8))[1] + 14, "y = ¹/²log x (a < 1)", {
+                    position: "top-right",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.oranye
+                });
+
+                // Titik Potong Bersama di (1, 0)
+                const ptTemu = toPx(1, 0);
+                geo3.buatLingkaran(ptTemu, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(ptTemu[0] + 6, ptTemu[1] - 10, "(1, 0)", {
+                    position: "bottom-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 204, "Titik Potong Selalu di (1, 0) dengan Asimtot Tegak x = 0", {
+                    position: "middle-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
+

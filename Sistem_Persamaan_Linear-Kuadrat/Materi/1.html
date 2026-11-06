@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Sistem Persamaan Linear-Kuadrat (SPLK)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Sistem Persamaan Linear-Kuadrat (SPLK)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Bentuk Baku SPLKDV</h2>
+            <p>
+                <strong>Sistem Persamaan Linear-Kuadrat Dua Variabel (SPLKDV)</strong> adalah sistem persamaan matematika yang memuat <strong>satu persamaan berderajat satu (linear)</strong> dan <strong>satu persamaan berderajat dua (kuadrat)</strong> dengan dua variabel yang sama ($x$ dan $y$).
+            </p>
+            <p>
+                Himpunan penyelesaian sistem adalah pasangan koordinat terurut $(x, y) \in \mathbb{R}^2$ yang memenuhi kedua persamaan secara serentak, yang secara geometris merepresentasikan <strong>titik perpotongan antara sebuah garis lurus dan kurva kuadrat</strong>.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Bentuk-Bentuk Baku SPLKDV:</strong>
+                </p>
+                <ol style="margin: 0.3rem 0 0 1.2rem; padding: 0;">
+                    <li><strong>Bentuk Eksplisit (Garis dan Parabola):</strong>
+                        $$\begin{cases} y = mx + k \quad (\text{Persamaan Linear / Garis Lurus}) \\ y = ax^2 + bx + c \quad (\text{Persamaan Kuadrat / Parabola}, a \ne 0) \end{cases}$$
+                    </li>
+                    <li><strong>Bentuk Implisit (Garis dan Irisan Kerucut Umum):</strong>
+                        $$\begin{cases} px + qy + r = 0 \quad (\text{Persamaan Linear}) \\ Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0 \quad (\text{Kurva Kuadrat: Lingkaran, Elips, atau Hiperbola}) \end{cases}$$
+                    </li>
+                </ol>
+            </div>
+
+            <h2>2. Metode Substitusi & Persamaan Kuadrat Resolven</h2>
+            <p>
+                Metode penyelesaian baku untuk SPLK adalah <strong>Metode Substitusi</strong>:
+            </p>
+            <ol>
+                <li>Dari persamaan linear, nyatakan salah satu variabel dalam variabel lainnya:
+                    $$y = mx + k$$
+                </li>
+                <li>Substitusikan bentuk $y$ tersebut ke dalam persamaan kuadrat:
+                    $$ax^2 + bx + c = mx + k$$
+                </li>
+                <li>Pindahkan seluruh suku ke ruas kiri untuk membentuk <strong>Persamaan Kuadrat Resolven</strong>:
+                    $$ax^2 + (b - m)x + (c - k) = 0$$
+                    atau dalam bentuk umum: $\alpha x^2 + \beta x + \gamma = 0$, dengan $\alpha = a$, $\beta = b - m$, dan $\gamma = c - k$.
+                </li>
+                <li>Selesaikan persamaan kuadrat tersebut untuk memperoleh nilai absis $x$ ($x_1$ dan $x_2$).</li>
+                <li>Substitusikan nilai $x$ yang diperoleh ke <strong>persamaan linear</strong> untuk mendapatkan nilai ordinat pasangan $y$.</li>
+            </ol>
+
+            <h2>3. Geometri Kedudukan Garis & Analisis Diskriminan ($\Delta$)</h2>
+            <p>
+                Banyaknya anggota himpunan penyelesaian riil dari SPLK ditentukan secara eksak oleh nilai <strong>Diskriminan ($\Delta$)</strong> dari persamaan kuadrat resolven:
+                $$\Delta = \beta^2 - 4\alpha\gamma = (b - m)^2 - 4a(c - k)$$
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <ol>
+                        <li><strong>$\Delta > 0$ (Garis Sekan / Memotong di 2 Titik):</strong>
+                            <br>
+                            Persamaan kuadrat memiliki dua akar riil berlainan ($x_1 \ne x_2$).
+                            Garis memotong kurva kuadrat di <strong>dua titik potong berlainan</strong> $(x_1, y_1)$ dan $(x_2, y_2)$.
+                            Himpunan penyelesaian memiliki 2 anggota: $HP = \{(x_1, y_1), (x_2, y_2)\}$.
+                        </li>
+                        <li><strong>$\Delta = 0$ (Garis Tangen / Menyinggung di 1 Titik):</strong>
+                            <br>
+                            Persamaan kuadrat memiliki satu akar riil kembar ($x_1 = x_2 = x_0$).
+                            Garis <strong>menyinggung</strong> kurva di tepat satu titik koordinat $(x_0, y_0)$.
+                            Himpunan penyelesaian memiliki 1 anggota: $HP = \{(x_0, y_0)\}$.
+                        </li>
+                        <li><strong>$\Delta < 0$ (Garis Lepas / Tidak Memotong):</strong>
+                            <br>
+                            Persamaan kuadrat tidak memiliki akar riil.
+                            Garis berada di luar kurva kuadrat dan tidak berpotongan.
+                            Sistem <strong>tidak memiliki penyelesaian riil</strong> ($HP = \emptyset$).
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-splk-parabola-tiga-garis" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Tiga kedudukan geometri garis terhadap parabola — Sekan ($\Delta > 0$), Tangen ($\Delta = 0$), dan Lepas ($\Delta < 0$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>4. Kasus Khusus: Garis dan Lingkaran</h2>
+            <p>
+                Jika bagian kuadrat berbentuk lingkaran dengan pusat $(0,0)$ dan jari-jari $R$:
+                $$\begin{cases} y = mx + c \\ x^2 + y^2 = R^2 \end{cases}$$
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Kedudukan garis terhadap lingkaran dapat dianalisis melalui <strong>jarak titik pusat $(0,0)$ ke garis $mx - y + c = 0$</strong>:
+                        $$d = \frac{|c|}{\sqrt{m^2 + 1}}$$
+                    </p>
+                    <ul>
+                        <li><strong>$d < R \iff \Delta > 0$:</strong> Jarak pusat lebih pendek dari jari-jari, garis memotong lingkaran di 2 titik.</li>
+                        <li><strong>$d = R \iff \Delta = 0$:</strong> Jarak pusat sama dengan jari-jari, garis menyinggung lingkaran di 1 titik.
+                            Konstanta garis singgung: $c = \pm R\sqrt{1 + m^2}$.
+                        </li>
+                        <li><strong>$d > R \iff \Delta < 0$:</strong> Jarak pusat lebih besar dari jari-jari, garis berada di luar lingkaran.</li>
+                    </ul>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-splk-garis-lingkaran" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Hubungan geometris jarak titik pusat ke garis ($d$) terhadap jari-jari lingkaran ($R$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>5. Panjang Tali Busur Persekutuan</h2>
+            <p>
+                Ketika garis $y = mx + k$ memotong kurva kuadrat di dua titik $A(x_1, y_1)$ dan $B(x_2, y_2)$, ruas garis $AB$ dinamakan <strong>tali busur persekutuan</strong>.
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Berdasarkan Teorema Pythagoras pada bidang Kartesius:
+                        $$|AB| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
+                        Karena kedua titik terletak pada garis linear $y = mx + k$:
+                        $$y_2 - y_1 = (mx_2 + k) - (mx_1 + k) = m(x_2 - x_1)$$
+                        Substitusikan:
+                        $$|AB| = \sqrt{(x_2 - x_1)^2 + m^2(x_2 - x_1)^2} = |x_2 - x_1|\sqrt{1 + m^2}$$
+                        Berdasarkan rumus selisih akar persamaan kuadrat $\alpha x^2 + \beta x + \gamma = 0$:
+                        $$|x_2 - x_1| = \frac{\sqrt{\Delta}}{|\alpha|}$$
+                        Diperoleh <strong>Formula Instan Panjang Tali Busur</strong>:
+                        $$|AB| = \frac{\sqrt{\Delta}}{|\alpha|}\sqrt{1 + m^2}$$
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-splk-tali-busur" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Geometri panjang tali busur persekutuan $|AB| = |x_2 - x_1|\sqrt{1 + m^2}$ antara garis dan lingkaran.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>6. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Penyelesaian Eksplisit Garis dan Parabola</h3>
+                <p>
+                    Tentukan himpunan penyelesaian $(x, y)$ dari sistem persamaan linear-kuadrat berikut:
+                    $$\begin{cases} y = 2x - 1 \quad (\text{garis}) \\ y = x^2 - 3x + 5 \quad (\text{parabola}) \end{cases}$$
+                    serta hitung jarak Euclidean antara kedua titik potong persekutuan tersebut.
+                </p>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>Langkah 1: Menyusun Persamaan Kuadrat Resolven</strong><br>
+                        Substitusikan persamaan linear $y = 2x - 1$ ke dalam persamaan parabola:
+                        $$x^2 - 3x + 5 = 2x - 1$$
+                        Pindahkan seluruh suku ke ruas kiri:
+                        $$x^2 - 3x - 2x + 5 + 1 = 0$$
+                        $$x^2 - 5x + 6 = 0$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menentukan Nilai Absis $x$</strong><br>
+                        Faktorkan persamaan kuadrat resolven:
+                        $$(x - 2)(x - 3) = 0 \implies x_1 = 2 \quad \text{atau} \quad x_2 = 3$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menentukan Nilai Ordinat $y$</strong><br>
+                        Substitusikan ke persamaan linear $y = 2x - 1$:
+                        <ul>
+                            <li>Untuk $x_1 = 2$: $y_1 = 2(2) - 1 = 4 - 1 = 3 \implies \text{Titik } A(2, 3)$.</li>
+                            <li>Untuk $x_2 = 3$: $y_2 = 2(3) - 1 = 6 - 1 = 5 \implies \text{Titik } B(3, 5)$.</li>
+                        </ul>
+                        Himpunan penyelesaian: $HP = \{(2, 3), (3, 5)\}$.
+                    </p>
+                    <p>
+                        <strong>Langkah 4: Menghitung Jarak Kedua Titik Potong ($d_{AB}$)</strong><br>
+                        $$d_{AB} = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} = \sqrt{(3 - 2)^2 + (5 - 3)^2} = \sqrt{1^2 + 2^2} = \sqrt{1 + 4} = \sqrt{5}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Titik potong sistem adalah $A(2, 3)$ dan $B(3, 5)$, dengan jarak antartitik $d = \sqrt{5}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat SNBT / UTBK — Garis Singgung Berparameter & Syarat Akar Positif</h3>
+                <p>
+                    Diberikan sebuah garis dengan persamaan $y = 4x + k$ dan sebuah parabola dengan persamaan $y = 2x^2 - 4x + 11$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan nilai konstanta $k$ agar garis menyinggung parabola tepat di satu titik, dan tentukan koordinat titik singgungnya.</li>
+                    <li>Tentukan batasan nilai $k$ agar garis memotong parabola di dua titik yang keduanya berabsis positif ($x_1 > 0$ dan $x_2 > 0$).</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Syarat Menyinggung ($\Delta = 0$):</strong><br>
+                        Samakan kedua persamaan:
+                        $$2x^2 - 4x + 11 = 4x + k \implies 2x^2 - 8x + (11 - k) = 0$$
+                        Persamaan kuadrat resolven ini memiliki koefisien: $\alpha = 2, \beta = -8, \gamma = 11 - k$.
+                        Hitung diskriminan:
+                        $$\Delta = \beta^2 - 4\alpha\gamma = (-8)^2 - 4(2)(11 - k) = 64 - 8(11 - k) = 64 - 88 + 8k = 8k - 24$$
+                        Syarat menyinggung:
+                        $$\Delta = 0 \implies 8k - 24 = 0 \implies 8k = 24 \implies k = 3$$
+                        Substitusikan $k = 3$ ke persamaan resolven:
+                        $$2x^2 - 8x + (11 - 3) = 2x^2 - 8x + 8 = 0$$
+                        $$2(x^2 - 4x + 4) = 0 \implies 2(x - 2)^2 = 0 \implies x = 2$$
+                        Ordinat titik singgung:
+                        $$y = 4(2) + 3 = 8 + 3 = 11$$
+                        Titik singgung adalah $(2, 11)$.
+                    </p>
+                    <p>
+                        <strong>(b) Batasan Nilai $k$ untuk Dua Titik Potong Berabsis Positif:</strong><br>
+                        Agar memiliki dua titik potong berabsis positif ($x_1 > 0$ dan $x_2 > 0$), harus dipenuhi tiga syarat serentak:
+                        <ol>
+                            <li><strong>Syarat 1 (Dua Titik Berlainan, $\Delta > 0$):</strong>
+                                $$8k - 24 > 0 \implies 8k > 24 \implies k > 3$$
+                            </li>
+                            <li><strong>Syarat 2 (Jumlah Akar Positif, $x_1 + x_2 > 0$):</strong>
+                                $$x_1 + x_2 = -\frac{\beta}{\alpha} = -\frac{-8}{2} = 4 > 0 \quad (\text{selalu terpenuhi untuk semua } k)$$
+                            </li>
+                            <li><strong>Syarat 3 (Hasil Kali Akar Positif, $x_1 \cdot x_2 > 0$):</strong>
+                                $$x_1 \cdot x_2 = \frac{\gamma}{\alpha} = \frac{11 - k}{2} > 0 \implies 11 - k > 0 \implies k < 11$$
+                            </li>
+                        </ol>
+                        Irisan dari ketiga syarat tersebut menghasilkan:
+                        $$3 < k < 11$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Garis menyinggung parabola saat $k = 3$ di titik $(2, 11)$, dan memotong di dua titik berabsis positif saat interval $3 < k < 11$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Perpotongan Garis dan Lingkaran serta Formula Tali Busur</h3>
+                <p>
+                    Diberikan garis lurus $\ell: y = x + 1$ dan lingkaran $\mathcal{C}: x^2 + y^2 = 25$.
+                </p>
+                <ol type="a">
+                    <li>Buktikan secara analitis menggunakan diskriminan bahwa garis $\ell$ memotong lingkaran $\mathcal{C}$ di dua titik berbeda $A$ dan $B$, serta tentukan koordinat kedua titik tersebut.</li>
+                    <li>Hitung panjang tali busur persekutuan $AB$ menggunakan Formula Instan $|AB| = \frac{\sqrt{\Delta}}{|\alpha|}\sqrt{1 + m^2}$.</li>
+                    <li>Verifikasi kebenaran panjang tali busur tersebut menggunakan pendekatan jarak titik pusat lingkaran ke garis ($d$) melalui Teorema Pythagoras $2\sqrt{R^2 - d^2}$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menyusun Persamaan Resolven & Menentukan Titik Potong:</strong><br>
+                        Substitusikan $y = x + 1$ ke persamaan lingkaran $x^2 + y^2 = 25$:
+                        $$x^2 + (x + 1)^2 = 25$$
+                        $$x^2 + x^2 + 2x + 1 - 25 = 0$$
+                        $$2x^2 + 2x - 24 = 0 \iff x^2 + x - 12 = 0$$
+                        Persamaan kuadrat resolven memiliki koefisien: $\alpha = 1, \beta = 1, \gamma = -12$.
+                        Hitung diskriminan:
+                        $$\Delta = \beta^2 - 4\alpha\gamma = 1^2 - 4(1)(-12) = 1 + 48 = 49$$
+                        Karena $\Delta = 49 > 0$, terbukti bahwa garis memotong lingkaran di <strong>dua titik berbeda</strong>.
+                        Faktorkan persamaan:
+                        $$(x + 4)(x - 3) = 0 \implies x_1 = 3 \quad \text{atau} \quad x_2 = -4$$
+                        Substitusikan ke persamaan garis $y = x + 1$:
+                        <ul>
+                            <li>Untuk $x_1 = 3$: $y_1 = 3 + 1 = 4 \implies A(3, 4)$.</li>
+                            <li>Untuk $x_2 = -4$: $y_2 = -4 + 1 = -3 \implies B(-4, -3)$.</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Panjang Tali Busur via Formula Instan:</strong><br>
+                        Gradien garis adalah $m = 1$, koefisien kuadrat $\alpha = 1$, dan $\Delta = 49$:
+                        $$|AB| = \frac{\sqrt{\Delta}}{|\alpha|}\sqrt{1 + m^2} = \frac{\sqrt{49}}{1}\sqrt{1 + 1^2} = 7\sqrt{2}\text{ satuan panjang}$$
+                    </p>
+                    <p>
+                        <strong>(c) Verifikasi Geometris via Jarak Pusat ke Garis:</strong><br>
+                        Pusat lingkaran adalah $O(0, 0)$ dan jari-jari $R = 5$.
+                        Persamaan garis dalam bentuk implisit: $x - y + 1 = 0$.
+                        Jarak tegak lurus dari $O(0, 0)$ ke garis:
+                        $$d = \frac{|1(0) - 1(0) + 1|}{\sqrt{1^2 + (-1)^2}} = \frac{1}{\sqrt{2}}$$
+                        Panjang setengah tali busur membentuk segitiga siku-siku dengan hipotenusa $R$ dan sisi tegak $d$:
+                        $$\text{Setengah Tali Busur} = \sqrt{R^2 - d^2} = \sqrt{5^2 - \left(\frac{1}{\sqrt{2}}\right)^2} = \sqrt{25 - \frac{1}{2}} = \sqrt{\frac{49}{2}} = \frac{7}{\sqrt{2}} = \frac{7\sqrt{2}}{2}$$
+                        Maka panjang total tali busur:
+                        $$|AB| = 2 \times \frac{7\sqrt{2}}{2} = 7\sqrt{2}$$
+                        Terbukti persis sama secara mutlak antara pendekatan aljabar dan pendekatan geometri murni! $\blacksquare$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Titik potong $A(3, 4)$ dan $B(-4, -3)$, dengan panjang tali busur $|AB| = 7\sqrt{2}$ terverifikasi secara analitis dan geometris.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Kedudukan Garis terhadap Parabola (Sekan, Tangen, Lepas)
+            // ==========================================
+            const elParabola = document.getElementById("svg-splk-parabola-tiga-garis");
+            if (elParabola) {
+                const geo1 = new GeoSVG(elParabola, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Kedudukan Geometri Garis terhadap Parabola"
+                });
+
+                // Sumbu Kartesius Tipis
+                geo1.buatSegmen([30, 185], [290, 185], { stroke: TEMA.abu, strokeWidth: 1 });
+                geo1.buatSegmen([160, 20], [160, 195], { stroke: TEMA.abu, strokeWidth: 1 });
+
+                // Parabola: y_screen = 155 - 0.016 * (x - 160)^2
+                const ptsP = [];
+                for (let x = 85; x <= 235; x += 5) {
+                    const y = 155 - 0.016 * Math.pow(x - 160, 2);
+                    ptsP.push([x, y]);
+                }
+                for (let i = 0; i < ptsP.length - 1; i++) {
+                    geo1.buatSegmen(ptsP[i], ptsP[i + 1], { stroke: TEMA.utama, strokeWidth: 2.2 });
+                }
+                geo1.buatTeks(240, 60, "y = ax² + bx + c", { fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+
+                // 1. Garis Sekan (Memotong 2 Titik, Oranye) y = 110
+                geo1.buatSegmen([80, 110], [240, 110], { stroke: TEMA.oranye, strokeWidth: 1.8 });
+                geo1.buatLingkaran([107, 110], 3.2, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                geo1.buatLingkaran([213, 110], 3.2, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                geo1.buatTeks(72, 106, "Δ > 0 (Sekan, 2 Solusi)", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // 2. Garis Tangen (Menyinggung 1 Titik, Hijau) y = 155
+                geo1.buatSegmen([80, 155], [240, 155], { stroke: TEMA.aksen, strokeWidth: 1.8 });
+                geo1.buatLingkaran([160, 155], 3.5, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1 });
+                geo1.buatTeks(245, 155, "Δ = 0 (Tangen, 1 Solusi)", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // 3. Garis Lepas (Tidak Memotong, Ungu) y = 175
+                geo1.buatSegmen([80, 175], [240, 175], { stroke: TEMA.ungu, strokeWidth: 1.5, strokeDasharray: "4 2" });
+                geo1.buatTeks(245, 175, "Δ < 0 (Lepas, 0 Solusi)", { position: "middle-left", fontSize: "7.5px", fill: TEMA.ungu });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 208, "Diskriminan Persamaan Resolven: Δ = (b - m)² - 4a(c - k)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Garis dan Lingkaran (Jarak Pusat d vs Jari-jari R)
+            // ==========================================
+            const elLingkaran = document.getElementById("svg-splk-garis-lingkaran");
+            if (elLingkaran) {
+                const geo2 = new GeoSVG(elLingkaran, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Kedudukan Garis terhadap Lingkaran Berdasarkan Jarak Pusat"
+                });
+
+                const cx = 160, cy = 110, R = 55;
+
+                // Lingkaran x^2 + y^2 = R^2
+                geo2.buatLingkaran([cx, cy], R, { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 2, opacity: 0.35 });
+
+                // Titik Pusat O(0,0)
+                geo2.buatLingkaran([cx, cy], 3, { fill: TEMA.gelap });
+                geo2.buatTeks(cx - 8, cy + 6, "O(0,0)", { position: "middle-right", fontSize: "8.5px", fill: TEMA.gelap });
+
+                // Titik Singgung pada Sudut 45 derajat: (cx + R*cos(45), cy - R*sin(45))
+                const ptSinggung = [cx + 38.9, cy - 38.9];
+
+                // Garis Jari-jari Tegak Lurus (d = R)
+                geo2.buatSegmen([cx, cy], ptSinggung, { stroke: TEMA.aksen, strokeWidth: 1.8 });
+                geo2.buatSiku([cx + 38.9 - 6, cy - 38.9 - 6], ptSinggung, [cx, cy], { size: 6, stroke: TEMA.aksen, strokeWidth: 1 });
+                geo2.buatTeks(cx + 12, cy - 24, "d = R", { fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Garis Singgung (Hijau) Melalui ptSinggung dengan Sudut -45 derajat
+                geo2.buatSegmen([ptSinggung[0] - 45, ptSinggung[1] - 45], [ptSinggung[0] + 45, ptSinggung[1] + 45], { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo2.buatLingkaran(ptSinggung, 3.5, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1 });
+                geo2.buatTeks(ptSinggung[0] + 8, ptSinggung[1] - 6, "Tangen (d = R)", { fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Garis Sekan (Oranye, Memotong di 2 Titik)
+                geo2.buatSegmen([cx - 75, cy + 15], [cx + 75, cy + 15], { stroke: TEMA.oranye, strokeWidth: 1.8 });
+                geo2.buatTeks(cx - 78, cy + 12, "Sekan (d < R)", { position: "middle-right", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 208, "Kriteria Jarak: d < R (Sekan) | d = R (Tangen) | d > R (Lepas)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Geometri Panjang Tali Busur Persekutuan
+            // ==========================================
+            const elTaliBusur = document.getElementById("svg-splk-tali-busur");
+            if (elTaliBusur) {
+                const geo3 = new GeoSVG(elTaliBusur, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Panjang Tali Busur Persekutuan Garis dan Lingkaran"
+                });
+
+                const cx = 160, cy = 110, u = 14;
+
+                // Sumbu Kartesius
+                geo3.buatSegmen([50, cy], [270, cy], { stroke: TEMA.abu, strokeWidth: 1 });
+                geo3.buatSegmen([cx, 25], [cx, 195], { stroke: TEMA.abu, strokeWidth: 1 });
+
+                // Lingkaran x^2 + y^2 = 25 (R = 5 * 14 = 70 px)
+                geo3.buatLingkaran([cx, cy], 70, { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 2, opacity: 0.3 });
+
+                // Titik A(3, 4) -> (cx + 3*14, cy - 4*14) = (202, 54)
+                // Titik B(-4, -3) -> (cx - 4*14, cy + 3*14) = (104, 152)
+                const ptA = [202, 54];
+                const ptB = [104, 152];
+
+                // Segitiga Komponen dx, dy (Dashed Abu-abu)
+                geo3.buatSegmen(ptB, [ptA[0], ptB[1]], { stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo3.buatSegmen([ptA[0], ptB[1]], ptA, { stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo3.buatTeks(153, ptB[1] + 10, "Δx = 7", { position: "top-center", fontSize: "7.5px", fill: TEMA.teks });
+                geo3.buatTeks(ptA[0] + 6, 103, "Δy = 7", { position: "middle-left", fontSize: "7.5px", fill: TEMA.teks });
+
+                // Tali Busur AB (Merah Tebal)
+                geo3.buatSegmen(ptB, ptA, { stroke: TEMA.merah, strokeWidth: 2.4 });
+
+                // Titik A dan B
+                geo3.buatLingkaran(ptA, 3.8, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo3.buatTeks(ptA[0] + 6, ptA[1] - 4, "A(3, 4)", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                geo3.buatLingkaran(ptB, 3.8, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo3.buatTeks(ptB[0] - 6, ptB[1] + 6, "B(−4, −3)", { position: "top-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 208, "|AB| = (|Δ|¹/² / |α|) · √(1 + m²) = 7√2 Satuan Panjang", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

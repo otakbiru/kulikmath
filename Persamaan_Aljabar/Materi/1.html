@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Persamaan Aljabar</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Persamaan Aljabar</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Hakikat Persamaan Aljabar</h2>
+            <p>
+                Dalam matematika, kita membedakan tiga konsep dasar yang sering saling bersinggungan:
+            </p>
+            <ul>
+                <li>
+                    <strong>Ekspresi Aljabar (Bentuk Aljabar):</strong> Kombinasi dari konstanta, variabel, dan operasi aljabar (penjumlahan, pengurangan, perkalian, pembagian, perpangkatan) tanpa tanda kesamaan, misalnya $3x^2 - 5x + 2$.
+                </li>
+                <li>
+                    <strong>Persamaan Aljabar (Algebraic Equation):</strong> Pernyataan kesamaan antara dua ekspresi aljabar yang dihubungkan dengan tanda sama dengan ($=$), misalnya $2x + 3 = 7$ atau $x^2 - 5x + 6 = 0$. Persamaan ini bernilai benar <em>hanya untuk nilai-nilai variabel tertentu</em> yang disebut <strong>solusi</strong> atau <strong>akar-akar persamaan</strong>.
+                </li>
+                <li>
+                    <strong>Identitas Aljabar:</strong> Pernyataan kesamaan yang bernilai benar untuk <em>semua nilai variabel</em> dalam semesta pembicaraan, misalnya $(a + b)^2 = a^2 + 2ab + b^2$.
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Prinsip Kesetaraan Timbangan Aljabar (Balance Principle)</h3>
+                    <p>
+                        Sebuah persamaan dapat dianalogikan sebagai <strong>timbangan dua lengan yang seimbang sempurna</strong>. Nilai pada ruas kiri sama persis dengan nilai pada ruas kanan. Keseimbangan ini tetap terjaga jika dan hanya jika perlakuan operasi matematika yang diberikan pada kedua ruas dilakukan secara <strong>identik</strong>:
+                    </p>
+                    <ol>
+                        <li><strong>Penjumlahan & Pengurangan:</strong> Menambahkan atau mengurangkan kedua ruas dengan bilangan yang sama tidak mengubah nilai solusi:
+                            $$A = B \iff A \pm C = B \pm C$$
+                        </li>
+                        <li><strong>Perkalian & Pembagian:</strong> Mengalikan atau membagi kedua ruas dengan bilangan tak-nol ($C \neq 0$) yang sama mempertahankan kesetaraan:
+                            $$A = B \iff A \cdot C = B \cdot C \quad (C \neq 0)$$
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-timbangan-aljabar" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Interpretasi Geometris Identitas Aljabar (Geometric Algebra)</h2>
+            <p>
+                Jauh sebelum notasi aljabar modern dirumuskan oleh Al-Khwarizmi dan René Descartes, matematikawan Yunani Kuno memandang operasi aljabar sebagai <strong>geometri pengukuran luas bangun datar</strong>. Perkalian dua suku dipandang sebagai perkalian dimensi <em>panjang $\times$ lebar</em> yang menghasilkan luas area.
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Visualisasi Luas untuk $(a + b)^2 = a^2 + 2ab + b^2$</h3>
+                    <p>
+                        Perhatikan persegi besar dengan panjang sisi $(a + b)$. Luas total persegi besar tersebut adalah $(a + b)^2$. Jika sisi persegi dibagi menjadi dua ruas berukuran $a$ dan $b$, persegi besar terbagi menjadi 4 bidang segiempat:
+                    </p>
+                    <ul>
+                        <li>$1$ buah persegi biru berukuran $a \times a$ dengan luas $a^2$.</li>
+                        <li>$2$ buah persegi panjang hijau berukuran $a \times b$ dengan luas masing-masing $ab$ (total $2ab$).</li>
+                        <li>$1$ buah persegi kuning berukuran $b \times b$ dengan luas $b^2$.</li>
+                    </ul>
+                    <p>
+                        Dengan menjumlahkan luas keempat bagian wilayah tersebut, diperoleh bukti visual yang tak terbantahkan:
+                        $$(a + b)^2 = a^2 + 2ab + b^2$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-model-luas-aljabar" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <div class="kesimpulan" style="margin: 1rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Model Geometris Selisih Kuadrat:</strong><br>
+                    Dengan cara serupa, jika dari persegi berukuran $a \times a$ (luas $a^2$) dipotong sebuah persegi kecil berukuran $b \times b$ (luas $b^2$), daerah berbentuk L yang tersisa dapat dipotong dan disusun ulang menjadi persegi panjang baru berukuran $(a - b) \times (a + b)$, membuktikan bahwa:
+                    $$a^2 - b^2 = (a - b)(a + b)$$
+                </p>
+            </div>
+
+            <h2>3. Persamaan Linear Satu Variabel & Interpretasi Grafis</h2>
+            <p>
+                Persamaan Linear Satu Variabel (PLSV) adalah persamaan aljabar dengan derajat variabel tertinggi adalah satu ($1$). Bentuk umumnya adalah:
+                $$ax + b = 0 \quad (a \neq 0) \implies x = -\frac{b}{a}$$
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Interpretasi Grafik: Titik Potong Dua Garis</h3>
+                    <p>
+                        Menyelesaikan persamaan berbentuk $f(x) = g(x)$ secara aljabar setara dengan mencari <strong>titik potong</strong> antara dua grafik garis lurus $y = f(x)$ dan $y = g(x)$ pada bidang koordinat Kartesius.
+                    </p>
+                    <p>
+                        Sebagai contoh, perhatikan persamaan aljabar:
+                        $$2x - 1 = -x + 5$$
+                        Selesaikan secara aljabar:
+                        $$\begin{aligned}
+                        2x + x &= 5 + 1 \\
+                        3x &= 6 \implies x = 2
+                        \end{aligned}$$
+                        Jika kita gambarkan garis $y_1 = 2x - 1$ dan garis $y_2 = -x + 5$, kedua garis tersebut saling berpotongan tepat di koordinat titik $(2, 3)$. Nilai absis titik temu ($x = 2$) adalah solusi tunggal dari persamaan aljabar tersebut.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-grafik-solusi-aljabar" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Persamaan Pecahan Aljabar & Bahaya Akar Palsu (Extraneous Roots)</h2>
+            <p>
+                Persamaan aljabar sering kali melibatkan variabel pada penyebut pecahan (persamaan rasional):
+                $$\frac{P(x)}{Q(x)} = \frac{R(x)}{S(x)}$$
+            </p>
+            <p>
+                Langkah sistematis menyelesaikan persamaan pecahan aljabar:
+            </p>
+            <ol>
+                <li>
+                    <strong>Tentukan Syarat Terdefinisi (Domain):</strong> Penyebut pecahan tidak boleh bernilai nol:
+                    $$Q(x) \neq 0 \quad \text{dan} \quad S(x) \neq 0$$
+                </li>
+                <li>
+                    <strong>Eliminasi Penyebut (Clearing Denominators):</strong> Kalikan seluruh suku di kedua ruas dengan Kelipatan Persekutuan Terkecil (KPK) dari seluruh penyebut.
+                </li>
+                <li>
+                    <strong>Selesaikan Persamaan Polinomial:</strong> Selesaikan bentuk aljabar yang tersisa menggunakan pemfaktoran atau substitusi.
+                </li>
+                <li>
+                    <strong>Uji Syarat Batas (Cek Akar Palsu):</strong> Setiap nilai $x$ yang diperoleh wajib diuji kembali ke syarat awal penyebut. Jika suatu nilai $x$ menyebabkan penyebut menjadi nol, maka nilai tersebut merupakan <strong>akar palsu (extraneous solution)</strong> dan harus digugurkan dari himpunan penyelesaian.
+                </li>
+            </ol>
+
+            <h2>5. Bentuk Simetris Timbal-Balik (Reciprocal Forms) & Teknik Manipulasi</h2>
+            <p>
+                Bentuk aljabar timbal-balik $\left(x + \frac{1}{x}\right)$ adalah salah satu pola yang sangat sering muncul dalam ujian seleksi masuk perguruan tinggi (SNBT) dan olimpiade matematika.
+            </p>
+            <p>
+                Jika diketahui nilai $x + \dfrac{1}{x} = k$, maka pangkat-pangkat yang lebih tinggi dapat diturunkan menggunakan identitas kuadrat dan kubik:
+            </p>
+            <div class="table-container">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead>
+                        <tr style="background: var(--card-bg, #f8fafc); border-bottom: 2px solid var(--border-color, #e2e8f0);">
+                            <th style="padding: 10px; text-align: left;">Bentuk Target</th>
+                            <th style="padding: 10px; text-align: left;">Penjabaran Identitas Aljabar</th>
+                            <th style="padding: 10px; text-align: left;">Rumus Praktis ($k = x + \frac{1}{x}$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;">$x^2 + \dfrac{1}{x^2}$</td>
+                            <td style="padding: 10px;">$\left(x + \frac{1}{x}\right)^2 - 2(x)\left(\frac{1}{x}\right)$</td>
+                            <td style="padding: 10px;">$\mathbf{k^2 - 2}$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;">$x^3 + \dfrac{1}{x^3}$</td>
+                            <td style="padding: 10px;">$\left(x + \frac{1}{x}\right)^3 - 3(x)\left(\frac{1}{x}\right)\left(x + \frac{1}{x}\right)$</td>
+                            <td style="padding: 10px;">$\mathbf{k^3 - 3k}$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;">$x^4 + \dfrac{1}{x^4}$</td>
+                            <td style="padding: 10px;">$\left(x^2 + \frac{1}{x^2}\right)^2 - 2$</td>
+                            <td style="padding: 10px;">$\mathbf{(k^2 - 2)^2 - 2}$</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;">$x - \dfrac{1}{x}$</td>
+                            <td style="padding: 10px;">$\pm \sqrt{\left(x + \frac{1}{x}\right)^2 - 4}$</td>
+                            <td style="padding: 10px;">$\mathbf{\pm \sqrt{k^2 - 4}}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>6. Rangkuman Identitas Aljabar Penting</h2>
+            <div class="row">
+                <div class="col">
+                    <p><strong>Identitas Kuadrat:</strong></p>
+                    <ul>
+                        <li>$(a + b)^2 = a^2 + 2ab + b^2$</li>
+                        <li>$(a - b)^2 = a^2 - 2ab + b^2$</li>
+                        <li>$a^2 - b^2 = (a - b)(a + b)$</li>
+                        <li>$(a + b + c)^2 = a^2 + b^2 + c^2 + 2(ab + bc + ca)$</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <p><strong>Identitas Kubik & Faktorisasi:</strong></p>
+                    <ul>
+                        <li>$(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3 = a^3 + b^3 + 3ab(a + b)$</li>
+                        <li>$(a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3 = a^3 - b^3 - 3ab(a - b)$</li>
+                        <li>$a^3 + b^3 = (a + b)(a^2 - ab + b^2)$</li>
+                        <li>$a^3 - b^3 = (a - b)(a^2 + ab + b^2)$</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>7. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- CONTOH 1 (Dasar) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Persamaan Pecahan Linear (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan nilai $x$ yang memenuhi persamaan aljabar berikut:
+                    $$\frac{2x - 3}{3} - \frac{x + 1}{2} = 1$$
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Penyebut pada persamaan adalah $3$ dan $2$. Kelipatan Persekutuan Terkecil (KPK) dari $3$ dan $2$ adalah $6$.<br>
+                        Kalikan kedua ruas persamaan dengan $6$:
+                        $$\begin{aligned}
+                        6 \times \left(\frac{2x - 3}{3}\right) - 6 \times \left(\frac{x + 1}{2}\right) &= 6 \times 1 \\
+                        2(2x - 3) - 3(x + 1) &= 6 \\
+                        4x - 6 - 3x - 3 &= 6 \\
+                        x - 9 &= 6 \\
+                        x &= 6 + 9 \\
+                        x &= 15
+                        \end{aligned}$$
+                        <div class="kesimpulan">
+                            Jadi, nilai $x$ yang memenuhi persamaan tersebut adalah $x = 15$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Bentuk Simetris Timbal-Balik (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Jika bilangan real $x$ memenuhi persamaan kuadrat $x^2 - 5x + 1 = 0$, tentukan nilai dari:
+                    $$x^3 + \frac{1}{x^3}$$
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Perhatikan bahwa $x = 0$ bukan merupakan akar persamaan karena $0^2 - 5(0) + 1 = 1 \neq 0$.<br>
+                        Oleh karena itu, kita dapat membagi kedua ruas dengan $x$:
+                        $$\begin{aligned}
+                        \frac{x^2}{x} - \frac{5x}{x} + \frac{1}{x} &= 0 \\
+                        x - 5 + \frac{1}{x} &= 0 \\
+                        x + \frac{1}{x} &= 5
+                        \end{aligned}$$
+                        Gunakan identitas pemangkatan tiga untuk bentuk simetris $a^3 + b^3 = (a + b)^3 - 3ab(a + b)$:
+                        $$\begin{aligned}
+                        x^3 + \frac{1}{x^3} &= \left(x + \frac{1}{x}\right)^3 - 3(x)\left(\frac{1}{x}\right)\left(x + \frac{1}{x}\right) \\
+                        &= \left(x + \frac{1}{x}\right)^3 - 3\left(x + \frac{1}{x}\right) \\
+                        &= 5^3 - 3(5) \\
+                        &= 125 - 15 \\
+                        &= 110
+                        \end{aligned}$$
+                        <div class="kesimpulan">
+                            Jadi, nilai dari $x^3 + \dfrac{1}{x^3}$ adalah $110$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Manipulasi Kuadrat Aljabar Tingkat Lanjut (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan seluruh bilangan real $x$ yang memenuhi persamaan aljabar berikut:
+                    $$x^2 + \frac{x^2}{(x + 1)^2} = 3$$
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Syarat penyebut tak-nol: $x + 1 \neq 0 \implies x \neq -1$.<br><br>
+                        Bentuk ruas kiri menyerupai $a^2 + b^2$ dengan $a = x$ dan $b = \dfrac{x}{x + 1}$.<br>
+                        Ingat identitas: $a^2 + b^2 = (a - b)^2 + 2ab$.<br>
+                        Mari kita hitung nilai selisih $(a - b)$ dan hasil kali $ab$:
+                        $$\begin{aligned}
+                        a - b &= x - \frac{x}{x + 1} = \frac{x(x + 1) - x}{x + 1} = \frac{x^2}{x + 1} \\
+                        ab &= x \cdot \frac{x}{x + 1} = \frac{x^2}{x + 1}
+                        \end{aligned}$$
+                        Perhatikan pola luar biasa ini: nilai $(a - b)$ <strong>persis sama</strong> dengan nilai $ab$!<br>
+                        Misalkan $u = \dfrac{x^2}{x + 1}$, maka:
+                        $$a^2 + b^2 = (a - b)^2 + 2ab = u^2 + 2u$$
+                        Substitusikan ke persamaan awal yang bernilai $3$:
+                        $$\begin{aligned}
+                        u^2 + 2u &= 3 \\
+                        u^2 + 2u - 3 &= 0 \\
+                        (u + 3)(u - 1) &= 0
+                        \end{aligned}$$
+                        Diperoleh dua kemungkinan nilai $u$: $u = -3$ atau $u = 1$.<br><br>
+
+                        <strong>Kasus 1:</strong> $u = -3$<br>
+                        $$\begin{aligned}
+                        \frac{x^2}{x + 1} &= -3 \implies x^2 = -3x - 3 \implies x^2 + 3x + 3 = 0
+                        \end{aligned}$$
+                        Uji diskriminan: $D = 3^2 - 4(1)(3) = 9 - 12 = -3 < 0$.<br>
+                        Tidak ada solusi bilangan real dari kasus ini.<br><br>
+
+                        <strong>Kasus 2:</strong> $u = 1$<br>
+                        $$\begin{aligned}
+                        \frac{x^2}{x + 1} &= 1 \implies x^2 = x + 1 \implies x^2 - x - 1 = 0
+                        \end{aligned}$$
+                        Gunakan rumus kuadrat abc:
+                        $$x = \frac{-(-1) \pm \sqrt{(-1)^2 - 4(1)(-1)}}{2(1)} = \frac{1 \pm \sqrt{5}}{2}$$
+                        Kedua nilai ini memenuhi syarat $x \neq -1$.
+                        <div class="kesimpulan">
+                            Jadi, solusi real dari persamaan tersebut adalah:
+                            $$x = \frac{1 + \sqrt{5}}{2} \quad \text{atau} \quad x = \frac{1 - \sqrt{5}}{2}$$
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // 1. Visualisasi Timbangan Aljabar (Balance Model: 2x + 3 = 7)
+            const elTimbangan = document.getElementById("svg-timbangan-aljabar");
+            if (elTimbangan && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elTimbangan, 340, 215, {
+                    viewBox: "0 0 340 215",
+                    margin: 8,
+                    title: "Model Timbangan Aljabar: 2x + 3 = 7"
+                });
+
+                // Landasan dan tumpuan segitiga di tengah
+                geo1.buatPoligon([[150, 180], [190, 180], [170, 105]], {
+                    fill: "rgba(100, 116, 139, 0.18)",
+                    stroke: "#475569",
+                    strokeWidth: 2
+                });
+                geo1.buatSegmen([130, 180], [210, 180], { stroke: "#334155", strokeWidth: 3 });
+
+                // Engsel tengah & jarum penunjuk keseimbangan (tegak lurus = seimbang)
+                geo1.buatLingkaran([170, 105], 5, { fill: "#334155" });
+                geo1.buatSegmen([170, 105], [170, 75], { stroke: TEMA.merah, strokeWidth: 2 });
+                geo1.buatLingkaran([170, 75], 3, { fill: TEMA.merah });
+
+                // Palang datar penyeimbang
+                geo1.buatSegmen([55, 105], [285, 105], { stroke: "#1e293b", strokeWidth: 4, strokeLinecap: "round" });
+
+                // Cincin gantung
+                geo1.buatLingkaran([75, 105], 3.5, { fill: "#475569" });
+                geo1.buatLingkaran([265, 105], 3.5, { fill: "#475569" });
+
+                // Lengan Kiri: Tali gantungan & Piringan
+                geo1.buatSegmen([75, 105], [45, 150], { stroke: "#94a3b8", strokeWidth: 1.2 });
+                geo1.buatSegmen([75, 105], [105, 150], { stroke: "#94a3b8", strokeWidth: 1.2 });
+                geo1.buatSegmen([40, 150], [110, 150], { stroke: "#475569", strokeWidth: 3, strokeLinecap: "round" });
+
+                // Beban Piring Kiri: 2 balok x dan 3 bola satuan 1
+                // Balok x pertama & kedua
+                geo1.buatPersegiPanjang([46, 128], 22, 20, {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 1.6,
+                    radius: 3
+                });
+                geo1.buatTeks(57, 138, "x", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo1.buatPersegiPanjang([72, 128], 22, 20, {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 1.6,
+                    radius: 3
+                });
+                geo1.buatTeks(83, 138, "x", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.utama });
+
+                // 3 Bola satuan di atas balok x
+                const bolaKiri = [52, 70, 88];
+                bolaKiri.forEach(bx => {
+                    geo1.buatLingkaran([bx, 118], 5, { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.2 });
+                    geo1.buatTeks(bx, 118, "1", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+                });
+
+                // Label Ruas Kiri
+                geo1.buatTeks(75, 168, "2x + 3", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Lengan Kanan: Tali gantungan & Piringan
+                geo1.buatSegmen([265, 105], [235, 150], { stroke: "#94a3b8", strokeWidth: 1.2 });
+                geo1.buatSegmen([265, 105], [295, 150], { stroke: "#94a3b8", strokeWidth: 1.2 });
+                geo1.buatSegmen([230, 150], [300, 150], { stroke: "#475569", strokeWidth: 3, strokeLinecap: "round" });
+
+                // Beban Piring Kanan: 7 bola satuan (4 di bawah, 3 di atas)
+                const bolaKananBawah = [242, 257, 272, 287];
+                bolaKananBawah.forEach(bx => {
+                    geo1.buatLingkaran([bx, 142], 5, { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.2 });
+                    geo1.buatTeks(bx, 142, "1", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+                });
+                const bolaKananAtas = [250, 265, 280];
+                bolaKananAtas.forEach(bx => {
+                    geo1.buatLingkaran([bx, 129], 5, { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.2 });
+                    geo1.buatTeks(bx, 129, "1", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+                });
+
+                // Label Ruas Kanan
+                geo1.buatTeks(265, 168, "7", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Tanda Sama Dengan di Tengah
+                geo1.buatTeks(170, 148, "=", { position: "middle-center", fontSize: "20px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Keterangan Bawah
+                geo1.buatTeks(170, 202, "Keseimbangan: 2x + 3 = 7 ⟺ x = 2", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 2. Visualisasi Model Luas Geometri: (a + b)^2 = a^2 + 2ab + b^2
+            const elModelLuas = document.getElementById("svg-model-luas-aljabar");
+            if (elModelLuas && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elModelLuas, 320, 230, {
+                    viewBox: "0 0 320 230",
+                    margin: 8,
+                    title: "Model Luas Geometri Aljabar: (a + b)^2"
+                });
+
+                const X0 = 65, Y0 = 32;
+                const a = 100, b = 45;
+
+                // 1. Persegi Kiri Atas: a x a = a^2
+                geo2.buatPersegiPanjang([X0, Y0], a, a, {
+                    fill: "rgba(2, 132, 199, 0.15)",
+                    stroke: TEMA.utama,
+                    strokeWidth: 2
+                });
+                geo2.buatTeks(X0 + a / 2, Y0 + a / 2, "a²", {
+                    position: "middle-center",
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // 2. Persegi Panjang Kanan Atas: b x a = ab
+                geo2.buatPersegiPanjang([X0 + a, Y0], b, a, {
+                    fill: "rgba(13, 148, 136, 0.15)",
+                    stroke: TEMA.aksen,
+                    strokeWidth: 1.8
+                });
+                geo2.buatTeks(X0 + a + b / 2, Y0 + a / 2, "ab", {
+                    position: "middle-center",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // 3. Persegi Panjang Kiri Bawah: a x b = ab
+                geo2.buatPersegiPanjang([X0, Y0 + a], a, b, {
+                    fill: "rgba(13, 148, 136, 0.15)",
+                    stroke: TEMA.aksen,
+                    strokeWidth: 1.8
+                });
+                geo2.buatTeks(X0 + a / 2, Y0 + a + b / 2, "ab", {
+                    position: "middle-center",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // 4. Persegi Kanan Bawah: b x b = b^2
+                geo2.buatPersegiPanjang([X0 + a, Y0 + a], b, b, {
+                    fill: "rgba(217, 119, 6, 0.15)",
+                    stroke: TEMA.oranye,
+                    strokeWidth: 1.8
+                });
+                geo2.buatTeks(X0 + a + b / 2, Y0 + a + b / 2, "b²", {
+                    position: "middle-center",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fill: TEMA.oranye
+                });
+
+                // Label Ukuran Sisi Atas
+                geo2.buatTeks(X0 + a / 2, Y0 - 12, "a", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(X0 + a + b / 2, Y0 - 12, "b", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Garis penanda segmen atas
+                geo2.buatSegmen([X0, Y0 - 4], [X0 + a - 2, Y0 - 4], { stroke: TEMA.utama, strokeWidth: 1.5 });
+                geo2.buatSegmen([X0 + a + 2, Y0 - 4], [X0 + a + b, Y0 - 4], { stroke: TEMA.oranye, strokeWidth: 1.5 });
+
+                // Label Ukuran Sisi Kiri
+                geo2.buatTeks(X0 - 14, Y0 + a / 2, "a", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(X0 - 14, Y0 + a + b / 2, "b", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Garis penanda segmen kiri
+                geo2.buatSegmen([X0 - 4, Y0], [X0 - 4, Y0 + a - 2], { stroke: TEMA.utama, strokeWidth: 1.5 });
+                geo2.buatSegmen([X0 - 4, Y0 + a + 2], [X0 - 4, Y0 + a + b], { stroke: TEMA.oranye, strokeWidth: 1.5 });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 200, "Luas = a² + ab + ab + b²", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+                geo2.buatTeks(160, 216, "(a + b)² = a² + 2ab + b²", {
+                    position: "middle-center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+            }
+
+            // 3. Visualisasi Grafik Solusi Persamaan Linear (2x - 1 = -x + 5)
+            const elGrafik = document.getElementById("svg-grafik-solusi-aljabar");
+            if (elGrafik && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elGrafik, 320, 230, {
+                    viewBox: "0 0 320 230",
+                    margin: 8,
+                    title: "Grafik Solusi Persamaan Linear: Titik Temu 2x - 1 = -x + 5"
+                });
+
+                // Skala kartesius: Origin (0, 0) pada piksel [70, 160], 1 satuan = 28 px
+                const Ox = 70, Oy = 160, u = 28;
+                const toPx = (x, y) => [Ox + x * u, Oy - y * u];
+
+                // Grid tipis
+                for (let gx = -1; gx <= 6; gx++) {
+                    const p1 = toPx(gx, -1);
+                    const p2 = toPx(gx, 5.5);
+                    geo3.buatSegmen(p1, p2, { stroke: "#f1f5f9", strokeWidth: 1 });
+                }
+                for (let gy = -1; gy <= 5; gy++) {
+                    const p1 = toPx(-1.2, gy);
+                    const p2 = toPx(6.2, gy);
+                    geo3.buatSegmen(p1, p2, { stroke: "#f1f5f9", strokeWidth: 1 });
+                }
+
+                // Sumbu X & Sumbu Y dengan panah
+                geo3.buatVektor(toPx(-1.2, 0), toPx(6.4, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo3.buatVektor(toPx(0, -1.2), toPx(0, 5.5), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                // Label Sumbu
+                geo3.buatTeks(Ox + 6.6 * u, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo3.buatTeks(Ox, Oy - 5.7 * u, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo3.buatTeks(Ox - 8, Oy + 10, "0", { position: "middle-right", fontSize: "9px", fill: "#94a3b8" });
+
+                // Titik angka di sumbu X
+                [1, 2, 3, 4, 5].forEach(val => {
+                    const pt = toPx(val, 0);
+                    geo3.buatSegmen([pt[0], pt[1] - 3], [pt[0], pt[1] + 3], { stroke: "#64748b", strokeWidth: 1 });
+                    geo3.buatTeks(pt[0], pt[1] + 11, String(val), { position: "middle-center", fontSize: "9px", fill: "#64748b" });
+                });
+
+                // Titik angka di sumbu Y
+                [1, 2, 3, 4, 5].forEach(val => {
+                    const pt = toPx(0, val);
+                    geo3.buatSegmen([pt[0] - 3, pt[1]], [pt[0] + 3, pt[1]], { stroke: "#64748b", strokeWidth: 1 });
+                    geo3.buatTeks(pt[0] - 8, pt[1], String(val), { position: "middle-right", fontSize: "9px", fill: "#64748b" });
+                });
+
+                // Garis 1: y = 2x - 1 (dari x = 0.2 hingga x = 3.2)
+                const g1_a = toPx(0.2, 2 * 0.2 - 1);
+                const g1_b = toPx(3.2, 2 * 3.2 - 1);
+                geo3.buatSegmen(g1_a, g1_b, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo3.buatTeks(g1_b[0] + 6, g1_b[1] - 4, "y = 2x - 1", {
+                    position: "middle-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Garis 2: y = -x + 5 (dari x = 0.2 hingga x = 5.2)
+                const g2_a = toPx(0.2, -0.2 + 5);
+                const g2_b = toPx(5.2, -5.2 + 5);
+                geo3.buatSegmen(g2_a, g2_b, { stroke: TEMA.merah, strokeWidth: 2.2 });
+                geo3.buatTeks(g2_b[0] + 4, g2_b[1] + 8, "y = -x + 5", {
+                    position: "middle-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Titik Potong P(2, 3)
+                const P = toPx(2, 3);
+
+                // Garis proyeksi putus-putus ke sumbu X dan Y
+                geo3.buatSegmen(P, toPx(2, 0), { stroke: TEMA.ungu, strokeWidth: 1.3, strokeDasharray: "4 3" });
+                geo3.buatSegmen(P, toPx(0, 3), { stroke: TEMA.ungu, strokeWidth: 1.3, strokeDasharray: "4 3" });
+
+                // Titik P
+                geo3.buatLingkaran(P, 5, { fill: TEMA.ungu, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(P[0] + 8, P[1] - 8, "P(2, 3)", {
+                    position: "middle-left",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.ungu
+                });
+
+                // Highlight Solusi x = 2
+                geo3.buatTeks(160, 214, "Solusi Aljabar: x = 2 (Titik Potong)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Permutasi</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Permutasi</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Konsep Dasar & Notasi Faktorial</h2>
+            <p>
+                <strong>Permutasi</strong> adalah susunan berurutan dari sekumpulan objek di mana <strong>urutan diperhatikan</strong>. Artinya, perubahan urutan penempatan objek menghasilkan susunan yang berbeda:
+                $$AB \ne BA$$
+            </p>
+            <p>
+                Sebagai dasar perhitungan permutasi, digunakan operasi <strong>Faktorial</strong> (dinotasikan dengan tanda seru $!$). Untuk bilangan bulat non-negatif $n$, faktorial didefinisikan sebagai hasil kali semua bilangan bulat positif dari $1$ sampai $n$:
+                $$n! = n \times (n - 1) \times (n - 2) \times \dots \times 3 \times 2 \times 1$$
+            </p>
+            <p><strong>Definisi Khusus:</strong></p>
+            <ul>
+                <li>$0! = 1$ (berdasarkan konvensi himpunan kosong dan rumus permutasi).</li>
+                <li>$1! = 1$</li>
+                <li>$n! = n \times (n - 1)!$</li>
+            </ul>
+
+            <h2>2. Permutasi $n$ Unsur Berbeda Diambil $r$ Unsur</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Banyaknya cara menyusun $r$ objek yang dipilih dari $n$ objek yang berbeda dengan memperhatikan urutan dinotasikan dengan $P(n, r)$, $_nP_r$, atau $P_r^n$ dan dirumuskan:
+                        $$P(n, r) = \frac{n!}{(n - r)!}, \quad \text{dengan } r \le n$$
+                    </p>
+                    <p>
+                        <strong>Prinsip Pengisian Tempat (Filling Slots):</strong><br>
+                        Jika kita ingin mengisi $r$ posisi kosong dari $n$ objek yang tersedia:
+                        <ul>
+                            <li>Posisi ke-1 dapat diisi oleh $n$ pilihan.</li>
+                            <li>Posisi ke-2 dapat diisi oleh $(n - 1)$ pilihan.</li>
+                            <li>Posisi ke-3 dapat diisi oleh $(n - 2)$ pilihan.</li>
+                            <li>Posisi ke-$r$ dapat diisi oleh $(n - r + 1)$ pilihan.</li>
+                        </ul>
+                        Berdasarkan aturan perkalian:
+                        $$P(n, r) = n \times (n - 1) \times (n - 2) \times \dots \times (n - r + 1)$$
+                    </p>
+                    <p>
+                        <strong>Kasus Khusus ($r = n$):</strong><br>
+                        Banyaknya cara menyusun seluruh $n$ objek berbeda adalah:
+                        $$P(n, n) = \frac{n!}{(n - n)!} = \frac{n!}{0!} = n!$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-filling-slots" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Permutasi dengan Beberapa Unsur yang Sama</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Jika dari total $n$ objek terdapat $k_1$ objek jenis pertama yang identik (sama), $k_2$ objek jenis kedua yang identik, ..., dan $k_m$ objek jenis ke-$m$ yang identik, maka banyaknya permutasi berbeda yang dapat dibentuk adalah:
+                        $$P = \frac{n!}{k_1! \times k_2! \times \dots \times k_m!}$$
+                        dengan $k_1 + k_2 + \dots + k_m \le n$.
+                    </p>
+                    <p>
+                        <em>Contoh Klasik:</em> Berapa banyak susunan huruf berbeda dari kata <strong>"MATEMATIKA"</strong>?<br>
+                        Total huruf $n = 10$.<br>
+                        Huruf M $= 2$, A $= 3$, T $= 2$, E $= 1$, I $= 1$, K $= 1$.<br>
+                        $$P = \frac{10!}{2! \times 3! \times 2!} = \frac{3.628.800}{2 \times 6 \times 2} = 151.200\text{ susunan}$$
+                    </p>
+                    <p>
+                        <strong>Model Geometris (Lintasan Kisi Grid / Lattice Paths):</strong><br>
+                        Banyaknya lintasan terpendek dari titik $(0,0)$ ke titik $(a, b)$ pada kisi jalan berpetak sama persis dengan permutasi unsur yang sama! Setiap langkah hanya boleh ke Kanan ($K$) sebanyak $a$ kali dan ke Atas ($A$) sebanyak $b$ kali. Total langkah adalah $(a + b)$:
+                        $$\text{Banyak Rute} = \frac{(a + b)!}{a! \times b!}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-lattice-path" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Permutasi Siklis (Melingkar)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>Permutasi Siklis</strong> adalah penyusunan objek-objek dalam pola melingkar (tanpa titik awal dan akhir yang baku).
+                    </p>
+                    <p>
+                        Pada susunan melingkar, perputaran posisi yang urutan relatif antartetangganya tidak berubah dianggap sebagai <strong>satu susunan yang sama</strong>. Oleh karena itu, $1$ objek harus dipatok (dijadikan patokan acuan tetap), dan sisa $(n - 1)$ objek lainnya disusun bebas di sekitarnya:
+                        $$P_{\text{siklis}} = (n - 1)!$$
+                    </p>
+                    <p><strong>Variasi Gelang / Kalung (Dapat Dibalik):</strong></p>
+                    <p>
+                        Jika objek melingkar dapat dilihat dari dua sisi (tampak depan dan tampak belakang menghasilkan susunan sama, seperti manik-manik pada gelang atau kalung), maka arah searah jarum jam dan berlawanan jarum jam bernilai sama:
+                        $$P_{\text{gelang}} = \frac{(n - 1)!}{2}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-meja-bundar" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Permutasi Berulang</h2>
+            <p>
+                Jika objek yang tersedia boleh dipilih dan digunakan lebih dari satu kali (berulang), maka banyaknya susunan $r$ objek yang dapat dibentuk dari $n$ objek berbeda adalah:
+                $$P_{\text{berulang}} = n^r$$
+            </p>
+            <p>
+                <em>Contoh:</em> Berapa banyak kombinasi PIN $4$ digit yang dapat dibuat dari angka $0$ sampai $9$ jika angka boleh berulang?<br>
+                Terdapat $10$ pilihan angka ($0, 1, 2, \dots, 9$) untuk masing-masing dari $4$ posisi:<br>
+                $$P = 10^4 = 10.000\text{ kombinasi PIN}$$
+            </p>
+
+            <h2>6. Teknik Khusus Permutasi Bersyarat</h2>
+            <div class="row">
+                <div class="col">
+                    <h3>A. Metode Blok (Selalu Berdampingan)</h3>
+                    <p>
+                        Jika sekumpulan objek harus selalu berdampingan/berkelompok:
+                    </p>
+                    <ol>
+                        <li>Ikat kelompok objek tersebut menjadi <strong>1 entitas tunggal (blok)</strong>.</li>
+                        <li>Hitung permutasi total dari entitas blok bersama objek-objek lainnya.</li>
+                        <li>Kalikan dengan banyaknya permutasi internal di dalam blok tersebut.</li>
+                    </ol>
+                    <p>
+                        <em>Contoh:</em> $5$ orang berfoto berjajar, namun $2$ orang tertentu harus berdampingan. Hitung $(4!) \times 2! = 24 \times 2 = 48\text{ cara}$.
+                    </p>
+                </div>
+                <div class="col">
+                    <h3>B. Metode Penyisipan (Tidak Boleh Berdampingan)</h3>
+                    <p>
+                        Jika sekumpulan objek dilarang berdampingan satu sama lain:
+                    </p>
+                    <ol>
+                        <li>Susun terlebih dahulu objek-objek lain yang tidak memiliki syarat pembatas.</li>
+                        <li>Tempatkan objek yang tidak boleh berdampingan ke dalam <strong>ruang sela-sela (celah)</strong> yang terbentuk di antara objek pertama, termasuk di ujung kiri dan kanan.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <h2>7. Rangkuman Rumus Permutasi</h2>
+            <div class="pembahasan-box show" style="margin-bottom: 2rem;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                            <th style="padding: 0.6rem;">Jenis Permutasi</th>
+                            <th style="padding: 0.6rem;">Rumus Matematis</th>
+                            <th style="padding: 0.6rem;">Kondisi Penerapan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>Permutasi $n$ Unsur Berbeda</strong></td>
+                            <td style="padding: 0.6rem;">$P(n, r) = \dfrac{n!}{(n - r)!}$</td>
+                            <td style="padding: 0.6rem;">Urutan penting, tanpa pengulangan</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>Menyusun Seluruh $n$ Unsur</strong></td>
+                            <td style="padding: 0.6rem;">$P(n, n) = n!$</td>
+                            <td style="padding: 0.6rem;">Semua objek disusun berjajar</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>Unsur yang Sama</strong></td>
+                            <td style="padding: 0.6rem;">$P = \dfrac{n!}{k_1! \times k_2! \times \dots \times k_m!}$</td>
+                            <td style="padding: 0.6rem;">Terdapat objek-objek yang identik</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>Permutasi Siklis</strong></td>
+                            <td style="padding: 0.6rem;">$P_{\text{siklis}} = (n - 1)!$</td>
+                            <td style="padding: 0.6rem;">Susunan melingkar (meja bundar)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>Permutasi Gelang / Kalung</strong></td>
+                            <td style="padding: 0.6rem;">$P = \dfrac{(n - 1)!}{2}$</td>
+                            <td style="padding: 0.6rem;">Melingkar dan dapat dibalik tampak</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.6rem;"><strong>Permutasi Berulang</strong></td>
+                            <td style="padding: 0.6rem;">$P = n^r$</td>
+                            <td style="padding: 0.6rem;">Objek boleh digunakan berulang</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>8. Contoh Soal Terbimbing</h2>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Dalam suatu pemilihan pengurus OSIS, terdapat $7$ orang kandidat yang memenuhi syarat. Akan dipilih $3$ orang untuk menduduki jabatan Ketua, Sekretaris, dan Bendahara. Berapa banyak susunan pengurus berbeda yang mungkin terbentuk?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Karena masing-masing jabatan memiliki tingkatan tugas yang berbeda (Ketua $\ne$ Sekretaris $\ne$ Bendahara), maka <strong>urutan pemilihan diperhatikan</strong>. Masalah ini merupakan permutasi $3$ unsur dari $7$ unsur:
+                        $$P(7, 3) = \frac{7!}{(7 - 3)!} = \frac{7!}{4!}$$
+                        $$P(7, 3) = \frac{7 \times 6 \times 5 \times 4!}{4!} = 7 \times 6 \times 5 = 210\text{ susunan}$$
+                    </p>
+                    <div class="kesimpulan">Jadi, ada 210 susunan pengurus berbeda yang mungkin terbentuk.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Sebuah keluarga yang terdiri dari ayah, ibu, dan $4$ orang anaknya duduk mengelilingi meja makan bundar. Jika ayah dan ibu harus selalu duduk berdampingan, berapa banyak susunan posisi duduk yang mungkin terjadi?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Gunakan kombinasi <strong>Metode Blok</strong> dan <strong>Permutasi Siklis</strong>:<br><br>
+                        <strong>1. Mengelompokkan Ayah dan Ibu:</strong><br>
+                        Ayah dan ibu harus berdampingan, sehingga diikat menjadi $1$ unsur tunggal ($[\text{Ayah, Ibu}]$).<br>
+                        Jumlah unsur yang disusun melingkar sekarang menjadi:
+                        $$n = 1\text{ (blok orang tua)} + 4\text{ (anak)} = 5\text{ unsur}$$
+                        <br>
+                        <strong>2. Menghitung Permutasi Siklis:</strong><br>
+                        $$P_{\text{siklis}} = (5 - 1)! = 4! = 4 \times 3 \times 2 \times 1 = 24\text{ cara}$$
+                        <br>
+                        <strong>3. Menghitung Permutasi Internal di Dalam Blok:</strong><br>
+                        Ayah dan ibu dapat bertukar tempat duduk (Ayah-Ibu atau Ibu-Ayah):
+                        $$P_{\text{internal}} = 2! = 2\text{ cara}$$
+                        <br>
+                        <strong>4. Total Susunan:</strong><br>
+                        $$\text{Total} = P_{\text{siklis}} \times P_{\text{internal}} = 24 \times 2 = 48\text{ susunan}$$
+                    </p>
+                    <div class="kesimpulan">Jadi, banyak susunan posisi duduk yang mungkin terjadi adalah 48 susunan.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Dari angka-angka $1, 2, 3, 4, 5, 6, 7$, akan disusun bilangan ratusan ganjil yang terdiri dari angka-angka berbeda (tanpa pengulangan). Berapakah banyaknya bilangan yang dapat dibentuk?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Bilangan ratusan terdiri dari $3$ digit: $[\text{Ratusan}][\text{Puluhan}][\text{Satuan}]$.<br>
+                        Tersedia $7$ angka berbeda: $\{1, 2, 3, 4, 5, 6, 7\}$.<br><br>
+                        <strong>Langkah 1: Isi digit Satuan terlebih dahulu (syarat ganjil)</strong><br>
+                        Agar bernilai ganjil, digit terakhir harus berupa angka ganjil $\{1, 3, 5, 7\}$ $\implies$ ada $4$ pilihan.<br><br>
+                        <strong>Langkah 2: Isi digit Ratusan</strong><br>
+                        Dari $7$ angka, $1$ angka telah dipakai untuk satuan, sehingga tersisa $7 - 1 = 6$ pilihan.<br><br>
+                        <strong>Langkah 3: Isi digit Puluhan</strong><br>
+                        Dari $7$ angka, $2$ angka telah dipakai (satuan dan ratusan), sehingga tersisa $7 - 2 = 5$ pilihan.<br><br>
+                        Berdasarkan kaidah pencacahan perkalian:
+                        $$\text{Banyak bilangan} = 6 \times 5 \times 4 = 120\text{ bilangan}$$
+                    </p>
+                    <div class="kesimpulan">Jadi, banyak bilangan ratusan ganjil yang dapat dibentuk adalah 120 bilangan.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Visualisasi Diagram Matematika dengan GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0f766e",
+                utamaMuda: "#ccfbf1",
+                aksen: "#2563eb",
+                aksenMuda: "#dbeafe",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                merah: "#dc2626",
+                merahMuda: "#fee2e2",
+                bingkai: "#334155",
+                latar: "#f8fafc",
+                teks: "#0f172a",
+                garisBantu: "#cbd5e1"
+            };
+
+            // 1. Diagram Pengisian Tempat (Filling Slots) P(5, 3) = 5 x 4 x 3
+            const elSlots = document.getElementById("svg-filling-slots");
+            if (elSlots && typeof GeoSVG === "function") {
+                const W = 300, H = 210;
+                const geo = new GeoSVG("svg-filling-slots", W, H, {
+                    margin: 15,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                // Judul
+                geo.buatTeks(150, 24, "Memilih 3 dari 5 Objek: P(5, 3)", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.utama });
+
+                const slots = [
+                    { x: 30, pos: "Posisi 1", opsi: "5", ket: "5 opsi awal", col: TEMA.utama, colBg: TEMA.utamaMuda },
+                    { x: 120, pos: "Posisi 2", opsi: "4", ket: "sisa 4 opsi", col: TEMA.aksen, colBg: TEMA.aksenMuda },
+                    { x: 210, pos: "Posisi 3", opsi: "3", ket: "sisa 3 opsi", col: TEMA.oranye, colBg: TEMA.oranyeMuda }
+                ];
+
+                slots.forEach(s => {
+                    // Kotak Slot
+                    geo.buatPersegiPanjang(s.x, 50, 60, 60, {
+                        fill: s.colBg,
+                        stroke: s.col,
+                        strokeWidth: 2,
+                        rx: 6,
+                        ry: 6
+                    });
+                    // Angka dalam kotak
+                    geo.buatTeks(s.x + 30, 80, s.opsi, { position: "middle-center", fontSize: "22px", fontWeight: "bold", fill: s.col });
+                    // Label Posisi & Keterangan
+                    geo.buatTeks(s.x + 30, 126, s.pos, { position: "top-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.teks });
+                    geo.buatTeks(s.x + 30, 142, s.ket, { position: "top-center", fontSize: "10px", fill: "#64748b" });
+                });
+
+                // Tanda perkalian x
+                geo.buatTeks(105, 80, "×", { position: "middle-center", fontSize: "18px", fontWeight: "bold", fill: TEMA.bingkai });
+                geo.buatTeks(195, 80, "×", { position: "middle-center", fontSize: "18px", fontWeight: "bold", fill: TEMA.bingkai });
+
+                // Hasil akhir
+                geo.buatTeks(150, 185, "= 5 × 4 × 3 = 60 Cara", { position: "middle-center", fontSize: "14px", fontWeight: "bold", fill: TEMA.utama });
+            }
+
+            // 2. Model Kisi Grid (Lattice Paths): Menuju (4, 3) = 7! / (4! 3!)
+            const elGrid = document.getElementById("svg-lattice-path");
+            if (elGrid && typeof GeoSVG === "function") {
+                const W = 300, H = 220;
+                const geo = new GeoSVG("svg-lattice-path", W, H, {
+                    margin: 15,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                const ox = 45, oy = 180;
+                const dx = 48, dy = 38;
+                const pt = (i, j) => [ox + i * dx, oy - j * dy];
+
+                // Garis Kisi Horizontal & Vertikal
+                for (let j = 0; j <= 3; j++) {
+                    geo.buatSegmen(pt(0, j), pt(4, j), { stroke: TEMA.garisBantu, strokeWidth: 1.2 });
+                }
+                for (let i = 0; i <= 4; i++) {
+                    geo.buatSegmen(pt(i, 0), pt(i, 3), { stroke: TEMA.garisBantu, strokeWidth: 1.2 });
+                }
+
+                // Titik Simpul Kisi
+                for (let i = 0; i <= 4; i++) {
+                    for (let j = 0; j <= 3; j++) {
+                        geo.buatTitik(pt(i, j), { r: 2.5, fill: TEMA.garisBantu });
+                    }
+                }
+
+                // Contoh 1 Rute Lintasan: K -> K -> A -> K -> A -> A -> K
+                const rute = [pt(0, 0), pt(1, 0), pt(2, 0), pt(2, 1), pt(3, 1), pt(3, 2), pt(3, 3), pt(4, 3)];
+                for (let k = 0; k < rute.length - 1; k++) {
+                    geo.buatVektor(rute[k], rute[k + 1], { stroke: TEMA.merah, strokeWidth: 2.6 });
+                }
+
+                // Titik Awal & Titik Tujuan
+                geo.buatTitik(pt(0, 0), { r: 4.5, fill: TEMA.utama, stroke: "#fff", strokeWidth: 1.8 });
+                geo.buatTeks(pt(0, 0)[0] - 10, pt(0, 0)[1] + 16, "(0,0)", { fontSize: "11px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo.buatTitik(pt(4, 3), { r: 4.5, fill: TEMA.aksen, stroke: "#fff", strokeWidth: 1.8 });
+                geo.buatTeks(pt(4, 3)[0] + 8, pt(4, 3)[1] - 8, "(4,3)", { fontSize: "11px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Keterangan Rute
+                geo.buatTeks(150, 18, "4 Kanan + 3 Atas = 7! / (4! 3!) = 35", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 3. Permutasi Siklis Meja Bundar (4 Orang: P = (4-1)! = 6)
+            const elSiklis = document.getElementById("svg-meja-bundar");
+            if (elSiklis && typeof GeoSVG === "function") {
+                const W = 300, H = 220;
+                const geo = new GeoSVG("svg-meja-bundar", W, H, {
+                    margin: 15,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                const cx = 150, cy = 110, R = 55;
+
+                // Meja Bundar di Tengah
+                geo.buatLingkaran([cx, cy], R, { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 2 });
+                geo.buatTeks(cx, cy - 8, "Meja", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.oranye });
+                geo.buatTeks(cx, cy + 8, "Bundar", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Panah Rotasi Searah
+                const rBusur = 32;
+                geo.buatBusur([cx, cy], rBusur, 20, 140, { stroke: TEMA.oranye, strokeWidth: 1.5, strokeDasharray: "3,2" });
+
+                // 4 Kursi Orang: Atas (A - Patokan), Kanan (B), Bawah (C), Kiri (D)
+                const kursi = [
+                    { x: cx, y: cy - R - 20, label: "A", sub: "Patokan Tetap", col: TEMA.merah, bg: TEMA.merahMuda },
+                    { x: cx + R + 22, y: cy, label: "B", sub: "Bebas", col: TEMA.utama, bg: TEMA.utamaMuda },
+                    { x: cx, y: cy + R + 20, label: "C", sub: "Bebas", col: TEMA.utama, bg: TEMA.utamaMuda },
+                    { x: cx - R - 22, y: cy, label: "D", sub: "Bebas", col: TEMA.utama, bg: TEMA.utamaMuda }
+                ];
+
+                kursi.forEach(k => {
+                    // Lingkaran Orang
+                    geo.buatLingkaran([k.x, k.y], 14, { fill: k.bg, stroke: k.col, strokeWidth: 1.8 });
+                    geo.buatTeks(k.x, k.y, k.label, { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: k.col });
+                });
+
+                // Label Tambahan
+                geo.buatTeks(cx, 16, "P_siklis = (4 - 1)! = 3! = 6 Susunan", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

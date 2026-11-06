@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Rotasi (Perputaran)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Rotasi (Perputaran)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Tiga Elemen Penentu Rotasi</h2>
+            <p>
+                <strong>Rotasi (Perputaran)</strong> adalah transformasi geometri bidang yang memutar setiap titik pada bangun datar sebesar sudut tertentu ($\theta$) mengelilingi suatu titik tetap tertentu yang dinamakan <strong>titik pusat rotasi</strong>.
+            </p>
+
+            <h3>Tiga Elemen Pokok Penentu Rotasi</h3>
+            <ol>
+                <li><strong>Titik Pusat Rotasi ($P$):</strong> Titik tetap invarian yang menjadi poros perputaran ($P' = P$). Titik pusat dapat berada di titik asal $O(0, 0)$ maupun di sembarang titik koordinat $P(a, b)$.</li>
+                <li><strong>Besar Sudut Rotasi ($\theta$):</strong> Besar sudut perputaran dalam satuan derajat atau radian.</li>
+                <li><strong>Arah Putaran Rotasi:</strong>
+                    <ul>
+                        <li><strong>Arah Positif ($+\theta$):</strong> Berputar <strong>berlawanan arah jarum jam</strong> (<em>counter-clockwise / CCW</em>).</li>
+                        <li><strong>Arah Negatif ($-\theta$):</strong> Berputar <strong>searah jarum jam</strong> (<em>clockwise / CW</em>).</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Sifat Isometri Langsung (Direct Isometry):</strong><br>
+                    Rotasi merupakan transformasi isometri yang mempertahankan jarak antartitik (panjang sisi), besar sudut, dan luas bangun datar. Berbeda dengan refleksi yang membalik orientasi, rotasi <strong>mempertahankan orientasi arah putaran titik-titik sudut bangun datar</strong> (orientasi berlawanan jarum jam tetap berlawanan jarum jam).
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>2. Rotasi dengan Pusat Titik Asal $O(0, 0)$</h2>
+                    <p>
+                        Notasi standar: $R(O, \theta)$ atau $[O, \theta]$.
+                    </p>
+                    <p>
+                        Dengan memanfaatkan koordinat kutub (polar), jika titik $P(x, y)$ memiliki jarak $r$ dari pusat $O$ dan sudut polar $\alpha$, maka setelah diputar sebesar $\theta$, koordinat bayangannya $P'(x', y')$ adalah:
+                    </p>
+                    $$x' = x \cos \theta - y \sin \theta$$
+                    $$y' = x \sin \theta + y \cos \theta$$
+                    <p>
+                        Persamaan matriks rotasi terhadap titik asal $O(0, 0)$:
+                    </p>
+                    $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}$$
+                    <p>
+                        Pada diagram di samping, titik $P(4, 2)$ diputar sebesar $+90^\circ$ berlawanan arah jarum jam menghasilkan bayangan $P'(-2, 4)$, dengan panjang jari-jari $OP = OP' = \sqrt{20}$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-rotasi-titik-polar" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h3>Sudut-Sudut Istimewa Rotasi terhadap $O(0, 0)$</h3>
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                            <th style="padding: 6px;">Sudut Rotasi ($\theta$)</th>
+                            <th style="padding: 6px;">Titik Bayangan $(x', y')$</th>
+                            <th style="padding: 6px;">Matriks Rotasi $R_\theta$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 6px;">$+90^\circ$ (atau $-270^\circ$)</td>
+                            <td style="padding: 6px;">$(-y, x)$</td>
+                            <td style="padding: 6px;">$\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 6px;">$+180^\circ$ (atau $-180^\circ$)</td>
+                            <td style="padding: 6px;">$(-x, -y)$</td>
+                            <td style="padding: 6px;">$\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$ (ekuivalen refleksi titik asal)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 6px;">$+270^\circ$ (atau $-90^\circ$)</td>
+                            <td style="padding: 6px;">$(y, -x)$</td>
+                            <td style="padding: 6px;">$\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px;">$+360^\circ$ (Putaran Penuh)</td>
+                            <td style="padding: 6px;">$(x, y)$</td>
+                            <td style="padding: 6px;">$\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ (Matriks Identitas $I$)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>3. Rotasi dengan Pusat Titik Sembarang $P(a, b)$</h2>
+                    <p>
+                        Notasi standar: $R(P(a, b), \theta)$ atau $[(a, b), \theta]$.
+                    </p>
+                    <p>
+                        Mekanisme rotasi terhadap titik pusat $P(a, b)$ dilakukan melalui 3 tahap:
+                    </p>
+                    <ol>
+                        <li>Translasi titik koordinat sebesar $\begin{pmatrix} -a \\ -b \end{pmatrix}$ agar pusat berada di titik asal.</li>
+                        <li>Rotasi sebesar $\theta$ mengelilingi titik asal.</li>
+                        <li>Translasi kembali sebesar $\begin{pmatrix} a \\ b \end{pmatrix}$ ke posisi pusat semula.</li>
+                    </ol>
+                    <p>
+                        Formulasi matriks rotasi terhadap pusat $P(a, b)$:
+                    </p>
+                    $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix} \begin{pmatrix} x - a \\ y - b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}$$
+                </div>
+                <div class="col col-center">
+                    <div id="svg-rotasi-pusat-ab" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>4. Rotasi pada Garis & Kurva Aljabar</h2>
+                    <p>
+                        Untuk menentukan persamaan bayangan dari garis atau kurva $F(x, y) = 0$ yang dirotasikan sebesar $\theta$ berpusat di $O(0, 0)$:
+                    </p>
+                    <ol>
+                        <li>Gunakan invers matriks rotasi $R_{-\theta}$ untuk menyatakan variabel lama $x$ dan $y$ ke dalam variabel baru $x'$ dan $y'$:
+                            $$\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} \cos \theta & \sin \theta \\ -\sin \theta & \cos \theta \end{pmatrix} \begin{pmatrix} x' \\ y' \end{pmatrix}$$
+                        </li>
+                        <li>Substitusikan ekspresi $x$ dan $y$ tersebut ke dalam persamaan kurva semula.</li>
+                    </ol>
+                    <p>
+                        Pada diagram di samping, garis biru $y = 2x - 4$ dirotasikan sebesar $+90^\circ$ menghasilkan garis hijau $x + 2y - 4 = 0$ (atau $y = -\frac{1}{2}x + 2$). Kedua garis berpotongan tegak lurus ($m_1 \cdot m_2 = -1$).
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-rotasi-kurva-garis" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Komposisi Dua Rotasi</h2>
+            <ul>
+                <li><strong>Komposisi Berpusat Sama ($O, 0$):</strong>
+                    Dua rotasi berurutan dengan pusat yang sama bersifat komutatif dan ekuivalen dengan rotasi tunggal berpusat di $O$ dengan sudut jumlahan:
+                    $$R(O, \theta_2) \circ R(O, \theta_1) = R(O, \theta_1 + \theta_2)$$
+                </li>
+                <li><strong>Komposisi Berpusat Berbeda ($P_1$ dan $P_2$):</strong>
+                    Jika $\theta_1 + \theta_2 \neq 2k\pi$, komposisi dua rotasi dengan pusat berbeda akan menghasilkan rotasi tunggal dengan sudut total $\theta_1 + \theta_2$ yang berpusat pada titik baru $P_3$.
+                    Jika $\theta_1 + \theta_2 = 2k\pi$ (misal $+90^\circ$ dilanjutkan $-90^\circ$ di pusat berbeda), hasil komposisi merupakan <strong>Translasi murni</strong>!
+                </li>
+            </ul>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Lengkap</h2>
+
+            <!-- CONTOH 1 (DASAR) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Rotasi Titik terhadap Pusat Asal & Pusat Sembarang (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan koordinat bayangan dari titik $K(5, -2)$ jika dirotasikan:
+                    <br>a) Sebesar $+90^\circ$ berpusat di titik asal $O(0, 0)$!
+                    <br>b) Sebesar $+90^\circ$ berpusat di titik $P(2, 1)$!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Rotasi Sebesar $+90^\circ$ Berpusat di $O(0, 0)$</strong><br>
+                        Rumus rotasi $+90^\circ$ berpusat di titik asal:
+                        $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -y \\ x \end{pmatrix}$$
+                        Substitusikan koordinat titik $K(5, -2)$:
+                        $$\begin{aligned}
+                        x' &= -(-2) = 2 \\
+                        y' &= 5
+                        \end{aligned}$$
+                        Titik bayangan adalah: $K'(2, 5)$.
+                        <br><br>
+                        <strong>b) Rotasi Sebesar $+90^\circ$ Berpusat di Titik $P(2, 1)$</strong><br>
+                        Identifikasi: $a = 2, b = 1, \theta = 90^\circ$.
+                        $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \cos 90^\circ & -\sin 90^\circ \\ \sin 90^\circ & \cos 90^\circ \end{pmatrix} \begin{pmatrix} x - a \\ y - b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}$$
+                        $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 5 - 2 \\ -2 - 1 \end{pmatrix} + \begin{pmatrix} 2 \\ 1 \end{pmatrix}$$
+                        $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 3 \\ -3 \end{pmatrix} + \begin{pmatrix} 2 \\ 1 \end{pmatrix}$$
+                        $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -(-3) \\ 3 \end{pmatrix} + \begin{pmatrix} 2 \\ 1 \end{pmatrix} = \begin{pmatrix} 3 + 2 \\ 3 + 1 \end{pmatrix} = \begin{pmatrix} 5 \\ 4 \end{pmatrix}$$
+                        Titik bayangan adalah: $K''(5, 4)$.
+                        <div class="kesimpulan">
+                            a) Bayangan rotasi terhadap titik asal adalah <strong>$K'(2, 5)$</strong>.<br>
+                            b) Bayangan rotasi terhadap pusat $P(2, 1)$ adalah <strong>$K''(5, 4)$</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Rotasi Komposit pada Kurva Parabola (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Diberikan kurva parabola $y = x^2 - 2x - 3$.
+                    Tentukan persamaan kurva bayangannya jika dirotasikan sebesar $180^\circ$ berpusat di titik $O(0, 0)$ kemudian dilanjutkan dengan rotasi sebesar $90^\circ$ searah jarum jam ($-90^\circ$) berpusat di titik $O(0, 0)$!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Menggabungkan Dua Rotasi Berpusat Sama</strong><br>
+                        Karena kedua rotasi berpusat di titik yang sama yaitu $O(0, 0)$, maka kedua transformasi dapat digabung menjadi satu rotasi tunggal dengan sudut jumlahan:
+                        $$\theta_{\text{total}} = 180^\circ + (-90^\circ) = +90^\circ$$
+                        Transformasi tunggal yang ekuivalen adalah rotasi $R(O, +90^\circ)$.
+                        <br><br>
+                        <strong>Langkah 2: Menentukan Invers Hubungan Koordinat</strong><br>
+                        Matriks rotasi $+90^\circ$:
+                        $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -y \\ x \end{pmatrix}$$
+                        Sehingga diperoleh hubungan:
+                        $$x' = -y \implies y = -x'$$
+                        $$y' = x \implies x = y'$$
+                        <br>
+                        <strong>Langkah 3: Substitusi ke Persamaan Parabola Asal</strong><br>
+                        Substitusikan $x = y'$ dan $y = -x'$ ke persamaan $y = x^2 - 2x - 3$:
+                        $$\begin{aligned}
+                        -x' &= (y')^2 - 2(y') - 3 \\
+                        x' &= -(y')^2 + 2y' + 3
+                        \end{aligned}$$
+                        Hilangkan tanda aksen untuk memperoleh persamaan akhir:
+                        $$x = -y^2 + 2y + 3$$
+                        <div class="kesimpulan">
+                            Jadi, persamaan kurva bayangannya adalah <strong>$x = -y^2 + 2y + 3$</strong> (parabola horizontal terbuka ke kiri).
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Komposisi Dua Rotasi Pusat Berbeda Menghasilkan Setengah Putaran (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    Diberikan rotasi $R_1$ berpusat di $A(0, 0)$ sebesar $+90^\circ$ dan rotasi $R_2$ berpusat di $B(4, 0)$ sebesar $+90^\circ$.
+                    <br>a) Tentukan bayangan dari titik $Q(2, 2)$ oleh komposisi transformasi $R_2 \circ R_1$!
+                    <br>b) Buktikan bahwa komposisi $R_2 \circ R_1$ ekuivalen dengan rotasi tunggal sebesar $180^\circ$!
+                    <br>c) Tentukan koordinat titik pusat rotasi tunggal $180^\circ$ tersebut!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Menentukan Bayangan Titik $Q(2, 2)$</strong><br>
+                        1. Transformasi pertama $R_1$: Rotasi $+90^\circ$ berpusat di $A(0, 0)$:
+                        $$\begin{pmatrix} x_1 \\ y_1 \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 2 \\ 2 \end{pmatrix} = \begin{pmatrix} -2 \\ 2 \end{pmatrix} \implies Q_1(-2, 2)$$
+                        2. Transformasi kedua $R_2$: Rotasi $+90^\circ$ berpusat di $B(4, 0)$ terhadap titik $Q_1(-2, 2)$:
+                        $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} -2 - 4 \\ 2 - 0 \end{pmatrix} + \begin{pmatrix} 4 \\ 0 \end{pmatrix}$$
+                        $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} -6 \\ 2 \end{pmatrix} + \begin{pmatrix} 4 \\ 0 \end{pmatrix} = \begin{pmatrix} -2 \\ -6 \end{pmatrix} + \begin{pmatrix} 4 \\ 0 \end{pmatrix} = \begin{pmatrix} 2 \\ -6 \end{pmatrix}$$
+                        Diperoleh titik bayangan akhir: $Q'(2, -6)$.
+                        <br><br>
+                        <strong>b) Pembuktian Rotasi Tunggal $180^\circ$</strong><br>
+                        Tinjau perkalian matriks linear kedua rotasi:
+                        $$M_2 \cdot M_1 = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$$
+                        Matriks $\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$ tepat merupakan matriks rotasi sebesar:
+                        $$\theta = 90^\circ + 90^\circ = 180^\circ$$
+                        Karena trace dan determinannya cocok dengan rotasi $180^\circ$, maka komposisi dua rotasi $+90^\circ$ dengan pusat berbeda dipastikan menghasilkan rotasi tunggal sebesar $180^\circ$.
+                        <br><br>
+                        <strong>c) Menentukan Pusat Rotasi Tunggal $C(x_0, y_0)$</strong><br>
+                        Rotasi $180^\circ$ mengelilingi suatu titik pusat $C(x_0, y_0)$ memiliki sifat bahwa titik pusat $C$ selalu merupakan <strong>titik tengah (midpoint)</strong> antara sembarang titik asal $Q$ dan bayangan akhirnya $Q'$:
+                        $$C = \left(\frac{x_Q + x_{Q'}}{2}, \; \frac{y_Q + y_{Q'}}{2}\right)$$
+                        Substitusikan koordinat $Q(2, 2)$ dan $Q'(2, -6)$:
+                        $$x_0 = \frac{2 + 2}{2} = \frac{4}{2} = 2$$
+                        $$y_0 = \frac{2 + (-6)}{2} = \frac{-4}{2} = -2$$
+                        Maka titik pusat rotasi tunggal tersebut adalah $C(2, -2)$.
+                        <div class="kesimpulan">
+                            a) Bayangan akhir titik $Q$ adalah <strong>$Q'(2, -6)$</strong>.<br>
+                            b) Terbukti bahwa komposisi $R_2 \circ R_1$ ekuivalen dengan rotasi <strong>$180^\circ$</strong>.<br>
+                            c) Koordinat pusat rotasi tunggal tersebut adalah <strong>$C(2, -2)$</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // ==========================================
+            // 1. Rotasi Titik terhadap O(0, 0) sebesar +90°
+            // P(4, 2) -> P'(-2, 4)
+            // ==========================================
+            const elPolar = document.getElementById("svg-rotasi-titik-polar");
+            if (elPolar) {
+                const geo1 = new GeoSVG(elPolar, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Rotasi Titik P(4, 2) sebesar +90° terhadap O(0,0)"
+                });
+
+                const Ox = 155, Oy = 145, u = 22;
+                const toPx = (x, y) => [Ox + x * u, Oy - y * u];
+
+                // Sumbu Kartesius
+                geo1.buatVektor(toPx(-4.5, 0), toPx(5.5, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor(toPx(0, -1.5), toPx(0, 5.5), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo1.buatTeks(Ox + 5.6 * u, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo1.buatTeks(Ox, Oy - 5.6 * u, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                const ptO = toPx(0, 0);
+                const ptP = toPx(4, 2);
+                const ptPprime = toPx(-2, 4);
+
+                // Jari-Jari Vektor OP dan OP'
+                geo1.buatSegmen(ptO, ptP, { stroke: TEMA.utama, strokeWidth: 2 });
+                geo1.buatSegmen(ptO, ptPprime, { stroke: TEMA.merah, strokeWidth: 2 });
+
+                // Tanda Siku-Siku 90° di Titik Asal O
+                // Vektor u = (4, 2) -> unit (0.894, 0.447), v = (-2, 4) -> unit (-0.447, 0.894)
+                const s = 10;
+                const pSiku1 = [ptO[0] + s * 0.894, ptO[1] - s * 0.447];
+                const pSiku2 = [ptO[0] + s * 0.894 - s * 0.447, ptO[1] - s * 0.447 - s * 0.894];
+                const pSiku3 = [ptO[0] - s * 0.447, ptO[1] - s * 0.894];
+                geo1.buatPolyline([pSiku1, pSiku2, pSiku3], { stroke: TEMA.oranye, strokeWidth: 1.2, fill: "none" });
+
+                // Busur Rotasi Melingkar dari P ke P'
+                const rRot = Math.hypot(4 * u, 2 * u);
+                const angStart = Math.atan2(2, 4) * 180 / Math.PI; // ~26.6°
+                const angEnd = angStart + 90; // ~116.6°
+                const arcPts = [];
+                for (let a = angStart; a <= angEnd; a += 5) {
+                    const rad = a * Math.PI / 180;
+                    arcPts.push([Ox + rRot * Math.cos(rad), Oy - rRot * Math.sin(rad)]);
+                }
+                geo1.buatPolyline(arcPts, { stroke: TEMA.oranye, strokeWidth: 1.8, strokeDasharray: "3 2" });
+
+                // Titik Asal O
+                geo1.buatLingkaran(ptO, 4, { fill: TEMA.gelap });
+                geo1.buatTeks(ptO[0] - 6, ptO[1] + 10, "O(0,0)", { position: "top-right", fontSize: "8.5px", fill: TEMA.teks });
+
+                // Titik P(4, 2)
+                geo1.buatLingkaran(ptP, 5, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptP[0] + 6, ptP[1], "P(4, 2)", { position: "middle-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Titik P'(-2, 4)
+                geo1.buatLingkaran(ptPprime, 5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptPprime[0] - 6, ptPprime[1] - 6, "P'(-2, 4)", { position: "bottom-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 198, "Rotasi +90° CCW: (x, y) → (-y, x)  |  Panjang OP = OP'", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+
+            // ==========================================
+            // 2. Rotasi Segitiga ABC terhadap Pusat P(1, 1) sebesar +90°
+            // ==========================================
+            const elPusatAb = document.getElementById("svg-rotasi-pusat-ab");
+            if (elPusatAb) {
+                const geo2 = new GeoSVG(elPusatAb, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Rotasi Segitiga terhadap Pusat P(1, 1)"
+                });
+
+                const Ox = 140, Oy = 145, u = 20;
+                const toPx = (x, y) => [Ox + x * u, Oy - y * u];
+
+                // Sumbu Kartesius
+                geo2.buatVektor(toPx(-3.5, 0), toPx(6.2, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo2.buatVektor(toPx(0, -1.5), toPx(0, 6.2), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo2.buatTeks(Ox + 6.3 * u, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo2.buatTeks(Ox, Oy - 6.3 * u, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Pusat Rotasi P(1, 1)
+                const ptP = toPx(1, 1);
+                geo2.buatLingkaran(ptP, 5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptP[0] - 6, ptP[1] + 12, "P(1, 1) Pusat", { position: "top-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Segitiga Asal ABC: A(3, 1), B(5, 2), C(3, 4)
+                const ptA = toPx(3, 1);
+                const ptB = toPx(5, 2);
+                const ptC = toPx(3, 4);
+                geo2.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.75
+                });
+
+                // Segitiga Bayangan A'B'C': A'(1, 3), B'(0, 5), C'(-2, 3)
+                const ptAp = toPx(1, 3);
+                const ptBp = toPx(0, 5);
+                const ptCp = toPx(-2, 3);
+                geo2.buatPoligon([ptAp, ptBp, ptCp], {
+                    fill: TEMA.oranyeMuda,
+                    stroke: TEMA.oranye,
+                    strokeWidth: 2,
+                    opacity: 0.75
+                });
+
+                // Garis Bantu Rotasi dari P ke Verteks
+                geo2.buatSegmen(ptP, ptA, { stroke: "#94a3b8", strokeWidth: 1, strokeDasharray: "2 2" });
+                geo2.buatSegmen(ptP, ptAp, { stroke: "#94a3b8", strokeWidth: 1, strokeDasharray: "2 2" });
+
+                geo2.buatSegmen(ptP, ptB, { stroke: "#94a3b8", strokeWidth: 1, strokeDasharray: "2 2" });
+                geo2.buatSegmen(ptP, ptBp, { stroke: "#94a3b8", strokeWidth: 1, strokeDasharray: "2 2" });
+
+                // Label Titik Sudut Asal
+                geo2.buatLingkaran(ptA, 3.5, { fill: TEMA.utama });
+                geo2.buatTeks(ptA[0] + 4, ptA[1] + 8, "A(3,1)", { position: "top-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo2.buatLingkaran(ptB, 3.5, { fill: TEMA.utama });
+                geo2.buatTeks(ptB[0] + 6, ptB[1], "B(5,2)", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo2.buatLingkaran(ptC, 3.5, { fill: TEMA.utama });
+                geo2.buatTeks(ptC[0] + 4, ptC[1] - 8, "C(3,4)", { position: "bottom-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Label Titik Sudut Bayangan
+                geo2.buatLingkaran(ptAp, 3.5, { fill: TEMA.oranye });
+                geo2.buatTeks(ptAp[0] + 6, ptAp[1] - 4, "A'(1,3)", { position: "bottom-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                geo2.buatLingkaran(ptBp, 3.5, { fill: TEMA.oranye });
+                geo2.buatTeks(ptBp[0] - 6, ptBp[1], "B'(0,5)", { position: "middle-right", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                geo2.buatLingkaran(ptCp, 3.5, { fill: TEMA.oranye });
+                geo2.buatTeks(ptCp[0] - 6, ptCp[1] - 6, "C'(-2,3)", { position: "bottom-right", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 198, "Bentuk, Luas, dan Orientasi Kongruen Sama", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Rotasi Garis y = 2x - 4 sebesar +90°
+            // Hasil: x + 2y - 4 = 0  <=>  y = -0.5x + 2
+            // ==========================================
+            const elGaris = document.getElementById("svg-rotasi-kurva-garis");
+            if (elGaris) {
+                const geo3 = new GeoSVG(elGaris, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Rotasi Garis y = 2x - 4 sebesar +90°"
+                });
+
+                const Ox = 150, Oy = 110, u = 18;
+                const toPx = (x, y) => [Ox + x * u, Oy - y * u];
+
+                // Sumbu Kartesius
+                geo3.buatVektor(toPx(-4.5, 0), toPx(5.5, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo3.buatVektor(toPx(0, -4.5), toPx(0, 5.0), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo3.buatTeks(Ox + 5.6 * u, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo3.buatTeks(Ox, Oy - 5.1 * u, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Garis Asal L1: y = 2x - 4 (Biru)
+                const pL1a = toPx(-0.2, 2 * (-0.2) - 4);
+                const pL1b = toPx(4.2, 2 * (4.2) - 4);
+                geo3.buatSegmen(pL1a, pL1b, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo3.buatTeks(pL1b[0] + 4, pL1b[1], "L₁: y = 2x - 4", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Garis Bayangan L2: y = -0.5x + 2 (Hijau Tua / Aksen)
+                const pL2a = toPx(-4.2, -0.5 * (-4.2) + 2);
+                const pL2b = toPx(5.2, -0.5 * (5.2) + 2);
+                geo3.buatSegmen(pL2a, pL2b, { stroke: TEMA.aksen, strokeWidth: 2.2 });
+                geo3.buatTeks(pL2a[0] - 4, pL2a[1] - 4, "L₂: x + 2y - 4 = 0", { position: "bottom-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Titik Potong Garis 1 dengan Sumbu-X: (2, 0)
+                const ptX1 = toPx(2, 0);
+                geo3.buatLingkaran(ptX1, 4, { fill: TEMA.utama });
+                geo3.buatTeks(ptX1[0], ptX1[1] + 12, "(2, 0)", { position: "top-center", fontSize: "8px", fill: TEMA.utama });
+
+                // Titik Potong Garis 2 dengan Sumbu-Y: (0, 2)
+                const ptY2 = toPx(0, 2);
+                geo3.buatLingkaran(ptY2, 4, { fill: TEMA.aksen });
+                geo3.buatTeks(ptY2[0] - 6, ptY2[1], "(0, 2)", { position: "middle-right", fontSize: "8px", fill: TEMA.aksen });
+
+                // Busur Rotasi dari (2, 0) ke (0, 2)
+                const rArc = 2 * u;
+                const arcPts = [];
+                for (let a = 0; a <= 90; a += 5) {
+                    const rad = a * Math.PI / 180;
+                    arcPts.push([Ox + rArc * Math.cos(rad), Oy - rArc * Math.sin(rad)]);
+                }
+                geo3.buatPolyline(arcPts, { stroke: TEMA.oranye, strokeWidth: 1.5, strokeDasharray: "2 2" });
+
+                // Titik Potong Antara L1 dan L2 di (2.4, 0.8)
+                const ptIntersect = toPx(2.4, 0.8);
+                geo3.buatLingkaran(ptIntersect, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(ptIntersect[0] + 6, ptIntersect[1] - 6, "Titik Potong (Siku 90°)", {
+                    position: "bottom-left",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 200, "Gradien: m₁ = 2, m₂ = -½  (m₁ · m₂ = -1, Tegak Lurus)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

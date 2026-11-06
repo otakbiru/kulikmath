@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Pertidaksamaan Logaritma</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Pertidaksamaan Logaritma</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Syarat Eksistensi Logaritma</h2>
+            <p>
+                <strong>Pertidaksamaan Logaritma</strong> adalah pertidaksamaan yang memuat variabel (peubah) di dalam numerus (argumen) logaritma, bilangan pokok (basis) logaritma, atau pada keduanya sekaligus.
+            </p>
+            <p>
+                Mengingat logaritma didefinisikan sebagai invers dari fungsi eksponensial ($y = \log_a x \iff a^y = x$), terdapat <strong>dua syarat mutlak</strong> agar suatu ekspresi logaritma terdefinisi pada himpunan bilangan real $\mathbb{R}$:
+            </p>
+            <ol>
+                <li><strong>Syarat Numerus:</strong> Bentuk di dalam logaritma <em>wajib bernilai positif murni</em>:
+                    $$\text{Untuk } \log_a f(x) \implies f(x) > 0$$
+                </li>
+                <li><strong>Syarat Basis (Bilangan Pokok):</strong> Basis logaritma harus positif dan tidak sama dengan satu:
+                    $$a > 0 \quad \text{dan} \quad a \neq 1$$
+                </li>
+            </ol>
+
+            <div class="kesimpulan" style="margin: 0.9rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Hukum Pertama Pertidaksamaan Logaritma:</strong> Syarat numerus $f(x) > 0$ <em>wajib ditulis dan diuji di awal pengerjaan</em> sebelum melakukan manipulasi aljabar apa pun. Mengabaikan syarat numerus adalah kesalahan paling fatal yang sering menyebabkan masuknya solusi palsu (ekstran).
+                </p>
+            </div>
+
+            <h2>2. Monotonitas Basis & Kaidah Perubahan Tanda</h2>
+            <p>
+                Arah tanda ketaksamaan pada pertidaksamaan logaritma dikendalikan sepenuhnya oleh <strong>monotonitas fungsi logaritma</strong> terhadap nilai basisnya $a$:
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Kasus Basis $a > 1$ (Fungsi Monoton Naik)</h3>
+                    <p>
+                        Jika basis $a > 1$, fungsi $y = \log_a x$ bersifat <strong>monoton naik murni (strictly increasing)</strong>. Semakin besar nilai argumen numerus $x$, semakin besar pula nilai logaritmanya.
+                    </p>
+                    <p>
+                        Konsekuensinya, arah tanda ketaksamaan <strong>TETAP (tidak berubah)</strong>:
+                        $$\log_a f(x) < \log_a g(x) \iff \begin{cases} f(x) > 0 \\ f(x) < g(x) \end{cases}$$
+                        <em>(Catatan: Karena $g(x) > f(x) > 0$, syarat $g(x) > 0$ otomatis terpenuhi).</em>
+                    </p>
+
+                    <h3>B. Kasus Basis $0 < a < 1$ (Fungsi Monoton Turun)</h3>
+                    <p>
+                        Jika basis pecahan $0 < a < 1$, fungsi $y = \log_a x$ bersifat <strong>monoton turun murni (strictly decreasing)</strong>. Semakin besar nilai $x$, nilai logaritmanya justru semakin kecil.
+                    </p>
+                    <p>
+                        Konsekuensinya, arah tanda ketaksamaan <strong>WAJIB DIBALIK</strong>:
+                        $$\log_a f(x) < \log_a g(x) \iff \begin{cases} g(x) > 0 \\ f(x) > g(x) \end{cases}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-monoton-basis" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Tiga Pilar Prosedur Penyelesaian & Garis Bilangan Terpadu</h2>
+            <p>
+                Untuk menyelesaikan setiap bentuk pertidaksamaan logaritma $\log_a f(x) \gtrless \log_a g(x)$, terapkan tiga langkah sistematis berikut:
+            </p>
+            <ol>
+                <li><strong>Pilar 1 (Syarat Numerus):</strong> Tentukan interval nilai $x$ yang memenuhi $f(x) > 0$ dan $g(x) > 0$.</li>
+                <li><strong>Pilar 2 (Solusi Aljabar):</strong> Samakan basis kedua ruas, lalu selesaikan ketaksamaan numerus dengan memperhatikan arah tanda (tetap jika $a > 1$, dibalik jika $0 < a < 1$).</li>
+                <li><strong>Pilar 3 (Irisan Himpunan Penyelesaian):</strong> Himpunan penyelesaian akhir adalah <strong>irisan simultan ($\cap$)</strong> dari solusi aljabar dengan seluruh syarat numerus:
+                    $$\text{HP} = \text{Solusi Aljabar} \cap \text{Syarat Numerus}_1 \cap \text{Syarat Numerus}_2$$
+                </li>
+            </ol>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Contoh Ilustrasi Irisan Multi-Layer</h3>
+                    <p>
+                        Perhatikan pertidaksamaan:
+                        $$\log_2(x^2 - 3) \le \log_2(2x)$$
+                    </p>
+                    <ul>
+                        <li><strong>Syarat Numerus 1:</strong> $x^2 - 3 > 0 \implies x < -\sqrt{3}$ atau $x > \sqrt{3}$.</li>
+                        <li><strong>Syarat Numerus 2:</strong> $2x > 0 \implies x > 0$.</li>
+                        <li><strong>Solusi Aljabar ($a = 2 > 1$):</strong>
+                            $$x^2 - 3 \le 2x \implies x^2 - 2x - 3 \le 0 \implies -1 \le x \le 3$$
+                        </li>
+                    </ul>
+                    <p>
+                        Garis bilangan di samping memperlihatkan proses pengirisan ketiga lapisan tersebut:
+                        $$\text{HP} = (\sqrt{3}, 3] = \{x \in \mathbb{R} \mid \sqrt{3} < x \le 3\}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-garis-bilangan-numerus" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Ragam Bentuk Pertidaksamaan Logaritma Lanjut</h2>
+
+            <h3>A. Pertidaksamaan Kuadrat Logaritma (Metode Substitusi)</h3>
+            <p>
+                Bentuk:
+                $$A[\log_a f(x)]^2 + B[\log_a f(x)] + C \gtrless 0$$
+                Langkah penyelesaian:
+            </p>
+            <ol>
+                <li>Tetapkan syarat numerus $f(x) > 0$.</li>
+                <li>Lakukan pemisalan variabel baru: $u = \log_a f(x)$.</li>
+                <li>Selesaikan pertidaksamaan kuadrat $Au^2 + Bu + C \gtrless 0$ untuk mencari interval nilai $u$.</li>
+                <li>Kembalikan nilai $u$ ke bentuk $\log_a f(x)$ dan selesaikan nilai $x$ sesuai kaidah basis $a$.</li>
+                <li>Iriskan hasil akhir dengan syarat numerus $f(x) > 0$.</li>
+            </ol>
+
+            <h3>B. Pertidaksamaan dengan Basis Memuat Variabel ($\log_{h(x)} f(x) \gtrless \log_{h(x)} g(x)$)</h3>
+            <p>
+                Karena basis $h(x)$ memuat variabel, nilainya belum diketahui apakah $> 1$ atau $0 < h(x) < 1$. Oleh karena itu, penyelesaian wajib <strong>dipecah menjadi dua cabang kasus terpisah (gabungan / union $\cup$)</strong>:
+            </p>
+            <ul>
+                <li><strong>Kasus 1 ($h(x) > 1$):</strong> Tanda ketaksamaan tetap.
+                    $$\text{HP}_1 = \{x \mid h(x) > 1 \land f(x) > 0 \land g(x) > 0 \land f(x) \gtrless g(x)\}$$
+                </li>
+                <li><strong>Kasus 2 ($0 < h(x) < 1$):</strong> Tanda ketaksamaan dibalik.
+                    $$\text{HP}_2 = \{x \mid 0 < h(x) < 1 \land f(x) > 0 \land g(x) > 0 \land f(x) \lessgtr g(x)\}$$
+                </li>
+            </ul>
+            <p>
+                Himpunan penyelesaian total adalah: $\text{HP} = \text{HP}_1 \cup \text{HP}_2$.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Perhatian Penerapan Sifat $\log(P) + \log(Q) = \log(PQ)$ pada Pertidaksamaan:</strong><br>
+                    Perhatikan bahwa domain dari $\log(PQ)$ adalah $PQ > 0$ (yang memperbolehkan $P < 0$ dan $Q < 0$ secara simultan). Padahal bentuk asal $\log P + \log Q$ mensyaratkan secara ketat bahwa $P > 0$ <em>dan</em> $Q > 0$. Oleh karena itu, <strong>syarat numerus selalu diambil dari bentuk awal soal sebelum disederhanakan dengan sifat logaritma!</strong>
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>5. Interpretasi Geometris Solusi Grafis</h2>
+                    <p>
+                        Pertidaksamaan logaritma $\log_{1/2}(x - 1) \ge -2$ dapat diinterpretasikan secara grafis sebagai interval nilai $x$ di mana <strong>kurva $y = \log_{1/2}(x - 1)$ terletak di atas atau berpotongan dengan garis horizontal $y = -2$</strong>.
+                    </p>
+                    <p>
+                        Kurva memiliki <strong>asimtot tegak</strong> di garis $x = 1$ (karena syarat numerus $x - 1 > 0 \implies x > 1$).
+                    </p>
+                    <p>
+                        Kedua kurva berpotongan pada absis $x = 5$ (karena $\log_{1/2}(5 - 1) = \log_{1/2}(4) = -2$).
+                    </p>
+                    <p>
+                        Karena basis $a = \frac{1}{2} < 1$, kurva logaritma monoton turun. Daerah kurva yang berada di atas garis $y = -2$ terbentang dari asimtot $x = 1$ hingga titik potong $x = 5$:
+                        $$\text{HP} = (1, 5] = \{x \in \mathbb{R} \mid 1 < x \le 5\}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-grafik-solusi-log" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Lengkap</h2>
+
+            <!-- CONTOH 1 (DASAR) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Basis Pecahan & Pembalikan Tanda (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan himpunan penyelesaian dari pertidaksamaan logaritma berikut:
+                    $$^{\frac{1}{3}}\log(2x - 5) \ge -2$$
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Menentukan Syarat Numerus</strong><br>
+                        Numerus pada bentuk logaritma harus bernilai positif:
+                        $$2x - 5 > 0 \implies 2x > 5 \implies x > \frac{5}{2} \quad \text{--- (Syarat 1)}$$
+                        <br>
+                        <strong>Langkah 2: Menyamakan Basis Logaritma</strong><br>
+                        Ubahlah konstanta $-2$ pada ruas kanan ke bentuk logaritma berbilangan pokok $\frac{1}{3}$:
+                        $$-2 = {^{\frac{1}{3}}\log\left(\left(\frac{1}{3}\right)^{-2}\right)} = {^{\frac{1}{3}}\log(3^2)} = {^{\frac{1}{3}}\log(9)}$$
+                        Pertidaksamaan menjadi:
+                        $$^{\frac{1}{3}}\log(2x - 5) \ge {^{\frac{1}{3}}\log(9)}$$
+                        <br>
+                        <strong>Langkah 3: Menyelesaikan Ketaksamaan Numerus</strong><br>
+                        Karena bilangan pokok logaritma bernilai pecahan antara $0$ dan $1$ ($a = \frac{1}{3} < 1$), maka arah tanda ketaksamaan <strong>wajib dibalik</strong> dari $\ge$ menjadi $\le$:
+                        $$\begin{aligned}
+                        2x - 5 &\le 9 \\
+                        2x &\le 14 \\
+                        x &\le 7 \quad \text{--- (Syarat 2)}
+                        \end{aligned}$$
+                        <br>
+                        <strong>Langkah 4: Mengiriskan Syarat Numerus dan Solusi Aljabar</strong><br>
+                        Irisan dari Syarat 1 ($x > \frac{5}{2}$) dan Syarat 2 ($x \le 7$) adalah:
+                        $$\frac{5}{2} < x \le 7$$
+                        <div class="kesimpulan">
+                            Jadi, himpunan penyelesaiannya adalah:
+                            $$\text{HP} = \left\{x \in \mathbb{R} \;\middle|\; \frac{5}{2} < x \le 7\right\} = \left(\frac{5}{2}, 7\right]$$
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Pertidaksamaan Kuadrat Logaritma (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan himpunan penyelesaian dari pertidaksamaan:
+                    $$^2\log^2 x - 3 \cdot {^2\log x} - 4 \le 0$$
+                    Berapa banyak bilangan bulat positif $x$ yang memenuhi pertidaksamaan tersebut?
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Menentukan Syarat Numerus</strong><br>
+                        Argumen numerus adalah $x$, sehingga syarat mutlaknya:
+                        $$x > 0 \quad \text{--- (Syarat Numerus)}$$
+                        <br>
+                        <strong>Langkah 2: Pemisalan Variabel Kuadrat</strong><br>
+                        Misalkan $u = {^2\log x}$. Persamaan menjadi pertidaksamaan kuadrat dalam $u$:
+                        $$u^2 - 3u - 4 \le 0$$
+                        Faktorkan bentuk kuadrat:
+                        $$(u + 1)(u - 4) \le 0$$
+                        Pembuat nol adalah $u_1 = -1$ dan $u_2 = 4$.<br>
+                        Karena koefisien $u^2 > 0$ dan tandanya $\le 0$, maka interval penyelesaian untuk $u$ adalah:
+                        $$-1 \le u \le 4$$
+                        <br>
+                        <strong>Langkah 3: Mengembalikan ke Variabel $x$</strong><br>
+                        Substitusikan kembali $u = {^2\log x}$:
+                        $$-1 \le {^2\log x} \le 4$$
+                        Ubahlah batas kiri dan kanan ke dalam bentuk logaritma basis $2$:
+                        $$^2\log(2^{-1}) \le {^2\log x} \le {^2\log(2^4)}$$
+                        $$^2\log\left(\frac{1}{2}\right) \le {^2\log x} \le {^2\log(16)}$$
+                        Karena basis logaritma adalah $a = 2 > 1$ (monoton naik), maka arah tanda ketaksamaan tetap:
+                        $$\frac{1}{2} \le x \le 16$$
+                        <br>
+                        <strong>Langkah 4: Irisan dengan Syarat Numerus & Hitung Bilangan Bulat</strong><br>
+                        Irisan antara $\left[\frac{1}{2}, 16\right]$ dengan $x > 0$ tetap menghasilkan $\left[\frac{1}{2}, 16\right]$.<br>
+                        Bilangan bulat positif yang termuat dalam rentang interval $\left[\frac{1}{2}, 16\right]$ adalah:
+                        $$x \in \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16\}$$
+                        Terdapat sebanyak $16$ bilangan bulat positif.
+                        <div class="kesimpulan">
+                            Himpunan penyelesaian: $\text{HP} = \left\{x \in \mathbb{R} \;\middle|\; \frac{1}{2} \le x \le 16\right\} = \left[\frac{1}{2}, 16\right]$.<br>
+                            Banyak bilangan bulat positif yang memenuhi adalah <strong>16 bilangan</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Basis Memuat Variabel & Analisis Domain (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan seluruh nilai bilangan real $x$ yang memenuhi pertidaksamaan logaritma dengan basis variabel berikut:
+                    $$^x\log(x^2 - 2x) \le 1$$
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Menentukan Syarat Keberadaan Logaritma</strong><br>
+                        1. <strong>Syarat Numerus:</strong>
+                        $$x^2 - 2x > 0 \iff x(x - 2) > 0 \implies x < 0 \quad \text{atau} \quad x > 2$$
+                        2. <strong>Syarat Basis:</strong>
+                        $$x > 0 \quad \text{dan} \quad x \neq 1$$
+                        Irisan dari syarat numerus dan syarat basis:
+                        $$(x < 0 \text{ atau } x > 2) \cap (x > 0 \land x \neq 1) \implies \mathbf{x > 2} \quad \text{--- (Syarat Awal Mutlak)}$$
+                        <br>
+                        <strong>Langkah 2: Analisis Sifat Basis</strong><br>
+                        Dari Syarat Awal Mutlak, diperoleh bahwa nilai $x$ harus lebih dari $2$ ($x > 2$).<br>
+                        Karena $x > 2$, maka secara otomatis <strong>basis $x$ pasti bernilai lebih dari 1</strong> ($x > 1$).<br>
+                        Dengan demikian, kemungkinan kasus basis pecahan $0 < x < 1$ <em>gugur secara alami</em> karena tidak ada nilai $x$ pada rentang $(0, 1)$ yang memenuhi syarat numerus!
+                        <br><br>
+                        <strong>Langkah 3: Menyelesaikan Ketaksamaan Aljabar</strong><br>
+                        Ubahlah ruas kanan menjadi bentuk logaritma berbilangan pokok $x$:
+                        $$1 = {^x\log x}$$
+                        Pertidaksamaan menjadi:
+                        $$^x\log(x^2 - 2x) \le {^x\log x}$$
+                        Karena basis $x > 2 > 1$, maka tanda ketaksamaan <strong>tetap</strong>:
+                        $$\begin{aligned}
+                        x^2 - 2x &\le x \\
+                        x^2 - 3x &\le 0 \\
+                        x(x - 3) &\le 0
+                        \end{aligned}$$
+                        Pembuat nol adalah $x = 0$ dan $x = 3$.<br>
+                        Solusi dari pertidaksamaan kuadrat ini adalah:
+                        $$0 \le x \le 3$$
+                        <br>
+                        <strong>Langkah 4: Irisan Akhir dengan Syarat Awal</strong><br>
+                        Iriskan solusi aljabar $0 \le x \le 3$ dengan Syarat Awal Mutlak $x > 2$:
+                        $$[0, 3] \cap (2, \infty) = (2, 3]$$
+                        <div class="kesimpulan">
+                            Jadi, himpunan penyelesaiannya adalah:
+                            $$\text{HP} = \{x \in \mathbb{R} \mid 2 < x \le 3\} = (2, 3]$$
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // ==========================================
+            // 1. Visualisasi Monotonitas Basis: y = log2(x) vs y = log_{1/2}(x)
+            // ==========================================
+            const elMonoton = document.getElementById("svg-monoton-basis");
+            if (elMonoton) {
+                const geo1 = new GeoSVG(elMonoton, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Monotonitas Basis: a > 1 vs 0 < a < 1"
+                });
+
+                const Ox = 45, Oy = 105, ux = 28, uy = 22;
+                const toPx = (x, y) => [Ox + x * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo1.buatVektor(toPx(-0.5, 0), toPx(8.8, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor(toPx(0, -3.8), toPx(0, 3.8), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo1.buatTeks(Ox + 8.9 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo1.buatTeks(Ox, Oy - 3.9 * uy, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Asimtot Tegak x = 0 (Garis Putus-Putus Sumbu-Y)
+                geo1.buatSegmen([Ox, 20], [Ox, 190], { stroke: "#94a3b8", strokeWidth: 1.2, strokeDasharray: "3 2" });
+
+                // Kurva 1: y = log2(x) (Monoton Naik, Biru)
+                const ptsLog2 = [];
+                for (let x = 0.22; x <= 8.2; x += (x < 1 ? 0.08 : 0.25)) {
+                    ptsLog2.push(toPx(x, Math.log2(x)));
+                }
+                geo1.buatPolyline(ptsLog2, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo1.buatTeks(toPx(7.8, Math.log2(7.8))[0] - 6, toPx(7.8, Math.log2(7.8))[1] - 8, "y = log₂(x) [a > 1, Naik]", {
+                    position: "bottom-right",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Kurva 2: y = log_{1/2}(x) = -log2(x) (Monoton Turun, Oranye)
+                const ptsLogHalf = [];
+                for (let x = 0.22; x <= 8.2; x += (x < 1 ? 0.08 : 0.25)) {
+                    ptsLogHalf.push(toPx(x, -Math.log2(x)));
+                }
+                geo1.buatPolyline(ptsLogHalf, { stroke: TEMA.oranye, strokeWidth: 2.2 });
+                geo1.buatTeks(toPx(7.8, -Math.log2(7.8))[0] - 6, toPx(7.8, -Math.log2(7.8))[1] + 12, "y = log_{½}(x) [a < 1, Turun]", {
+                    position: "top-right",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.oranye
+                });
+
+                // Titik Temu di (1, 0)
+                const ptOne = toPx(1, 0);
+                geo1.buatLingkaran(ptOne, 4.5, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptOne[0] - 4, ptOne[1] + 12, "(1,0)", {
+                    position: "top-right",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+
+                // Titik Sampel Monotonitas: x1 = 2 dan x2 = 4
+                const ptX1 = toPx(2, 0);
+                const ptX2 = toPx(4, 0);
+                geo1.buatSegmen([ptX1[0], ptX1[1] - 3], [ptX1[0], ptX1[1] + 3], { stroke: "#64748b", strokeWidth: 1.2 });
+                geo1.buatSegmen([ptX2[0], ptX2[1] - 3], [ptX2[0], ptX2[1] + 3], { stroke: "#64748b", strokeWidth: 1.2 });
+                geo1.buatTeks(ptX1[0], ptX1[1] + 10, "x₁=2", { position: "top-center", fontSize: "7.5px", fill: "#64748b" });
+                geo1.buatTeks(ptX2[0], ptX2[1] + 10, "x₂=4", { position: "top-center", fontSize: "7.5px", fill: "#64748b" });
+
+                // Proyeksi ke kurva
+                geo1.buatSegmen(toPx(2, 1), toPx(2, -1), { stroke: "#94a3b8", strokeWidth: 1, strokeDasharray: "2 2" });
+                geo1.buatSegmen(toPx(4, 2), toPx(4, -2), { stroke: "#94a3b8", strokeWidth: 1, strokeDasharray: "2 2" });
+            }
+
+            // ==========================================
+            // 2. Visualisasi Garis Bilangan Multi-Layer Irisan Numerus
+            // log2(x^2 - 3) <= log2(2x)
+            // ==========================================
+            const elNumerus = document.getElementById("svg-garis-bilangan-numerus");
+            if (elNumerus) {
+                const geo2 = new GeoSVG(elNumerus, 340, 195, {
+                    viewBox: "0 0 340 195",
+                    margin: 8,
+                    title: "Irisan Syarat Numerus & Solusi Aljabar"
+                });
+
+                const Ox = 135, u = 36;
+                const toX = x => Ox + x * u;
+
+                // Garis Bantu Vertikal Pembuat Batas
+                const xVals = [-Math.sqrt(3), -1, 0, Math.sqrt(3), 3];
+                const xLabels = ["-√3", "-1", "0", "√3", "3"];
+
+                xVals.forEach((val, idx) => {
+                    const xpx = toX(val);
+                    geo2.buatSegmen([xpx, 25], [xpx, 175], { stroke: "#e2e8f0", strokeWidth: 1, strokeDasharray: "2 2" });
+                    geo2.buatTeks(xpx, 182, xLabels[idx], {
+                        position: "top-center",
+                        fontSize: "8.5px",
+                        fontWeight: (val === Math.sqrt(3) || val === 3) ? "bold" : "normal",
+                        fill: (val === Math.sqrt(3) || val === 3) ? TEMA.aksen : "#64748b"
+                    });
+                });
+
+                // LAYER 1 (Y = 40): Numerus 1: x < -√3 atau x > √3
+                const Y1 = 40;
+                geo2.buatSegmen([25, Y1], [315, Y1], { stroke: "#94a3b8", strokeWidth: 1.2 });
+                geo2.buatTeks(28, Y1 - 10, "1) Numerus 1: x² - 3 > 0", { position: "middle-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+                // Sinar kiri dari -√3
+                geo2.buatSegmen([25, Y1], [toX(-Math.sqrt(3)), Y1], { stroke: TEMA.merah, strokeWidth: 3 });
+                geo2.buatLingkaran([toX(-Math.sqrt(3)), Y1], 3.8, { fill: "#ffffff", stroke: TEMA.merah, strokeWidth: 1.6 });
+                // Sinar kanan dari √3
+                geo2.buatSegmen([toX(Math.sqrt(3)), Y1], [315, Y1], { stroke: TEMA.merah, strokeWidth: 3 });
+                geo2.buatLingkaran([toX(Math.sqrt(3)), Y1], 3.8, { fill: "#ffffff", stroke: TEMA.merah, strokeWidth: 1.6 });
+
+                // LAYER 2 (Y = 80): Numerus 2: x > 0
+                const Y2 = 80;
+                geo2.buatSegmen([25, Y2], [315, Y2], { stroke: "#94a3b8", strokeWidth: 1.2 });
+                geo2.buatTeks(28, Y2 - 10, "2) Numerus 2: 2x > 0 (x > 0)", { position: "middle-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+                geo2.buatSegmen([toX(0), Y2], [315, Y2], { stroke: TEMA.oranye, strokeWidth: 3 });
+                geo2.buatLingkaran([toX(0), Y2], 3.8, { fill: "#ffffff", stroke: TEMA.oranye, strokeWidth: 1.6 });
+
+                // LAYER 3 (Y = 120): Aljabar x^2 - 3 <= 2x  => -1 <= x <= 3
+                const Y3 = 120;
+                geo2.buatSegmen([25, Y3], [315, Y3], { stroke: "#94a3b8", strokeWidth: 1.2 });
+                geo2.buatTeks(28, Y3 - 10, "3) Aljabar (a > 1): -1 ≤ x ≤ 3", { position: "middle-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+                geo2.buatSegmen([toX(-1), Y3], [toX(3), Y3], { stroke: TEMA.utama, strokeWidth: 3 });
+                geo2.buatLingkaran([toX(-1), Y3], 3.8, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo2.buatLingkaran([toX(3), Y3], 3.8, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.2 });
+
+                // LAYER 4 (Y = 160): Irisan Bersama (HP: √3 < x <= 3)
+                const Y4 = 160;
+                geo2.buatSegmen([25, Y4], [315, Y4], { stroke: "#64748b", strokeWidth: 1.5 });
+                geo2.buatTeks(28, Y4 - 10, "HP (Irisan 1 ∩ 2 ∩ 3): √3 < x ≤ 3", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+                geo2.buatSegmen([toX(Math.sqrt(3)), Y4], [toX(3), Y4], { stroke: TEMA.aksen, strokeWidth: 4.5 });
+                geo2.buatLingkaran([toX(Math.sqrt(3)), Y4], 4.2, { fill: "#ffffff", stroke: TEMA.aksen, strokeWidth: 2 });
+                geo2.buatLingkaran([toX(3), Y4], 4.2, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.5 });
+            }
+
+            // ==========================================
+            // 3. Visualisasi Grafis Cartesius: log_{1/2}(x - 1) >= -2
+            // ==========================================
+            const elGrafik = document.getElementById("svg-grafik-solusi-log");
+            if (elGrafik) {
+                const geo3 = new GeoSVG(elGrafik, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Solusi Grafis: log_{½}(x - 1) >= -2"
+                });
+
+                const Ox = 60, Oy = 115, ux = 34, uy = 22;
+                const toPx = (x, y) => [Ox + (x - 1) * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo3.buatVektor([30, Oy], [295, Oy], { stroke: "#64748b", strokeWidth: 1.5 });
+                geo3.buatVektor([Ox, 195], [Ox, 20], { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo3.buatTeks(296, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo3.buatTeks(Ox, 18, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Asimtot Tegak x = 1 (Garis Merah Putus-Putus)
+                const ptAsymTop = [Ox, 25];
+                const ptAsymBottom = [Ox, 190];
+                geo3.buatSegmen(ptAsymTop, ptAsymBottom, { stroke: TEMA.merah, strokeWidth: 1.4, strokeDasharray: "4 2" });
+                geo3.buatTeks(Ox + 4, 30, "Asimtot: x = 1", {
+                    position: "top-left",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Garis Horizontal y = -2
+                const yMin2Px = Oy - (-2) * uy; // 159
+                geo3.buatSegmen([35, yMin2Px], [285, yMin2Px], { stroke: TEMA.oranye, strokeWidth: 1.6, strokeDasharray: "4 2" });
+                geo3.buatTeks(287, yMin2Px, "y = -2", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Arsiran Solusi di antara Kurva dan y = -2 untuk x dari 1.15 ke 5
+                const shadedPoints = [];
+                for (let x = 1.15; x <= 5.01; x += 0.15) {
+                    shadedPoints.push(toPx(x, -Math.log2(x - 1)));
+                }
+                shadedPoints.push(toPx(5, -2));
+                shadedPoints.push(toPx(1.15, -2));
+                geo3.buatPoligon(shadedPoints, { fill: TEMA.aksenMuda, stroke: "none", opacity: 0.65 });
+
+                // Kurva y = log_{1/2}(x - 1) = -log2(x - 1)
+                const ptsCurve = [];
+                for (let x = 1.12; x <= 6.6; x += (x < 2 ? 0.08 : 0.25)) {
+                    ptsCurve.push(toPx(x, -Math.log2(x - 1)));
+                }
+                geo3.buatPolyline(ptsCurve, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo3.buatTeks(toPx(6.4, -Math.log2(5.4))[0] - 6, toPx(6.4, -Math.log2(5.4))[1] - 8, "y = log_{½}(x - 1)", {
+                    position: "bottom-right",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Titik Potong P(5, -2)
+                const ptP = toPx(5, -2);
+                geo3.buatLingkaran(ptP, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(ptP[0] + 6, ptP[1], "P(5, -2)", {
+                    position: "middle-left",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Titik Potong Sumbu-X di x = 2
+                const ptX2 = toPx(2, 0);
+                geo3.buatLingkaran(ptX2, 3.5, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo3.buatTeks(ptX2[0] - 4, ptX2[1] + 12, "(2, 0)", {
+                    position: "top-right",
+                    fontSize: "8px",
+                    fill: "#64748b"
+                });
+
+                // Sorotan Interval Solusi pada Sumbu-X: (1, 5]
+                const ptSumbu1 = toPx(1, 0);
+                const ptSumbu5 = toPx(5, 0);
+                geo3.buatSegmen(ptSumbu1, ptSumbu5, { stroke: TEMA.aksen, strokeWidth: 3.5 });
+                geo3.buatLingkaran(ptSumbu1, 3.8, { fill: "#ffffff", stroke: TEMA.aksen, strokeWidth: 1.8 });
+                geo3.buatLingkaran(ptSumbu5, 3.8, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.5 });
+
+                // Proyeksi Putus-Putus dari P ke Sumbu-X
+                geo3.buatSegmen(ptP, ptSumbu5, { stroke: "#94a3b8", strokeWidth: 1.2, strokeDasharray: "2 2" });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 202, "Interval Kurva di Atas Garis y = -2: 1 < x ≤ 5", {
+                    position: "middle-center",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
+

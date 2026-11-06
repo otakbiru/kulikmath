@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Program Linear</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Program Linear</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Komponen Model Matematika</h2>
+            <p>
+                <strong>Program Linear (Linear Programming)</strong> adalah cabang matematika terapan dan riset operasi (<em>operations research</em>) yang berfokus pada metode penentuan solusi optimum—baik memaksimumkan keuntungan, kapasitas, atau efisiensi; maupun meminimumkan biaya, waktu, atau penggunaan sumber daya—dari suatu <strong>fungsi objektif (fungsi tujuan) linear</strong> yang terikat oleh sekumpulan <strong>fungsi kendala (pembatas) linear</strong>.
+            </p>
+
+            <h3>Tiga Elemen Pokok Pemodelan Program Linear</h3>
+            <ol>
+                <li><strong>Variabel Keputusan (Decision Variables):</strong> Besaran variabel bebas yang nilainya hendak ditentukan (biasanya dilambangkan dengan $x$ dan $y$).</li>
+                <li><strong>Fungsi Objektif / Sasaran (Objective Function):</strong> Bentuk linear yang hendak dioptimumkan:
+                    $$Z = f(x, y) = ax + by$$
+                    di mana $a$ dan $b$ adalah koefisien kontribusi keuntungan atau biaya per satuan unit $x$ dan $y$.
+                </li>
+                <li><strong>Fungsi Kendala (Constraints):</strong> Sistem pertidaksamaan linear dua variabel yang mencerminkan batasan dunia nyata (kapasitas modal, jam kerja mesin, bahan baku, atau kuota permintaan pasar):
+                    $$\begin{cases}
+                    a_1 x + b_1 y \le c_1 \\
+                    a_2 x + b_2 y \le c_2 \\
+                    x \ge 0, \quad y \ge 0 \quad (\text{Kendala Non-Negatif})
+                    \end{cases}$$
+                    <em>Catatan:</em> Kendala non-negatif $x \ge 0$ dan $y \ge 0$ memastikan bahwa variabel kuantitas fisik tidak bernilai negatif, sehingga daerah penyelesaian selalu terikat di <strong>Kuadran I</strong>.
+                </li>
+            </ol>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>2. Karakteristik Geometri Daerah Fisibel</h2>
+                    <p>
+                        <strong>Daerah Fisibel (Feasible Region)</strong> adalah daerah irisan bidang pada sistem koordinat Kartesius yang memenuhi seluruh fungsi kendala secara simultan.
+                    </p>
+                    <p>
+                        Ciri-ciri fundamental daerah fisibel dalam program linear:
+                    </p>
+                    <ul>
+                        <li><strong>Himpunan Konveks (Convex Set):</strong> Jika diambil sembarang dua titik di dalam daerah fisibel, maka seluruh ruas garis yang menghubungkan kedua titik tersebut selalu terletak sepenuhnya di dalam daerah tersebut (tidak memiliki lekukan atau rongga).</li>
+                        <li><strong>Bentuk Poligon Terbatas (Bounded Polytope):</strong> Dibatasi oleh perpotongan garis-garis kendala di Kuadran I. Memiliki luas terhingga dan pasti memiliki nilai maksimum sekaligus nilai minimum untuk sembarang fungsi linear.</li>
+                        <li><strong>Titik-Titik Pojok (Verteks / Titik Ekstrem):</strong> Titik potong antargaris kendala yang membatasi poligon fisibel.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-daerah-fisibel-bounded" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Teorema Fundamental Program Linear & Metode Titik Pojok</h2>
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Teorema Titik Pojok (Corner Point Theorem):</strong><br>
+                    Jika suatu masalah program linear memiliki solusi optimum pada daerah fisibel yang terbatas dan konveks, maka nilai optimum (maksimum maupun minimum) dari fungsi tujuan linear $Z = ax + by$ <strong>selalu tercapai pada setidaknya satu titik pojok (verteks)</strong> dari daerah fisibel tersebut.
+                </p>
+            </div>
+
+            <h3>Prosedur Standar Metode Titik Pojok</h3>
+            <ol>
+                <li>Gambarkan garis-garis batas dari setiap kendala dengan menentukan titik potong sumbu koordinat.</li>
+                <li>Tentukan daerah himpunan penyelesaian (DHP) yang memenuhi seluruh sistem pertidaksamaan melalui uji titik (misal $O(0, 0)$).</li>
+                <li>Hitung koordinat seluruh <strong>titik pojok (verteks)</strong> daerah fisibel melalui metode eliminasi-substitusi sistem persamaan linear dua variabel (SPLDV) antar garis yang saling berpotongan.</li>
+                <li>Substitusikan koordinat masing-masing titik pojok ke dalam fungsi tujuan $Z = ax + by$.</li>
+                <li>Bandingkan nilai-nilai $Z$ yang diperoleh: nilai tertinggi adalah nilai <strong>maksimum</strong>, dan nilai terendah adalah nilai <strong>minimum</strong>.</li>
+            </ol>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>4. Metode Garis Selidik (Isocost / Isoprofit Lines)</h2>
+                    <p>
+                        Persamaan fungsi objektif $ax + by = k$ merepresentasikan keluarga garis lurus sejajar dengan gradien kemiringan tetap:
+                        $$m = -\frac{a}{b}$$
+                    </p>
+                    <p>
+                        Dengan menggeser garis selidik sejajar dengan vektor gradiennya $\nabla Z = (a, b)$:
+                    </p>
+                    <ul>
+                        <li><strong>Nilai Maksimum:</strong> Tercapai pada titik pojok <em>terakhir</em> yang disentuh oleh garis selidik sebelum meninggalkan daerah fisibel menuju nilai $k$ yang lebih besar.</li>
+                        <li><strong>Nilai Minimum:</strong> Tercapai pada titik pojok <em>pertama</em> yang disentuh oleh garis selidik saat memasuki daerah fisibel dari arah nilai $k$ yang lebih kecil.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-garis-selidik-optimal" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>5. Kondisi Khusus Solusi Program Linear</h2>
+                    <p>
+                        Dalam analisis program linear lanjutan dan soal-soal bernalar tinggi, terdapat beberapa kondisi khusus solusi:
+                    </p>
+                    <ol>
+                        <li><strong>Solusi Jamak Tak Hingga Banyak (Alternative / Multiple Optima):</strong> Terjadi apabila kemiringan (gradien) garis selidik berimpit tepat dengan gradien salah satu sisi batas daerah fisibel ($m_{\text{selidik}} = m_{\text{kendala}}$). Nilai optimum tercapai pada <em>seluruh titik di sepanjang ruas garis batas tersebut</em>.</li>
+                        <li><strong>Solusi Tak Terbatas (Unbounded Solution):</strong> Terjadi pada daerah fisibel terbuka di mana nilai fungsi objektif dapat membesar tanpa batas ($Z \to \infty$).</li>
+                        <li><strong>Tidak Ada Solusi Fisibel (Infeasible):</strong> Terjadi jika tidak ada satu pun titik $(x, y)$ yang mampu memenuhi seluruh kendala secara bersamaan (daerah irisan kosong).</li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-solusi-jamak" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Lengkap</h2>
+
+            <!-- CONTOH 1 (DASAR) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Pemodelan Matematika & Metode Titik Pojok (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Seorang pedagang buah menjual buah apel ($x$) dan buah jeruk ($y$) menggunakan sebuah gerobak dorong.
+                    <ul>
+                        <li>Harga beli 1 kg apel adalah Rp20.000,00 dan 1 kg jeruk adalah Rp15.000,00. Modal yang dimiliki pedagang sebesar Rp1.200.000,00.</li>
+                        <li>Kapasitas muatan gerobak maksimum dapat menampung 70 kg buah-buahan.</li>
+                        <li>Keuntungan bersih penjualan adalah Rp6.000,00 per kg apel dan Rp4.000,00 per kg jeruk.</li>
+                    </ul>
+                    a) Susunlah model matematika dari persoalan program linear tersebut!<br>
+                    b) Tentukan kombinasi penjualan buah agar diperoleh keuntungan maksimum serta hitung besar keuntungan maksimumnya!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Menyusun Model Matematika</strong><br>
+                        Misalkan:
+                        <ul>
+                            <li>$x =$ kuantitas apel yang dibeli dan dijual (dalam kg).</li>
+                            <li>$y =$ kuantitas jeruk yang dibeli dan dijual (dalam kg).</li>
+                        </ul>
+                        Fungsi Kendala:
+                        <ol>
+                            <li>Kendala Modal:
+                                $$20.000x + 15.000y \le 1.200.000 \iff 4x + 3y \le 240$$
+                            </li>
+                            <li>Kendala Kapasitas Gerobak:
+                                $$x + y \le 70$$
+                            </li>
+                            <li>Kendala Non-Negatif:
+                                $$x \ge 0, \quad y \ge 0$$
+                            </li>
+                        </ol>
+                        Fungsi Tujuan (Memaksimalkan Laba):
+                        $$Z = f(x, y) = 6.000x + 4.000y$$
+                        <br>
+                        <strong>b) Menentukan Titik-Titik Pojok Daerah Fisibel</strong><br>
+                        1. Titik asal: $O(0, 0)$<br>
+                        2. Titik potong kendala modal dengan sumbu-$X$ ($y = 0$):
+                        $$4x + 3(0) = 240 \implies x = 60 \implies A(60, 0)$$
+                        <em>(Perhatikan: titik $x = 60$ memenuhi $60 + 0 = 60 \le 70$, sehingga $A(60, 0)$ berada di dalam daerah fisibel).</em><br>
+                        3. Titik potong kendala kapasitas gerobak dengan sumbu-$Y$ ($x = 0$):
+                        $$0 + y = 70 \implies y = 70 \implies C(0, 70)$$
+                        <em>(Periksa kendala modal: $4(0) + 3(70) = 210 \le 240$, memenuhi).</em><br>
+                        4. Titik potong kedua garis kendala ($B$):
+                        $$\begin{aligned}
+                        4x + 3y &= 240 \quad |\times 1| \implies 4x + 3y = 240 \\
+                        x + y &= 70 \quad |\times 3| \implies 3x + 3y = 210
+                        \end{aligned}$$
+                        Kurangkan kedua persamaan:
+                        $$x = 30$$
+                        Substitusikan ke $x + y = 70$:
+                        $$30 + y = 70 \implies y = 40 \implies B(30, 40)$$
+                        <br>
+                        <strong>Uji Nilai Fungsi Tujuan pada Setiap Titik Pojok:</strong><br>
+                        $$\begin{array}{|c|c|l|}
+                        \hline
+                        \text{Titik Pojok } (x, y) & Z = 6.000x + 4.000y & \text{Nilai } Z \text{ (Rupiah)} \\
+                        \hline
+                        O(0, 0) & 6.000(0) + 4.000(0) & 0 \\
+                        A(60, 0) & 6.000(60) + 4.000(0) & \mathbf{360.000} \quad (\text{Maksimum}) \\
+                        B(30, 40) & 6.000(30) + 4.000(40) & 180.000 + 160.000 = 340.000 \\
+                        C(0, 70) & 6.000(0) + 4.000(70) & 280.000 \\
+                        \hline
+                        \end{array}$$
+                        <div class="kesimpulan">
+                            Keuntungan maksimum yang dapat diperoleh pedagang adalah <strong>Rp360.000,00</strong>, yang tercapai ketika pedagang hanya membeli dan menjual <strong>60 kg apel</strong> saja (tanpa menjual jeruk).
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Minimasi Biaya Pakan pada Daerah Terbuka (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Seorang peternak wajib menyediakan pakan harian yang mengandung paling sedikit 16 unit nutrisi A dan 24 unit nutrisi B.
+                    <ul>
+                        <li>Pakan jenis I mengandung 2 unit nutrisi A dan 4 unit nutrisi B per kg, dengan harga Rp8.000,00/kg.</li>
+                        <li>Pakan jenis II mengandung 4 unit nutrisi A dan 3 unit nutrisi B per kg, dengan harga Rp10.000,00/kg.</li>
+                    </ul>
+                    Tentukan jumlah pakan jenis I ($x$) dan pakan jenis II ($y$) yang harus dibeli agar kebutuhan nutrisi terpenuhi dengan biaya harian minimum, serta hitung biaya minimum tersebut!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Menyusun Model Matematika</strong><br>
+                        Fungsi Kendala Nutrisi:
+                        <ol>
+                            <li>Nutrisi A: $2x + 4y \ge 16 \iff x + 2y \ge 8$</li>
+                            <li>Nutrisi B: $4x + 3y \ge 24$</li>
+                            <li>Kendala Non-Negatif: $x \ge 0, \quad y \ge 0$</li>
+                        </ol>
+                        Fungsi Tujuan Minimasi Biaya:
+                        $$K = f(x, y) = 8.000x + 10.000y$$
+                        <br>
+                        <strong>Langkah 2: Menentukan Titik-Titik Pojok Daerah Terbuka</strong><br>
+                        Daerah fisibel terbuka tak terbatas ke arah kanan atas (karena bertanda $\ge$). Titik pojok pembatasnya:
+                        <ol>
+                            <li>Titik potong garis $x + 2y = 8$ dengan sumbu-$X$ ($y = 0$):
+                                $$x = 8 \implies A(8, 0)$$
+                                <em>(Cek kendala B: $4(8) + 3(0) = 32 \ge 24$, memenuhi).</em>
+                            </li>
+                            <li>Titik potong garis $4x + 3y = 24$ dengan sumbu-$Y$ ($x = 0$):
+                                $$3y = 24 \implies y = 8 \implies C(0, 8)$$
+                                <em>(Cek kendala A: $0 + 2(8) = 16 \ge 8$, memenuhi).</em>
+                            </li>
+                            <li>Titik temu antargaris kendala ($B$):
+                                $$\begin{aligned}
+                                x + 2y &= 8 \implies x = 8 - 2y \\
+                                4(8 - 2y) + 3y &= 24 \\
+                                32 - 8y + 3y &= 24 \\
+                                -5y &= -8 \implies y = \frac{8}{5} = 1,6 \\
+                                x &= 8 - 2(1,6) = 8 - 3,2 = 4,8
+                                \end{aligned}$$
+                                Titik potong adalah $B(4,8; \; 1,6)$.
+                            </li>
+                        </ol>
+                        <br>
+                        <strong>Langkah 3: Uji Nilai Biaya ke Fungsi Tujuan</strong><br>
+                        $$\begin{array}{|c|c|l|}
+                        \hline
+                        \text{Titik Pojok } (x, y) & K = 8.000x + 10.000y & \text{Biaya } K \text{ (Rupiah)} \\
+                        \hline
+                        A(8, 0) & 8.000(8) + 10.000(0) & 64.000 \\
+                        B(4,8; \; 1,6) & 8.000(4,8) + 10.000(1,6) & 38.400 + 16.000 = \mathbf{54.400} \quad (\text{Minimum}) \\
+                        C(0, 8) & 8.000(0) + 10.000(8) & 80.000 \\
+                        \hline
+                        \end{array}$$
+                        <div class="kesimpulan">
+                            Biaya harian minimum peternak adalah <strong>Rp54.400,00</strong>, yang tercapai dengan mencampurkan <strong>4,8 kg pakan I</strong> dan <strong>1,6 kg pakan II</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Analisis Parameter Gradien Garis Selidik & Solusi Jamak (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    Daerah fisibel $D$ dibatasi oleh sistem pertidaksamaan:
+                    $$x + y \le 6, \quad 2x + y \le 8, \quad x \ge 0, \quad y \ge 0$$
+                    Diberikan fungsi tujuan $Z = kx + 4y$ dengan parameter konstanta $k > 0$.
+                    <br>a) Tentukan seluruh nilai parameter $k$ sedemikian sehingga fungsi tujuan $Z$ mencapai nilai maksimum di tak hingga banyak titik pada salah satu sisi batas daerah fisibel!
+                    <br>b) Tentukan rentang interval nilai $k$ agar nilai maksimum fungsi tujuan $Z$ tercapai secara tunggal di titik potong antargaris $B(2, 4)$!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Analisis Gradien Garis-Garis Kendala</strong><br>
+                        Garis-garis pembatas daerah fisibel:
+                        <ul>
+                            <li>Garis 1 ($L_1$): $x + y = 6 \implies y = -x + 6$, memiliki gradien $m_1 = -1$.</li>
+                            <li>Garis 2 ($L_2$): $2x + y = 8 \implies y = -2x + 8$, memiliki gradien $m_2 = -2$.</li>
+                        </ul>
+                        Titik potong kedua garis batas:
+                        $$(2x + y) - (x + y) = 8 - 6 \implies x = 2, \quad y = 6 - 2 = 4 \implies B(2, 4)$$
+                        Titik-titik pojok daerah fisibel adalah $O(0, 0)$, $A(4, 0)$, $B(2, 4)$, dan $C(0, 6)$.
+                        <br><br>
+                        <strong>Langkah 2: Menentukan Gradien Garis Selidik</strong><br>
+                        Fungsi tujuan: $Z = kx + 4y \iff 4y = -kx + Z \iff y = -\frac{k}{4}x + \frac{Z}{4}$.<br>
+                        Gradien dari garis selidik adalah:
+                        $$m_Z = -\frac{k}{4}$$
+                        <br>
+                        <strong>a) Menentukan Nilai $k$ untuk Solusi Jamak Tak Hingga (Alternative Optima)</strong><br>
+                        Solusi optimum tak hingga banyak terjadi apabila garis selidik berimpit sejajar dengan salah satu garis batas kendala daerah fisibel:
+                        <ol>
+                            <li>Berimpit dengan Garis 1 ($L_1$):
+                                $$m_Z = m_1 \implies -\frac{k}{4} = -1 \implies \mathbf{k = 4}$$
+                                <em>(Pada $k = 4$, fungsi tujuan menjadi $Z = 4x + 4y = 4(x + y)$. Di sepanjang ruas $BC$ di mana $x + y = 6$, nilai $Z_{\max} = 4(6) = 24$ konstan di seluruh titik).</em>
+                            </li>
+                            <li>Berimpit dengan Garis 2 ($L_2$):
+                                $$m_Z = m_2 \implies -\frac{k}{4} = -2 \implies \mathbf{k = 8}$$
+                                <em>(Pada $k = 8$, fungsi tujuan menjadi $Z = 8x + 4y = 4(2x + y)$. Di sepanjang ruas $AB$ di mana $2x + y = 8$, nilai $Z_{\max} = 4(8) = 32$ konstan di seluruh titik).</em>
+                            </li>
+                        </ol>
+                        <br>
+                        <strong>b) Rentang Nilai $k$ agar Maksimum Tunggal di Titik Temu $B(2, 4)$</strong><br>
+                        Titik $B(2, 4)$ diapit oleh dua garis kendala dengan gradien $m_2 = -2$ dan $m_1 = -1$.<br>
+                        Agar garis selidik menyentuh titik $B(2, 4)$ sebagai titik sudut paling luar sebelum meninggalkan poligon, kemiringan garis selidik harus terletak ketat di antara kemiringan kedua garis batas:
+                        $$m_2 < m_Z < m_1$$
+                        $$-2 < -\frac{k}{4} < -1$$
+                        Kalikan seluruh ruas pertidaksamaan dengan $-4$ (ingat membalik arah tanda ketaksamaan):
+                        $$(-2)(-4) > k > (-1)(-4) \iff 8 > k > 4$$
+                        $$\mathbf{4 < k < 8}$$
+                        <div class="kesimpulan">
+                            a) Nilai parameter agar solusi optimum berupa tak hingga banyak titik adalah <strong>$k = 4$</strong> atau <strong>$k = 8$</strong>.<br>
+                            b) Rentang nilai parameter agar nilai maksimum tercapai secara unik di titik $B(2, 4)$ adalah <strong>$4 < k < 8$</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // ==========================================
+            // 1. Daerah Fisibel Terbatas (Bounded Polytope)
+            // 2x + y <= 10, x + 2y <= 8, x >= 0, y >= 0
+            // ==========================================
+            const elFisibel = document.getElementById("svg-daerah-fisibel-bounded");
+            if (elFisibel) {
+                const geo1 = new GeoSVG(elFisibel, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Daerah Fisibel Konveks Terbatas"
+                });
+
+                const Ox = 45, Oy = 180, ux = 24, uy = 14;
+                const toPx = (x, y) => [Ox + x * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo1.buatVektor(toPx(-0.8, 0), toPx(9.2, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor(toPx(0, -1.2), toPx(0, 11.2), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo1.buatTeks(Ox + 9.3 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo1.buatTeks(Ox, Oy - 11.3 * uy, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Poligon Daerah Fisibel: O(0,0), A(5,0), B(4,2), C(0,4)
+                const ptO = toPx(0, 0);
+                const ptA = toPx(5, 0);
+                const ptB = toPx(4, 2);
+                const ptC = toPx(0, 4);
+
+                geo1.buatPoligon([ptO, ptA, ptB, ptC], {
+                    fill: TEMA.aksenMuda,
+                    stroke: TEMA.aksen,
+                    strokeWidth: 2,
+                    opacity: 0.75
+                });
+
+                // Garis Kendala 1: 2x + y = 10 (potong (5,0) dan (0,10))
+                geo1.buatSegmen(toPx(-0.4, 10.8), toPx(5.5, -1), { stroke: TEMA.utama, strokeWidth: 1.8 });
+                geo1.buatTeks(toPx(0, 10)[0] + 4, toPx(0, 10)[1] + 4, "2x + y = 10", {
+                    position: "top-left",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Garis Kendala 2: x + 2y = 8 (potong (8,0) dan (0,4))
+                geo1.buatSegmen(toPx(-0.5, 4.25), toPx(8.8, -0.4), { stroke: TEMA.oranye, strokeWidth: 1.8 });
+                geo1.buatTeks(toPx(8, 0)[0] + 4, toPx(8, 0)[1] - 4, "x + 2y = 8", {
+                    position: "bottom-left",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.oranye
+                });
+
+                // Titik-Titik Pojok
+                geo1.buatLingkaran(ptO, 4, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo1.buatTeks(ptO[0] - 4, ptO[1] + 12, "O(0,0)", { position: "top-right", fontSize: "8.5px", fill: TEMA.teks });
+
+                geo1.buatLingkaran(ptA, 4, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo1.buatTeks(ptA[0], ptA[1] + 12, "A(5,0)", { position: "top-center", fontSize: "8.5px", fill: TEMA.teks });
+
+                geo1.buatLingkaran(ptB, 5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptB[0] + 6, ptB[1] - 6, "B(4,2) Titik Temu", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                geo1.buatLingkaran(ptC, 4, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo1.buatTeks(ptC[0] - 6, ptC[1], "C(0,4)", { position: "middle-right", fontSize: "8.5px", fill: TEMA.teks });
+
+                // Teks Label Tengah
+                geo1.buatTeks(toPx(1.8, 1.4)[0], toPx(1.8, 1.4)[1], "DAERAH FISIBEL", {
+                    position: "middle-center",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+
+            // ==========================================
+            // 2. Sapuan Garis Selidik Isoprofit: Z = 5x + 3y
+            // ==========================================
+            const elSelidik = document.getElementById("svg-garis-selidik-optimal");
+            if (elSelidik) {
+                const geo2 = new GeoSVG(elSelidik, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Sapuan Garis Selidik: Z = 5x + 3y"
+                });
+
+                const Ox = 45, Oy = 180, ux = 24, uy = 14;
+                const toPx = (x, y) => [Ox + x * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo2.buatVektor(toPx(-0.8, 0), toPx(9.2, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo2.buatVektor(toPx(0, -1.2), toPx(0, 11.2), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo2.buatTeks(Ox + 9.3 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo2.buatTeks(Ox, Oy - 11.3 * uy, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // DHP Poligon Transparan
+                const ptO = toPx(0, 0);
+                const ptA = toPx(5, 0);
+                const ptB = toPx(4, 2);
+                const ptC = toPx(0, 4);
+                geo2.buatPoligon([ptO, ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: "#94a3b8",
+                    strokeWidth: 1.5,
+                    opacity: 0.6
+                });
+
+                // Garis Selidik 5x + 3y = k  => y = (k - 5x) / 3
+                // 1) k = 12 (Melalui C(0, 4))
+                const s1a = toPx(-0.2, (12 - 5 * (-0.2)) / 3);
+                const s1b = toPx(2.8, (12 - 5 * 2.8) / 3);
+                geo2.buatSegmen(s1a, s1b, { stroke: "#94a3b8", strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo2.buatTeks(s1b[0] + 2, s1b[1], "k=12", { position: "middle-left", fontSize: "7.5px", fill: "#94a3b8" });
+
+                // 2) k = 18 (Tengah Daerah)
+                const s2a = toPx(0.2, (18 - 5 * 0.2) / 3);
+                const s2b = toPx(3.8, (18 - 5 * 3.8) / 3);
+                geo2.buatSegmen(s2a, s2b, { stroke: "#64748b", strokeWidth: 1.3, strokeDasharray: "3 2" });
+                geo2.buatTeks(s2b[0] + 2, s2b[1], "k=18", { position: "middle-left", fontSize: "7.5px", fill: "#64748b" });
+
+                // 3) k = 25 (Melalui A(5, 0))
+                const s3a = toPx(1.6, (25 - 5 * 1.6) / 3);
+                const s3b = toPx(5.3, (25 - 5 * 5.3) / 3);
+                geo2.buatSegmen(s3a, s3b, { stroke: TEMA.oranye, strokeWidth: 1.4, strokeDasharray: "3 2" });
+                geo2.buatTeks(s3b[0] + 2, s3b[1], "k=25", { position: "middle-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // 4) k = 26 (Maksimum Melalui Puncak B(4, 2))
+                const s4a = toPx(2.0, (26 - 5 * 2.0) / 3);
+                const s4b = toPx(5.6, (26 - 5 * 5.6) / 3);
+                geo2.buatSegmen(s4a, s4b, { stroke: TEMA.merah, strokeWidth: 2.2, strokeDasharray: "4 2" });
+                geo2.buatTeks(s4b[0] + 2, s4b[1], "k=26 (Maksimum)", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Vektor Arah Pertumbuhan Z
+                const ptVek1 = toPx(1.5, 1.0);
+                const ptVek2 = toPx(2.5, 2.6);
+                geo2.buatVektor(ptVek1, ptVek2, { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo2.buatTeks(ptVek2[0] + 4, ptVek2[1], "Arah Geser Z", { position: "middle-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Puncak Optimal B(4, 2)
+                geo2.buatLingkaran(ptB, 5.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 2 });
+                geo2.buatTeks(ptB[0] + 6, ptB[1] - 8, "B(4,2) → Z_max = 26", {
+                    position: "bottom-left",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+
+            // ==========================================
+            // 3. Kasus Khusus: Solusi Jamak Tak Terhingga (Multiple Optima)
+            // ==========================================
+            const elJamak = document.getElementById("svg-solusi-jamak");
+            if (elJamak) {
+                const geo3 = new GeoSVG(elJamak, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Solusi Jamak: Garis Selidik Berimpit dengan Sisi Batas"
+                });
+
+                const Ox = 45, Oy = 180, ux = 24, uy = 14;
+                const toPx = (x, y) => [Ox + x * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo3.buatVektor(toPx(-0.8, 0), toPx(9.2, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo3.buatVektor(toPx(0, -1.2), toPx(0, 11.2), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo3.buatTeks(Ox + 9.3 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo3.buatTeks(Ox, Oy - 11.3 * uy, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // DHP Poligon
+                const ptO = toPx(0, 0);
+                const ptA = toPx(5, 0);
+                const ptB = toPx(4, 2);
+                const ptC = toPx(0, 4);
+                geo3.buatPoligon([ptO, ptA, ptB, ptC], {
+                    fill: TEMA.aksenMuda,
+                    stroke: "#94a3b8",
+                    strokeWidth: 1.5,
+                    opacity: 0.65
+                });
+
+                // Garis Batas AB (2x + y = 10, gradien m = -2)
+                geo3.buatSegmen(toPx(-0.3, 10.6), toPx(5.4, -0.8), { stroke: "#cbd5e1", strokeWidth: 1.2 });
+
+                // Sisi AB Disorot Tebal (Segmen Solusi Optimum Jamak)
+                geo3.buatSegmen(ptA, ptB, { stroke: TEMA.merah, strokeWidth: 4 });
+
+                // Garis Selidik Berimpit Z = 4x + 2y = 20 (gradien m = -2)
+                const ptSel1 = toPx(3.2, (20 - 4 * 3.2) / 2);
+                const ptSel2 = toPx(5.6, (20 - 4 * 5.6) / 2);
+                geo3.buatSegmen(ptSel1, ptSel2, { stroke: TEMA.oranye, strokeWidth: 2, strokeDasharray: "4 2" });
+
+                // Titik A dan B
+                geo3.buatLingkaran(ptA, 5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(ptA[0] + 6, ptA[1] + 10, "A(5,0)", { position: "top-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                geo3.buatLingkaran(ptB, 5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(ptB[0] + 6, ptB[1] - 8, "B(4,2)", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 200, "Garis Selidik Berimpit Ruas AB → Tak Hingga Banyak Solusi Maksimum", {
+                    position: "middle-center",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

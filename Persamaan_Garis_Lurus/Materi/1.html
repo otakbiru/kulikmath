@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Persamaan Garis Lurus</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Persamaan Garis Lurus</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Persamaan Garis Lurus & Konsep Gradien (Slope)</h2>
+            <p>
+                <strong>Persamaan Garis Lurus (Linear Equation)</strong> adalah persamaan aljabar berderajat satu yang menghubungkan variabel bebas $x$ dan variabel terikat $y$. Jika seluruh pasangan titik $(x, y)$ yang memenuhi persamaan ini digambarkan pada bidang koordinat Cartesius, akan terbentuk sebuah <strong>lintasan garis lurus tanpa batas</strong>.
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Gradien Kemiringan ($m$) & Sudut Inklinasi ($\theta$)</h3>
+                    <p>
+                        Ciri utama suatu garis lurus adalah memiliki <strong>kemiringan (gradien) yang konstan</strong> di setiap titiknya. Gradien dilambangkan dengan huruf $m$, didefinisikan sebagai rasio perubahan nilai tegak ($\Delta y$) terhadap perubahan nilai mendatar ($\Delta x$):
+                        $$m = \frac{\Delta y}{\Delta x} = \frac{y_2 - y_1}{x_2 - x_1} = \tan \theta$$
+                        di mana $\theta$ adalah sudut kemiringan (inklinasi) garis terhadap arah positif sumbu-$X$.
+                    </p>
+                    <ul>
+                        <li><strong>$m > 0$ ($0^\circ < \theta < 90^\circ$):</strong> Garis condong miring ke kanan (fungsi naik).</li>
+                        <li><strong>$m < 0$ ($90^\circ < \theta < 180^\circ$):</strong> Garis condong miring ke kiri (fungsi turun).</li>
+                        <li><strong>$m = 0$ ($\theta = 0^\circ$):</strong> Garis horizontal sejajar sumbu-$X$ dengan persamaan $y = c$.</li>
+                        <li><strong>$m$ tak terdefinisi ($\theta = 90^\circ$):</strong> Garis vertikal sejajar sumbu-$Y$ dengan persamaan $x = c$.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-konsep-gradien" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Berbagai Bentuk Baku Persamaan Garis Lurus</h2>
+
+            <h3>A. Bentuk Kemiringan-Titik Potong (Bentuk Eksplisit)</h3>
+            <p>
+                $$y = mx + c$$
+                di mana $m$ adalah gradien garis dan $c$ adalah ordinat titik potong garis dengan sumbu-$Y$ di koordinat $(0, c)$.
+            </p>
+
+            <h3>B. Bentuk Umum (Bentuk Implisit)</h3>
+            <p>
+                $$Ax + By + C = 0$$
+                Gradien dari bentuk implisit ini dapat ditentukan secara langsung:
+                $$By = -Ax - C \implies y = -\frac{A}{B}x - \frac{C}{B} \implies m = -\frac{A}{B} \quad (B \neq 0)$$
+            </p>
+
+            <h3>C. Bentuk Titik-Gradien (Melalui Titik $(x_1, y_1)$ dengan Gradien $m$)</h3>
+            <p>
+                $$y - y_1 = m(x - x_1)$$
+            </p>
+
+            <h3>D. Bentuk Dua Titik (Melalui $(x_1, y_1)$ dan $(x_2, y_2)$)</h3>
+            <p>
+                $$\frac{y - y_1}{y_2 - y_1} = \frac{x - x_1}{x_2 - x_1}$$
+            </p>
+
+            <h3>E. Bentuk Perpotongan Sumbu (Intercept Form)</h3>
+            <p>
+                Jika garis memotong sumbu-$X$ di titik $(a, 0)$ dan memotong sumbu-$Y$ di titik $(0, b)$, persamaannya dapat ditulis secara ringkas:
+                $$\frac{x}{a} + \frac{y}{b} = 1 \iff bx + ay = ab$$
+                Luas daerah segitiga siku-siku yang dibentuk oleh garis ini bersama kedua sumbu koordinat terhadap titik asal $O(0, 0)$ adalah:
+                $$L_{\triangle} = \frac{1}{2} |a \cdot b|$$
+            </p>
+
+            <h2>3. Hubungan Posisi Dua Garis Lurus</h2>
+            <p>
+                Diberikan dua garis lurus $g_1: y = m_1 x + c_1$ dan $g_2: y = m_2 x + c_2$:
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Dua Garis Sejajar ($g_1 \parallel g_2$)</h3>
+                    <p>
+                        Dua garis dikatakan sejajar jika memiliki arah kemiringan yang sama persis sehingga tidak pernah berpotongan:
+                        $$m_1 = m_2 \quad \text{dan} \quad c_1 \neq c_2$$
+                    </p>
+
+                    <h3>B. Dua Garis Saling Tegak Lurus ($g_1 \perp g_2$)</h3>
+                    <p>
+                        Dua garis saling tegak lurus membentuk sudut siku-siku $90^\circ$ jika dan hanya jika hasil kali kedua gradiennya sama dengan $-1$:
+                        $$m_1 \cdot m_2 = -1 \iff m_2 = -\frac{1}{m_1}$$
+                        <strong>Bukti Geometris:</strong><br>
+                        Rotasi garis sebesar $90^\circ$ menukar komponen perubahan mendatar $\Delta x$ dan perubahan tegak $\Delta y$ disertai perubahan tanda arah ($\Delta y' = \Delta x$ dan $\Delta x' = -\Delta y$), sehingga rasio gradiennya saling berkebalikan dan berlawanan tanda.
+                    </p>
+
+                    <h3>C. Sudut Antara Dua Garis Berpotongan ($\theta$)</h3>
+                    <p>
+                        $$\tan \theta = \left|\frac{m_1 - m_2}{1 + m_1 m_2}\right|$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-garis-tegak-lurus" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Rumus Jarak dalam Geometri Garis Lurus</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Jarak Terpendek Titik ke Garis Lurus</h3>
+                    <p>
+                        Jarak dari titik luar $P(x_0, y_0)$ ke garis lurus $Ax + By + C = 0$ diukur sepanjang <strong>segmen garis yang ditarik tegak lurus</strong> dari titik $P$ ke garis (panjang ruas $PH$ di mana $PH \perp g$):
+                        $$d = \frac{|A x_0 + B y_0 + C|}{\sqrt{A^2 + B^2}}$$
+                    </p>
+
+                    <h3>B. Jarak Antara Dua Garis Sejajar</h3>
+                    <p>
+                        Jarak tegak lurus antara dua garis yang saling sejajar $g_1: Ax + By + C_1 = 0$ dan $g_2: Ax + By + C_2 = 0$ adalah:
+                        $$d = \frac{|C_1 - C_2|}{\sqrt{A^2 + B^2}}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-jarak-titik-garis" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Pencerminan Titik Terhadap Garis Lurus Sembarang</h2>
+            <p>
+                Pencerminan titik $P(x, y)$ terhadap garis cermin $Ax + By + C = 0$ menghasilkan bayangan titik $P'(x', y')$ yang memenuhi dua sifat geometri mutlak:
+            </p>
+            <ol>
+                <li>
+                    <strong>Sifat Ketegaklurusan:</strong> Garis penghubung $PP'$ tegak lurus terhadap garis cermin:
+                    $$m_{PP'} \cdot m_{\text{cermin}} = -1$$
+                </li>
+                <li>
+                    <strong>Sifat Titik Tengah (Titik Simetri):</strong> Titik tengah ruas garis $PP'$, yaitu titik $M\left(\dfrac{x + x'}{2}, \dfrac{y + y'}{2}\right)$, terletak <em>tepat di atas garis cermin</em>.
+                </li>
+            </ol>
+
+            <h2>6. Tabel Rangkuman Rumus Persamaan Garis Lurus</h2>
+            <div class="table-container">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead>
+                        <tr style="background: var(--card-bg, #f8fafc); border-bottom: 2px solid var(--border-color, #e2e8f0);">
+                            <th style="padding: 10px; text-align: left;">Konsep / Kondisi</th>
+                            <th style="padding: 10px; text-align: left;">Bentuk Matematis</th>
+                            <th style="padding: 10px; text-align: left;">Rumus Kunci</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Gradien 2 Titik</strong></td>
+                            <td style="padding: 10px;">Melalui $(x_1, y_1)$ dan $(x_2, y_2)$</td>
+                            <td style="padding: 10px;">$m = \dfrac{y_2 - y_1}{x_2 - x_1} = \tan \theta$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Gradien Bentuk Umum</strong></td>
+                            <td style="padding: 10px;">$Ax + By + C = 0$</td>
+                            <td style="padding: 10px;">$m = -\dfrac{A}{B}$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Titik & Gradien</strong></td>
+                            <td style="padding: 10px;">Melalui $(x_1, y_1)$ dengan gradien $m$</td>
+                            <td style="padding: 10px;">$y - y_1 = m(x - x_1)$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Garis Sejajar</strong></td>
+                            <td style="padding: 10px;">$g_1 \parallel g_2$</td>
+                            <td style="padding: 10px;">$m_1 = m_2$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Garis Tegak Lurus</strong></td>
+                            <td style="padding: 10px;">$g_1 \perp g_2$</td>
+                            <td style="padding: 10px;">$m_1 \cdot m_2 = -1 \iff m_2 = -\dfrac{1}{m_1}$</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;"><strong>Jarak Titik ke Garis</strong></td>
+                            <td style="padding: 10px;">Titik $(x_0, y_0)$ ke $Ax + By + C = 0$</td>
+                            <td style="padding: 10px;">$d = \dfrac{|Ax_0 + By_0 + C|}{\sqrt{A^2 + B^2}}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>7. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- CONTOH 1 (Dasar) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Gradien & Garis Tegak Lurus (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan persamaan garis lurus yang melalui titik $(5, -2)$ dan tegak lurus terhadap garis $2x - 6y + 7 = 0$.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Tentukan gradien garis yang diketahui ($m_1$)</strong><br>
+                        Ubah persamaan ke bentuk eksplisit $y = mx + c$:
+                        $$\begin{aligned}
+                        2x - 6y + 7 &= 0 \\
+                        6y &= 2x + 7 \\
+                        y &= \frac{2}{6}x + \frac{7}{6} = \frac{1}{3}x + \frac{7}{6}
+                        \end{aligned}$$
+                        Diperoleh gradien garis pertama adalah $m_1 = \dfrac{1}{3}$.<br><br>
+                        <strong>Langkah 2: Tentukan gradien garis yang tegak lurus ($m_2$)</strong><br>
+                        Syarat tegak lurus adalah $m_1 \cdot m_2 = -1$:
+                        $$\frac{1}{3} \cdot m_2 = -1 \implies m_2 = -3$$
+                        <br>
+                        <strong>Langkah 3: Susun persamaan garis melalui $(5, -2)$</strong><br>
+                        $$\begin{aligned}
+                        y - y_1 &= m_2(x - x_1) \\
+                        y - (-2) &= -3(x - 5) \\
+                        y + 2 &= -3x + 15 \\
+                        3x + y + 2 - 15 &= 0 \\
+                        3x + y - 13 &= 0
+                        \end{aligned}$$
+                        <div class="kesimpulan">
+                            Jadi, persamaan garis tersebut adalah $3x + y - 13 = 0$ (atau $y = -3x + 13$).
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Luas Segitiga dari Perpotongan Sumbu (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Garis $g$ tegak lurus dengan garis $3x - 4y + 8 = 0$ dan melalui titik $(3, 4)$. Jika garis $g$ memotong sumbu-$X$ di titik $A$ dan memotong sumbu-$Y$ di titik $B$, tentukan luas segitiga $AOB$ (di mana $O$ adalah titik asal $(0, 0)$).
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Menentukan persamaan garis $g$</strong><br>
+                        Gradien garis $3x - 4y + 8 = 0$ adalah $m_1 = -\dfrac{A}{B} = -\dfrac{3}{-4} = \dfrac{3}{4}$.<br>
+                        Karena garis $g$ tegak lurus, maka gradien garis $g$ adalah:
+                        $$m_g = -\frac{1}{m_1} = -\frac{4}{3}$$
+                        Garis $g$ melalui titik $(3, 4)$:
+                        $$\begin{aligned}
+                        y - 4 &= -\frac{4}{3}(x - 3) \\
+                        3(y - 4) &= -4(x - 3) \\
+                        3y - 12 &= -4x + 12 \\
+                        4x + 3y &= 24
+                        \end{aligned}$$
+                        <br>
+                        <strong>Langkah 2: Menentukan titik potong sumbu</strong><br>
+                        Bagi kedua ruas dengan $24$ untuk mendapatkan bentuk intersep:
+                        $$\frac{4x}{24} + \frac{3y}{24} = 1 \iff \frac{x}{6} + \frac{y}{8} = 1$$
+                        <ul>
+                            <li>Titik potong sumbu-$X$ (titik $A$): saat $y = 0 \implies x = 6 \implies A(6, 0)$. Alas segitiga $OA = 6$.</li>
+                            <li>Titik potong sumbu-$Y$ (titik $B$): saat $x = 0 \implies y = 8 \implies B(0, 8)$. Tinggi segitiga $OB = 8$.</li>
+                        </ul>
+                        <br>
+                        <strong>Langkah 3: Hitung luas segitiga $AOB$</strong><br>
+                        Segitiga $AOB$ adalah segitiga siku-siku di $O(0, 0)$:
+                        $$L_{\triangle AOB} = \frac{1}{2} \times OA \times OB = \frac{1}{2} \times 6 \times 8 = 24 \text{ satuan luas}$$
+                        <div class="kesimpulan">
+                            Jadi, luas segitiga $AOB$ adalah $24$ satuan luas.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Pencerminan Titik Terhadap Garis Sembarang (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    Titik $A(3, 8)$ dicerminkan terhadap garis lurus $x + 2y - 4 = 0$ sehingga menghasilkan bayangan titik $A'(x', y')$. Tentukan koordinat titik bayangan $A'$ dan nilai dari $x' + y'$.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Garis cermin $g: x + 2y - 4 = 0 \implies y = -\dfrac{1}{2}x + 2$, sehingga gradien garis cermin $m_g = -\dfrac{1}{2}$.<br><br>
+                        <strong>Langkah 1: Menentukan persamaan garis hubung $AA'$</strong><br>
+                        Garis $AA'$ tegak lurus garis cermin $g$, maka:
+                        $$m_{AA'} = -\frac{1}{m_g} = 2$$
+                        Persamaan garis $AA'$ melalui titik $A(3, 8)$:
+                        $$\begin{aligned}
+                        y - 8 &= 2(x - 3) \\
+                        y - 8 &= 2x - 6 \\
+                        y &= 2x + 2
+                        \end{aligned}$$
+                        <br>
+                        <strong>Langkah 2: Menentukan titik potong $M$ (titik proyeksi cermin)</strong><br>
+                        Substitusikan $y = 2x + 2$ ke persamaan garis cermin $x + 2y - 4 = 0$:
+                        $$\begin{aligned}
+                        x + 2(2x + 2) - 4 &= 0 \\
+                        x + 4x + 4 - 4 &= 0 \\
+                        5x &= 0 \implies x_M = 0 \\
+                        y_M &= 2(0) + 2 = 2
+                        \end{aligned}$$
+                        Titik potong adalah $M(0, 2)$.<br><br>
+                        <strong>Langkah 3: Menentukan koordinat bayangan $A'(x', y')$</strong><br>
+                        Karena $M$ adalah titik tengah antara $A(3, 8)$ dan $A'(x', y')$:
+                        $$\begin{aligned}
+                        x_M &= \frac{x_A + x'}{2} \implies 0 = \frac{3 + x'}{2} \implies x' = -3 \\
+                        y_M &= \frac{y_A + y'}{2} \implies 2 = \frac{8 + y'}{2} \implies 4 = 8 + y' \implies y' = -4
+                        \end{aligned}$$
+                        Diperoleh koordinat bayangan $A'(-3, -4)$.<br>
+                        Hitung nilai $x' + y'$:
+                        $$x' + y' = (-3) + (-4) = -7$$
+                        <div class="kesimpulan">
+                            Jadi, bayangan titik $A$ adalah $A'(-3, -4)$ dan nilai dari $x' + y'$ adalah $-7$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // 1. Visualisasi Konsep Gradien (Slope m = Δy / Δx = tan θ)
+            const elGradien = document.getElementById("svg-konsep-gradien");
+            if (elGradien && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elGradien, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Definisi Geometris Gradien: Segitiga Rasio Delta y / Delta x"
+                });
+
+                const Ox = 60, Oy = 180;
+
+                // Sumbu Kartesius X dan Y
+                geo1.buatVektor([30, Oy], [315, Oy], { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor([Ox, 205], [Ox, 25], { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo1.buatTeks(320, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo1.buatTeks(Ox, 16, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Titik A(x1, y1) dan B(x2, y2)
+                const A = [110, 140];
+                const B = [250, 60];
+                const C = [250, 140]; // Sudut siku-siku segitiga gradien
+
+                // Garis Garis Lurus Utama (memanjang)
+                geo1.buatSegmen([65, 165], [295, 35], { stroke: TEMA.utama, strokeWidth: 2.4 });
+                geo1.buatTeks(285, 30, "y = mx + c", {
+                    position: "bottom-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Segitiga siku-siku penentu gradien (Δx dan Δy)
+                geo1.buatSegitiga(A, C, B, {
+                    fill: "rgba(2, 132, 199, 0.08)",
+                    stroke: "none"
+                });
+
+                // Sisi mendatar Δx
+                geo1.buatSegmen(A, C, { stroke: TEMA.oranye, strokeWidth: 1.8, strokeDasharray: "4 3" });
+                geo1.buatTeks((A[0] + C[0]) / 2, A[1] + 14, "Δx = x₂ - x₁", {
+                    position: "top-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.oranye
+                });
+
+                // Sisi tegak Δy
+                geo1.buatSegmen(C, B, { stroke: TEMA.aksen, strokeWidth: 1.8, strokeDasharray: "4 3" });
+                geo1.buatTeks(C[0] + 8, (C[1] + B[1]) / 2, "Δy = y₂ - y₁", {
+                    position: "middle-left",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // Sudut siku-siku di C
+                geo1.buatSiku(A, C, B, { size: 10, stroke: "#64748b", strokeWidth: 1.2 });
+
+                // Sudut inklinasi theta di A
+                geo1.buatSudut(C, A, B, {
+                    radius: 26,
+                    stroke: TEMA.merah,
+                    strokeWidth: 1.4,
+                    fill: "rgba(225, 29, 72, 0.15)"
+                });
+                geo1.buatTeks(A[0] + 32, A[1] - 8, "θ", { position: "middle-center", fontSize: "11px", fontStyle: "italic", fill: TEMA.merah });
+
+                // Titik A dan B
+                geo1.buatLingkaran(A, 4.5, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(A[0] - 8, A[1] - 6, "A(x₁, y₁)", { position: "middle-right", fontSize: "9.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo1.buatLingkaran(B, 4.5, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(B[0] + 6, B[1] - 6, "B(x₂, y₂)", { position: "middle-left", fontSize: "9.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Keterangan Bawah
+                geo1.buatTeks(170, 212, "Gradien: m = Δy / Δx = tan θ", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 2. Visualisasi Hubungan Dua Garis Tegak Lurus (m1 * m2 = -1)
+            const elTegakLurus = document.getElementById("svg-garis-tegak-lurus");
+            if (elTegakLurus && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elTegakLurus, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Hubungan Dua Garis Saling Tegak Lurus (m1 * m2 = -1)"
+                });
+
+                const P = [155, 110]; // Titik potong kedua garis
+
+                // Garis 1 (m1 = +3/4) melalui P
+                const g1_start = [P[0] - 100, P[1] + 75];
+                const g1_end = [P[0] + 100, P[1] - 75];
+                geo2.buatSegmen(g1_start, g1_end, { stroke: TEMA.utama, strokeWidth: 2.4 });
+                geo2.buatTeks(g1_end[0] + 4, g1_end[1] - 6, "g₁ (m₁ > 0)", {
+                    position: "middle-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Garis 2 (m2 = -4/3) tegak lurus g1 melalui P
+                const g2_start = [P[0] - 75, P[1] - 100];
+                const g2_end = [P[0] + 75, P[1] + 100];
+                geo2.buatSegmen(g2_start, g2_end, { stroke: TEMA.merah, strokeWidth: 2.4 });
+                geo2.buatTeks(g2_end[0] + 4, g2_end[1] + 6, "g₂ (m₂ < 0)", {
+                    position: "middle-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Simbol Sudut Siku-Siku di P
+                geo2.buatSiku(g1_end, P, g2_start, { size: 14, stroke: "#334155", strokeWidth: 1.5 });
+
+                // Titik Temu P
+                geo2.buatLingkaran(P, 5, { fill: TEMA.ungu, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(P[0] - 14, P[1] - 12, "P", {
+                    position: "middle-right",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.ungu
+                });
+
+                // Label Sudut 90 derajat
+                geo2.buatTeks(P[0] + 20, P[1] - 22, "90°", {
+                    position: "middle-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: "#475569"
+                });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 202, "Syarat Tegak Lurus: m₁ · m₂ = -1 ⟺ m₂ = -1 / m₁", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 3. Visualisasi Jarak Terpendek Titik ke Garis Lurus (Proyeksi Tegak Lurus)
+            const elJarak = document.getElementById("svg-jarak-titik-garis");
+            if (elJarak && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elJarak, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Jarak Terpendek Titik P(x0, y0) ke Garis Ax + By + C = 0"
+                });
+
+                // Garis lurus g: melintasi kanvas dari [40, 160] ke [280, 80]
+                const L1 = [40, 160];
+                const L2 = [280, 80];
+                geo3.buatSegmen(L1, L2, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo3.buatTeks(L2[0] + 6, L2[1], "Ax + By + C = 0", {
+                    position: "middle-left",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Titik P(x0, y0) di luar garis
+                const P = [185, 42];
+
+                // Titik proyeksi kaki tegak lurus H pada garis g
+                // Vektor garis g: dx = 240, dy = -80. Arah normal garis tegak lurus
+                // Titik H yang tepat tegak lurus dari P ke garis g:
+                const H = [157, 121];
+
+                // Segmen jarak tegak lurus PH
+                geo3.buatSegmen(P, H, { stroke: TEMA.merah, strokeWidth: 1.8, strokeDasharray: "4 3" });
+
+                // Tanda siku-siku di titik H
+                geo3.buatSiku(P, H, L2, { size: 12, stroke: "#334155", strokeWidth: 1.3 });
+
+                // Titik P
+                geo3.buatLingkaran(P, 5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(P[0], P[1] - 10, "P(x₀, y₀)", {
+                    position: "bottom-center",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Titik Kaki H
+                geo3.buatLingkaran(H, 4, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo3.buatTeks(H[0] - 10, H[1] + 12, "H (Titik Kaki)", {
+                    position: "top-right",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // Label jarak d
+                geo3.buatTeks((P[0] + H[0]) / 2 + 10, (P[1] + H[1]) / 2, "jarak (d)", {
+                    position: "middle-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 202, "d = |Ax₀ + By₀ + C| / √(A² + B²)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
+

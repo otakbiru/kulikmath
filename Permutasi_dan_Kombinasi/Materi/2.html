@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Kombinasi</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Kombinasi</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Kombinasi & Perbedaannya dengan Permutasi</h2>
+            <p>
+                <strong>Kombinasi</strong> adalah proses pemilihan atau pengelompokan sebagian atau seluruh objek dari sekumpulan objek yang ada <strong>tanpa memperhatikan urutan</strong> pemilihannya.
+            </p>
+            <p>
+                Artinya, susunan objek yang terdiri dari unsur-unsur yang sama dianggap sebagai satu hasil yang identik:
+                $$\{A, B\} = \{B, A\}$$
+            </p>
+            <div class="kesimpulan" style="margin: 1rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Perbedaan Esensial:</strong><br>
+                    &bull; <strong>Permutasi:</strong> Urutan diperhatikan ($AB \ne BA$). Digunakan untuk jabatan struktural (Ketua-Sekretaris), nomor juara (Juara 1-2-3), kode sandi, antrean berjajar.<br>
+                    &bull; <strong>Kombinasi:</strong> Urutan diabaikan ($AB = BA$). Digunakan untuk memilih tim delegasi, jabat tangan antarorang, pengambilan kelereng sekaligus, pembentukan garis atau segitiga dari titik-titik.
+                </p>
+            </div>
+
+            <h2>2. Rumus Kombinasi $n$ Unsur Diambil $r$ Unsur</h2>
+            <p>
+                Banyaknya kombinasi $r$ unsur yang dipilih dari $n$ unsur berbeda dinotasikan dengan $C(n, r)$, $_nC_r$, $C_r^n$, atau notasi binomial $\displaystyle\binom{n}{r}$.
+            </p>
+            <p>
+                Karena setiap kelompok yang berisi $r$ unsur memiliki $r!$ cara permutasi internal yang semuanya dianggap sama dalam kombinasi, maka rumus kombinasi diturunkan langsung dari rumus permutasi:
+                $$C(n, r) = \frac{P(n, r)}{r!} = \frac{n!}{r! \, (n - r)!}, \quad \text{dengan } 0 \le r \le n$$
+            </p>
+
+            <h2>3. Sifat-Sifat Penting Kombinasi</h2>
+            <p>
+                Rumus kombinasi memiliki beberapa identitas aljabar yang sangat memudahkan perhitungan:
+            </p>
+            <ul>
+                <li><strong>Sifat Simetri:</strong>
+                    $$\binom{n}{r} = \binom{n}{n - r}$$
+                    <em>Artinya:</em> Memilih $r$ objek yang diambil setara dengan memilih $(n - r)$ objek yang ditinggalkan. Contoh: $\binom{10}{8} = \binom{10}{2} = \frac{10 \times 9}{2} = 45$.
+                </li>
+                <li><strong>Nilai Batas:</strong>
+                    $$\binom{n}{0} = 1 \quad \text{dan} \quad \binom{n}{n} = 1$$
+                </li>
+                <li><strong>Pemilihan Unsur Tunggal:</strong>
+                    $$\binom{n}{1} = n$$
+                </li>
+                <li><strong>Identitas Pascal (Pascal's Identity):</strong>
+                    $$\binom{n}{r} + \binom{n}{r - 1} = \binom{n + 1}{r}$$
+                    Identitas ini merupakan dasar terbentuknya bilangan-bilangan pada Segitiga Pascal.
+                </li>
+                <li><strong>Jumlah Seluruh Subhimpunan:</strong>
+                    $$\sum_{r=0}^{n} \binom{n}{r} = \binom{n}{0} + \binom{n}{1} + \dots + \binom{n}{n} = 2^n$$
+                </li>
+            </ul>
+
+            <h2>4. Model Visual Geometris Kombinasi</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Penerapan kombinasi yang paling visual dalam geometri adalah mencacah elemen bangun dari sekumpulan titik (tanpa ada 3 titik yang segaris / <em>non-kolinier</em>):
+                    </p>
+                    <p>
+                        <strong>A. Pembentukan Ruas Garis & Jabat Tangan:</strong><br>
+                        Sebuah ruas garis ditentukan secara unik oleh tepat $2$ titik ujung. Maka banyaknya ruas garis yang dapat dibentuk dari $n$ titik adalah:
+                        $$\text{Banyak Garis} = \binom{n}{2} = \frac{n(n - 1)}{2}$$
+                        Konsep ini identik dengan jumlah jabat tangan yang terjadi di antara $n$ orang!
+                    </p>
+                    <p>
+                        <strong>B. Banyak Diagonal Poligon Beraturan:</strong><br>
+                        Pada segi-$n$ beraturan, terdapat $\binom{n}{2}$ total garis penghubung. Karena $n$ di antaranya merupakan sisi poligon, maka banyaknya diagonal bidang adalah:
+                        $$D = \binom{n}{2} - n = \frac{n(n - 3)}{2}$$
+                    </p>
+                    <p>
+                        <strong>C. Pembentukan Segitiga:</strong><br>
+                        Setiap segitiga dibentuk oleh tepat $3$ titik sudut non-kolinier:
+                        $$\text{Banyak Segitiga} = \binom{n}{3} = \frac{n(n - 1)(n - 2)}{6}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-geometri-titik" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Segitiga Pascal dan Teorema Binomial Newton</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Nilai-nilai kombinasi $\binom{n}{r}$ membentuk susunan baris-baris pada <strong>Segitiga Pascal</strong>. Setiap angka pada baris di bawahnya merupakan hasil penjumlahan dari dua angka tepat di atasnya.
+                    </p>
+                    <p>
+                        <strong>Teorema Binomial Newton:</strong><br>
+                        Kombinasi berfungsi sebagai koefisien suku dalam penjabaran perpangkatan aljabar $(a + b)^n$:
+                        $$(a + b)^n = \sum_{r=0}^{n} \binom{n}{r} a^{n - r} b^r$$
+                        Suku ke-$(r + 1)$ dari ekspansi binomial adalah:
+                        $$T_{r + 1} = \binom{n}{r} a^{n - r} b^r$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-segitiga-pascal" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Kombinasi dengan Pengulangan (Metode Stars and Bars)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Jika kita ingin memilih $r$ objek dari $n$ jenis objek yang tersedia di mana <strong>setiap jenis objek boleh dipilih berulang kali</strong>, banyaknya cara pemilihan dirumuskan:
+                        $$C^R(n, r) = \binom{n + r - 1}{r} = \frac{(n + r - 1)!}{r! \, (n - 1)!}$$
+                    </p>
+                    <p>
+                        <strong>Analogi Bintang dan Sekat (Stars and Bars):</strong><br>
+                        Masalah ini ekivalen dengan membagikan $r$ buah bintang ($\star$) ke dalam $n$ kategori kotak yang dibatasi oleh $(n - 1)$ batang sekat ($|$).
+                    </p>
+                    <p>
+                        <em>Contoh:</em> Sebuah toko menjual 3 jenis donat (Cokelat, Keju, Stroberi). Berapa banyak cara membeli 5 donat?<br>
+                        $n = 3\text{ jenis}$, $r = 5\text{ donat}$.<br>
+                        $$\text{Banyak Cara} = \binom{3 + 5 - 1}{5} = \binom{7}{5} = \binom{7}{2} = \frac{7 \times 6}{2} = 21\text{ cara}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-stars-and-bars" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>7. Tabel Perbandingan Lengkap: Permutasi vs Kombinasi</h2>
+            <div class="pembahasan-box show" style="margin-bottom: 2rem;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                            <th style="padding: 0.6rem;">Karakteristik</th>
+                            <th style="padding: 0.6rem;">Permutasi</th>
+                            <th style="padding: 0.6rem;">Kombinasi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>Prinsip Urutan</strong></td>
+                            <td style="padding: 0.6rem;">Memperhatikan urutan ($AB \ne BA$)</td>
+                            <td style="padding: 0.6rem;">Tidak memperhatikan urutan ($AB = BA$)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>Rumus Dasar</strong></td>
+                            <td style="padding: 0.6rem;">$P(n, r) = \dfrac{n!}{(n - r)!}$</td>
+                            <td style="padding: 0.6rem;">$C(n, r) = \dfrac{n!}{r! \, (n - r)!}$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>Hubungan Nilai</strong></td>
+                            <td style="padding: 0.6rem;">$P(n, r) = r! \times C(n, r)$</td>
+                            <td style="padding: 0.6rem;">$C(n, r) = \dfrac{P(n, r)}{r!} \le P(n, r)$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>Kata Kunci Soal</strong></td>
+                            <td style="padding: 0.6rem;">Menyusun, menjajarkan, peringkat, kode, jabatan</td>
+                            <td style="padding: 0.6rem;">Memilih, mengambil sekaligus, delegasi, jabat tangan</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.6rem;"><strong>Penerapan Geometri</strong></td>
+                            <td style="padding: 0.6rem;">Rute berarah pada kisi (Lattice path)</td>
+                            <td style="padding: 0.6rem;">Banyak ruas garis, diagonal, segitiga dari titik</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>8. Contoh Soal Terbimbing</h2>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Dari sebuah kelas yang terdiri atas $6$ siswa laki-laki dan $4$ siswa perempuan, akan dipilih sebuah tim delegasi olimpiade beranggotakan $4$ orang. Berapakah banyaknya susunan tim yang dapat dibentuk jika tim tersebut harus terdiri dari tepat $2$ siswa laki-laki dan $2$ siswa perempuan?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Karena susunan anggota tim tidak memiliki perbedaan jabatan atau kedudukan, maka digunakan aturan <strong>Kombinasi</strong>:<br><br>
+                        <strong>1. Memilih 2 siswa laki-laki dari 6 siswa laki-laki:</strong>
+                        $$C(6, 2) = \frac{6!}{2! \, (6 - 2)!} = \frac{6 \times 5}{2 \times 1} = 15\text{ cara}$$
+                        <br>
+                        <strong>2. Memilih 2 siswa perempuan dari 4 siswa perempuan:</strong>
+                        $$C(4, 2) = \frac{4!}{2! \, (4 - 2)!} = \frac{4 \times 3}{2 \times 1} = 6\text{ cara}$$
+                        <br>
+                        <strong>3. Menghitung Total Cara (Aturan Perkalian):</strong>
+                        $$\text{Banyak Tim} = C(6, 2) \times C(4, 2) = 15 \times 6 = 90\text{ cara}$$
+                    </p>
+                    <div class="kesimpulan">Jadi, banyaknya susunan tim yang dapat dibentuk adalah 90 cara.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Dalam suatu pertemuan terdapat sejumlah orang. Jika setiap orang saling bersalaman satu kali dengan orang lainnya dan terjadi total sebanyak $66$ kali jabat tangan, berapakah banyaknya orang yang menghadiri pertemuan tersebut?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Setiap jabat tangan melibatkan tepat $2$ orang tanpa mempedulikan siapa yang mengulurkan tangan terlebih dahulu, sehingga merupakan kombinasi $2$ orang dari $n$ orang:<br>
+                        $$\binom{n}{2} = 66$$
+                        $$\frac{n(n - 1)}{2} = 66$$
+                        $$n(n - 1) = 132$$
+                        $$n^2 - n - 132 = 0$$
+                        Faktorkan persamaan kuadrat tersebut:
+                        $$(n - 12)(n + 11) = 0$$
+                        Karena jumlah orang harus bernilai positif, maka diambil $n = 12$.
+                    </p>
+                    <div class="kesimpulan">Jadi, banyaknya orang yang menghadiri pertemuan tersebut adalah 12 orang.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Tentukan koefisien dari suku $x^4$ pada ekspansi bentuk aljabar binomial $(2x - 1)^6$.
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Berdasarkan rumus suku umum Teorema Binomial Newton $(a + b)^n$:
+                        $$T_{r + 1} = \binom{n}{r} a^{n - r} b^r$$
+                        Pada bentuk $(2x - 1)^6$, diketahui $a = 2x$, $b = -1$, dan $n = 6$:
+                        $$T_{r + 1} = \binom{6}{r} (2x)^{6 - r} (-1)^r = \binom{6}{r} \cdot 2^{6 - r} \cdot (-1)^r \cdot x^{6 - r}$$
+                        Kita mencari suku yang memuat $x^4$, sehingga pangkat dari $x$ adalah $4$:
+                        $$6 - r = 4 \implies r = 2$$
+                        Substitusikan $r = 2$ ke dalam koefisien suku:
+                        $$\text{Koefisien} = \binom{6}{2} \cdot 2^{6 - 2} \cdot (-1)^2$$
+                        $$\text{Koefisien} = \frac{6 \times 5}{2 \times 1} \cdot 2^4 \cdot 1 = 15 \times 16 \times 1 = 240$$
+                    </p>
+                    <div class="kesimpulan">Jadi, koefisien dari suku $x^4$ adalah 240.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Visualisasi Diagram Matematika dengan GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0f766e",
+                utamaMuda: "#ccfbf1",
+                aksen: "#2563eb",
+                aksenMuda: "#dbeafe",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                merah: "#dc2626",
+                merahMuda: "#fee2e2",
+                bingkai: "#334155",
+                latar: "#f8fafc",
+                teks: "#0f172a",
+                garisBantu: "#cbd5e1"
+            };
+
+            // 1. Geometri Kombinasi: Titik, Garis C(5, 2) = 10 dan Segitiga C(5, 3) = 10
+            const elGeom = document.getElementById("svg-geometri-titik");
+            if (elGeom && typeof GeoSVG === "function") {
+                const W = 300, H = 220;
+                const geo = new GeoSVG("svg-geometri-titik", W, H, {
+                    margin: 15,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                const cx = 150, cy = 115, R = 75;
+                const N = 5;
+                const labels = ["A", "B", "C", "D", "E"];
+                const pts = [];
+
+                // Hitung koordinat 5 titik pentagon
+                for (let i = 0; i < N; i++) {
+                    const angle = (i * (360 / N) - 90) * (Math.PI / 180);
+                    pts.push([cx + R * Math.cos(angle), cy + R * Math.sin(angle)]);
+                }
+
+                // Gambar 1 segitiga sorotan (A, B, C)
+                geo.buatPoligon([pts[0], pts[1], pts[2]], {
+                    fill: "rgba(37, 99, 235, 0.2)",
+                    stroke: TEMA.aksen,
+                    strokeWidth: 2
+                });
+
+                // Hubungkan semua pasangan titik (C(5, 2) = 10 garis)
+                for (let i = 0; i < N; i++) {
+                    for (let j = i + 1; j < N; j++) {
+                        // Jangan timpa garis segitiga ABC yang sudah ditebalkan
+                        const isTriangleEdge = (i === 0 && j === 1) || (i === 1 && j === 2) || (i === 0 && j === 2);
+                        if (!isTriangleEdge) {
+                            geo.buatSegmen(pts[i], pts[j], { stroke: TEMA.garisBantu, strokeWidth: 1.2, strokeDasharray: "3,3" });
+                        }
+                    }
+                }
+
+                // Gambar titik-titik dan label
+                pts.forEach((p, idx) => {
+                    geo.buatTitik(p, { r: 4, fill: TEMA.utama, stroke: "#fff", strokeWidth: 1.5 });
+                    const offsetAngle = (idx * (360 / N) - 90) * (Math.PI / 180);
+                    const lx = p[0] + 16 * Math.cos(offsetAngle);
+                    const ly = p[1] + 16 * Math.sin(offsetAngle);
+                    geo.buatTeks(lx, ly, labels[idx], { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.utama });
+                });
+
+                // Keterangan rumus
+                geo.buatTeks(150, 16, "C(5, 2) = 10 Garis | C(5, 3) = 10 Segitiga", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 2. Visualisasi Segitiga Pascal (Baris 0 - 4)
+            const elPascal = document.getElementById("svg-segitiga-pascal");
+            if (elPascal && typeof GeoSVG === "function") {
+                const W = 300, H = 220;
+                const geo = new GeoSVG("svg-segitiga-pascal", W, H, {
+                    margin: 15,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                const pascalData = [
+                    [1],
+                    [1, 1],
+                    [1, 2, 1],
+                    [1, 3, 3, 1],
+                    [1, 4, 6, 4, 1]
+                ];
+
+                const cx = 150, startY = 32, dy = 38, dx = 36;
+
+                pascalData.forEach((row, n) => {
+                    const count = row.length;
+                    const startX = cx - ((count - 1) * dx) / 2;
+                    row.forEach((val, r) => {
+                        const px = startX + r * dx;
+                        const py = startY + n * dy;
+
+                        // Sorot baris ke-4 elemen n=4, r=2 bernilai 6
+                        const isSpecial = (n === 4 && r === 2);
+                        const bgCol = isSpecial ? TEMA.oranyeMuda : (n % 2 === 0 ? TEMA.utamaMuda : TEMA.aksenMuda);
+                        const strokeCol = isSpecial ? TEMA.oranye : (n % 2 === 0 ? TEMA.utama : TEMA.aksen);
+
+                        geo.buatLingkaran([px, py], 14, {
+                            fill: bgCol,
+                            stroke: strokeCol,
+                            strokeWidth: isSpecial ? 2.2 : 1.5
+                        });
+                        geo.buatTeks(px, py, String(val), {
+                            position: "middle-center",
+                            fontSize: "11px",
+                            fontWeight: "bold",
+                            fill: isSpecial ? TEMA.oranye : TEMA.teks
+                        });
+                    });
+                });
+
+                // Panah penjumlahan 1 + 3 = 4 atau 3 + 3 = 6
+                geo.buatTeks(150, 204, "C(n, r) = C(n-1, r-1) + C(n-1, r)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+            }
+
+            // 3. Visualisasi Stars and Bars (Kombinasi Berulang: 5 Bintang, 2 Sekat)
+            const elStars = document.getElementById("svg-stars-and-bars");
+            if (elStars && typeof GeoSVG === "function") {
+                const W = 300, H = 200;
+                const geo = new GeoSVG("svg-stars-and-bars", W, H, {
+                    margin: 15,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                // Kotak luar
+                geo.buatPersegiPanjang(10, 10, 280, 180, { fill: TEMA.latar, stroke: TEMA.bingkai, strokeWidth: 1.5, rx: 6, ry: 6 });
+                geo.buatTeks(150, 28, "Stars and Bars: x₁ + x₂ + x₃ = 5", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Ilustrasi susunan: ★★ | ★★★ |
+                // Kategori 1: 2 bintang, Kategori 2: 3 bintang, Kategori 3: 0 bintang
+                const items = [
+                    { type: "star", x: 45 },
+                    { type: "star", x: 75 },
+                    { type: "bar", x: 105 },
+                    { type: "star", x: 135 },
+                    { type: "star", x: 165 },
+                    { type: "star", x: 195 },
+                    { type: "bar", x: 225 }
+                ];
+
+                items.forEach(it => {
+                    if (it.type === "star") {
+                        geo.buatLingkaran([it.x, 90], 11, { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.8 });
+                        geo.buatTeks(it.x, 90, "★", { position: "middle-center", fontSize: "12px", fill: TEMA.oranye });
+                    } else {
+                        geo.buatSegmen([it.x, 65], [it.x, 115], { stroke: TEMA.merah, strokeWidth: 3 });
+                    }
+                });
+
+                // Label kategori
+                geo.buatTeks(60, 128, "x₁ = 2", { position: "top-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.teks });
+                geo.buatTeks(165, 128, "x₂ = 3", { position: "top-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.teks });
+                geo.buatTeks(250, 128, "x₃ = 0", { position: "top-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.teks });
+
+                geo.buatTeks(150, 168, "Banyak Cara: C(5 + 3 - 1, 5) = C(7, 5) = 21", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

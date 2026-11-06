@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Segitiga Sama Kaki</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Segitiga Sama Kaki (Isosceles Triangle)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Karakterisasi Segitiga Sama Kaki</h2>
+            <p>
+                <strong>Segitiga Sama Kaki (Isosceles Triangle)</strong> adalah bangun datar segitiga yang memiliki setidaknya <strong>dua sisi yang sama panjang</strong>. Dua sisi yang kongruen tersebut dinamakan <em>kaki (legs)</em> segitiga (panjangnya dinotasikan dengan $s$), sedangkan sisi ketiga dinamakan <em>alas (base)</em> (panjangnya dinotasikan dengan $a$).
+            </p>
+            <p>
+                Titik sudut pertemuan kedua kaki dinamakan <strong>sudut puncak (apex)</strong> dengan sudut $\alpha$. Dua sudut yang berhadapan langsung dengan sisi-sisi kaki dinamakan <strong>sudut alas (base angles)</strong> dengan sudut $\beta$.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Teorema Pons Asinorum (Teorema Segitiga Sama Kaki — Euclid Elemen I.5):</strong><br>
+                    Pada sebuah segitiga, jika dua sisi sama panjang, maka sudut-sudut di hadapan kedua sisi tersebut adalah kongruen (sama besar):
+                    $$AB = AC = s \iff \angle ABC = \angle ACB = \beta$$
+                    Hubungan sudut puncak $\alpha$ dan sudut alas $\beta$:
+                    $$\alpha + 2\beta = 180^\circ \iff \beta = \frac{180^\circ - \alpha}{2} = 90^\circ - \frac{\alpha}{2}$$
+                </p>
+            </div>
+
+            <h2>2. Keberhimpitan Garis Istimewa & Sumbu Simetri</h2>
+            <p>
+                Sifat geometris paling khas dari segitiga sama kaki adalah <strong>keberhimpitan empat garis istimewa</strong> yang ditarik dari titik sudut puncak ($A$) ke sisi alas ($BC$).
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Ruas garis dari puncak $A$ ke titik tengah alas $M$ secara serentak bertindak sebagai:
+                    </p>
+                    <ol>
+                        <li><strong>Garis Tinggi ($t_a$):</strong> Tegak lurus terhadap alas ($AM \perp BC$).</li>
+                        <li><strong>Garis Berat ($m_a$):</strong> Membagi dua alas sama panjang ($BM = MC = \frac{a}{2}$).</li>
+                        <li><strong>Garis Bagi Sudut Puncak ($d_a$):</strong> Membagi sudut puncak menjadi dua sudut kongruen ($\angle BAM = \angle CAM = \frac{\alpha}{2}$).</li>
+                        <li><strong>Garis Sumbu Alas ($s_a$):</strong> Membagi dua tegak lurus sisi $BC$.</li>
+                    </ol>
+                    <p>
+                        Garis $AM$ ini merupakan satu-satunya <strong>sumbu simetri lipat</strong> pada segitiga sama kaki non-ekuilateral (memiliki 1 simetri lipat dan 1 simetri putar).
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-simetri-berhimpit" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Garis simetri tunggal segitiga sama kaki yang berhimpit sebagai garis tinggi, garis berat, garis bagi, dan garis sumbu.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Formulasi Metrik: Tinggi, Keliling, & Luas</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Tinggi Segitiga dari Puncak ($h_a$)</h3>
+                    <p>
+                        Dengan menerapkan Teorema Pythagoras pada segitiga siku-siku $\triangle ABM$:
+                        $$h_a = \sqrt{s^2 - \left(\frac{a}{2}\right)^2} = \frac{1}{2}\sqrt{4s^2 - a^2}$$
+                    </p>
+
+                    <h3>B. Keliling ($K$)</h3>
+                    <p>
+                        $$K = 2s + a$$
+                        Semi-perimeter (setengah keliling):
+                        $$s_{\text{semi}} = s + \frac{a}{2} = \frac{2s + a}{2}$$
+                    </p>
+
+                    <h3>C. Beragam Rumus Luas ($L$)</h3>
+                    <ol>
+                        <li><strong>Berdasarkan Panjang Kaki ($s$) dan Alas ($a$):</strong>
+                            $$L = \frac{1}{2} a \cdot h_a = \frac{a}{4}\sqrt{4s^2 - a^2}$$
+                        </li>
+                        <li><strong>Berdasarkan Sudut Puncak ($\alpha$):</strong>
+                            $$L = \frac{1}{2} s^2 \sin \alpha$$
+                        </li>
+                        <li><strong>Berdasarkan Sudut Alas ($\beta$):</strong>
+                            $$L = s^2 \sin \beta \cos \beta = \frac{1}{2} s^2 \sin(2\beta)$$
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="col col-2">
+                    <h3>D. Lingkaran Dalam & Lingkaran Luar</h3>
+                    <p>
+                        <strong>Jari-Jari Lingkaran Dalam ($r$):</strong>
+                        $$r = \frac{L}{s_{\text{semi}}} = \frac{\frac{a}{4}\sqrt{4s^2 - a^2}}{s + \frac{a}{2}} = \frac{a}{2}\sqrt{\frac{2s - a}{2s + a}}$$
+                    </p>
+                    <p>
+                        <strong>Jari-Jari Lingkaran Luar ($R$):</strong>
+                        $$R = \frac{s^2 a}{4L} = \frac{s^2 a}{4 \left(\frac{a}{4}\sqrt{4s^2 - a^2}\right)} = \frac{s^2}{\sqrt{4s^2 - a^2}} = \frac{s^2}{2h_a}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0; font-size: 0.9rem;">
+                            <strong>Kolinieritas Titik Pusat:</strong> Pada segitiga sama kaki, keempat titik pusat utama—Ortosenter ($H$), Sentroid ($G$), Incenter ($I$), dan Circumcenter ($O$)—<strong>seluruhnya terletak pada satu garis sumbu simetri $AM$</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 1.2rem 0;">
+                <div id="svg-pusat-garis-euler-kaki" style="display: flex; justify-content: center; align-items: center; min-height: 230px;"></div>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                    <em>Gambar 2: Seluruh titik pusat segitiga ($O, G, I, H$) berjejer tepat pada sumbu simetri vertikal segitiga sama kaki.</em>
+                </p>
+            </div>
+
+            <h2>4. Kasus Khusus Segitiga Sama Kaki Istimewa</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Segitiga Siku-Siku Sama Kaki ($45^\circ - 45^\circ - 90^\circ$)</h3>
+                    <p>
+                        Merupakan hasil potongan diagonal sebuah persegi:
+                    </p>
+                    <ul>
+                        <li>Sudut-sudutnya: $90^\circ, 45^\circ, 45^\circ$.</li>
+                        <li>Rasio panjang sisi: $s : s : s\sqrt{2}$.</li>
+                        <li>Hipotenusa $a = s\sqrt{2}$, dan tinggi ke hipotenusa $h = \frac{s}{\sqrt{2}} = \frac{s\sqrt{2}}{2}$.</li>
+                        <li>Luas: $L = \frac{1}{2} s^2 = \frac{a^2}{4}$.</li>
+                        <li>Circumcenter $O$ berada tepat di titik tengah hipotenusa ($R = \frac{s\sqrt{2}}{2}$).</li>
+                        <li>Inradius: $r = s\left(1 - \frac{\sqrt{2}}{2}\right) = \frac{s}{\sqrt{2}+1}$.</li>
+                    </ul>
+                </div>
+
+                <div class="col col-2">
+                    <h3>B. Segitiga Emas (Golden Triangle, $36^\circ - 72^\circ - 72^\circ$)</h3>
+                    <p>
+                        Segitiga sama kaki dengan perbandingan sisi kaki terhadap alas sama dengan <strong>Rasio Emas (Golden Ratio)</strong>:
+                        $$\Phi = \frac{1 + \sqrt{5}}{2} \approx 1{,}618034$$
+                    </p>
+                    <ul>
+                        <li>Sudut puncak $\alpha = 36^\circ$, sudut alas $\beta = 72^\circ$.</li>
+                        <li>Jika ditarik garis bagi dari salah satu sudut alas, garis tersebut membagi segitiga awal menjadi segitiga emas yang lebih kecil dan segitiga tumpul emas ($108^\circ - 36^\circ - 36^\circ$).</li>
+                        <li>Merupakan elemen pembentuk pentagram (bintang emas) dan pentagon beraturan.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 1.2rem 0;">
+                <div id="svg-segitiga-siku-emas" style="display: flex; justify-content: center; align-items: center; min-height: 210px;"></div>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                    <em>Gambar 3: Perbandingan dua segitiga sama kaki istimewa: Segitiga siku-siku sama kaki ($45^\circ-45^\circ-90^\circ$) dan Segitiga Emas ($36^\circ-72^\circ-72^\circ$).</em>
+                </p>
+            </div>
+
+            <h2>5. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Aksioma Sudut, Tinggi Pythagoras, & Luas</h3>
+                <p>
+                    Diberikan segitiga sama kaki $\triangle ABC$ dengan sisi $AB = AC$. Sudut puncak dinyatakan oleh $\angle A = (2x + 20)^\circ$ dan salah satu sudut alas dinyatakan oleh $\angle B = (4x - 10)^\circ$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan nilai $x$ serta besar seluruh sudut dalam segitiga tersebut.</li>
+                    <li>Jika panjang sisi kaki $AB = AC = 10\text{ cm}$ dan panjang alas $BC = 12\text{ cm}$, hitung tinggi segitiga yang ditarik dari puncak $A$, keliling, dan luas segitiga tersebut.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Mencari nilai $x$ dan besar sudut:</strong><br>
+                        Karena $AB = AC$, berdasarkan Teorema Pons Asinorum, kedua sudut alas kongruen:
+                        $$\angle C = \angle B = (4x - 10)^\circ$$
+                        Jumlah sudut dalam segitiga adalah $180^\circ$:
+                        $$\angle A + \angle B + \angle C = 180^\circ$$
+                        $$(2x + 20)^\circ + (4x - 10)^\circ + (4x - 10)^\circ = 180^\circ$$
+                        $$10x = 180 \implies x = 18$$
+                        Substitusikan nilai $x = 18$:
+                        $$\angle A = 2(18)^\circ + 20^\circ = 36^\circ + 20^\circ = 56^\circ$$
+                        $$\angle B = 4(18)^\circ - 10^\circ = 72^\circ - 10^\circ = 62^\circ$$
+                        $$\angle C = 62^\circ$$
+                        <em>Verifikasi:</em> $56^\circ + 62^\circ + 62^\circ = 180^\circ$ (cocok).
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Tinggi, Keliling, dan Luas:</strong><br>
+                        Panjang kaki $s = 10\text{ cm}$, alas $a = 12\text{ cm}$.
+                        Garis tinggi $h_a$ membagi alas menjadi dua bagian sama panjang:
+                        $$\frac{a}{2} = \frac{12}{2} = 6\text{ cm}$$
+                        Terapkan Teorema Pythagoras:
+                        $$h_a = \sqrt{s^2 - \left(\frac{a}{2}\right)^2} = \sqrt{10^2 - 6^2} = \sqrt{100 - 36} = \sqrt{64} = 8\text{ cm}$$
+                        Keliling segitiga:
+                        $$K = 2s + a = 2(10) + 12 = 32\text{ cm}$$
+                        Luas segitiga:
+                        $$L = \frac{1}{2} \times a \times h_a = \frac{1}{2} \times 12 \times 8 = 48\text{ cm}^2$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Nilai $x = 18$, sudut-sudutnya $56^\circ, 62^\circ, 62^\circ$, tinggi segitiga $h_a = 8\text{ cm}$, keliling $K = 32\text{ cm}$, dan luas $L = 48\text{ cm}^2$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat SNBT / UTBK — Inradius, Circumradius, & Rasio Luas Lingkaran</h3>
+                <p>
+                    Sebuah segitiga sama kaki memiliki panjang sisi kaki masing-masing $10\text{ cm}$ dan panjang alas $12\text{ cm}$.
+                </p>
+                <ol type="a">
+                    <li>Hitung jari-jari lingkaran dalam ($r$) segitiga tersebut.</li>
+                    <li>Hitung jari-jari lingkaran luar ($R$) segitiga tersebut.</li>
+                    <li>Tentukan perbandingan antara luas lingkaran dalam dengan luas daerah segitiga sama kaki tersebut.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        Dari perhitungan sebelumnya, luas segitiga $L = 48\text{ cm}^2$ dan keliling $K = 32\text{ cm}$.
+                        Semi-perimeter:
+                        $$s_{\text{semi}} = \frac{K}{2} = \frac{32}{2} = 16\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>(a) Menghitung Jari-Jari Lingkaran Dalam ($r$):</strong><br>
+                        $$r = \frac{L}{s_{\text{semi}}} = \frac{48}{16} = 3\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Jari-Jari Lingkaran Luar ($R$):</strong><br>
+                        Menggunakan formula khusus segitiga sama kaki ($s = 10$, $h = 8$):
+                        $$R = \frac{s^2}{2h} = \frac{10^2}{2(8)} = \frac{100}{16} = \frac{25}{4} = 6{,}25\text{ cm}$$
+                        <em>Atau formula umum:</em> $R = \frac{abc}{4L} = \frac{10 \times 10 \times 12}{4 \times 48} = \frac{1200}{192} = 6{,}25\text{ cm}$.
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Perbandingan Luas Lingkaran Dalam terhadap Segitiga:</strong><br>
+                        Luas lingkaran dalam ($L_{\text{in}}$):
+                        $$L_{\text{in}} = \pi r^2 = \pi (3)^2 = 9\pi\text{ cm}^2$$
+                        Rasio luas:
+                        $$\frac{L_{\text{in}}}{L_{\Delta}} = \frac{9\pi}{48} = \frac{3\pi}{16} \approx \frac{3(3{,}1416)}{16} \approx 0{,}589 \quad (58{,}9\%)$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Inradius $r = 3\text{ cm}$, circumradius $R = 6{,}25\text{ cm}$, dan rasio luas lingkaran dalam terhadap luas segitiga adalah $\frac{3\pi}{16}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Garis Bagi Kaki via Teorema Stewart & Jarak Euler</h3>
+                <p>
+                    Diberikan segitiga sama kaki $\triangle ABC$ dengan $AB = AC = 10$ dan alas $BC = 12$. Garis bagi dalam sudut $B$ memotong sisi $AC$ di titik $E$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan panjang segmen $AE$ dan $EC$ pada sisi kaki $AC$.</li>
+                    <li>Hitung panjang ruas garis bagi $BE$ secara eksak.</li>
+                    <li>Buktikan bahwa jarak antarpusat lingkaran dalam ($I$) dan lingkaran luar ($O$) pada segitiga tersebut memenuhi Teorema Euler $d = \sqrt{R(R - 2r)}$, dan hitung jarak $IO$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Teorema Garis Bagi Dalam untuk Sudut $B$:</strong><br>
+                        Garis bagi sudut $B$ membagi sisi di hadapannya ($AC = 10$) sebanding dengan sisi-sisi yang mengapitnya ($AB = 10$ dan $BC = 12$):
+                        $$\frac{AE}{EC} = \frac{AB}{BC} = \frac{10}{12} = \frac{5}{6}$$
+                        Karena $AE + EC = AC = 10$:
+                        $$AE = \frac{5}{5 + 6} \times 10 = \frac{50}{11}$$
+                        $$EC = \frac{6}{5 + 6} \times 10 = \frac{60}{11}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Panjang Garis Bagi $BE$:</strong><br>
+                        Gunakan formula kuadrat garis bagi dalam (reduksi Teorema Stewart):
+                        $$BE^2 = (AB \cdot BC) - (AE \cdot EC)$$
+                        Substitusikan nilai yang diperoleh:
+                        $$BE^2 = (10 \times 12) - \left(\frac{50}{11} \times \frac{60}{11}\right) = 120 - \frac{3000}{121}$$
+                        Samakan penyebut:
+                        $$BE^2 = \frac{120 \times 121 - 3000}{121} = \frac{14520 - 3000}{121} = \frac{11520}{121}$$
+                        Akar kuadratkan:
+                        $$BE = \frac{\sqrt{11520}}{11} = \frac{\sqrt{2304 \times 5}}{11} = \frac{48\sqrt{5}}{11} \approx 9{,}758\text{ satuan panjang}$$
+                    </p>
+                    <p>
+                        <strong>(c) Verifikasi Jarak Euler $IO$:</strong><br>
+                        Menurut Teorema Euler untuk sembarang segitiga, jarak $d$ antara circumcenter $O$ dan incenter $I$ memenuhi:
+                        $$d^2 = R(R - 2r)$$
+                        Dari contoh sebelumnya, $R = \frac{25}{4} = 6{,}25$ dan $r = 3$.
+                        Hitung $R - 2r$:
+                        $$R - 2r = \frac{25}{4} - 2(3) = \frac{25}{4} - \frac{24}{4} = \frac{1}{4}$$
+                        Kalikan dengan $R$:
+                        $$d^2 = \frac{25}{4} \times \frac{1}{4} = \frac{25}{16} \implies d = \sqrt{\frac{25}{16}} = \frac{5}{4} = 1{,}25$$
+                        <em>Verifikasi Analitis Geometris:</em> Karena kedua pusat $I$ dan $O$ berada pada garis sumbu simetri vertikal yang sama tegak lurus alas:
+                        Ketinggian $I$ dari alas adalah $y_I = r = 3$.
+                        Ketinggian $O$ dari alas adalah $y_O = h - R = 8 - 6{,}25 = 1{,}75$.
+                        Jarak vertikal $IO = |y_I - y_O| = |3 - 1{,}75| = 1{,}25 = \frac{5}{4}$.
+                        Terbukti persis sama dengan formula Euler! $\blacksquare$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Segmen $AE = \frac{50}{11}$, $EC = \frac{60}{11}$, panjang garis bagi $BE = \frac{48\sqrt{5}}{11}$, dan jarak Euler $IO = 1{,}25$ terbukti konsisten secara analitis.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Simetri Tunggal yang Berhimpit
+            // ==========================================
+            const elSimetri = document.getElementById("svg-simetri-berhimpit");
+            if (elSimetri) {
+                const geo1 = new GeoSVG(elSimetri, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Sumbu Simetri dan Keberhimpitan Garis Istimewa"
+                });
+
+                const ptA = [160, 38];
+                const ptB = [85, 175];
+                const ptC = [235, 175];
+                const ptM = [160, 175]; // Titik tengah alas
+
+                // Poligon Segitiga ABC
+                geo1.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.35
+                });
+
+                // Garis Sumbu Simetri AM (Merah Tebal)
+                geo1.buatSegmen(ptA, ptM, { stroke: TEMA.merah, strokeWidth: 2.2 });
+
+                // Tanda Siku-Siku di M
+                geo1.buatSiku(ptB, ptM, ptA, { size: 9, stroke: TEMA.merah, strokeWidth: 1.2 });
+
+                // Tanda Sama Panjang pada Sisi Kaki AB dan AC
+                geo1.buatTandaSamaPanjang(ptB, ptA, { count: 2, size: 7, stroke: TEMA.utama });
+                geo1.buatTandaSamaPanjang(ptA, ptC, { count: 2, size: 7, stroke: TEMA.utama });
+
+                // Tanda Sama Panjang pada Alas BM dan MC
+                geo1.buatTandaSamaPanjang(ptB, ptM, { count: 1, size: 6, stroke: TEMA.merah });
+                geo1.buatTandaSamaPanjang(ptM, ptC, { count: 1, size: 6, stroke: TEMA.merah });
+
+                // Sudut Alas Kongruen di B dan C
+                geo1.buatSudut(ptC, ptB, ptA, { radius: 24, stroke: TEMA.aksen, strokeWidth: 1.5 });
+                geo1.buatSudut(ptA, ptC, ptB, { radius: 24, stroke: TEMA.aksen, strokeWidth: 1.5 });
+                geo1.buatTeks(ptB[0] + 16, ptB[1] - 8, "β", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+                geo1.buatTeks(ptC[0] - 20, ptC[1] - 8, "β", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Garis Bagi Sudut di A
+                geo1.buatSudut(ptB, ptA, ptM, { radius: 20, stroke: TEMA.merah, strokeWidth: 1.2 });
+                geo1.buatSudut(ptM, ptA, ptC, { radius: 18, stroke: TEMA.merah, strokeWidth: 1.2 });
+                geo1.buatTeks(ptA[0] - 6, ptA[1] + 24, "α/2", { fontSize: "7px", fontWeight: "bold", fill: TEMA.merah });
+                geo1.buatTeks(ptA[0] + 6, ptA[1] + 24, "α/2", { fontSize: "7px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Label Sisi
+                geo1.buatTeks(115, 100, "s", { fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(205, 100, "s", { fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(120, 188, "a/2", { fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+                geo1.buatTeks(195, 188, "a/2", { fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Verteks
+                const pts = [
+                    { pt: ptA, l: "A (Puncak)", o: [0, -8] },
+                    { pt: ptB, l: "B", o: [-8, 2] },
+                    { pt: ptC, l: "C", o: [8, 2] },
+                    { pt: ptM, l: "M", o: [0, 8] }
+                ];
+                pts.forEach(p => {
+                    geo1.buatLingkaran(p.pt, 3.5, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1.5 });
+                    geo1.buatTeks(p.pt[0] + p.o[0], p.pt[1] + p.o[1], p.l, { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.gelap });
+                });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 210, "AM: Garis Tinggi ⊥ = Garis Berat = Garis Bagi = Garis Sumbu", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+
+            // ==========================================
+            // 2. Garis Euler & Keselarasan Titik Pusat
+            // ==========================================
+            const elPusat = document.getElementById("svg-pusat-garis-euler-kaki");
+            if (elPusat) {
+                const geo2 = new GeoSVG(elPusat, 320, 230, {
+                    viewBox: "0 0 320 230",
+                    margin: 8,
+                    title: "Kolinieritas Titik Pusat Segitiga Sama Kaki"
+                });
+
+                // Model Segitiga 10-10-12 (Skala 18.5 px per unit)
+                // Tinggi h = 8 -> 148 px. Alas a = 12 -> 222 px (setengah alas = 111 px)
+                const ptA = [160, 32];
+                const ptB = [49, 180];
+                const ptC = [271, 180];
+                const ptM = [160, 180];
+
+                // Pusat O (Circumcenter): y_O = 180 - 1.75*18.5 = 147.6, R = 6.25*18.5 = 115.6
+                const ptO = [160, 147.6];
+                const R = 115.6;
+
+                // Pusat I (Incenter): y_I = 180 - 3*18.5 = 124.5, r = 3*18.5 = 55.5
+                const ptI = [160, 124.5];
+                const rIn = 55.5;
+
+                // Pusat G (Sentroid): y_G = 180 - (8/3)*18.5 = 130.7
+                const ptG = [160, 130.7];
+
+                // Pusat H (Ortosenter): y_H = 180 - (8 - 25/8)*18.5 = 96.9
+                const ptH = [160, 96.9];
+
+                // Lingkaran Luar (Circumcircle)
+                geo2.buatLingkaran(ptO, R, { fill: "none", stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "4 3" });
+
+                // Segitiga ABC
+                geo2.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.aksenMuda,
+                    stroke: TEMA.aksen,
+                    strokeWidth: 2,
+                    opacity: 0.25
+                });
+
+                // Lingkaran Dalam (Incircle)
+                geo2.buatLingkaran(ptI, rIn, { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.5, opacity: 0.35 });
+
+                // Garis Sumbu Simetri Vertikal (Garis Euler)
+                geo2.buatSegmen(ptA, ptM, { stroke: TEMA.merah, strokeWidth: 2 });
+
+                // Titik-titik Pusat pada Garis Simetri
+                const pusat = [
+                    { pt: ptH, l: "H (Ortosenter)", fill: TEMA.merah, o: [8, 0], align: "middle-left" },
+                    { pt: ptI, l: "I (Incenter)", fill: TEMA.oranye, o: [-8, 0], align: "middle-right" },
+                    { pt: ptG, l: "G (Sentroid)", fill: TEMA.ungu, o: [8, 0], align: "middle-left" },
+                    { pt: ptO, l: "O (Circumcenter)", fill: TEMA.utama, o: [-8, 0], align: "middle-right" }
+                ];
+                pusat.forEach(p => {
+                    geo2.buatLingkaran(p.pt, 3.4, { fill: p.fill, stroke: "#ffffff", strokeWidth: 1.2 });
+                    geo2.buatTeks(p.pt[0] + p.o[0], p.pt[1] + p.o[1], p.l, { position: p.align, fontSize: "8px", fontWeight: "bold", fill: p.fill });
+                });
+
+                // Titik Verteks
+                geo2.buatLingkaran(ptA, 3.8, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptA[0], ptA[1] - 8, "A", { position: "bottom-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+                geo2.buatLingkaran(ptB, 3.8, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptB[0] - 6, ptB[1] + 4, "B", { position: "middle-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+                geo2.buatLingkaran(ptC, 3.8, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptC[0] + 6, ptC[1] + 4, "C", { position: "middle-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 212, "Semua Pusat (H, I, G, O) Terletak Kolinier pada Sumbu Simetri", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+
+            // ==========================================
+            // 3. Kasus Khusus: Segitiga Siku Sama Kaki & Segitiga Emas
+            // ==========================================
+            const elKhusus = document.getElementById("svg-segitiga-siku-emas");
+            if (elKhusus) {
+                const geo3 = new GeoSVG(elKhusus, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Segitiga Siku Sama Kaki dan Segitiga Emas"
+                });
+
+                // --- Sisi Kiri: Segitiga Siku-Siku Sama Kaki ---
+                const pR_A = [35, 165]; // Sudut siku-siku
+                const pR_B = [135, 165];
+                const pR_C = [35, 65];
+
+                geo3.buatPoligon([pR_A, pR_B, pR_C], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.4
+                });
+
+                geo3.buatSiku(pR_B, pR_A, pR_C, { size: 9, stroke: TEMA.utama, strokeWidth: 1.2 });
+                geo3.buatTandaSamaPanjang(pR_A, pR_B, { count: 1, stroke: TEMA.utama });
+                geo3.buatTandaSamaPanjang(pR_A, pR_C, { count: 1, stroke: TEMA.utama });
+
+                geo3.buatTeks(85, 178, "s", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo3.buatTeks(22, 115, "s", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo3.buatTeks(95, 110, "s√2", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+                geo3.buatTeks(85, 45, "45°-45°-90°", { position: "middle-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+
+                // --- Sisi Kanan: Segitiga Emas (Golden Triangle) ---
+                const pG_A = [235, 40];  // Puncak 36°
+                const pG_B = [190, 165]; // Alas kiri 72°
+                const pG_C = [280, 165]; // Alas kanan 72°
+
+                geo3.buatPoligon([pG_A, pG_B, pG_C], {
+                    fill: TEMA.oranyeMuda,
+                    stroke: TEMA.oranye,
+                    strokeWidth: 2,
+                    opacity: 0.4
+                });
+
+                // Garis Bagi Emas dari B ke AC
+                // Titik D membagi AC dengan rasio emas
+                const pG_D = [235 + (280 - 235) * 0.618, 40 + (165 - 40) * 0.618]; // (262.8, 117.25)
+                geo3.buatSegmen(pG_B, pG_D, { stroke: TEMA.aksen, strokeWidth: 1.8, strokeDasharray: "3 2" });
+
+                geo3.buatTeks(235, 28, "36° (Puncak)", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+                geo3.buatTeks(182, 178, "72°", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+                geo3.buatTeks(276, 178, "72°", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+                geo3.buatTeks(235, 196, "Segitiga Emas (Rasio Sisi = Φ ≈ 1,618)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.oranye
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Persamaan Diferensial</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Persamaan Diferensial</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Persamaan Diferensial, Orde, dan Derajat</h2>
+            <p>
+                <strong>Persamaan Diferensial (Differential Equation)</strong> adalah suatu persamaan matematika yang menghubungkan suatu fungsi yang tidak diketahui (variabel terikat) dengan satu atau lebih <strong>turunan (diferensial)</strong> fungsi tersebut terhadap variabel bebasnya.
+            </p>
+            <p>
+                Jika fungsi yang dicari hanya memiliki satu variabel bebas (misalnya $y = f(x)$), persamaannya disebut <strong>Persamaan Diferensial Biasa (Ordinary Differential Equation / ODE)</strong>.
+            </p>
+
+            <div class="row">
+                <div class="col">
+                    <p><strong>A. Orde (Order):</strong><br>
+                    Tingkat turunan paling tinggi yang terdapat di dalam persamaan.
+                    <ul>
+                        <li>Orde-1: $\dfrac{dy}{dx} + 3xy = e^x$ &nbsp;(turunan pertama)</li>
+                        <li>Orde-2: $\dfrac{d^2y}{dx^2} + 4\dfrac{dy}{dx} + 5y = 0$ &nbsp;(turunan kedua)</li>
+                    </ul>
+                    </p>
+                </div>
+                <div class="col">
+                    <p><strong>B. Derajat (Degree):</strong><br>
+                    Pangkat bulat positif tertinggi dari suku turunan berorde tertinggi, setelah persamaan dinyatakan bebas dari tanda radikal dan pecahan diferensial.
+                    <ul>
+                        <li>$\left(\dfrac{d^2y}{dx^2}\right)^{\mathbf{3}} + \left(\dfrac{dy}{dx}\right)^4 = 0$ &nbsp;(Orde-2, Derajat-3)</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Solusi Umum vs Solusi Khusus (Masalah Nilai Awal / IVP):</strong><br>
+                    • <strong>Solusi Umum (General Solution):</strong> Solusi yang memuat konstanta integrasi sembarang ($C, C_1, C_2, \dots$) sebanyak orde persamaannya. Solusi umum merepresentasikan <em>famili kurva</em> tak hingga banyaknya.<br>
+                    • <strong>Solusi Khusus (Particular Solution):</strong> Solusi tunggal yang diperoleh ketika nilai konstanta $C$ ditentukan oleh kondisi awal (syarat batas), misalnya kurva harus melalui titik $(x_0, y_0)$ atau $y(x_0) = y_0$.
+                </p>
+            </div>
+
+            <h2>2. Interpretasi Geometris: Medan Arah (Slope Field) & Kurva Integral</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Secara kalkulus, turunan $\dfrac{dy}{dx}$ menyatakan <strong>gradien garis singgung</strong> suatu kurva di titik $(x, y)$.
+                    </p>
+                    <p>
+                        Persamaan diferensial orde-1 berbentuk:
+                        $$\frac{dy}{dx} = f(x, y)$$
+                        memberikan informasi bahwa di setiap titik $(x, y)$ pada bidang Cartesius terdapat nilai kemiringan garis singgung sebesar $f(x, y)$.
+                    </p>
+                    <p>
+                        Jika kita menggambar segmen-segmen garis pendek dengan kemiringan tersebut di berbagai titik kisi koordinat, terbentuklah sebuah <strong>Medan Arah (Slope Field / Direction Field)</strong>.
+                    </p>
+                    <p>
+                        Kurva solusi $y = y(x)$ (disebut juga <strong>Kurva Integral</strong>) adalah kurva mulus yang di setiap titik yang dilewatinya selalu bergerak sejajar dan <em>menyinggung segmen medan arah</em> di titik tersebut.
+                    </p>
+                    <p>
+                        Sebagai contoh, untuk persamaan diferensial:
+                        $$\frac{dy}{dx} = -\frac{x}{y} \iff y\,dy = -x\,dx \iff x^2 + y^2 = C$$
+                        Medan arah menunjukkan bahwa vektor garis singgung di setiap titik $(x, y)$ selalu tegak lurus terhadap jari-jari posisi, sehingga menghasilkan famili kurva berupa <strong>lingkaran-lingkaran konsentris</strong> sepusat di $(0, 0)$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-medan-arah" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Metode Pemisahan Variabel (Separable ODE) & Masalah Nilai Awal</h2>
+            <p>
+                Persamaan diferensial dikatakan <strong>terpisahkan (separable)</strong> jika persamaan dapat dimanipulasi secara aljabar sehingga semua suku yang memuat variabel $y$ berada di satu ruas bersama $dy$, dan semua suku yang memuat variabel $x$ berada di ruas lain bersama $dx$:
+                $$\frac{dy}{dx} = g(x) \cdot h(y) \iff \frac{1}{h(y)}\,dy = g(x)\,dx$$
+                Solusi diperoleh dengan mengintegrasikan kedua ruas secara langsung:
+                $$\int \frac{1}{h(y)}\,dy = \int g(x)\,dx + C$$
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Model Pertumbuhan & Peluruhan Eksponensial</h3>
+                    <p>
+                        Salah satu penerapan paling mendasar adalah laju perubahan kuantitas yang sebanding dengan kuantitas itu sendiri:
+                        $$\frac{dy}{dx} = k y$$
+                        Pisahkan variabel dan integrasikan:
+                        $$\begin{aligned}
+                        \frac{1}{y}\,dy &= k\,dx \\
+                        \int \frac{1}{y}\,dy &= \int k\,dx \\
+                        \ln|y| &= kx + C_1 \\
+                        y &= e^{kx + C_1} = e^{C_1} \cdot e^{kx} \\
+                        y(x) &= C e^{kx} \quad \text{dengan } C = \pm e^{C_1}
+                        \end{aligned}$$
+                    </p>
+                    <p>
+                        Grafik di samping memperlihatkan famili kurva eksponensial untuk berbagai nilai konstanta $C$. Jika diberikan syarat awal $y(0) = 2$, maka $C = 2$, yang secara unik mengunci satu <strong>solusi khusus</strong> (kurva biru tebal).
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-famili-kurva-ivp" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Persamaan Diferensial Homogen Orde-1</h2>
+            <p>
+                Suatu persamaan diferensial $\dfrac{dy}{dx} = f(x, y)$ disebut <strong>homogen orde-1</strong> apabila fungsi $f(x, y)$ dapat dinyatakan secara utuh sebagai fungsi dari rasio $\dfrac{y}{x}$:
+                $$\frac{dy}{dx} = F\left(\frac{y}{x}\right)$$
+            </p>
+            <p>
+                <strong>Strategi Penyelesaian:</strong>
+            </p>
+            <ol>
+                <li>Gunakan substitusi variabel baru:
+                    $$u = \frac{y}{x} \iff y = u \cdot x$$
+                </li>
+                <li>Diferensialkan $y$ terhadap $x$ menggunakan aturan perkalian turunan:
+                    $$\frac{dy}{dx} = u + x \frac{du}{dx}$$
+                </li>
+                <li>Substitusikan ke persamaan awal:
+                    $$\begin{aligned}
+                    u + x \frac{du}{dx} &= F(u) \\
+                    x \frac{du}{dx} &= F(u) - u \\
+                    \frac{du}{F(u) - u} &= \frac{dx}{x}
+                    \end{aligned}$$
+                </li>
+                <li>Persamaan kini telah terpisahkan dan dapat diintegralkan secara langsung. Setelah integrasi selesai, ganti kembali nilai $u$ dengan $\dfrac{y}{x}$.</li>
+            </ol>
+
+            <h2>5. Persamaan Diferensial Linear Orde-1 (Metode Faktor Pengintegrasi)</h2>
+            <p>
+                Bentuk umum baku dari Persamaan Diferensial Linear Orde-1 adalah:
+                $$\frac{dy}{dx} + P(x) y = Q(x)$$
+                di mana $P(x)$ dan $Q(x)$ adalah fungsi kontinu dari $x$.
+            </p>
+            <p>
+                <strong>Penurunan Faktor Pengintegrasi (Integrating Factor $I(x)$):</strong><br>
+                Leonhard Euler menemukan bahwa jika kedua ruas dikalikan dengan suatu fungsi pengali $I(x)$, ruas kiri dapat dijadikan bentuk turunan perkalian sempurna $\dfrac{d}{dx}[I(x) \cdot y]$:
+                $$I(x) \frac{dy}{dx} + I(x) P(x) y = I(x) Q(x)$$
+                Bandingkan ruas kiri dengan aturan turunan perkalian $\dfrac{d}{dx}[I(x) \cdot y] = I(x) \dfrac{dy}{dx} + I'(x) y$. Syaratnya adalah:
+                $$I'(x) = I(x) P(x) \iff \frac{1}{I(x)}\,dI = P(x)\,dx \implies \ln|I(x)| = \int P(x)\,dx \implies I(x) = e^{\int P(x)\,dx}$$
+            </p>
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Rumus Solusi Baku PD Linear Orde-1:</strong>
+                    $$I(x) = e^{\int P(x)\,dx}$$
+                    $$y \cdot I(x) = \int Q(x) \cdot I(x)\,dx + C \iff y = \frac{1}{I(x)}\left(\int Q(x) I(x)\,dx + C\right)$$
+                </p>
+            </div>
+
+            <h2>6. Persamaan Diferensial Bernoulli</h2>
+            <p>
+                Persamaan Diferensial Bernoulli adalah bentuk non-linear istimewa:
+                $$\frac{dy}{dx} + P(x) y = Q(x) y^n \quad (n \neq 0, n \neq 1)$$
+                Persamaan ini dapat diubah secara elegan menjadi PD Linear Orde-1 menggunakan reduksi substitusi:
+            </p>
+            <ol>
+                <li>Bagi kedua ruas dengan $y^n$:
+                    $$y^{-n} \frac{dy}{dx} + P(x) y^{1-n} = Q(x)$$
+                </li>
+                <li>Misalkan variabel pembantu $v = y^{1-n}$. Turunkan terhadap $x$:
+                    $$\frac{dv}{dx} = (1 - n) y^{-n} \frac{dy}{dx} \implies y^{-n} \frac{dy}{dx} = \frac{1}{1 - n} \frac{dv}{dx}$$
+                </li>
+                <li>Substitusikan ke persamaan di atas:
+                    $$\frac{1}{1 - n} \frac{dv}{dx} + P(x) v = Q(x) \iff \frac{dv}{dx} + (1 - n) P(x) v = (1 - n) Q(x)$$
+                </li>
+            </ol>
+            <p>
+                Persamaan di atas merupakan PD linear standar dalam variabel $v$ yang siap diselesaikan dengan faktor pengintegrasi.
+            </p>
+
+            <h2>7. Pengantar PD Linear Orde-2 & Model Osilator Harmonik</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Bentuk umum Persamaan Diferensial Linear Homogen Orde-2 dengan koefisien konstan adalah:
+                        $$a \frac{d^2y}{dx^2} + b \frac{dy}{dx} + c y = 0$$
+                        Solusi dicari melalui <strong>Persamaan Karakteristik (Kaidah Polinomial Kuadrat)</strong>:
+                        $$a r^2 + b r + c = 0$$
+                    </p>
+                    <ul>
+                        <li><strong>Dua akar riil berbeda ($r_1 \neq r_2$):</strong> $y = C_1 e^{r_1 x} + C_2 e^{r_2 x}$</li>
+                        <li><strong>Akar kembar ($r_1 = r_2 = r$):</strong> $y = (C_1 + C_2 x) e^{r x}$</li>
+                        <li><strong>Akar kompleks konjugat ($r = \alpha \pm \beta i$):</strong>
+                            $$y = e^{\alpha x}\left(C_1 \cos(\beta x) + C_2 \sin(\beta x)\right)$$
+                        </li>
+                    </ul>
+                    <p>
+                        Bila tidak ada redaman ($\alpha = 0$), persamaan menggambarkan <strong>Osilator Harmonik Sederhana (Gerak Harmonis Pegas / Bandul)</strong>:
+                        $$y'' + \omega^2 y = 0 \implies y(t) = A \cos(\omega t + \phi)$$
+                        Grafik di samping memperlihatkan profil gelombang osilasi posisi simpangan $y(t)$ terhadap waktu $t$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-osilator-harmonik" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>8. Tabel Klasifikasi & Strategi Penyelesaian PD</h2>
+            <div class="table-container">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead>
+                        <tr style="background: var(--card-bg, #f8fafc); border-bottom: 2px solid var(--border-color, #e2e8f0);">
+                            <th style="padding: 10px; text-align: left;">Bentuk Persamaan Diferensial</th>
+                            <th style="padding: 10px; text-align: left;">Ciri / Bentuk Standar</th>
+                            <th style="padding: 10px; text-align: left;">Metode & Rumus Kunci</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Terpisahkan (Separable)</strong></td>
+                            <td style="padding: 10px;">$\dfrac{dy}{dx} = g(x) h(y)$</td>
+                            <td style="padding: 10px;">$\int \dfrac{dy}{h(y)} = \int g(x)\,dx + C$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Homogen Orde-1</strong></td>
+                            <td style="padding: 10px;">$\dfrac{dy}{dx} = F\left(\dfrac{y}{x}\right)$</td>
+                            <td style="padding: 10px;">Substitusi $y = ux \implies y' = u + x u'$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Linear Orde-1</strong></td>
+                            <td style="padding: 10px;">$\dfrac{dy}{dx} + P(x) y = Q(x)$</td>
+                            <td style="padding: 10px;">$I(x) = e^{\int P(x)dx} \implies y \cdot I(x) = \int Q(x)I(x)dx + C$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Bernoulli</strong></td>
+                            <td style="padding: 10px;">$\dfrac{dy}{dx} + P(x)y = Q(x)y^n$</td>
+                            <td style="padding: 10px;">Substitusi $v = y^{1-n} \implies v' + (1-n)Pv = (1-n)Q$</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;"><strong>Linear Orde-2 Homogen</strong></td>
+                            <td style="padding: 10px;">$ay'' + by' + cy = 0$</td>
+                            <td style="padding: 10px;">Akar karakteristik: $ar^2 + br + c = 0$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>9. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- CONTOH 1 (Dasar) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Pemisahan Variabel & Syarat Awal (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Gradien garis singgung suatu kurva $y = f(x)$ untuk $y > 0$ di setiap titik $(x, y)$ memenuhi persamaan diferensial:
+                    $$\frac{dy}{dx} = \frac{x}{y}$$
+                    Jika kurva tersebut melalui titik $(0, 2)$, tentukan persamaan kurva tersebut serta nilai $y$ saat $x = \sqrt{5}$.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Pemisahan variabel</strong><br>
+                        Pisahkan variabel $y$ ke ruas kiri dan variabel $x$ ke ruas kanan:
+                        $$y\,dy = x\,dx$$
+                        Integrasikan kedua ruas:
+                        $$\begin{aligned}
+                        \int y\,dy &= \int x\,dx \\
+                        \frac{1}{2}y^2 &= \frac{1}{2}x^2 + C_1 \\
+                        y^2 - x^2 &= C \quad (\text{dengan } C = 2C_1)
+                        \end{aligned}$$
+                        Persamaan di atas merupakan famili kurva hiperbola.<br><br>
+                        <strong>Langkah 2: Menentukan solusi khusus dari syarat awal $(0, 2)$</strong><br>
+                        Substitusikan $x = 0$ dan $y = 2$:
+                        $$2^2 - 0^2 = C \implies C = 4$$
+                        Persamaan kurva khusus adalah:
+                        $$y^2 - x^2 = 4 \iff y = \sqrt{x^2 + 4} \quad (\text{karena } y > 0)$$
+                        <br>
+                        <strong>Langkah 3: Hitung nilai $y$ saat $x = \sqrt{5}$</strong><br>
+                        $$y = \sqrt{(\sqrt{5})^2 + 4} = \sqrt{5 + 4} = \sqrt{9} = 3$$
+                        <div class="kesimpulan">
+                            Jadi, persamaan kurva adalah $y^2 - x^2 = 4$ dan nilai $y$ saat $x = \sqrt{5}$ adalah $3$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: PD Homogen Orde-1 (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Selesaikan persamaan diferensial homogen orde-1 berikut:
+                    $$\left(e^{\frac{y}{x}} + \frac{y}{x}\right)dx - dy = 0$$
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Misalkan $u = \dfrac{y}{x}$, sehingga $y = ux$.<br>
+                        Turunkan terhadap $x$:
+                        $$dy = x\,du + u\,dx$$
+                        Substitusikan bentuk di atas ke dalam persamaan awal:
+                        $$\begin{aligned}
+                        \left(e^u + u\right)dx - (x\,du + u\,dx) &= 0 \\
+                        e^u\,dx + u\,dx - x\,du - u\,dx &= 0 \\
+                        e^u\,dx - x\,du &= 0 \\
+                        e^u\,dx &= x\,du
+                        \end{aligned}$$
+                        Pisahkan variabel $x$ dan $u$:
+                        $$\frac{1}{x}\,dx = e^{-u}\,du$$
+                        Integrasikan kedua ruas:
+                        $$\begin{aligned}
+                        \int \frac{1}{x}\,dx &= \int e^{-u}\,du \\
+                        \ln|x| &= -e^{-u} + C \\
+                        e^{-u} + \ln|x| &= C
+                        \end{aligned}$$
+                        Substitusikan kembali $u = \dfrac{y}{x}$:
+                        $$e^{-\frac{y}{x}} + \ln|x| = C$$
+                        <div class="kesimpulan">
+                            Jadi, solusi umum persamaan diferensial tersebut adalah:
+                            $$e^{-\frac{y}{x}} + \ln|x| = C$$
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Persamaan Diferensial Bernoulli (Tingkat HOTS / ONMIPA)</span>
+                </div>
+                <div class="soal-teks">
+                    Diketahui fungsi $y = f(x)$ untuk $x > 0$ memenuhi persamaan diferensial:
+                    $$x \frac{dy}{dx} + y = x^3 y^2$$
+                    Jika kurva melalui titik $(1, 1)$ atau $f(1) = 1$, tentukan nilai dari $f(2)$.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Persamaan yang diberikan merupakan <strong>Persamaan Diferensial Bernoulli</strong> dengan derajat $n = 2$:
+                        $$x \frac{dy}{dx} + y = x^3 y^2 \iff \frac{dy}{dx} + \frac{1}{x} y = x^2 y^2$$
+                        Bagi kedua ruas dengan $y^2$:
+                        $$y^{-2} \frac{dy}{dx} + \frac{1}{x} y^{-1} = x^2$$
+                        Misalkan $v = y^{-1}$. Turunkan terhadap $x$:
+                        $$\frac{dv}{dx} = -y^{-2} \frac{dy}{dx} \implies y^{-2} \frac{dy}{dx} = -\frac{dv}{dx}$$
+                        Substitusikan:
+                        $$-\frac{dv}{dx} + \frac{1}{x} v = x^2 \iff \frac{dv}{dx} - \frac{1}{x} v = -x^2$$
+                        Persamaan ini adalah PD Linear Orde-1 dengan $P(x) = -\dfrac{1}{x}$ dan $Q(x) = -x^2$.<br><br>
+                        Hitung faktor pengintegrasi $I(x)$:
+                        $$I(x) = e^{\int -\frac{1}{x}\,dx} = e^{-\ln x} = e^{\ln(x^{-1})} = \frac{1}{x}$$
+                        Kalikan kedua ruas dengan $I(x)$:
+                        $$\begin{aligned}
+                        \frac{d}{dx}\left[v \cdot \frac{1}{x}\right] &= (-x^2)\left(\frac{1}{x}\right) = -x \\
+                        v \cdot \frac{1}{x} &= \int -x\,dx = -\frac{1}{2}x^2 + C \\
+                        v &= -\frac{1}{2}x^3 + Cx
+                        \end{aligned}$$
+                        Kembalikan $v = \dfrac{1}{y}$:
+                        $$\frac{1}{y} = Cx - \frac{1}{2}x^3 \implies y = \frac{1}{Cx - \frac{1}{2}x^3}$$
+                        Gunakan kondisi awal $f(1) = 1$:
+                        $$1 = \frac{1}{C(1) - \frac{1}{2}(1)^3} \implies C - \frac{1}{2} = 1 \implies C = \frac{3}{2}$$
+                        Sehingga fungsi eksplisit $f(x)$ adalah:
+                        $$f(x) = \frac{1}{\frac{3}{2}x - \frac{1}{2}x^3} = \frac{2}{3x - x^3}$$
+                        Hitung nilai $f(2)$:
+                        $$f(2) = \frac{2}{3(2) - (2)^3} = \frac{2}{6 - 8} = \frac{2}{-2} = -1$$
+                        <div class="kesimpulan">
+                            Jadi, nilai dari $f(2)$ adalah $-1$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // 1. Visualisasi Medan Arah (Slope Field) dy/dx = -x/y & Solusi Lingkaran
+            const elMedanArah = document.getElementById("svg-medan-arah");
+            if (elMedanArah && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elMedanArah, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Medan Arah (Slope Field) dan Kurva Solusi Lingkaran"
+                });
+
+                const Ox = 170, Oy = 115, u = 24;
+                const toPx = (x, y) => [Ox + x * u, Oy - y * u];
+
+                // Sumbu Kartesius X dan Y
+                geo1.buatVektor(toPx(-5.5, 0), toPx(5.5, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor(toPx(0, -3.8), toPx(0, 3.8), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo1.buatTeks(Ox + 5.7 * u, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo1.buatTeks(Ox, Oy - 4 * u, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Render Segmen Medan Arah (Slope Field Segments)
+                const segLen = 9; // panjang total segmen
+                for (let gx = -4; gx <= 4; gx++) {
+                    for (let gy = -3; gy <= 3; gy++) {
+                        if (gx === 0 && gy === 0) continue;
+                        const pt = toPx(gx, gy);
+                        let dx, dy;
+                        if (gy === 0) {
+                            // slope tak hingga (vertikal)
+                            dx = 0;
+                            dy = segLen / 2;
+                        } else {
+                            const m = -gx / gy;
+                            const mag = Math.hypot(1, m);
+                            dx = (segLen / 2) * (1 / mag);
+                            dy = (segLen / 2) * (m / mag);
+                        }
+                        // Layar terbalik Y: y_layar = -y_kartesius
+                        geo1.buatSegmen([pt[0] - dx, pt[1] + dy], [pt[0] + dx, pt[1] - dy], {
+                            stroke: "#94a3b8",
+                            strokeWidth: 1.2
+                        });
+                    }
+                }
+
+                // Kurva Integral 1 (Lingkaran R = 2: r_px = 48)
+                geo1.buatLingkaran([Ox, Oy], 2 * u, {
+                    fill: "none",
+                    stroke: TEMA.utama,
+                    strokeWidth: 2
+                });
+
+                // Kurva Integral 2 (Lingkaran R = 3: r_px = 72)
+                geo1.buatLingkaran([Ox, Oy], 3 * u, {
+                    fill: "none",
+                    stroke: TEMA.aksen,
+                    strokeWidth: 2.2
+                });
+
+                // Label Kurva Solusi
+                geo1.buatTeks(Ox + 2.1 * u, Oy - 2.1 * u, "x² + y² = C", {
+                    position: "middle-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // Titik Khusus di (0, 3)
+                const ptAtas = toPx(0, 3);
+                geo1.buatLingkaran(ptAtas, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptAtas[0] + 6, ptAtas[1] - 4, "(0, 3)", {
+                    position: "middle-left",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Keterangan Bawah
+                geo1.buatTeks(Ox, 214, "dy/dx = -x/y ⟹ Medan Arah Selalu Menyinggung Lingkaran", {
+                    position: "middle-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 2. Visualisasi Famili Kurva Solusi Eksponensial dy/dx = ky & Syarat Awal (IVP)
+            const elFamili = document.getElementById("svg-famili-kurva-ivp");
+            if (elFamili && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elFamili, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Famili Kurva Solusi Eksponensial dan Masalah Nilai Awal (IVP)"
+                });
+
+                const Ox = 65, Oy = 175, u = 26;
+                const toPx = (x, y) => [Ox + x * u, Oy - y * u];
+
+                // Sumbu Kartesius
+                geo2.buatVektor(toPx(-1, 0), toPx(8.5, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo2.buatVektor(toPx(0, -0.6), toPx(0, 6.2), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo2.buatTeks(Ox + 8.7 * u, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo2.buatTeks(Ox, Oy - 6.4 * u, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Famili Kurva y = C * e^(0.35 x)
+                const C_vals = [0.6, 1.2, 2.0, 3.2];
+                C_vals.forEach(c => {
+                    const pts = [];
+                    for (let x = 0; x <= 5.5; x += 0.2) {
+                        const y = c * Math.exp(0.35 * x);
+                        if (y > 6.0) break;
+                        pts.push(toPx(x, y));
+                    }
+                    const isParticular = (c === 2.0);
+                    geo2.buatPolyline(pts, {
+                        stroke: isParticular ? TEMA.utama : "#cbd5e1",
+                        strokeWidth: isParticular ? 2.5 : 1.2,
+                        strokeDasharray: isParticular ? "none" : "3 3"
+                    });
+                });
+
+                // Titik Nilai Awal (0, 2)
+                const ptIVP = toPx(0, 2);
+                geo2.buatLingkaran(ptIVP, 5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptIVP[0] + 8, ptIVP[1], "y(0) = 2 (Syarat Awal)", {
+                    position: "middle-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Label Solusi Khusus
+                geo2.buatTeks(toPx(3.2, 2 * Math.exp(0.35 * 3.2))[0] - 10, toPx(3.2, 2 * Math.exp(0.35 * 3.2))[1] - 14, "y = 2e^{kx}", {
+                    position: "bottom-right",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 204, "Syarat Awal Mengunci Satu Solusi Khusus dari Famili Kurva", {
+                    position: "middle-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 3. Visualisasi Osilator Harmonik Sederhana (PD Orde-2: y'' + ω²y = 0)
+            const elOsilator = document.getElementById("svg-osilator-harmonik");
+            if (elOsilator && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elOsilator, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Profil Gelombang Solusi PD Orde-2 Osilator Harmonik"
+                });
+
+                const Ox = 50, Oy = 110, u = 32;
+                const toPx = (t, y) => [Ox + t * u, Oy - y * u];
+
+                // Sumbu Waktu (t) dan Simpangan (y)
+                geo3.buatVektor(toPx(-0.5, 0), toPx(7.5, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo3.buatVektor(toPx(0, -2.4), toPx(0, 2.5), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo3.buatTeks(Ox + 7.7 * u, Oy, "t", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo3.buatTeks(Ox, Oy - 2.6 * u, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Garis Amplitudo +A dan -A
+                const A = 1.6;
+                geo3.buatSegmen(toPx(0, A), toPx(7.2, A), { stroke: "#e2e8f0", strokeWidth: 1, strokeDasharray: "4 3" });
+                geo3.buatSegmen(toPx(0, -A), toPx(7.2, -A), { stroke: "#e2e8f0", strokeWidth: 1, strokeDasharray: "4 3" });
+                geo3.buatTeks(Ox - 8, Oy - A * u, "+A", { position: "middle-right", fontSize: "10px", fontWeight: "bold", fill: TEMA.aksen });
+                geo3.buatTeks(Ox - 8, Oy + A * u, "-A", { position: "middle-right", fontSize: "10px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Kurva Gelombang Harmonik: y = A * cos(omega * t), omega = 1
+                const ptsWave = [];
+                for (let t = 0; t <= 6.8; t += 0.15) {
+                    ptsWave.push(toPx(t, A * Math.cos(t)));
+                }
+                geo3.buatPolyline(ptsWave, { stroke: TEMA.aksen, strokeWidth: 2.2 });
+
+                // Penanda Periode T = 2*pi
+                const T_val = 2 * Math.PI;
+                const ptPuncak1 = toPx(0, A);
+                const ptPuncak2 = toPx(T_val, A);
+                geo3.buatSegmen([ptPuncak1[0], ptPuncak1[1] - 8], [ptPuncak2[0], ptPuncak2[1] - 8], {
+                    stroke: TEMA.oranye,
+                    strokeWidth: 1.5
+                });
+                geo3.buatTeks((ptPuncak1[0] + ptPuncak2[0]) / 2, ptPuncak1[1] - 18, "Periode T = 2π/ω", {
+                    position: "middle-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.oranye
+                });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 202, "y'' + ω²y = 0 ⟹ y(t) = A cos(ωt + φ)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
+

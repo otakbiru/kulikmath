@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Pertidaksamaan Linear Dua Variabel</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Pertidaksamaan Linear Dua Variabel</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Bentuk Baku PtLDV</h2>
+            <p>
+                <strong>Pertidaksamaan Linear Dua Variabel (PtLDV)</strong> adalah suatu kalimat terbuka matematika yang memuat dua variabel bebas (biasanya dilambangkan dengan $x$ dan $y$), di mana masing-masing variabel berpangkat satu ($1$), dan dihubungkan oleh salah satu lambang relasi ketaksamaan ($<$, $\le$, $>$, atau $\ge$).
+            </p>
+            <p>
+                Bentuk umum baku PtLDV dalam koordinat Kartesius adalah:
+                $$ax + by < c, \quad ax + by \le c, \quad ax + by > c, \quad \text{atau} \quad ax + by \ge c$$
+                dengan ketentuan:
+            </p>
+            <ul>
+                <li>$a, b, c \in \mathbb{R}$ (koefisien dan konstanta berupa bilangan real).</li>
+                <li>$a$ dan $b$ tidak keduanya bernilai nol ($a^2 + b^2 \neq 0$).</li>
+                <li>Tidak terdapat perkalian antarvariabel (seperti suku $xy$).</li>
+            </ul>
+
+            <h3>Geometri Garis Pembatas Bidang (Boundary Line)</h3>
+            <p>
+                Persamaan $ax + by = c$ merepresentasikan sebuah <strong>garis lurus pembatas</strong> pada bidang datar $\mathbb{R}^2$. Garis lurus ini membagi seluruh bidang Kartesius menjadi dua belahan daerah yang saling lepas, yang disebut <strong>setengah-bidang (half-plane)</strong>.
+            </p>
+            <p>
+                Konvensi penggambaran garis batas:
+            </p>
+            <ul>
+                <li><strong>Garis Tebal / Utuh (Solid Line):</strong> Digunakan untuk ketaksamaan non-ketat ($\le$ atau $\ge$). Artinya, titik-titik yang terletak tepat pada garis pembatas <em>termasuk</em> ke dalam himpunan penyelesaian.</li>
+                <li><strong>Garis Putus-Putus (Dashed Line):</strong> Digunakan untuk ketaksamaan ketat / murni ($<$ atau $>$). Artinya, titik-titik pada garis pembatas <em>tidak termasuk</em> ke dalam penyelesaian.</li>
+            </ul>
+
+            <h2>2. Menentukan Daerah Himpunan Penyelesaian (DHP)</h2>
+            <p>
+                <strong>Daerah Himpunan Penyelesaian (DHP)</strong> adalah himpunan semua pasangan berurutan $(x, y)$ pada bidang Cartesius yang memenuhi pertidaksamaan linear yang bersangkutan.
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Metode Titik Uji (Test Point)</h3>
+                    <ol>
+                        <li>Gambar garis pembatas $ax + by = c$ dengan menentukan titik potong sumbu:
+                            $$\text{Sumbu-}X \; (y = 0) \implies \left(\frac{c}{a}, 0\right), \quad \text{Sumbu-}Y \; (x = 0) \implies \left(0, \frac{c}{b}\right)$$
+                        </li>
+                        <li>Pilih satu titik uji $(x_0, y_0)$ yang <em>tidak dilalui</em> oleh garis batas. Titik paling ideal dan cepat dihitung adalah titik asal $O(0, 0)$ (asalkan $c \neq 0$).</li>
+                        <li>Substitusikan $(x_0, y_0)$ ke dalam pertidaksamaan awal:
+                            <ul>
+                                <li>Jika pernyataan bernilai <strong>BENAR</strong>, maka setengah-bidang yang memuat titik uji tersebut merupakan DHP (diarsir).</li>
+                                <li>Jika pernyataan bernilai <strong>SALAH</strong>, maka setengah-bidang di seberang yang tidak memuat titik uji merupakan DHP.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h3>B. Kaidah Cepat Tanda Koefisien</h3>
+                    <p>
+                        Jika koefisien variabel $y$ dibuat bernilai positif ($b > 0$):
+                    </p>
+                    <ul>
+                        <li>Tanda $\ge$ atau $>$ $\implies$ DHP terletak di <strong>sebelah atas</strong> garis pembatas.</li>
+                        <li>Tanda $\le$ atau $<$ $\implies$ DHP terletak di <strong>sebelah bawah</strong> garis pembatas.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-ptldv-dasar" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Sistem Pertidaksamaan Linear Dua Variabel (SPtLDV)</h2>
+            <p>
+                <strong>Sistem Pertidaksamaan Linear Dua Variabel (SPtLDV)</strong> adalah kumpulan dari dua atau lebih PtLDV yang berlaku secara serentak (simultan).
+            </p>
+            <p>
+                Daerah himpunan penyelesaian dari suatu SPtLDV adalah <strong>irisan (intersection)</strong> dari daerah penyelesaian masing-masing PtLDV penyusunnya:
+                $$\text{DHP}_{\text{sistem}} = \text{DHP}_1 \cap \text{DHP}_2 \cap \dots \cap \text{DHP}_n$$
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Kendala Non-Negatif & Poligon Fisibel</h3>
+                    <p>
+                        Dalam aplikasi terapan dan program linear, variabel $x$ dan $y$ seringkali merepresentasikan kuantitas fisik (seperti jumlah produk, waktu, atau massa) yang tidak mungkin bernilai negatif:
+                        $$x \ge 0 \quad \text{dan} \quad y \ge 0$$
+                        Kendala ini secara otomatis membatasi daerah penyelesaian hanya pada <strong>Kuadran I</strong> bidang Kartesius.
+                    </p>
+                    <p>
+                        Irisan beberapa garis kendala linear pada Kuadran I akan membentuk sebuah <strong>daerah poligon cembung (convex polygon)</strong> yang tertutup (<em>bounded</em>).
+                    </p>
+                    <p>
+                        Titik-titik sudut dari poligon pembatas tersebut dinamakan <strong>titik-titik pojok (verteks/titik ekstrem)</strong>. Koordinat titik temu antargaris ditentukan melalui penyelesaian sistem persamaan linear dua variabel (SPLDV) dengan metode eliminasi-substitusi.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-sptldv-poligon" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Optimasi Program Linear: Teorema Titik Pojok & Garis Selidik</h2>
+            <p>
+                Tujuan utama pembentukan SPtLDV pada pemodelan matematika adalah mencari nilai optimum (maksimum atau minimum) dari suatu <strong>fungsi objektif (fungsi tujuan)</strong>:
+                $$Z = f(x, y) = px + qy$$
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Teorema Titik Pojok (Corner Point Theorem):</strong><br>
+                    Jika suatu daerah himpunan penyelesaian dari SPtLDV bersifat konveks dan terbatas (tertutup), maka nilai optimum (maksimum maupun minimum) dari fungsi tujuan linear $Z = px + qy$ <strong>selalu tercapai pada setidaknya satu titik pojok (verteks)</strong> dari daerah himpunan penyelesaian tersebut.
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Metode Garis Selidik (Isocost / Isoprofit Line)</h3>
+                    <p>
+                        Persamaan fungsi objektif $px + qy = k$ merepresentasikan keluarga garis-garis lurus sejajar dengan gradien tetap:
+                        $$m = -\frac{p}{q}$$
+                    </p>
+                    <p>
+                        Dengan menggeser garis selidik sejajar dengan arah gradiennya ke seluruh daerah penyelesaian:
+                    </p>
+                    <ul>
+                        <li><strong>Nilai Maksimum:</strong> Dicapai pada titik pojok terakhir yang disentuh oleh garis selidik sebelum meninggalkan daerah penyelesaian.</li>
+                        <li><strong>Nilai Minimum:</strong> Dicapai pada titik pojok pertama yang disentuh oleh garis selidik saat mulai memasuki daerah penyelesaian.</li>
+                        <li><strong>Solusi Tak Hingga Banyak:</strong> Terjadi apabila kemiringan (gradien) garis selidik <em>berimpit/sejajar</em> dengan salah satu garis batas kendala ($m_{\text{selidik}} = m_{\text{garis}}$). Nilai optimum tercapai di sepanjang seluruh ruas garis batas tersebut.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-garis-selidik" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Rekonstruksi PtLDV dari Grafik (Reverse Engineering)</h2>
+            <p>
+                Jika diberikan gambar daerah arsiran pada bidang Cartesius dan diminta menentukan sistem pertidaksamaannya:
+            </p>
+            <ol>
+                <li>Gunakan rumus cepat persamaan garis yang memotong sumbu-$Y$ di titik $(0, a)$ dan sumbu-$X$ di titik $(b, 0)$:
+                    $$ax + by = a \cdot b$$
+                </li>
+                <li>Periksa letak daerah arsiran terhadap titik asal $(0, 0)$:
+                    <ul>
+                        <li>Jika daerah arsiran memuat titik $(0, 0)$, substitusikan $x = 0, y = 0$ menghasilkan nilai $0$, lalu sesuaikan tanda relasi terhadap nilai $ab$ agar bernilai benar.</li>
+                        <li>Jika $ab > 0$ dan arsiran mengarah ke $(0, 0)$, maka tanda pertidaksamaannya adalah $\le$.</li>
+                        <li>Jika $ab > 0$ dan arsiran menjauhi $(0, 0)$, maka tanda pertidaksamaannya adalah $\ge$.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Lengkap</h2>
+
+            <!-- CONTOH 1 (DASAR) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Menentukan DHP & Luas Daerah (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan daerah himpunan penyelesaian dari sistem pertidaksamaan berikut:
+                    $$3x + 2y \le 12, \quad x \ge 0, \quad y \ge 0$$
+                    Hitunglah luas daerah himpunan penyelesaian yang terbentuk pada bidang koordinat Cartesius!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Menentukan Garis Batas & Titik Potong Sumbu</strong><br>
+                        Persamaan garis pembatas: $3x + 2y = 12$.
+                        <ul>
+                            <li>Titik potong sumbu-$X$ ($y = 0$): $3x + 2(0) = 12 \implies 3x = 12 \implies x = 4$. Titik potong adalah $A(4, 0)$.</li>
+                            <li>Titik potong sumbu-$Y$ ($x = 0$): $3(0) + 2y = 12 \implies 2y = 12 \implies y = 6$. Titik potong adalah $B(0, 6)$.</li>
+                        </ul>
+                        <br>
+                        <strong>Langkah 2: Uji Titik Selidik $O(0, 0)$</strong><br>
+                        Substitusikan $(0, 0)$ ke dalam $3x + 2y \le 12$:
+                        $$3(0) + 2(0) \le 12 \implies 0 \le 12 \quad \text{(BENAR)}$$
+                        Karena bernilai benar, maka daerah yang memuat titik asal $O(0, 0)$ diarsir.<br>
+                        Kendala $x \ge 0$ membatasi daerah di sebelah kanan sumbu-$Y$, dan $y \ge 0$ membatasi di sebelah atas sumbu-$X$ (Kuadran I).
+                        <br><br>
+                        <strong>Langkah 3: Menghitung Luas Daerah Penyelesaian</strong><br>
+                        Daerah himpunan penyelesaian yang terbentuk di Kuadran I adalah sebuah <strong>segitiga siku-siku</strong> $\triangle OAB$ dengan titik-titik sudut $O(0, 0)$, $A(4, 0)$, dan $B(0, 6)$:
+                        <ul>
+                            <li>Panjang alas $= OA = 4$ satuan.</li>
+                            <li>Tinggi $= OB = 6$ satuan.</li>
+                        </ul>
+                        $$\text{Luas} = \frac{1}{2} \times \text{alas} \times \text{tinggi} = \frac{1}{2} \times 4 \times 6 = 12 \text{ satuan luas}$$
+                        <div class="kesimpulan">
+                            Jadi, daerah himpunan penyelesaian berbentuk segitiga siku-siku di Kuadran I dengan luas sebesar <strong>12 satuan luas</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Model Matematika & Laba Maksimum (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Sebuah pabrik roti memproduksi dua jenis kue, yaitu kue lapis ($x$) dan kue bolu ($y$).
+                    <ul>
+                        <li>Untuk membuat 1 loyang kue lapis diperlukan 2 kg tepung terigu dan 1 kg mentega.</li>
+                        <li>Untuk membuat 1 loyang kue bolu diperlukan 1 kg tepung terigu dan 2 kg mentega.</li>
+                    </ul>
+                    Persediaan bahan yang tersedia di gudang paling banyak 100 kg tepung terigu dan 80 kg mentega.
+                    Keuntungan dari setiap loyang kue lapis adalah Rp30.000,00 dan kue bolu adalah Rp25.000,00.<br>
+                    Tentukan keuntungan maksimum yang dapat diperoleh pabrik tersebut!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Menyusun Model Matematika</strong><br>
+                        Misalkan:
+                        <ul>
+                            <li>$x =$ banyak loyang kue lapis yang diproduksi.</li>
+                            <li>$y =$ banyak loyang kue bolu yang diproduksi.</li>
+                        </ul>
+                        Tabel kendala:
+                        <ul>
+                            <li>Kendala Tepung: $2x + y \le 100$</li>
+                            <li>Kendala Mentega: $x + 2y \le 80$</li>
+                            <li>Kendala Non-Negatif: $x \ge 0, \quad y \ge 0$</li>
+                        </ul>
+                        Fungsi Tujuan (Objektif) memaksimalkan laba:
+                        $$Z = f(x, y) = 30.000x + 25.000y$$
+                        <br>
+                        <strong>Langkah 2: Menentukan Titik-Titik Pojok Daerah Fisibel</strong><br>
+                        1. Titik asal: $O(0, 0)$<br>
+                        2. Titik potong kendala tepung dengan sumbu-$X$ ($y = 0$):
+                        $$2x + 0 = 100 \implies x = 50 \implies A(50, 0)$$
+                        3. Titik potong kendala mentega dengan sumbu-$Y$ ($x = 0$):
+                        $$0 + 2y = 80 \implies y = 40 \implies C(0, 40)$$
+                        4. Titik potong kedua garis kendala ($B$):
+                        $$\begin{aligned}
+                        2x + y &= 100 \quad |\times 2| \implies 4x + 2y = 200 \\
+                        x + 2y &= 80 \quad |\times 1| \implies x + 2y = 80
+                        \end{aligned}$$
+                        Kurangkan kedua persamaan:
+                        $$3x = 120 \implies x = 40$$
+                        Substitusikan nilai $x = 40$ ke persamaan pertama:
+                        $$2(40) + y = 100 \implies 80 + y = 100 \implies y = 20$$
+                        Titik temu kedua garis kendala adalah $B(40, 20)$.
+                        <br><br>
+                        <strong>Langkah 3: Uji Nilai Titik Pojok ke Fungsi Objektif</strong><br>
+                        $$\begin{array}{|c|c|l|}
+                        \hline
+                        \text{Titik Pojok } (x, y) & Z = 30.000x + 25.000y & \text{Nilai } Z \text{ (Rupiah)} \\
+                        \hline
+                        O(0, 0) & 30.000(0) + 25.000(0) & 0 \\
+                        A(50, 0) & 30.000(50) + 25.000(0) & 1.500.000 \\
+                        B(40, 20) & 30.000(40) + 25.000(20) & 1.200.000 + 500.000 = \mathbf{1.700.000} \quad (\text{Maksimum}) \\
+                        C(0, 40) & 30.000(0) + 25.000(40) & 1.000.000 \\
+                        \hline
+                        \end{array}$$
+                        <div class="kesimpulan">
+                            Jadi, keuntungan maksimum yang dapat diperoleh pabrik roti tersebut adalah <strong>Rp1.700.000,00</strong>, yang tercapai ketika memproduksi <strong>40 loyang kue lapis</strong> dan <strong>20 loyang kue bolu</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Analisis Parameter Garis Batas & Nilai Ekstrem (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    Daerah himpunan penyelesaian dari suatu sistem pertidaksamaan dibatasi oleh:
+                    $$2x + y \ge 4, \quad x + y \le 6, \quad x \le 4, \quad y \ge 0, \quad x \ge 0$$
+                    Diberikan fungsi objektif linear $Z = ax + 2y$ dengan parameter $a \in \mathbb{R}$.<br>
+                    a) Tentukan nilai parameter $a$ agar fungsi $Z$ bernilai maksimum di sepanjang ruas garis antara titik $P(2, 4)$ dan titik $Q(4, 2)$!<br>
+                    b) Dengan nilai $a$ yang diperoleh pada bagian (a), tentukan nilai minimum dari fungsi $Z$ pada daerah penyelesaian tersebut!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Menentukan Nilai Parameter $a$</strong><br>
+                        Perhatikan koordinat titik $P(2, 4)$ dan $Q(4, 2)$. Kedua titik ini memenuhi persamaan batas:
+                        $$x + y = 6 \implies y = -x + 6$$
+                        Kemiringan (gradien) dari garis pembatas $x + y = 6$ adalah:
+                        $$m_1 = -1$$
+                        Fungsi objektif adalah $Z = ax + 2y \iff 2y = -ax + Z \iff y = -\frac{a}{2}x + \frac{Z}{2}$.<br>
+                        Gradien dari garis selidik fungsi objektif tersebut adalah:
+                        $$m_Z = -\frac{a}{2}$$
+                        Suatu fungsi objektif bernilai maksimum konstan di sepanjang ruas garis batas jika dan hanya jika <strong>garis selidik sejajar dengan garis batas kendala</strong> ($m_Z = m_1$):
+                        $$-\frac{a}{2} = -1 \implies a = 2$$
+                        Sehingga fungsi tujuan definitifnya adalah:
+                        $$Z = 2x + 2y = 2(x + y)$$
+                        Karena di sepanjang ruas garis $PQ$ berlaku $x + y = 6$, maka nilai $Z$ di setiap titik pada ruas tersebut konstan sebesar $Z_{\max} = 2(6) = 12$.
+                        <br><br>
+                        <strong>b) Menentukan Nilai Minimum Fungsi $Z = 2x + 2y$</strong><br>
+                        Mari telusuri seluruh titik-titik sudut (verteks) pembatas daerah fisibel:
+                        <ol>
+                            <li>Perpotongan garis $2x + y = 4$ dengan sumbu-$Y$ ($x = 0$): $K(0, 4)$.</li>
+                            <li>Perpotongan garis $x + y = 6$ dengan sumbu-$Y$ ($x = 0$): $L(0, 6)$.</li>
+                            <li>Perpotongan garis $x + y = 6$ dengan garis vertikal $x = 4$: $Q(4, 2)$.</li>
+                            <li>Perpotongan garis $x = 4$ dengan sumbu-$X$ ($y = 0$): $M(4, 0)$.</li>
+                            <li>Perpotongan garis $2x + y = 4$ dengan sumbu-$X$ ($y = 0$): $N(2, 0)$.</li>
+                        </ol>
+                        Evaluasi nilai fungsi $Z = 2(x + y)$ pada kelima titik pojok tersebut:
+                        <ul>
+                            <li>Di $K(0, 4) \implies Z = 2(0 + 4) = 8$</li>
+                            <li>Di $L(0, 6) \implies Z = 2(0 + 6) = 12$</li>
+                            <li>Di $Q(4, 2) \implies Z = 2(4 + 2) = 12$</li>
+                            <li>Di $M(4, 0) \implies Z = 2(4 + 0) = 8$</li>
+                            <li>Di $N(2, 0) \implies Z = 2(2 + 0) = \mathbf{4} \quad (\text{Minimum})$</li>
+                        </ul>
+                        <div class="kesimpulan">
+                            a) Nilai parameter adalah <strong>$a = 2$</strong>.<br>
+                            b) Nilai minimum dari fungsi objektif pada daerah tersebut adalah <strong>$Z_{\min} = 4$</strong>, yang tercapai di titik pojok <strong>$N(2, 0)$</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // ==========================================
+            // 1. Visualisasi PtLDV Tunggal: 2x + 3y <= 12
+            // ==========================================
+            const elPtldv = document.getElementById("svg-ptldv-dasar");
+            if (elPtldv) {
+                const geo1 = new GeoSVG(elPtldv, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "DHP PtLDV: 2x + 3y <= 12"
+                });
+
+                const Ox = 65, Oy = 145, ux = 25, uy = 20;
+                const toPx = (x, y) => [Ox + x * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo1.buatVektor(toPx(-1.8, 0), toPx(8.5, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor(toPx(0, -1.8), toPx(0, 5.8), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo1.buatTeks(Ox + 8.6 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo1.buatTeks(Ox, Oy - 5.9 * uy, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Poligon Arsiran Daerah Setengah Bidang DHP (di bawah garis 2x + 3y = 12)
+                // Titik pembatas viewport: x = -1.8 s/d 8.5
+                const yKiri = (12 - 2 * (-1.8)) / 3; // 5.2
+                const yKanan = (12 - 2 * (8.5)) / 3; // -1.67
+                const polyDhp = [
+                    toPx(-1.8, -1.8),
+                    toPx(8.5, -1.8),
+                    toPx(8.5, yKanan),
+                    toPx(-1.8, yKiri)
+                ];
+                geo1.buatPoligon(polyDhp, { fill: TEMA.aksenMuda, stroke: "none", opacity: 0.65 });
+
+                // Garis Batas Solid 2x + 3y = 12
+                geo1.buatSegmen(toPx(-1.5, (12 - 2 * (-1.5)) / 3), toPx(8.2, (12 - 2 * 8.2) / 3), {
+                    stroke: TEMA.utama,
+                    strokeWidth: 2.2
+                });
+                geo1.buatTeks(toPx(7.5, (12 - 2 * 7.5) / 3)[0] - 10, toPx(7.5, (12 - 2 * 7.5) / 3)[1] - 8, "2x + 3y = 12", {
+                    position: "bottom-right",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Titik Potong Sumbu
+                const ptX = toPx(6, 0);
+                const ptY = toPx(0, 4);
+                geo1.buatLingkaran(ptX, 4, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptX[0], ptX[1] + 12, "(6, 0)", { position: "top-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo1.buatLingkaran(ptY, 4, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptY[0] - 6, ptY[1], "(0, 4)", { position: "middle-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Titik Uji (0, 0) - Benar
+                const ptO = toPx(0, 0);
+                geo1.buatLingkaran(ptO, 4.5, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptO[0] + 6, ptO[1] + 12, "Uji O(0,0): 0 ≤ 12 (BENAR)", {
+                    position: "top-left",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // Titik Uji Luar (4, 4) - Salah
+                const ptLuar = toPx(4, 4);
+                geo1.buatLingkaran(ptLuar, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptLuar[0] + 6, ptLuar[1] - 4, "(4,4): 20 > 12 (SALAH)", {
+                    position: "bottom-left",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Label DHP
+                geo1.buatTeks(toPx(2, 1)[0], toPx(2, 1)[1], "DAERAH HP", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+
+            // ==========================================
+            // 2. Visualisasi SPtLDV Poligon Cembung Fisibel
+            // x + 2y <= 10, 3x + y <= 15, x >= 0, y >= 0
+            // ==========================================
+            const elSptldv = document.getElementById("svg-sptldv-poligon");
+            if (elSptldv) {
+                const geo2 = new GeoSVG(elSptldv, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "DHP SPtLDV Poligon Fisibel"
+                });
+
+                const Ox = 45, Oy = 180, ux = 23, uy = 10;
+                const toPx = (x, y) => [Ox + x * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo2.buatVektor(toPx(-0.8, 0), toPx(11.2, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo2.buatVektor(toPx(0, -1.5), toPx(0, 16.5), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo2.buatTeks(Ox + 11.3 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo2.buatTeks(Ox, Oy - 16.6 * uy, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Poligon DHP O(0,0), A(5,0), B(4,3), C(0,5)
+                const ptO = toPx(0, 0);
+                const ptA = toPx(5, 0);
+                const ptB = toPx(4, 3);
+                const ptC = toPx(0, 5);
+
+                geo2.buatPoligon([ptO, ptA, ptB, ptC], {
+                    fill: TEMA.aksenMuda,
+                    stroke: TEMA.aksen,
+                    strokeWidth: 2,
+                    opacity: 0.75
+                });
+
+                // Garis Kendala 1: x + 2y = 10 (potong (10,0) dan (0,5))
+                geo2.buatSegmen(toPx(-0.5, 5.25), toPx(10.8, -0.4), { stroke: TEMA.utama, strokeWidth: 1.6 });
+                geo2.buatTeks(toPx(10, 0)[0] + 4, toPx(10, 0)[1] - 4, "x + 2y = 10", {
+                    position: "bottom-left",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Garis Kendala 2: 3x + y = 15 (potong (5,0) dan (0,15))
+                geo2.buatSegmen(toPx(-0.2, 15.6), toPx(5.4, -1.2), { stroke: TEMA.oranye, strokeWidth: 1.6 });
+                geo2.buatTeks(toPx(0, 15)[0] + 4, toPx(0, 15)[1] + 4, "3x + y = 15", {
+                    position: "top-left",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.oranye
+                });
+
+                // Titik-Titik Pojok
+                geo2.buatLingkaran(ptO, 4, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptO[0] - 4, ptO[1] + 12, "O(0,0)", { position: "top-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.teks });
+
+                geo2.buatLingkaran(ptA, 4, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptA[0], ptA[1] + 12, "A(5,0)", { position: "top-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.teks });
+
+                geo2.buatLingkaran(ptB, 5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptB[0] + 6, ptB[1] - 6, "B(4,3) Titik Temu", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                geo2.buatLingkaran(ptC, 4, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptC[0] - 6, ptC[1], "C(0,5)", { position: "middle-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.teks });
+
+                // Teks DHP di Tengah
+                geo2.buatTeks(toPx(2, 1.8)[0], toPx(2, 1.8)[1], "DHP FISIBEL", {
+                    position: "middle-center",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+
+            // ==========================================
+            // 3. Visualisasi Optimalisasi Garis Selidik
+            // Z = 4x + 5y pada DHP Poligon O-A-B-C
+            // ==========================================
+            const elSelidik = document.getElementById("svg-garis-selidik");
+            if (elSelidik) {
+                const geo3 = new GeoSVG(elSelidik, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Optimasi Garis Selidik: Z = 4x + 5y"
+                });
+
+                const Ox = 45, Oy = 180, ux = 23, uy = 10;
+                const toPx = (x, y) => [Ox + x * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo3.buatVektor(toPx(-0.8, 0), toPx(11.2, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo3.buatVektor(toPx(0, -1.5), toPx(0, 16.5), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo3.buatTeks(Ox + 11.3 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo3.buatTeks(Ox, Oy - 16.6 * uy, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // DHP Polygon
+                const ptO = toPx(0, 0);
+                const ptA = toPx(5, 0);
+                const ptB = toPx(4, 3);
+                const ptC = toPx(0, 5);
+
+                geo3.buatPoligon([ptO, ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: "#94a3b8",
+                    strokeWidth: 1.5,
+                    opacity: 0.6
+                });
+
+                // Garis Selidik 4x + 5y = k
+                // 1) k = 15 (Awal)
+                const ptS1a = toPx(-0.5, (15 - 4 * (-0.5)) / 5);
+                const ptS1b = toPx(4.2, (15 - 4 * 4.2) / 5);
+                geo3.buatSegmen(ptS1a, ptS1b, { stroke: "#94a3b8", strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo3.buatTeks(ptS1b[0] + 2, ptS1b[1], "k=15", { position: "middle-left", fontSize: "7.5px", fill: "#94a3b8" });
+
+                // 2) k = 20 (Melalui A(5, 0))
+                const ptS2a = toPx(0, 20 / 5);
+                const ptS2b = toPx(5.8, (20 - 4 * 5.8) / 5);
+                geo3.buatSegmen(ptS2a, ptS2b, { stroke: "#64748b", strokeWidth: 1.3, strokeDasharray: "3 2" });
+                geo3.buatTeks(ptS2b[0] + 2, ptS2b[1], "k=20", { position: "middle-left", fontSize: "7.5px", fill: "#64748b" });
+
+                // 3) k = 25 (Melalui C(0, 5))
+                const ptS3a = toPx(-0.5, (25 - 4 * (-0.5)) / 5);
+                const ptS3b = toPx(6.8, (25 - 4 * 6.8) / 5);
+                geo3.buatSegmen(ptS3a, ptS3b, { stroke: TEMA.oranye, strokeWidth: 1.4, strokeDasharray: "3 2" });
+                geo3.buatTeks(ptS3b[0] + 2, ptS3b[1], "k=25", { position: "middle-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // 4) k = 31 (Maksimum Melalui Puncak B(4, 3))
+                const ptS4a = toPx(0.5, (31 - 4 * 0.5) / 5);
+                const ptS4b = toPx(7.8, (31 - 4 * 7.8) / 5);
+                geo3.buatSegmen(ptS4a, ptS4b, { stroke: TEMA.merah, strokeWidth: 2.2, strokeDasharray: "4 2" });
+                geo3.buatTeks(ptS4b[0] + 2, ptS4b[1], "k=31 (Maksimum)", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Panah Vektor Arah Optimasi
+                const ptVekStart = toPx(1.5, 0.8);
+                const ptVekEnd = toPx(2.7, 2.3);
+                geo3.buatVektor(ptVekStart, ptVekEnd, { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo3.buatTeks(ptVekEnd[0] + 4, ptVekEnd[1], "Geser Garis Selidik", { position: "middle-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Titik Puncak B(4, 3)
+                geo3.buatLingkaran(ptB, 5.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 2 });
+                geo3.buatTeks(ptB[0] + 6, ptB[1] - 8, "B(4,3) → Z_max = 31", {
+                    position: "bottom-left",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
+

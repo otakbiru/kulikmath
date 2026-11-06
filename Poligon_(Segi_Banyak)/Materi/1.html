@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Poligon (Segi Banyak)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Poligon (Segi Banyak)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Taksonomi Geometri Poligon</h2>
+            <p>
+                <strong>Poligon (Segi Banyak)</strong> berasal dari bahasa Yunani Kuno <em>polus</em> (banyak) dan <em>gonia</em> (sudut). Dalam geometri Euclidean dua dimensi, poligon didefinisikan sebagai kurva tertutup sederhana yang dibentuk oleh rangkaian $n$ buah ruas garis lurus berurutan ($n \ge 3$) yang saling bersambungan pada titik-titik ujungnya. Ruas garis pembatas tersebut disebut <strong>sisi (edges)</strong>, dan titik pertemuan dua sisi dinamakan <strong>titik sudut (verteks)</strong>.
+            </p>
+
+            <h3>Klasifikasi Poligon Berdasarkan Sifat Geometris</h3>
+            <ol>
+                <li><strong>Berdasarkan Konveksitas:</strong>
+                    <ul>
+                        <li><strong>Poligon Konveks (Cembung):</strong> Setiap ruas garis yang menghubungkan sembarang dua titik di dalam poligon selalu berada seutuhnya di dalam poligon. Seluruh sudut dalam poligon konveks berukuran $< 180^\circ$.</li>
+                        <li><strong>Poligon Konkaf (Cekung / Non-Konveks):</strong> Memiliki setidaknya satu sudut dalam refleks ($> 180^\circ$), sehingga terdapat ruas garis antartitik interior yang memotong keluar batas poligon.</li>
+                    </ul>
+                </li>
+                <li><strong>Berdasarkan Kesamaan Sisi & Sudut:</strong>
+                    <ul>
+                        <li><strong>Poligon Beraturan (Regular Polygon):</strong> Poligon yang bersifat <em>ekuilateral</em> (semua sisi sama panjang) sekaligus <em>ekuiangular</em> (semua sudut dalam sama besar). Poligon beraturan selalu memiliki lingkaran luar (bersifat siklik) dan lingkaran dalam (bersifat tangensial).</li>
+                        <li><strong>Poligon Tak Beraturan (Irregular Polygon):</strong> Poligon yang memiliki panjang sisi atau besar sudut dalam yang berbeda-beda.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Penamaan Standar Berdasarkan Jumlah Sisi ($n$):</strong><br>
+                    $n=3$ Segitiga (Trigon), $n=4$ Segiempat (Tetragon), $n=5$ Segilima (Pentagon), $n=6$ Segienam (Heksagon), $n=7$ Segitujuh (Heptagon), $n=8$ Segidelapan (Oktagon), $n=9$ Segisembilan (Nonagon), $n=10$ Segisepuluh (Dekagon), $n=12$ Segiduabelas (Dodekagon), hingga segi-$n$ umum ($n$-gon).
+                </p>
+            </div>
+
+            <h2>2. Teorema Sudut Dalam & Sudut Luar Poligon</h2>
+
+            <h3>A. Jumlah Sudut Dalam Poligon Konveks</h3>
+            <p>
+                Setiap poligon konveks segi-$n$ dapat didekomposisi menjadi $(n - 2)$ buah segitiga yang saling lepas melalui penarikan garis diagonal dari satu titik sudut (metode triangulasi). Karena jumlah besar sudut dalam sebuah segitiga adalah $180^\circ$, maka:
+                $$S_i = (n - 2) \times 180^\circ \quad \text{atau} \quad (n - 2)\pi \text{ radian}$$
+            </p>
+            <p>
+                Untuk <strong>poligon beraturan segi-$n$</strong>, karena seluruh $n$ sudut dalamnya kongruen, besar masing-masing sudut dalam ($\theta_i$) adalah:
+                $$\theta_i = \frac{(n - 2) \times 180^\circ}{n} = 180^\circ - \frac{360^\circ}{n}$$
+            </p>
+
+            <h3>B. Teorema Jumlah Sudut Luar (Exterior Angles)</h3>
+            <p>
+                Sudut luar poligon dibentuk oleh perpanjangan salah satu sisi poligon dengan sisi yang bersebelahan dengannya. Jika seseorang berjalan menyusuri seluruh keliling poligon konveks segi-$n$ dan berputar di setiap titik sudutnya, total rotasi putaran yang dialami tepat sebesar <strong>satu putaran penuh ($360^\circ$)</strong>.
+            </p>
+            <p>
+                Dengan demikian, untuk <em>sembarang</em> poligon konveks segi-$n$, jumlah seluruh sudut luar selalu konstan:
+                $$S_e = 360^\circ \quad \text{atau} \quad 2\pi \text{ radian}$$
+            </p>
+            <p>
+                Besar masing-masing sudut luar pada poligon beraturan adalah:
+                $$\theta_e = \frac{360^\circ}{n}$$
+                Hubungan sudut dalam dan sudut luar saling berpelurus (suplemen):
+                $$\theta_i + \theta_e = 180^\circ$$
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>3. Anatomi Metrik Poligon Beraturan</h2>
+                    <p>
+                        Pada poligon beraturan segi-$n$ dengan panjang sisi $s$ dan titik pusat $O$:
+                    </p>
+                    <ul>
+                        <li><strong>Jari-Jari Luar ($R$):</strong> Jarak dari titik pusat $O$ ke salah satu titik sudut (verteks). Ini merupakan jari-jari dari <em>lingkaran luar (circumcircle)</em>.</li>
+                        <li><strong>Apotema / Jari-Jari Dalam ($r$):</strong> Jarak tegak lurus dari titik pusat $O$ ke titik tengah salah satu sisi poligon. Apotema merupakan jari-jari dari <em>lingkaran dalam (incircle)</em>.</li>
+                        <li><strong>Sudut Pusat ($\alpha$):</strong> Besar sudut yang dibentuk oleh dua jari-jari luar yang menuju ke verteks bersebelahan:
+                            $$\alpha = \frac{360^\circ}{n}$$
+                        </li>
+                    </ul>
+                    <p>
+                        Hubungan trigonometrik antara sisi $s$, apotema $r$, dan jari-jari luar $R$:
+                        $$s = 2R \sin\left(\frac{180^\circ}{n}\right)$$
+                        $$r = R \cos\left(\frac{180^\circ}{n}\right) = \frac{s}{2 \tan\left(\frac{180^\circ}{n}\right)}$$
+                        $$R^2 = r^2 + \left(\frac{s}{2}\right)^2 \quad (\text{Teorema Pythagoras})$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-anatomi-poligon-beraturan" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Keliling, Luas, & Rumus Diagonal Poligon</h2>
+
+            <h3>A. Keliling & Luas Poligon Beraturan</h3>
+            <p>
+                Keliling poligon beraturan segi-$n$ adalah:
+                $$K = n \cdot s$$
+            </p>
+            <p>
+                Poligon beraturan dapat dibagi menjadi $n$ buah segitiga sama kaki kongruen dengan alas $s$ dan tinggi apotema $r$. Luas total poligon adalah:
+                $$L = n \times \left(\frac{1}{2} \cdot s \cdot r\right) = \frac{1}{2} \cdot K \cdot r$$
+            </p>
+            <p>
+                Formulasi luas poligon beraturan dalam berbagai parameter:
+            </p>
+            <ul>
+                <li><strong>Berdasarkan panjang sisi $s$:</strong>
+                    $$L = \frac{n \cdot s^2}{4 \tan\left(\frac{180^\circ}{n}\right)} = \frac{n \cdot s^2}{4} \cot\left(\frac{180^\circ}{n}\right)$$
+                </li>
+                <li><strong>Berdasarkan jari-jari lingkaran luar $R$:</strong>
+                    $$L = \frac{n}{2} R^2 \sin\left(\frac{360^\circ}{n}\right)$$
+                </li>
+            </ul>
+            <p>
+                <em>Catatan Analisis:</em> Ketika jumlah sisi $n \to \infty$, bentuk poligon beraturan akan mendekati lingkaran sejati, di mana $\lim_{n \to \infty} L = \pi R^2$.
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>B. Jumlah Garis Diagonal Poligon ($D_n$)</h3>
+                    <p>
+                        Diagonal poligon adalah ruas garis yang menghubungkan dua titik sudut yang tidak bersebelahan.
+                    </p>
+                    <p>
+                        Dari setiap satu titik sudut pada segi-$n$, dapat ditarik sebanyak $(n - 3)$ buah garis diagonal (karena tidak dapat ditarik ke dirinya sendiri serta ke 2 titik sudut tetangga terdekat).
+                    </p>
+                    <p>
+                        Karena terdapat $n$ titik sudut dan setiap diagonal dihitung dua kali (bolak-balik dari kedua ujungnya), maka rumus jumlah total diagonal adalah kombinasi $\binom{n}{2}$ dikurangi $n$ sisi batas:
+                        $$D_n = \frac{n(n - 3)}{2} = \binom{n}{2} - n$$
+                    </p>
+                    <p>
+                        Pada segilima beraturan ($n = 5$), jumlah diagonal adalah $\frac{5(2)}{2} = 5$ buah. Kelima diagonal ini saling berpotongan membentuk pola <strong>bintang pentagram emas</strong> yang termasyhur sejak zaman Pythagoras.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-triangulasi-diagonal" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>5. Luas Poligon Sembarang: Formula Shoelace & Teorema Pick</h2>
+                    <h3>A. Formula Tali Sepatu (Gauss Shoelace Formula)</h3>
+                    <p>
+                        Untuk sembarang poligon sederhana dengan titik-titik sudut Cartesian berurutan $(x_1, y_1), (x_2, y_2), \dots, (x_n, y_n)$:
+                        $$L = \frac{1}{2} \left| \sum_{i=1}^{n} (x_i y_{i+1} - x_{i+1} y_i) \right|$$
+                        dengan konvensi penutup siklik $x_{n+1} = x_1$ dan $y_{n+1} = y_1$.
+                    </p>
+
+                    <h3>B. Teorema Pick untuk Poligon Kisi (Lattice Polygon)</h3>
+                    <p>
+                        Jika titik-titik sudut poligon terletak tepat pada koordinat bilangan bulat (titik kisi / <em>lattice points</em>), maka luas poligon dapat ditentukan secara langsung tanpa trigonometri:
+                        $$L = I + \frac{B}{2} - 1$$
+                        di mana:
+                    </p>
+                    <ul>
+                        <li>$I =$ jumlah titik kisi yang berada tepat di <strong>dalam (interior)</strong> poligon.</li>
+                        <li>$B =$ jumlah titik kisi yang berada tepat pada <strong>batas (boundary/keliling)</strong> poligon.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-shoelace-pick" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Lengkap</h2>
+
+            <!-- CONTOH 1 (DASAR) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Sudut & Jumlah Diagonal Poligon Beraturan (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Suatu poligon beraturan memiliki besar satu sudut dalam sebesar $144^\circ$.
+                    <br>a) Tentukan jumlah sisi ($n$) dari poligon beraturan tersebut!
+                    <br>b) Hitunglah jumlah seluruh garis diagonal yang dimiliki oleh poligon tersebut!
+                    <br>c) Jika panjang sisinya adalah $s = 10\text{ cm}$, tentukan keliling poligon tersebut!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Menentukan Jumlah Sisi ($n$)</strong><br>
+                        Gunakan relasi sudut luar ($\theta_e$) yang saling berpelurus dengan sudut dalam ($\theta_i$):
+                        $$\theta_e = 180^\circ - \theta_i = 180^\circ - 144^\circ = 36^\circ$$
+                        Karena jumlah sudut luar untuk poligon beraturan adalah $360^\circ$:
+                        $$n = \frac{360^\circ}{\theta_e} = \frac{360^\circ}{36^\circ} = 10$$
+                        Poligon tersebut memiliki <strong>10 sisi</strong> (Dekagon beraturan).
+                        <br><br>
+                        <strong>b) Menghitung Jumlah Garis Diagonal ($D_{10}$)</strong><br>
+                        Gunakan rumus jumlah diagonal poligon:
+                        $$D_n = \frac{n(n - 3)}{2}$$
+                        Substitusikan $n = 10$:
+                        $$D_{10} = \frac{10(10 - 3)}{2} = \frac{10 \times 7}{2} = 35 \text{ diagonal}$$
+                        <br>
+                        <strong>c) Menghitung Keliling ($K$)</strong><br>
+                        $$K = n \cdot s = 10 \times 10\text{ cm} = 100\text{ cm}$$
+                        <div class="kesimpulan">
+                            a) Jumlah sisi poligon adalah <strong>$n = 10$</strong> (Dekagon).<br>
+                            b) Jumlah diagonalnya adalah <strong>35 diagonal</strong>.<br>
+                            c) Kelilingnya adalah <strong>$100\text{ cm}$</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Luas & Perbandingan Fraktal Heksagon Beraturan (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Diberikan sebuah segienam beraturan awal $H_1$ dengan panjang sisi $s_1 = 8\text{ cm}$.
+                    Di dalam $H_1$, dibentuk segienam beraturan baru $H_2$ yang titik-titik sudutnya merupakan titik tengah dari setiap sisi segienam $H_1$.
+                    <br>a) Tentukan luas segienam beraturan awal $H_1$!
+                    <br>b) Tentukan panjang sisi segienam baru $H_2$!
+                    <br>c) Tentukan rasio perbandingan luas $\dfrac{L(H_2)}{L(H_1)}$!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Menghitung Luas Segienam Beraturan Awal $H_1$</strong><br>
+                        Segienam beraturan ($n = 6$) dengan panjang sisi $s = 8\text{ cm}$ tersusun dari 6 segitiga sama sisi kongruen dengan panjang sisi $8\text{ cm}$.<br>
+                        Luas satu segitiga sama sisi:
+                        $$L_{\triangle} = \frac{1}{4} s^2 \sqrt{3} = \frac{1}{4} (8^2) \sqrt{3} = 16\sqrt{3}\text{ cm}^2$$
+                        Maka luas total $H_1$:
+                        $$L(H_1) = 6 \times L_{\triangle} = 6 \times 16\sqrt{3} = 96\sqrt{3}\text{ cm}^2$$
+                        <br>
+                        <strong>b) Menghitung Panjang Sisi Segienam Baru $H_2$ ($s_2$)</strong><br>
+                        Perhatikan dua sisi bersebelahan pada heksagon awal yang membentuk sudut dalam $\theta_i = 120^\circ$.<br>
+                        Titik-titik sudut heksagon baru $H_2$ adalah titik tengah sisi heksagon $H_1$, sehingga membagi sisi menjadi segmen sepanjang $\frac{8}{2} = 4\text{ cm}$.<br>
+                        Segitiga yang terbentuk pada setiap sudut heksagon memiliki sisi-sisi $4\text{ cm}$, $4\text{ cm}$, sudut apit $120^\circ$, dan sisi ketiga adalah sisi heksagon baru ($s_2$).<br>
+                        Gunakan <strong>Aturan Cosinus</strong>:
+                        $$\begin{aligned}
+                        s_2^2 &= 4^2 + 4^2 - 2(4)(4) \cos 120^\circ \\
+                        &= 16 + 16 - 32\left(-\frac{1}{2}\right) \\
+                        &= 32 + 16 = 48 \\
+                        s_2 &= \sqrt{48} = 4\sqrt{3}\text{ cm}
+                        \end{aligned}$$
+                        <br>
+                        <strong>c) Menghitung Rasio Perbandingan Luas</strong><br>
+                        Karena kedua heksagon sebangun (*similar*), perbandingan luasnya sama dengan kuadrat perbandingan panjang sisinya:
+                        $$\frac{L(H_2)}{L(H_1)} = \left(\frac{s_2}{s_1}\right)^2 = \frac{48}{8^2} = \frac{48}{64} = \frac{3}{4} = 75\%$$
+                        <div class="kesimpulan">
+                            a) Luas heksagon awal adalah <strong>$96\sqrt{3}\text{ cm}^2$</strong>.<br>
+                            b) Panjang sisi heksagon baru adalah <strong>$4\sqrt{3}\text{ cm}$</strong>.<br>
+                            c) Rasio perbandingan luas adalah <strong>$\dfrac{3}{4}$</strong> atau <strong>$75\%$</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Dodekagon Beraturan & Kombinatorika Segitiga Bebas (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    Sebuah poligon beraturan segi-$n$ memiliki tepat 54 buah garis diagonal.
+                    <br>a) Tentukan nilai $n$ (banyaknya sisi poligon tersebut)!
+                    <br>b) Jika jari-jari lingkaran luarnya adalah $R = 6\text{ cm}$, hitunglah luas poligon beraturan tersebut!
+                    <br>c) Dari seluruh titik sudut poligon tersebut, dipilih 3 titik sudut secara acak untuk membentuk sebuah segitiga. Tentukan banyaknya segitiga yang dapat terbentuk sedemikian sehingga <strong>tidak ada satu pun sisinya yang berimpit dengan sisi poligon</strong>!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Menentukan Nilai $n$</strong><br>
+                        Rumus jumlah diagonal:
+                        $$D_n = \frac{n(n - 3)}{2} = 54$$
+                        $$\begin{aligned}
+                        n(n - 3) &= 108 \\
+                        n^2 - 3n - 108 &= 0 \\
+                        (n - 12)(n + 9) &= 0
+                        \end{aligned}$$
+                        Karena $n$ menyatakan jumlah sisi ($n > 0$), maka diperoleh $n = 12$ (Dodekagon beraturan).
+                        <br><br>
+                        <strong>b) Menghitung Luas Poligon ($n = 12, R = 6\text{ cm}$)</strong><br>
+                        Gunakan rumus luas poligon beraturan berdasarkan jari-jari lingkaran luar $R$:
+                        $$L = \frac{n}{2} R^2 \sin\left(\frac{360^\circ}{n}\right)$$
+                        Substitusikan $n = 12$ dan $R = 6$:
+                        $$\begin{aligned}
+                        L &= \frac{12}{2} (6^2) \sin\left(\frac{360^\circ}{12}\right) \\
+                        &= 6 \times 36 \times \sin(30^\circ) \\
+                        &= 216 \times \frac{1}{2} = 108\text{ cm}^2
+                        \end{aligned}$$
+                        <br>
+                        <strong>c) Menghitung Banyak Segitiga Tanpa Sisi Berimpit</strong><br>
+                        Total kemungkinan memilih 3 titik sudut dari 12 verteks poligon:
+                        $$N_{\text{total}} = \binom{12}{3} = \frac{12 \times 11 \times 10}{3 \times 2 \times 1} = 220 \text{ segitiga}$$
+                        Kita kurangkan dengan segitiga-segitiga yang memiliki sisi bersama dengan poligon:
+                        <ol>
+                            <li><strong>Segitiga dengan tepat 2 sisi berimpit:</strong>
+                                Terjadi jika ketiga titik sudutnya bersebelahan secara berurutan pada keliling poligon (misal $(V_1, V_2, V_3), (V_2, V_3, V_4), \dots$).
+                                Banyaknya sama dengan jumlah verteks:
+                                $$N_2 = n = 12 \text{ segitiga}$$
+                            </li>
+                            <li><strong>Segitiga dengan tepat 1 sisi berimpit:</strong>
+                                Pilih 1 sisi poligon sebagai sisi segitiga (terdapat $n = 12$ pilihan sisi).
+                                Titik sudut ketiga harus dipilih dari sisa titik yang <em>tidak bersebelahan</em> dengan kedua ujung sisi tersebut (tersisa $n - 4 = 12 - 4 = 8$ titik).
+                                $$N_1 = n \times (n - 4) = 12 \times 8 = 96 \text{ segitiga}$$
+                            </li>
+                        </ol>
+                        Maka banyaknya segitiga yang <strong>tidak memiliki sisi yang berimpit sama sekali</strong> ($N_0$) adalah:
+                        $$\begin{aligned}
+                        N_0 &= N_{\text{total}} - N_2 - N_1 \\
+                        &= 220 - 12 - 96 = \mathbf{112 \text{ segitiga}}
+                        \end{aligned}$$
+                        <em>(Formula umum: $N_0 = \frac{n(n - 4)(n - 5)}{6} = \frac{12 \times 8 \times 7}{6} = 112$).</em>
+                        <div class="kesimpulan">
+                            a) Banyak sisi poligon adalah <strong>$n = 12$</strong> (Dodekagon).<br>
+                            b) Luas poligon tersebut adalah <strong>$108\text{ cm}^2$</strong>.<br>
+                            c) Banyak segitiga tanpa sisi berimpit adalah <strong>112 segitiga</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // ==========================================
+            // 1. Anatomi Metrik Segienam Beraturan (Heksagon)
+            // ==========================================
+            const elAnatomi = document.getElementById("svg-anatomi-poligon-beraturan");
+            if (elAnatomi) {
+                const geo1 = new GeoSVG(elAnatomi, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Anatomi Metrik Segienam Beraturan"
+                });
+
+                const cx = 160, cy = 105, R = 72;
+                const ptsHex = [];
+                for (let i = 0; i < 6; i++) {
+                    const rad = (i * 60 - 30) * Math.PI / 180;
+                    ptsHex.push([cx + R * Math.cos(rad), cy + R * Math.sin(rad)]);
+                }
+
+                // Lingkaran Luar (Circumcircle) Tipis
+                geo1.buatLingkaran([cx, cy], R, { stroke: "#cbd5e1", strokeWidth: 1.2, strokeDasharray: "3 2", fill: "none" });
+
+                // Lingkaran Dalam (Incircle) Tipis
+                const apothem = R * Math.cos(30 * Math.PI / 180);
+                geo1.buatLingkaran([cx, cy], apothem, { stroke: "#cbd5e1", strokeWidth: 1.2, strokeDasharray: "2 2", fill: "none" });
+
+                // Poligon Segienam
+                geo1.buatPoligon(ptsHex, { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 2.2, opacity: 0.6 });
+
+                // Garis Radial dari Pusat O ke Verteks (6 Segitiga Sama Sisi)
+                ptsHex.forEach(pt => {
+                    geo1.buatSegmen([cx, cy], pt, { stroke: "#94a3b8", strokeWidth: 1, strokeDasharray: "2 2" });
+                });
+
+                // Apotema r (Tegak lurus dari Pusat ke titik tengah sisi bawah)
+                const ptBtm1 = ptsHex[1];
+                const ptBtm2 = ptsHex[2];
+                const ptMid = [(ptBtm1[0] + ptBtm2[0]) / 2, (ptBtm1[1] + ptBtm2[1]) / 2];
+                geo1.buatSegmen([cx, cy], ptMid, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo1.buatLingkaran(ptMid, 3, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                geo1.buatTeks(ptMid[0] + 6, ptMid[1] - 12, "r (Apotema)", {
+                    position: "middle-left",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Jari-Jari Luar R (dari Pusat ke Verteks kanan atas)
+                geo1.buatSegmen([cx, cy], ptsHex[0], { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo1.buatTeks((cx + ptsHex[0][0]) / 2, (cy + ptsHex[0][1]) / 2 - 8, "R (Jari-jari Luar)", {
+                    position: "bottom-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // Perpanjangan Sisi untuk Sudut Luar di Verteks ptsHex[0]
+                const dirX = ptsHex[0][0] - ptsHex[5][0];
+                const dirY = ptsHex[0][1] - ptsHex[5][1];
+                const ptExt = [ptsHex[0][0] + dirX * 0.45, ptsHex[0][1] + dirY * 0.45];
+                geo1.buatSegmen(ptsHex[0], ptExt, { stroke: TEMA.oranye, strokeWidth: 1.4, strokeDasharray: "3 2" });
+                geo1.buatTeks(ptExt[0] - 2, ptExt[1] - 6, "θ_e = 60°", {
+                    position: "bottom-left",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.oranye
+                });
+
+                // Label Titik Pusat O
+                geo1.buatLingkaran([cx, cy], 3.5, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1 });
+                geo1.buatTeks(cx - 8, cy - 2, "O", { position: "middle-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Label Sudut Pusat α = 60°
+                geo1.buatTeks(cx + 14, cy + 14, "60°", { position: "middle-center", fontSize: "8px", fill: TEMA.teks });
+
+                // Label Sisi s
+                geo1.buatTeks(ptsHex[2][0] - 12, ptsHex[2][1] + 10, "s = 2R sin(30°)", {
+                    position: "top-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+            }
+
+            // ==========================================
+            // 2. Triangulasi & Jaring Diagonal Pentagon (Bintang Emas)
+            // ==========================================
+            const elDiagonal = document.getElementById("svg-triangulasi-diagonal");
+            if (elDiagonal) {
+                const geo2 = new GeoSVG(elDiagonal, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Pentagon & Bintang Pentagram Diagonal"
+                });
+
+                const cx = 160, cy = 110, R = 75;
+                const ptsPent = [];
+                for (let i = 0; i < 5; i++) {
+                    const rad = (i * 72 - 90) * Math.PI / 180;
+                    ptsPent.push([cx + R * Math.cos(rad), cy + R * Math.sin(rad)]);
+                }
+
+                // Poligon Pentagon Luar
+                geo2.buatPoligon(ptsPent, { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 2.2, opacity: 0.5 });
+
+                // Gambar 5 Diagonal (Menghubungkan i ke (i+2)%5)
+                for (let i = 0; i < 5; i++) {
+                    const target = (i + 2) % 5;
+                    geo2.buatSegmen(ptsPent[i], ptsPent[target], { stroke: TEMA.oranye, strokeWidth: 2 });
+                }
+
+                // Gambar Triangulasi dari Verteks A (ptsPent[0]): ke C (ptsPent[2]) dan D (ptsPent[3])
+                geo2.buatSegmen(ptsPent[0], ptsPent[2], { stroke: TEMA.merah, strokeWidth: 2.2, strokeDasharray: "4 2" });
+                geo2.buatSegmen(ptsPent[0], ptsPent[3], { stroke: TEMA.merah, strokeWidth: 2.2, strokeDasharray: "4 2" });
+
+                // Label Titik Sudut A, B, C, D, E
+                const labels = ["A", "B", "C", "D", "E"];
+                ptsPent.forEach((pt, idx) => {
+                    geo2.buatLingkaran(pt, 4, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                    const offsetDirX = pt[0] - cx;
+                    const offsetDirY = pt[1] - cy;
+                    const dist = Math.hypot(offsetDirX, offsetDirY);
+                    const lx = pt[0] + (offsetDirX / dist) * 12;
+                    const ly = pt[1] + (offsetDirY / dist) * 12;
+                    geo2.buatTeks(lx, ly, labels[idx], {
+                        position: "middle-center",
+                        fontSize: "9.5px",
+                        fontWeight: "bold",
+                        fill: TEMA.utama
+                    });
+                });
+
+                // Label Keterangan Triangulasi
+                geo2.buatTeks(160, 196, "D₅ = 5(2)/2 = 5 Diagonal  |  (5 - 2) × 180° = 540°", {
+                    position: "middle-center",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Formula Shoelace & Teorema Pick pada Poligon Kisi
+            // ==========================================
+            const elPick = document.getElementById("svg-shoelace-pick");
+            if (elPick) {
+                const geo3 = new GeoSVG(elPick, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Teorema Pick: Luas = I + B/2 - 1"
+                });
+
+                const Ox = 52, Oy = 175, u = 32;
+                const toPx = (x, y) => [Ox + x * u, Oy - y * u];
+
+                // Grid Titik-Titik Kisi (Lattice)
+                for (let x = 0; x <= 7; x++) {
+                    for (let y = 0; y <= 5; y++) {
+                        const pt = toPx(x, y);
+                        geo3.buatLingkaran(pt, 1.4, { fill: "#cbd5e1" });
+                    }
+                }
+
+                // Sumbu Kartesius Tipis
+                geo3.buatSegmen(toPx(0, 0), toPx(7.4, 0), { stroke: "#94a3b8", strokeWidth: 1.2 });
+                geo3.buatSegmen(toPx(0, 0), toPx(0, 5.4), { stroke: "#94a3b8", strokeWidth: 1.2 });
+                geo3.buatTeks(toPx(7.5, 0)[0], toPx(7.5, 0)[1], "x", { position: "middle-left", fontSize: "9px", fill: "#64748b" });
+                geo3.buatTeks(toPx(0, 5.5)[0], toPx(0, 5.5)[1], "y", { position: "bottom-center", fontSize: "9px", fill: "#64748b" });
+
+                // Poligon Kisi: P1(1,1), P2(5,1), P3(6,3), P4(3,4), P5(1,3)
+                const polyLattice = [[1, 1], [5, 1], [6, 3], [3, 4], [1, 3]];
+                const ptsLatticePx = polyLattice.map(p => toPx(p[0], p[1]));
+
+                geo3.buatPoligon(ptsLatticePx, {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.65
+                });
+
+                // Titik Kisi Interior (I = 8)
+                const interiorPts = [
+                    [2, 2], [2, 3],
+                    [3, 2], [3, 3],
+                    [4, 2], [4, 3],
+                    [5, 2], [5, 3]
+                ];
+                interiorPts.forEach(p => {
+                    geo3.buatLingkaran(toPx(p[0], p[1]), 3.2, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1 });
+                });
+
+                // Titik Kisi Batas (B = 9)
+                const boundaryPts = [
+                    [1, 1], [1, 2], [1, 3],
+                    [2, 1], [3, 1], [4, 1], [5, 1],
+                    [6, 3], [3, 4]
+                ];
+                boundaryPts.forEach(p => {
+                    geo3.buatLingkaran(toPx(p[0], p[1]), 3.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                });
+
+                // Label Titik Sudut
+                geo3.buatTeks(toPx(1, 1)[0] - 6, toPx(1, 1)[1] + 8, "(1,1)", { position: "top-right", fontSize: "7.5px", fill: TEMA.teks });
+                geo3.buatTeks(toPx(5, 1)[0] + 6, toPx(5, 1)[1] + 8, "(5,1)", { position: "top-left", fontSize: "7.5px", fill: TEMA.teks });
+                geo3.buatTeks(toPx(6, 3)[0] + 6, toPx(6, 3)[1], "(6,3)", { position: "middle-left", fontSize: "7.5px", fill: TEMA.teks });
+                geo3.buatTeks(toPx(3, 4)[0], toPx(3, 4)[1] - 6, "(3,4)", { position: "bottom-center", fontSize: "7.5px", fill: TEMA.teks });
+                geo3.buatTeks(toPx(1, 3)[0] - 6, toPx(1, 3)[1], "(1,3)", { position: "middle-right", fontSize: "7.5px", fill: TEMA.teks });
+
+                // Keterangan Formula di Bawah
+                geo3.buatTeks(160, 202, "Pick: L = 8 + 9/2 - 1 = 11,5  |  Shoelace: L = 11,5", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

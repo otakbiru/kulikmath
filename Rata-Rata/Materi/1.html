@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Rata-Rata (Mean)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Rata-Rata (Mean)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Makna Fisis Rata-Rata sebagai Titik Tumpu</h2>
+            <p>
+                <strong>Rata-Rata Hitung (Arithmetic Mean)</strong>, yang lazim disimbolkan dengan $\bar{x}$ (dibaca <em>x-bar</em>), adalah ukuran pemusatan data (*measure of central tendency*) yang merepresentasikan nilai tunggal pembagi rata jumlahan seluruh nilai observasi.
+            </p>
+            <p>
+                Secara aljabar, rata-rata untuk $n$ buah data $x_1, x_2, \dots, x_n$ dirumuskan sebagai:
+                $$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n} = \frac{x_1 + x_2 + \dots + x_n}{n}$$
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Sifat Keseimbangan Mekanis (Pusat Massa)</h3>
+                    <p>
+                        Secara fisika dan geometri, rata-rata bertindak sebagai <strong>titik tumpu keseimbangan (fulcrum / center of mass)</strong> dari suatu sistem partikel berbobot identik yang ditempatkan pada garis bilangan real.
+                    </p>
+                    <p>
+                        Ciri khas fundamental rata-rata adalah <strong>jumlah aljabar dari deviasi (selisih) setiap data terhadap nilai rata-ratanya selalu tepat sama dengan nol</strong>:
+                        $$\sum_{i=1}^{n} (x_i - \bar{x}) = 0$$
+                    </p>
+                    <p>
+                        Pada visualisasi di samping dengan data $\{2, 4, 9, 13\}$, nilai rata-ratanya adalah:
+                        $$\bar{x} = \frac{2 + 4 + 9 + 13}{4} = 7$$
+                        Deviasi di sebelah kiri: $(2 - 7) + (4 - 7) = -5 + (-3) = -8$.<br>
+                        Deviasi di sebelah kanan: $(9 - 7) + (13 - 7) = +2 + (+6) = +8$.<br>
+                        Sistem berada dalam keseimbangan momen putar statis sempurna: $(-8) + (+8) = 0$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-titik-tumpu-rata-rata" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Rata-Rata Tertimbang & Rata-Rata Gabungan</h2>
+
+            <h3>A. Rata-Rata Tertimbang (Weighted Mean)</h3>
+            <p>
+                Jika setiap nilai data $x_i$ memiliki bobot kepentingan atau frekuensi kemunculan sebesar $w_i$, maka rata-rata tertimbang didefinisikan sebagai:
+                $$\bar{x}_w = \frac{\sum_{i=1}^{k} w_i x_i}{\sum_{i=1}^{k} w_i} = \frac{w_1 x_1 + w_2 x_2 + \dots + w_k x_k}{w_1 + w_2 + \dots + w_k}$$
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>B. Rata-Rata Gabungan (Combined Mean) & Kaidah Tuas</h3>
+                    <p>
+                        Jika terdapat $k$ kelompok data dengan banyak anggota masing-masing $n_1, n_2, \dots, n_k$ dan rata-rata $\bar{x}_1, \bar{x}_2, \dots, \bar{x}_k$, maka rata-rata seluruh anggota gabungan adalah:
+                        $$\bar{x}_{\text{gab}} = \frac{n_1 \bar{x}_1 + n_2 \bar{x}_2 + \dots + n_k \bar{x}_k}{n_1 + n_2 + \dots + n_k}$$
+                    </p>
+                    <p>
+                        <strong>Kaidah Tuas Jungkat-Jungkit (Lever Rule):</strong><br>
+                        Untuk dua kelompok data dengan $\bar{x}_1 < \bar{x}_{\text{gab}} < \bar{x}_2$, perbandingan jumlah anggota <em>berbanding terbalik</em> dengan selisih jarak rata-ratanya terhadap rata-rata gabungan:
+                        $$n_1 (\bar{x}_{\text{gab}} - \bar{x}_1) = n_2 (\bar{x}_2 - \bar{x}_{\text{gab}}) \iff \frac{n_1}{n_2} = \frac{\bar{x}_2 - \bar{x}_{\text{gab}}}{\bar{x}_{\text{gab}} - \bar{x}_1}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-tuas-rata-rata-gabungan" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Rata-Rata Data Berkelompok (Tabel Distribusi Frekuensi)</h2>
+            <p>
+                Untuk data yang disajikan dalam bentuk interval kelas berkala, terdapat tiga metode komputasi yang menghasilkan nilai rata-rata yang sama:
+            </p>
+            <ol>
+                <li><strong>Metode Titik Tengah ($x_i$):</strong>
+                    $$\bar{x} = \frac{\sum_{i=1}^{k} f_i x_i}{\sum_{i=1}^{k} f_i} \quad \text{dengan } x_i = \frac{\text{Batas Bawah} + \text{Batas Atas}}{2}$$
+                </li>
+                <li><strong>Metode Rata-Rata Sementara ($x_s$ / Assumed Mean):</strong>
+                    Memilih salah satu titik tengah kelas dengan frekuensi terbesar sebagai acuan $x_s$, lalu menghitung deviasi $d_i = x_i - x_s$:
+                    $$\bar{x} = x_s + \frac{\sum_{i=1}^{k} f_i d_i}{\sum_{i=1}^{k} f_i}$$
+                </li>
+                <li><strong>Metode Koding (Pengkodean Sederhana $u_i$):</strong>
+                    Menyederhanakan deviasi dengan membaginya terhadap panjang interval kelas $c$: $u_i = \frac{x_i - x_s}{c}$:
+                    $$\bar{x} = x_s + \left(\frac{\sum_{i=1}^{k} f_i u_i}{\sum_{i=1}^{k} f_i}\right) \times c$$
+                </li>
+            </ol>
+
+            <h2>4. Sifat-Sifat Transformasi Linear Data</h2>
+            <p>
+                Jika setiap nilai data awal $x_i$ dikenai transformasi aljabar linear menjadi data baru $y_i = a x_i + b$ (dengan $a$ faktor pengali dan $b$ konstanta pergeseran):
+            </p>
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Teorema Transformasi Linear Rata-Rata:</strong><br>
+                    $$\bar{y} = a \bar{x} + b$$
+                    Rata-rata terpengaruh secara langsung oleh <strong>operasi perkalian/pembagian ($a$)</strong> maupun <strong>operasi penjumlahan/pengurangan ($b$)</strong>.
+                </p>
+            </div>
+            <p>
+                <em>Perbandingan Kritis:</em> Ukuran pemusatan data (Rata-rata, Median, Modus) terpengaruh oleh operasi penjumlahan dan perkalian. Sebaliknya, ukuran penyebaran data (Jangkauan, Simpangan Kuartil, Simpangan Baku) <em>hanya terpengaruh oleh perkalian $|a|$</em> dan kebal terhadap operasi penambahan konstanta $+ b$.
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>5. Hierarki Ketaksamaan Rata-Rata Klasik: QM $\ge$ AM $\ge$ GM $\ge$ HM</h2>
+                    <p>
+                        Untuk sekumpulan bilangan real positif $a, b > 0$, didefinisikan empat jenis rata-rata klasik:
+                    </p>
+                    <ul>
+                        <li><strong>Quadratic Mean (Rata-rata Kuadrat / RMS):</strong> $QM = \sqrt{\frac{a^2 + b^2}{2}}$</li>
+                        <li><strong>Arithmetic Mean (Rata-rata Hitung):</strong> $AM = \frac{a + b}{2}$</li>
+                        <li><strong>Geometric Mean (Rata-rata Ukur):</strong> $GM = \sqrt{ab}$</li>
+                        <li><strong>Harmonic Mean (Rata-rata Harmonik):</strong> $HM = \frac{2}{\frac{1}{a} + \frac{1}{b}} = \frac{2ab}{a + b}$</li>
+                    </ul>
+                    <p>
+                        <strong>Teorema Rantai Ketaksamaan:</strong>
+                        $$QM \ge AM \ge GM \ge HM$$
+                        Tanda kesamaan ($QM = AM = GM = HM$) berlaku jika dan hanya jika seluruh elemen bernilai sama ($a = b$).
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-geometri-am-gm-hm" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Lengkap</h2>
+
+            <!-- CONTOH 1 (DASAR) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Transformasi Linear & Penambahan Data Baru (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Sekumpulan data yang terdiri dari 10 bilangan memiliki nilai rata-rata 45.
+                    <br>a) Jika ke dalam kelompok tersebut ditambahkan satu data baru yang bernilai 67, tentukan nilai rata-rata yang baru!
+                    <br>b) Jika setiap bilangan dari 10 data awal tersebut dikalikan 2 kemudian dikurangi 5, tentukan nilai rata-rata dari data baru tersebut!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Menghitung Rata-Rata Setelah Penambahan Data Baru</strong><br>
+                        Jumlah total awal dari 10 data ($n_1 = 10, \bar{x}_1 = 45$):
+                        $$\sum x_{\text{awal}} = n_1 \times \bar{x}_1 = 10 \times 45 = 450$$
+                        Setelah ditambahkan data baru $x_{11} = 67$, jumlah total baru menjadi:
+                        $$\sum x_{\text{baru}} = 450 + 67 = 517$$
+                        Banyaknya data kini menjadi $n_{\text{baru}} = 10 + 1 = 11$.<br>
+                        Rata-rata yang baru adalah:
+                        $$\bar{x}_{\text{baru}} = \frac{\sum x_{\text{baru}}}{n_{\text{baru}}} = \frac{517}{11} = \mathbf{47}$$
+                        <br>
+                        <strong>b) Menerapkan Sifat Transformasi Linear</strong><br>
+                        Setiap data dikenai operasi $y_i = 2x_i - 5$.<br>
+                        Berdasarkan teorema transformasi linear data:
+                        $$\bar{y} = 2\bar{x} - 5$$
+                        Substitusikan rata-rata awal $\bar{x} = 45$:
+                        $$\bar{y} = 2(45) - 5 = 90 - 5 = \mathbf{85}$$
+                        <div class="kesimpulan">
+                            a) Rata-rata setelah penambahan satu data baru adalah <strong>47</strong>.<br>
+                            b) Rata-rata setelah transformasi linear adalah <strong>85</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Rata-Rata Gabungan & Analisis Rasio Frekuensi (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Nilai rata-rata ujian matematika suatu kelas gabungan adalah 72.
+                    Diketahui nilai rata-rata siswa putra adalah 68, sedangkan nilai rata-rata siswa putri adalah 75.
+                    Jika jumlah seluruh siswa dalam kelas tersebut adalah 35 orang:
+                    <br>a) Tentukan perbandingan jumlah siswa putra dan siswa putri di kelas tersebut!
+                    <br>b) Hitunglah banyak masing-masing siswa putra dan siswa putri!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Menentukan Perbandingan Siswa (Kaidah Tuas / Selisih Jarak)</strong><br>
+                        Diketahui:
+                        <ul>
+                            <li>Rata-rata siswa putra: $\bar{x}_1 = 68$</li>
+                            <li>Rata-rata siswa putri: $\bar{x}_2 = 75$</li>
+                            <li>Rata-rata gabungan kelas: $\bar{x}_{\text{gab}} = 72$</li>
+                        </ul>
+                        Gunakan rumus perbandingan rata-rata gabungan:
+                        $$\frac{n_1}{n_2} = \frac{\bar{x}_2 - \bar{x}_{\text{gab}}}{\bar{x}_{\text{gab}} - \bar{x}_1}$$
+                        Substitusikan nilai yang diketahui:
+                        $$\frac{n_{\text{putra}}}{n_{\text{putri}}} = \frac{75 - 72}{72 - 68} = \frac{3}{4}$$
+                        Jadi, perbandingan jumlah siswa putra dan siswa putri adalah <strong>$3 : 4$</strong>.
+                        <br><br>
+                        <strong>b) Menghitung Banyak Siswa Putra dan Putri</strong><br>
+                        Total bagian rasio $= 3 + 4 = 7$ bagian.<br>
+                        Diketahui total siswa adalah 35 orang, maka nilai 1 bagian rasio adalah:
+                        $$\text{Nilai 1 Bagian} = \frac{35}{7} = 5 \text{ siswa}$$
+                        Banyak siswa putra:
+                        $$n_{\text{putra}} = 3 \times 5 = \mathbf{15 \text{ orang}}$$
+                        Banyak siswa putri:
+                        $$n_{\text{putri}} = 4 \times 5 = \mathbf{20 \text{ orang}}$$
+                        <div class="kesimpulan">
+                            a) Perbandingan banyak siswa putra dan putri adalah <strong>$3 : 4$</strong>.<br>
+                            b) Banyak siswa putra adalah <strong>15 orang</strong> dan siswa putri adalah <strong>20 orang</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Optimasi Ketaksamaan AM-GM Pembobotan & Siklik (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    a) Tiga bilangan real positif $a, b, c > 0$ memenuhi persamaan $a + b + c = 12$. Tentukan nilai maksimum yang mungkin dari perkalian bentuk berpangkat $a^2 b^3 c$!
+                    <br>b) Buktikan bahwa untuk sembarang bilangan real positif $x, y, z > 0$ selalu berlaku ketaksamaan:
+                    $$\frac{x}{y} + \frac{y}{z} + \frac{z}{x} \ge 3$$
+                    serta tentukan syarat kapan kesamaan tepat terjadi!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Teknik Pembobotan Suku pada Ketaksamaan AM-GM</strong><br>
+                        Kita ingin mencari nilai maksimum dari ekspresi $a^2 b^3 c^1$.<br>
+                        Eksponen dari masing-masing variabel adalah $2, 3,$ dan $1$, dengan total eksponen $2 + 3 + 1 = 6$.<br>
+                        Uraikan jumlahan $a + b + c$ menjadi 6 suku yang berbobot seimbang:
+                        <ul>
+                            <li>Pecah $a$ menjadi 2 suku bernilai $\frac{a}{2}$</li>
+                            <li>Pecah $b$ menjadi 3 suku bernilai $\frac{b}{3}$</li>
+                            <li>Suku $c$ tetap bernilai $c$ (1 suku)</li>
+                        </ul>
+                        Jumlah keenam suku tersebut tetap bernilai 12:
+                        $$\left(\frac{a}{2} + \frac{a}{2}\right) + \left(\frac{b}{3} + \frac{b}{3} + \frac{b}{3}\right) + c = a + b + c = 12$$
+                        Terapkan Ketaksamaan Rata-Rata Aritmetika - Geometri (AM-GM) untuk 6 suku positif:
+                        $$\frac{\frac{a}{2} + \frac{a}{2} + \frac{b}{3} + \frac{b}{3} + \frac{b}{3} + c}{6} \ge \sqrt[6]{\left(\frac{a}{2}\right) \left(\frac{a}{2}\right) \left(\frac{b}{3}\right) \left(\frac{b}{3}\right) \left(\frac{b}{3}\right) c}$$
+                        $$\frac{12}{6} \ge \sqrt[6]{\frac{a^2 b^3 c}{2^2 \times 3^3}} = \sqrt[6]{\frac{a^2 b^3 c}{4 \times 27}} = \sqrt[6]{\frac{a^2 b^3 c}{108}}$$
+                        $$2 \ge \sqrt[6]{\frac{a^2 b^3 c}{108}}$$
+                        Pangkatkan 6 pada kedua ruas ketaksamaan:
+                        $$2^6 \ge \frac{a^2 b^3 c}{108} \implies 64 \ge \frac{a^2 b^3 c}{108}$$
+                        $$a^2 b^3 c \le 64 \times 108 = \mathbf{6.912}$$
+                        Nilai maksimum $6.912$ tercapai saat kondisi kesamaan AM-GM terpenuhi, yaitu saat semua suku bernilai sama:
+                        $$\frac{a}{2} = \frac{b}{3} = c = 2 \implies a = 4, \quad b = 6, \quad c = 2$$
+                        <em>(Cek: $4 + 6 + 2 = 12$, memenuhi).</em>
+                        <br><br>
+                        <strong>b) Pembuktian Ketaksamaan Siklik Menggunakan AM-GM</strong><br>
+                        Tinjau tiga suku positif: $\frac{x}{y}$, $\frac{y}{z}$, dan $\frac{z}{x}$.<br>
+                        Berdasarkan ketaksamaan AM-GM untuk 3 suku:
+                        $$\frac{\frac{x}{y} + \frac{y}{z} + \frac{z}{x}}{3} \ge \sqrt[3]{\frac{x}{y} \cdot \frac{y}{z} \cdot \frac{z}{x}}$$
+                        Perhatikan bahwa hasil kali ketiga suku tersebut saling menghilangkan secara siklik (*telescoping product*):
+                        $$\frac{x}{y} \cdot \frac{y}{z} \cdot \frac{z}{x} = 1$$
+                        Sehingga:
+                        $$\frac{\frac{x}{y} + \frac{y}{z} + \frac{z}{x}}{3} \ge \sqrt[3]{1} = 1$$
+                        Kalikan kedua ruas dengan $3$:
+                        $$\frac{x}{y} + \frac{y}{z} + \frac{z}{x} \ge 3 \quad \text{(Terbukti)}$$
+                        Kesamaan tepat terjadi jika dan hanya jika ketiga suku bernilai sama:
+                        $$\frac{x}{y} = \frac{y}{z} = \frac{z}{x} = 1 \iff x = y = z$$
+                        <div class="kesimpulan">
+                            a) Nilai maksimum dari $a^2 b^3 c$ adalah <strong>6.912</strong> (tercapai di $a=4, b=6, c=2$).<br>
+                            b) Terbukti bahwa $\frac{x}{y} + \frac{y}{z} + \frac{z}{x} \ge 3$, dengan kesamaan tercapai di $x = y = z$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // ==========================================
+            // 1. Rata-Rata sebagai Titik Tumpu Keseimbangan (Fulcrum)
+            // Data = {2, 4, 9, 13}, Rata-Rata = 7
+            // ==========================================
+            const elFulcrum = document.getElementById("svg-titik-tumpu-rata-rata");
+            if (elFulcrum) {
+                const geo1 = new GeoSVG(elFulcrum, 320, 200, {
+                    viewBox: "0 0 320 200",
+                    margin: 8,
+                    title: "Rata-Rata sebagai Titik Tumpu Keseimbangan"
+                });
+
+                const Y_bar = 95;
+                const Ox = 30, u = 18;
+                const toX = x => Ox + x * u;
+
+                // Batang Jungkat-Jungkit Horizontal
+                geo1.buatSegmen([25, Y_bar], [295, Y_bar], { stroke: "#64748b", strokeWidth: 4 });
+
+                // Titik Tumpu Segitiga di Nilai Rata-Rata x = 7
+                const xMean = toX(7);
+                geo1.buatPoligon([
+                    [xMean, Y_bar + 2],
+                    [xMean - 15, Y_bar + 32],
+                    [xMean + 15, Y_bar + 32]
+                ], { fill: TEMA.merah, stroke: TEMA.gelap, strokeWidth: 1.5 });
+
+                // Landasan Titik Tumpu
+                geo1.buatSegmen([xMean - 28, Y_bar + 32], [xMean + 28, Y_bar + 32], { stroke: TEMA.gelap, strokeWidth: 3 });
+                geo1.buatTeks(xMean, Y_bar + 46, "Titik Tumpu: x̄ = 7", {
+                    position: "top-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Beban-Beban Data di x = 2, 4, 9, 13
+                const dataPts = [
+                    { x: 2, dev: -5, col: TEMA.utama },
+                    { x: 4, dev: -3, col: TEMA.utama },
+                    { x: 9, dev: 2, col: TEMA.aksen },
+                    { x: 13, dev: 6, col: TEMA.aksen }
+                ];
+
+                dataPts.forEach(dp => {
+                    const px = toX(dp.x);
+                    // Beban Balok
+                    geo1.buatPoligon([
+                        [px - 10, Y_bar - 22],
+                        [px + 10, Y_bar - 22],
+                        [px + 10, Y_bar - 2],
+                        [px - 10, Y_bar - 2]
+                    ], { fill: TEMA.utamaMuda, stroke: dp.col, strokeWidth: 1.5 });
+                    geo1.buatTeks(px, Y_bar - 12, dp.x.toString(), {
+                        position: "middle-center",
+                        fontSize: "9px",
+                        fontWeight: "bold",
+                        fill: dp.col
+                    });
+
+                    // Garis Busur / Panah Deviasi ke Titik Tumpu
+                    const yArc = dp.dev < 0 ? (Y_bar - 32 + dp.x * 2) : (Y_bar - 32 - (dp.x - 9) * 2);
+                    geo1.buatSegmen([px, yArc], [xMean, yArc], {
+                        stroke: dp.col,
+                        strokeWidth: 1.2,
+                        strokeDasharray: "2 2"
+                    });
+                    geo1.buatTeks((px + xMean) / 2, yArc - 6, (dp.dev > 0 ? "+" : "") + dp.dev, {
+                        position: "bottom-center",
+                        fontSize: "8px",
+                        fontWeight: "bold",
+                        fill: dp.col
+                    });
+                });
+
+                // Keterangan Keseimbangan di Bawah
+                geo1.buatTeks(160, 185, "Σ(x - x̄) = (-5) + (-3) + (+2) + (+6) = 0 (Seimbang!)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Kaidah Tuas Rata-Rata Gabungan (Lever Rule)
+            // Putra: n1 = 15, x1 = 68 | Putri: n2 = 20, x2 = 75 | Gab = 72
+            // ==========================================
+            const elTuas = document.getElementById("svg-tuas-rata-rata-gabungan");
+            if (elTuas) {
+                const geo2 = new GeoSVG(elTuas, 320, 200, {
+                    viewBox: "0 0 320 200",
+                    margin: 8,
+                    title: "Kaidah Tuas Rata-Rata Gabungan"
+                });
+
+                const Y_line = 90;
+                const Ox = 35, u = 14;
+                const toX = val => Ox + (val - 67) * u;
+
+                // Garis Bilangan Rata-Rata
+                geo2.buatSegmen([25, Y_line], [295, Y_line], { stroke: "#64748b", strokeWidth: 2 });
+
+                const xPutra = toX(68);
+                const xGab = toX(72);
+                const xPutri = toX(75);
+
+                // Segmen Jarak Kiri: |72 - 68| = 4 (panjang 4 satuan)
+                geo2.buatSegmen([xPutra, Y_line - 18], [xGab, Y_line - 18], { stroke: TEMA.utama, strokeWidth: 2 });
+                geo2.buatTeks((xPutra + xGab) / 2, Y_line - 26, "Jarak d₁ = 4", {
+                    position: "bottom-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Segmen Jarak Kanan: |75 - 72| = 3 (panjang 3 satuan)
+                geo2.buatSegmen([xGab, Y_line - 18], [xPutri, Y_line - 18], { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo2.buatTeks((xGab + xPutri) / 2, Y_line - 26, "Jarak d₂ = 3", {
+                    position: "bottom-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // Titik Putra x1 = 68
+                geo2.buatLingkaran([xPutra, Y_line], 5, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(xPutra, Y_line + 14, "Putra: 68", { position: "top-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(xPutra, Y_line + 28, "(n₁ = 15 orang)", { position: "top-center", fontSize: "7.5px", fill: TEMA.teks });
+
+                // Titik Rata-Rata Gabungan x_gab = 72
+                geo2.buatLingkaran([xGab, Y_line], 6.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 2 });
+                geo2.buatTeks(xGab, Y_line + 14, "Gabungan: 72", { position: "top-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Putri x2 = 75
+                geo2.buatLingkaran([xPutri, Y_line], 5, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(xPutri, Y_line + 14, "Putri: 75", { position: "top-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+                geo2.buatTeks(xPutri, Y_line + 28, "(n₂ = 20 orang)", { position: "top-center", fontSize: "7.5px", fill: TEMA.teks });
+
+                // Keterangan Rasio Terbalik di Bawah
+                geo2.buatTeks(160, 178, "Rasio Siswa Berbanding Terbalik dengan Jarak:", { position: "middle-center", fontSize: "8px", fill: TEMA.teks });
+                geo2.buatTeks(160, 192, "n₁ : n₂ = d₂ : d₁ = 3 : 4  (Maka n₁ = 15, n₂ = 20)", {
+                    position: "middle-center",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+
+            // ==========================================
+            // 3. Pembuktian Geometris AM >= GM >= HM pada Setengah Lingkaran
+            // Diameter AB = a + b = 8 + 2 = 10, R = 5
+            // ==========================================
+            const elAmGm = document.getElementById("svg-geometri-am-gm-hm");
+            if (elAmGm) {
+                const geo3 = new GeoSVG(elAmGm, 320, 200, {
+                    viewBox: "0 0 320 200",
+                    margin: 8,
+                    title: "Pembuktian Geometris AM >= GM >= HM"
+                });
+
+                const Ox = 160, Oy = 155, R_px = 110;
+
+                // Busur Setengah Lingkaran Atas
+                const ptsArc = [];
+                for (let deg = 180; deg >= 0; deg -= 5) {
+                    const rad = deg * Math.PI / 180;
+                    ptsArc.push([Ox + R_px * Math.cos(rad), Oy - R_px * Math.sin(rad)]);
+                }
+                geo3.buatPolyline(ptsArc, { stroke: TEMA.gelap, strokeWidth: 2, fill: "none" });
+
+                // Diameter AB
+                const ptA = [Ox - R_px, Oy];
+                const ptB = [Ox + R_px, Oy];
+                geo3.buatSegmen(ptA, ptB, { stroke: TEMA.gelap, strokeWidth: 2 });
+
+                // Titik C pada diameter (a = 8, b = 2)
+                // Jarak AC = 8/10 * 220 = 176px. Maka C di Ox - R_px + 176 = 50 + 176 = 226.
+                const ptC = [226, Oy];
+                // Titik D pada busur tepat di atas C: tinggi h = sqrt(8 * 2) = 4 => h_px = 4 * 22 = 88.
+                const ptD = [226, Oy - 88];
+
+                // Titik Pusat O
+                const ptO = [Ox, Oy];
+
+                // Segitiga Siku-Siku OCD:
+                // Jari-jari OD = AM (Hipotenusa)
+                geo3.buatSegmen(ptO, ptD, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo3.buatTeks((Ox + ptD[0]) / 2 - 12, (Oy + ptD[1]) / 2 - 8, "AM = (a+b)/2", {
+                    position: "bottom-right",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Garis Tinggi CD = GM
+                geo3.buatSegmen(ptC, ptD, { stroke: TEMA.aksen, strokeWidth: 2.2 });
+                geo3.buatTeks(ptC[0] + 6, (Oy + ptD[1]) / 2, "GM = √ab", {
+                    position: "middle-left",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // Proyeksi Tegak Lurus C ke OD di Titik E (DE = HM)
+                const ptE = [183.8, 118.3];
+                geo3.buatSegmen(ptC, ptE, { stroke: "#94a3b8", strokeWidth: 1.4, strokeDasharray: "2 2" });
+                // Segmen DE = HM disorot Merah
+                geo3.buatSegmen(ptD, ptE, { stroke: TEMA.merah, strokeWidth: 3 });
+                geo3.buatTeks(ptE[0] - 6, ptE[1] - 4, "HM", {
+                    position: "bottom-right",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Tanda Siku-Siku di C
+                geo3.buatPoligon([
+                    [ptC[0] - 8, ptC[1]],
+                    [ptC[0] - 8, ptC[1] - 8],
+                    [ptC[0], ptC[1] - 8],
+                    [ptC[0], ptC[1]]
+                ], { stroke: "#64748b", strokeWidth: 1, fill: "none" });
+
+                // Titik-Titik A, B, C, D, O
+                geo3.buatLingkaran(ptA, 3.5, { fill: TEMA.gelap });
+                geo3.buatTeks(ptA[0] - 4, ptA[1] + 10, "A", { position: "top-right", fontSize: "8.5px", fill: TEMA.teks });
+
+                geo3.buatLingkaran(ptB, 3.5, { fill: TEMA.gelap });
+                geo3.buatTeks(ptB[0] + 4, ptB[1] + 10, "B", { position: "top-left", fontSize: "8.5px", fill: TEMA.teks });
+
+                geo3.buatLingkaran(ptC, 3.5, { fill: TEMA.gelap });
+                geo3.buatTeks(ptC[0], ptC[1] + 10, "C", { position: "top-center", fontSize: "8.5px", fill: TEMA.teks });
+
+                geo3.buatLingkaran(ptD, 4.5, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(ptD[0], ptD[1] - 8, "D", { position: "bottom-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.aksen });
+
+                geo3.buatLingkaran(ptO, 3.5, { fill: TEMA.gelap });
+                geo3.buatTeks(ptO[0], ptO[1] + 10, "O (Pusat)", { position: "top-center", fontSize: "8px", fill: TEMA.teks });
+
+                // Segmen a dan b pada diameter
+                geo3.buatTeks((ptA[0] + ptC[0]) / 2, Oy + 12, "a = 8", { position: "top-center", fontSize: "8px", fill: "#64748b" });
+                geo3.buatTeks((ptC[0] + ptB[0]) / 2, Oy + 12, "b = 2", { position: "top-center", fontSize: "8px", fill: "#64748b" });
+
+                // Kesimpulan Geometri
+                geo3.buatTeks(160, 190, "Hipotenusa OD > Sisi Tegak CD > Proyeksi DE ⇒ AM ≥ GM ≥ HM", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Sistem Persamaan Trigonometri</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Sistem Persamaan Trigonometri</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Karakteristik Sistem Persamaan Trigonometri</h2>
+            <p>
+                <strong>Sistem Persamaan Trigonometri</strong> adalah sekumpulan dua atau lebih persamaan matematika yang memuat fungsi-fungsi trigonometri (seperti $\sin, \cos, \tan$) dengan dua atau lebih variabel sudut (umumnya $x$ dan $y$).
+            </p>
+            <p>
+                Berbeda dengan sistem aljabar polinomial biasa, fungsi trigonometri memiliki <strong>sifat periodisitas (keperiodikan)</strong>. Akibatnya, jika domain sudut tidak dibatasi, suatu sistem dapat memiliki tak hingga banyak solusi periodik dengan periode $2k\pi$ (untuk sinus dan cosinus) atau $k\pi$ (untuk tangen), $k \in \mathbb{Z}$. Umumnya, pencarian solusi dibatasi pada interval tertutup seperti $x, y \in [0, 2\pi]$ atau $[0^\circ, 360^\circ]$.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Prinsip Kunci Penyelesaian Sistem Trigonometri:</strong><br>
+                    Tujuan utama adalah <strong>mentransformasikan sistem non-linear trigonometri menjadi sistem linear</strong> dalam kombinasi sudut $(x + y)$ dan $(x - y)$, atau mereduksinya menjadi persamaan aljabar simetris melalui substitusi variabel.
+                </p>
+            </div>
+
+            <h2>2. Tipe-Tipe Baku & Strategi Transformasi</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Tipe 1: Sistem Jumlah Sudut & Penjumlahan Fungsi</h3>
+                    <p>
+                        Bentuk umum:
+                        $$\begin{cases} x + y = \alpha \\ \sin x + \sin y = C \end{cases} \quad \text{atau} \quad \begin{cases} x + y = \alpha \\ \cos x + \cos y = C \end{cases}$$
+                        Gunakan formula konversi <em>Jumlah ke Perkalian (Sum-to-Product)</em>:
+                        $$\sin x + \sin y = 2 \sin\left(\frac{x+y}{2}\right) \cos\left(\frac{x-y}{2}\right)$$
+                        $$\cos x + \cos y = 2 \cos\left(\frac{x+y}{2}\right) \cos\left(\frac{x-y}{2}\right)$$
+                        Karena nilai $x + y = \alpha$ sudah diketahui, nilai $\frac{x+y}{2} = \frac{\alpha}{2}$ konstan. Persamaan langsung tereduksi menjadi:
+                        $$\cos\left(\frac{x-y}{2}\right) = \frac{C}{2 \sin(\alpha/2)}$$
+                        Setelah $(x - y)$ diperoleh, variabel $x$ dan $y$ dihitung via eliminasi SPLDV sederhana:
+                        $$x = \frac{(x+y) + (x-y)}{2}, \quad y = \frac{(x+y) - (x-y)}{2}$$
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-transformasi-jumlah-perkalian" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Dekomposisi sudut pada lingkaran satuan — bisektor rata-rata $\frac{x+y}{2}$ dan simpangan sudut $\frac{x-y}{2}$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>B. Tipe 2: Sistem Perkalian Fungsi Trigonometri</h3>
+                    <p>
+                        Bentuk umum:
+                        $$\begin{cases} \cos x \cos y = A \\ \sin x \sin y = B \end{cases}$$
+                        Terapkan rumus <em>Perkalian ke Jumlah (Product-to-Sum)</em> dengan menjumlahkan dan mengurangkan kedua persamaan:
+                        $$\cos(x - y) = \cos x \cos y + \sin x \sin y = A + B$$
+                        $$\cos(x + y) = \cos x \cos y - \sin x \sin y = A - B$$
+                        Sistem non-linear yang semula terikat terurai menjadi dua persamaan cosinus dasar yang saling bebas dalam variabel komposit $(x - y)$ dan $(x + y)$.
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-bidang-fase-kontur" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Titik-titik potong solusi simultan pada bidang fase sudut $[0, \pi] \times [0, \pi]$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>C. Tipe 3: Sistem Tangen & Identitas Pecahan</h3>
+                    <p>
+                        Jika sistem memuat fungsi tangen, gunakan identitas fraksi:
+                        $$\tan x + \tan y = \frac{\sin x}{\cos x} + \frac{\sin y}{\cos y} = \frac{\sin(x + y)}{\cos x \cos y}$$
+                        $$\tan x \tan y = \frac{\sin x \sin y}{\cos x \cos y}$$
+                        Formula ini menghubungkan penjumlahan tangen dengan sinus jumlah sudut secara langsung tanpa perlu mengekspansi persamaan menjadi polinomial berderajat tinggi.
+                    </p>
+
+                    <h3>D. Tipe 4: Eliminasi Kuadratik via Identitas Pythagoras</h3>
+                    <p>
+                        Jika sistem berbentuk parameter sudut $t$:
+                        $$\begin{cases} x = r \cos t + h \\ y = r \sin t + k \end{cases} \iff \left(\frac{x - h}{r}\right)^2 + \left(\frac{y - k}{r}\right)^2 = \cos^2 t + \sin^2 t = 1$$
+                        Metode penjumlahan kuadrat mengeliminasi variabel sudut $t$ secara seketika menghasilkan kurva lingkaran atau elips Kartesius.
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-vektor-lingkaran-satuan" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Penjumlahan dua vektor satuan $\vec{u} + \vec{v}$ menghasilkan resultan berpanjang $|\vec{R}| = 2\cos\left(\frac{x-y}{2}\right)$ pada arah sudut rata-rata $\frac{x+y}{2}$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Tabel Identitas Kunci untuk Penyelesaian Sistem</h2>
+            <div style="overflow-x: auto; margin: 0.8rem 0;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+                    <thead>
+                        <tr style="background-color: var(--card-bg, #f8fafc); border-bottom: 2px solid #cbd5e1;">
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">Bentuk Operasi</th>
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">Identitas Transformasi</th>
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">Fungsi dalam Sistem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Jumlah Sinus</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$\sin x + \sin y = 2\sin\left(\frac{x+y}{2}\right)\cos\left(\frac{x-y}{2}\right)$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Mereduksi sistem ketika $(x+y)$ bernilai konstan.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Selisih Sinus</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$\sin x - \sin y = 2\cos\left(\frac{x+y}{2}\right)\sin\left(\frac{x-y}{2}\right)$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Mengekstrak nilai $(x-y)$ saat $(x+y)$ diketahui.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Jumlah Cosinus</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$\cos x + \cos y = 2\cos\left(\frac{x+y}{2}\right)\cos\left(\frac{x-y}{2}\right)$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Simetris, menghasilkan nilai perkalian cosinus.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Selisih Cosinus</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$\cos x - \cos y = -2\sin\left(\frac{x+y}{2}\right)\sin\left(\frac{x-y}{2}\right)$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Menghasilkan perkalian dua fungsi sinus.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Jumlah Tangen</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$\tan x + \tan y = \frac{\sin(x+y)}{\cos x \cos y}$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Menghubungkan penjumlahan tangen dan perkalian cosinus.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Sistem Jumlah Sudut & Transformasi Sinus</h3>
+                <p>
+                    Tentukan seluruh pasangan sudut $(x, y)$ pada interval $0 \le x, y \le \pi$ yang memenuhi sistem persamaan trigonometri berikut:
+                    $$\begin{cases} x + y = \pi \quad \text{--- (1)} \\ \sin x + \sin y = 1 \quad \text{--- (2)} \end{cases}$$
+                </p>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>Langkah 1: Mengaplikasikan Rumus Jumlah ke Perkalian</strong><br>
+                        Gunakan formula konversi pada persamaan (2):
+                        $$\sin x + \sin y = 2 \sin\left(\frac{x + y}{2}\right) \cos\left(\frac{x - y}{2}\right) = 1$$
+                        Dari persamaan (1), kita tahu bahwa $x + y = \pi$, sehingga:
+                        $$\frac{x + y}{2} = \frac{\pi}{2}$$
+                        Substitusikan nilai sudut tengah ini:
+                        $$2 \sin\left(\frac{\pi}{2}\right) \cos\left(\frac{x - y}{2}\right) = 1$$
+                        Karena $\sin\left(\frac{\pi}{2}\right) = 1$:
+                        $$2(1) \cos\left(\frac{x - y}{2}\right) = 1 \implies \cos\left(\frac{x - y}{2}\right) = \frac{1}{2}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menentukan Nilai $(x - y)$</strong><br>
+                        Karena $0 \le x, y \le \pi$, maka $-\pi \le x - y \le \pi$, sehingga $-\frac{\pi}{2} \le \frac{x - y}{2} \le \frac{\pi}{2}$.
+                        Nilai sudut yang memiliki cosinus $\frac{1}{2}$ pada interval tersebut adalah:
+                        $$\frac{x - y}{2} = \frac{\pi}{3} \quad \text{atau} \quad \frac{x - y}{2} = -\frac{\pi}{3}$$
+                        Kalikan dengan 2:
+                        $$x - y = \frac{2\pi}{3} \quad \text{atau} \quad x - y = -\frac{2\pi}{3}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menentukan Pasangan Solusi $(x, y)$</strong><br>
+                        <ul>
+                            <li><strong>Kasus 1:</strong> $x - y = \frac{2\pi}{3}$
+                                <br>
+                                Jumlahkan dengan $x + y = \pi$:
+                                $$2x = \pi + \frac{2\pi}{3} = \frac{5\pi}{3} \implies x = \frac{5\pi}{6}$$
+                                $$y = \pi - \frac{5\pi}{6} = \frac{\pi}{6}$$
+                                Diperoleh pasangan: $(x, y) = \left(\frac{5\pi}{6}, \frac{\pi}{6}\right)$.
+                            </li>
+                            <li><strong>Kasus 2:</strong> $x - y = -\frac{2\pi}{3}$
+                                <br>
+                                Jumlahkan dengan $x + y = \pi$:
+                                $$2x = \pi - \frac{2\pi}{3} = \frac{\pi}{3} \implies x = \frac{\pi}{6}$$
+                                $$y = \pi - \frac{\pi}{6} = \frac{5\pi}{6}$$
+                                Diperoleh pasangan: $(x, y) = \left(\frac{\pi}{6}, \frac{5\pi}{6}\right)$.
+                            </li>
+                        </ul>
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Himpunan penyelesaian sistem adalah $HP = \left\{\left(\frac{\pi}{6}, \frac{5\pi}{6}\right), \left(\frac{5\pi}{6}, \frac{\pi}{6}\right)\right\}$ atau dalam derajat: $\{(30^\circ, 150^\circ), (150^\circ, 30^\circ)\}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat SNBT / UTBK — Sistem Perkalian Fungsi ke Jumlah Cosinus</h3>
+                <p>
+                    Diberikan sistem persamaan trigonometri berikut:
+                    $$\begin{cases} \cos x \cos y = \frac{3}{4} \quad \text{--- (1)} \\ \sin x \sin y = \frac{1}{4} \quad \text{--- (2)} \end{cases}$$
+                    untuk interval sudut $0 \le x, y \le \pi$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan nilai eksak dari $\cos(x - y)$ dan $\cos(x + y)$.</li>
+                    <li>Tentukan seluruh pasangan sudut $(x, y)$ yang memenuhi sistem tersebut.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menghitung Nilai $\cos(x - y)$ dan $\cos(x + y)$:</strong><br>
+                        Berdasarkan rumus cosinus selisih dan jumlah sudut:
+                        $$\cos(x - y) = \cos x \cos y + \sin x \sin y$$
+                        $$\cos(x + y) = \cos x \cos y - \sin x \sin y$$
+                        Substitusikan persamaan (1) dan (2):
+                        $$\cos(x - y) = \frac{3}{4} + \frac{1}{4} = \frac{4}{4} = 1$$
+                        $$\cos(x + y) = \frac{3}{4} - \frac{1}{4} = \frac{2}{4} = \frac{1}{2}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menentukan Pasangan Solusi $(x, y)$:</strong><br>
+                        Karena $0 \le x, y \le \pi$, maka selisih $-\pi \le x - y \le \pi$.
+                        Nilai sudut yang memenuhi $\cos(x - y) = 1$ pada interval tersebut adalah:
+                        $$x - y = 0 \implies x = y$$
+                        Selanjutnya, karena $x = y$, persamaan kedua $\cos(x + y) = \frac{1}{2}$ menjadi:
+                        $$\cos(2x) = \frac{1}{2}$$
+                        Karena $0 \le x \le \pi$, maka $0 \le 2x \le 2\pi$. Sudut yang memenuhi adalah:
+                        $$2x = \frac{\pi}{3} \implies x = \frac{\pi}{6}$$
+                        $$2x = \frac{5\pi}{3} \implies x = \frac{5\pi}{6}$$
+                        Karena $y = x$, diperoleh dua pasangan solusi:
+                        $$(x, y) = \left(\frac{\pi}{6}, \frac{\pi}{6}\right) \quad \text{atau} \quad (x, y) = \left(\frac{5\pi}{6}, \frac{5\pi}{6}\right)$$
+                        <em>Verifikasi untuk $(30^\circ, 30^\circ)$:</em>
+                        $$\cos(30^\circ)\cos(30^\circ) = \frac{\sqrt{3}}{2} \times \frac{\sqrt{3}}{2} = \frac{3}{4} \quad (\text{benar})$$
+                        $$\sin(30^\circ)\sin(30^\circ) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4} \quad (\text{benar})$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Nilai $\cos(x - y) = 1$, $\cos(x + y) = \frac{1}{2}$, dan pasangan solusi adalah $HP = \left\{\left(\frac{\pi}{6}, \frac{\pi}{6}\right), \left(\frac{5\pi}{6}, \frac{5\pi}{6}\right)\right\}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Sistem Tangen-Cosinus Non-Linear Simetris</h3>
+                <p>
+                    Tentukan seluruh pasangan sudut $(x, y)$ pada interval $-\frac{\pi}{2} < x, y < \frac{\pi}{2}$ yang memenuhi sistem persamaan non-linear berikut:
+                    $$\begin{cases} \tan x + \tan y = 2 \\ \cos x \cos y = \frac{1}{2} \end{cases}$$
+                </p>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>Langkah 1: Menggunakan Identitas Penjumlahan Tangen</strong><br>
+                        Tuliskan bentuk penjumlahan tangen ke bentuk pecahan sinus-cosinus:
+                        $$\tan x + \tan y = \frac{\sin x}{\cos x} + \frac{\sin y}{\cos y} = \frac{\sin x \cos y + \cos x \sin y}{\cos x \cos y} = \frac{\sin(x + y)}{\cos x \cos y}$$
+                        Substitusikan nilai $\tan x + \tan y = 2$ dan $\cos x \cos y = \frac{1}{2}$:
+                        $$\frac{\sin(x + y)}{\frac{1}{2}} = 2 \implies \sin(x + y) = 2 \times \frac{1}{2} = 1$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menentukan Sudut Jumlah $(x + y)$</strong><br>
+                        Karena $-\frac{\pi}{2} < x < \frac{\pi}{2}$ dan $-\frac{\pi}{2} < y < \frac{\pi}{2}$, maka interval jumlah sudutnya adalah:
+                        $$-\pi < x + y < \pi$$
+                        Satu-satunya sudut dalam selang $(-\pi, \pi)$ yang memiliki nilai sinus sama dengan 1 adalah:
+                        $$x + y = \frac{\pi}{2} \quad \text{--- (3)}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menentukan Nilai $\cos(x - y)$</strong><br>
+                        Gunakan identitas perkalian cosinus:
+                        $$2 \cos x \cos y = \cos(x + y) + \cos(x - y)$$
+                        Karena $x + y = \frac{\pi}{2}$, maka $\cos(x + y) = \cos\left(\frac{\pi}{2}\right) = 0$.
+                        Substitusikan ke persamaan:
+                        $$2 \left(\frac{1}{2}\right) = 0 + \cos(x - y) \implies 1 = \cos(x - y)$$
+                        Karena $-\pi < x - y < \pi$, nilai sudut yang memenuhi $\cos(x - y) = 1$ hanyalah:
+                        $$x - y = 0 \implies x = y \quad \text{--- (4)}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 4: Menentukan Solusi Akhir $(x, y)$</strong><br>
+                        Gabungkan persamaan (3) dan (4):
+                        $$x + x = \frac{\pi}{2} \implies 2x = \frac{\pi}{2} \implies x = \frac{\pi}{4}$$
+                        Karena $y = x$, maka $y = \frac{\pi}{4}$.
+                        <br>
+                        <em>Verifikasi:</em>
+                        $$\tan\left(\frac{\pi}{4}\right) + \tan\left(\frac{\pi}{4}\right) = 1 + 1 = 2 \quad (\text{memenuhi})$$
+                        $$\cos\left(\frac{\pi}{4}\right) \cos\left(\frac{\pi}{4}\right) = \frac{\sqrt{2}}{2} \times \frac{\sqrt{2}}{2} = \frac{2}{4} = \frac{1}{2} \quad (\text{memenuhi})$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Solusi tunggal sistem tersebut adalah $(x, y) = \left(\frac{\pi}{4}, \frac{\pi}{4}\right)$ atau dalam derajat: $(45^\circ, 45^\circ)$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Dekomposisi Sudut pada Lingkaran Satuan
+            // ==========================================
+            const elJumlah = document.getElementById("svg-transformasi-jumlah-perkalian");
+            if (elJumlah) {
+                const geo1 = new GeoSVG(elJumlah, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Dekomposisi Sudut Rata-rata dan Deviasi pada Lingkaran Satuan"
+                });
+
+                const cx = 160, cy = 115, R = 75;
+
+                // Sumbu Kartesius
+                geo1.buatSegmen([55, cy], [265, cy], { stroke: TEMA.abu, strokeWidth: 1 });
+                geo1.buatSegmen([cx, 25], [cx, 195], { stroke: TEMA.abu, strokeWidth: 1 });
+
+                // Lingkaran Satuan
+                geo1.buatLingkaran([cx, cy], R, { fill: "none", stroke: TEMA.abu, strokeWidth: 1.4, strokeDasharray: "4 3" });
+
+                // Titik Px (30 derajat) -> (cx + R*cos30, cy - R*sin30)
+                const ptX = [cx + 64.95, cy - 37.5];
+                // Titik Py (150 derajat) -> (cx - R*cos30, cy - R*sin30)
+                const ptY = [cx - 64.95, cy - 37.5];
+
+                // Garis Horizontal Tinggi Bersama: sin x = sin y = 1/2
+                geo1.buatSegmen(ptY, ptX, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo1.buatTeks(cx + 6, cy - 42, "sin x + sin y = 1", { fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Vektor Jari-Jari ke Px dan Py
+                geo1.buatSegmen([cx, cy], ptX, { stroke: TEMA.utama, strokeWidth: 1.8 });
+                geo1.buatSegmen([cx, cy], ptY, { stroke: TEMA.aksen, strokeWidth: 1.8 });
+
+                // Bisektor Sumbu Simetri Vertikal (Sudut Rata-rata 90 derajat)
+                geo1.buatSegmen([cx, cy], [cx, cy - R], { stroke: TEMA.oranye, strokeWidth: 2, strokeDasharray: "3 2" });
+                geo1.buatTeks(cx - 6, cy - R - 6, "(x+y)/2 = 90°", { position: "middle-right", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik Px dan Py
+                geo1.buatLingkaran(ptX, 3.5, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo1.buatTeks(ptX[0] + 6, ptX[1] - 4, "x = 30°", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo1.buatLingkaran(ptY, 3.5, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo1.buatTeks(ptY[0] - 6, ptY[1] - 4, "y = 150°", { position: "bottom-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 208, "sin x + sin y = 2 sin((x+y)/2) cos((x-y)/2)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Bidang Fase Sudut [0, π] x [0, π]
+            // ==========================================
+            const elFase = document.getElementById("svg-bidang-fase-kontur");
+            if (elFase) {
+                const geo2 = new GeoSVG(elFase, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Perpotongan Garis Solusi pada Bidang Fase Sudut"
+                });
+
+                const Ox = 80, Oy = 175, L = 140;
+
+                // Domain Persegi [0, π] x [0, π]
+                geo2.buatPoligon([
+                    [Ox, Oy],
+                    [Ox + L, Oy],
+                    [Ox + L, Oy - L],
+                    [Ox, Oy - L]
+                ], { fill: TEMA.utamaMuda, stroke: TEMA.abu, strokeWidth: 1.2, opacity: 0.25 });
+
+                // Sumbu Kartesius Fase
+                geo2.buatSegmen([Ox, Oy], [Ox + L + 20, Oy], { stroke: TEMA.gelap, strokeWidth: 1.4 });
+                geo2.buatSegmen([Ox, Oy], [Ox, Oy - L - 15], { stroke: TEMA.gelap, strokeWidth: 1.4 });
+                geo2.buatTeks(Ox + L + 24, Oy, "x", { fontSize: "9px", fill: TEMA.gelap });
+                geo2.buatTeks(Ox, Oy - L - 18, "y", { position: "bottom-center", fontSize: "9px", fill: TEMA.gelap });
+
+                // Label Sumbu: 0, π/2, π
+                geo2.buatTeks(Ox, Oy + 10, "0", { position: "top-center", fontSize: "7.5px", fill: TEMA.teks });
+                geo2.buatTeks(Ox + L / 2, Oy + 10, "π/2", { position: "top-center", fontSize: "7.5px", fill: TEMA.teks });
+                geo2.buatTeks(Ox + L, Oy + 10, "π", { position: "top-center", fontSize: "7.5px", fill: TEMA.teks });
+
+                geo2.buatTeks(Ox - 8, Oy - L / 2, "π/2", { position: "middle-right", fontSize: "7.5px", fill: TEMA.teks });
+                geo2.buatTeks(Ox - 8, Oy - L, "π", { position: "middle-right", fontSize: "7.5px", fill: TEMA.teks });
+
+                // Garis x + y = π (Dari (Ox, Oy - L) ke (Ox + L, Oy))
+                geo2.buatSegmen([Ox, Oy - L], [Ox + L, Oy], { stroke: TEMA.utama, strokeWidth: 2 });
+                geo2.buatTeks(Ox + L - 10, Oy - 15, "x + y = π", { fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Titik Solusi 1: (π/6, 5π/6) -> (Ox + L/6, Oy - 5L/6)
+                const ptSol1 = [Ox + L * (1 / 6), Oy - L * (5 / 6)];
+                geo2.buatLingkaran(ptSol1, 4, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptSol1[0] + 8, ptSol1[1] - 4, "(π/6, 5π/6)", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Solusi 2: (5π/6, π/6) -> (Ox + 5L/6, Oy - L/6)
+                const ptSol2 = [Ox + L * (5 / 6), Oy - L * (1 / 6)];
+                geo2.buatLingkaran(ptSol2, 4, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptSol2[0] - 8, ptSol2[1] + 12, "(5π/6, π/6)", { position: "top-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 208, "Titik Potong Garis x + y = π dengan Kurva Kontur sin x + sin y = 1", {
+                    position: "middle-center",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Penjumlahan Vektor Satuan dan Sudut Bisektor
+            // ==========================================
+            const elVektor = document.getElementById("svg-vektor-lingkaran-satuan");
+            if (elVektor) {
+                const geo3 = new GeoSVG(elVektor, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Penjumlahan Dua Vektor Satuan pada Lingkaran Trigonometri"
+                });
+
+                const Ox = 90, Oy = 160;
+
+                // Sumbu Kartesius
+                geo3.buatSegmen([Ox - 20, Oy], [Ox + 170, Oy], { stroke: TEMA.abu, strokeWidth: 1 });
+                geo3.buatSegmen([Ox, Oy + 20], [Ox, Oy - 140], { stroke: TEMA.abu, strokeWidth: 1 });
+
+                // Vektor u (sudut 20 derajat, panjang 65 px)
+                const len = 65;
+                const ptU = [Ox + len * Math.cos(20 * Math.PI / 180), Oy - len * Math.sin(20 * Math.PI / 180)];
+                // Vektor v (sudut 70 derajat, panjang 65 px)
+                const ptV = [Ox + len * Math.cos(70 * Math.PI / 180), Oy - len * Math.sin(70 * Math.PI / 180)];
+
+                // Titik Resultan R = u + v (sudut rata-rata 45 derajat)
+                const ptR = [ptU[0] + (ptV[0] - Ox), ptU[1] + (ptV[1] - Oy)];
+
+                // Garis Jajar Genjang (Dashed)
+                geo3.buatSegmen(ptU, ptR, { stroke: TEMA.aksen, strokeWidth: 1.4, strokeDasharray: "3 2" });
+                geo3.buatSegmen(ptV, ptR, { stroke: TEMA.utama, strokeWidth: 1.4, strokeDasharray: "3 2" });
+
+                // Vektor u (Biru)
+                geo3.buatSegmen([Ox, Oy], ptU, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo3.buatLingkaran(ptU, 3, { fill: TEMA.utama });
+                geo3.buatTeks(ptU[0] + 6, ptU[1] + 4, "u⃗", { fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Vektor v (Hijau)
+                geo3.buatSegmen([Ox, Oy], ptV, { stroke: TEMA.aksen, strokeWidth: 2.2 });
+                geo3.buatLingkaran(ptV, 3, { fill: TEMA.aksen });
+                geo3.buatTeks(ptV[0] - 12, ptV[1] - 4, "v⃗", { fontSize: "9px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Vektor Resultan R (Merah Tebal)
+                geo3.buatSegmen([Ox, Oy], ptR, { stroke: TEMA.merah, strokeWidth: 2.5 });
+                geo3.buatLingkaran(ptR, 3.8, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo3.buatTeks(ptR[0] + 6, ptR[1] - 4, "R⃗ = u⃗ + v⃗", { position: "bottom-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 208, "|R⃗| = 2 cos((x − y)/2) sepanjang garis bagi arah (x + y)/2", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

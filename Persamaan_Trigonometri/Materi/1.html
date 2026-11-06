@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Persamaan Trigonometri</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Persamaan Trigonometri</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Persamaan Trigonometri & Sifat Periodisitas</h2>
+            <p>
+                <strong>Persamaan Trigonometri</strong> adalah persamaan aljabar yang memuat satu atau lebih perbandingan trigonometri (sinus, kosinus, tangen) dengan sudut variabel yang belum diketahui nilainya.
+            </p>
+            <p>
+                Ciri khas utama dari fungsi trigonometri adalah <strong>bersifat periodik (berulang secara siklis)</strong>:
+            </p>
+            <ul>
+                <li>Fungsi $\sin x$ dan $\cos x$ memiliki periode $360^\circ$ ($2\pi$ radian). Nilai fungsi akan berulang persis setelah berputar satu putaran penuh:
+                    $$\sin(x + k \cdot 360^\circ) = \sin x, \quad \cos(x + k \cdot 360^\circ) = \cos x \quad (k \in \mathbb{Z})$$
+                </li>
+                <li>Fungsi $\tan x$ memiliki periode $180^\circ$ ($\pi$ radian):
+                    $$\tan(x + k \cdot 180^\circ) = \tan x \quad (k \in \mathbb{Z})$$
+                </li>
+            </ul>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Rentang Nilai Terdefinisi (Jangkauan / Range):</strong><br>
+                    Untuk setiap $x \in \mathbb{R}$, nilai sinus dan kosinus dibatasi secara ketat pada interval tertutup:
+                    $$-1 \le \sin x \le 1 \quad \text{dan} \quad -1 \le \cos x \le 1$$
+                    Jika suatu persamaan menghasilkan $\sin x = 2$ atau $\cos x = -1{,}5$, maka cabang persamaan tersebut <strong>tidak memiliki penyelesaian real ($\emptyset$)</strong>. Sementara itu, jangkauan nilai fungsi tangen mencakup seluruh bilangan real: $-\infty < \tan x < \infty$.
+                </p>
+            </div>
+
+            <h2>2. Penurunan Geometris Rumus Dasar Persamaan Trigonometri</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Persamaan Sinus: $\sin x = \sin \alpha$</h3>
+                    <p>
+                        Pada <strong>Lingkaran Satuan (Unit Circle)</strong> dengan jari-jari $r = 1$, nilai sinus dari suatu sudut rotasi adalah <strong>ordinat tegak ($y$)</strong> dari titik terminal pada lingkaran.
+                    </p>
+                    <p>
+                        Jika kita menarik garis horizontal $y = c$ ($0 < c \le 1$), garis tersebut memotong lingkaran satuan di <strong>dua titik simetris terhadap sumbu-$Y$</strong>:
+                    </p>
+                    <ol>
+                        <li><strong>Kuadran I:</strong> Sudut dasar $\alpha$.</li>
+                        <li><strong>Kuadran II:</strong> Sudut pelurus $(180^\circ - \alpha)$.</li>
+                    </ol>
+                    <p>
+                        Dengan memperhitungkan kelipatan putaran penuh $k \cdot 360^\circ$ ($k \in \mathbb{Z}$), rumus umum persamaan sinus adalah:
+                        $$\begin{cases} x = \alpha + k \cdot 360^\circ \\ x = (180^\circ - \alpha) + k \cdot 360^\circ \end{cases} \quad \text{atau} \quad \begin{cases} x = \alpha + 2k\pi \\ x = (\pi - \alpha) + 2k\pi \end{cases}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-lingkaran-satuan-sinus" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h3>B. Persamaan Kosinus: $\cos x = \cos \alpha$</h3>
+            <p>
+                Pada lingkaran satuan, nilai kosinus menyatakan <strong>absis mendatar ($x$)</strong>. Garis vertikal $x = c$ memotong lingkaran di dua titik yang simetris terhadap sumbu-$X$, yaitu di <strong>Kuadran I ($\alpha$)</strong> dan <strong>Kuadran IV ($-\alpha$)</strong>:
+                $$\begin{cases} x = \alpha + k \cdot 360^\circ \\ x = -\alpha + k \cdot 360^\circ \end{cases} \quad \text{atau} \quad \begin{cases} x = \alpha + 2k\pi \\ x = -\alpha + 2k\pi \end{cases}$$
+            </p>
+
+            <h3>C. Persamaan Tangen: $\tan x = \tan \alpha$</h3>
+            <p>
+                Nilai tangen berulang setiap setengah putaran ($180^\circ$ atau $\pi$), bernilai positif di Kuadran I dan Kuadran III. Oleh karena itu, persamaan tangen hanya memiliki <strong>satu rumus cabang tunggal</strong>:
+                $$x = \alpha + k \cdot 180^\circ \quad \text{atau} \quad x = \alpha + k\pi \quad (k \in \mathbb{Z})$$
+                dengan syarat sudut $x \neq 90^\circ + k \cdot 180^\circ$.
+            </p>
+
+            <h2>3. Interpretasi Grafis Gelombang Sinusoidal</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Menyelesaikan persamaan trigonometri $\sin x = c$ pada selang tertentu setara dengan mencari absis perpotongan antara kurva gelombang sinusoidal $y_1 = \sin x$ dengan garis horizontal $y_2 = c$.
+                    </p>
+                    <p>
+                        Sebagai contoh, untuk persamaan $\sin x = \frac{1}{2}$ pada interval $0^\circ \le x \le 360^\circ$:
+                    </p>
+                    <ul>
+                        <li>Kurva $y = \sin x$ (biru) memotong garis horizontal $y = 0{,}5$ (merah) tepat di dua titik absis: $x = 30^\circ$ dan $x = 150^\circ$.</li>
+                        <li>Jika interval diperluas hingga $720^\circ$, perpotongan akan terulang kembali pada siklus periode berikutnya di $x = 30^\circ + 360^\circ = 390^\circ$ dan $x = 150^\circ + 360^\circ = 510^\circ$.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-gelombang-sinus" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Persamaan Kuadrat Trigonometri</h2>
+            <p>
+                Persamaan yang memuat suku kuadrat dari fungsi trigonometri diselesaikan dengan metode pemfaktoran aljabar kuadrat setelah diseragamkan ke satu jenis fungsi trigonometri:
+            </p>
+            <ul>
+                <li>Gunakan identitas dasar Pythagoras:
+                    $$\sin^2 x + \cos^2 x = 1 \iff \sin^2 x = 1 - \cos^2 x \iff \cos^2 x = 1 - \sin^2 x$$
+                </li>
+                <li>Misalkan variabel pembantu $u = \cos x$ atau $u = \sin x$ dengan syarat wajib batas eksistensi:
+                    $$-1 \le u \le 1$$
+                </li>
+                <li>Faktorkan persamaan kuadrat $A u^2 + B u + C = 0$. Abaikan akar $u$ yang bernilai $|u| > 1$.</li>
+            </ul>
+
+            <h2>5. Transformasi Bentuk Linear $a \cos x + b \sin x = c$</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Superposisi (penjumlahan linear) dari suku kosinus dan sinus dapat digabungkan menjadi sebuah fungsi kosinus tunggal beramplitudo $k$ yang mengalami pergeseran sudut fase sebesar $\alpha$:
+                        $$a \cos x + b \sin x = k \cos(x - \alpha)$$
+                    </p>
+                    <ul>
+                        <li><strong>Amplitudo Resultan ($k$):</strong>
+                            $$k = \sqrt{a^2 + b^2} \quad (k > 0)$$
+                        </li>
+                        <li><strong>Sudut Fase ($\alpha$):</strong>
+                            $$\tan \alpha = \frac{b}{a}$$
+                            <em>(Kuadran sudut $\alpha$ ditentukan oleh tanda $a$ sebagai absis horizontal dan $b$ sebagai ordinat vertikal).</em>
+                        </li>
+                        <li><strong>Syarat Keberadaan Solusi Real:</strong>
+                            Karena $-1 \le \cos(x - \alpha) \le 1$, persamaan $k \cos(x - \alpha) = c \iff \cos(x - \alpha) = \frac{c}{k}$ hanya memiliki penyelesaian real jika dan hanya jika:
+                            $$\left|\frac{c}{k}\right| \le 1 \iff c^2 \le a^2 + b^2$$
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-segitiga-amplitudo" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Persamaan Rumus Sudut Rangkap & Faktorisasi</h2>
+            <p>
+                Persamaan yang memuat sudut ganda diselesaikan dengan menguraikan rumus sudut rangkap:
+            </p>
+            <ul>
+                <li>$\sin 2x = 2 \sin x \cos x$</li>
+                <li>$\cos 2x = \cos^2 x - \sin^2 x = 2\cos^2 x - 1 = 1 - 2\sin^2 x$</li>
+                <li>$\tan 2x = \dfrac{2\tan x}{1 - \tan^2 x}$</li>
+            </ul>
+            <p>
+                <strong>Trik Faktorisasi Aljabar Pangkat Tinggi:</strong> Bentuk $\sin^4 x - \cos^4 x$ dapat difaktorkan sebagai selisih kuadrat:
+                $$\sin^4 x - \cos^4 x = (\sin^2 x - \cos^2 x)(\sin^2 x + \cos^2 x) = -(\cos^2 x - \sin^2 x) \cdot 1 = -\cos 2x$$
+            </p>
+
+            <h2>7. Tabel Ringkasan Rumus Penyelesaian Persamaan Trigonometri</h2>
+            <div class="table-container">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead>
+                        <tr style="background: var(--card-bg, #f8fafc); border-bottom: 2px solid var(--border-color, #e2e8f0);">
+                            <th style="padding: 10px; text-align: left;">Bentuk Persamaan</th>
+                            <th style="padding: 10px; text-align: left;">Rumus Penyelesaian ($k \in \mathbb{Z}$)</th>
+                            <th style="padding: 10px; text-align: left;">Kondisi & Batas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;">$\sin x = \sin \alpha$</td>
+                            <td style="padding: 10px;">
+                                1) $x = \alpha + k \cdot 360^\circ$<br>
+                                2) $x = (180^\circ - \alpha) + k \cdot 360^\circ$
+                            </td>
+                            <td style="padding: 10px;">Kuadran I & II</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;">$\cos x = \cos \alpha$</td>
+                            <td style="padding: 10px;">
+                                1) $x = \alpha + k \cdot 360^\circ$<br>
+                                2) $x = -\alpha + k \cdot 360^\circ$
+                            </td>
+                            <td style="padding: 10px;">Kuadran I & IV</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;">$\tan x = \tan \alpha$</td>
+                            <td style="padding: 10px;">$x = \alpha + k \cdot 180^\circ$</td>
+                            <td style="padding: 10px;">Periode $180^\circ$ ($\pi$)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;">$a \cos x + b \sin x = c$</td>
+                            <td style="padding: 10px;">$k \cos(x - \alpha) = c$</td>
+                            <td style="padding: 10px;">$k = \sqrt{a^2 + b^2}$, syarat $c^2 \le a^2 + b^2$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>8. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- CONTOH 1 (Dasar) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Persamaan Sinus Dasar (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan himpunan penyelesaian dari persamaan trigonometri berikut:
+                    $$\sin x = \frac{1}{2} \quad \text{untuk interval } 0^\circ \le x \le 360^\circ$$
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Nilai $\sin 30^\circ = \dfrac{1}{2}$, maka $\alpha = 30^\circ$.<br>
+                        Persamaan menjadi $\sin x = \sin 30^\circ$.<br><br>
+                        <strong>Cabang 1:</strong>
+                        $$x = 30^\circ + k \cdot 360^\circ$$
+                        <ul>
+                            <li>Untuk $k = 0 \implies x = 30^\circ$ &nbsp;(Memenuhi)</li>
+                            <li>Untuk $k = 1 \implies x = 390^\circ$ &nbsp;(Di luar interval)</li>
+                        </ul>
+                        <strong>Cabang 2:</strong>
+                        $$x = (180^\circ - 30^\circ) + k \cdot 360^\circ = 150^\circ + k \cdot 360^\circ$$
+                        <ul>
+                            <li>Untuk $k = 0 \implies x = 150^\circ$ &nbsp;(Memenuhi)</li>
+                            <li>Untuk $k = 1 \implies x = 510^\circ$ &nbsp;(Di luar interval)</li>
+                        </ul>
+                        <div class="kesimpulan">
+                            Jadi, himpunan penyelesaiannya adalah $\{30^\circ, 150^\circ\}$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Persamaan Kuadrat Kosinus (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Banyaknya nilai $x$ pada interval $0^\circ \le x \le 360^\circ$ yang memenuhi persamaan:
+                    $$2\cos^2 x - 5\cos x - 3 = 0$$
+                    adalah....
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Misalkan $u = \cos x$ dengan batasan $-1 \le u \le 1$.<br>
+                        Persamaan kuadrat menjadi:
+                        $$\begin{aligned}
+                        2u^2 - 5u - 3 &= 0 \\
+                        (2u + 1)(u - 3) &= 0
+                        \end{aligned}$$
+                        Diperoleh dua nilai $u$:
+                        $$u_1 = -\frac{1}{2} \quad \text{atau} \quad u_2 = 3$$
+                        Karena jangkauan kosinus adalah $-1 \le \cos x \le 1$, maka nilai $u_2 = 3$ <strong>gugur (tidak memenuhi)</strong>.<br><br>
+                        Selesaikan untuk $\cos x = -\dfrac{1}{2}$:<br>
+                        Nilai $\cos 120^\circ = -\dfrac{1}{2}$, maka $\alpha = 120^\circ$.<br>
+                        <strong>Cabang 1:</strong>
+                        $$x = 120^\circ + k \cdot 360^\circ \implies k = 0 \implies x_1 = 120^\circ$$
+                        <strong>Cabang 2:</strong>
+                        $$x = -120^\circ + k \cdot 360^\circ \implies k = 1 \implies x_2 = -120^\circ + 360^\circ = 240^\circ$$
+                        Kedua solusi terletak di dalam interval $0^\circ \le x \le 360^\circ$.
+                        <div class="kesimpulan">
+                            Jadi, banyaknya nilai $x$ yang memenuhi persamaan adalah 2, yaitu $x = 120^\circ$ dan $x = 240^\circ$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Faktorisasi Selisih Kuadrat Pangkat Empat (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan banyaknya bilangan real $t$ yang memenuhi persamaan $\sin^4 t - \cos^4 t = 1$ pada interval $-\pi \le t \le \pi$.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Faktorkan ruas kiri sebagai selisih dua kuadrat $A^2 - B^2 = (A - B)(A + B)$ dengan $A = \sin^2 t$ dan $B = \cos^2 t$:
+                        $$\begin{aligned}
+                        \sin^4 t - \cos^4 t &= 1 \\
+                        (\sin^2 t - \cos^2 t)(\sin^2 t + \cos^2 t) &= 1
+                        \end{aligned}$$
+                        Ingat identitas Pythagoras $\sin^2 t + \cos^2 t = 1$ dan sudut rangkap $\cos 2t = \cos^2 t - \sin^2 t$:
+                        $$\begin{aligned}
+                        (\sin^2 t - \cos^2 t) \cdot 1 &= 1 \\
+                        -(\cos^2 t - \sin^2 t) &= 1 \\
+                        -\cos 2t &= 1 \\
+                        \cos 2t &= -1
+                        \end{aligned}$$
+                        Selesaikan persamaan $\cos 2t = -1$:<br>
+                        Nilai kosinus bernilai $-1$ pada sudut $\pi$ radian:
+                        $$\cos 2t = \cos \pi \implies 2t = \pm \pi + 2k\pi \iff 2t = \pi + 2k\pi \implies t = \frac{\pi}{2} + k\pi$$
+                        Cari nilai $t$ yang berada di dalam interval $-\pi \le t \le \pi$:
+                        <ul>
+                            <li>Untuk $k = 0 \implies t = \dfrac{\pi}{2}$ &nbsp;(Memenuhi, $-\pi \le \frac{\pi}{2} \le \pi$)</li>
+                            <li>Untuk $k = -1 \implies t = \dfrac{\pi}{2} - \pi = -\dfrac{\pi}{2}$ &nbsp;(Memenuhi, $-\pi \le -\frac{\pi}{2} \le \pi$)</li>
+                            <li>Untuk $k = 1 \implies t = \dfrac{\pi}{2} + \pi = \dfrac{3\pi}{2}$ &nbsp;(Di luar interval)</li>
+                        </ul>
+                        <div class="kesimpulan">
+                            Jadi, banyaknya bilangan real $t$ yang memenuhi persamaan tersebut adalah 2, yaitu $t = -\dfrac{\pi}{2}$ dan $t = \dfrac{\pi}{2}$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // 1. Visualisasi Lingkaran Satuan & Dua Sudut Simetri Sinus (α dan 180° - α)
+            const elUnitCircle = document.getElementById("svg-lingkaran-satuan-sinus");
+            if (elUnitCircle && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elUnitCircle, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Lingkaran Satuan dan Simetri Sudut Persamaan Sinus"
+                });
+
+                const P = [170, 115];
+                const r = 76;
+
+                // Sumbu Kartesius X dan Y
+                geo1.buatVektor([P[0] - r - 28, P[1]], [P[0] + r + 30, P[1]], { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor([P[0], P[1] + r + 20], [P[0], P[1] - r - 22], { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo1.buatTeks(P[0] + r + 34, P[1], "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo1.buatTeks(P[0], P[1] - r - 26, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Lingkaran Satuan r = 1
+                geo1.buatLingkaran(P, r, { fill: "rgba(2, 132, 199, 0.05)", stroke: TEMA.utama, strokeWidth: 2 });
+                geo1.buatLingkaran(P, 3.5, { fill: "#475569" });
+
+                // Garis Horizontal y = 0.5 * r (nilai sinus = 0.5)
+                const ySin = P[1] - 0.5 * r;
+                geo1.buatSegmen([P[0] - r - 15, ySin], [P[0] + r + 15, ySin], {
+                    stroke: TEMA.merah,
+                    strokeWidth: 1.8,
+                    strokeDasharray: "4 3"
+                });
+                geo1.buatTeks(P[0] + r + 18, ySin, "y = 0.5", {
+                    position: "middle-left",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Titik 1: Sudut alpha = 30 derajat (Kuadran I)
+                const rad30 = 30 * (Math.PI / 180);
+                const T1 = [P[0] + r * Math.cos(rad30), P[1] - r * Math.sin(rad30)];
+                geo1.buatSegmen(P, T1, { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo1.buatLingkaran(T1, 4.5, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(T1[0] + 6, T1[1] - 8, "α = 30°", {
+                    position: "bottom-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // Titik 2: Sudut 180 - alpha = 150 derajat (Kuadran II)
+                const rad150 = 150 * (Math.PI / 180);
+                const T2 = [P[0] + r * Math.cos(rad150), P[1] - r * Math.sin(rad150)];
+                geo1.buatSegmen(P, T2, { stroke: TEMA.oranye, strokeWidth: 2 });
+                geo1.buatLingkaran(T2, 4.5, { fill: TEMA.oranye, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(T2[0] - 6, T2[1] - 8, "180° - α = 150°", {
+                    position: "bottom-right",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.oranye
+                });
+
+                // Busur sudut alpha di Kuadran I
+                geo1.buatSudut([P[0] + r, P[1]], P, T1, {
+                    radius: 26,
+                    stroke: TEMA.aksen,
+                    strokeWidth: 1.4,
+                    fill: "rgba(13, 148, 136, 0.15)"
+                });
+
+                // Keterangan Bawah
+                geo1.buatTeks(P[0], 214, "Kedua Sudut Memiliki Nilai Ordinat Sinus yang Sama (y = 0.5)", {
+                    position: "middle-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 2. Visualisasi Kurva Gelombang Sinusoidal & Periodisitas Solusi
+            const elGelombang = document.getElementById("svg-gelombang-sinus");
+            if (elGelombang && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elGelombang, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Grafik Gelombang Sinusoidal y = sin(x) dan Garis y = 0.5"
+                });
+
+                const Ox = 50, Oy = 115, ux = 0.65, uy = 55;
+                const toPx = (deg, y) => [Ox + deg * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo2.buatVektor(toPx(-20, 0), toPx(385, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo2.buatVektor(toPx(0, -1.3), toPx(0, 1.4), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo2.buatTeks(Ox + 390 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo2.buatTeks(Ox, Oy - 1.5 * uy, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Label Derajat pada Sumbu X
+                [90, 180, 270, 360].forEach(deg => {
+                    const pt = toPx(deg, 0);
+                    geo2.buatSegmen([pt[0], pt[1] - 3], [pt[0], pt[1] + 3], { stroke: "#64748b", strokeWidth: 1 });
+                    geo2.buatTeks(pt[0], pt[1] + 12, deg + "°", { position: "middle-center", fontSize: "8.5px", fill: "#64748b" });
+                });
+
+                // Kurva y = sin(x) dari 0 sampai 360 derajat
+                const ptsSin = [];
+                for (let d = 0; d <= 360; d += 6) {
+                    const rad = d * (Math.PI / 180);
+                    ptsSin.push(toPx(d, Math.sin(rad)));
+                }
+                geo2.buatPolyline(ptsSin, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo2.buatTeks(toPx(270, -1)[0] + 14, toPx(270, -1)[1] - 8, "y = sin x", {
+                    position: "middle-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Garis y = 0.5
+                const pLine1 = toPx(-10, 0.5);
+                const pLine2 = toPx(370, 0.5);
+                geo2.buatSegmen(pLine1, pLine2, { stroke: TEMA.merah, strokeWidth: 1.8 });
+                geo2.buatTeks(pLine2[0] + 4, pLine2[1], "y = 0.5", {
+                    position: "middle-left",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Titik Potong 1: x = 30°
+                const P1 = toPx(30, 0.5);
+                geo2.buatSegmen(P1, toPx(30, 0), { stroke: TEMA.aksen, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo2.buatLingkaran(P1, 4.5, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(P1[0], P1[1] - 12, "30°", { position: "bottom-center", fontSize: "9.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Titik Potong 2: x = 150°
+                const P2 = toPx(150, 0.5);
+                geo2.buatSegmen(P2, toPx(150, 0), { stroke: TEMA.oranye, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo2.buatLingkaran(P2, 4.5, { fill: TEMA.oranye, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(P2[0], P2[1] - 12, "150°", { position: "bottom-center", fontSize: "9.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 204, "Solusi Persamaan Trigonometri: Titik Potong Gelombang dengan y = c", {
+                    position: "middle-center",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 3. Visualisasi Vektor Segitiga Transformasi a cos x + b sin x = k cos(x - α)
+            const elSegitiga = document.getElementById("svg-segitiga-amplitudo");
+            if (elSegitiga && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elSegitiga, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Segitiga Transformasi Amplitudo k = √(a² + b²) dan Sudut Fase α"
+                });
+
+                const O = [65, 160];  // Sudut alas
+                const C = [225, 160]; // Sudut siku-siku
+                const B = [225, 60];  // Puncak atas
+
+                // Sudut siku-siku di C
+                geo3.buatSiku(O, C, B, { size: 14, stroke: "#334155", strokeWidth: 1.4 });
+
+                // Segitiga OCB
+                geo3.buatSegitiga(O, C, B, {
+                    fill: "rgba(2, 132, 199, 0.08)",
+                    stroke: TEMA.utama,
+                    strokeWidth: 2
+                });
+
+                // Sudut fase alpha di O
+                geo3.buatSudut(C, O, B, {
+                    radius: 30,
+                    stroke: TEMA.merah,
+                    strokeWidth: 1.4,
+                    fill: "rgba(225, 29, 72, 0.15)"
+                });
+                geo3.buatTeks(108, 150, "α", { position: "middle-center", fontSize: "12px", fontStyle: "italic", fill: TEMA.merah });
+
+                // Sisi alas a
+                geo3.buatTeks((O[0] + C[0]) / 2, O[1] + 16, "a (koefisien cos)", {
+                    position: "top-center",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+
+                // Sisi tegak b
+                geo3.buatTeks(C[0] + 16, (C[1] + B[1]) / 2, "b (koefisien sin)", {
+                    position: "middle-left",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+
+                // Sisi miring k
+                geo3.buatTeks((O[0] + B[0]) / 2 - 14, (O[1] + B[1]) / 2 - 14, "k = √(a² + b²)", {
+                    position: "bottom-right",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 204, "a cos x + b sin x = k cos(x - α) dengan tan α = b / a", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
+

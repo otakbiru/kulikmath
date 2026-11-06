@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Polinom (Suku Banyak)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Polinom (Suku Banyak)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian, Bentuk Baku & Istilah Polinomial</h2>
+            <p>
+                <strong>Polinomial (Suku Banyak)</strong> dalam variabel $x$ berderajat $n$ adalah bentuk aljabar yang memuat jumlahan suku-suku berbobot pangkat bulat non-negatif:
+                $$P(x) = a_n x^n + a_{n-1} x^{n-1} + a_{n-2} x^{n-2} + \dots + a_1 x + a_0$$
+                dengan karakteristik struktural:
+            </p>
+            <ul>
+                <li>$n \in \{0, 1, 2, 3, \dots\}$ merupakan bilangan cacah yang menyatakan <strong>derajat (degree)</strong> polinomial.</li>
+                <li>$a_n, a_{n-1}, \dots, a_1, a_0 \in \mathbb{R}$ adalah koefisien-koefisien real.</li>
+                <li>$a_n \neq 0$ dinamakan <strong>koefisien utama (leading coefficient)</strong>, dan suku $a_n x^n$ disebut <strong>suku utama</strong>.</li>
+                <li>$a_0$ adalah suku bebas konstan yang tidak memuat variabel $x$ (disebut <strong>konstanta</strong>).</li>
+            </ul>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Prinsip Kesamaan (Identitas) Polinom:</strong> Dua polinomial $P(x)$ dan $Q(x)$ dikatakan identik ($P(x) \equiv Q(x)$) jika dan hanya jika keduanya memiliki derajat yang sama dan setiap koefisien dari suku-suku yang berpangkat sama bernilai tepat sama.
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>2. Evaluasi Nilai & Pembagian Polinom: Skema Horner</h2>
+                    <p>
+                        Nilai polinomial $P(x)$ pada $x = k$ dapat dihitung melalui metode substitusi langsung atau metode komputasi efisien yang dinamakan <strong>Bagan / Skema Horner</strong>.
+                    </p>
+                    <p>
+                        Skema Horner memanfaatkan pemfaktoran bersarang (*nested factoring*):
+                        $$P(x) = ((a_n x + a_{n-1})x + a_{n-2})x + \dots + a_0$$
+                    </p>
+                    <p>
+                        Selain menentukan nilai fungsi $P(k)$, Skema Horner sekaligus menghasilkan <strong>koefisien hasil bagi $H(x)$</strong> dan <strong>sisa pembagian $S$</strong> ketika $P(x)$ dibagi oleh bentuk linear $(x - k)$.
+                    </p>
+                    <p>
+                        Pada diagram di samping, diperlihatkan pembagian:
+                        $$P(x) = 2x^3 - 5x^2 - 4x + 12 \quad \text{oleh } (x - 3)$$
+                        Diperoleh hasil bagi $H(x) = 2x^2 + x - 1$ dan sisa $S = 9$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-skema-horner" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Algoritma Pembagian & Teorema Sisa (Remainder Theorem)</h2>
+            <p>
+                Berdasarkan <strong>Algoritma Pembagian Euclid</strong>, untuk setiap polinomial $P(x)$ berderajat $n$ yang dibagi oleh polinomial $Q(x)$ berderajat $m$ ($m \le n$), selalu terdapat secara tunggal hasil bagi $H(x)$ dan sisa $S(x)$ sedemikian sehingga:
+                $$P(x) = Q(x) \cdot H(x) + S(x)$$
+                dengan ketentuan derajat sisa pembagian selalu lebih kecil dari derajat pembagi: $\text{deg}(S) < \text{deg}(Q)$.
+            </p>
+
+            <h3>Tiga Teorema Sisa Pokok</h3>
+            <ol>
+                <li><strong>Pembagi Linear $(x - k)$ [Derajat 1]:</strong>
+                    Sisa pembagian berderajat 0 (berupa konstanta $S$). Nilai sisa tepat sama dengan nilai fungsi di titik pembuat nol pembagi:
+                    $$S = P(k)$$
+                </li>
+                <li><strong>Pembagi Linear $(ax + b)$ [Derajat 1]:</strong>
+                    Sisa pembagian adalah konstanta:
+                    $$S = P\left(-\frac{b}{a}\right)$$
+                    dan hasil bagi sejatinya adalah $\dfrac{H(x)}{a}$.
+                </li>
+                <li><strong>Pembagi Kuadrat $(x - a)(x - b)$ [Derajat 2]:</strong>
+                    Sisa pembagian berderajat paling tinggi 1, sehingga dapat dimisalkan berbentuk linear:
+                    $$S(x) = mx + n$$
+                    Nilai parameter $m$ dan $n$ ditentukan dari sistem persamaan:
+                    $$\begin{cases} P(a) = ma + n \\ P(b) = mb + n \end{cases}$$
+                </li>
+            </ol>
+
+            <h3>Teorema Faktor & Teorema Akar Rasional</h3>
+            <ul>
+                <li><strong>Teorema Faktor:</strong> Suatu bentuk linear $(x - k)$ merupakan faktor dari polinomial $P(x)$ jika dan hanya jika sisa pembagiannya bernilai nol:
+                    $$P(k) = 0$$
+                </li>
+                <li><strong>Teorema Akar Rasional:</strong> Jika persamaan polinomial $a_n x^n + \dots + a_0 = 0$ dengan koefisien bulat memiliki akar rasional $\frac{p}{q}$ (pecahan paling sederhana), maka $p$ merupakan faktor bulat dari konstanta $a_0$, dan $q$ merupakan faktor bulat dari koefisien utama $a_n$.</li>
+            </ul>
+
+            <h2>4. Teorema Vieta: Relasi Simetris Akar & Koefisien</h2>
+            <p>
+                Jika $x_1, x_2, \dots, x_n$ adalah akar-akar dari persamaan polinomial $a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0 = 0$, maka <strong>Teorema Vieta</strong> menyatakan hubungan elementer antara jumlah dan hasil kali akar dengan koefisien polinomial:
+            </p>
+            <ul>
+                <li><strong>Jumlah Akar Tunggal:</strong>
+                    $$\sum_{i=1}^{n} x_i = x_1 + x_2 + \dots + x_n = -\frac{a_{n-1}}{a_n}$$
+                </li>
+                <li><strong>Jumlah Hasil Kali Dua Akar:</strong>
+                    $$\sum_{1 \le i < j \le n} x_i x_j = x_1 x_2 + x_1 x_3 + \dots = +\frac{a_{n-2}}{a_n}$$
+                </li>
+                <li><strong>Jumlah Hasil Kali Tiga Akar:</strong>
+                    $$\sum_{1 \le i < j < k \le n} x_i x_j x_k = -\frac{a_{n-3}}{a_n}$$
+                </li>
+                <li><strong>Hasil Kali Seluruh $n$ Akar:</strong>
+                    $$x_1 x_2 \dots x_n = (-1)^n \frac{a_0}{a_n}$$
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>5. Geometri & Analisis Grafik Polinomial</h2>
+                    <p>
+                        Secara geometris pada bidang Cartesius, akar-akar real dari suatu polinomial $P(x) = 0$ merupakan <strong>absis titik potong grafik kurva $y = P(x)$ terhadap sumbu-$X$</strong>.
+                    </p>
+                    <p>
+                        Karakteristik grafik fungsi kubik $P(x) = x^3 - 3x^2 - x + 3$:
+                    </p>
+                    <ul>
+                        <li>Faktorisasi: $P(x) = (x + 1)(x - 1)(x - 3)$.</li>
+                        <li>Memotong sumbu-$X$ di tiga titik real berlainan: $x = -1$, $x = 1$, dan $x = 3$.</li>
+                        <li>Memotong sumbu-$Y$ pada konstanta suku tetap: $(0, a_0) = (0, 3)$.</li>
+                        <li><strong>Perilaku Ujung (End Behavior):</strong> Karena derajat $n = 3$ ganjil dan koefisien utama $a_3 = 1 > 0$, maka ketika $x \to \infty \implies y \to \infty$ dan ketika $x \to -\infty \implies y \to -\infty$.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-grafik-polinom-kubik" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Multiplisitas Akar & Perilaku Kurva pada Sumbu-X</h3>
+                    <p>
+                        Jika faktor linear berulang muncul sebagai $(x - r)^k$, bilangan bulat $k$ disebut sebagai <strong>derajat multiplisitas akar</strong>:
+                    </p>
+                    <ul>
+                        <li><strong>Multiplisitas Ganjil ($k = 1, 3, 5, \dots$):</strong> Kurva polinomial <strong>memotong dan menembus</strong> sumbu-$X$ (tanda fungsi berubah antara positif dan negatif).</li>
+                        <li><strong>Multiplisitas Genap ($k = 2, 4, 6, \dots$):</strong> Kurva polinomial <strong>menyinggung dan memantul</strong> pada sumbu-$X$ tanpa menembusnya (tanda fungsi tidak berubah di sekitar titik tersebut).</li>
+                    </ul>
+                    <p>
+                        Grafik di samping mengilustrasikan $P(x) = \frac{1}{4}(x + 2)(x - 1)^2(x - 3)$:
+                        menembus di $x = -2$ dan $x = 3$, namun memantul tangensial di akar kembar $x = 1$.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-multiplisitas-akar" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Lengkap</h2>
+
+            <!-- CONTOH 1 (DASAR) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Teorema Sisa & Penentuan Koefisien (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Suku banyak $P(x) = 2x^3 + ax^2 - bx + 6$ diketahui habis dibagi oleh $(x - 1)$ dan bersisa 24 jika dibagi oleh $(x + 2)$.
+                    <br>a) Tentukan nilai dari konstanta $a$ dan $b$!
+                    <br>b) Tentukan sisa pembagian jika suku banyak $P(x)$ tersebut dibagi oleh $(x - 2)$!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Menentukan Nilai Konstanta $a$ dan $b$</strong><br>
+                        Berdasarkan Teorema Sisa:
+                        <ol>
+                            <li>$P(x)$ habis dibagi $(x - 1) \implies P(1) = 0$:
+                                $$\begin{aligned}
+                                2(1)^3 + a(1)^2 - b(1) + 6 &= 0 \\
+                                2 + a - b + 6 &= 0 \\
+                                a - b &= -8 \quad \text{--- (Persamaan 1)}
+                                \end{aligned}$$
+                            </li>
+                            <li>$P(x)$ bersisa 24 jika dibagi $(x + 2) \implies P(-2) = 24$:
+                                $$\begin{aligned}
+                                2(-2)^3 + a(-2)^2 - b(-2) + 6 &= 24 \\
+                                2(-8) + 4a + 2b + 6 &= 24 \\
+                                -16 + 4a + 2b + 6 &= 24 \\
+                                4a + 2b - 10 &= 24 \\
+                                4a + 2b &= 34 \implies 2a + b = 17 \quad \text{--- (Persamaan 2)}
+                                \end{aligned}$$
+                            </li>
+                        </ol>
+                        Eliminasikan $b$ dengan menjumlahkan Persamaan 1 dan Persamaan 2:
+                        $$\begin{aligned}
+                        (a - b) + (2a + b) &= -8 + 17 \\
+                        3a &= 9 \implies a = 3
+                        \end{aligned}$$
+                        Substitusikan $a = 3$ ke Persamaan 1:
+                        $$3 - b = -8 \implies b = 11$$
+                        Sehingga bentuk lengkap polinomial adalah:
+                        $$P(x) = 2x^3 + 3x^2 - 11x + 6$$
+                        <br>
+                        <strong>b) Sisa Pembagian oleh $(x - 2)$</strong><br>
+                        Sisa pembagian $P(x)$ oleh $(x - 2)$ adalah $S = P(2)$:
+                        $$\begin{aligned}
+                        S = P(2) &= 2(2)^3 + 3(2)^2 - 11(2) + 6 \\
+                        &= 2(8) + 3(4) - 22 + 6 \\
+                        &= 16 + 12 - 22 + 6 = 12
+                        \end{aligned}$$
+                        <div class="kesimpulan">
+                            a) Nilai konstanta adalah <strong>$a = 3$</strong> dan <strong>$b = 11$</strong>.<br>
+                            b) Sisa pembagian oleh $(x - 2)$ adalah <strong>$S = 12$</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Sisa Pembagian Polinomial Komposit Derajat Dua (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Suatu polinomial $P(x)$ jika dibagi $(x - 2)$ bersisa 5, dan jika dibagi $(x + 1)$ bersisa $-2$.
+                    Polinomial lain $Q(x)$ jika dibagi $(x - 2)$ bersisa 3, dan jika dibagi $(x + 1)$ bersisa 3.
+                    <br>Tentukan sisa pembagian polinomial hasil kali $R(x) = P(x) \cdot Q(x)$ jika dibagi oleh bentuk kuadrat $x^2 - x - 2$!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Identifikasi Data Nilai Polinomial</strong><br>
+                        Berdasarkan Teorema Sisa:
+                        <ul>
+                            <li>$P(2) = 5$ dan $P(-1) = -2$</li>
+                            <li>$Q(2) = 3$ dan $Q(-1) = 3$</li>
+                        </ul>
+                        Untuk polinomial komposit perkalian $R(x) = P(x) \cdot Q(x)$:
+                        $$R(2) = P(2) \cdot Q(2) = 5 \cdot 3 = 15$$
+                        $$R(-1) = P(-1) \cdot Q(-1) = (-2) \cdot 3 = -6$$
+                        <br>
+                        <strong>Langkah 2: Menentukan Model Sisa Pembagian</strong><br>
+                        Faktorkan pembagi kuadrat:
+                        $$x^2 - x - 2 = (x - 2)(x + 1)$$
+                        Karena pembagi berderajat 2, maka sisa pembagiannya berderajat paling tinggi 1, sehingga dapat dimisalkan:
+                        $$S(x) = mx + n$$
+                        Berdasarkan Algoritma Pembagian:
+                        $$R(x) = (x - 2)(x + 1) \cdot H(x) + (mx + n)$$
+                        <br>
+                        <strong>Langkah 3: Menyusun Sistem Persamaan Linear</strong><br>
+                        Substitusikan pembuat nol pembagi $x = 2$ dan $x = -1$:
+                        $$\begin{aligned}
+                        R(2) &= (0) \cdot H(2) + 2m + n \implies 2m + n = 15 \quad \text{--- (1)} \\
+                        R(-1) &= (0) \cdot H(-1) - m + n \implies -m + n = -6 \quad \text{--- (2)}
+                        \end{aligned}$$
+                        Kurangkan Persamaan (1) dengan Persamaan (2):
+                        $$\begin{aligned}
+                        (2m + n) - (-m + n) &= 15 - (-6) \\
+                        3m &= 21 \implies m = 7
+                        \end{aligned}$$
+                        Substitusikan nilai $m = 7$ ke Persamaan (2):
+                        $$-7 + n = -6 \implies n = 1$$
+                        <div class="kesimpulan">
+                            Jadi, sisa pembagian polinomial $R(x)$ oleh $x^2 - x - 2$ adalah:
+                            $$S(x) = 7x + 1$$
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Teorema Vieta & Manipulasi Simetris Suku Banyak (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    Diberikan persamaan polinomial kubik $x^3 - 3x^2 + 2x - 5 = 0$ yang memiliki akar-akar real/kompleks $x_1, x_2, x_3$.
+                    <br>Tentukan nilai dari ekspresi-ekspresi simetris berikut:
+                    <br>a) $x_1^2 + x_2^2 + x_3^2$
+                    <br>b) $\dfrac{1}{x_1} + \dfrac{1}{x_2} + \dfrac{1}{x_3}$
+                    <br>c) $x_1^3 + x_2^3 + x_3^3$
+                    <br>d) $(x_1 + 1)(x_2 + 1)(x_3 + 1)$
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Identifikasi Koefisien & Teorema Vieta:</strong><br>
+                        Persamaan: $1x^3 - 3x^2 + 2x - 5 = 0$ dengan koefisien $a = 1, b = -3, c = 2, d = -5$.
+                        $$\begin{aligned}
+                        \sigma_1 &= x_1 + x_2 + x_3 = -\frac{b}{a} = -\frac{-3}{1} = 3 \\
+                        \sigma_2 &= x_1 x_2 + x_1 x_3 + x_2 x_3 = +\frac{c}{a} = \frac{2}{1} = 2 \\
+                        \sigma_3 &= x_1 x_2 x_3 = -\frac{d}{a} = -\frac{-5}{1} = 5
+                        \end{aligned}$$
+                        <br>
+                        <strong>a) Menghitung $x_1^2 + x_2^2 + x_3^2$</strong><br>
+                        Gunakan identitas kuadrat aljabar:
+                        $$\begin{aligned}
+                        x_1^2 + x_2^2 + x_3^2 &= (x_1 + x_2 + x_3)^2 - 2(x_1 x_2 + x_1 x_3 + x_2 x_3) \\
+                        &= \sigma_1^2 - 2\sigma_2 \\
+                        &= (3)^2 - 2(2) = 9 - 4 = \mathbf{5}
+                        \end{aligned}$$
+                        <br>
+                        <strong>b) Menghitung $\dfrac{1}{x_1} + \dfrac{1}{x_2} + \dfrac{1}{x_3}$</strong><br>
+                        Samakan penyebut pecahan:
+                        $$\frac{1}{x_1} + \frac{1}{x_2} + \frac{1}{x_3} = \frac{x_1 x_2 + x_1 x_3 + x_2 x_3}{x_1 x_2 x_3} = \frac{\sigma_2}{\sigma_3} = \mathbf{\frac{2}{5}}$$
+                        <br>
+                        <strong>c) Menghitung $x_1^3 + x_2^3 + x_3^3$</strong><br>
+                        Karena $x_1, x_2, x_3$ adalah akar-akar persamaan awal, maka untuk setiap $i \in \{1, 2, 3\}$ berlaku:
+                        $$x_i^3 - 3x_i^2 + 2x_i - 5 = 0 \implies x_i^3 = 3x_i^2 - 2x_i + 5$$
+                        Jumlahkan ketiga relasi tersebut:
+                        $$\begin{aligned}
+                        x_1^3 + x_2^3 + x_3^3 &= 3(x_1^2 + x_2^2 + x_3^2) - 2(x_1 + x_2 + x_3) + 5(3) \\
+                        &= 3(5) - 2(3) + 15 \\
+                        &= 15 - 6 + 15 = \mathbf{24}
+                        \end{aligned}$$
+                        <br>
+                        <strong>d) Menghitung $(x_1 + 1)(x_2 + 1)(x_3 + 1)$</strong><br>
+                        <em>Metode Elegan Evaluasi Polinom:</em><br>
+                        Faktorisasi suku banyak: $P(x) = (x - x_1)(x - x_2)(x - x_3) = x^3 - 3x^2 + 2x - 5$.<br>
+                        Perhatikan bentuk:
+                        $$(x_1 + 1)(x_2 + 1)(x_3 + 1) = (-1)(-1 - x_1)(-1 - x_2)(-1 - x_3) = -P(-1)$$
+                        Evaluasi nilai $P(-1)$:
+                        $$P(-1) = (-1)^3 - 3(-1)^2 + 2(-1) - 5 = -1 - 3 - 2 - 5 = -11$$
+                        Maka:
+                        $$(x_1 + 1)(x_2 + 1)(x_3 + 1) = -(-11) = \mathbf{11}$$
+                        <div class="kesimpulan">
+                            a) $x_1^2 + x_2^2 + x_3^2 = \mathbf{5}$<br>
+                            b) $\dfrac{1}{x_1} + \dfrac{1}{x_2} + \dfrac{1}{x_3} = \mathbf{\dfrac{2}{5}}$<br>
+                            c) $x_1^3 + x_2^3 + x_3^3 = \mathbf{24}$<br>
+                            d) $(x_1 + 1)(x_2 + 1)(x_3 + 1) = \mathbf{11}$
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // ==========================================
+            // 1. Bagan / Skema Horner Pembagian Polinom
+            // P(x) = 2x^3 - 5x^2 - 4x + 12 dibagi (x - 3)
+            // ==========================================
+            const elHorner = document.getElementById("svg-skema-horner");
+            if (elHorner) {
+                const geo1 = new GeoSVG(elHorner, 320, 180, {
+                    viewBox: "0 0 320 180",
+                    margin: 8,
+                    title: "Bagan Skema Horner: P(x) dibagi (x - 3)"
+                });
+
+                // Garis Pembatas Vertikal & Horizontal Horner
+                geo1.buatSegmen([80, 25], [80, 140], { stroke: TEMA.utama, strokeWidth: 2 });
+                geo1.buatSegmen([80, 105], [295, 105], { stroke: TEMA.utama, strokeWidth: 2 });
+
+                // Tanda Operasi Plus (+)
+                geo1.buatTeks(70, 95, "+", { position: "middle-center", fontSize: "16px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Nilai Pembuat Nol Pembagi: k = 3
+                geo1.buatLingkaran([45, 45], 16, { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 1.5 });
+                geo1.buatTeks(45, 45, "k = 3", { position: "middle-center", fontSize: "10px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Baris 1: Koefisien Asal [2, -5, -4, 12]
+                const cols = [115, 165, 215, 265];
+                const coeffs = ["2", "-5", "-4", "12"];
+                cols.forEach((cx, idx) => {
+                    geo1.buatTeks(cx, 45, coeffs[idx], {
+                        position: "middle-center",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        fill: TEMA.teks
+                    });
+                });
+
+                // Baris 2: Hasil Kali Horner [*, 6, 3, -3]
+                geo1.buatTeks(cols[0], 78, "↓", { position: "middle-center", fontSize: "13px", fill: "#94a3b8" });
+                geo1.buatTeks(cols[1], 78, "6", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.oranye });
+                geo1.buatTeks(cols[2], 78, "3", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.oranye });
+                geo1.buatTeks(cols[3], 78, "-3", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Baris 3: Hasil Bagi & Sisa [2, 1, -1, 9]
+                geo1.buatTeks(cols[0], 125, "2", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(cols[1], 125, "1", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(cols[2], 125, "-1", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Kotak Sorotan Sisa S = 9
+                geo1.buatPoligon([
+                    [cols[3] - 16, 112],
+                    [cols[3] + 16, 112],
+                    [cols[3] + 16, 138],
+                    [cols[3] - 16, 138]
+                ], { fill: TEMA.merahMuda, stroke: TEMA.merah, strokeWidth: 1.6 });
+                geo1.buatTeks(cols[3], 125, "9", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Label Bawah
+                geo1.buatTeks(cols[3], 155, "Sisa S = 9", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+                geo1.buatTeks(165, 155, "Koefisien H(x) = 2x² + x - 1", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+            }
+
+            // ==========================================
+            // 2. Grafik Polinomial Kubik: y = x^3 - 3x^2 - x + 3
+            // ==========================================
+            const elKubik = document.getElementById("svg-grafik-polinom-kubik");
+            if (elKubik) {
+                const geo2 = new GeoSVG(elKubik, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Grafik Polinom Kubik: y = (x+1)(x-1)(x-3)"
+                });
+
+                const Ox = 130, Oy = 105, ux = 30, uy = 11;
+                const toPx = (x, y) => [Ox + x * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo2.buatVektor(toPx(-2.8, 0), toPx(4.5, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo2.buatVektor(toPx(0, -7.5), toPx(0, 7.8), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo2.buatTeks(Ox + 4.6 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo2.buatTeks(Ox, Oy - 7.9 * uy, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Kurva Kubik y = x^3 - 3x^2 - x + 3
+                const ptsCurve = [];
+                for (let x = -1.55; x <= 3.55; x += 0.08) {
+                    const y = x * x * x - 3 * x * x - x + 3;
+                    ptsCurve.push(toPx(x, y));
+                }
+                geo2.buatPolyline(ptsCurve, { stroke: TEMA.utama, strokeWidth: 2.2 });
+
+                // Tiga Titik Potong Sumbu-X (Akar-Akar Real)
+                const roots = [-1, 1, 3];
+                const rootLabels = ["(-1, 0)", "(1, 0)", "(3, 0)"];
+                roots.forEach((rx, idx) => {
+                    const pt = toPx(rx, 0);
+                    geo2.buatLingkaran(pt, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                    geo2.buatTeks(pt[0], pt[1] + 12, rootLabels[idx], {
+                        position: "top-center",
+                        fontSize: "8.5px",
+                        fontWeight: "bold",
+                        fill: TEMA.merah
+                    });
+                });
+
+                // Titik Potong Sumbu-Y: (0, 3)
+                const ptY = toPx(0, 3);
+                geo2.buatLingkaran(ptY, 4, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo2.buatTeks(ptY[0] - 6, ptY[1], "(0, 3)", {
+                    position: "middle-right",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // Titik Stasioner Ekstrem Lokal (Puncak & Lembah)
+                const ptMax = toPx(-0.155, 3.08);
+                const ptMin = toPx(2.155, -3.08);
+                geo2.buatLingkaran(ptMax, 3, { fill: TEMA.oranye });
+                geo2.buatLingkaran(ptMin, 3, { fill: TEMA.oranye });
+
+                // Label Kurva
+                geo2.buatTeks(toPx(3.4, 5)[0] - 8, toPx(3.4, 5)[1], "y = x³ - 3x² - x + 3", {
+                    position: "bottom-right",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+            }
+
+            // ==========================================
+            // 3. Visualisasi Multiplisitas Akar Polinomial
+            // y = 0.25 * (x + 2)(x - 1)^2 (x - 3)
+            // ==========================================
+            const elMulti = document.getElementById("svg-multiplisitas-akar");
+            if (elMulti) {
+                const geo3 = new GeoSVG(elMulti, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Multiplisitas: Menembus (Ganjil) vs Memantul (Genap)"
+                });
+
+                const Ox = 150, Oy = 110, ux = 30, uy = 9.5;
+                const toPx = (x, y) => [Ox + x * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo3.buatVektor(toPx(-3.2, 0), toPx(4.2, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo3.buatVektor(toPx(0, -6.8), toPx(0, 7.5), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo3.buatTeks(Ox + 4.3 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo3.buatTeks(Ox, Oy - 7.6 * uy, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Kurva Multiplisitas
+                const ptsCurve = [];
+                for (let x = -2.45; x <= 3.45; x += 0.08) {
+                    const y = 0.25 * (x + 2) * Math.pow(x - 1, 2) * (x - 3);
+                    ptsCurve.push(toPx(x, y));
+                }
+                geo3.buatPolyline(ptsCurve, { stroke: TEMA.aksen, strokeWidth: 2.2 });
+
+                // Titik x = -2 (Akar Ganjil: Menembus)
+                const ptA = toPx(-2, 0);
+                geo3.buatLingkaran(ptA, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(ptA[0], ptA[1] + 12, "x = -2", { position: "top-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+                geo3.buatTeks(ptA[0] - 4, ptA[1] - 12, "Menembus (Pangkat 1)", { position: "bottom-right", fontSize: "7.5px", fill: TEMA.teks });
+
+                // Titik x = 1 (Akar Genap: Memantul / Tangensial)
+                const ptB = toPx(1, 0);
+                geo3.buatLingkaran(ptB, 5, { fill: TEMA.oranye, stroke: "#ffffff", strokeWidth: 2 });
+                geo3.buatTeks(ptB[0], ptB[1] - 8, "x = 1 (Akar Kembar)", { position: "bottom-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+                geo3.buatTeks(ptB[0], ptB[1] + 12, "Memantul (Pangkat 2)", { position: "top-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik x = 3 (Akar Ganjil: Menembus)
+                const ptC = toPx(3, 0);
+                geo3.buatLingkaran(ptC, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(ptC[0], ptC[1] + 12, "x = 3", { position: "top-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+                geo3.buatTeks(ptC[0] + 4, ptC[1] - 12, "Menembus (Pangkat 1)", { position: "bottom-left", fontSize: "7.5px", fill: TEMA.teks });
+
+                // Label Formula Bawah
+                geo3.buatTeks(160, 202, "y = ¼ (x + 2)(x - 1)²(x - 3)", {
+                    position: "middle-center",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

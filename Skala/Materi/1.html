@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Skala & Perbandingan Geometri</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Skala & Perbandingan Geometri</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Rumus Fundamental Skala</h2>
+            <p>
+                <strong>Skala ($S$)</strong> adalah perbandingan (rasio) linier antara ukuran suatu objek pada gambar, denah, peta, atau model tiga dimensi terhadap ukuran sebenarnya dari objek tersebut di dunia nyata.
+            </p>
+            <p>
+                Skala selalu dituliskan dalam bentuk rasio paling sederhana <strong>$1 : n$</strong> (dengan satuan ukuran yang sama, umumnya sentimeter).
+                Contoh: Skala $1 : 2.500.000$ bermakna $1\text{ cm}$ pada peta mewakili $2.500.000\text{ cm} = 25.000\text{ m} = 25\text{ km}$ pada jarak sebenarnya.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Segitiga Relasi Rumus Skala:</strong>
+                </p>
+                $$\text{Skala } (S) = \frac{\text{Jarak pada Peta/Gambar } (J_p)}{\text{Jarak Sebenarnya } (J_s)}$$
+                $$J_p = S \times J_s = \frac{J_s}{n}$$
+                $$J_s = \frac{J_p}{S} = J_p \times n$$
+                <p style="margin: 0.4rem 0 0 0; font-size: 0.9rem;">
+                    <em>Catatan:</em> Pastikan seluruh besaran telah dikonversi ke satuan yang sama (lazimnya sentimeter) sebelum melakukan perhitungan aljabar.
+                </p>
+            </div>
+
+            <h2>2. Jenis-Jenis Representasi Skala Peta</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <ol>
+                        <li><strong>Skala Angka / Numerik (Representative Fraction):</strong>
+                            <br>
+                            Dinyatakan dalam bentuk pecahan atau perbandingan angka bulat, misalnya $1 : 50.000$ atau $\frac{1}{50.000}$.
+                        </li>
+                        <li><strong>Skala Garis / Batang (Graphic / Bar Scale):</strong>
+                            <br>
+                            Dinyatakan dalam bentuk ruas garis bergaris petak dengan ruas-ruas terkalibrasi nilai jarak sebenarnya (misal petak $1\text{ cm}$ bertuliskan $0 - 25 - 50\text{ km}$).
+                            <br>
+                            <em>Keunggulan Skala Batang:</em> Jika peta diperbesar atau diperkecil melalui fotokopi atau layar digital yang berbeda ukuran, skala batang ikut mengalami pemuaian proporsional yang sama sehingga <strong>tetap akurat tanpa perubahan angka</strong>.
+                        </li>
+                        <li><strong>Skala Verbal:</strong>
+                            <br>
+                            Dinyatakan dalam kalimat deskriptif langsung, misalnya <em>"1 sentimeter mewakili 10 kilometer"</em>.
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-skala-linier-vs-grafis" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Jarak dua kota pada peta dengan skala numerik $1 : 2.500.000$ dan skala grafis batang terkalibrasi.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Hukum Skalasi Dimensi ($1D \to 2D \to 3D$)</h2>
+            <p>
+                Salah satu prinsip paling krusial dalam matematika terapan dan tes seleksi SNBT adalah <strong>Hukum Penskalaan Berdasarkan Dimensi</strong>. Misalkan faktor skala linier adalah $k = \frac{1}{n}$:
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <ol>
+                        <li><strong>Dimensi 1 (Linier: Panjang, Lebar, Keliling, Tinggi, Jari-jari):</strong>
+                            <br>
+                            Skala linier sebanding dengan pangkat satu ($k^1$):
+                            $$\frac{\text{Panjang}_{\text{gambar}}}{\text{Panjang}_{\text{sebenarnya}}} = k = \frac{1}{n}$$
+                        </li>
+                        <li><strong>Dimensi 2 (Luas Daerah 2D: Luas Tanah, Luas Penampang):</strong>
+                            <br>
+                            Luas diskalakan sebanding dengan <strong>kuadrat faktor skala ($k^2$)</strong>:
+                            $$A_p = k^2 \times A_s = \frac{1}{n^2} \times A_s \iff A_s = n^2 \times A_p$$
+                            <em>Contoh:</em> Pada denah berskala $1 : 200$, luas $1\text{ cm}^2$ pada denah mewakili $200^2\text{ cm}^2 = 40.000\text{ cm}^2 = 4\text{ m}^2$ sebenarnya.
+                        </li>
+                        <li><strong>Dimensi 3 (Volume & Massa Bangun 3D):</strong>
+                            <br>
+                            Volume diskalakan sebanding dengan <strong>pangkat tiga faktor skala ($k^3$)</strong>:
+                            $$V_m = k^3 \times V_s = \frac{1}{n^3} \times V_s \iff V_s = n^3 \times V_m$$
+                            Jika bahan model identik dengan objek sebenarnya (massa jenis $\rho$ sama), maka perbandingan massanya: $M_s = n^3 \times M_m$.
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-skalasi-dimensi-luas-volume" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Hukum Penskalaan Dimensi — Rusuk berasio $1 : 2$ ($k$), Luas berasio $1 : 4$ ($k^2$), dan Volume berasio $1 : 8$ ($k^3$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>4. Skala sebagai Transformasi Geometri: Dilatasi</h2>
+            <p>
+                Dalam geometri analitis formal, penskalaan merupakan pemetaan <strong>Dilatasi $[P, k]$</strong> dengan pusat $P(x_0, y_0)$ dan faktor skala $k$:
+                $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix} \begin{pmatrix} x - x_0 \\ y - y_0 \end{pmatrix} + \begin{pmatrix} x_0 \\ y_0 \end{pmatrix}$$
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Determinan dari matriks transformasi dilatasi:
+                        $$\det \begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix} = k^2$$
+                        Nilai determinan ini secara matematis membuktikan mengapa <strong>setiap luasan bangun datar yang mengalami penskalaan faktor $k$ luasnya akan berubah tepat sebesar faktor $k^2$</strong>.
+                    </p>
+                    <p>
+                        Sifat-sifat geometris dilatasi:
+                    </p>
+                    <ul>
+                        <li>Sudut-sudut bangun hasil dilatasi tetap kongruen (sebangun).</li>
+                        <li>Garis-garis yang saling sejajar tetap sejajar setelah dilatasi.</li>
+                        <li>Garis proyeksi dari pusat dilatasi menghubungkan titik asli dengan titik bayangannya.</li>
+                    </ul>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-dilatasi-koordinat" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Transformasi dilatasi poligon dengan pusat asal $O(0, 0)$ dan faktor skala $k = 2$, memperlihatkan perbesaran luas sebesar $k^2 = 4\times$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>5. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Perhitungan Jarak Sebenarnya & Konversi Skala Peta</h3>
+                <p>
+                    Jarak antara kota $A$ dan kota $B$ pada sebuah peta berskala $1 : 1.500.000$ adalah $6\text{ cm}$.
+                </p>
+                <ol type="a">
+                    <li>Hitung jarak sebenarnya antara kedua kota tersebut dalam satuan kilometer.</li>
+                    <li>Jika kedua kota tersebut digambar pada peta lain dan jaraknya menjadi $10\text{ cm}$, tentukan skala dari peta kedua tersebut.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menghitung Jarak Sebenarnya ($J_s$):</strong><br>
+                        Diketahui $J_p = 6\text{ cm}$ dan skala $S = 1 : 1.500.000$.
+                        $$J_s = \frac{J_p}{S} = 6\text{ cm} \times 1.500.000 = 9.000.000\text{ cm}$$
+                        Konversikan satuan sentimeter ke kilometer ($1\text{ km} = 100.000\text{ cm}$):
+                        $$J_s = \frac{9.000.000}{100.000}\text{ km} = 90\text{ km}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menentukan Skala Peta Kedua ($S_2$):</strong><br>
+                        Pada peta kedua, jarak gambar $J_p' = 10\text{ cm}$, sedangkan jarak sebenarnya tetap $J_s = 9.000.000\text{ cm}$.
+                        $$S_2 = \frac{J_p'}{J_s} = \frac{10\text{ cm}}{9.000.000\text{ cm}} = \frac{1}{900.000}$$
+                        Maka skala peta kedua adalah <strong>$1 : 900.000$</strong>.
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Jarak sebenarnya adalah $90\text{ km}$ dan skala peta kedua adalah $1 : 900.000$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat SNBT / UTBK — Luas Lahan Nyata Berdasarkan Skala Denah ($k^2$)</h3>
+                <p>
+                    Sebuah denah lahan berbentuk trapesium siku-siku memiliki panjang sisi sejajar $8\text{ cm}$ dan $12\text{ cm}$, serta tinggi $5\text{ cm}$. Denah tersebut dibuat dengan skala $1 : 400$.
+                </p>
+                <ol type="a">
+                    <li>Hitung luas denah lahan tersebut pada gambar ($A_p$).</li>
+                    <li>Hitung luas lahan sebenarnya ($A_s$) dalam satuan meter persegi ($\text{m}^2$).</li>
+                    <li>Jika lahan tersebut dijual dengan harga pasar $\text{Rp}1.500.000\text{ per m}^2$, berapakah total nilai jual lahan tersebut?</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menghitung Luas Denah ($A_p$):</strong><br>
+                        Gunakan rumus luas trapesium:
+                        $$A_p = \frac{a + b}{2} \times t = \frac{8 + 12}{2} \times 5 = \frac{20}{2} \times 5 = 10 \times 5 = 50\text{ cm}^2$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Luas Sebenarnya ($A_s$):</strong><br>
+                        Skala linier adalah $1 : 400$ ($n = 400$).
+                        Berdasarkan hukum penskalaan luas dua dimensi, rasio luas berbanding kuadrat faktor skala ($n^2$):
+                        $$A_s = A_p \times n^2 = 50\text{ cm}^2 \times (400)^2 = 50 \times 160.000\text{ cm}^2 = 8.000.000\text{ cm}^2$$
+                        Konversikan ke $\text{m}^2$ ($1\text{ m}^2 = 10.000\text{ cm}^2$):
+                        $$A_s = \frac{8.000.000}{10.000}\text{ m}^2 = 800\text{ m}^2$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Nilai Jual Lahan:</strong><br>
+                        $$\text{Total Nilai} = 800\text{ m}^2 \times \text{Rp}1.500.000/\text{m}^2 = \text{Rp}1.200.000.000$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Luas denah $50\text{ cm}^2$, luas sebenarnya $800\text{ m}^2$, dan total nilai jual lahan adalah $\text{Rp}1{,}2\text{ Miliar}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Penskalaan Tiga Dimensi ($k^3$) Model Fisik Kapal</h3>
+                <p>
+                    Sebuah model fisik prototipe kapal kargo dibuat dengan skala $1 : 50$ menggunakan bahan paduan logam yang memiliki massa jenis sama persis dengan kapal aslinya.
+                </p>
+                <ol type="a">
+                    <li>Jika luas permukaan cat yang melapisi bagian luar model kapal adalah $2{,}4\text{ m}^2$, hitung total luas permukaan kapal sebenarnya.</li>
+                    <li>Jika massa model kapal adalah $16\text{ kg}$, berapakah massa kapal kargo sebenarnya dalam satuan ton ($1\text{ ton} = 1.000\text{ kg}$)?</li>
+                    <li>Jika kapal sebenarnya memiliki tangki bahan bakar berkapasitas $12.500.000\text{ liter}$, berapakah kapasitas tangki bahan bakar pada model kapal tersebut dalam satuan liter?</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        Skala linier adalah $k = 1 : 50 \implies n = 50$.
+                    </p>
+                    <p>
+                        <strong>(a) Menghitung Luas Permukaan Kapal Sebenarnya (Dimensi 2):</strong><br>
+                        Luas permukaan berbanding lurus dengan kuadrat skala ($n^2$):
+                        $$A_s = A_m \times n^2 = 2{,}4\text{ m}^2 \times (50)^2 = 2{,}4 \times 2.500 = 6.000\text{ m}^2$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Massa Kapal Sebenarnya (Dimensi 3):</strong><br>
+                        Karena massa jenis bahan sama ($\rho_m = \rho_s$), massa berbanding lurus dengan volume ($M = \rho V$). Volume merupakan besaran dimensi tiga sehingga berbanding lurus dengan pangkat tiga skala ($n^3$):
+                        $$M_s = M_m \times n^3 = 16\text{ kg} \times (50)^3 = 16 \times 125.000\text{ kg} = 2.000.000\text{ kg}$$
+                        Konversikan ke ton:
+                        $$M_s = \frac{2.000.000}{1.000}\text{ ton} = 2.000\text{ ton}$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Kapasitas Tangki Model (Dimensi 3):</strong><br>
+                        Kapasitas merupakan besaran volume, sehingga volume model adalah volume asli dibagi $n^3$:
+                        $$V_m = \frac{V_s}{n^3} = \frac{12.500.000\text{ liter}}{50^3} = \frac{12.500.000}{125.000}\text{ liter} = 100\text{ liter}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Luas permukaan kapal asli adalah $6.000\text{ m}^2$, massa kapal asli adalah $2.000\text{ ton}$, dan kapasitas tangki model adalah $100\text{ liter}$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Skala Numerik vs Skala Batang Grafis
+            // ==========================================
+            const elPeta = document.getElementById("svg-skala-linier-vs-grafis");
+            if (elPeta) {
+                const geo1 = new GeoSVG(elPeta, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Representasi Skala Peta Linier dan Skala Batang Grafis"
+                });
+
+                // Posisi Kota A dan Kota B
+                const ptA = [65, 75];
+                const ptB = [255, 75];
+
+                // Garis Rute Penghubung Kota A dan B
+                geo1.buatSegmen(ptA, ptB, { stroke: TEMA.utama, strokeWidth: 2.4 });
+
+                // Garis Ukur Dimensi pada Peta (Dashed)
+                geo1.buatSegmen([ptA[0], ptA[1] - 12], [ptB[0], ptB[1] - 12], { stroke: TEMA.merah, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo1.buatSegmen([ptA[0], ptA[1] - 16], [ptA[0], ptA[1] - 8], { stroke: TEMA.merah, strokeWidth: 1.2 });
+                geo1.buatSegmen([ptB[0], ptB[1] - 16], [ptB[0], ptB[1] - 8], { stroke: TEMA.merah, strokeWidth: 1.2 });
+                geo1.buatTeks(160, 56, "Jp = 4 cm (pada peta)", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Kota A dan B
+                geo1.buatLingkaran(ptA, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptA[0], ptA[1] + 12, "Kota A", { position: "top-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+
+                geo1.buatLingkaran(ptB, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(ptB[0], ptB[1] + 12, "Kota B", { position: "top-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Teks Skala Numerik
+                geo1.buatTeks(160, 115, "Skala Numerik: 1 : 2.500.000  ⇒  Js = 4 × 25 km = 100 km", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Skala Batang Grafis (Bar Scale) Terkalibrasi
+                const barY = 160, barStartX = 60, segLen = 50;
+                // 4 Segmen Alternating: Hitam & Putih
+                geo1.buatPoligon([[barStartX, barY - 4], [barStartX + segLen, barY - 4], [barStartX + segLen, barY + 4], [barStartX, barY + 4]], { fill: TEMA.gelap });
+                geo1.buatPoligon([[barStartX + segLen, barY - 4], [barStartX + 2 * segLen, barY - 4], [barStartX + 2 * segLen, barY + 4], [barStartX + segLen, barY + 4]], { fill: "#ffffff", stroke: TEMA.gelap, strokeWidth: 1 });
+                geo1.buatPoligon([[barStartX + 2 * segLen, barY - 4], [barStartX + 3 * segLen, barY - 4], [barStartX + 3 * segLen, barY + 4], [barStartX + 2 * segLen, barY + 4]], { fill: TEMA.gelap });
+                geo1.buatPoligon([[barStartX + 3 * segLen, barY - 4], [barStartX + 4 * segLen, barY - 4], [barStartX + 4 * segLen, barY + 4], [barStartX + 3 * segLen, barY + 4]], { fill: "#ffffff", stroke: TEMA.gelap, strokeWidth: 1 });
+
+                // Angka Kalibrasi Skala Batang
+                const ticks = [0, 25, 50, 75, 100];
+                ticks.forEach((val, idx) => {
+                    const tx = barStartX + idx * segLen;
+                    geo1.buatTeks(tx, barY + 12, String(val), { position: "top-center", fontSize: "7.5px", fill: TEMA.teks });
+                });
+                geo1.buatTeks(barStartX + 4 * segLen + 15, barY + 12, "km", { position: "top-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.teks });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 208, "Skala Grafis Tetap Proporsional Saat Gambar Diperbesar / Diperkecil", {
+                    position: "middle-center",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+
+            // ==========================================
+            // 2. Hukum Penskalaan Dimensi: 1D, 2D, 3D
+            // ==========================================
+            const elDimensi = document.getElementById("svg-skalasi-dimensi-luas-volume");
+            if (elDimensi) {
+                const geo2 = new GeoSVG(elDimensi, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Hukum Skalasi Dimensi Linier k, Luas k kuadrat, dan Volume k kubik"
+                });
+
+                // Pembatas Tengah
+                geo2.buatSegmen([155, 25], [155, 190], { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "3 3" });
+
+                // --- Sisi Kiri: Model Satuan 1x1x1 ---
+                const ox1 = 55, oy1 = 135, s1 = 35;
+                // Muka depan
+                geo2.buatPoligon([[ox1, oy1], [ox1 + s1, oy1], [ox1 + s1, oy1 - s1], [ox1, oy1 - s1]], { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 1.5 });
+                // Muka atas
+                geo2.buatPoligon([[ox1, oy1 - s1], [ox1 + s1, oy1 - s1], [ox1 + s1 + 14, oy1 - s1 - 14], [ox1 + 14, oy1 - s1 - 14]], { fill: "#bfdbfe", stroke: TEMA.utama, strokeWidth: 1.2 });
+                // Muka samping
+                geo2.buatPoligon([[ox1 + s1, oy1], [ox1 + s1 + 14, oy1 - 14], [ox1 + s1 + 14, oy1 - s1 - 14], [ox1 + s1, oy1 - s1]], { fill: "#93c5fd", stroke: TEMA.utama, strokeWidth: 1.2 });
+
+                geo2.buatTeks(75, 42, "MODEL KECIL (1x)", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(75, 160, "Rusuk = 1\nLuas = 1\nVolume = 1", { position: "top-center", fontSize: "7.5px", fill: TEMA.teks });
+
+                // --- Sisi Kanan: Objek Penskalaan 2x2x2 ---
+                const ox2 = 185, oy2 = 145, s2 = 70;
+                // Muka depan (dibagi 4 petak 2x2)
+                geo2.buatPoligon([[ox2, oy2], [ox2 + s2, oy2], [ox2 + s2, oy2 - s2], [ox2, oy2 - s2]], { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.8 });
+                geo2.buatSegmen([ox2 + s2 / 2, oy2], [ox2 + s2 / 2, oy2 - s2], { stroke: TEMA.oranye, strokeWidth: 1 });
+                geo2.buatSegmen([ox2, oy2 - s2 / 2], [ox2 + s2, oy2 - s2 / 2], { stroke: TEMA.oranye, strokeWidth: 1 });
+
+                // Muka atas
+                geo2.buatPoligon([[ox2, oy2 - s2], [ox2 + s2, oy2 - s2], [ox2 + s2 + 24, oy2 - s2 - 24], [ox2 + 24, oy2 - s2 - 24]], { fill: "#fde68a", stroke: TEMA.oranye, strokeWidth: 1.4 });
+                // Muka samping
+                geo2.buatPoligon([[ox2 + s2, oy2], [ox2 + s2 + 24, oy2 - 24], [ox2 + s2 + 24, oy2 - s2 - 24], [ox2 + s2, oy2 - s2]], { fill: "#fcd34d", stroke: TEMA.oranye, strokeWidth: 1.4 });
+
+                geo2.buatTeks(240, 42, "OBJEK SKALA (2x)", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+                geo2.buatTeks(240, 160, "Rusuk = 2  (k)\nLuas = 4  (k²)\nVolume = 8  (k³)", { position: "top-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 208, "Hukum Penskalaan: Panjang ~ k | Luas ~ k² | Volume & Massa ~ k³", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+
+            // ==========================================
+            // 3. Geometri Dilatasi Transformasi
+            // ==========================================
+            const elDilatasi = document.getElementById("svg-dilatasi-koordinat");
+            if (elDilatasi) {
+                const geo3 = new GeoSVG(elDilatasi, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Transformasi Dilatasi dari Titik Pusat Asal"
+                });
+
+                const Ox = 50, Oy = 175;
+
+                // Sumbu Kartesius
+                geo3.buatSegmen([30, Oy], [290, Oy], { stroke: TEMA.abu, strokeWidth: 1 });
+                geo3.buatSegmen([Ox, 20], [Ox, 195], { stroke: TEMA.abu, strokeWidth: 1 });
+
+                // Pusat Dilatasi O(0,0)
+                geo3.buatLingkaran([Ox, Oy], 3.5, { fill: TEMA.gelap });
+                geo3.buatTeks(Ox - 8, Oy + 10, "O(0,0)", { fontSize: "8px", fill: TEMA.gelap });
+
+                // Segitiga Asli ABC: A(1, 1), B(3, 1), C(2, 3) -> Skala u = 22 px
+                const u = 22;
+                const ptA = [Ox + 1 * u, Oy - 1 * u];
+                const ptB = [Ox + 3 * u, Oy - 1 * u];
+                const ptC = [Ox + 2 * u, Oy - 3 * u];
+
+                // Segitiga Dilatasi A'B'C' (Faktor Skala k = 2): A'(2,2), B'(6,2), C'(4,6)
+                const ptA_ = [Ox + 2 * u, Oy - 2 * u];
+                const ptB_ = [Ox + 6 * u, Oy - 2 * u];
+                const ptC_ = [Ox + 4 * u, Oy - 6 * u];
+
+                // Sinar Garis Proyeksi dari O Melalui Verteks (Merah Dashed)
+                geo3.buatSegmen([Ox, Oy], ptB_, { stroke: TEMA.merah, strokeWidth: 1.2, strokeDasharray: "4 2" });
+                geo3.buatSegmen([Ox, Oy], ptC_, { stroke: TEMA.merah, strokeWidth: 1.2, strokeDasharray: "4 2" });
+
+                // Gambar Segitiga Dilatasi A'B'C' (Biru)
+                geo3.buatPoligon([ptA_, ptB_, ptC_], { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 2, opacity: 0.45 });
+                geo3.buatTeks(ptC_[0] + 8, ptC_[1] - 4, "Δ A'B'C' (Luas = 4x)", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Gambar Segitiga Asli ABC (Hijau)
+                geo3.buatPoligon([ptA, ptB, ptC], { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 2, opacity: 0.7 });
+                geo3.buatTeks(ptC[0] - 8, ptC[1] + 6, "Δ ABC", { position: "top-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Titik Verteks
+                geo3.buatLingkaran(ptC, 3, { fill: TEMA.aksen });
+                geo3.buatLingkaran(ptC_, 3.5, { fill: TEMA.utama });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 208, "Dilatasi [O, k = 2]: det([k 0; 0 k]) = k² = 4 (Luas Membesar 4 Kali)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Sistem Persamaan Linear Dua Variabel (SPLDV)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Sistem Persamaan Linear Dua Variabel (SPLDV)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Bentuk Baku SPLDV</h2>
+            <p>
+                <strong>Sistem Persamaan Linear Dua Variabel (SPLDV)</strong> adalah kumpulan dua persamaan linear berderajat satu yang memuat dua variabel yang sama (umumnya $x$ dan $y$). Himpunan penyelesaiannya adalah pasangan terurut $(x, y)$ yang <strong>memenuhi kedua persamaan secara serentak (simultan)</strong>.
+            </p>
+            <p>
+                Bentuk umum baku SPLDV dinyatakan oleh:
+                $$\begin{cases} a_1 x + b_1 y = c_1 \\ a_2 x + b_2 y = c_2 \end{cases}$$
+                dengan $a_1, b_1, c_1, a_2, b_2, c_2 \in \mathbb{R}$, serta syarat $a_1^2 + b_1^2 \ne 0$ dan $a_2^2 + b_2^2 \ne 0$.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Interpretasi Geometris pada Bidang Kartesius $\mathbb{R}^2$:</strong><br>
+                    Secara grafis, masing-masing persamaan merepresentasikan sebuah garis lurus:
+                    $$g_1: a_1 x + b_1 y = c_1 \quad \text{dan} \quad g_2: a_2 x + b_2 y = c_2$$
+                    Solusi dari SPLDV adalah <strong>titik persekutuan (titik potong)</strong> antara kedua garis lurus tersebut.
+                </p>
+            </div>
+
+            <h2>2. Geometri Solusi & Tiga Syarat Konsistensi Determinan</h2>
+            <p>
+                Bentuk matriks dari SPLDV dinyatakan oleh:
+                $$\begin{pmatrix} a_1 & b_1 \\ a_2 & b_2 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} c_1 \\ c_2 \end{pmatrix} \iff A \vec{x} = \vec{b}$$
+                Determinan matriks koefisien didefinisikan sebagai $D = \det(A) = a_1 b_2 - a_2 b_1$. Terdapat tiga kondisi geometri:
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <ol>
+                        <li><strong>Tepat Satu Solusi Unik (Sistem Konsisten & Independen):</strong>
+                            <br>
+                            Kedua garis memiliki gradien yang berbeda ($m_1 \ne m_2$) sehingga berpotongan di tepat satu titik $(x_0, y_0)$.
+                            $$\frac{a_1}{a_2} \ne \frac{b_1}{b_2} \iff D = a_1 b_2 - a_2 b_1 \ne 0$$
+                        </li>
+                        <li><strong>Tidak Ada Solusi (Sistem Inkonsisten):</strong>
+                            <br>
+                            Kedua garis sejajar dan berlainan ($m_1 = m_2$ namun intersep berbeda). Garis-garis tidak pernah bertemu ($HP = \emptyset$).
+                            $$\frac{a_1}{a_2} = \frac{b_1}{b_2} \ne \frac{c_1}{c_2} \iff D = 0 \text{ namun } (D_x \ne 0 \text{ atau } D_y \ne 0)$$
+                        </li>
+                        <li><strong>Tak Hingga Banyak Solusi (Sistem Konsisten & Dependen):</strong>
+                            <br>
+                            Kedua garis berhimpit (merupakan garis identik yang sama). Setiap titik pada garis merupakan solusi sistem.
+                            $$\frac{a_1}{a_2} = \frac{b_1}{b_2} = \frac{c_1}{c_2} \iff D = D_x = D_y = 0$$
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-spldv-kondisi-solusi" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Tiga kondisi kedudukan garis SPLDV — (1) Berpotongan di 1 titik; (2) Sejajar (tidak ada solusi); (3) Berhimpit (tak hingga solusi).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Metode-Metode Penyelesaian SPLDV</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Metode Grafik</h3>
+                    <p>
+                        Langkah menyelesaikan SPLDV secara grafik:
+                    </p>
+                    <ol>
+                        <li>Tentukan titik potong masing-masing garis terhadap sumbu-$x$ ($y=0$) dan sumbu-$y$ ($x=0$).</li>
+                        <li>Tarik garis lurus yang menghubungkan kedua titik potong tersebut untuk masing-masing persamaan.</li>
+                        <li>Baca koordinat titik potong persekutuan $(x, y)$ pada bidang Kartesius.</li>
+                    </ol>
+
+                    <h3>B. Metode Substitusi & Eliminasi</h3>
+                    <ul>
+                        <li><strong>Substitusi:</strong> Mengisolasi satu variabel pada satu persamaan (misal $y = \frac{c_1 - a_1 x}{b_1}$), lalu menyubstitusikannya ke persamaan lain.</li>
+                        <li><strong>Eliminasi:</strong> Menyamakan koefisien salah satu variabel menggunakan faktor pengali skalar, lalu menjumlahkan atau mengurangkan kedua persamaan hingga variabel tersebut tereliminasi.</li>
+                        <li><strong>Metode Campuran (Eliminasi-Substitusi):</strong> Metode paling efisien dan banyak digunakan dalam tes kompetisi: eliminasi satu variabel, lalu substitusikan nilainya.</li>
+                    </ul>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-spldv-metode-grafik" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Metode Grafik untuk sistem $2x + y = 8$ dan $x - y = 1$, berpotongan tepat di koordinat solusi $(3, 2)$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>4. Metode Matriks & Aturan Cramer</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Aturan Cramer (Metode Determinan)</h3>
+                    <p>
+                        Untuk sistem $\begin{pmatrix} a_1 & b_1 \\ a_2 & b_2 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} c_1 \\ c_2 \end{pmatrix}$:
+                        $$D = \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} = a_1 b_2 - a_2 b_1$$
+                        $$D_x = \begin{vmatrix} c_1 & b_1 \\ c_2 & b_2 \end{vmatrix} = c_1 b_2 - c_2 b_1$$
+                        $$D_y = \begin{vmatrix} a_1 & c_1 \\ a_2 & c_2 \end{vmatrix} = a_1 c_2 - a_2 c_1$$
+                        Jika $D \ne 0$, solusi uniknya adalah:
+                        $$x = \frac{D_x}{D}, \quad y = \frac{D_y}{D}$$
+                    </p>
+
+                    <h3>B. Metode Matriks Invers</h3>
+                    <p>
+                        $$A \vec{x} = \vec{b} \implies \vec{x} = A^{-1} \vec{b}$$
+                        $$\begin{pmatrix} x \\ y \end{pmatrix} = \frac{1}{a_1 b_2 - a_2 b_1} \begin{pmatrix} b_2 & -b_1 \\ -a_2 & a_1 \end{pmatrix} \begin{pmatrix} c_1 \\ c_2 \end{pmatrix}$$
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-spldv-vektor-matriks" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Interpretasi Vektor Kolom — Solusi SPLDV sebagai kombinasi linear dari dua vektor kolom: $x\vec{u} + y\vec{v} = \vec{w}$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>5. SPLDV Khusus: Pecahan & Parameter</h2>
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>1. SPLDV Bentuk Pecahan Aljabar:</strong><br>
+                    Jika variabel berada pada penyebut pecahan seperti $\frac{A}{x} + \frac{B}{y} = C$, <strong>jangan kalikan silang</strong> karena akan memunculkan suku $xy$ berderajat dua. Gunakan pemisalan variabel baru:
+                    $$u = \frac{1}{x} \quad \text{dan} \quad v = \frac{1}{y}$$
+                    sehingga sistem tereduksi menjadi SPLDV linear baku dalam $u$ dan $v$.
+                </p>
+                <p style="margin: 0.5rem 0 0 0; font-weight: normal;">
+                    <strong>2. SPLDV dengan Parameter:</strong><br>
+                    Untuk menganalisis eksistensi solusi dari sistem berparameter $k$: hitung determinan $D(k)$.
+                    Akar-akar $D(k) = 0$ merupakan titik kritis di mana sistem dapat menjadi tidak memiliki solusi atau memiliki tak hingga banyak solusi.
+                </p>
+            </div>
+
+            <h2>6. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Model Kontekstual & Metode Eliminasi-Substitusi</h3>
+                <p>
+                    Di sebuah toko alat tulis, Ani membeli $3$ buku catatan dan $2$ pena dengan total harga $\text{Rp}12.000$, sedangkan Budi membeli $2$ buku catatan dan $5$ pena yang sama dengan total harga $\text{Rp}19.000$.
+                </p>
+                <ol type="a">
+                    <li>Susunlah model matematika SPLDV dari permasalahan tersebut.</li>
+                    <li>Tentukan harga satuan dari $1$ buku catatan ($x$) dan $1$ pena ($y$) menggunakan metode campuran (eliminasi-substitusi).</li>
+                    <li>Berapakah total biaya yang harus dibayar Cici jika ia membeli $4$ buku catatan dan $3$ pena?</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menyusun Model Matematika:</strong><br>
+                        Misalkan $x$ adalah harga $1$ buku catatan (dalam rupiah) dan $y$ adalah harga $1$ pena (dalam rupiah).
+                        $$\begin{cases} 3x + 2y = 12.000 \quad \text{--- (1)} \\ 2x + 5y = 19.000 \quad \text{--- (2)} \end{cases}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menentukan Nilai $x$ dan $y$:</strong><br>
+                        Eliminasi variabel $x$ dengan menyamakan koefisiennya (KPK $3$ dan $2$ adalah $6$):
+                        $$\begin{array}{rcc}
+                        (1) \times 2 & \implies & 6x + 4y = 24.000 \\
+                        (2) \times 3 & \implies & 6x + 15y = 57.000
+                        \end{array}$$
+                        Kurangkan kedua persamaan:
+                        $$(6x + 15y) - (6x + 4y) = 57.000 - 24.000$$
+                        $$11y = 33.000 \implies y = 3.000$$
+                        Substitusikan nilai $y = 3.000$ ke persamaan (1):
+                        $$3x + 2(3.000) = 12.000$$
+                        $$3x + 6.000 = 12.000 \implies 3x = 6.000 \implies x = 2.000$$
+                        Harga satuan: $1$ buku catatan $= \text{Rp}2.000$ dan $1$ pena $= \text{Rp}3.000$.
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Total Biaya Belanjaan Cici:</strong><br>
+                        $$\text{Biaya} = 4x + 3y = 4(2.000) + 3(3.000) = 8.000 + 9.000 = \text{Rp}17.000$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Harga buku $x = \text{Rp}2.000$, harga pena $y = \text{Rp}3.000$, dan total biaya yang harus dibayar Cici adalah $\text{Rp}17.000$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat SNBT / UTBK — SPLDV Pecahan Aljabar Rasional</h3>
+                <p>
+                    Tentukan himpunan penyelesaian $(x, y)$ yang memenuhi sistem persamaan pecahan berikut:
+                    $$\begin{cases} \frac{4}{x - 1} + \frac{3}{y + 2} = 5 \\ \frac{6}{x - 1} - \frac{1}{y + 2} = 2 \end{cases}$$
+                    serta tentukan nilai dari bentuk aljabar $x^2 - y^2$.
+                </p>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>Langkah 1: Substitusi Variabel Pembantu</strong><br>
+                        Definisikan variabel baru:
+                        $$u = \frac{1}{x - 1} \quad \text{dan} \quad v = \frac{1}{y + 2}$$
+                        dengan syarat penyebut $x \ne 1$ dan $y \ne -2$.
+                        Sistem persamaan tereduksi menjadi SPLDV linear standar:
+                        $$\begin{cases} 4u + 3v = 5 \quad \text{--- (1)} \\ 6u - v = 2 \quad \text{--- (2)} \end{cases}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Selesaikan untuk $u$ dan $v$</strong><br>
+                        Dari persamaan (2), isolasi variabel $v$:
+                        $$v = 6u - 2$$
+                        Substitusikan ke persamaan (1):
+                        $$4u + 3(6u - 2) = 5$$
+                        $$4u + 18u - 6 = 5$$
+                        $$22u = 11 \implies u = \frac{11}{22} = \frac{1}{2}$$
+                        Hitung nilai $v$:
+                        $$v = 6\left(\frac{1}{2}\right) - 2 = 3 - 2 = 1$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Mengembalikan ke Variabel $x$ dan $y$</strong><br>
+                        $$\frac{1}{x - 1} = \frac{1}{2} \implies x - 1 = 2 \implies x = 3$$
+                        $$\frac{1}{y + 2} = 1 \implies y + 2 = 1 \implies y = -1$$
+                        Himpunan penyelesaian adalah $HP = \{(3, -1)\}$.
+                    </p>
+                    <p>
+                        <strong>Langkah 4: Menghitung Nilai $x^2 - y^2$</strong><br>
+                        $$x^2 - y^2 = (3)^2 - (-1)^2 = 9 - 1 = 8$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Solusi $(x, y) = (3, -1)$ dan nilai $x^2 - y^2 = 8$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Analisis SPLDV Berparameter</h3>
+                <p>
+                    Diberikan sistem persamaan linear dua variabel yang memuat parameter real $k$:
+                    $$\begin{cases} (k - 1)x + 2y = 4 \\ 3x + (k + 4)y = 3k + 6 \end{cases}$$
+                </p>
+                <ol type="a">
+                    <li>Tentukan nilai $k$ agar sistem tersebut <strong>tidak memiliki solusi sama sekali (inkonsisten)</strong>.</li>
+                    <li>Tentukan nilai $k$ agar sistem tersebut memiliki <strong>tak hingga banyak solusi (konsisten dependen)</strong>.</li>
+                    <li>Tentukan syarat nilai $k$ agar sistem memiliki <strong>tepat satu solusi unik</strong>, dan tentukan solusi $(x, y)$ tersebut sebagai fungsi dari $k$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>Langkah 1: Menghitung Determinan Utama ($D$)</strong><br>
+                        Matriks koefisien sistem adalah:
+                        $$A = \begin{pmatrix} k - 1 & 2 \\ 3 & k + 4 \end{pmatrix}$$
+                        Determinan utama:
+                        $$D = (k - 1)(k + 4) - (2 \times 3) = k^2 + 3k - 4 - 6 = k^2 + 3k - 10$$
+                        Faktorkan persamaan kuadrat:
+                        $$D = (k - 2)(k + 5)$$
+                        Titik-titik kritis terjadi saat $D = 0$, yaitu pada $k = 2$ atau $k = -5$.
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menghitung Determinan $D_x$ dan $D_y$</strong><br>
+                        $$D_x = \begin{vmatrix} 4 & 2 \\ 3k + 6 & k + 4 \end{vmatrix} = 4(k + 4) - 2(3k + 6) = 4k + 16 - 6k - 12 = -2k + 4 = -2(k - 2)$$
+                        $$D_y = \begin{vmatrix} k - 1 & 4 \\ 3 & 3k + 6 \end{vmatrix} = (k - 1)(3k + 6) - 12 = 3k^2 + 3k - 6 - 12 = 3(k^2 + k - 6) = 3(k + 3)(k - 2)$$
+                    </p>
+                    <p>
+                        <strong>(a) Analisis Kasus Tidak Ada Solusi (Inkonsisten):</strong><br>
+                        Sistem tidak memiliki solusi jika $D = 0$ tetapi $D_x \ne 0$ atau $D_y \ne 0$.
+                        Uji pada $k = -5$:
+                        $$D = (-5 - 2)(-5 + 5) = 0$$
+                        $$D_x = -2(-5 - 2) = -2(-7) = 14 \ne 0$$
+                        $$D_y = 3(-5 + 3)(-5 - 2) = 3(-2)(-7) = 42 \ne 0$$
+                        Karena $D = 0$ dan $D_x \ne 0$, kedua garis sejajar dan berlainan.
+                        Jadi, sistem <strong>tidak memiliki solusi untuk $k = -5$</strong>.
+                    </p>
+                    <p>
+                        <strong>(b) Analisis Kasus Tak Hingga Banyak Solusi:</strong><br>
+                        Sistem memiliki tak hingga banyak solusi jika $D = D_x = D_y = 0$.
+                        Uji pada $k = 2$:
+                        $$D = (2 - 2)(2 + 5) = 0$$
+                        $$D_x = -2(2 - 2) = 0$$
+                        $$D_y = 3(2 + 3)(2 - 2) = 0$$
+                        Substitusi $k = 2$ ke kedua persamaan awal:
+                        $$\begin{cases} 1x + 2y = 4 \implies x + 2y = 4 \\ 3x + 6y = 3(2) + 6 = 12 \implies x + 2y = 4 \end{cases}$$
+                        Kedua persamaan identik (garis saling berhimpit).
+                        Jadi, sistem memiliki <strong>tak hingga banyak solusi untuk $k = 2$</strong>.
+                    </p>
+                    <p>
+                        <strong>(c) Analisis Kasus Tepat Satu Solusi Unik:</strong><br>
+                        Sistem memiliki tepat satu solusi jika $D \ne 0$, yaitu untuk <strong>$k \ne 2$ dan $k \ne -5$</strong>.
+                        Tentukan solusinya menggunakan Aturan Cramer:
+                        $$x = \frac{D_x}{D} = \frac{-2(k - 2)}{(k - 2)(k + 5)} = -\frac{2}{k + 5}$$
+                        $$y = \frac{D_y}{D} = \frac{3(k + 3)(k - 2)}{(k - 2)(k + 5)} = \frac{3(k + 3)}{k + 5}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Sistem tidak memiliki solusi untuk $k = -5$; memiliki tak hingga solusi untuk $k = 2$; dan memiliki solusi unik $(x, y) = \left(-\frac{2}{k+5}, \frac{3(k+3)}{k+5}\right)$ untuk $k \in \mathbb{R} \setminus \{-5, 2\}$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Tiga Kondisi Geometri SPLDV
+            // ==========================================
+            const elKondisi = document.getElementById("svg-spldv-kondisi-solusi");
+            if (elKondisi) {
+                const geo1 = new GeoSVG(elKondisi, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Tiga Kondisi Geometri Kedudukan Garis SPLDV"
+                });
+
+                // Garis pembagi sub-panel
+                geo1.buatSegmen([106, 25], [106, 190], { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "2 2" });
+                geo1.buatSegmen([213, 25], [213, 190], { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "2 2" });
+
+                // --- Sub-panel 1: Berpotongan (1 Solusi, D ≠ 0) ---
+                geo1.buatSegmen([18, 155], [90, 65], { stroke: TEMA.utama, strokeWidth: 2 });
+                geo1.buatSegmen([18, 75], [90, 145], { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo1.buatLingkaran([54, 110], 3.8, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo1.buatTeks(54, 35, "1 Solusi Unik", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.gelap });
+                geo1.buatTeks(54, 180, "Berpotongan (D≠0)", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+
+                // --- Sub-panel 2: Sejajar (0 Solusi, D = 0, Dx ≠ 0) ---
+                geo1.buatSegmen([125, 145], [195, 75], { stroke: TEMA.utama, strokeWidth: 2 });
+                geo1.buatSegmen([125, 110], [195, 40], { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo1.buatTeks(160, 35, "Tidak Ada Solusi", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.gelap });
+                geo1.buatTeks(160, 180, "Sejajar (D=0, Dx≠0)", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+
+                // --- Sub-panel 3: Berhimpit (Tak Hingga Solusi, D = Dx = Dy = 0) ---
+                geo1.buatSegmen([232, 140], [302, 70], { stroke: TEMA.utama, strokeWidth: 3 });
+                geo1.buatSegmen([232, 140], [302, 70], { stroke: TEMA.oranye, strokeWidth: 1.6, strokeDasharray: "4 3" });
+                geo1.buatTeks(267, 35, "Tak Hingga Solusi", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.gelap });
+                geo1.buatTeks(267, 180, "Berhimpit (D=Dx=0)", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 208, "Eksistensi Solusi: D ≠ 0 (Unik) | D = 0 (Sejajar / Berhimpit)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+
+            // ==========================================
+            // 2. Metode Grafik (Perpotongan Garis Riil)
+            // ==========================================
+            const elGrafik = document.getElementById("svg-spldv-metode-grafik");
+            if (elGrafik) {
+                const geo2 = new GeoSVG(elGrafik, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Metode Grafik Perpotongan SPLDV di Titik (3, 2)"
+                });
+
+                // Origin di (60, 165), Skala u = 24 px
+                const Ox = 60, Oy = 165, u = 24;
+
+                // Sumbu Kartesius
+                geo2.buatSegmen([35, Oy], [290, Oy], { stroke: TEMA.abu, strokeWidth: 1.2 });
+                geo2.buatSegmen([Ox, 20], [Ox, 195], { stroke: TEMA.abu, strokeWidth: 1.2 });
+                geo2.buatTeks(294, Oy, "x", { fontSize: "8.5px", fill: TEMA.abu });
+                geo2.buatTeks(Ox, 14, "y", { position: "bottom-center", fontSize: "8.5px", fill: TEMA.abu });
+
+                // Garis 1: 2x + y = 8 (Biru) -> y = -2x + 8
+                // Titik potong sumbu: (0, 8) -> (60, 165 - 8*24) = (60, -27)
+                // Titik (1, 6) -> (84, 21), Titik (4, 0) -> (156, 165)
+                geo2.buatSegmen([84, 21], [168, 189], { stroke: TEMA.utama, strokeWidth: 2 });
+                geo2.buatTeks(86, 16, "g₁: 2x + y = 8", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Garis 2: x - y = 1 (Hijau) -> y = x - 1
+                // Titik (0, -1) -> (60, 189), Titik (5, 4) -> (180, 69)
+                geo2.buatSegmen([50, 175], [190, 35], { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo2.buatTeks(192, 32, "g₂: x - y = 1", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Titik Potong (3, 2) -> (60 + 3*24, 165 - 2*24) = (132, 117)
+                const ptPotong = [132, 117];
+
+                // Garis Proyeksi Putus-putus ke Sumbu
+                geo2.buatSegmen(ptPotong, [ptPotong[0], Oy], { stroke: TEMA.merah, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo2.buatSegmen(ptPotong, [Ox, ptPotong[1]], { stroke: TEMA.merah, strokeWidth: 1.2, strokeDasharray: "3 2" });
+
+                // Label Koordinat pada Sumbu
+                geo2.buatTeks(ptPotong[0], Oy + 10, "3", { position: "top-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+                geo2.buatTeks(Ox - 8, ptPotong[1], "2", { position: "middle-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Potong
+                geo2.buatLingkaran(ptPotong, 4.2, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptPotong[0] + 8, ptPotong[1] - 8, "(3, 2)", { position: "bottom-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 208, "Solusi Sistem adalah Titik Potong Garis g₁ dan g₂: (x, y) = (3, 2)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Interpretasi Vektor Kolom SPLDV
+            // ==========================================
+            const elVektor = document.getElementById("svg-spldv-vektor-matriks");
+            if (elVektor) {
+                const geo3 = new GeoSVG(elVektor, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Kombinasi Linear Vektor Kolom pada SPLDV"
+                });
+
+                const Ox = 60, Oy = 160;
+
+                // Sumbu Kartesius
+                geo3.buatSegmen([30, Oy], [290, Oy], { stroke: TEMA.abu, strokeWidth: 1 });
+                geo3.buatSegmen([Ox, 20], [Ox, 190], { stroke: TEMA.abu, strokeWidth: 1 });
+
+                // Vektor u = [40, -25] (arah [2, 1]) dan v = [20, -50] (arah [1, 2])
+                // 2u = [80, -50]
+                const pt2u = [Ox + 80, Oy - 50];
+                // 2v = [40, -100]
+                const ptTarget = [pt2u[0] + 50, pt2u[1] - 65]; // Hasil penjumlahan w = 2u + v
+
+                // Garis Parallelogram (Putus-putus)
+                geo3.buatSegmen(pt2u, ptTarget, { stroke: TEMA.aksen, strokeWidth: 1.4, strokeDasharray: "3 2" });
+                geo3.buatSegmen([Ox + 50, Oy - 65], ptTarget, { stroke: TEMA.utama, strokeWidth: 1.4, strokeDasharray: "3 2" });
+
+                // Vektor Komponen 1 (Biru): x * u
+                geo3.buatSegmen([Ox, Oy], pt2u, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo3.buatLingkaran(pt2u, 3, { fill: TEMA.utama });
+                geo3.buatTeks(pt2u[0] - 10, pt2u[1] + 12, "x·u", { fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Vektor Komponen 2 (Hijau): y * v
+                geo3.buatSegmen([Ox, Oy], [Ox + 50, Oy - 65], { stroke: TEMA.aksen, strokeWidth: 2.2 });
+                geo3.buatLingkaran([Ox + 50, Oy - 65], 3, { fill: TEMA.aksen });
+                geo3.buatTeks(Ox + 35, Oy - 40, "y·v", { fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Vektor Hasil (Merah): w = b
+                geo3.buatSegmen([Ox, Oy], ptTarget, { stroke: TEMA.merah, strokeWidth: 2.4 });
+                geo3.buatLingkaran(ptTarget, 4, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(ptTarget[0] + 6, ptTarget[1] - 4, "w = b", { position: "bottom-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 208, "Interpretasi Kolom: x · [a₁ a₂]ᵀ + y · [b₁ b₂]ᵀ = [c₁ c₂]ᵀ", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Prinsip Sarang Burung Merpati</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Prinsip Sarang Burung Merpati</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Asal-Usul Historis</h2>
+            <p>
+                <strong>Prinsip Sarang Burung Merpati (Pigeonhole Principle - PHP)</strong>, yang dalam literatur Eropa dikenal sebagai <strong>Prinsip Kotak Dirichlet (Dirichlet's Box Principle / Schubfachprinzip)</strong>, pertama kali diformulasikan secara matematis oleh matematikawan Jerman <strong>Peter Gustav Lejeune Dirichlet</strong> pada tahun 1834.
+            </p>
+            <p>
+                Meskipun premis dasarnya tampak sangat sederhana dan intuitif, prinsip ini merupakan salah satu alat pembuktian paling tajam dan elegan dalam matematika diskrit, teori bilangan, kombinatorika, geometri, serta teori graf.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Pernyataan Dasar Prinsip Sarang Burung Merpati:</strong><br>
+                    Jika $n$ ekor merpati (objek) ditempatkan ke dalam $k$ buah sarang (kotak), dan jumlah merpati lebih banyak daripada jumlah sarang ($n > k$), maka <strong>pasti terdapat setidaknya satu sarang yang memuat minimal dua ekor merpati</strong>.
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Pembuktian Formal Melalui Kontradiksi</h3>
+                    <p>
+                        Pembuktian prinsip ini dapat dilakukan secara ketat melalui metode pengandaian (<em>Reductio ad Absurdum</em>):
+                    </p>
+                    <ol>
+                        <li>Andaikan kesimpulan bernilai salah, yaitu: <em>tidak ada</em> satu pun sarang yang memuat 2 merpati atau lebih.</li>
+                        <li>Artinya, setiap sarang dari $k$ buah sarang yang ada hanya dapat menampung paling banyak 1 ekor merpati.</li>
+                        <li>Maka jumlah maksimum merpati yang dapat ditampung oleh seluruh $k$ sarang adalah:
+                            $$N_{\max} \le k \times 1 = k \text{ ekor merpati}$$
+                        </li>
+                        <li>Akan tetapi, diketahui sejak awal bahwa terdapat $n$ ekor merpati dengan $n > k$. Hal ini menghasilkan kontradiksi:
+                            $$n \le k \quad (\text{padahal } n > k)$$
+                        </li>
+                        <li>Oleh karena pengandaian menghasilkan kontradiksi logis, maka pengandaian salah dan terbukti pasti ada setidaknya satu sarang yang memuat $\ge 2$ objek.</li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-pemetaan-merpati" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Prinsip Sarang Merpati yang Diperumum (Generalized PHP)</h2>
+            <p>
+                Bagaimana jika jumlah objek jauh melampaui jumlah sarang? Konsep ini diperluas menjadi <strong>Prinsip Sarang Merpati yang Diperumum</strong>:
+            </p>
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Teorema PHP Diperumum:</strong><br>
+                    Jika $n$ objek didistribusikan ke dalam $k$ sarang, maka <strong>setidaknya terdapat satu sarang yang memuat paling sedikit $\left\lceil \dfrac{n}{k} \right\rceil$ objek</strong>, di mana lambang $\lceil x \rceil$ melambangkan fungsi <em>ceiling</em> (pembulatan ke atas ke bilangan bulat terdekat).
+                </p>
+            </div>
+            <p>
+                <strong>Bentuk Kontraposisi (Kondisi Kritis Minimum Objek):</strong><br>
+                Jika kita ingin memastikan bahwa setidaknya ada satu sarang yang memuat minimal $m$ objek dari $k$ sarang yang tersedia, maka jumlah objek minimum yang harus diambil adalah:
+                $$n_{\min} = k(m - 1) + 1$$
+            </p>
+            <ul>
+                <li><em>Contoh 1:</em> Dalam sebuah kelompok beranggotakan 13 orang, pasti ada setidaknya $\left\lceil \frac{13}{12} \right\rceil = 2$ orang yang lahir pada bulan yang sama.</li>
+                <li><em>Contoh 2:</em> Jika terdapat 100 orang dalam suatu auditorium, pasti ada setidaknya $\left\lceil \frac{100}{12} \right\rceil = \lceil 8,33 \rceil = 9$ orang yang lahir pada bulan yang sama.</li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>3. Prinsip Sarang Merpati Geometris</h2>
+                    <p>
+                        Dalam geometri, "sarang" seringkali berupa <strong>sub-daerah atau partisi bangun datar/ruang</strong>, sedangkan "merpati" adalah titik-titik yang ditempatkan pada daerah tersebut.
+                    </p>
+                    <h3>Teorema Jarak Titik dalam Persegi Satuan</h3>
+                    <p>
+                        Jika $5$ buah titik diletakkan di dalam sebuah persegi berukuran $1 \times 1$:
+                    </p>
+                    <ol>
+                        <li>Bagi persegi besar menjadi $4$ buah persegi kecil berukuran $\frac{1}{2} \times \frac{1}{2}$ (sarang).</li>
+                        <li>Karena terdapat $5$ titik (merpati) dan $4$ sarang persegi kecil, menurut PHP pasti ada setidaknya satu persegi kecil yang memuat minimal $2$ titik.</li>
+                        <li>Jarak maksimum antara dua titik di dalam persegi kecil $\frac{1}{2} \times \frac{1}{2}$ terjadi jika kedua titik berada di ujung diagonalnya:
+                            $$d_{\max} = \sqrt{\left(\frac{1}{2}\right)^2 + \left(\frac{1}{2}\right)^2} = \sqrt{\frac{1}{2}} = \frac{\sqrt{2}}{2} \approx 0,707$$
+                        </li>
+                    </ol>
+                    <p>
+                        Dengan demikian, <strong>pasti ada setidaknya dua titik yang jaraknya tidak lebih dari $\frac{\sqrt{2}}{2}$</strong>.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-php-persegi" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Aplikasi PHP dalam Teori Bilangan & Paritas Kisi</h2>
+
+            <h3>A. Teorema Sisa Modulo & Selisih Kelipatan</h3>
+            <p>
+                Dalam pembagian bilangan bulat oleh bilangan asli $m$, kemungkinan sisa pembagian yang dihasilkan tepat berjumlah $m$ kemungkinan, yaitu himpunan residu $\{0, 1, 2, \dots, m - 1\}$.
+            </p>
+            <p>
+                Jika kita memilih sebanyak $(m + 1)$ bilangan bulat sembarang, maka berdasarkan PHP <strong>pasti ada setidaknya dua bilangan yang memiliki sisa pembagian yang sama terhadap $m$</strong>:
+                $$a \equiv b \pmod m \iff m \mid (a - b)$$
+                Konsekuensinya, selisih dari kedua bilangan tersebut pasti habis dibagi oleh $m$.
+            </p>
+
+            <h3>B. Paritas Titik Kisi pada Koordinat Kartesius</h3>
+            <p>
+                Sebuah titik pada bidang koordinat disebut <strong>titik kisi (lattice point)</strong> jika kedua koordinatnya $(x, y)$ merupakan bilangan bulat. Ditinjau dari paritasnya (genap atau ganjil), setiap koordinat hanya memiliki $2 \times 2 = 4$ kemungkinan pasangan:
+                $$(\text{Genap}, \text{Genap}), \quad (\text{Genap}, \text{Ganjil}), \quad (\text{Ganjil}, \text{Genap}), \quad (\text{Ganjil}, \text{Ganjil})$$
+            </p>
+            <p>
+                Jika dipilih $5$ buah titik kisi sembarang pada bidang datar, menurut PHP pasti ada setidaknya $2$ titik yang memiliki kelas paritas yang identik. Karena jumlah dua bilangan berparitas sama selalu menghasilkan bilangan genap, maka <strong>titik tengah dari ruas garis yang menghubungkan kedua titik tersebut dipastikan juga merupakan titik kisi</strong>:
+                $$\left(\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2}\right) \in \mathbb{Z}^2$$
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h2>5. Aplikasi PHP dalam Teori Graf: Teorema Ramsey</h2>
+                    <h3>Masalah Pesta Enam Orang (Party Problem)</h3>
+                    <p>
+                        Sebuah teorema klasik dalam teori graf menyatakan:
+                        <em>"Dalam suatu kelompok yang terdiri dari $6$ orang, selalu dapat dipastikan ada setidaknya $3$ orang yang saling mengenal satu sama lain, atau ada setidaknya $3$ orang yang sama sekali tidak saling mengenal."</em>
+                    </p>
+                    <p>
+                        Representasi graf lengkap $K_6$:
+                    </p>
+                    <ul>
+                        <li>$6$ simpul melambangkan $6$ orang. Setiap pasang simpul dihubungkan oleh sisi biru (saling kenal) atau merah (tidak kenal).</li>
+                        <li>Tinjau satu simpul $V_1$. Simpul $V_1$ memiliki $5$ sisi yang terhubung ke $5$ orang lainnya.</li>
+                        <li>Menurut PHP, membagi $5$ sisi ke dalam $2$ warna menghasilkan setidaknya $\lceil \frac{5}{2} \rceil = 3$ sisi dengan warna yang sama (misal $3$ sisi biru menuju $V_2, V_3, V_4$).</li>
+                        <li>Jika di antara ketiga simpul $\{V_2, V_3, V_4\}$ terdapat satu sisi biru, maka terbentuk <strong>segitiga biru</strong>. Jika tidak ada satu pun sisi biru, maka ketiganya membentuk <strong>segitiga merah</strong>.</li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-teorema-ramsey" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Lengkap</h2>
+
+            <!-- CONTOH 1 (DASAR) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Pengambilan Bola & Bulan Kelahiran (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    a) Di dalam sebuah kantong terdapat 10 kelereng merah, 8 kelereng biru, dan 6 kelereng hijau. Berapakah jumlah kelereng minimum yang harus diambil secara acak tanpa melihat agar pasti terambil setidaknya satu kelereng dari setiap warna?
+                    <br>b) Di dalam sebuah ruang kelas terdapat 37 orang siswa. Berapakah jumlah siswa minimum yang pasti merayakan ulang tahun pada bulan yang sama?
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Skenario Terburuk Pengambilan Kelereng (Worst-Case Analysis)</strong><br>
+                        Agar pasti terambil ketiga warna, kita harus memperhitungkan kemungkinan paling sial (terburuk):
+                        <ol>
+                            <li>Semua kelereng merah terambil terlebih dahulu ($10$ kelereng).</li>
+                            <li>Selanjutnya seluruh kelereng biru terambil ($8$ kelereng).</li>
+                            <li>Hingga pengambilan ke-$18$ ($10 + 8 = 18$), kita baru memiliki dua warna (merah dan biru).</li>
+                            <li>Kelereng ke-19 yang diambil dipastikan merupakan kelereng hijau (warna ketiga).</li>
+                        </ol>
+                        Jadi, jumlah kelereng minimum yang harus diambil adalah:
+                        $$n_{\min} = 10 + 8 + 1 = 19 \text{ kelereng}$$
+                        <br>
+                        <strong>b) PHP Diperumum Bulan Kelahiran</strong><br>
+                        Identifikasi variabel:
+                        <ul>
+                            <li>Objek (merpati): $n = 37$ siswa.</li>
+                            <li>Sarang (kotak): $k = 12$ bulan dalam setahun.</li>
+                        </ul>
+                        Gunakan Prinsip Sarang Merpati yang Diperumum:
+                        $$\text{Banyak siswa minimal pada bulan yang sama} = \left\lceil \frac{n}{k} \right\rceil = \left\lceil \frac{37}{12} \right\rceil = \lceil 3,083 \rceil = 4 \text{ siswa}$$
+                        <div class="kesimpulan">
+                            a) Jumlah kelereng minimum yang harus diambil adalah <strong>19 kelereng</strong>.<br>
+                            b) Jumlah siswa minimum yang pasti lahir pada bulan yang sama adalah <strong>4 siswa</strong>.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Representasi Faktorisasi Biner & Kelipatan (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Diberikan himpunan bilangan bulat $S = \{1, 2, 3, 4, \dots, 20\}$.
+                    Jika dari himpunan $S$ tersebut dipilih $11$ bilangan secara acak:
+                    Buktikan bahwa di antara $11$ bilangan yang terpilih, pasti terdapat setidaknya dua bilangan sedemikian sehingga salah satu bilangan merupakan kelipatan dari bilangan lainnya!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Dekomposisi Biner Setiap Bilangan</strong><br>
+                        Setiap bilangan bulat positif $x$ dapat dituliskan secara unik dalam bentuk:
+                        $$x = 2^k \cdot m$$
+                        di mana $k \ge 0$ adalah bilangan bulat non-negatif dan $m$ adalah <strong>bilangan ganjil positif</strong> (disebut bagian ganjil dari $x$).
+                        <br><br>
+                        <strong>Langkah 2: Menentukan "Sarang" (Nilai Ganjil yang Mungkin)</strong><br>
+                        Karena $x \in \{1, 2, 3, \dots, 20\}$, maka nilai $m$ yang mungkin hanyalah bilangan-bilangan ganjil yang tidak melebihi 20:
+                        $$m \in \{1, 3, 5, 7, 9, 11, 13, 15, 17, 19\}$$
+                        Terdapat tepat <strong>10 buah sarang</strong> nilai ganjil $m$.
+                        <br><br>
+                        <strong>Langkah 3: Penerapan Prinsip Sarang Burung Merpati</strong><br>
+                        <ul>
+                            <li>Objek (merpati): $11$ bilangan bulat yang dipilih.</li>
+                            <li>Sarang: $10$ nilai bilangan ganjil $m$.</li>
+                        </ul>
+                        Karena jumlah objek ($11$) lebih banyak daripada jumlah sarang ($10$), maka menurut PHP <strong>pasti ada setidaknya dua bilangan yang memiliki bagian ganjil $m$ yang sama</strong>:
+                        $$x_1 = 2^{k_1} \cdot m \quad \text{dan} \quad x_2 = 2^{k_2} \cdot m$$
+                        Tanpa mengurangi keumuman (*without loss of generality*), misalkan $k_1 < k_2$. Maka:
+                        $$\frac{x_2}{x_1} = \frac{2^{k_2} \cdot m}{2^{k_1} \cdot m} = 2^{k_2 - k_1}$$
+                        Karena $k_2 - k_1 \ge 1$, maka $2^{k_2 - k_1}$ merupakan bilangan bulat positif genap ($2, 4, 8, \dots$).<br>
+                        Ini membuktikan secara mutlak bahwa $x_2$ adalah kelipatan dari $x_1$.
+                        <div class="kesimpulan">
+                            Terbukti bahwa di antara 11 bilangan yang dipilih dari $\{1, 2, \dots, 20\}$, pasti ada dua bilangan yang salah satunya merupakan kelipatan dari yang lain.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Geometri Segitiga & Paritas Ruang 3 Dimensi (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    a) Di dalam sebuah segitiga sama sisi dengan panjang sisi $2\text{ cm}$, diletakkan $5$ buah titik secara sembarang. Buktikan bahwa pasti ada setidaknya dua titik yang jaraknya tidak lebih dari $1\text{ cm}$!
+                    <br>b) Diberikan $9$ buah titik kisi sembarang pada ruang Cartesius tiga dimensi $\mathbb{R}^3$, yaitu titik-titik dengan koordinat bilangan bulat $(x, y, z) \in \mathbb{Z}^3$. Buktikan bahwa pasti terdapat setidaknya sepasang titik sedemikian sehingga titik tengah ruas garis yang menghubungkan kedua titik tersebut juga merupakan titik kisi!
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Partisi Geometris Segitiga Sama Sisi</strong><br>
+                        Hubungkan titik-titik tengah dari ketiga sisi segitiga sama sisi awal yang bersisi $2\text{ cm}$.<br>
+                        Konstruksi ini membagi segitiga awal menjadi <strong>4 segitiga sama sisi kecil yang kongruen</strong>, masing-masing dengan panjang sisi:
+                        $$s_{\text{kecil}} = \frac{2}{2} = 1\text{ cm}$$
+                        <ul>
+                            <li>Objek (merpati): $5$ titik sembarang.</li>
+                            <li>Sarang: $4$ buah segitiga sama sisi kecil.</li>
+                        </ul>
+                        Berdasarkan Prinsip Sarang Burung Merpati, setidaknya terdapat satu segitiga kecil yang memuat minimal $2$ titik.<br>
+                        Jarak terbesar antara dua titik di dalam sebuah segitiga sama sisi dengan panjang sisi $1\text{ cm}$ adalah panjang sisinya sendiri, yaitu $1\text{ cm}$ (terjadi saat kedua titik terletak tepat di dua titik sudutnya).<br>
+                        Oleh karena itu, jarak antara kedua titik tersebut dijamin memenuhi:
+                        $$d \le 1\text{ cm}$$
+                        <br>
+                        <strong>b) Analisis Paritas Titik Kisi pada Ruang 3 Dimensi ($\mathbb{R}^3$)</strong><br>
+                        Titik tengah dari dua titik $P_1(x_1, y_1, z_1)$ dan $P_2(x_2, y_2, z_2)$ didefinisikan sebagai:
+                        $$M = \left(\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2}, \frac{z_1 + z_2}{2}\right)$$
+                        Agar $M$ berupa titik kisi ($\in \mathbb{Z}^3$), maka pembilang dari setiap komponen koordinatnya harus berupa bilangan genap:
+                        $$x_1 + x_2 \equiv 0 \pmod 2, \quad y_1 + y_2 \equiv 0 \pmod 2, \quad z_1 + z_2 \equiv 0 \pmod 2$$
+                        Jumlahan dua bilangan bulat bernilai genap jika dan hanya jika kedua bilangan tersebut memiliki <strong>paritas yang sama</strong> (keduanya genap atau keduanya ganjil).<br>
+                        Klasifikasi paritas koordinat $(x, y, z)$ pada $\mathbb{Z}^3$:
+                        <ul>
+                            <li>Setiap komponen koordinat memiliki $2$ kemungkinan paritas: Genap (G) atau Ganjil (J).</li>
+                            <li>Total kombinasi tripel paritas pada ruang 3 dimensi:
+                                $$2 \times 2 \times 2 = 8 \text{ sarang paritas}$$
+                                yaitu: $(G,G,G), (G,G,J), (G,J,G), (G,J,J), (J,G,G), (J,G,J), (J,J,G), (J,J,J)$.
+                            </li>
+                        </ul>
+                        Diberikan $9$ buah titik kisi (objek) yang ditempatkan ke dalam $8$ sarang paritas.<br>
+                        Menurut Prinsip Sarang Merpati, <strong>pasti ada setidaknya 2 titik yang memiliki kelas paritas tripel yang sama persis</strong>.<br>
+                        Akibatnya, $x_1$ dan $x_2$ berparitas sama, $y_1$ dan $y_2$ berparitas sama, serta $z_1$ dan $z_2$ berparitas sama.<br>
+                        Dengan demikian, $x_1+x_2, y_1+y_2, z_1+z_2$ semuanya genap, sehingga titik tengah $M$ dipastikan berkoordinat bilangan bulat (titik kisi).
+                        <div class="kesimpulan">
+                            Terbukti bahwa:
+                            a) Pasti ada dua titik berjarak $\le 1\text{ cm}$.<br>
+                            b) Di antara 9 titik kisi pada $\mathbb{R}^3$, pasti ada sepasang titik yang titik tengahnya merupakan titik kisi.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // ==========================================
+            // 1. Pemetaan 5 Merpati ke 4 Sarang
+            // ==========================================
+            const elPemetaan = document.getElementById("svg-pemetaan-merpati");
+            if (elPemetaan) {
+                const geo1 = new GeoSVG(elPemetaan, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Pemetaan 5 Merpati ke 4 Sarang"
+                });
+
+                // Posisi 5 Merpati (Kiri)
+                const pPigeons = [
+                    [55, 35],
+                    [55, 70],
+                    [55, 105],
+                    [55, 140],
+                    [55, 175]
+                ];
+                const labelsP = ["M₁", "M₂", "M₃", "M₄", "M₅"];
+
+                // Posisi 4 Sarang (Kanan)
+                const pHoles = [
+                    [245, 45],
+                    [245, 88],
+                    [245, 131],
+                    [245, 174]
+                ];
+                const labelsH = ["Sarang 1", "Sarang 2", "Sarang 3", "Sarang 4"];
+
+                // Gambar 4 Sarang Kotak
+                pHoles.forEach((pt, idx) => {
+                    const isShared = (idx === 1); // Sarang 2 memuat 2 merpati
+                    geo1.buatPoligon([
+                        [pt[0] - 38, pt[1] - 16],
+                        [pt[0] + 38, pt[1] - 16],
+                        [pt[0] + 38, pt[1] + 16],
+                        [pt[0] - 38, pt[1] + 16]
+                    ], {
+                        fill: isShared ? TEMA.oranyeMuda : "#f8fafc",
+                        stroke: isShared ? TEMA.merah : TEMA.bingkai,
+                        strokeWidth: isShared ? 2 : 1.2
+                    });
+                    geo1.buatTeks(pt[0], pt[1], labelsH[idx], {
+                        position: "middle-center",
+                        fontSize: "9px",
+                        fontWeight: isShared ? "bold" : "normal",
+                        fill: isShared ? TEMA.merah : TEMA.teks
+                    });
+                });
+
+                // Panah Pemetaan
+                // M1 -> S1
+                geo1.buatVektor([pPigeons[0][0] + 14, pPigeons[0][1]], [pHoles[0][0] - 38, pHoles[0][1]], { stroke: "#94a3b8", strokeWidth: 1.4 });
+                // M2 -> S2
+                geo1.buatVektor([pPigeons[1][0] + 14, pPigeons[1][1]], [pHoles[1][0] - 38, pHoles[1][1] - 5], { stroke: TEMA.merah, strokeWidth: 1.8 });
+                // M3 -> S3
+                geo1.buatVektor([pPigeons[2][0] + 14, pPigeons[2][1]], [pHoles[2][0] - 38, pHoles[2][1]], { stroke: "#94a3b8", strokeWidth: 1.4 });
+                // M4 -> S4
+                geo1.buatVektor([pPigeons[3][0] + 14, pPigeons[3][1]], [pHoles[3][0] - 38, pHoles[3][1]], { stroke: "#94a3b8", strokeWidth: 1.4 });
+                // M5 -> S2 (Kena sarang 2 lagi!)
+                geo1.buatVektor([pPigeons[4][0] + 14, pPigeons[4][1]], [pHoles[1][0] - 38, pHoles[1][1] + 5], { stroke: TEMA.merah, strokeWidth: 1.8 });
+
+                // Gambar 5 Merpati Bulatan
+                pPigeons.forEach((pt, idx) => {
+                    const isSpecial = (idx === 1 || idx === 4);
+                    geo1.buatLingkaran(pt, 12, {
+                        fill: isSpecial ? TEMA.merahMuda : TEMA.utamaMuda,
+                        stroke: isSpecial ? TEMA.merah : TEMA.utama,
+                        strokeWidth: 1.5
+                    });
+                    geo1.buatTeks(pt[0], pt[1], labelsP[idx], {
+                        position: "middle-center",
+                        fontSize: "9px",
+                        fontWeight: "bold",
+                        fill: isSpecial ? TEMA.merah : TEMA.utama
+                    });
+                });
+
+                // Label Header & Status
+                geo1.buatTeks(55, 12, "5 Merpati (n = 5)", { position: "middle-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(245, 12, "4 Sarang (k = 4)", { position: "middle-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.teks });
+
+                // Sorotan Sarang 2
+                geo1.buatTeks(pHoles[1][0] + 44, pHoles[1][1], "≥ 2 Merpati!", {
+                    position: "middle-left",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+
+            // ==========================================
+            // 2. PHP Geometris pada Persegi Satuan 1x1
+            // ==========================================
+            const elPersegi = document.getElementById("svg-php-persegi");
+            if (elPersegi) {
+                const geo2 = new GeoSVG(elPersegi, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "PHP Geometris: 5 Titik dalam Persegi Satuan"
+                });
+
+                const x0 = 85, y0 = 35, L = 140;
+
+                // Persegi Besar 1 x 1
+                geo2.buatPoligon([
+                    [x0, y0],
+                    [x0 + L, y0],
+                    [x0 + L, y0 + L],
+                    [x0, y0 + L]
+                ], { fill: "#f8fafc", stroke: TEMA.gelap, strokeWidth: 2 });
+
+                // Garis Bagi Menjadi 4 Sub-Persegi (Garis Putus-Putus)
+                const xMid = x0 + L / 2;
+                const yMid = y0 + L / 2;
+                geo2.buatSegmen([xMid, y0], [xMid, y0 + L], { stroke: "#94a3b8", strokeWidth: 1.4, strokeDasharray: "4 2" });
+                geo2.buatSegmen([x0, yMid], [x0 + L, yMid], { stroke: "#94a3b8", strokeWidth: 1.4, strokeDasharray: "4 2" });
+
+                // Highlight Sub-Persegi Kiri Atas (Kuadran yang memuat 2 titik)
+                geo2.buatPoligon([
+                    [x0, y0],
+                    [xMid, y0],
+                    [xMid, yMid],
+                    [x0, yMid]
+                ], { fill: TEMA.merahMuda, stroke: TEMA.merah, strokeWidth: 1.5, opacity: 0.6 });
+
+                // Garis Diagonal Kuadran Kiri Atas
+                geo2.buatSegmen([x0, yMid], [xMid, y0], { stroke: TEMA.merah, strokeWidth: 1.4, strokeDasharray: "3 2" });
+                geo2.buatTeks((x0 + xMid) / 2 - 8, (y0 + yMid) / 2 - 8, "d = √2/2", {
+                    position: "bottom-right",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Penempatan 5 Titik
+                // 2 titik di kuadran kiri atas:
+                const P1 = [x0 + 22, y0 + 46];
+                const P2 = [x0 + 52, y0 + 24];
+                // Segmen jarak antara P1 dan P2
+                geo2.buatSegmen(P1, P2, { stroke: TEMA.merah, strokeWidth: 2.2 });
+                geo2.buatLingkaran(P1, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo2.buatLingkaran(P2, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo2.buatTeks(P1[0] - 6, P1[1], "P₁", { position: "middle-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+                geo2.buatTeks(P2[0] + 6, P2[1], "P₂", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // 3 titik lainnya di kuadran lain:
+                const P3 = [x0 + 105, y0 + 38];
+                const P4 = [x0 + 35, y0 + 108];
+                const P5 = [x0 + 108, y0 + 115];
+                [P3, P4, P5].forEach((pt, idx) => {
+                    geo2.buatLingkaran(pt, 4, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.2 });
+                    geo2.buatTeks(pt[0] + 6, pt[1], "P" + (idx + 3), { position: "middle-left", fontSize: "8.5px", fill: TEMA.teks });
+                });
+
+                // Dimensi Sisi Persegi
+                geo2.buatTeks(xMid, y0 + L + 12, "Panjang Sisi = 1 (Tiap Sub-persegi bersisi ½)", {
+                    position: "top-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+                geo2.buatTeks(xMid, 196, "Maka terbukti: Jarak(P₁, P₂) ≤ √2/2 ≈ 0,71", {
+                    position: "middle-center",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+
+            // ==========================================
+            // 3. Teorema Ramsey Graf 6 Orang R(3, 3) = 6
+            // ==========================================
+            const elRamsey = document.getElementById("svg-teorema-ramsey");
+            if (elRamsey) {
+                const geo3 = new GeoSVG(elRamsey, 320, 210, {
+                    viewBox: "0 0 320 210",
+                    margin: 8,
+                    title: "Teorema Ramsey R(3,3) = 6: Masalah Pesta 6 Orang"
+                });
+
+                const cx = 160, cy = 105, R = 72;
+                const pts = [];
+                for (let i = 0; i < 6; i++) {
+                    const rad = (i * 60 - 90) * Math.PI / 180;
+                    pts.push([cx + R * Math.cos(rad), cy + R * Math.sin(rad)]);
+                }
+
+                // Segitiga Monokromatik Saling Kenal (V0, V1, V2)
+                geo3.buatPoligon([pts[0], pts[1], pts[2]], { fill: TEMA.utamaMuda, stroke: "none", opacity: 0.7 });
+
+                // Sisi Lengkap Graf K6 Tipis Abu-Abu Latar
+                for (let i = 0; i < 6; i++) {
+                    for (let j = i + 1; j < 6; j++) {
+                        geo3.buatSegmen(pts[i], pts[j], { stroke: "#e2e8f0", strokeWidth: 1 });
+                    }
+                }
+
+                // 3 Sisi Biru Keluar dari V0 (Kenal): ke V1, V2, V4
+                geo3.buatSegmen(pts[0], pts[1], { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo3.buatSegmen(pts[0], pts[2], { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo3.buatSegmen(pts[0], pts[4], { stroke: TEMA.utama, strokeWidth: 1.8 });
+
+                // Sisi penghubung V1 dan V2 berwarna Biru (Membentuk Segitiga Biru Lengkap!)
+                geo3.buatSegmen(pts[1], pts[2], { stroke: TEMA.utama, strokeWidth: 2.5 });
+
+                // 2 Sisi Merah Keluar dari V0 (Tidak Kenal): ke V3 dan V5
+                geo3.buatSegmen(pts[0], pts[3], { stroke: TEMA.merah, strokeWidth: 1.6, strokeDasharray: "3 2" });
+                geo3.buatSegmen(pts[0], pts[5], { stroke: TEMA.merah, strokeWidth: 1.6, strokeDasharray: "3 2" });
+
+                // Simpul V0 s/d V5
+                const vLabels = ["V₁", "V₂", "V₃", "V₄", "V₅", "V₆"];
+                pts.forEach((pt, idx) => {
+                    const isTri = (idx === 0 || idx === 1 || idx === 2);
+                    geo3.buatLingkaran(pt, 5, {
+                        fill: isTri ? TEMA.utama : "#64748b",
+                        stroke: "#ffffff",
+                        strokeWidth: 1.5
+                    });
+                    const dx = pt[0] - cx;
+                    const dy = pt[1] - cy;
+                    const dist = Math.hypot(dx, dy);
+                    const lx = pt[0] + (dx / dist) * 13;
+                    const ly = pt[1] + (dy / dist) * 13;
+                    geo3.buatTeks(lx, ly, vLabels[idx], {
+                        position: "middle-center",
+                        fontSize: "9px",
+                        fontWeight: "bold",
+                        fill: isTri ? TEMA.utama : TEMA.teks
+                    });
+                });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 198, "Terbentuk Segitiga Biru: 3 Orang Saling Kenal (V₁-V₂-V₃)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

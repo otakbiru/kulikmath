@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Sistem Pertidaksamaan Linear Dua Variabel (SPtLDV)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Sistem Pertidaksamaan Linear Dua Variabel (SPtLDV)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Bentuk Baku SPtLDV</h2>
+            <p>
+                <strong>Sistem Pertidaksamaan Linear Dua Variabel (SPtLDV)</strong> adalah gabungan dari dua atau lebih pertidaksamaan linear berderajat satu yang memuat dua variabel yang sama (umumnya $x$ dan $y$).
+            </p>
+            <p>
+                Bentuk umum baku SPtLDV dinyatakan oleh:
+                $$\begin{cases} a_1 x + b_1 y \le c_1 \quad (\text{atau } \ge, <, >) \\ a_2 x + b_2 y \le c_2 \\ \vdots \\ a_n x + b_n y \le c_n \\ x \ge 0, \quad y \ge 0 \quad (\text{syarat non-negatif}) \end{cases}$$
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Himpunan Penyelesaian sebagai Daerah Geometri (Feasible Region):</strong><br>
+                    Berbeda dengan sistem persamaan linear yang solusinya berupa titik-titik diskret, himpunan penyelesaian SPtLDV berupa <strong>bidang luasan kontinu (Daerah Penyelesaian / DP / Daerah Bersih / Feasible Region)</strong>, yang merupakan irisan (interseksi) dari setengah-bidang (<em>half-plane</em>) yang memenuhi setiap pertidaksamaan secara simultan pada bidang Kartesius $\mathbb{R}^2$.
+                </p>
+            </div>
+
+            <h2>2. Geometri Setengah-Bidang & Garis Pembatas</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Aturan Garis Batas</h3>
+                    <ul>
+                        <li><strong>Garis Penuh (Solid Line):</strong> Digunakan untuk relasi pertidaksamaan tidak ketat ($\le$ atau $\ge$). Titik-titik yang terletak tepat pada garis pembatas <strong>termasuk</strong> dalam himpunan penyelesaian.</li>
+                        <li><strong>Garis Putus-Putus (Dashed Line):</strong> Digunakan untuk relasi pertidaksamaan ketat ($<$ atau $>$). Titik-titik pada garis pembatas <strong>tidak termasuk</strong> dalam himpunan penyelesaian.</li>
+                    </ul>
+
+                    <h3>B. Metode Titik Uji (Test Point Method)</h3>
+                    <p>
+                        Untuk menentukan daerah arsiran yang memenuhi $ax + by \le c$:
+                    </p>
+                    <ol>
+                        <li>Pilihlah titik uji sembarang yang tidak dilalui oleh garis batas, paling praktis adalah titik asal $O(0, 0)$.</li>
+                        <li>Substitusikan $(0, 0)$ ke dalam pertidaksamaan:
+                            <ul>
+                                <li>Jika pernyataan bernilai <strong>benar</strong> ($0 \le c$), maka daerah yang memuat $(0, 0)$ adalah daerah penyelesaian.</li>
+                                <li>Jika pernyataan bernilai <strong>salah</strong>, maka daerah di seberang garis yang tidak memuat $(0, 0)$ adalah daerah penyelesaian.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-sptldv-daerah-penyelesaian" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Daerah Penyelesaian (DP) berbentuk poligon konveks tertutup dengan verteks $O(0,0), A(4,0), B(2,4), C(0,6)$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Karakteristik Topologi Daerah Penyelesaian</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <ol>
+                        <li><strong>Daerah Terbatas (Bounded Region):</strong>
+                            <br>
+                            Daerah penyelesaian terkurung seutuhnya oleh garis-garis pembatas membentuk <strong>poligon konveks tertutup (politop)</strong>.
+                            Pada daerah terbatas, nilai optimum maksimum dan minimum dari fungsi objektif linear $Z = px + qy$ <strong>selalu eksis dan tercapai di salah satu titik pojok (verteks)</strong>.
+                        </li>
+                        <li><strong>Daerah Tak Terbatas (Unbounded Region):</strong>
+                            <br>
+                            Daerah penyelesaian terbuka ke arah tak terhingga (misalnya $x + y \ge 4$ dengan $x \ge 0, y \ge 0$). Nilai minimum dapat dicapai di titik pojok, namun nilai maksimum seringkali tidak hingga (<em>unbounded solution</em>).
+                        </li>
+                        <li><strong>Daerah Kosong (Inconsistent / No Feasible Solution):</strong>
+                            <br>
+                            Tidak ada irisan daerah bersama antar pertidaksamaan ($DP = \emptyset$).
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-sptldv-terbatas-vs-takterbatas" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Perbandingan topologi — Kiri: Daerah Terbatas (Bounded); Kanan: Daerah Tak Terbatas (Unbounded).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>4. Metode Optimasi Linear: Titik Pojok & Garis Selidik</h2>
+            <p>
+                Dalam program linear, kita sering diminta memaksimumkan atau meminimumkan suatu <strong>fungsi objektif (fungsi tujuan)</strong>:
+                $$Z(x, y) = px + qy$$
+                yang dibatasi oleh kendala-kendala SPtLDV.
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Metode Uji Titik Pojok (Corner Point Method)</h3>
+                    <p>
+                        Berdasarkan <em>Teorema Fundamental Program Linear</em>: nilai optimum (maksimum/minimum) suatu fungsi tujuan linear pada daerah penyelesaian konveks pasti tercapai pada <strong>setidaknya satu titik pojok (verteks)</strong> daerah tersebut.
+                    </p>
+                    <ol>
+                        <li>Tentukan koordinat seluruh titik pojok daerah penyelesaian melalui eliminasi-substitusi garis-garis pembatas.</li>
+                        <li>Substitusikan setiap pasangan koordinat titik pojok ke fungsi objektif $Z = px + qy$.</li>
+                        <li>Bandingkan hasilnya: nilai terbesar adalah nilai maksimum, dan nilai terkecil adalah nilai minimum.</li>
+                    </ol>
+
+                    <h3>B. Metode Garis Selidik (Isoprofit / Isocost Line)</h3>
+                    <p>
+                        Garis selidik didefinisikan sebagai keluarga garis sejajar:
+                        $$px + qy = k$$
+                        dengan gradien konstan $m = -\frac{p}{q}$.
+                        Geser garis selidik sejajar melintasi daerah penyelesaian ke arah pertambahan $k$: titik pojok terakhir yang disentuh oleh garis selidik sebelum meninggalkan daerah penyelesaian adalah <strong>titik optimum maksimum</strong>.
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-sptldv-uji-titik-garis-selidik" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Metode Garis Selidik $Z = 5x + 3y = k$ yang digeser hingga mencapai nilai optimum maksimum di verteks $B(2, 4)$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>5. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Menentukan Titik Pojok & Luas Daerah Penyelesaian</h3>
+                <p>
+                    Diberikan sistem pertidaksamaan linear dua variabel berikut:
+                    $$\begin{cases} 2x + 3y \le 12 \\ 4x + y \le 12 \\ x \ge 0, \quad y \ge 0 \end{cases}$$
+                </p>
+                <ol type="a">
+                    <li>Tentukan koordinat seluruh titik pojok yang membatasi daerah penyelesaian sistem tersebut.</li>
+                    <li>Hitung luas daerah penyelesaian (luas poligon) secara analitis.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menentukan Koordinat Titik Pojok:</strong><br>
+                        Garis pembatas 1 ($g_1$): $2x + 3y = 12$. Titik potong sumbu: $(6, 0)$ dan $(0, 4)$.
+                        <br>
+                        Garis pembatas 2 ($g_2$): $4x + y = 12$. Titik potong sumbu: $(3, 0)$ dan $(0, 12)$.
+                        <br>
+                        Titik potong antara $g_1$ dan $g_2$:
+                        Dari $g_2$, $y = 12 - 4x$. Substitusikan ke $g_1$:
+                        $$2x + 3(12 - 4x) = 12$$
+                        $$2x + 36 - 12x = 12 \implies -10x = -24 \implies x = \frac{12}{5} = 2{,}4$$
+                        Hitung nilai $y$:
+                        $$y = 12 - 4(2{,}4) = 12 - 9{,}6 = 2{,}4 = \frac{12}{5}$$
+                        Maka titik potong kedua garis adalah $B\left(\frac{12}{5}, \frac{12}{5}\right)$.
+                        <br>
+                        Karena kendala non-negatif $x \ge 0, y \ge 0$, titik potong terhadap sumbu koordinat yang membatasi daerah penyelesaian adalah:
+                        <ul>
+                            <li>Titik asal: $O(0, 0)$</li>
+                            <li>Pada sumbu-$x$: Titik terkecil antara $(6, 0)$ dan $(3, 0)$, yaitu $A(3, 0)$</li>
+                            <li>Titik potong kedua garis: $B\left(\frac{12}{5}, \frac{12}{5}\right)$</li>
+                            <li>Pada sumbu-$y$: Titik terkecil antara $(0, 4)$ dan $(0, 12)$, yaitu $C(0, 4)$</li>
+                        </ul>
+                        Keempat titik pojok daerah penyelesaian adalah: $O(0, 0), A(3, 0), B\left(\frac{12}{5}, \frac{12}{5}\right),$ dan $C(0, 4)$.
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Luas Poligon $OABC$:</strong><br>
+                        Gunakan Formula Shoelace untuk titik berurutan $O(0,0) \to A(3,0) \to B(2{,}4; 2{,}4) \to C(0,4) \to O(0,0)$:
+                        $$\text{Luas} = \frac{1}{2} |(0 \cdot 0 + 3 \cdot 2{,}4 + 2{,}4 \cdot 4 + 0 \cdot 0) - (0 \cdot 3 + 0 \cdot 2{,}4 + 2{,}4 \cdot 0 + 4 \cdot 0)|$$
+                        $$\text{Luas} = \frac{1}{2} |(7{,}2 + 9{,}6) - 0| = \frac{1}{2}(16{,}8) = 8{,}4 = \frac{42}{5}\text{ satuan luas}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Titik-titik pojok adalah $O(0,0), A(3,0), B(2{,}4; 2{,}4), C(0,4)$ dan luas daerah penyelesaian adalah $8{,}4$ satuan luas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat SNBT / UTBK — Nilai Optimum Fungsi Objektif Linear</h3>
+                <p>
+                    Diketahui daerah penyelesaian suatu masalah program linear dibatasi oleh sistem pertidaksamaan:
+                    $$\begin{cases} x + 2y \le 10 \\ 3x + y \le 15 \\ x \ge 0, \quad y \ge 0 \end{cases}$$
+                    Tentukan nilai maksimum dari fungsi objektif $Z(x, y) = 5x + 4y$ beserta koordinat titik pojok tempat nilai maksimum tersebut tercapai.
+                </p>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>Langkah 1: Menentukan Titik Potong Garis-Garis Batas</strong><br>
+                        Garis 1 ($x + 2y = 10$): memotong sumbu-$x$ di $(10, 0)$ dan sumbu-$y$ di $(0, 5)$.
+                        <br>
+                        Garis 2 ($3x + y = 15$): memotong sumbu-$x$ di $(5, 0)$ dan sumbu-$y$ di $(0, 15)$.
+                        <br>
+                        Titik potong antara garis 1 dan garis 2:
+                        $$x = 10 - 2y \implies 3(10 - 2y) + y = 15$$
+                        $$30 - 6y + y = 15 \implies -5y = -15 \implies y = 3$$
+                        $$x = 10 - 2(3) = 10 - 6 = 4$$
+                        Titik potong persekutuan adalah $B(4, 3)$.
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menentukan Titik-Titik Pojok Daerah Penyelesaian</strong><br>
+                        Daerah penyelesaian di kuadran I dibatasi oleh titik-titik pojok:
+                        $$O(0, 0), \quad A(5, 0), \quad B(4, 3), \quad C(0, 5)$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Evaluasi Fungsi Objektif $Z = 5x + 4y$</strong><br>
+                        Hitung nilai fungsi tujuan pada setiap titik pojok:
+                        <ul>
+                            <li>Titik $O(0, 0) \implies Z(0, 0) = 5(0) + 4(0) = 0$</li>
+                            <li>Titik $A(5, 0) \implies Z(5, 0) = 5(5) + 4(0) = 25$</li>
+                            <li>Titik $B(4, 3) \implies Z(4, 3) = 5(4) + 4(3) = 20 + 12 = 32$</li>
+                            <li>Titik $C(0, 5) \implies Z(0, 5) = 5(0) + 4(5) = 20$</li>
+                        </ul>
+                        Berdasarkan perbandingan nilai, nilai terbesar adalah $Z = 32$.
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Nilai maksimum fungsi objektif adalah $Z_{\max} = 32$, yang tercapai di titik pojok $B(4, 3)$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Optimasi Berparameter & Solusi Optimum Alternatif</h3>
+                <p>
+                    Diberikan sistem kendala pertidaksamaan linear:
+                    $$\begin{cases} 2x + y \le 10 \\ x + 2y \le 10 \\ x \ge 0, \quad y \ge 0 \end{cases}$$
+                    dan fungsi objektif yang memuat parameter real positif $a > 0$:
+                    $$Z(x, y) = ax + 2y$$
+                </p>
+                <ol type="a">
+                    <li>Tentukan interval nilai $a$ agar nilai maksimum $Z$ tercapai <strong>secara unik</strong> pada titik potong persekutuan kedua garis pembatas.</li>
+                    <li>Jelaskan apa yang terjadi saat $a = 1$ dan $a = 4$ berkaitan dengan konsep <em>solusi optimum alternatif (alternative optima)</em>.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>Langkah 1: Identifikasi Titik-Titik Pojok dan Gradien Garis Pembatas</strong><br>
+                        Garis 1 ($g_1$): $2x + y = 10 \implies y = -2x + 10$. Gradiennya $m_1 = -2$.
+                        <br>
+                        Garis 2 ($g_2$): $x + 2y = 10 \implies y = -\frac{1}{2}x + 5$. Gradiennya $m_2 = -\frac{1}{2}$.
+                        <br>
+                        Titik potong persekutuan ($B$):
+                        $$2x + y = 10 \quad \text{dan} \quad x + 2y = 10$$
+                        Jumlahkan: $3x + 3y = 20 \implies x + y = \frac{20}{3}$.
+                        Kurangkan: $x - y = 0 \implies x = y$.
+                        Maka koordinat titik potong adalah $B\left(\frac{10}{3}, \frac{10}{3}\right)$.
+                        <br>
+                        Titik pojok lainnya adalah $O(0, 0)$, $A(5, 0)$, dan $C(0, 5)$.
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menganalisis Gradien Garis Selidik</strong><br>
+                        Fungsi objektif: $Z = ax + 2y = k \implies 2y = -ax + k \implies y = -\frac{a}{2}x + \frac{k}{2}$.
+                        Gradien garis selidik adalah:
+                        $$m_{\text{selidik}} = -\frac{a}{2}$$
+                        Agar nilai maksimum tercapai secara unik di titik $B\left(\frac{10}{3}, \frac{10}{3}\right)$, garis selidik harus memiliki kemiringan yang berada strictly <strong>di antara gradien garis 1 dan garis 2</strong>:
+                        $$m_1 < m_{\text{selidik}} < m_2$$
+                        $$-2 < -\frac{a}{2} < -\frac{1}{2}$$
+                        Kalikan seluruh ruas dengan $-2$ (tanda pertidaksamaan berbalik):
+                        $$4 > a > 1 \iff 1 < a < 4$$
+                        Jadi, nilai maksimum tercapai unik di titik $B$ pada interval $1 < a < 4$.
+                    </p>
+                    <p>
+                        <strong>(b) Analisis Kasus $a = 1$ dan $a = 4$ (Solusi Optimum Alternatif):</strong><br>
+                        <ul>
+                            <li><strong>Saat $a = 1$:</strong>
+                                Gradien garis selidik $m = -\frac{1}{2} = m_2$.
+                                Garis selidik sejajar persis dengan garis pembatas $g_2$ ($x + 2y = 10$).
+                                Akibatnya, saat garis selidik mencapai nilai maksimum, ia berhimpit dengan seluruh ruas garis pembatas $BC$.
+                                Nilai maksimum tidak hanya tercapai di satu titik, melainkan di <strong>seluruh titik pada ruas garis $BC$</strong> dengan $Z_{\max} = 1(0) + 2(5) = 10$.
+                            </li>
+                            <li><strong>Saat $a = 4$:</strong>
+                                Gradien garis selidik $m = -\frac{4}{2} = -2 = m_1$.
+                                Garis selidik sejajar persis dengan garis pembatas $g_1$ ($2x + y = 10$).
+                                Nilai maksimum tercapai di <strong>seluruh titik pada ruas garis $AB$</strong> dengan $Z_{\max} = 4(5) + 2(0) = 20$.
+                            </li>
+                        </ul>
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Nilai maksimum tercapai unik di titik potong $B$ saat $1 < a < 4$. Saat $a = 1$ atau $a = 4$, terjadi solusi optimum alternatif di sepanjang segmen batas $BC$ atau $AB$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Daerah Penyelesaian Poligon Konveks
+            // ==========================================
+            const elDP = document.getElementById("svg-sptldv-daerah-penyelesaian");
+            if (elDP) {
+                const geo1 = new GeoSVG(elDP, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Daerah Penyelesaian SPtLDV Poligon Konveks Tertutup"
+                });
+
+                const Ox = 65, Oy = 175, u = 18;
+
+                // Sumbu Kartesius
+                geo1.buatSegmen([40, Oy], [290, Oy], { stroke: TEMA.abu, strokeWidth: 1.2 });
+                geo1.buatSegmen([Ox, 20], [Ox, 195], { stroke: TEMA.abu, strokeWidth: 1.2 });
+                geo1.buatTeks(294, Oy, "x", { fontSize: "8.5px", fill: TEMA.abu });
+                geo1.buatTeks(Ox, 14, "y", { position: "bottom-center", fontSize: "8.5px", fill: TEMA.abu });
+
+                // Titik-titik Poligon DP: O(0,0), A(4,0), B(2,4), C(0,6)
+                const ptO = [Ox, Oy];
+                const ptA = [Ox + 4 * u, Oy];
+                const ptB = [Ox + 2 * u, Oy - 4 * u];
+                const ptC = [Ox, Oy - 6 * u];
+
+                // Poligon Daerah Penyelesaian (Arsir Biru Transparan)
+                geo1.buatPoligon([ptO, ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: "none",
+                    opacity: 0.65
+                });
+                geo1.buatTeks(Ox + 18, Oy - 35, "DAERAH\nPENYELESAIAN", {
+                    position: "middle-center",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Garis 1: 2x + y = 8 (Biru) -> Titik (0, 8) ke (4, 0)
+                geo1.buatSegmen([Ox, Oy - 8 * u], [Ox + 4.8 * u, Oy + 1.6 * u], { stroke: TEMA.utama, strokeWidth: 2 });
+                geo1.buatTeks(Ox + 4.2 * u, Oy + 10, "2x + y = 8", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Garis 2: x + y = 6 (Hijau) -> Titik (0, 6) ke (6, 0)
+                geo1.buatSegmen([Ox - 0.5 * u, Oy - 6.5 * u], [Ox + 6.5 * u, Oy + 0.5 * u], { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo1.buatTeks(Ox + 6.2 * u, Oy - 10, "x + y = 6", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Titik-titik Pojok (Merah)
+                const pojok = [
+                    { pt: ptO, l: "O(0,0)", o: [-6, 10] },
+                    { pt: ptA, l: "A(4,0)", o: [0, 10] },
+                    { pt: ptB, l: "B(2,4)", o: [8, -4] },
+                    { pt: ptC, l: "C(0,6)", o: [-8, -4] }
+                ];
+                pojok.forEach(p => {
+                    geo1.buatLingkaran(p.pt, 3.8, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                    geo1.buatTeks(p.pt[0] + p.o[0], p.pt[1] + p.o[1], p.l, { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+                });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 208, "Irisan Kendala: 2x + y ≤ 8, x + y ≤ 6, x ≥ 0, y ≥ 0", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Metode Garis Selidik
+            // ==========================================
+            const elSelidik = document.getElementById("svg-sptldv-uji-titik-garis-selidik");
+            if (elSelidik) {
+                const geo2 = new GeoSVG(elSelidik, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Metode Garis Selidik Menentukan Nilai Optimum Maksimum"
+                });
+
+                const Ox = 65, Oy = 175, u = 18;
+
+                // Sumbu Kartesius
+                geo2.buatSegmen([40, Oy], [290, Oy], { stroke: TEMA.abu, strokeWidth: 1 });
+                geo2.buatSegmen([Ox, 20], [Ox, 195], { stroke: TEMA.abu, strokeWidth: 1 });
+
+                // Poligon DP
+                const ptO = [Ox, Oy];
+                const ptA = [Ox + 4 * u, Oy];
+                const ptB = [Ox + 2 * u, Oy - 4 * u];
+                const ptC = [Ox, Oy - 6 * u];
+                geo2.buatPoligon([ptO, ptA, ptB, ptC], { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 1.5, opacity: 0.4 });
+
+                // Garis Selidik Z = 5x + 3y = k (Gradien -5/3 = -1.67)
+                // Garis 1: k = 10 (Melintas tengah)
+                geo2.buatSegmen([Ox - 0.5 * u, Oy - 3.5 * u], [Ox + 2.5 * u, Oy + 1.5 * u], { stroke: TEMA.oranye, strokeWidth: 1.4, strokeDasharray: "4 2" });
+                geo2.buatTeks(Ox + 2.6 * u, Oy + 4, "k=10", { fontSize: "7px", fill: TEMA.oranye });
+
+                // Garis 2: k = 18 (Menyentuh C(0, 6))
+                geo2.buatSegmen([Ox - 0.5 * u, Oy - 6.5 * u], [Ox + 4.2 * u, Oy + 1.5 * u], { stroke: TEMA.oranye, strokeWidth: 1.4, strokeDasharray: "4 2" });
+                geo2.buatTeks(Ox + 4.3 * u, Oy + 4, "k=18", { fontSize: "7px", fill: TEMA.oranye });
+
+                // Garis 3: k = 22 (Maksimum di Titik B(2, 4)) - Solid Oranye Tebal
+                geo2.buatSegmen([Ox + 0.2 * u, Oy - 7.5 * u], [Ox + 5.2 * u, Oy + 0.8 * u], { stroke: TEMA.oranye, strokeWidth: 2.2 });
+                geo2.buatTeks(Ox + 5.2 * u, Oy - 6, "Z_maks = 22", { fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik Optimum B(2, 4) Diberi Sorotan
+                geo2.buatLingkaran(ptB, 5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(ptB[0] + 8, ptB[1] - 4, "B(2, 4) Optimum", { position: "bottom-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Tanda Panah Arah Pertambahan Nilai k
+                geo2.buatSegmen([Ox + 2.8 * u, Oy - 2.5 * u], [Ox + 4 * u, Oy - 4.5 * u], { stroke: TEMA.merah, strokeWidth: 1.8 });
+                geo2.buatTeks(Ox + 4.2 * u, Oy - 4.5 * u, "arah k ↑", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 208, "Garis Selidik Z = 5x + 3y Terakhir Menyentuh Titik Pojok B(2, 4)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Komparasi Terbatas vs Tak Terbatas
+            // ==========================================
+            const elBanding = document.getElementById("svg-sptldv-terbatas-vs-takterbatas");
+            if (elBanding) {
+                const geo3 = new GeoSVG(elBanding, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Komparasi Topologi Daerah Terbatas dan Tak Terbatas"
+                });
+
+                // Garis Pembatas Tengah Kanvas
+                geo3.buatSegmen([160, 20], [160, 190], { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "3 3" });
+
+                // --- Panel Kiri: Terbatas (Bounded) ---
+                const o1 = [40, 165];
+                geo3.buatSegmen([o1[0] - 10, o1[1]], [o1[0] + 105, o1[1]], { stroke: TEMA.abu, strokeWidth: 1 });
+                geo3.buatSegmen([o1[0], o1[1] + 10], [o1[0], o1[1] - 120], { stroke: TEMA.abu, strokeWidth: 1 });
+
+                // Poligon Segiempat Tertutup
+                geo3.buatPoligon([
+                    [o1[0], o1[1]],
+                    [o1[0] + 75, o1[1]],
+                    [o1[0] + 45, o1[1] - 65],
+                    [o1[0], o1[1] - 90]
+                ], { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 1.8, opacity: 0.5 });
+
+                geo3.buatTeks(85, 30, "DAERAH TERBATAS", { position: "middle-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo3.buatTeks(85, 180, "Poligon Tertutup (Maks & Min Ada)", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+
+                // --- Panel Kanan: Tak Terbatas (Unbounded) ---
+                const o2 = [190, 165];
+                geo3.buatSegmen([o2[0] - 10, o2[1]], [o2[0] + 115, o2[1]], { stroke: TEMA.abu, strokeWidth: 1 });
+                geo3.buatSegmen([o2[0], o2[1] + 10], [o2[0], o2[1] - 120], { stroke: TEMA.abu, strokeWidth: 1 });
+
+                // Daerah Terbuka x + y >= 3 di Kuadran I
+                geo3.buatPoligon([
+                    [o2[0] + 50, o2[1]],
+                    [o2[0] + 110, o2[1]],
+                    [o2[0] + 110, o2[1] - 110],
+                    [o2[0], o2[1] - 110],
+                    [o2[0], o2[1] - 50]
+                ], { fill: TEMA.oranyeMuda, stroke: "none", opacity: 0.45 });
+
+                // Garis Batas x + y = 3
+                geo3.buatSegmen([o2[0], o2[1] - 50], [o2[0] + 50, o2[1]], { stroke: TEMA.oranye, strokeWidth: 2 });
+
+                geo3.buatTeks(240, 30, "DAERAH TAK TERBATAS", { position: "middle-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.oranye });
+                geo3.buatTeks(240, 180, "Wilayah Terbuka (Maks Tak Hingga)", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 208, "Klasifikasi Topologi Solusi: Bounded vs Unbounded Feasible Region", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

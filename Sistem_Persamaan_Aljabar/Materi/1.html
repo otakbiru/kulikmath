@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Sistem Persamaan Aljabar</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Sistem Persamaan Aljabar</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Taksonomi Sistem Persamaan Aljabar</h2>
+            <p>
+                <strong>Sistem Persamaan Aljabar</strong> adalah sekumpulan dua atau lebih persamaan matematika yang melibatkan variabel-variabel yang sama, di mana kita mencari nilai-nilai variabel yang <strong>memenuhi seluruh persamaan tersebut secara simultan (serentak)</strong>. Himpunan dari seluruh nilai variabel yang memenuhi dinamakan <em>Himpunan Penyelesaian (HP)</em>.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Klasifikasi Sistem Persamaan Aljabar Berdasarkan Derajat & Bentuk Kurva:</strong>
+                </p>
+                <ol style="margin: 0.4rem 0 0 1.2rem; padding: 0;">
+                    <li><strong>Sistem Persamaan Linear Dua Variabel (SPLDV):</strong> Kedua persamaan berderajat satu ($a_1 x + b_1 y = c_1$ dan $a_2 x + b_2 y = c_2$), merepresentasikan perpotongan dua garis lurus pada bidang $\mathbb{R}^2$.</li>
+                    <li><strong>Sistem Persamaan Linear Tiga Variabel (SPLTV):</strong> Tiga persamaan berderajat satu dengan variabel $x, y, z$, merepresentasikan perpotongan tiga bidang datar pada ruang 3 dimensi $\mathbb{R}^3$.</li>
+                    <li><strong>Sistem Persamaan Linear-Kuadrat (SPLKDV):</strong> Terdiri atas satu persamaan linear (garis) dan satu persamaan derajat dua (parabola, lingkaran, elips, atau hiperbola).</li>
+                    <li><strong>Sistem Persamaan Kuadrat-Kuadrat (SPKKDV):</strong> Kedua persamaan berderajat dua, merepresentasikan irisan dua kurva kuadrat (irisan kerucut).</li>
+                    <li><strong>Sistem Persamaan Simetrik & Polinomial Non-Linear:</strong> Sistem persamaan yang simetris terhadap pertukaran variabel ($x \leftrightarrow y$), umumnya diselesaikan menggunakan variabel polinomial elementer $u = x+y$ dan $v = xy$.</li>
+                </ol>
+            </div>
+
+            <h2>2. Geometri Solusi SPLDV: Tiga Kasus Konsistensi</h2>
+            <p>
+                Secara geometris pada bidang Kartesius, solusi dari SPLDV:
+                $$\begin{cases} a_1 x + b_1 y = c_1 \\ a_2 x + b_2 y = c_2 \end{cases}$$
+                ditentukan oleh kedudukan relatif kedua garis pembentuknya:
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <ol>
+                        <li><strong>Tepat Satu Solusi Unik (Konsisten & Independen):</strong>
+                            <br>
+                            Kedua garis memiliki gradien yang berbeda ($m_1 \ne m_2$) sehingga berpotongan di tepat satu titik $(x_0, y_0)$.
+                            $$\frac{a_1}{a_2} \ne \frac{b_1}{b_2} \iff a_1 b_2 - a_2 b_1 \ne 0 \iff \det(A) \ne 0$$
+                        </li>
+                        <li><strong>Tidak Ada Solusi (Inkonsisten):</strong>
+                            <br>
+                            Kedua garis sejajar dan berlainan ($m_1 = m_2$ namun konstanta berbeda). Tidak ada titik potong persekutuan ($HP = \emptyset$).
+                            $$\frac{a_1}{a_2} = \frac{b_1}{b_2} \ne \frac{c_1}{c_2} \iff \det(A) = 0, \text{ namun } D_x \ne 0 \text{ atau } D_y \ne 0$$
+                        </li>
+                        <li><strong>Tak Hingga Banyak Solusi (Konsisten & Dependen):</strong>
+                            <br>
+                            Kedua persamaan merepresentasikan garis yang sama (berhimpit secara sempurna). Setiap titik pada garis merupakan solusi.
+                            $$\frac{a_1}{a_2} = \frac{b_1}{b_2} = \frac{c_1}{c_2} \iff \det(A) = D_x = D_y = 0$$
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-tiga-kasus-spldv" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Tiga kemungkinan geometri SPLDV — (1) Berpotongan di 1 titik; (2) Sejajar (tidak ada solusi); (3) Berhimpit (tak hingga solusi).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Metode Penyelesaian Sistem Linear</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Metode Substitusi & Eliminasi (Gabungan)</h3>
+                    <p>
+                        Metode paling universal: mengalikan koefisien agar salah satu variabel tereliminasi (penjumlahan/pengurangan), atau menyatakan salah satu variabel ke variabel lain untuk disubstitusikan.
+                    </p>
+
+                    <h3>B. Aturan Cramer (Metode Determinan Matriks)</h3>
+                    <p>
+                        Bentuk matriks dari sistem:
+                        $$\begin{pmatrix} a_1 & b_1 \\ a_2 & b_2 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} c_1 \\ c_2 \end{pmatrix}$$
+                        Hitung determinan utama dan determinan pengganti:
+                        $$D = \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} = a_1 b_2 - a_2 b_1$$
+                        $$D_x = \begin{vmatrix} c_1 & b_1 \\ c_2 & b_2 \end{vmatrix} = c_1 b_2 - c_2 b_1$$
+                        $$D_y = \begin{vmatrix} a_1 & c_1 \\ a_2 & c_2 \end{vmatrix} = a_1 c_2 - a_2 c_1$$
+                        Jika $D \ne 0$, solusi uniknya adalah:
+                        $$x = \frac{D_x}{D}, \quad y = \frac{D_y}{D}$$
+                    </p>
+                </div>
+
+                <div class="col col-2">
+                    <h3>C. Sistem Persamaan Linear Tiga Variabel (SPLTV)</h3>
+                    <p>
+                        Untuk sistem 3 variabel dengan matriks koefisien $A \in \mathbb{R}^{3 \times 3}$:
+                        $$\begin{cases} a_1 x + b_1 y + c_1 z = d_1 \\ a_2 x + b_2 y + c_2 z = d_2 \\ a_3 x + b_3 y + c_3 z = d_3 \end{cases}$$
+                        Dapat diselesaikan secara sistematis melalui:
+                    </p>
+                    <ul>
+                        <li><strong>Eliminasi Gauss:</strong> Mengubah matriks augmented $[A | \vec{d}]$ menjadi bentuk eselon baris melalui Operasi Baris Elementer (OBE).</li>
+                        <li><strong>Aturan Cramer 3x3:</strong> Menghitung determinan dengan metode Sarrus atau ekspansi kofaktor:
+                            $$x = \frac{D_x}{D}, \quad y = \frac{D_y}{D}, \quad z = \frac{D_z}{D} \quad (\text{syarat } D \ne 0)$$
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>4. Sistem Persamaan Linear-Kuadrat & Non-Linear</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Kedudukan Garis terhadap Parabola</h3>
+                    <p>
+                        Diberikan sistem linear-kuadrat:
+                        $$\begin{cases} y = mx + k \quad (\text{garis}) \\ y = ax^2 + bx + c \quad (\text{parabola}) \end{cases}$$
+                        Substitusikan persamaan garis ke parabola menghasilkan persamaan kuadrat resolven:
+                        $$ax^2 + (b - m)x + (c - k) = 0$$
+                        Banyaknya anggota himpunan penyelesaian ditentukan oleh nilai <strong>Diskriminan ($D$)</strong>:
+                    </p>
+                    <ul>
+                        <li><strong>$D > 0$:</strong> Garis memotong parabola di <strong>2 titik berlainan</strong> (2 solusi riil).</li>
+                        <li><strong>$D = 0$:</strong> Garis <strong>menyinggung</strong> parabola di 1 titik kembar (1 solusi riil).</li>
+                        <li><strong>$D < 0$:</strong> Garis berada di luar parabola (<strong>tidak ada solusi riil</strong>).</li>
+                    </ul>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-linear-kuadrat" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Geometri sistem linear-kuadrat — garis memotong di dua titik ($D>0$), menyinggung ($D=0$), dan saling lepas ($D<0$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h3>B. Sistem Persamaan Simetrik & Teorema Bézout</h3>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Sistem persamaan simetris dapat disederhanakan secara dramatis menggunakan <strong>polinomial simetris elementer</strong>:
+                        $$u = x + y, \quad v = xy$$
+                        Identitas transformasi penting:
+                        $$x^2 + y^2 = u^2 - 2v$$
+                        $$x^3 + y^3 = u^3 - 3uv$$
+                        $$x^4 + y^4 = (u^2 - 2v)^2 - 2v^2$$
+                        Setelah nilai $u$ dan $v$ ditemukan, nilai $x$ dan $y$ diperoleh sebagai akar-akar persamaan kuadrat:
+                        $$t^2 - ut + v = 0$$
+                    </p>
+                    <p>
+                        <strong>Teorema Bézout:</strong> Sistem dua persamaan aljabar berderajat $m$ dan $n$ pada bidang proyektif kompleks memiliki maksimal $m \times n$ titik potong persekutuan.
+                        Misalnya perpotongan lingkaran ($m=2$) dan hiperbola ($n=2$) menghasilkan maksimal $2 \times 2 = 4$ titik potong riil.
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-lingkaran-hiperbola" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Sistem kuadrat non-linear — perpotongan lingkaran $x^2+y^2=r^2$ dan hiperbola $xy=c$ menghasilkan 4 titik potong simultan (Teorema Bézout).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>5. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — SPLDV dengan Metode Determinan (Aturan Cramer)</h3>
+                <p>
+                    Diberikan sistem persamaan linear dua variabel berikut:
+                    $$\begin{cases} 2x + 3y = 13 \\ 5x - 2y = 4 \end{cases}$$
+                </p>
+                <ol type="a">
+                    <li>Hitung nilai determinan utama $D$, determinan $D_x$, dan determinan $D_y$.</li>
+                    <li>Tentukan himpunan penyelesaian $(x, y)$ menggunakan Aturan Cramer.</li>
+                    <li>Hitung nilai dari bentuk aljabar $3x - y$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menghitung Nilai Determinan:</strong><br>
+                        Bentuk matriks dari sistem tersebut:
+                        $$\begin{pmatrix} 2 & 3 \\ 5 & -2 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 13 \\ 4 \end{pmatrix}$$
+                        Determinan utama ($D$):
+                        $$D = \begin{vmatrix} 2 & 3 \\ 5 & -2 \end{vmatrix} = (2 \times (-2)) - (3 \times 5) = -4 - 15 = -19$$
+                        Determinan $D_x$ (kolom pertama diganti konstanta):
+                        $$D_x = \begin{vmatrix} 13 & 3 \\ 4 & -2 \end{vmatrix} = (13 \times (-2)) - (3 \times 4) = -26 - 12 = -38$$
+                        Determinan $D_y$ (kolom kedua diganti konstanta):
+                        $$D_y = \begin{vmatrix} 2 & 13 \\ 5 & 4 \end{vmatrix} = (2 \times 4) - (13 \times 5) = 8 - 65 = -57$$
+                    </p>
+                    <p>
+                        <strong>(b) Menentukan Solusi $(x, y)$ via Aturan Cramer:</strong><br>
+                        $$x = \frac{D_x}{D} = \frac{-38}{-19} = 2$$
+                        $$y = \frac{D_y}{D} = \frac{-57}{-19} = 3$$
+                        Himpunan penyelesaian: $HP = \{(2, 3)\}$.
+                        <em>Verifikasi:</em>
+                        $$2(2) + 3(3) = 4 + 9 = 13 \quad (\text{benar})$$
+                        $$5(2) - 2(3) = 10 - 6 = 4 \quad (\text{benar})$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Nilai $3x - y$:</strong><br>
+                        $$3x - y = 3(2) - 3 = 6 - 3 = 3$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Determinan $D = -19, D_x = -38, D_y = -57$, solusi unik $(x, y) = (2, 3)$, dan nilai $3x - y = 3$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat SNBT / UTBK — Sistem Linear-Kuadrat & Syarat Garis Singgung</h3>
+                <p>
+                    Diketahui sebuah garis lurus dengan persamaan $y = 2x + k$ dan sebuah parabola dengan persamaan $y = x^2 - 4x + 7$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan nilai konstanta $k$ agar garis tersebut menyinggung parabola tepat di satu titik.</li>
+                    <li>Tentukan koordinat titik singgung antara garis dan parabola tersebut.</li>
+                    <li>Tentukan batasan nilai $k$ agar garis memotong parabola di dua titik yang berbeda.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menyusun Persamaan Kuadrat Resolven & Menghitung $k$:</strong><br>
+                        Samakan kedua persamaan untuk mencari absis titik potong:
+                        $$x^2 - 4x + 7 = 2x + k$$
+                        Pindahkan seluruh suku ke ruas kiri:
+                        $$x^2 - 6x + (7 - k) = 0$$
+                        Persamaan ini memiliki koefisien: $a = 1, b = -6, c = 7 - k$.
+                        Agar garis menyinggung parabola, persamaan kuadrat persekutuan harus memiliki tepat satu akar riil (akar kembar), yang mensyaratkan diskriminan bernilai nol ($D = 0$):
+                        $$D = b^2 - 4ac = 0$$
+                        $$(-6)^2 - 4(1)(7 - k) = 0$$
+                        $$36 - 28 + 4k = 0$$
+                        $$8 + 4k = 0 \implies 4k = -8 \implies k = -2$$
+                    </p>
+                    <p>
+                        <strong>(b) Menentukan Koordinat Titik Singgung:</strong><br>
+                        Substitusikan $k = -2$ ke dalam persamaan kuadrat resolven:
+                        $$x^2 - 6x + (7 - (-2)) = 0 \implies x^2 - 6x + 9 = 0$$
+                        $$(x - 3)^2 = 0 \implies x = 3$$
+                        Substitusikan absis $x = 3$ ke persamaan garis:
+                        $$y = 2(3) + (-2) = 6 - 2 = 4$$
+                        Koordinat titik singgung adalah $(3, 4)$.
+                    </p>
+                    <p>
+                        <strong>(c) Batasan Nilai $k$ untuk Dua Titik Potong Berbeda:</strong><br>
+                        Garis memotong di dua titik berbeda jika diskriminan positif ($D > 0$):
+                        $$8 + 4k > 0 \implies 4k > -8 \implies k > -2$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Nilai $k = -2$ agar menyinggung di titik $(3, 4)$, dan $k > -2$ agar memotong di dua titik berlainan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Sistem Persamaan Simetrik Non-Linear</h3>
+                <p>
+                    Tentukan seluruh pasangan bilangan riil $(x, y)$ yang memenuhi sistem persamaan non-linear berikut:
+                    $$\begin{cases} x + y + xy = 11 \\ x^2 y + x y^2 = 30 \end{cases}$$
+                </p>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>Langkah 1: Identifikasi Polinomial Simetris</strong><br>
+                        Perhatikan persamaan kedua:
+                        $$x^2 y + x y^2 = xy(x + y) = 30$$
+                        Kedua persamaan bersifat simetris terhadap $x$ dan $y$.
+                        Lakukan substitusi variabel simetris elementer:
+                        $$u = x + y \quad \text{dan} \quad v = xy$$
+                        Maka sistem persamaan berubah menjadi sistem aljabar sederhana:
+                        $$\begin{cases} u + v = 11 \\ u \cdot v = 30 \end{cases}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Menentukan Nilai $u$ dan $v$</strong><br>
+                        Berdasarkan teorema Vieta, $u$ dan $v$ adalah akar-akar dari persamaan kuadrat pembantu dalam variabel $t$:
+                        $$t^2 - (u + v)t + (uv) = 0 \implies t^2 - 11t + 30 = 0$$
+                        Faktorisasi:
+                        $$(t - 5)(t - 6) = 0 \implies t_1 = 5 \quad \text{atau} \quad t_2 = 6$$
+                        Karena sistem simetris terhadap $u$ dan $v$, terdapat dua kasus yang mungkin:
+                    </p>
+                    <p>
+                        <strong>Kasus 1: $u = 5$ dan $v = 6$</strong><br>
+                        Artinya $x + y = 5$ dan $xy = 6$.
+                        Maka $x$ dan $y$ adalah akar-akar dari persamaan kuadrat:
+                        $$z^2 - 5z + 6 = 0 \implies (z - 2)(z - 3) = 0$$
+                        Diperoleh solusi:
+                        $$(x, y) = (2, 3) \quad \text{atau} \quad (x, y) = (3, 2)$$
+                    </p>
+                    <p>
+                        <strong>Kasus 2: $u = 6$ dan $v = 5$</strong><br>
+                        Artinya $x + y = 6$ dan $xy = 5$.
+                        Maka $x$ dan $y$ adalah akar-akar dari persamaan kuadrat:
+                        $$z^2 - 6z + 5 = 0 \implies (z - 1)(z - 5) = 0$$
+                        Diperoleh solusi:
+                        $$(x, y) = (1, 5) \quad \text{atau} \quad (x, y) = (5, 1)$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Himpunan Penyelesaian Lengkap</strong><br>
+                        Seluruh pasangan solusi memenuhi kedua persamaan awal. Terdapat 4 pasangan solusi riil:
+                        $$HP = \{(2, 3), (3, 2), (1, 5), (5, 1)\}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Himpunan penyelesaian sistem adalah $HP = \{(2, 3), (3, 2), (1, 5), (5, 1)\}$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Tiga Kasus Geometri SPLDV
+            // ==========================================
+            const elTigaKasus = document.getElementById("svg-tiga-kasus-spldv");
+            if (elTigaKasus) {
+                const geo1 = new GeoSVG(elTigaKasus, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Tiga Kasus Kedudukan Geometri Garis SPLDV"
+                });
+
+                // Garis pembagi sub-panel
+                geo1.buatSegmen([106, 25], [106, 190], { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "2 2" });
+                geo1.buatSegmen([213, 25], [213, 190], { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "2 2" });
+
+                // --- Panel 1: Satu Solusi (Berpotongan) ---
+                geo1.buatSegmen([18, 155], [90, 65], { stroke: TEMA.utama, strokeWidth: 2 });
+                geo1.buatSegmen([18, 75], [90, 145], { stroke: TEMA.aksen, strokeWidth: 2 });
+                // Titik potong di (54, 110)
+                geo1.buatLingkaran([54, 110], 3.8, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo1.buatTeks(54, 35, "1 Solusi Unik", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.gelap });
+                geo1.buatTeks(54, 180, "Berpotongan (D≠0)", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+
+                // --- Panel 2: Tidak Ada Solusi (Sejajar) ---
+                geo1.buatSegmen([125, 145], [195, 75], { stroke: TEMA.utama, strokeWidth: 2 });
+                geo1.buatSegmen([125, 110], [195, 40], { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo1.buatTeks(160, 35, "Tidak Ada Solusi", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.gelap });
+                geo1.buatTeks(160, 180, "Sejajar (D=0, Dx≠0)", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+
+                // --- Panel 3: Tak Hingga Solusi (Berhimpit) ---
+                geo1.buatSegmen([232, 140], [302, 70], { stroke: TEMA.utama, strokeWidth: 3 });
+                geo1.buatSegmen([232, 140], [302, 70], { stroke: TEMA.oranye, strokeWidth: 1.6, strokeDasharray: "4 3" });
+                geo1.buatTeks(267, 35, "Tak Hingga Solusi", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.gelap });
+                geo1.buatTeks(267, 180, "Berhimpit (D=Dx=0)", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 208, "Klasifikasi Determinan Matriks: D ≠ 0 vs D = 0", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+
+            // ==========================================
+            // 2. Sistem Linear-Kuadrat (Garis & Parabola)
+            // ==========================================
+            const elLinearKuadrat = document.getElementById("svg-linear-kuadrat");
+            if (elLinearKuadrat) {
+                const geo2 = new GeoSVG(elLinearKuadrat, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Kedudukan Garis terhadap Parabola"
+                });
+
+                // Gambar Sumbu Kartesius Tipis
+                geo2.buatSegmen([30, 180], [290, 180], { stroke: TEMA.abu, strokeWidth: 1 });
+                geo2.buatSegmen([160, 20], [160, 190], { stroke: TEMA.abu, strokeWidth: 1 });
+                geo2.buatTeks(294, 180, "x", { fontSize: "8.5px", fill: TEMA.abu });
+                geo2.buatTeks(160, 14, "y", { position: "bottom-center", fontSize: "8.5px", fill: TEMA.abu });
+
+                // Parabola: y_screen = 160 - 0.018 * (x - 160)^2
+                const ptsParabola = [];
+                for (let x = 85; x <= 235; x += 5) {
+                    const y = 160 - 0.016 * Math.pow(x - 160, 2);
+                    ptsParabola.push([x, y]);
+                }
+                for (let i = 0; i < ptsParabola.length - 1; i++) {
+                    geo2.buatSegmen(ptsParabola[i], ptsParabola[i + 1], { stroke: TEMA.utama, strokeWidth: 2.2 });
+                }
+                geo2.buatTeks(240, 65, "y = ax² + bx + c", { fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+
+                // 1. Garis Potong (D > 0) Memotong 2 Titik (Oranye)
+                geo2.buatSegmen([80, 110], [240, 150], { stroke: TEMA.oranye, strokeWidth: 1.8 });
+                geo2.buatLingkaran([108, 117], 3.2, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                geo2.buatLingkaran([212, 143], 3.2, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                geo2.buatTeks(75, 105, "D > 0 (2 titik)", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // 2. Garis Singgung (D = 0) Menyinggung di Puncak (Hijau)
+                geo2.buatSegmen([80, 160], [240, 160], { stroke: TEMA.aksen, strokeWidth: 1.8 });
+                geo2.buatLingkaran([160, 160], 3.5, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1 });
+                geo2.buatTeks(245, 160, "D = 0 (Singgung)", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // 3. Garis Lepas (D < 0) Tidak Memotong (Ungu)
+                geo2.buatSegmen([80, 175], [240, 175], { stroke: TEMA.ungu, strokeWidth: 1.5, strokeDasharray: "4 2" });
+                geo2.buatTeks(245, 175, "D < 0 (Lepas)", { position: "middle-left", fontSize: "7.5px", fill: TEMA.ungu });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 208, "Analisis Diskriminan Persamaan Resolven Kuadrat", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Sistem Derajat Dua: Lingkaran & Hiperbola (Teorema Bézout)
+            // ==========================================
+            const elBézo = document.getElementById("svg-lingkaran-hiperbola");
+            if (elBézo) {
+                const geo3 = new GeoSVG(elBézo, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Perpotongan Lingkaran dan Hiperbola (Maksimal 4 Titik Potong)"
+                });
+
+                const cx = 160, cy = 110;
+
+                // Sumbu Kartesius
+                geo3.buatSegmen([40, cy], [280, cy], { stroke: TEMA.abu, strokeWidth: 1 });
+                geo3.buatSegmen([cx, 25], [cx, 195], { stroke: TEMA.abu, strokeWidth: 1 });
+
+                // Lingkaran x^2 + y^2 = R^2 (R = 56 px)
+                const R = 56;
+                geo3.buatLingkaran([cx, cy], R, { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 2, opacity: 0.3 });
+                geo3.buatTeks(cx + R + 4, cy - 8, "x² + y² = r²", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Kurva Hiperbola xy = c (c = 1100 px^2)
+                // Cabang Kuadran 1 (x > 0, y > 0)
+                const ptsH1 = [];
+                for (let x = 16; x <= 75; x += 3) {
+                    const y = 900 / x;
+                    ptsH1.push([cx + x, cy - y]);
+                }
+                for (let i = 0; i < ptsH1.length - 1; i++) {
+                    geo3.buatSegmen(ptsH1[i], ptsH1[i + 1], { stroke: TEMA.oranye, strokeWidth: 2 });
+                }
+
+                // Cabang Kuadran 3 (x < 0, y < 0)
+                const ptsH3 = [];
+                for (let x = -75; x <= -16; x += 3) {
+                    const y = 900 / x;
+                    ptsH3.push([cx + x, cy - y]);
+                }
+                for (let i = 0; i < ptsH3.length - 1; i++) {
+                    geo3.buatSegmen(ptsH3[i], ptsH3[i + 1], { stroke: TEMA.oranye, strokeWidth: 2 });
+                }
+                geo3.buatTeks(cx - 72, cy + 32, "xy = c", { fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // 4 Titik Potong Riil (Titik Merah)
+                const potong = [
+                    [cx + 51.5, cy - 17.5],
+                    [cx + 17.5, cy - 51.5],
+                    [cx - 51.5, cy + 17.5],
+                    [cx - 17.5, cy + 51.5]
+                ];
+                potong.forEach(p => {
+                    geo3.buatLingkaran(p, 3.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 208, "Teorema Bézout: Derajat 2 × Derajat 2 = Maksimal 4 Titik Potong Riil", {
+                    position: "middle-center",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

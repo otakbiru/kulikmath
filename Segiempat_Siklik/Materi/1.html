@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Segiempat Siklik (Segiempat Tali Busur)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Segiempat Siklik (Segiempat Tali Busur)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Karakterisasi Segiempat Siklik</h2>
+            <p>
+                <strong>Segiempat Siklik</strong> (disebut juga <em>Segiempat Tali Busur</em> atau <em>Cyclic Quadrilateral</em>) adalah bangun datar segiempat yang keempat titik sudutnya terletak tepat pada satu keliling lingkaran yang sama. Lingkaran yang memuat keempat verteks tersebut dinamakan <strong>lingkaran luar (circumcircle)</strong> dengan pusat $O$ dan jari-jari $R$. Keempat sisi segiempat bertindak langsung sebagai tali busur (<em>chords</em>) dari lingkaran tersebut.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Syarat Perlu dan Cukup (Ekuivalensi Segiempat Siklik):</strong><br>
+                    Untuk segiempat konveks $ABCD$, pernyataan-pernyataan berikut saling ekuivalen:
+                </p>
+                <ol style="margin: 0.4rem 0 0 1.2rem; padding: 0;">
+                    <li>Keempat titik $A, B, C, D$ bersifat <em>konsiklik</em> (terletak pada satu lingkaran).</li>
+                    <li>Jumlah pasangan sudut yang saling berhadapan adalah $180^\circ$ ($\pi$ rad): $\angle A + \angle C = 180^\circ$ dan $\angle B + \angle D = 180^\circ$.</li>
+                    <li>Sudut luar pada salah satu verteks sama besar dengan sudut dalam di verteks seberang.</li>
+                    <li>Sudut-sudut keliling yang menghadap busur (atau sisi) yang sama adalah kongruen: $\angle BAC = \angle BDC$, $\angle CBD = \angle CAD$, $\angle DCA = \angle DBA$, dan $\angle ADB = \angle ACB$.</li>
+                    <li>Berlaku persamaan Teorema Ptolemy: $AC \cdot BD = AB \cdot CD + BC \cdot AD$.</li>
+                </ol>
+            </div>
+
+            <h2>2. Teorema Sudut Segiempat Siklik</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Teorema Sudut Berhadapan (Opposite Angles)</h3>
+                    <p>
+                        Jika segiempat $ABCD$ adalah segiempat tali busur, maka:
+                        $$\angle DAB + \angle BCD = 180^\circ$$
+                        $$\angle ABC + \angle CDA = 180^\circ$$
+                    </p>
+                    <p>
+                        <strong>Bukti Geometris:</strong><br>
+                        Tarik jari-jari dari pusat lingkaran $O$ ke verteks $B$ dan $D$. Sudut pusat $\angle BOD$ membagi lingkaran menjadi busur minor dan busur mayor. Berdasarkan <em>Teorema Sudut Keliling</em>, sudut keliling berukuran setengah dari sudut pusat yang menghadap busur yang sama:
+                        $$\angle DAB = \frac{1}{2} \times \text{sudut pusat busur mayor } BD$$
+                        $$\angle BCD = \frac{1}{2} \times \text{sudut pusat busur minor } BD$$
+                        Karena jumlah sudut pusat busur minor dan busur mayor adalah satu putaran penuh ($360^\circ$):
+                        $$\angle DAB + \angle BCD = \frac{1}{2}(360^\circ) = 180^\circ \quad \blacksquare$$
+                    </p>
+
+                    <h3>B. Sudut Keliling Sehadap</h3>
+                    <p>
+                        Ruas garis diagonal $AC$ dan $BD$ membentuk segitiga-segitiga yang menumpu pada tali busur yang sama:
+                        $$\angle BAC = \angle BDC \quad (\text{menghadap busur } BC)$$
+                        $$\angle CAD = \angle CBD \quad (\text{menghadap busur } CD)$$
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-segiempat-siklik-sudut" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Segiempat Siklik $ABCD$ dalam lingkaran luar, memperlihatkan sudut berhadapan saling berpelurus dan kesamaan sudut keliling sehadap.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Teorema Ptolemy & Relasi Metrik Diagonal</h2>
+            <p>
+                Teorema Ptolemy merupakan salah satu relasi metrik paling fundamental dalam geometri Euclidean untuk menghubungkan panjang sisi-sisi dan panjang diagonal suatu segiempat tali busur.
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Teorema Pertama Ptolemy</h3>
+                    <p>
+                        Pada sembarang segiempat siklik $ABCD$ dengan panjang sisi $a = AB, b = BC, c = CD, d = DA$ dan diagonal $p = AC, q = BD$:
+                        $$AC \cdot BD = AB \cdot CD + BC \cdot AD$$
+                        $$p \cdot q = ac + bd$$
+                        <em>"Hasil kali panjang kedua diagonal sama dengan jumlah hasil kali sisi-sisi yang saling berhadapan."</em>
+                    </p>
+                    <p>
+                        <strong>Pertidaksamaan Ptolemy:</strong> Untuk sembarang segiempat konveks pada bidang, berlaku $AC \cdot BD \le AB \cdot CD + BC \cdot AD$. Tanda kesamaan berlaku jika dan hanya jika segiempat tersebut adalah segiempat siklik.
+                    </p>
+
+                    <h3>B. Teorema Kedua Ptolemy (Rasio Diagonal)</h3>
+                    <p>
+                        Rasio antara panjang kedua diagonal segiempat siklik memenuhi:
+                        $$\frac{AC}{BD} = \frac{p}{q} = \frac{ab + cd}{ad + bc}$$
+                    </p>
+
+                    <h3>C. Formula Eksplisit Panjang Diagonal</h3>
+                    <p>
+                        Dengan mengalikan dan membagi persamaan Ptolemy pertama dan kedua, diperoleh formula eksplisit untuk masing-masing panjang diagonal:
+                        $$p = AC = \sqrt{\frac{(ab + cd)(ac + bd)}{ad + bc}}$$
+                        $$q = BD = \sqrt{\frac{(ad + bc)(ac + bd)}{ab + cd}}$$
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-teorema-ptolemy" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Visualisasi relasi sisi berhadapan ($a,b,c,d$) dan diagonal ($p,q$) menurut Teorema Ptolemy.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h3>D. Teorema Titik Kuasa (Power of a Point)</h3>
+            <p>
+                Jika kedua diagonal $AC$ dan $BD$ saling berpotongan di titik interior $P$, maka berdasarkan kesebangunan segitiga ($\triangle PAB \sim \triangle PDC$ dan $\triangle PAD \sim \triangle PBC$):
+                $$PA \cdot PC = PB \cdot PD$$
+                Sebaliknya, jika perpanjangan sisi $AB$ dan $CD$ saling berpotongan di titik eksterior $E$, maka:
+                $$EA \cdot EB = ED \cdot EC$$
+            </p>
+
+            <h2>4. Luas Segiempat Siklik: Formula Brahmagupta</h2>
+            <p>
+                Pada tahun 628 M, matematikawan India <strong>Brahmagupta</strong> merumuskan formula luas segiempat siklik yang merupakan generalisasi elegan dari rumus Heron untuk segitiga.
+            </p>
+            <p>
+                Misalkan segiempat siklik memiliki panjang sisi berturut-turut $a, b, c, d$ dan semi-perimeter (setengah keliling) $s = \frac{a + b + c + d}{2}$, maka luas daerah segiempat $L$ dinyatakan oleh:
+                $$L = \sqrt{(s - a)(s - b)(s - c)(s - d)}$$
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Hubungan dengan Teorema Bretschneider (Luas Segiempat Umum):</strong><br>
+                    Untuk sembarang segiempat konveks dengan sudut berhadapan $A$ dan $C$, luasnya diberikan oleh formula Bretschneider:
+                    $$L = \sqrt{(s - a)(s - b)(s - c)(s - d) - abcd \cos^2\left(\frac{A + C}{2}\right)}$$
+                    Karena pada segiempat siklik $A + C = 180^\circ$, maka $\frac{A + C}{2} = 90^\circ$, sehingga $\cos(90^\circ) = 0$. Suku pengurang bernilai nol, membuktikan bahwa <em>di antara seluruh segiempat dengan empat sisi yang diberikan ($a, b, c, d$), segiempat siklik memiliki luas paling maksimum</em>.
+                </p>
+            </div>
+
+            <h3>Jari-Jari Lingkaran Luar (Circumradius $R$): Formula Parameshvara</h3>
+            <p>
+                Jari-jari lingkaran luar $R$ dari segiempat siklik dengan sisi $a, b, c, d$ dan luas $L$ dirumuskan oleh matematikawan Kerala, Parameshvara (1430 M):
+                $$R = \frac{1}{4L}\sqrt{(ab + cd)(ac + bd)(ad + bc)}$$
+                Atau dalam relasi diagonal $p, q$:
+                $$R = \frac{\sqrt{(ab + cd)(ad + bc)(p \cdot q)}}{4L}$$
+            </p>
+
+            <h2>5. Kasus Khusus: Segiempat Siklik Ortodiagonal & Bisiklik</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Segiempat Siklik Ortodiagonal ($AC \perp BD$)</h3>
+                    <p>
+                        Segiempat siklik yang kedua diagonalnya saling berpotongan tegak lurus di titik $P$ memiliki sifat-sifat istimewa:
+                    </p>
+                    <ol>
+                        <li><strong>Teorema Brahmagupta (Median dari Garis Tinggi):</strong> Jika dari titik potong diagonal $P$ ditarik garis yang tegak lurus ke salah satu sisi (misal sisi $AB$), maka perpanjangan garis tersebut ke arah berlawanan akan membagi dua sisi di hadapannya ($CD$) tepat di titik tengahnya (menjadi median).</li>
+                        <li><strong>Relasi Kuadrat Sisi & Jari-Jari Luar:</strong>
+                            $$a^2 + c^2 = b^2 + d^2 = 4R^2$$
+                            $$PA^2 + PB^2 + PC^2 + PD^2 = 4R^2$$
+                        </li>
+                        <li><strong>Luas Ortodiagonal:</strong>
+                            $$L = \frac{1}{2} \cdot AC \cdot BD = \frac{1}{2} pq$$
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-ortodiagonal-brahmagupta" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Segiempat ortodiagonal siklik ($AC \perp BD$). Garis tinggi $PH \perp AB$ diperpanjang menjadi garis berat $PM$ yang membagi $CD$ menjadi dua bagian sama panjang ($CM = MD$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h3>B. Segiempat Bisiklik (Bicentric Quadrilateral)</h3>
+            <p>
+                Segiempat yang sekaligus bersifat <strong>siklik</strong> (memiliki lingkaran luar) dan <strong>tangensial</strong> (memiliki lingkaran dalam yang menyinggung keempat sisinya) disebut <em>segiempat bisiklik</em>.
+            </p>
+            <ul>
+                <li><strong>Syarat Tangensial (Teorema Pitot):</strong> $a + c = b + d = s$.</li>
+                <li><strong>Luas Segiempat Bisiklik:</strong> Substitusi $s - a = c$, $s - b = d$, $s - c = a$, $s - d = b$ ke rumus Brahmagupta menghasilkan:
+                    $$L = \sqrt{abcd}$$
+                </li>
+                <li><strong>Teorema Fuss:</strong> Hubungan antara jari-jari lingkaran luar $R$, jari-jari lingkaran dalam $r$, dan jarak antarpusat kedua lingkaran $d$:
+                    $$\frac{1}{(R - d)^2} + \frac{1}{(R + d)^2} = \frac{1}{r^2} \iff 2r^2(R^2 + d^2) = (R^2 - d^2)^2$$
+                </li>
+            </ul>
+
+            <h2>6. Tabel Rangkuman Rumus Cepat</h2>
+            <div style="overflow-x: auto; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+                    <thead>
+                        <tr style="background-color: var(--card-bg, #f8fafc); border-bottom: 2px solid #cbd5e1;">
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">Kategori</th>
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">Rumus / Teorema</th>
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">Keterangan & Catatan Kunci</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Sudut Berhadapan</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$\angle A + \angle C = 180^\circ$<br>$\angle B + \angle D = 180^\circ$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Syarat perlu & cukup agar 4 titik terletak pada satu lingkaran.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Teorema Ptolemy I</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$p \cdot q = ac + bd$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$p, q$ diagonal; $a, b, c, d$ sisi berurutan.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Teorema Ptolemy II</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$\frac{p}{q} = \frac{ab + cd}{ad + bc}$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Rasio panjang diagonal $AC$ terhadap $BD$.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Luas Brahmagupta</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$L = \sqrt{(s-a)(s-b)(s-c)(s-d)}$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$s = \frac{a+b+c+d}{2}$. Luas maksimal untuk kombinasi sisi $a,b,c,d$.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Jari-Jari Luar ($R$)</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$R = \frac{\sqrt{(ab+cd)(ac+bd)(ad+bc)}}{4L}$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Formula Parameshvara untuk circumradius lingkaran luar.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Siklik Ortodiagonal</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$a^2 + c^2 = b^2 + d^2 = 4R^2$<br>$L = \frac{1}{2}pq$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Diagonal saling tegak lurus ($p \perp q$). Garis tinggi membagi sisi seberang jadi median.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Segiempat Bisiklik</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$L = \sqrt{abcd}$<br>$a + c = b + d = s$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Memiliki lingkaran luar sekaligus lingkaran dalam.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>7. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Teorema Sudut Berhadapan & Sudut Keliling</h3>
+                <p>
+                    Diberikan segiempat tali busur $ABCD$ pada suatu lingkaran. Diketahui besar sudut $\angle BAD = (2x + 15)^\circ$ dan besar sudut $\angle BCD = (3x + 25)^\circ$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan nilai $x$ serta besar sudut $\angle BAD$ dan $\angle BCD$.</li>
+                    <li>Jika diketahui besar $\angle ABD = 40^\circ$, tentukan besar $\angle ACD$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Mencari nilai $x$ dan sudut berhadapan:</strong><br>
+                        Karena $ABCD$ adalah segiempat tali busur, pasangan sudut yang saling berhadapan saling berpelurus (berjumlah $180^\circ$):
+                        $$\angle BAD + \angle BCD = 180^\circ$$
+                        Substitusikan nilai aljabar sudut:
+                        $$(2x + 15)^\circ + (3x + 25)^\circ = 180^\circ$$
+                        $$5x + 40 = 180$$
+                        $$5x = 140 \implies x = 28$$
+                        Dengan demikian:
+                        $$\angle BAD = 2(28)^\circ + 15^\circ = 56^\circ + 15^\circ = 71^\circ$$
+                        $$\angle BCD = 3(28)^\circ + 25^\circ = 84^\circ + 25^\circ = 109^\circ$$
+                        <em>Verifikasi:</em> $71^\circ + 109^\circ = 180^\circ$ (sesuai).
+                    </p>
+                    <p>
+                        <strong>(b) Mencari besar $\angle ACD$:</strong><br>
+                        Perhatikan bahwa sudut $\angle ABD$ dan $\angle ACD$ adalah dua sudut keliling lingkaran yang sama-sama menghadap ke tali busur (atau busur lingkaran) $AD$.
+                        Berdasarkan teorema sudut keliling sehadap:
+                        $$\angle ACD = \angle ABD = 40^\circ$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Nilai $x = 28$, $\angle BAD = 71^\circ$, $\angle BCD = 109^\circ$, dan $\angle ACD = 40^\circ$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat SNBT / UTBK — Formula Brahmagupta & Pembuktian Teorema Ptolemy</h3>
+                <p>
+                    Sebuah segiempat siklik $ABCD$ memiliki panjang sisi berturut-turut $AB = 4$, $BC = 5$, $CD = 7$, dan $DA = 2$.
+                </p>
+                <ol type="a">
+                    <li>Hitung luas daerah segiempat $ABCD$ menggunakan formula Brahmagupta.</li>
+                    <li>Hitung panjang masing-masing diagonal $AC$ dan $BD$, serta tunjukkan bahwa relasi Teorema Ptolemy $AC \cdot BD = AB \cdot CD + BC \cdot AD$ terpenuhi secara eksak.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        Diketahui sisi-sisi segiempat: $a = 4$, $b = 5$, $c = 7$, $d = 2$.
+                    </p>
+                    <p>
+                        <strong>(a) Menghitung Luas Segiempat via Brahmagupta:</strong><br>
+                        Hitung semi-perimeter $s$:
+                        $$s = \frac{a + b + c + d}{2} = \frac{4 + 5 + 7 + 2}{2} = \frac{18}{2} = 9$$
+                        Faktor-faktor selisih sisi:
+                        $$s - a = 9 - 4 = 5$$
+                        $$s - b = 9 - 5 = 4$$
+                        $$s - c = 9 - 7 = 2$$
+                        $$s - d = 9 - 2 = 7$$
+                        Luas $L$ adalah:
+                        $$L = \sqrt{(s - a)(s - b)(s - c)(s - d)} = \sqrt{5 \times 4 \times 2 \times 7} = \sqrt{560} = \sqrt{16 \times 35} = 4\sqrt{35} \text{ satuan luas}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Panjang Diagonal $AC$ dan $BD$:</strong><br>
+                        Evaluasi kombinasi produk sisi-sisi berurutan dan berhadapan:
+                        $$ab + cd = (4 \times 5) + (7 \times 2) = 20 + 14 = 34$$
+                        $$ac + bd = (4 \times 7) + (5 \times 2) = 28 + 10 = 38$$
+                        $$ad + bc = (4 \times 2) + (5 \times 7) = 8 + 35 = 43$$
+                        Gunakan formula kuadrat panjang diagonal:
+                        $$AC^2 = \frac{(ab + cd)(ac + bd)}{ad + bc} = \frac{34 \times 38}{43} = \frac{1292}{43} \implies AC = \sqrt{\frac{1292}{43}}$$
+                        $$BD^2 = \frac{(ad + bc)(ac + bd)}{ab + cd} = \frac{43 \times 38}{34} = \frac{43 \times 19}{17} = \frac{817}{17} \implies BD = \sqrt{\frac{817}{17}}$$
+                    </p>
+                    <p>
+                        <strong>Verifikasi Teorema Ptolemy:</strong><br>
+                        Kalikan kedua panjang diagonal:
+                        $$AC \cdot BD = \sqrt{AC^2 \cdot BD^2} = \sqrt{\frac{34 \times 38}{43} \times \frac{43 \times 38}{34}} = \sqrt{38^2} = 38$$
+                        Sementara itu, jumlah hasil kali sisi-sisi yang berhadapan adalah:
+                        $$AB \cdot CD + BC \cdot AD = (4 \times 7) + (5 \times 2) = 28 + 10 = 38$$
+                        Terbukti eksak bahwa $AC \cdot BD = AB \cdot CD + BC \cdot AD = 38$.
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Luas daerah $L = 4\sqrt{35}$, diagonal $AC = \sqrt{\frac{1292}{43}}$, diagonal $BD = \sqrt{\frac{817}{17}}$, dan Teorema Ptolemy terbukti sahih ($38 = 38$).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Segiempat Ortodiagonal & Teorema Brahmagupta</h3>
+                <p>
+                    Diberikan segiempat tali busur $ABCD$ dengan diagonal $AC$ dan $BD$ saling tegak lurus ($AC \perp BD$) dan berpotongan di titik interior $P$. Segmen-segmen diagonal memiliki panjang $PA = 2$, $PB = 3$, $PC = 6$, dan $PD = 4$.
+                </p>
+                <ol type="a">
+                    <li>Buktikan bahwa keempat titik $A, B, C, D$ konsiklik melalui teorema titik kuasa tali busur.</li>
+                    <li>Tentukan panjang keempat sisi segiempat ($AB, BC, CD, DA$) dan hitung jari-jari lingkaran luar $R$.</li>
+                    <li>Jika ditarik garis dari titik potong $P$ yang tegak lurus terhadap sisi $AB$ dan diperpanjang hingga memotong sisi $CD$ di titik $M$, buktikan secara analitis bahwa $M$ merupakan titik tengah sisi $CD$ ($CM = MD$).</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Pembuktian Konsiklik via Titik Kuasa (Power of a Point):</strong><br>
+                        Dua tali busur berpotongan di $P$. Hasil kali segmen masing-masing diagonal adalah:
+                        $$PA \cdot PC = 2 \times 6 = 12$$
+                        $$PB \cdot PD = 3 \times 4 = 12$$
+                        Karena $PA \cdot PC = PB \cdot PD = 12$, berdasarkan konvers Teorema Tali Busur Berpotongan, keempat titik $A, B, C, D$ terbukti konsiklik (terletak pada lingkaran yang sama).
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Panjang Sisi & Jari-Jari Luar $R$:</strong><br>
+                        Karena diagonal saling tegak lurus di $P$ ($\angle APB = \angle BPC = \angle CPD = \angle DPA = 90^\circ$), kita gunakan Teorema Pythagoras pada keempat segitiga siku-siku kecil:
+                        $$AB^2 = PA^2 + PB^2 = 2^2 + 3^2 = 4 + 9 = 13 \implies AB = \sqrt{13}$$
+                        $$BC^2 = PB^2 + PC^2 = 3^2 + 6^2 = 9 + 36 = 45 \implies BC = \sqrt{45} = 3\sqrt{5}$$
+                        $$CD^2 = PC^2 + PD^2 = 6^2 + 4^2 = 36 + 16 = 52 \implies CD = \sqrt{52} = 2\sqrt{13}$$
+                        $$DA^2 = PD^2 + PA^2 = 4^2 + 2^2 = 16 + 4 = 20 \implies DA = \sqrt{20} = 2\sqrt{5}$$
+                        Perhatikan jumlah kuadrat sisi-sisi berhadapan:
+                        $$AB^2 + CD^2 = 13 + 52 = 65$$
+                        $$BC^2 + DA^2 = 45 + 20 = 65$$
+                        Pada segiempat siklik ortodiagonal, berlaku hubungan fundamental:
+                        $$a^2 + c^2 = b^2 + d^2 = 4R^2$$
+                        $$4R^2 = 65 \implies R^2 = \frac{65}{4} \implies R = \frac{\sqrt{65}}{2}$$
+                    </p>
+                    <p>
+                        <strong>(c) Pembuktian Teorema Brahmagupta ($M$ Titik Tengah $CD$):</strong><br>
+                        Misalkan garis dari $P$ tegak lurus $AB$ di titik $H$ ($PH \perp AB$). Garis perpanjangan $HP$ memotong $CD$ di $M$.
+                        <br>
+                        Perhatikan sudut-sudut pada segitiga siku-siku $\triangle PHA$:
+                        $$\angle HPA = 90^\circ - \angle PAH = 90^\circ - \angle PAB$$
+                        Karena pada $\triangle PAB$ yang siku-siku di $P$, $90^\circ - \angle PAB = \angle PBA$:
+                        $$\angle HPA = \angle PBA$$
+                        Karena $\angle HPA$ dan $\angle DPM$ saling bertolak belakang:
+                        $$\angle DPM = \angle HPA = \angle PBA$$
+                        Selanjutnya, sudut keliling $\angle PBA$ (yaitu $\angle DBA$) dan $\angle ACD$ sama-sama menghadap busur $AD$, sehingga $\angle PBA = \angle ACD = \angle PCD$.
+                        Di lain sisi, sudut $\angle DPM$ dan $\angle MPC$ saling berkomplemen ($\angle DPC = 90^\circ$):
+                        $$\angle MPC = 90^\circ - \angle DPM = 90^\circ - \angle PBA$$
+                        Pada $\triangle PCD$ yang siku-siku di $P$:
+                        $$90^\circ - \angle PCD = \angle PDC = \angle PDM$$
+                        Karena $\angle PBA = \angle PCD$, maka $\angle MPC = \angle PDM$.
+                        <br>
+                        Dari kesamaan sudut ini diperoleh:
+                        <ol>
+                            <li>Pada $\triangle PMD$: $\angle DPM = \angle PDM \implies PM = MD$ (segitiga sama kaki).</li>
+                            <li>Pada $\triangle PMC$: $\angle MPC = \angle MCP \implies PM = MC$ (segitiga sama kaki).</li>
+                        </ol>
+                        Karena $MD = PM$ dan $MC = PM$, disimpulkan secara mutlak:
+                        $$MC = MD = PM$$
+                        Titik $M$ tepat membagi dua sisi $CD$ menjadi dua bagian yang sama panjang ($M$ adalah titik tengah $CD$). $\blacksquare$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Titik $A, B, C, D$ konsiklik ($PA \cdot PC = PB \cdot PD = 12$), panjang sisi $AB = \sqrt{13}$, $BC = 3\sqrt{5}$, $CD = 2\sqrt{13}$, $DA = 2\sqrt{5}$, jari-jari lingkaran luar $R = \frac{\sqrt{65}}{2}$, dan terbukti secara analitis bahwa garis tinggi $PH$ bertindak sebagai median bagi sisi $CD$ ($CM = MD$).</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Segiempat Siklik: Sudut Berhadapan & Sudut Keliling
+            // ==========================================
+            const elSudut = document.getElementById("svg-segiempat-siklik-sudut");
+            if (elSudut) {
+                const geo1 = new GeoSVG(elSudut, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Segiempat Siklik dan Sifat Sudut Berhadapan"
+                });
+
+                const cx = 155, cy = 110, R = 78;
+                const ptA = [84, 77];
+                const ptB = [188, 39];
+                const ptC = [226, 143];
+                const ptD = [122, 181];
+
+                // Lingkaran Luar (Circumcircle)
+                geo1.buatLingkaran([cx, cy], R, { fill: "none", stroke: TEMA.abu, strokeWidth: 1.5, strokeDasharray: "4 3" });
+
+                // Poligon Segiempat Siklik ABCD
+                geo1.buatPoligon([ptA, ptB, ptC, ptD], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.4
+                });
+
+                // Diagonal Putus-putus
+                geo1.buatSegmen(ptA, ptC, { stroke: TEMA.oranye, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo1.buatSegmen(ptB, ptD, { stroke: TEMA.oranye, strokeWidth: 1.2, strokeDasharray: "3 2" });
+
+                // Sudut Berhadapan A (Merah Muda) & C (Merah Muda)
+                geo1.buatSudut(ptD, ptA, ptB, { radius: 18, fill: TEMA.merahMuda, stroke: TEMA.merah, strokeWidth: 1.5 });
+                geo1.buatSudut(ptB, ptC, ptD, { radius: 18, fill: TEMA.merahMuda, stroke: TEMA.merah, strokeWidth: 1.5 });
+
+                // Sudut Keliling Sehadap di A dan D (Menghadap busur BC)
+                geo1.buatSudut(ptB, ptA, ptC, { radius: 26, stroke: TEMA.aksen, strokeWidth: 1.4 });
+                geo1.buatSudut(ptB, ptD, ptC, { radius: 26, stroke: TEMA.aksen, strokeWidth: 1.4 });
+
+                // Label Sudut
+                geo1.buatTeks(ptA[0] + 18, ptA[1] + 2, "α", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+                geo1.buatTeks(ptC[0] - 22, ptC[1] - 4, "180°−α", { fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+                geo1.buatTeks(ptA[0] + 28, ptA[1] - 5, "θ", { fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+                geo1.buatTeks(ptD[0] + 12, ptD[1] - 22, "θ", { fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Titik Pusat O
+                geo1.buatLingkaran([cx, cy], 3, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1 });
+                geo1.buatTeks(cx + 6, cy - 6, "O", { position: "bottom-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Titik Sudut A, B, C, D
+                const vertices = [
+                    { pt: ptA, label: "A", pos: [ptA[0] - 10, ptA[1] - 4] },
+                    { pt: ptB, label: "B", pos: [ptB[0] + 4, ptB[1] - 8] },
+                    { pt: ptC, label: "C", pos: [ptC[0] + 10, ptC[1] + 4] },
+                    { pt: ptD, label: "D", pos: [ptD[0] - 6, ptD[1] + 10] }
+                ];
+                vertices.forEach(v => {
+                    geo1.buatLingkaran(v.pt, 3.8, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                    geo1.buatTeks(v.pos[0], v.pos[1], v.label, { fontSize: "9.5px", fontWeight: "bold", fill: TEMA.utama });
+                });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 210, "∠A + ∠C = 180°  |  ∠B + ∠D = 180°  |  ∠BAC = ∠BDC = θ", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Teorema Ptolemy: Relasi Sisi & Diagonal
+            // ==========================================
+            const elPtolemy = document.getElementById("svg-teorema-ptolemy");
+            if (elPtolemy) {
+                const geo2 = new GeoSVG(elPtolemy, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Teorema Ptolemy pada Segiempat Siklik"
+                });
+
+                const cx = 160, cy = 105, R = 75;
+                const ptA = [88, 80];
+                const ptB = [175, 32];
+                const ptC = [232, 122];
+                const ptD = [135, 178];
+                const ptP = [156, 100]; // Titik potong diagonal
+
+                // Lingkaran Luar
+                geo2.buatLingkaran([cx, cy], R, { fill: "none", stroke: TEMA.abu, strokeWidth: 1.4, strokeDasharray: "4 3" });
+
+                // Diagonal AC (p) dan BD (q)
+                geo2.buatSegmen(ptA, ptC, { stroke: TEMA.oranye, strokeWidth: 2.2 });
+                geo2.buatSegmen(ptB, ptD, { stroke: TEMA.merah, strokeWidth: 2.2, strokeDasharray: "5 2" });
+
+                // Sisi-sisi Poligon dengan Warna Berbeda
+                geo2.buatSegmen(ptA, ptB, { stroke: TEMA.utama, strokeWidth: 2.2 }); // a
+                geo2.buatSegmen(ptB, ptC, { stroke: TEMA.aksen, strokeWidth: 2.2 }); // b
+                geo2.buatSegmen(ptC, ptD, { stroke: TEMA.ungu, strokeWidth: 2.2 });  // c
+                geo2.buatSegmen(ptD, ptA, ptB, { stroke: TEMA.merah, strokeWidth: 2 }); // d (ptD ke ptA)
+                geo2.buatSegmen(ptD, ptA, { stroke: TEMA.merah, strokeWidth: 2.2 }); // d
+
+                // Label Sisi
+                geo2.buatTeks(126, 48, "a", { fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(210, 72, "b", { fontSize: "9px", fontWeight: "bold", fill: TEMA.aksen });
+                geo2.buatTeks(190, 158, "c", { fontSize: "9px", fontWeight: "bold", fill: TEMA.ungu });
+                geo2.buatTeks(104, 136, "d", { fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Label Diagonal p dan q
+                geo2.buatTeks(118, 98, "p", { fontSize: "9px", fontWeight: "bold", fill: TEMA.oranye });
+                geo2.buatTeks(162, 65, "q", { fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Potong P
+                geo2.buatLingkaran(ptP, 3, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1 });
+                geo2.buatTeks(ptP[0] + 6, ptP[1] + 8, "P", { position: "top-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Titik Sudut A, B, C, D
+                const pts = [
+                    { pt: ptA, l: "A", o: [-10, -4] },
+                    { pt: ptB, l: "B", o: [4, -8] },
+                    { pt: ptC, l: "C", o: [8, 4] },
+                    { pt: ptD, l: "D", o: [-6, 10] }
+                ];
+                pts.forEach(p => {
+                    geo2.buatLingkaran(p.pt, 3.8, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1.5 });
+                    geo2.buatTeks(p.pt[0] + p.o[0], p.pt[1] + p.o[1], p.l, { fontSize: "9.5px", fontWeight: "bold", fill: TEMA.gelap });
+                });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 208, "Ptolemy: p · q = ac + bd  |  PA · PC = PB · PD", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.oranye
+                });
+            }
+
+            // ==========================================
+            // 3. Segiempat Siklik Ortodiagonal & Teorema Brahmagupta
+            // ==========================================
+            const elBrahmagupta = document.getElementById("svg-ortodiagonal-brahmagupta");
+            if (elBrahmagupta) {
+                const geo3 = new GeoSVG(elBrahmagupta, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Teorema Brahmagupta pada Segiempat Siklik Ortodiagonal"
+                });
+
+                const ptP = [150, 110];
+                const ptA = [90, 110];
+                const ptB = [150, 50];
+                const ptC = [240, 110];
+                const ptD = [150, 200];
+                const ptO = [165, 125];
+                const R = 76.5;
+
+                const ptH = [120, 80];   // Kaki garis tinggi dari P ke AB
+                const ptM = [195, 155];  // Titik tengah CD
+
+                // Lingkaran Luar
+                geo3.buatLingkaran(ptO, R, { fill: "none", stroke: TEMA.abu, strokeWidth: 1.4, strokeDasharray: "4 3" });
+
+                // Segiempat ABCD
+                geo3.buatPoligon([ptA, ptB, ptC, ptD], {
+                    fill: TEMA.aksenMuda,
+                    stroke: TEMA.aksen,
+                    strokeWidth: 2,
+                    opacity: 0.35
+                });
+
+                // Diagonal Saling Tegak Lurus AC dan BD
+                geo3.buatSegmen(ptA, ptC, { stroke: TEMA.utama, strokeWidth: 2 });
+                geo3.buatSegmen(ptB, ptD, { stroke: TEMA.utama, strokeWidth: 2 });
+
+                // Tanda Siku-siku di Titik Potong P
+                geo3.buatSiku(ptA, ptP, ptB, { size: 10, stroke: TEMA.gelap, strokeWidth: 1.2 });
+
+                // Garis Tinggi PH (Solid Merah) & Garis Berat PM (Dashed Merah)
+                geo3.buatSegmen(ptH, ptP, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo3.buatSegmen(ptP, ptM, { stroke: TEMA.merah, strokeWidth: 2, strokeDasharray: "4 2" });
+
+                // Tanda Siku-siku di H
+                geo3.buatSiku(ptB, ptH, ptP, { size: 8, stroke: TEMA.merah, strokeWidth: 1.2 });
+
+                // Titik H dan Titik M
+                geo3.buatLingkaran(ptH, 3.2, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                geo3.buatTeks(ptH[0] - 6, ptH[1] - 6, "H (PH ⊥ AB)", { position: "bottom-right", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                geo3.buatLingkaran(ptM, 3.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                geo3.buatTeks(ptM[0] + 6, ptM[1] + 6, "M (CM = MD)", { position: "top-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Pusat O
+                geo3.buatLingkaran(ptO, 2.8, { fill: TEMA.gelap });
+                geo3.buatTeks(ptO[0] + 6, ptO[1] - 4, "O", { position: "bottom-left", fontSize: "8.5px", fill: TEMA.gelap });
+
+                // Titik P
+                geo3.buatLingkaran(ptP, 3, { fill: TEMA.gelap });
+                geo3.buatTeks(ptP[0] - 8, ptP[1] + 10, "P", { position: "top-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Titik Sudut A, B, C, D
+                const verteksOrt = [
+                    { pt: ptA, l: "A", o: [-10, -2] },
+                    { pt: ptB, l: "B", o: [0, -10] },
+                    { pt: ptC, l: "C", o: [10, -2] },
+                    { pt: ptD, l: "D", o: [0, 10] }
+                ];
+                verteksOrt.forEach(v => {
+                    geo3.buatLingkaran(v.pt, 3.8, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                    geo3.buatTeks(v.pt[0] + v.o[0], v.pt[1] + v.o[1], v.l, { fontSize: "9.5px", fontWeight: "bold", fill: TEMA.utama });
+                });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 210, "PH ⊥ AB ⇒ Perpanjangan PM Membagi Dua CD (CM = MD)", {
+                    position: "middle-center",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Segitiga</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Segitiga</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian, Aksioma, & Taksonomi Segitiga</h2>
+            <p>
+                <strong>Segitiga (Trigon / Triangle)</strong> adalah poligon paling mendasar dalam geometri Euclidean dua dimensi yang dibentuk oleh tiga ruas garis lurus yang menghubungkan tiga titik tak segaris (non-kolinier). Ruas-ruas garis tersebut dinamakan <em>sisi</em>, dan titik-titik pertemuannya dinamakan <em>titik sudut (verteks)</em>.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Aksioma & Teorema Fundamental Segitiga:</strong>
+                </p>
+                <ul style="margin: 0.4rem 0 0 1.2rem; padding: 0;">
+                    <li><strong>Pertidaksamaan Segitiga (Triangle Inequality):</strong> Jumlah panjang dua sisi sembarang selalu lebih besar dari panjang sisi ketiga:
+                        $$a + b > c, \quad a + c > b, \quad b + c > a \iff |a - b| < c < a + b$$
+                    </li>
+                    <li><strong>Jumlah Sudut Dalam:</strong> Jumlah seluruh sudut dalam segitiga selalu tepat $180^\circ$ ($\pi$ radian):
+                        $$\angle A + \angle B + \angle C = 180^\circ$$
+                    </li>
+                    <li><strong>Teorema Sudut Luar (Exterior Angle):</strong> Besar satu sudut luar sama dengan jumlah dua sudut dalam yang tidak bersisian dengannya:
+                        $$\theta_{\text{luar}} = \angle A + \angle B$$
+                    </li>
+                </ul>
+            </div>
+
+            <h3>Klasifikasi Geometris Segitiga</h3>
+            <div class="row">
+                <div class="col col-2">
+                    <h4>Berdasarkan Panjang Sisi</h4>
+                    <ul>
+                        <li><strong>Segitiga Sama Sisi (Equilateral):</strong> Ketiga sisi sama panjang ($a = b = c$) dan seluruh sudut dalamnya kongruen berukuran $60^\circ$.</li>
+                        <li><strong>Segitiga Sama Kaki (Isosceles):</strong> Memiliki setidaknya dua sisi sama panjang, dengan dua sudut alas yang kongruen.</li>
+                        <li><strong>Segitiga Sembarang (Scalene):</strong> Ketiga sisinya memiliki panjang yang berbeda-beda, sehingga ketiga sudut dalamnya pun berbeda.</li>
+                    </ul>
+                </div>
+                <div class="col col-2">
+                    <h4>Berdasarkan Besar Sudut</h4>
+                    <ul>
+                        <li><strong>Segitiga Lancip (Acute):</strong> Ketiga sudut dalamnya berukuran $< 90^\circ$ (kuadrat sisi terpanjang: $c^2 < a^2 + b^2$).</li>
+                        <li><strong>Segitiga Siku-Siku (Right-Angled):</strong> Memiliki satu sudut tepat $90^\circ$ (berlaku Teorema Pythagoras: $c^2 = a^2 + b^2$).</li>
+                        <li><strong>Segitiga Tumpul (Obtuse):</strong> Memiliki satu sudut $> 90^\circ$ (kuadrat sisi terpanjang: $c^2 > a^2 + b^2$).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>2. Empat Garis Istimewa & Titik Pusat Segitiga</h2>
+            <p>
+                Dalam segitiga terdapat empat kelompok garis istimewa konkuren (garis-garis yang selalu berpotongan di satu titik tunggal):
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <ol>
+                        <li><strong>Garis Tinggi (Altitude):</strong> Ruas garis dari titik sudut yang ditarik tegak lurus ke sisi di hadapannya. Titik temu ketiga garis tinggi disebut <strong>Ortosenter ($H$)</strong>.</li>
+                        <li><strong>Garis Bagi (Angle Bisector):</strong> Garis yang membagi sudut dalam menjadi dua sudut sama besar. Titik potong ketiga garis bagi adalah <strong>Incenter ($I$)</strong>, yang merupakan titik pusat <em>lingkaran dalam (incircle)</em> berjari-jari $r$.
+                            <br>
+                            <em>Teorema Garis Bagi Dalam:</em>
+                            $$\frac{BD}{DC} = \frac{AB}{AC} = \frac{c}{b}$$
+                        </li>
+                        <li><strong>Garis Berat (Median):</strong> Ruas garis dari verteks ke titik tengah sisi di depannya. Titik potongnya adalah <strong>Sentroid / Titik Berat ($G$)</strong>. Sentroid selalu membagi median dengan rasio $2 : 1$:
+                            $$AG : GM = 2 : 1$$
+                        </li>
+                        <li><strong>Garis Sumbu (Perpendicular Bisector):</strong> Garis tegak lurus yang membagi dua sisi sama panjang. Titik potongnya adalah <strong>Circumcenter ($O$)</strong>, yang menjadi pusat <em>lingkaran luar (circumcircle)</em> berjari-jari $R$.</li>
+                    </ol>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-lingkaran-dalam-luar" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Segitiga dengan lingkaran dalam (pusat $I$, inradius $r$) dan lingkaran luar (pusat $O$, circumradius $R$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Teorema Garis Bagi, Apollonius, & Stewart</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Teorema Garis Berat (Formula Apollonius)</h3>
+                    <p>
+                        Jika $m_a$ adalah panjang garis berat yang ditarik dari titik sudut $A$ ke titik tengah sisi $a$, maka:
+                        $$b^2 + c^2 = 2m_a^2 + \frac{a^2}{2} \implies m_a = \frac{1}{2}\sqrt{2b^2 + 2c^2 - a^2}$$
+                    </p>
+
+                    <h3>B. Teorema Stewart (Sevian Sembarang)</h3>
+                    <p>
+                        Jika titik $D$ terletak pada sisi $BC$ sedemikian sehingga $BD = m$, $DC = n$, $m + n = a$, dan panjang sevian $AD = d$:
+                        $$b^2 m + c^2 n = a(d^2 + mn)$$
+                        Untuk garis bagi dalam $AD = d_a$, berlaku formula praktis:
+                        $$d_a^2 = bc - mn = bc\left[1 - \left(\frac{a}{b+c}\right)^2\right]$$
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-teorema-garis-bagi-apollonius" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Perbandingan pembagian ruas oleh garis bagi dalam $AD$ ($\frac{BD}{DC} = \frac{c}{b}$) dan garis berat $AM$ dengan titik berat $G$ ($2:1$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>4. Formulasi Lengkap Luas Segitiga</h2>
+            <p>
+                Luas segitiga ($L$ atau $[ABC]$) dapat dihitung melalui beragam pendekatan analitis tergantung parameter yang diketahui:
+            </p>
+
+            <div style="overflow-x: auto; margin: 0.8rem 0;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+                    <thead>
+                        <tr style="background-color: var(--card-bg, #f8fafc); border-bottom: 2px solid #cbd5e1;">
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">Metode / Pendekatan</th>
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">Rumus Luas ($L$)</th>
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">Kondisi & Catatan Penggunaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Alas dan Tinggi</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$L = \frac{1}{2} \times a \times t$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Dasar, tinggi $t$ tegak lurus terhadap alas $a$.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Trigonometri (Sudut Apit)</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$L = \frac{1}{2}ab \sin C = \frac{1}{2}bc \sin A = \frac{1}{2}ac \sin B$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Dua sisi dan satu sudut yang diapit diketahui (SAS).</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Formula Heron</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$L = \sqrt{s(s-a)(s-b)(s-c)}$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Ketiga sisi diketahui (SSS), $s = \frac{a+b+c}{2}$.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Lingkaran Dalam ($r$)</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$L = r \cdot s \iff r = \frac{L}{s}$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Hubungan langsung antara luas, semi-perimeter, dan inradius.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Lingkaran Luar ($R$)</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$L = \frac{abc}{4R} \iff R = \frac{abc}{4L}$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Hubungan ketiga sisi dengan circumradius lingkaran luar.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Koordinat Kartesius</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$L = \frac{1}{2}|x_A(y_B - y_C) + x_B(y_C - y_A) + x_C(y_A - y_B)|$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">Formula Shoelace / Determinan verteks $(x_i, y_i)$.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>5. Garis Euler & Kesebangunan Segitiga</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Teorema Garis Euler (Euler Line)</h3>
+                    <p>
+                        Pada sembarang segitiga tak sama sisi, <strong>Circumcenter ($O$)</strong>, <strong>Sentroid ($G$)</strong>, dan <strong>Ortosenter ($H$)</strong> selalu terletak pada satu garis lurus yang sama (kolinier), dinamakan <em>Garis Euler</em>.
+                    </p>
+                    <p>
+                        Lebih jauh, posisi sentroid selalu membagi ruas antara ortosenter dan circumcenter dengan perbandingan tetap:
+                        $$HG : GO = 2 : 1 \implies HG = 2 \cdot GO$$
+                        Kuadrat jarak $OH$ dinyatakan oleh relasi Euler:
+                        $$OH^2 = 9R^2 - (a^2 + b^2 + c^2)$$
+                    </p>
+
+                    <h3>B. Teorema Ceva & Menelaus</h3>
+                    <p>
+                        Untuk tiga titik sevian $D, E, F$ pada sisi $BC, CA, AB$:
+                        $$\frac{AF}{FB} \cdot \frac{BD}{DC} \cdot \frac{CE}{EA} = 1$$
+                        Persamaan di atas bernilai 1 jika dan hanya jika ketiga garis sevian $AD, BE, CF$ konkuren (berpotongan di satu titik — Teorema Ceva) atau ketiga titik $D,E,F$ pada perpanjangan sisi kolinier (segaris — Teorema Menelaus).
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-garis-euler" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Garis Euler menghubungkan titik Ortosenter ($H$), Sentroid ($G$), dan Circumcenter ($O$) dengan rasio jarak $HG = 2 \cdot GO$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>6. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Aksioma Sudut, Teorema Sudut Luar, & Luas Trigonometri</h3>
+                <p>
+                    Sebuah segitiga $ABC$ memiliki sudut-sudut dalam yang dinyatakan oleh $(3x - 10)^\circ$, $(2x + 15)^\circ$, dan $(x + 25)^\circ$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan nilai $x$ serta besar masing-masing sudut dalam segitiga tersebut. Apakah jenis segitiga tersebut berdasarkan besar sudut dan panjang sisinya?</li>
+                    <li>Hitung besar sudut luar di titik sudut ketiga.</li>
+                    <li>Jika dua sisi yang berhadapan dengan sudut-sudut yang sama berukuran panjang masing-masing $10\text{ cm}$, hitung luas segitiga tersebut (gunakan $\sin 50^\circ \approx 0{,}766$).</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Mencari nilai $x$ dan besar sudut dalam:</strong><br>
+                        Jumlah seluruh sudut dalam segitiga adalah $180^\circ$:
+                        $$(3x - 10)^\circ + (2x + 15)^\circ + (x + 25)^\circ = 180^\circ$$
+                        $$6x + 30 = 180$$
+                        $$6x = 150 \implies x = 25$$
+                        Besar masing-masing sudut dalam:
+                        $$\angle A = 3(25)^\circ - 10^\circ = 75^\circ - 10^\circ = 65^\circ$$
+                        $$\angle B = 2(25)^\circ + 15^\circ = 50^\circ + 15^\circ = 65^\circ$$
+                        $$\angle C = 25^\circ + 25^\circ = 50^\circ$$
+                        Karena memiliki dua sudut yang sama besar ($65^\circ$ dan $65^\circ$) dan seluruh sudutnya $< 90^\circ$, segitiga ini merupakan <strong>segitiga sama kaki lancip</strong>.
+                    </p>
+                    <p>
+                        <strong>(b) Mencari besar sudut luar di verteks $C$:</strong><br>
+                        Berdasarkan Teorema Sudut Luar:
+                        $$\theta_{\text{luar}, C} = \angle A + \angle B = 65^\circ + 65^\circ = 130^\circ$$
+                        Atau melalui sudut pelurus: $180^\circ - 50^\circ = 130^\circ$.
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung luas segitiga via rumus trigonometri:</strong><br>
+                        Sisi yang sama panjang adalah $b = c = 10\text{ cm}$, yang mengapit sudut $\angle C = 50^\circ$:
+                        $$L = \frac{1}{2} \cdot a \cdot b \sin C = \frac{1}{2} \times 10 \times 10 \times \sin 50^\circ = 50 \times 0{,}766 = 38{,}3\text{ cm}^2$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Nilai $x = 25$, sudut-sudutnya $65^\circ, 65^\circ, 50^\circ$ (sama kaki lancip), sudut luar $C = 130^\circ$, dan luas segitiga $L \approx 38{,}3\text{ cm}^2$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat SNBT / UTBK — Teorema Garis Bagi, Heron, & Jari-Jari Lingkaran Dalam/Luar</h3>
+                <p>
+                    Diketahui segitiga $ABC$ memiliki panjang sisi-sisi $AB = 6$, $BC = 7$, dan $AC = 8$.
+                </p>
+                <ol type="a">
+                    <li>Garis bagi dalam sudut $A$ memotong sisi $BC$ di titik $D$. Hitung panjang segmen $BD$ dan $CD$.</li>
+                    <li>Hitung luas segitiga $ABC$ menggunakan rumus Heron.</li>
+                    <li>Tentukan jari-jari lingkaran dalam ($r$) dan jari-jari lingkaran luar ($R$) segitiga tersebut.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        Diketahui sisi-sisi: $c = AB = 6$, $a = BC = 7$, $b = AC = 8$.
+                    </p>
+                    <p>
+                        <strong>(a) Teorema Garis Bagi Dalam Sudut $A$:</strong><br>
+                        Garis bagi sudut $A$ membagi sisi di hadapannya ($BC = a = 7$) sebanding dengan sisi-sisi yang mengapitnya:
+                        $$\frac{BD}{DC} = \frac{AB}{AC} = \frac{c}{b} = \frac{6}{8} = \frac{3}{4}$$
+                        Karena $BD + DC = BC = 7$:
+                        $$BD = \frac{3}{3 + 4} \times 7 = \frac{3}{7} \times 7 = 3$$
+                        $$DC = \frac{4}{3 + 4} \times 7 = \frac{4}{7} \times 7 = 4$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Luas via Formula Heron:</strong><br>
+                        Semi-perimeter:
+                        $$s = \frac{a + b + c}{2} = \frac{7 + 8 + 6}{2} = \frac{21}{2} = 10{,}5$$
+                        Selisih sisi:
+                        $$s - a = \frac{21}{2} - 7 = \frac{7}{2}$$
+                        $$s - b = \frac{21}{2} - 8 = \frac{5}{2}$$
+                        $$s - c = \frac{21}{2} - 6 = \frac{9}{2}$$
+                        Luas segitiga:
+                        $$L = \sqrt{s(s-a)(s-b)(s-c)} = \sqrt{\frac{21}{2} \times \frac{7}{2} \times \frac{5}{2} \times \frac{9}{2}} = \frac{\sqrt{21 \times 7 \times 5 \times 9}}{4}$$
+                        Faktorisasi: $21 \times 7 \times 5 \times 9 = (3 \times 7) \times 7 \times 5 \times 3^2 = 3^3 \times 7^2 \times 5 = 21^2 \times 15$.
+                        $$L = \frac{21\sqrt{15}}{4} \text{ satuan luas}$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Jari-Jari Lingkaran Dalam ($r$) & Luar ($R$):</strong><br>
+                        Jari-jari lingkaran dalam ($r$):
+                        $$r = \frac{L}{s} = \frac{\frac{21\sqrt{15}}{4}}{\frac{21}{2}} = \frac{21\sqrt{15}}{4} \times \frac{2}{21} = \frac{\sqrt{15}}{2}$$
+                        Jari-jari lingkaran luar ($R$):
+                        $$R = \frac{abc}{4L} = \frac{7 \times 8 \times 6}{4 \times \frac{21\sqrt{15}}{4}} = \frac{336}{21\sqrt{15}} = \frac{16}{\sqrt{15}} = \frac{16\sqrt{15}}{15}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Segmen $BD = 3$ dan $DC = 4$, Luas $L = \frac{21\sqrt{15}}{4}$, inradius $r = \frac{\sqrt{15}}{2}$, dan circumradius $R = \frac{16\sqrt{15}}{15}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Teorema Apollonius, Stewart, & Jarak Garis Euler</h3>
+                <p>
+                    Diberikan segitiga Heronian $ABC$ dengan panjang sisi-sisi $a = BC = 14$, $b = AC = 13$, dan $c = AB = 15$.
+                </p>
+                <ol type="a">
+                    <li>Hitung panjang garis berat $m_a$ yang menghubungkan verteks $A$ ke titik tengah sisi $BC$ menggunakan Teorema Apollonius, serta tentukan jarak titik sudut $A$ ke titik berat $G$ ($AG$).</li>
+                    <li>Garis bagi dalam sudut $A$ memotong sisi $BC$ di $D$. Tentukan panjang segmen garis bagi $AD$ menggunakan Teorema Stewart.</li>
+                    <li>Diketahui bahwa luas segitiga $L = 84$ dan jari-jari lingkaran luar $R = \frac{65}{8}$. Hitung jarak eksak antara Circumcenter ($O$) dan Ortosenter ($H$) pada Garis Euler segitiga tersebut.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Teorema Apollonius untuk Garis Berat $m_a$:</strong><br>
+                        Formula Apollonius menyatakan hubungan antara sisi-sisi dengan garis berat $m_a$:
+                        $$b^2 + c^2 = 2m_a^2 + \frac{a^2}{2}$$
+                        Substitusikan nilai $a = 14$, $b = 13$, $c = 15$:
+                        $$13^2 + 15^2 = 2m_a^2 + \frac{14^2}{2}$$
+                        $$169 + 225 = 2m_a^2 + \frac{196}{2}$$
+                        $$394 = 2m_a^2 + 98$$
+                        $$2m_a^2 = 296 \implies m_a^2 = 148 \implies m_a = \sqrt{148} = 2\sqrt{37}$$
+                        Sentroid $G$ membagi garis berat dengan rasio $AG : GM = 2 : 1$:
+                        $$AG = \frac{2}{3} m_a = \frac{2}{3} (2\sqrt{37}) = \frac{4\sqrt{37}}{3}$$
+                    </p>
+                    <p>
+                        <strong>(b) Panjang Garis Bagi $AD$ via Teorema Stewart:</strong><br>
+                        Menurut Teorema Garis Bagi:
+                        $$\frac{BD}{DC} = \frac{c}{b} = \frac{15}{13} \implies BD = 14 \times \frac{15}{28} = 7{,}5, \quad DC = 14 \times \frac{13}{28} = 6{,}5$$
+                        Gunakan formula reduksi garis bagi dari Teorema Stewart:
+                        $$AD^2 = bc - (BD)(DC)$$
+                        $$AD^2 = (13 \times 15) - (7{,}5 \times 6{,}5) = 195 - 48{,}75 = 146{,}25 = \frac{585}{4}$$
+                        $$AD = \frac{\sqrt{585}}{2} = \frac{3\sqrt{65}}{2}$$
+                    </p>
+                    <p>
+                        <strong>(c) Jarak Circumcenter ($O$) ke Ortosenter ($H$) pada Garis Euler:</strong><br>
+                        Berdasarkan identitas metrik Euler untuk segitiga:
+                        $$OH^2 = 9R^2 - (a^2 + b^2 + c^2)$$
+                        Hitung suku-sukunya:
+                        $$9R^2 = 9 \times \left(\frac{65}{8}\right)^2 = 9 \times \frac{4225}{64} = \frac{38025}{64}$$
+                        $$a^2 + b^2 + c^2 = 14^2 + 13^2 + 15^2 = 196 + 169 + 225 = 590 = \frac{37760}{64}$$
+                        Kurangkan kedua nilai tersebut:
+                        $$OH^2 = \frac{38025 - 37760}{64} = \frac{265}{64}$$
+                        $$OH = \frac{\sqrt{265}}{8} \approx 2{,}035\text{ satuan panjang}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Panjang garis berat $m_a = 2\sqrt{37}$, jarak $AG = \frac{4\sqrt{37}}{3}$, panjang garis bagi $AD = \frac{3\sqrt{65}}{2}$, dan jarak antarpusat Euler $OH = \frac{\sqrt{265}}{8}$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Lingkaran Dalam (Incircle) & Lingkaran Luar (Circumcircle)
+            // ==========================================
+            const elInCircum = document.getElementById("svg-lingkaran-dalam-luar");
+            if (elInCircum) {
+                const geo1 = new GeoSVG(elInCircum, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Lingkaran Dalam dan Lingkaran Luar Segitiga"
+                });
+
+                // Koordinat segitiga skala 11 px per satuan (Heronian 13-14-15)
+                const ptB = [75, 170];
+                const ptC = [229, 170];
+                const ptA = [174, 38];
+
+                // Incenter I(8, 4) -> (163, 126), r = 4 * 11 = 44
+                const ptI = [163, 126];
+                const rIn = 44;
+
+                // Circumcenter O(7, 4.125) -> (152, 124.6), R = 8.125 * 11 = 89.4
+                const ptO = [152, 124.6];
+                const rCircum = 89.4;
+
+                // Lingkaran Luar (Circumcircle)
+                geo1.buatLingkaran(ptO, rCircum, { fill: "none", stroke: TEMA.abu, strokeWidth: 1.4, strokeDasharray: "4 3" });
+
+                // Segitiga ABC
+                geo1.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.35
+                });
+
+                // Lingkaran Dalam (Incircle)
+                geo1.buatLingkaran(ptI, rIn, { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 1.8, opacity: 0.45 });
+
+                // Jari-jari lingkaran dalam r (tegak lurus ke BC)
+                geo1.buatSegmen(ptI, [ptI[0], 170], { stroke: TEMA.aksen, strokeWidth: 1.8 });
+                geo1.buatSiku([ptI[0] + 10, 170], [ptI[0], 170], ptI, { size: 6, stroke: TEMA.aksen, strokeWidth: 1 });
+                geo1.buatTeks(ptI[0] + 4, 150, "r = L/s", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Jari-jari lingkaran luar R (dari O ke A)
+                geo1.buatSegmen(ptO, ptA, { stroke: TEMA.oranye, strokeWidth: 1.5, strokeDasharray: "3 2" });
+                geo1.buatTeks(152, 80, "R = abc/(4L)", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik Pusat I dan O
+                geo1.buatLingkaran(ptI, 3.2, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1 });
+                geo1.buatTeks(ptI[0] - 6, ptI[1] - 4, "I", { position: "bottom-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                geo1.buatLingkaran(ptO, 3, { fill: TEMA.oranye, stroke: "#ffffff", strokeWidth: 1 });
+                geo1.buatTeks(ptO[0] - 6, ptO[1] + 6, "O", { position: "top-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik Sudut A, B, C
+                const pts = [
+                    { pt: ptA, l: "A (c=15, b=13)", pos: [ptA[0], ptA[1] - 8], align: "bottom-center" },
+                    { pt: ptB, l: "B", pos: [ptB[0] - 8, ptB[1] + 2], align: "middle-right" },
+                    { pt: ptC, l: "C (a=14)", pos: [ptC[0] + 8, ptC[1] + 2], align: "middle-left" }
+                ];
+                pts.forEach(p => {
+                    geo1.buatLingkaran(p.pt, 3.8, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                    geo1.buatTeks(p.pos[0], p.pos[1], p.l, { position: p.align, fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 208, "L = r · s = abc / (4R)  |  s = (a + b + c)/2", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Garis Bagi & Garis Berat (Teorema Apollonius & Rasio 2:1)
+            // ==========================================
+            const elApollonius = document.getElementById("svg-teorema-garis-bagi-apollonius");
+            if (elApollonius) {
+                const geo2 = new GeoSVG(elApollonius, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Teorema Garis Bagi dan Garis Berat Segitiga"
+                });
+
+                const ptB = [75, 170];
+                const ptC = [229, 170];
+                const ptA = [174, 38];
+
+                // Titik D (Kaki Garis Bagi dari A ke BC): x = 75 + 7.5*11 = 157.5, y = 170
+                const ptD = [157.5, 170];
+                // Titik M (Titik Tengah BC untuk Garis Berat): x = 75 + 7*11 = 152, y = 170
+                const ptM = [152, 170];
+                // Sentroid G: x = 75 + (23/3)*11 = 159.3, y = 126
+                const ptG = [159.3, 126];
+
+                // Poligon Segitiga ABC
+                geo2.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.oranyeMuda,
+                    stroke: TEMA.oranye,
+                    strokeWidth: 2,
+                    opacity: 0.3
+                });
+
+                // Garis Bagi AD (Amber Solid)
+                geo2.buatSegmen(ptA, ptD, { stroke: TEMA.oranye, strokeWidth: 2 });
+                // Garis Berat AM (Ungu Dashed)
+                geo2.buatSegmen(ptA, ptM, { stroke: TEMA.ungu, strokeWidth: 2, strokeDasharray: "4 2" });
+
+                // Busur tanda sudut sama besar di A
+                geo2.buatSudut(ptB, ptA, ptD, { radius: 24, stroke: TEMA.oranye, strokeWidth: 1.4 });
+                geo2.buatSudut(ptD, ptA, ptC, { radius: 22, stroke: TEMA.oranye, strokeWidth: 1.4 });
+                geo2.buatTeks(ptA[0] - 6, ptA[1] + 28, "α", { fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+                geo2.buatTeks(ptA[0] + 6, ptA[1] + 28, "α", { fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik D dan M di sisi BC
+                geo2.buatLingkaran(ptD, 3.2, { fill: TEMA.oranye, stroke: "#ffffff", strokeWidth: 1 });
+                geo2.buatTeks(ptD[0] + 6, ptD[1] + 8, "D", { position: "top-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                geo2.buatLingkaran(ptM, 3.2, { fill: TEMA.ungu, stroke: "#ffffff", strokeWidth: 1 });
+                geo2.buatTeks(ptM[0] - 6, ptM[1] + 8, "M", { position: "top-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.ungu });
+
+                // Sentroid G
+                geo2.buatLingkaran(ptG, 3.5, { fill: TEMA.ungu, stroke: "#ffffff", strokeWidth: 1 });
+                geo2.buatTeks(ptG[0] + 6, ptG[1] - 4, "G (2 : 1)", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.ungu });
+
+                // Titik Verteks
+                const pts = [
+                    { pt: ptA, l: "A", o: [0, -8] },
+                    { pt: ptB, l: "B", o: [-8, 2] },
+                    { pt: ptC, l: "C", o: [8, 2] }
+                ];
+                pts.forEach(p => {
+                    geo2.buatLingkaran(p.pt, 3.8, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1.5 });
+                    geo2.buatTeks(p.pt[0] + p.o[0], p.pt[1] + p.o[1], p.l, { fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+                });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 208, "Garis Bagi: BD/DC = c/b  |  Garis Berat: AG/GM = 2/1", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Teorema Garis Euler (Euler Line: O - G - H)
+            // ==========================================
+            const elEuler = document.getElementById("svg-garis-euler");
+            if (elEuler) {
+                const geo3 = new GeoSVG(elEuler, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Garis Euler: Kolinieritas Ortosenter, Sentroid, dan Circumcenter"
+                });
+
+                const ptB = [75, 170];
+                const ptC = [229, 170];
+                const ptA = [174, 38];
+
+                // O(7, 4.125) -> (152, 124.6)
+                const ptO = [152, 124.6];
+                // G(7.667, 4) -> (159.3, 126)
+                const ptG = [159.3, 126];
+                // H(9, 3.75) -> (174, 128.75)
+                const ptH = [174, 128.75];
+
+                // Segitiga ABC
+                geo3.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.aksenMuda,
+                    stroke: TEMA.aksen,
+                    strokeWidth: 2,
+                    opacity: 0.25
+                });
+
+                // Garis Tinggi dari A ke BC (x = 174)
+                geo3.buatSegmen(ptA, [174, 170], { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "2 2" });
+                geo3.buatSiku([174 + 8, 170], [174, 170], ptA, { size: 6, stroke: TEMA.abu, strokeWidth: 0.8 });
+
+                // Garis Euler Memanjang Melalui O, G, H
+                // Garis diperpanjang dari x = 130 ke x = 200
+                const x1 = 130, y1 = 124.6 - (152 - 130) * (1.4 / 7.3);
+                const x2 = 202, y2 = 128.75 + (202 - 174) * (2.75 / 14.7);
+                geo3.buatSegmen([x1, y1], [x2, y2], { stroke: TEMA.merah, strokeWidth: 2.2 });
+
+                // Titik O (Circumcenter)
+                geo3.buatLingkaran(ptO, 3.5, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo3.buatTeks(ptO[0] - 6, ptO[1] - 8, "O", { position: "bottom-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Titik G (Sentroid)
+                geo3.buatLingkaran(ptG, 3.5, { fill: TEMA.ungu, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo3.buatTeks(ptG[0], ptG[1] + 10, "G", { position: "top-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.ungu });
+
+                // Titik H (Ortosenter)
+                geo3.buatLingkaran(ptH, 3.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo3.buatTeks(ptH[0] + 6, ptH[1] - 8, "H", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Sudut A, B, C
+                const pts = [
+                    { pt: ptA, l: "A", o: [0, -8] },
+                    { pt: ptB, l: "B", o: [-8, 2] },
+                    { pt: ptC, l: "C", o: [8, 2] }
+                ];
+                pts.forEach(p => {
+                    geo3.buatLingkaran(p.pt, 3.8, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1.5 });
+                    geo3.buatTeks(p.pt[0] + p.o[0], p.pt[1] + p.o[1], p.l, { fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+                });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 208, "Garis Euler: H - G - O Kolinier  |  HG = 2 · GO", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

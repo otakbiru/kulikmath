@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Permutasi Siklik (Siklis)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Permutasi Siklik (Siklis)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Permutasi Siklik (Siklis)</h2>
+            <p>
+                <strong>Permutasi Siklik (Circular Permutation)</strong> adalah susunan terurut dari sekumpulan objek yang membentuk <strong>pola lingkaran tertutup</strong> (melingkar).
+            </p>
+            <p>
+                Pada permutasi linier (berjajar lurus), susunan memiliki titik awal (posisi paling kiri) dan titik akhir (posisi paling kanan) yang jelas. Namun, pada susunan melingkar, tidak ada titik awal maupun akhir. Akibatnya, perputaran posisi objek sepanjang lingkaran yang tidak mengubah susunan relatif tetangga (siapa yang berada di sisi kiri dan kanan setiap objek) <strong>dianggap sebagai susunan yang sama</strong>.
+            </p>
+
+            <h2>2. Penurunan Rumus Permutasi Siklis</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Misalkan $n$ buah objek disusun berjajar secara linier, terdapat $n!$ cara susunan berbeda.
+                    </p>
+                    <p>
+                        Jika ke-$n$ objek tersebut disusun melingkar, setiap $1$ susunan melingkar dapat diputar sebanyak $n$ kali dan menghasilkan $n$ bentuk permutasi linier yang berbeda, padahal posisi relatif antartargetnya tidak berubah.
+                    </p>
+                    <p>
+                        Oleh karena itu, banyaknya permutasi siklis dari $n$ unsur berbeda diperoleh dengan membagi permutasi linier dengan $n$:
+                        $$P_{\text{siklis}} = \frac{n!}{n} = \frac{n \times (n - 1)!}{n} = (n - 1)!$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.8rem 0;">
+                        <p style="margin: 0; font-weight: normal;">
+                            <strong>Prinsip Patokan Tetap (Anchor Point):</strong><br>
+                            Tetapkan $1$ objek pada suatu posisi sembarang sebagai patokan acuan tetap. Sisa $(n - 1)$ objek lainnya kemudian disusun bebas pada kursi yang tersisa secara linier, sehingga menghasilkan $(n - 1)!$ cara.
+                        </p>
+                    </div>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-rotasi-siklis" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Meja Bundar vs. Manik-Manik Gelang (Objek 3D Dibalik)</h2>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Dalam menyelesaikan permasalahan permutasi siklis, kita harus membedakan apakah susunan tersebut dapat <strong>dibalik posisinya</strong> atau tidak:
+                    </p>
+                    <p>
+                        <strong>A. Formasi Meja Bundar (Tampak 2 Dimensi):</strong><br>
+                        Orang yang duduk di meja makan atau rapat tidak dapat dibalik dari bawah tanah ke atas. Susunan searah jarum jam (<em>Clockwise</em>) dan berlawanan jarum jam (<em>Counter-Clockwise</em>) menghasilkan tetangga kiri-kanan yang berbeda:
+                        $$P_{\text{meja}} = (n - 1)!$$
+                    </p>
+                    <p>
+                        <strong>B. Gelang, Kalung, atau Gantungan Kunci (Tampak 3 Dimensi):</strong><br>
+                        Manik-manik pada gelang dapat dibolak-balik tampak depan dan tampak belakangnya. Susunan searah jarum jam akan menjadi berlawanan jarum jam ketika gelang dibalik, sehingga setiap susunan terhitung dua kali:
+                        $$P_{\text{gelang}} = \frac{(n - 1)!}{2}$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-gelang-simetri" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Permutasi Siklis dengan Syarat Khusus</h2>
+            <p>
+                Pada soal ujian dan seleksi masuk perguruan tinggi (SNBT/UTBK), permutasi siklik sering digabungkan dengan syarat-syarat khusus:
+            </p>
+
+            <h3>A. Unsur yang Harus Selalu Berdampingan (Metode Blok)</h3>
+            <p>
+                Jika ada sekumpulan $k$ objek tertentu yang harus duduk berdampingan:
+            </p>
+            <ol>
+                <li>Ikat $k$ objek tersebut menjadi <strong>1 entitas/blok tunggal</strong>.</li>
+                <li>Hitung banyaknya objek sekarang, yaitu $(n - k + 1)$ objek.</li>
+                <li>Susun seluruh objek secara siklis:
+                    $$P_{\text{lingkar}} = ((n - k + 1) - 1)! = (n - k)!$$
+                </li>
+                <li>Kalikan dengan banyaknya cara menyusun objek di dalam blok tersebut (secara linier):
+                    $$P_{\text{dalam blok}} = k!$$
+                </li>
+                <li>Total susunan:
+                    $$P_{\text{total}} = (n - k)! \times k!$$
+                </li>
+            </ol>
+
+            <h3>B. Unsur Duduk Berselang-Seling (Alternating)</h3>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Misalkan terdapat $n$ orang pria dan $n$ orang wanita yang akan duduk di meja bundar dengan posisi berselang-seling (pria dan wanita bergantian):
+                    </p>
+                    <ol>
+                        <li>Dudukkan kelompok pria terlebih dahulu secara melingkar:
+                            $$P_1 = (n - 1)!\text{ cara}$$
+                        </li>
+                        <li>Setelah pria duduk, terbentuk tepat $n$ kursi kosong di antara pria-pria tersebut. Karena pria sudah menjadi patokan posisi, kursi-kursi untuk wanita kini memiliki identitas posisi yang tetap (secara linier):
+                            $$P_2 = n!\text{ cara}$$
+                        </li>
+                    </ol>
+                    <p>
+                        Maka banyaknya susunan berselang-seling adalah:
+                        $$P_{\text{selang-seling}} = (n - 1)! \times n!$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-berselang-seling" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h3>C. Kursi yang Diberi Nomor (Labeled Seats)</h3>
+            <p>
+                Jika kursi-kursi di sekeliling meja bundar memiliki nomor kursi (misal Kursi 1, Kursi 2, dst.) atau ada satu titik referensi ruangan (misal kursi tepat menghadap jendela utama), maka perputaran posisi akan menghasilkan konfigurasi yang berbeda. Pada kasus ini, masalah berubah menjadi <strong>permutasi linier biasa</strong>:
+                $$P = n!$$
+            </p>
+
+            <h2>5. Rangkuman Rumus Permutasi Siklis</h2>
+            <div class="pembahasan-box show" style="margin-bottom: 2rem;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                            <th style="padding: 0.6rem;">Kondisi / Objek</th>
+                            <th style="padding: 0.6rem;">Rumus</th>
+                            <th style="padding: 0.6rem;">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>Meja Bundar Standar</strong></td>
+                            <td style="padding: 0.6rem;">$P = (n - 1)!$</td>
+                            <td style="padding: 0.6rem;">$n$ objek berbeda melingkar tanpa syarat</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>Gelang / Kalung / Manik</strong></td>
+                            <td style="padding: 0.6rem;">$P = \dfrac{(n - 1)!}{2}$</td>
+                            <td style="padding: 0.6rem;">Dapat dibalik (simetri pantul/tampak belakang)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>$k$ Objek Selalu Berdampingan</strong></td>
+                            <td style="padding: 0.6rem;">$P = (n - k)! \times k!$</td>
+                            <td style="padding: 0.6rem;">Menggunakan metode blok ikat</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 0.6rem;"><strong>$n$ Pria & $n$ Wanita Selang-Seling</strong></td>
+                            <td style="padding: 0.6rem;">$P = (n - 1)! \times n!$</td>
+                            <td style="padding: 0.6rem;">Pria duduk melingkar, wanita mengisi celah</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.6rem;"><strong>Kursi Bernomor / Ada Patokan Luar</strong></td>
+                            <td style="padding: 0.6rem;">$P = n!$</td>
+                            <td style="padding: 0.6rem;">Berubah menjadi permutasi linier</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>6. Contoh Soal Terbimbing</h2>
+
+            <!-- Contoh Soal 1 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 1</div>
+                <div class="soal-teks">
+                    Terdapat $6$ orang duta besar dari negara yang berbeda akan mengadakan perundingan di sebuah meja bundar. Berapa banyak susunan posisi duduk yang dapat dibentuk jika seluruh duta besar duduk bebas tanpa batasan?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Karena perundingan dilakukan pada meja bundar tanpa syarat khusus, kita gunakan rumus permutasi siklis langsung dengan $n = 6$:
+                        $$P_{\text{siklis}} = (n - 1)! = (6 - 1)! = 5!$$
+                        $$P_{\text{siklis}} = 5 \times 4 \times 3 \times 2 \times 1 = 120\text{ susunan}$$
+                    </p>
+                    <div class="kesimpulan">Jadi, banyak susunan posisi duduk yang dapat dibentuk adalah 120 susunan.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 2</div>
+                <div class="soal-teks">
+                    Dalam suatu rapat dewan direksi, hadir $8$ orang eksekutif termasuk Direktur Utama dan Sekretaris. Mereka duduk mengelilingi meja bundar. Jika Direktur Utama dan Sekretaris harus duduk berdampingan, berapa banyak susunan posisi duduk yang mungkin terjadi?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Gunakan <strong>Metode Blok</strong>:<br><br>
+                        <strong>Langkah 1: Mengikat kelompok berdampingan</strong><br>
+                        Direktur Utama dan Sekretaris diikat menjadi $1$ entitas kelompok ($[\text{Dirut, Sek}]$).<br>
+                        Jumlah unsur yang disusun melingkar menjadi:
+                        $$N = (8 - 2) + 1 = 6 + 1 = 7\text{ unsur}$$
+                        <br>
+                        <strong>Langkah 2: Permutasi siklis untuk 7 unsur</strong><br>
+                        $$P_{\text{siklis}} = (7 - 1)! = 6! = 720\text{ cara}$$
+                        <br>
+                        <strong>Langkah 3: Permutasi internal di dalam blok</strong><br>
+                        Direktur Utama dan Sekretaris dapat bertukar posisi (kiri-kanan):
+                        $$P_{\text{internal}} = 2! = 2\text{ cara}$$
+                        <br>
+                        <strong>Langkah 4: Menghitung total susunan</strong><br>
+                        $$\text{Total Susunan} = 720 \times 2 = 1.440\text{ susunan}$$
+                    </p>
+                    <div class="kesimpulan">Jadi, ada 1.440 susunan posisi duduk yang mungkin terjadi.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3 -->
+            <div class="soal-item">
+                <div class="soal-no">No. 3</div>
+                <div class="soal-teks">
+                    Tersedia $7$ buah manik-manik dengan warna yang berbeda-beda. Manik-manik tersebut akan dironce menjadi sebuah gelang tangan melingkar. Berapakah banyaknya model gelang berbeda yang dapat dibuat?
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <p>
+                        Gelang tangan merupakan objek melingkar tiga dimensi yang dapat dibalik tampak depan dan tampak belakangnya. Oleh karena itu, kita gunakan rumus permutasi siklis untuk objek berbalik dengan $n = 7$:
+                        $$P_{\text{gelang}} = \frac{(n - 1)!}{2}$$
+                        $$P_{\text{gelang}} = \frac{(7 - 1)!}{2} = \frac{6!}{2}$$
+                        $$P_{\text{gelang}} = \frac{720}{2} = 360\text{ model}$$
+                    </p>
+                    <div class="kesimpulan">Jadi, ada 360 model gelang berbeda yang dapat dibuat.</div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+
+    <!-- Visualisasi Diagram Matematika dengan GeoSVG.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0f766e",
+                utamaMuda: "#ccfbf1",
+                aksen: "#2563eb",
+                aksenMuda: "#dbeafe",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                merah: "#dc2626",
+                merahMuda: "#fee2e2",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                bingkai: "#334155",
+                latar: "#f8fafc",
+                teks: "#0f172a",
+                garisBantu: "#cbd5e1"
+            };
+
+            // 1. Ekivalensi Rotasi Siklis (3 Orang: Meja Kiri dan Meja Kanan Rotasi Sama)
+            const elRotasi = document.getElementById("svg-rotasi-siklis");
+            if (elRotasi && typeof GeoSVG === "function") {
+                const W = 310, H = 210;
+                const geo = new GeoSVG("svg-rotasi-siklis", W, H, {
+                    margin: 10,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                const rMeja = 36;
+                const rOrang = 13;
+                const dist = 52;
+
+                // Meja 1 (Kiri)
+                const c1 = [75, 105];
+                geo.buatLingkaran(c1, rMeja, { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.8 });
+                geo.buatTeks(c1[0], c1[1], "Meja 1", { position: "middle-center", fontSize: "10px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Posisi 3 orang meja 1: A (atas), B (kanan bawah), C (kiri bawah)
+                const ang1 = [-90, 30, 150];
+                const lbl1 = [
+                    { l: "A", col: TEMA.merah, bg: TEMA.merahMuda },
+                    { l: "B", col: TEMA.utama, bg: TEMA.utamaMuda },
+                    { l: "C", col: TEMA.aksen, bg: TEMA.aksenMuda }
+                ];
+                ang1.forEach((deg, i) => {
+                    const rad = deg * (Math.PI / 180);
+                    const px = c1[0] + dist * Math.cos(rad);
+                    const py = c1[1] + dist * Math.sin(rad);
+                    geo.buatLingkaran([px, py], rOrang, { fill: lbl1[i].bg, stroke: lbl1[i].col, strokeWidth: 1.5 });
+                    geo.buatTeks(px, py, lbl1[i].l, { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: lbl1[i].col });
+                });
+
+                // Panah Rotasi 120 derajat
+                geo.buatTeks(155, 95, "Rotasi 120°", { position: "middle-center", fontSize: "10px", fontWeight: "bold", fill: "#64748b" });
+                geo.buatVektor([135, 108], [175, 108], { stroke: TEMA.utama, strokeWidth: 2 });
+                geo.buatTeks(155, 122, "(Ekuivalen)", { position: "middle-center", fontSize: "10px", fontStyle: "italic", fill: TEMA.utama });
+
+                // Meja 2 (Kanan: A diputar ke kanan bawah, B ke kiri bawah, C ke atas)
+                const c2 = [235, 105];
+                geo.buatLingkaran(c2, rMeja, { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.8 });
+                geo.buatTeks(c2[0], c2[1], "Meja 2", { position: "middle-center", fontSize: "10px", fontWeight: "bold", fill: TEMA.oranye });
+
+                const lbl2 = [
+                    { l: "C", col: TEMA.aksen, bg: TEMA.aksenMuda },
+                    { l: "A", col: TEMA.merah, bg: TEMA.merahMuda },
+                    { l: "B", col: TEMA.utama, bg: TEMA.utamaMuda }
+                ];
+                ang1.forEach((deg, i) => {
+                    const rad = deg * (Math.PI / 180);
+                    const px = c2[0] + dist * Math.cos(rad);
+                    const py = c2[1] + dist * Math.sin(rad);
+                    geo.buatLingkaran([px, py], rOrang, { fill: lbl2[i].bg, stroke: lbl2[i].col, strokeWidth: 1.5 });
+                    geo.buatTeks(px, py, lbl2[i].l, { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: lbl2[i].col });
+                });
+
+                // Keterangan Bawah
+                geo.buatTeks(155, 192, "P_siklis = 3! / 3 = (3 - 1)! = 2", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 2. Simetri Gelang / Manik-manik (Dapat dibalik / refleksi)
+            const elGelang = document.getElementById("svg-gelang-simetri");
+            if (elGelang && typeof GeoSVG === "function") {
+                const W = 300, H = 200;
+                const geo = new GeoSVG("svg-gelang-simetri", W, H, {
+                    margin: 10,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                const cx1 = 80, cx2 = 220, cy = 95, R = 42;
+
+                // Tali Gelang 1
+                geo.buatLingkaran([cx1, cy], R, { fill: "none", stroke: TEMA.bingkai, strokeWidth: 2 });
+                geo.buatTeks(cx1, cy, "Tampak Depan", { position: "middle-center", fontSize: "9px", fill: "#64748b" });
+
+                // 4 Manik Gelang 1 (Merah, Biru, Hijau, Kuning - Searah Jarum Jam)
+                const manik1 = [
+                    { ang: -90, col: TEMA.merah },
+                    { ang: 0, col: TEMA.aksen },
+                    { ang: 90, col: TEMA.utama },
+                    { ang: 180, col: TEMA.oranye }
+                ];
+                manik1.forEach(m => {
+                    const rad = m.ang * (Math.PI / 180);
+                    const px = cx1 + R * Math.cos(rad);
+                    const py = cy + R * Math.sin(rad);
+                    geo.buatLingkaran([px, py], 7.5, { fill: m.col, stroke: "#fff", strokeWidth: 1.5 });
+                });
+
+                // Simbol Dibalik
+                geo.buatTeks(150, 85, "Dibalik", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.utama });
+                geo.buatTeks(150, 105, "⇄", { position: "middle-center", fontSize: "20px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Tali Gelang 2 (Hasil Dibalik)
+                geo.buatLingkaran([cx2, cy], R, { fill: "none", stroke: TEMA.bingkai, strokeWidth: 2 });
+                geo.buatTeks(cx2, cy, "Tampak Belakang", { position: "middle-center", fontSize: "9px", fill: "#64748b" });
+
+                // 4 Manik Gelang 2 (Tampak Belakang: Urutan membalik)
+                const manik2 = [
+                    { ang: -90, col: TEMA.merah },
+                    { ang: 180, col: TEMA.aksen },
+                    { ang: 90, col: TEMA.utama },
+                    { ang: 0, col: TEMA.oranye }
+                ];
+                manik2.forEach(m => {
+                    const rad = m.ang * (Math.PI / 180);
+                    const px = cx2 + R * Math.cos(rad);
+                    const py = cy + R * Math.sin(rad);
+                    geo.buatLingkaran([px, py], 7.5, { fill: m.col, stroke: "#fff", strokeWidth: 1.5 });
+                });
+
+                // Keterangan
+                geo.buatTeks(150, 178, "P_gelang = (n - 1)! / 2", {
+                    position: "middle-center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 3. Meja Berselang-Seling: 3 Pria & 3 Wanita
+            const elSeling = document.getElementById("svg-berselang-seling");
+            if (elSeling && typeof GeoSVG === "function") {
+                const W = 300, H = 220;
+                const geo = new GeoSVG("svg-berselang-seling", W, H, {
+                    margin: 10,
+                    defaultStrokeWidth: 1.5,
+                    fontFamily: "Rubik, sans-serif",
+                    clearContainer: true
+                });
+
+                const cx = 150, cy = 110, R = 55, dKursi = 72;
+
+                // Meja Bundar
+                geo.buatLingkaran([cx, cy], R, { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.8 });
+                geo.buatTeks(cx, cy, "Meja Rapat", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // 6 Kursi Berselang-Seling: Sudut 0, 60, 120, 180, 240, 300 derajat
+                // Pria: Biru (P1, P2, P3) pada 0, 120, 240
+                // Wanita: Hijau (W1, W2, W3) pada 60, 180, 300
+                const kursiData = [
+                    { ang: -90, lbl: "P₁", isPria: true },
+                    { ang: -30, lbl: "W₁", isPria: false },
+                    { ang: 30, lbl: "P₂", isPria: true },
+                    { ang: 90, lbl: "W₂", isPria: false },
+                    { ang: 150, lbl: "P₃", isPria: true },
+                    { ang: 210, lbl: "W₃", isPria: false }
+                ];
+
+                kursiData.forEach(k => {
+                    const rad = k.ang * (Math.PI / 180);
+                    const px = cx + dKursi * Math.cos(rad);
+                    const py = cy + dKursi * Math.sin(rad);
+
+                    const bg = k.isPria ? TEMA.aksenMuda : TEMA.utamaMuda;
+                    const strokeCol = k.isPria ? TEMA.aksen : TEMA.utama;
+
+                    geo.buatLingkaran([px, py], 13, { fill: bg, stroke: strokeCol, strokeWidth: 1.6 });
+                    geo.buatTeks(px, py, k.lbl, { position: "middle-center", fontSize: "10px", fontWeight: "bold", fill: strokeCol });
+                });
+
+                // Rumus Bawah
+                geo.buatTeks(cx, 16, "Pria: (3 - 1)! = 2 | Wanita: 3! = 6", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+                geo.buatTeks(cx, 204, "Total = 2 × 6 = 12 Cara", {
+                    position: "middle-center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Persamaan Lingkaran</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Persamaan Lingkaran</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Lingkaran & Penurunan Geometris</h2>
+            <p>
+                Secara geometri analitis, <strong>Lingkaran</strong> didefinisikan sebagai tempat kedudukan (himpunan) seluruh titik $T(x, y)$ pada bidang datar yang berjarak sama terhadap suatu titik tertentu yang tetap.
+            </p>
+            <ul>
+                <li>Titik tertentu yang tetap dinamakan <strong>Titik Pusat Lingkaran</strong>.</li>
+                <li>Jarak konstan dari pusat ke setiap titik pada lingkaran dinamakan <strong>Jari-Jari (Radius, $r$)</strong>.</li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Penurunan Rumus Berbasis Teorema Pythagoras</h3>
+                    <p>
+                        Misalkan lingkaran berpusat di titik $P(a, b)$ dan memiliki jari-jari $r$. Ambil sembarang titik $T(x, y)$ pada busur lingkaran.
+                    </p>
+                    <p>
+                        Jarak antara titik pusat $P(a, b)$ dan titik $T(x, y)$ dihitung menggunakan rumus jarak Euclidean:
+                        $$d(P, T) = \sqrt{(x - a)^2 + (y - b)^2}$$
+                        Karena jarak ini selalu konstan bernilai $r$, maka:
+                        $$\sqrt{(x - a)^2 + (y - b)^2} = r$$
+                        Kuadratkan kedua ruas untuk memperoleh <strong>Bentuk Baku Persamaan Lingkaran</strong>:
+                        $$(x - a)^2 + (y - b)^2 = r^2$$
+                    </p>
+                    <p>
+                        Jika titik pusatnya berada di titik asal Cartesius $O(0, 0)$, persamaannya menjadi sangat sederhana:
+                        $$x^2 + y^2 = r^2$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-penurunan-lingkaran" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>2. Bentuk Umum Persamaan Lingkaran</h2>
+            <p>
+                Jika bentuk baku $(x - a)^2 + (y - b)^2 = r^2$ dijabarkan secara aljabar:
+                $$\begin{aligned}
+                (x^2 - 2ax + a^2) + (y^2 - 2by + b^2) &= r^2 \\
+                x^2 + y^2 - 2ax - 2by + (a^2 + b^2 - r^2) &= 0
+                \end{aligned}$$
+                Dengan mendefinisikan $A = -2a$, $B = -2b$, dan $C = a^2 + b^2 - r^2$, diperoleh <strong>Bentuk Umum Persamaan Lingkaran</strong>:
+                $$x^2 + y^2 + Ax + By + C = 0$$
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Rumus Menentukan Pusat dan Jari-Jari dari Bentuk Umum:</strong><br>
+                    • <strong>Titik Pusat:</strong>
+                    $$P(a, b) = P\left(-\frac{A}{2}, -\frac{B}{2}\right)$$
+                    • <strong>Jari-Jari Lingkaran ($r$):</strong>
+                    $$r = \sqrt{a^2 + b^2 - C} = \sqrt{\left(\frac{A}{2}\right)^2 + \left(\frac{B}{2}\right)^2 - C}$$
+                    <strong>Karakteristik Nilai Radikand:</strong>
+                    <ul>
+                        <li>Jika $a^2 + b^2 - C > 0$, lingkaran berbentuk nyata (*real circle*).</li>
+                        <li>Jika $a^2 + b^2 - C = 0$, lingkaran mengalami degenerasi menjadi satu titik pusat (*point circle*).</li>
+                        <li>Jika $a^2 + b^2 - C < 0$, lingkaran bersifat imajiner (tidak ada titik nyata yang memenuhi).</li>
+                    </ul>
+                </p>
+            </div>
+
+            <h2>3. Kedudukan Titik Terhadap Lingkaran (Nilai Kuasa Titik)</h2>
+            <p>
+                Diberikan lingkaran $L: (x - a)^2 + (y - b)^2 = r^2$. Untuk menguji posisi titik $T(x_0, y_0)$ terhadap lingkaran, hitung nilai <strong>Kuasa Titik ($K$)</strong> dengan mensubstitusikan koordinat titik ke ruas kiri persamaan:
+                $$K = (x_0 - a)^2 + (y_0 - b)^2 - r^2$$
+            </p>
+            <ul>
+                <li><strong>$K < 0$:</strong> Titik $T$ terletak <strong>di dalam</strong> lingkaran (jarak titik ke pusat lebih kecil dari jari-jari, $d < r$).</li>
+                <li><strong>$K = 0$:</strong> Titik $T$ terletak <strong>pada busur (keliling)</strong> lingkaran ($d = r$).</li>
+                <li><strong>$K > 0$:</strong> Titik $T$ terletak <strong>di luar</strong> lingkaran ($d > r$).</li>
+            </ul>
+
+            <h2>4. Kedudukan Garis Terhadap Lingkaran</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Diberikan sebuah garis lurus $g: Ax + By + C = 0$ dan lingkaran $L$ dengan pusat $P(a, b)$ serta jari-jari $r$. Kedudukan garis terhadap lingkaran dapat ditentukan dengan dua pendekatan:
+                    </p>
+                    <p>
+                        <strong>1. Pendekatan Geometris Jarak Pusat ke Garis ($d$):</strong><br>
+                        Hitung jarak tegak lurus dari titik pusat $P(a, b)$ ke garis $g$:
+                        $$d = \frac{|A a + B b + C|}{\sqrt{A^2 + B^2}}$$
+                        <ul>
+                            <li><strong>$d < r$:</strong> Garis <strong>memotong</strong> lingkaran di dua titik berlainan (tali busur).</li>
+                            <li><strong>$d = r$:</strong> Garis <strong>menyinggung</strong> lingkaran di tepat satu titik.</li>
+                            <li><strong>$d > r$:</strong> Garis berada <strong>di luar</strong> lingkaran (tidak berpotongan).</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <strong>2. Pendekatan Diskriminan Aljabar ($D$):</strong><br>
+                        Substitusikan persamaan garis ke persamaan lingkaran hingga diperoleh persamaan kuadrat satu variabel. Nilai diskriminannya:
+                        $D > 0$ (memotong 2 titik), $D = 0$ (menyinggung), $D < 0$ (di luar).
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-kedudukan-garis" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Persamaan Garis Singgung Lingkaran (PGSL)</h2>
+
+            <h3>A. Melalui Titik Singgung $(x_1, y_1)$ pada Lingkaran (Kaidah Bagi Adil)</h3>
+            <p>
+                Jika titik $(x_1, y_1)$ terletak <strong>tepat pada lingkaran</strong>, persamaan garis singgung diperoleh dengan metode membagi adil variabel kuadrat dan variabel linear:
+            </p>
+            <ul>
+                <li>Lingkaran $x^2 + y^2 = r^2$:
+                    $$x_1 x + y_1 y = r^2$$
+                </li>
+                <li>Lingkaran $(x - a)^2 + (y - b)^2 = r^2$:
+                    $$(x_1 - a)(x - a) + (y_1 - b)(y - b) = r^2$$
+                </li>
+                <li>Lingkaran $x^2 + y^2 + Ax + By + C = 0$:
+                    $$x_1 x + y_1 y + \frac{A}{2}(x + x_1) + \frac{B}{2}(y + y_1) + C = 0$$
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>B. Garis Singgung dengan Gradien Tertentu ($m$)</h3>
+                    <p>
+                        Jika gradien kemiringan garis singgung diketahui bernilai $m$, selalu terdapat <strong>dua garis singgung yang saling sejajar</strong> di kedua sisi lingkaran:
+                    </p>
+                    <ul>
+                        <li>Pusat di $(0, 0)$:
+                            $$y = mx \pm r\sqrt{1 + m^2}$$
+                        </li>
+                        <li>Pusat di $(a, b)$:
+                            $$y - b = m(x - a) \pm r\sqrt{1 + m^2}$$
+                        </li>
+                    </ul>
+                    <p>
+                        Tanda $\pm$ mencerminkan keberadaan dua garis singgung sejajar simetris yang mengapit lingkaran.
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-garis-singgung-gradien" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h3>C. Melalui Titik di Luar Lingkaran (Metode Garis Kutub / Polar)</h3>
+            <p>
+                Jika titik $P(x_0, y_0)$ berada <strong>di luar lingkaran</strong>, dari titik tersebut dapat ditarik tepat $2$ garis singgung ke lingkaran:
+            </p>
+            <ol>
+                <li>Susun persamaan <strong>Garis Kutub (Garis Polar)</strong> menggunakan titik $(x_0, y_0)$ dengan rumus bagi adil:
+                    $$(x_0 - a)(x - a) + (y_0 - b)(y - b) = r^2$$
+                </li>
+                <li>Garis kutub ini memotong lingkaran tepat di dua titik singgung asli ($T_1$ dan $T_2$).</li>
+                <li>Substitusikan persamaan garis kutub ke persamaan lingkaran untuk memperoleh koordinat $T_1$ dan $T_2$.</li>
+                <li>Gunakan titik $T_1$ dan $T_2$ dengan rumus garis singgung di titik singgung.</li>
+            </ol>
+
+            <h2>6. Kedudukan Relatif Dua Lingkaran</h2>
+            <p>
+                Diberikan dua lingkaran $L_1$ (pusat $P_1$, jari-jari $R$) dan $L_2$ (pusat $P_2$, jari-jari $r$) dengan $R \ge r$, serta jarak antarpusat $d = |P_1 P_2|$:
+            </p>
+            <div class="table-container">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead>
+                        <tr style="background: var(--card-bg, #f8fafc); border-bottom: 2px solid var(--border-color, #e2e8f0);">
+                            <th style="padding: 10px; text-align: left;">Kedudukan Dua Lingkaran</th>
+                            <th style="padding: 10px; text-align: left;">Hubungan Jarak Pusat ($d$) dan Jari-Jari</th>
+                            <th style="padding: 10px; text-align: left;">Garis Singgung Persekutuan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Saling Lepas (Terpisah di Luar)</strong></td>
+                            <td style="padding: 10px;">$d > R + r$</td>
+                            <td style="padding: 10px;">4 garis (2 luar, 2 dalam)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Bersinggungan di Luar</strong></td>
+                            <td style="padding: 10px;">$d = R + r$</td>
+                            <td style="padding: 10px;">3 garis (2 luar, 1 dalam)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Berpotongan di Dua Titik</strong></td>
+                            <td style="padding: 10px;">$R - r < d < R + r$</td>
+                            <td style="padding: 10px;">2 garis (keduanya luar)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Bersinggungan di Dalam</strong></td>
+                            <td style="padding: 10px;">$d = R - r$</td>
+                            <td style="padding: 10px;">1 garis luar</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Di Dalam Tanpa Bersinggungan</strong></td>
+                            <td style="padding: 10px;">$d < R - r$</td>
+                            <td style="padding: 10px;">0 garis</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;"><strong>Sepusat (Konsentris)</strong></td>
+                            <td style="padding: 10px;">$d = 0$</td>
+                            <td style="padding: 10px;">0 garis</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>7. Tabel Rangkuman Rumus Persamaan Lingkaran</h2>
+            <div class="table-container">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead>
+                        <tr style="background: var(--card-bg, #f8fafc); border-bottom: 2px solid var(--border-color, #e2e8f0);">
+                            <th style="padding: 10px; text-align: left;">Bentuk / Parameter</th>
+                            <th style="padding: 10px; text-align: left;">Rumus Baku</th>
+                            <th style="padding: 10px; text-align: left;">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Pusat $(0, 0)$, Jari-jari $r$</strong></td>
+                            <td style="padding: 10px;">$x^2 + y^2 = r^2$</td>
+                            <td style="padding: 10px;">Bentuk kanonik titik asal</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Pusat $(a, b)$, Jari-jari $r$</strong></td>
+                            <td style="padding: 10px;">$(x - a)^2 + (y - b)^2 = r^2$</td>
+                            <td style="padding: 10px;">Bentuk baku pergeseran pusat</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Bentuk Umum</strong></td>
+                            <td style="padding: 10px;">$x^2 + y^2 + Ax + By + C = 0$</td>
+                            <td style="padding: 10px;">$P(-A/2, -B/2)$, $r = \sqrt{a^2 + b^2 - C}$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>PGSL di Titik $(x_1, y_1)$</strong></td>
+                            <td style="padding: 10px;">$(x_1 - a)(x - a) + (y_1 - b)(y - b) = r^2$</td>
+                            <td style="padding: 10px;">Metode bagi adil</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;"><strong>PGSL Gradien $m$</strong></td>
+                            <td style="padding: 10px;">$y - b = m(x - a) \pm r\sqrt{1 + m^2}$</td>
+                            <td style="padding: 10px;">Dua garis singgung sejajar</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>8. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- CONTOH 1 (Dasar) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Pusat dan Diameter Lingkaran (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan persamaan lingkaran yang berpusat di titik $(-3, 4)$ dan memiliki diameter $14$, lalu nyatakan dalam bentuk umum $x^2 + y^2 + Ax + By + C = 0$.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Diketahui pusat $(a, b) = (-3, 4)$ dan diameter $D = 14 \implies$ jari-jari $r = \dfrac{14}{2} = 7$.<br><br>
+                        <strong>Langkah 1: Bentuk baku persamaan lingkaran</strong><br>
+                        $$\begin{aligned}
+                        (x - a)^2 + (y - b)^2 &= r^2 \\
+                        (x - (-3))^2 + (y - 4)^2 &= 7^2 \\
+                        (x + 3)^2 + (y - 4)^2 &= 49
+                        \end{aligned}$$
+                        <br>
+                        <strong>Langkah 2: Jabarkan ke bentuk umum</strong><br>
+                        $$\begin{aligned}
+                        (x^2 + 6x + 9) + (y^2 - 8y + 16) &= 49 \\
+                        x^2 + y^2 + 6x - 8y + 25 - 49 &= 0 \\
+                        x^2 + y^2 + 6x - 8y - 24 &= 0
+                        \end{aligned}$$
+                        <div class="kesimpulan">
+                            Jadi, persamaan lingkarannya adalah $x^2 + y^2 + 6x - 8y - 24 = 0$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Lingkaran Menyinggung Garis Lurus (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan persamaan lingkaran yang berpusat di titik $(2, -1)$ dan menyinggung garis lurus $3x - 4y + 5 = 0$.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Karena lingkaran menyinggung garis, maka jari-jari $r$ tepat sama dengan jarak tegak lurus dari titik pusat $(a, b) = (2, -1)$ ke garis $3x - 4y + 5 = 0$.<br><br>
+                        <strong>Langkah 1: Hitung panjang jari-jari $r$</strong><br>
+                        $$\begin{aligned}
+                        r &= \frac{|Ax_0 + By_0 + C|}{\sqrt{A^2 + B^2}} \\
+                        &= \frac{|3(2) - 4(-1) + 5|}{\sqrt{3^2 + (-4)^2}} \\
+                        &= \frac{|6 + 4 + 5|}{\sqrt{9 + 16}} = \frac{|15|}{\sqrt{25}} = \frac{15}{5} = 3
+                        \end{aligned}$$
+                        Diperoleh $r = 3 \implies r^2 = 9$.<br><br>
+                        <strong>Langkah 2: Susun persamaan lingkaran</strong><br>
+                        Pusat $(2, -1)$ dan $r = 3$:
+                        $$\begin{aligned}
+                        (x - 2)^2 + (y - (-1))^2 &= 3^2 \\
+                        (x - 2)^2 + (y + 1)^2 &= 9 \\
+                        x^2 - 4x + 4 + y^2 + 2y + 1 &= 9 \\
+                        x^2 + y^2 - 4x + 2y + 5 - 9 &= 0 \\
+                        x^2 + y^2 - 4x + 2y - 4 &= 0
+                        \end{aligned}$$
+                        <div class="kesimpulan">
+                            Jadi, persamaan lingkaran tersebut adalah $x^2 + y^2 - 4x + 2y - 4 = 0$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Optimasi Nilai Maksimum pada Lingkaran (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    Diketahui titik $P(x, y)$ terletak pada lingkaran $x^2 + y^2 - 6x - 8y = 0$. Tentukan nilai maksimum yang mungkin dari ekspresi linear $3x + 4y$.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Langkah 1: Ubah persamaan lingkaran ke bentuk baku</strong><br>
+                        $$\begin{aligned}
+                        x^2 - 6x + y^2 - 8y &= 0 \\
+                        (x^2 - 6x + 9) + (y^2 - 8y + 16) &= 9 + 16 \\
+                        (x - 3)^2 + (y - 4)^2 &= 25 = 5^2
+                        \end{aligned}$$
+                        Lingkaran memiliki titik pusat $(a, b) = (3, 4)$ dan jari-jari $r = 5$.<br><br>
+                        <strong>Langkah 2: Pandang ekspresi $3x + 4y$ sebagai famili garis singgung</strong><br>
+                        Misalkan $3x + 4y = k \implies 4y = -3x + k \implies y = -\dfrac{3}{4}x + \dfrac{k}{4}$.<br>
+                        Garis ini memiliki gradien $m = -\dfrac{3}{4}$.<br>
+                        Nilai maksimum $k$ terjadi saat garis tersebut <strong>menyinggung lingkaran</strong> di sisi terluar searah vektor $(3, 4)$.<br><br>
+                        Gunakan rumus garis singgung dengan gradien $m = -\dfrac{3}{4}$ pada lingkaran pusat $(3, 4)$ dan $r = 5$:
+                        $$\begin{aligned}
+                        y - b &= m(x - a) \pm r\sqrt{1 + m^2} \\
+                        y - 4 &= -\frac{3}{4}(x - 3) \pm 5\sqrt{1 + \left(-\frac{3}{4}\right)^2} \\
+                        y - 4 &= -\frac{3}{4}(x - 3) \pm 5\sqrt{\frac{25}{16}} \\
+                        y - 4 &= -\frac{3}{4}(x - 3) \pm 5\left(\frac{5}{4}\right) \\
+                        4(y - 4) &= -3(x - 3) \pm 25 \\
+                        4y - 16 &= -3x + 9 \pm 25 \\
+                        3x + 4y &= 25 \pm 25
+                        \end{aligned}$$
+                        Diperoleh dua nilai ekstrem untuk $3x + 4y$:
+                        $$k_{\text{maks}} = 25 + 25 = 50$$
+                        $$k_{\text{min}} = 25 - 25 = 0$$
+                        <div class="kesimpulan">
+                            Jadi, nilai maksimum dari ekspresi $3x + 4y$ adalah $50$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // 1. Visualisasi Penurunan Geometris Persamaan Lingkaran Pusat (a, b) & Pythagoras
+            const elPenurunan = document.getElementById("svg-penurunan-lingkaran");
+            if (elPenurunan && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elPenurunan, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Penurunan Geometris Persamaan Lingkaran Berbasis Teorema Pythagoras"
+                });
+
+                const Ox = 50, Oy = 190;
+
+                // Sumbu Kartesius X dan Y
+                geo1.buatVektor([25, Oy], [315, Oy], { stroke: "#64748b", strokeWidth: 1.5 });
+                geo1.buatVektor([Ox, 215], [Ox, 25], { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo1.buatTeks(320, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo1.buatTeks(Ox, 16, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Pusat P(a, b) dan Jari-jari r
+                const P = [150, 115];
+                const r = 68;
+
+                // Lingkaran
+                geo1.buatLingkaran(P, r, {
+                    fill: "rgba(2, 132, 199, 0.06)",
+                    stroke: TEMA.utama,
+                    strokeWidth: 2
+                });
+
+                // Titik T(x, y) di sudut 42 derajat
+                const angle = -40 * (Math.PI / 180);
+                const T = [P[0] + r * Math.cos(angle), P[1] + r * Math.sin(angle)];
+                const C = [T[0], P[1]]; // Sudut siku-siku
+
+                // Segitiga siku-siku bantuan
+                geo1.buatSegitiga(P, C, T, {
+                    fill: "rgba(13, 148, 136, 0.12)",
+                    stroke: "none"
+                });
+
+                // Sisi mendatar (x - a)
+                geo1.buatSegmen(P, C, { stroke: TEMA.aksen, strokeWidth: 1.8, strokeDasharray: "4 3" });
+                geo1.buatTeks((P[0] + C[0]) / 2, P[1] + 12, "x - a", {
+                    position: "top-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // Sisi tegak (y - b)
+                geo1.buatSegmen(C, T, { stroke: TEMA.oranye, strokeWidth: 1.8, strokeDasharray: "4 3" });
+                geo1.buatTeks(C[0] + 8, (C[1] + T[1]) / 2, "y - b", {
+                    position: "middle-left",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.oranye
+                });
+
+                // Sisi miring (jari-jari r)
+                geo1.buatSegmen(P, T, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo1.buatTeks((P[0] + T[0]) / 2 - 8, (P[1] + T[1]) / 2 - 8, "r", {
+                    position: "bottom-right",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Tanda siku-siku di C
+                geo1.buatSiku(P, C, T, { size: 10, stroke: "#64748b", strokeWidth: 1.2 });
+
+                // Titik Pusat P(a, b)
+                geo1.buatLingkaran(P, 4.5, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(P[0] - 8, P[1] - 8, "P(a, b)", {
+                    position: "bottom-right",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // Titik T(x, y)
+                geo1.buatLingkaran(T, 4.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo1.buatTeks(T[0] + 6, T[1] - 6, "T(x, y)", {
+                    position: "middle-left",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Keterangan Bawah
+                geo1.buatTeks(170, 214, "(x - a)² + (y - b)² = r²", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 2. Visualisasi Kedudukan Garis Terhadap Lingkaran (Memotong, Menyinggung, di Luar)
+            const elKedudukan = document.getElementById("svg-kedudukan-garis");
+            if (elKedudukan && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elKedudukan, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Kedudukan Garis Terhadap Lingkaran: Memotong, Menyinggung, di Luar"
+                });
+
+                const P = [145, 110];
+                const r = 58;
+
+                // Lingkaran
+                geo2.buatLingkaran(P, r, { fill: "none", stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo2.buatLingkaran(P, 3.5, { fill: TEMA.utama });
+                geo2.buatTeks(P[0] - 8, P[1] + 12, "P", { position: "middle-right", fontSize: "10px", fontWeight: "bold", fill: TEMA.utama });
+
+                // 1. Garis Memotong (Secant line): y = P[1] - 25 (jarak d < r)
+                const ySec = P[1] - 25;
+                geo2.buatSegmen([30, ySec], [280, ySec], { stroke: TEMA.aksen, strokeWidth: 1.8 });
+                geo2.buatTeks(285, ySec, "d < r (Memotong 2 Titik)", {
+                    position: "middle-left",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // 2. Garis Menyinggung (Tangent line): y = P[1] - r (jarak d = r)
+                const yTan = P[1] - r;
+                geo2.buatSegmen([30, yTan], [280, yTan], { stroke: TEMA.merah, strokeWidth: 2 });
+                geo2.buatLingkaran([P[0], yTan], 4, { fill: TEMA.merah });
+                geo2.buatTeks(285, yTan, "d = r (Menyinggung 1 Titik)", {
+                    position: "middle-left",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Jari-jari tegak lurus ke garis singgung
+                geo2.buatSegmen(P, [P[0], yTan], { stroke: TEMA.merah, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo2.buatSiku([P[0] + 10, yTan], [P[0], yTan], P, { size: 8, stroke: "#334155", strokeWidth: 1.2 });
+
+                // 3. Garis di Luar (External line): y = P[1] - r - 26 (jarak d > r)
+                const yExt = P[1] - r - 26;
+                geo2.buatSegmen([30, yExt], [280, yExt], { stroke: "#94a3b8", strokeWidth: 1.5, strokeDasharray: "4 3" });
+                geo2.buatTeks(285, yExt, "d > r (Di Luar Lingkaran)", {
+                    position: "middle-left",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: "#64748b"
+                });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 204, "Perbandingan Jarak Pusat ke Garis (d) dengan Jari-Jari (r)", {
+                    position: "middle-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 3. Visualisasi Dua Garis Singgung Sejajar dengan Gradien m
+            const elPGSL = document.getElementById("svg-garis-singgung-gradien");
+            if (elPGSL && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elPGSL, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Dua Garis Singgung Sejajar dengan Gradien m"
+                });
+
+                const P = [160, 110];
+                const r = 52;
+
+                // Lingkaran
+                geo3.buatLingkaran(P, r, { fill: "none", stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo3.buatLingkaran(P, 3.5, { fill: TEMA.utama });
+
+                // Arah normal garis singgung: sudut theta = 45 derajat (m = -1 untuk garis singgung)
+                // Titik singgung T1 di kanan atas, T2 di kiri bawah
+                const cos45 = Math.cos(Math.PI / 4);
+                const sin45 = Math.sin(Math.PI / 4);
+                const T1 = [P[0] + r * cos45, P[1] - r * sin45];
+                const T2 = [P[0] - r * cos45, P[1] + r * sin45];
+
+                // Garis Singgung 1 melalui T1 (m = 1: sejajar diagonal)
+                const g1_a = [T1[0] - 65, T1[1] + 65];
+                const g1_b = [T1[0] + 65, T1[1] - 65];
+                geo3.buatSegmen(g1_a, g1_b, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo3.buatLingkaran(T1, 4, { fill: TEMA.merah });
+                geo3.buatTeks(g1_b[0] + 4, g1_b[1], "g₁ (m)", { position: "middle-left", fontSize: "9.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Garis Singgung 2 melalui T2 (sejajar g1)
+                const g2_a = [T2[0] - 65, T2[1] + 65];
+                const g2_b = [T2[0] + 65, T2[1] - 65];
+                geo3.buatSegmen(g2_a, g2_b, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo3.buatLingkaran(T2, 4, { fill: TEMA.merah });
+                geo3.buatTeks(g2_a[0] - 4, g2_a[1], "g₂ (m)", { position: "middle-right", fontSize: "9.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Garis diameter penghubung T1-P-T2 (tegak lurus garis singgung)
+                geo3.buatSegmen(T2, T1, { stroke: TEMA.aksen, strokeWidth: 1.4, strokeDasharray: "4 3" });
+                geo3.buatSiku(g1_b, T1, P, { size: 10, stroke: "#334155", strokeWidth: 1.2 });
+                geo3.buatSiku(g2_a, T2, P, { size: 10, stroke: "#334155", strokeWidth: 1.2 });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 204, "y - b = m(x - a) ± r√(1 + m²)", {
+                    position: "middle-center",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
+

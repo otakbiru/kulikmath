@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Segitiga Sama Sisi</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Segitiga Sama Sisi (Equilateral Triangle)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Sifat Fundamental Segitiga Sama Sisi</h2>
+            <p>
+                <strong>Segitiga Sama Sisi (Equilateral Triangle)</strong> adalah poligon beraturan segi-3 (<em>regular trigon</em>) yang memiliki <strong>ketiga sisi sama panjang</strong> ($a = b = c = s$) sekaligus <strong>ketiga sudut dalam sama besar</strong> ($\angle A = \angle B = \angle C = 60^\circ$ atau $\frac{\pi}{3}\text{ radian}$).
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Sifat Simetri & Keberhimpitan Pusat:</strong>
+                </p>
+                <ul style="margin: 0.4rem 0 0 1.2rem; padding: 0;">
+                    <li><strong>Tingkat Simetri:</strong> Memiliki <strong>3 sumbu simetri lipat</strong> dan <strong>simetri putar tingkat 3</strong> (dengan sudut rotasi $120^\circ, 240^\circ, 360^\circ$). Grup simetrinya adalah grup dihedral $D_3$ berordo 6.</li>
+                    <li><strong>Keberhimpitan Menyeluruh 4 Titik Pusat:</strong> Pada segitiga sama sisi, keempat titik pusat klasik:
+                        $$\text{Ortosenter }(H) \equiv \text{Sentroid }(G) \equiv \text{Incenter }(I) \equiv \text{Circumcenter }(O)$$
+                        <strong>melebur menjadi satu titik tunggal yang sama</strong>. Garis Euler berdegenerasi menjadi sebuah titik.
+                    </li>
+                    <li><strong>Konsentrisitas Lingkaran:</strong> Lingkaran dalam (<em>incircle</em>) dan lingkaran luar (<em>circumcircle</em>) memiliki titik pusat yang tepat sama (bersifat konsentris).</li>
+                </ul>
+            </div>
+
+            <h2>2. Formulasi Metrik: Tinggi, Luas, & Radius Konsentris</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Tinggi Segitiga ($h$)</h3>
+                    <p>
+                        Dengan membagi dua segitiga menjadi dua segitiga siku-siku istimewa ($30^\circ - 60^\circ - 90^\circ$):
+                        $$h = s \cdot \sin(60^\circ) = \frac{s\sqrt{3}}{2}$$
+                    </p>
+
+                    <h3>B. Keliling ($K$) & Semi-Perimeter ($s_{\text{semi}}$)</h3>
+                    <p>
+                        $$K = 3s \iff s_{\text{semi}} = \frac{3s}{2}$$
+                    </p>
+
+                    <h3>C. Luas Segitiga ($L$)</h3>
+                    <p>
+                        Berdasarkan panjang sisi $s$:
+                        $$L = \frac{1}{2} s \cdot h = \frac{1}{2} s \left(\frac{s\sqrt{3}}{2}\right) = \frac{s^2\sqrt{3}}{4}$$
+                        Berdasarkan tinggi $h$:
+                        $$s = \frac{2h}{\sqrt{3}} \implies L = \frac{h^2}{\sqrt{3}} = \frac{h^2\sqrt{3}}{3}$$
+                    </p>
+
+                    <h3>D. Jari-Jari Lingkaran Dalam & Luar</h3>
+                    <p>
+                        Karena sentroid membagi garis tinggi dengan rasio $2 : 1$:
+                        $$r = \frac{1}{3} h = \frac{s\sqrt{3}}{6} = \frac{s}{2\sqrt{3}} \quad (\text{Inradius})$$
+                        $$R = \frac{2}{3} h = \frac{s\sqrt{3}}{3} = \frac{s}{\sqrt{3}} \quad (\text{Circumradius})$$
+                        <strong>Relasi Fundamental:</strong>
+                        $$R = 2r \iff \frac{R}{r} = 2$$
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-konsentris-lingkaran" style="display: flex; justify-content: center; align-items: center; min-height: 230px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Keberhimpitan 4 titik pusat ($O \equiv G \equiv I \equiv H$) serta dua lingkaran konsentris dengan perbandingan jari-jari $R = 2r$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h3>Rasio Luas Antar-Komponen Geometri</h3>
+            <div style="overflow-x: auto; margin: 0.8rem 0;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+                    <thead>
+                        <tr style="background-color: var(--card-bg, #f8fafc); border-bottom: 2px solid #cbd5e1;">
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">Komponen</th>
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">Rumus Luas</th>
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">Rasio terhadap Luas Segitiga ($L_\Delta$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Lingkaran Dalam (Incircle)</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$L_{\text{in}} = \pi r^2 = \frac{\pi s^2}{12}$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$\frac{L_{\text{in}}}{L_\Delta} = \frac{\pi}{3\sqrt{3}} \approx 0{,}6046$</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Lingkaran Luar (Circumcircle)</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$L_{\text{circ}} = \pi R^2 = \frac{\pi s^2}{3} = 4 L_{\text{in}}$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$\frac{L_{\text{circ}}}{L_\Delta} = \frac{4\pi}{3\sqrt{3}} \approx 2{,}4184$</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Cincin Lingkaran (Annulus)</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$L_{\text{annulus}} = \pi(R^2 - r^2) = \frac{\pi s^2}{4}$</td>
+                            <td style="padding: 10px; border: 1px solid #cbd5e1;">$\frac{L_{\text{annulus}}}{L_\Delta} = \frac{\pi}{\sqrt{3}} \approx 1{,}8138$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Teorema Viviani</h2>
+            <p>
+                Ditemukan oleh matematikawan Italia <strong>Vincenzo Viviani</strong> pada tahun 1659, teorema ini merumuskan sifat invariansi jarak yang luar biasa di dalam segitiga sama sisi.
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0; font-weight: normal;">
+                            <strong>Pernyataan Teorema Viviani:</strong><br>
+                            Untuk <em>sembarang</em> titik $P$ yang berada di dalam (atau pada batas) sebuah segitiga sama sisi, <strong>jumlah jarak tegak lurus dari titik $P$ ke ketiga sisinya selalu konstan</strong> dan nilainya tepat sama dengan tinggi segitiga ($h$):
+                            $$d_1 + d_2 + d_3 = h = \frac{s\sqrt{3}}{2}$$
+                        </p>
+                    </div>
+                    <p>
+                        <strong>Bukti Melalui Dekomposisi Luas:</strong><br>
+                        Hubungkan titik $P$ ke ketiga titik sudut $A, B, C$. Segitiga $\triangle ABC$ terbagi menjadi tiga segitiga kecil: $\triangle PBC, \triangle PCA, \triangle PAB$.
+                        Karena panjang ketiga sisi alas sama ($s$), total luas segitiga adalah:
+                        $$L_{\Delta ABC} = L_{\Delta PBC} + L_{\Delta PCA} + L_{\Delta PAB}$$
+                        $$\frac{1}{2} s h = \frac{1}{2} s d_1 + \frac{1}{2} s d_2 + \frac{1}{2} s d_3$$
+                        Bagi kedua ruas dengan $\frac{1}{2} s$:
+                        $$h = d_1 + d_2 + d_3 \quad \blacksquare$$
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-teorema-viviani" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Teorema Viviani — jumlah jarak tegak lurus dari titik interior sembarang $P$ ke ketiga sisi selalu konstan sama dengan tinggi ($d_1 + d_2 + d_3 = h$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>4. Teorema Napoleon & Titik Fermat-Torricelli</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>A. Teorema Napoleon</h3>
+                    <p>
+                        Jika pada ketiga sisi sembarang segitiga dibentuk segitiga sama sisi ke arah luar, maka titik-titik pusat (sentroid) dari ketiga segitiga sama sisi tersebut akan membentuk <strong>sebuah segitiga sama sisi baru</strong> (disebut <em>Segitiga Napoleon Luar</em>).
+                    </p>
+                    <p>
+                        Luas Segitiga Napoleon Luar ($L_N$) dan Segitiga Napoleon Dalam ($L_N'$) memiliki relasi selisih yang konstan terhadap luas segitiga awal ($L_\Delta$):
+                        $$L_N - L_N' = L_{\Delta}$$
+                    </p>
+
+                    <h3>B. Titik Fermat-Torricelli</h3>
+                    <p>
+                        Titik di dalam segitiga yang meminimumkan jumlah total jarak ke ketiga verteks ($PA + PB + PC$). Pada segitiga sama sisi, titik Fermat berhimpit tepat di pusat simetri $G$, membagi ketiga sudut pandang secara simetris:
+                        $$\angle APB = \angle BPC = \angle CPA = 120^\circ$$
+                    </p>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-teorema-napoleon" style="display: flex; justify-content: center; align-items: center; min-height: 230px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Teorema Napoleon — segitiga yang menghubungkan ketiga titik pusat segitiga sama sisi luar selalu membentuk segitiga sama sisi kongruen sempurna.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>5. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Sisi, Tinggi, Luas, & Radius Konsentris</h3>
+                <p>
+                    Sebuah segitiga sama sisi memiliki keliling $K = 36\text{ cm}$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan panjang sisi segitiga ($s$) dan tinggi segitiga ($h$).</li>
+                    <li>Hitung luas daerah segitiga tersebut secara eksak.</li>
+                    <li>Tentukan jari-jari lingkaran dalam ($r$) dan jari-jari lingkaran luar ($R$), lalu buktikan berlakunya relasi $R = 2r$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Mencari Panjang Sisi dan Tinggi:</strong><br>
+                        Karena ketiga sisi segitiga sama sisi sama panjang:
+                        $$s = \frac{K}{3} = \frac{36}{3} = 12\text{ cm}$$
+                        Tinggi segitiga ($h$):
+                        $$h = \frac{s\sqrt{3}}{2} = \frac{12\sqrt{3}}{2} = 6\sqrt{3}\text{ cm} \approx 10{,}392\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Luas Segitiga ($L$):</strong><br>
+                        $$L = \frac{s^2\sqrt{3}}{4} = \frac{12^2 \sqrt{3}}{4} = \frac{144\sqrt{3}}{4} = 36\sqrt{3}\text{ cm}^2 \approx 62{,}354\text{ cm}^2$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Jari-Jari Lingkaran Dalam & Luar:</strong><br>
+                        Inradius ($r$):
+                        $$r = \frac{1}{3} h = \frac{1}{3} (6\sqrt{3}) = 2\sqrt{3}\text{ cm}$$
+                        Circumradius ($R$):
+                        $$R = \frac{2}{3} h = \frac{2}{3} (6\sqrt{3}) = 4\sqrt{3}\text{ cm}$$
+                        <em>Verifikasi:</em>
+                        $$2r = 2(2\sqrt{3}) = 4\sqrt{3} = R \quad (\text{terbukti } R = 2r)$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Sisi $s = 12\text{ cm}$, tinggi $h = 6\sqrt{3}\text{ cm}$, luas $L = 36\sqrt{3}\text{ cm}^2$, inradius $r = 2\sqrt{3}\text{ cm}$, dan circumradius $R = 4\sqrt{3}\text{ cm}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat SNBT / UTBK — Aplikasi Teorema Viviani & Luas Cincin (Annulus)</h3>
+                <p>
+                    Sebuah titik $P$ terletak di dalam segitiga sama sisi dengan panjang sisi $s = 12\text{ cm}$. Diketahui jarak tegak lurus dari titik $P$ ke sisi pertama adalah $d_1 = 2\sqrt{3}\text{ cm}$ dan ke sisi kedua adalah $d_2 = 3\sqrt{3}\text{ cm}$.
+                </p>
+                <ol type="a">
+                    <li>Gunakan Teorema Viviani untuk menentukan jarak tegak lurus dari titik $P$ ke sisi ketiga ($d_3$).</li>
+                    <li>Hitung luas daerah bidang yang terletak di antara lingkaran luar dan lingkaran dalam (luas cincin/annulus) dari segitiga sama sisi tersebut.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menghitung Jarak $d_3$ via Teorema Viviani:</strong><br>
+                        Tinggi segitiga sama sisi dengan sisi $s = 12\text{ cm}$ adalah:
+                        $$h = \frac{s\sqrt{3}}{2} = \frac{12\sqrt{3}}{2} = 6\sqrt{3}\text{ cm}$$
+                        Menurut Teorema Viviani, jumlah jarak tegak lurus dari sembarang titik interior ke ketiga sisinya sama dengan tinggi segitiga:
+                        $$d_1 + d_2 + d_3 = h$$
+                        Substitusikan nilai $d_1$ dan $d_2$:
+                        $$2\sqrt{3} + 3\sqrt{3} + d_3 = 6\sqrt{3}$$
+                        $$5\sqrt{3} + d_3 = 6\sqrt{3} \implies d_3 = 6\sqrt{3} - 5\sqrt{3} = \sqrt{3}\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Luas Cincin (Annulus):</strong><br>
+                        Jari-jari lingkaran luar $R = 4\sqrt{3}\text{ cm}$ dan jari-jari lingkaran dalam $r = 2\sqrt{3}\text{ cm}$.
+                        Luas annulus adalah selisih luas lingkaran luar dan lingkaran dalam:
+                        $$L_{\text{annulus}} = \pi R^2 - \pi r^2 = \pi (R^2 - r^2)$$
+                        Hitung kuadrat masing-masing jari-jari:
+                        $$R^2 = (4\sqrt{3})^2 = 16 \times 3 = 48$$
+                        $$r^2 = (2\sqrt{3})^2 = 4 \times 3 = 12$$
+                        Maka:
+                        $$L_{\text{annulus}} = \pi (48 - 12) = 36\pi\text{ cm}^2$$
+                        <em>Catatan Teoretis:</em> Luas annulus pada segitiga sama sisi selalu tepat sama dengan $\frac{\pi s^2}{4} = \frac{\pi (12^2)}{4} = \frac{144\pi}{4} = 36\pi\text{ cm}^2$ (identik dengan luas lingkaran yang berdiameter sebesar sisi segitiga).
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Jarak ke sisi ketiga adalah $d_3 = \sqrt{3}\text{ cm}$ dan luas cincin lingkaran adalah $36\pi\text{ cm}^2 \approx 113{,}1\text{ cm}^2$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Teorema Napoleon pada Segitiga Siku-Siku</h3>
+                <p>
+                    Diberikan segitiga siku-siku $ABC$ dengan panjang sisi tegak $a = 3$, $b = 4$, hipotenusa $c = 5$, dan luas $L_\Delta = 6$. Pada ketiga sisinya dikonstruksikan segitiga sama sisi ke arah luar, dan titik-titik pusatnya dihubungkan membentuk Segitiga Napoleon Luar ($N$).
+                </p>
+                <ol type="a">
+                    <li>Gunakan rumus kuadrat sisi Napoleon $s_N^2 = \frac{a^2 + b^2 + c^2}{6} + \frac{2}{\sqrt{3}} L_\Delta$ untuk menentukan panjang sisi segitiga Napoleon luar secara eksak.</li>
+                    <li>Hitung luas daerah Segitiga Napoleon Luar ($L_N$).</li>
+                    <li>Berdasarkan Teorema Napoleon, luas Segitiga Napoleon Dalam ($L_N'$) memenuhi relasi $L_N - L_N' = L_\Delta$. Tentukan nilai eksak dari $L_N'$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menghitung Kuadrat Panjang Sisi Segitiga Napoleon Luar ($s_N^2$):</strong><br>
+                        Hitung jumlah kuadrat sisi-sisi segitiga mula-mula:
+                        $$a^2 + b^2 + c^2 = 3^2 + 4^2 + 5^2 = 9 + 16 + 25 = 50$$
+                        Luas segitiga awal $L_\Delta = 6$.
+                        Substitusikan ke dalam formula Napoleon:
+                        $$s_N^2 = \frac{a^2 + b^2 + c^2}{6} + \frac{2}{\sqrt{3}} L_\Delta = \frac{50}{6} + \frac{2}{\sqrt{3}}(6) = \frac{25}{3} + \frac{12}{\sqrt{3}} = \frac{25}{3} + 4\sqrt{3}$$
+                        Samakan penyebut:
+                        $$s_N^2 = \frac{25 + 12\sqrt{3}}{3} \implies s_N = \sqrt{\frac{25 + 12\sqrt{3}}{3}}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Luas Segitiga Napoleon Luar ($L_N$):</strong><br>
+                        Karena segitiga Napoleon selalu merupakan segitiga sama sisi:
+                        $$L_N = \frac{s_N^2 \sqrt{3}}{4} = \frac{\left(\frac{25 + 12\sqrt{3}}{3}\right) \sqrt{3}}{4} = \frac{25\sqrt{3} + 12(3)}{12} = \frac{36 + 25\sqrt{3}}{12} = 3 + \frac{25\sqrt{3}}{12}$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Luas Segitiga Napoleon Dalam ($L_N'$):</strong><br>
+                        Berdasarkan teorema fundamental relasi luas Napoleon:
+                        $$L_N - L_N' = L_\Delta \iff L_N' = L_N - L_\Delta$$
+                        Substitusikan nilai $L_N$ dan $L_\Delta = 6$:
+                        $$L_N' = \left(3 + \frac{25\sqrt{3}}{12}\right) - 6 = \frac{25\sqrt{3}}{12} - 3$$
+                        Nilai ini selalu positif karena $\frac{25\sqrt{3}}{12} \approx \frac{25(1{,}732)}{12} \approx 3{,}608 > 3$.
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Panjang sisi segitiga Napoleon luar $s_N = \sqrt{\frac{25 + 12\sqrt{3}}{3}}$, luas Napoleon luar $L_N = 3 + \frac{25\sqrt{3}}{12}$, dan luas Napoleon dalam $L_N' = \frac{25\sqrt{3}}{12} - 3$, membuktikan kesahihan teorema selisih luas Napoleon.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Lingkaran Dalam & Luar Konsentris (R = 2r)
+            // ==========================================
+            const elKonsentris = document.getElementById("svg-konsentris-lingkaran");
+            if (elKonsentris) {
+                const geo1 = new GeoSVG(elKonsentris, 320, 230, {
+                    viewBox: "0 0 320 230",
+                    margin: 8,
+                    title: "Lingkaran Dalam dan Luar Konsentris pada Segitiga Sama Sisi"
+                });
+
+                const cx = 160, cy = 120;
+                const R = 80;
+                const r = 40;
+
+                // Verteks Segitiga Sama Sisi
+                const ptA = [160, 40];
+                const ptB = [90.7, 160];
+                const ptC = [229.3, 160];
+
+                // Lingkaran Luar (Circumcircle)
+                geo1.buatLingkaran([cx, cy], R, { fill: "none", stroke: TEMA.abu, strokeWidth: 1.4, strokeDasharray: "4 3" });
+
+                // Segitiga ABC
+                geo1.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.35
+                });
+
+                // Lingkaran Dalam (Incircle)
+                geo1.buatLingkaran([cx, cy], r, { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 1.8, opacity: 0.45 });
+
+                // Tiga Garis Tinggi / Simetri
+                geo1.buatSegmen(ptA, [160, 160], { stroke: TEMA.merah, strokeWidth: 1.4, strokeDasharray: "3 2" });
+                geo1.buatSegmen(ptB, [194.65, 100], { stroke: TEMA.merah, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo1.buatSegmen(ptC, [125.35, 100], { stroke: TEMA.merah, strokeWidth: 1.2, strokeDasharray: "3 2" });
+
+                // Garis Jari-jari r (ke alas) dan R (ke puncak A)
+                geo1.buatSegmen([cx, cy], [160, 160], { stroke: TEMA.aksen, strokeWidth: 2.2 });
+                geo1.buatTeks(166, 140, "r", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                geo1.buatSegmen([cx, cy], ptA, { stroke: TEMA.oranye, strokeWidth: 2.2 });
+                geo1.buatTeks(166, 80, "R = 2r", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik Pusat Konsentris O ≡ G ≡ I ≡ H
+                geo1.buatLingkaran([cx, cy], 3.8, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo1.buatTeks(cx - 8, cy - 6, "O ≡ G ≡ I ≡ H", { position: "middle-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Verteks
+                const pts = [
+                    { pt: ptA, l: "A (60°)", pos: [ptA[0], ptA[1] - 8], align: "bottom-center" },
+                    { pt: ptB, l: "B (60°)", pos: [ptB[0] - 8, ptB[1] + 2], align: "middle-right" },
+                    { pt: ptC, l: "C (60°)", pos: [ptC[0] + 8, ptC[1] + 2], align: "middle-left" }
+                ];
+                pts.forEach(p => {
+                    geo1.buatLingkaran(p.pt, 3.8, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.5 });
+                    geo1.buatTeks(p.pos[0], p.pos[1], p.l, { position: p.align, fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 212, "R = s√3 / 3  |  r = s√3 / 6  |  R = 2r", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Teorema Viviani: d1 + d2 + d3 = h
+            // ==========================================
+            const elViviani = document.getElementById("svg-teorema-viviani");
+            if (elViviani) {
+                const geo2 = new GeoSVG(elViviani, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Teorema Viviani pada Segitiga Sama Sisi"
+                });
+
+                const ptA = [160, 35];
+                const ptB = [82, 170];
+                const ptC = [238, 170];
+                const ptP = [148, 120]; // Titik sembarang interior
+
+                // Kaki Tegak Lurus Proyeksi
+                const ptD1 = [148, 170];        // ke sisi BC
+                const ptD2 = [120.2, 103.9];    // ke sisi AB
+                const ptD3 = [193.8, 93.5];     // ke sisi AC
+
+                // Tiga Sub-segitiga Berwarna Berbeda
+                geo2.buatPoligon([ptP, ptB, ptC], { fill: TEMA.aksenMuda, opacity: 0.35 });
+                geo2.buatPoligon([ptP, ptA, ptB], { fill: TEMA.utamaMuda, opacity: 0.35 });
+                geo2.buatPoligon([ptP, ptC, ptA], { fill: TEMA.oranyeMuda, opacity: 0.35 });
+
+                // Rangka Utama Segitiga ABC
+                geo2.buatPoligon([ptA, ptB, ptC], { fill: "none", stroke: TEMA.gelap, strokeWidth: 2 });
+
+                // Garis Hubung Titik P ke Verteks (Dashed)
+                geo2.buatSegmen(ptP, ptA, { stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo2.buatSegmen(ptP, ptB, { stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo2.buatSegmen(ptP, ptC, { stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "3 2" });
+
+                // Jarak Tegak Lurus d1, d2, d3 (Tebal Berwarna)
+                geo2.buatSegmen(ptP, ptD1, { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo2.buatSiku([ptD1[0] + 8, ptD1[1]], ptD1, ptP, { size: 6, stroke: TEMA.aksen, strokeWidth: 1 });
+                geo2.buatTeks(ptD1[0] + 5, 148, "d₁", { fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+
+                geo2.buatSegmen(ptP, ptD2, { stroke: TEMA.utama, strokeWidth: 2 });
+                geo2.buatSiku(ptB, ptD2, ptP, { size: 6, stroke: TEMA.utama, strokeWidth: 1 });
+                geo2.buatTeks(132, 108, "d₂", { fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo2.buatSegmen(ptP, ptD3, { stroke: TEMA.oranye, strokeWidth: 2 });
+                geo2.buatSiku(ptA, ptD3, ptP, { size: 6, stroke: TEMA.oranye, strokeWidth: 1 });
+                geo2.buatTeks(172, 104, "d₃", { fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik P
+                geo2.buatLingkaran(ptP, 3.8, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo2.buatTeks(ptP[0] + 6, ptP[1] + 12, "P", { position: "top-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Verteks
+                const pts = [
+                    { pt: ptA, l: "A", o: [0, -8] },
+                    { pt: ptB, l: "B", o: [-8, 2] },
+                    { pt: ptC, l: "C", o: [8, 2] }
+                ];
+                pts.forEach(p => {
+                    geo2.buatLingkaran(p.pt, 3.5, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1.5 });
+                    geo2.buatTeks(p.pt[0] + p.o[0], p.pt[1] + p.o[1], p.l, { fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+                });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 208, "Teorema Viviani: d₁ + d₂ + d₃ = h (Konstan untuk Sembarang Titik P)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+
+            // ==========================================
+            // 3. Teorema Napoleon: Segitiga Sama Sisi Luar
+            // ==========================================
+            const elNapoleon = document.getElementById("svg-teorema-napoleon");
+            if (elNapoleon) {
+                const geo3 = new GeoSVG(elNapoleon, 320, 230, {
+                    viewBox: "0 0 320 230",
+                    margin: 8,
+                    title: "Teorema Napoleon pada Segitiga Sembarang"
+                });
+
+                // Segitiga Sembarang Inti ABC
+                const ptA = [150, 95];
+                const ptB = [105, 145];
+                const ptC = [195, 140];
+
+                // Verteks Luar Segitiga Sama Sisi
+                const ptA1 = [154.3, 220.4]; // di sisi BC
+                const ptB1 = [211.5, 78.5];  // di sisi CA
+                const ptC1 = [84.2, 81.0];   // di sisi AB
+
+                // Titik Pusat Segitiga Sama Sisi Luar
+                const ptOa = [151.4, 168.5];
+                const ptOb = [185.5, 104.5];
+                const ptOc = [113.1, 107.0];
+
+                // Gambar 3 Segitiga Sama Sisi Luar
+                geo3.buatPoligon([ptB, ptC, ptA1], { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 1.4, opacity: 0.35 });
+                geo3.buatPoligon([ptC, ptA, ptB1], { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.4, opacity: 0.35 });
+                geo3.buatPoligon([ptA, ptB, ptC1], { fill: TEMA.unguMuda, stroke: TEMA.ungu, strokeWidth: 1.4, opacity: 0.35 });
+
+                // Segitiga Sembarang Asli ABC (Isi Biru)
+                geo3.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.7
+                });
+
+                // Segitiga Napoleon (Merah Tebal)
+                geo3.buatPoligon([ptOa, ptOb, ptOc], {
+                    fill: TEMA.merahMuda,
+                    stroke: TEMA.merah,
+                    strokeWidth: 2.2,
+                    opacity: 0.5
+                });
+
+                // Titik-titik Pusat Napoleon
+                const centers = [
+                    { pt: ptOa, l: "Oₐ", o: [0, 8] },
+                    { pt: ptOb, l: "Ob", o: [8, 0] },
+                    { pt: ptOc, l: "Oc", o: [-8, 0] }
+                ];
+                centers.forEach(c => {
+                    geo3.buatLingkaran(c.pt, 3.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                    geo3.buatTeks(c.pt[0] + c.o[0], c.pt[1] + c.o[1], c.l, { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+                });
+
+                // Titik Verteks ABC
+                const pts = [
+                    { pt: ptA, l: "A", o: [0, -6] },
+                    { pt: ptB, l: "B", o: [-6, 6] },
+                    { pt: ptC, l: "C", o: [6, 6] }
+                ];
+                pts.forEach(p => {
+                    geo3.buatLingkaran(p.pt, 3, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1 });
+                    geo3.buatTeks(p.pt[0] + p.o[0], p.pt[1] + p.o[1], p.l, { fontSize: "8px", fontWeight: "bold", fill: TEMA.gelap });
+                });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 212, "Segitiga Napoleon (Oₐ - Ob - Oc) Selalu Sama Sisi Sempurna", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

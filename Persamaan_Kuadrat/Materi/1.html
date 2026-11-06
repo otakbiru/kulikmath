@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Persamaan Kuadrat</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Persamaan Kuadrat</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Bentuk Umum Persamaan Kuadrat</h2>
+            <p>
+                <strong>Persamaan Kuadrat</strong> adalah suatu persamaan aljabar polinomial satu variabel di mana pangkat tertinggi dari variabelnya adalah <strong>dua</strong> ($2$).
+            </p>
+            <p>
+                Bentuk umum baku persamaan kuadrat adalah:
+                $$ax^2 + bx + c = 0$$
+                dengan syarat:
+            </p>
+            <ul>
+                <li>$a, b, c \in \mathbb{R}$ (koefisien berupa bilangan real).</li>
+                <li>$a \neq 0$ (jika $a = 0$, persamaan berubah menjadi persamaan linear satu variabel $bx + c = 0$).</li>
+                <li>$a$ disebut koefisien kuadrat, $b$ disebut koefisien linear, dan $c$ disebut konstanta.</li>
+            </ul>
+            <p>
+                Nilai-nilai pengganti variabel $x$ yang menyebabkan persamaan bernilai benar ($0 = 0$) disebut sebagai <strong>akar-akar (himpunan penyelesaian)</strong> dari persamaan kuadrat, yang lazim dilambangkan dengan $x_1$ dan $x_2$.
+            </p>
+
+            <h2>2. Tiga Metode Menentukan Akar-Akar Persamaan Kuadrat</h2>
+
+            <h3>A. Metode Pemfaktoran (Factoring)</h3>
+            <p>
+                Metode ini didasarkan pada <em>Sifat Perkalian Nol</em>: jika $P \cdot Q = 0$, maka $P = 0$ atau $Q = 0$.
+            </p>
+            <ul>
+                <li><strong>Untuk $a = 1$:</strong> $x^2 + bx + c = (x + p)(x + q) = 0$ dengan mencari dua bilangan $p$ dan $q$ sedemikian sehingga:
+                    $$p + q = b \quad \text{dan} \quad p \cdot q = c$$
+                </li>
+                <li><strong>Untuk $a \neq 1$:</strong> $ax^2 + bx + c = \dfrac{1}{a}(ax + p)(ax + q) = 0$ dengan syarat:
+                    $$p + q = b \quad \text{dan} \quad p \cdot q = a \cdot c$$
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>B. Melengkapkan Kuadrat Sempurna (Completing the Square)</h3>
+                    <p>
+                        Metode historis yang dipopulerkan oleh matematikawan <strong>Muhammad bin Musa Al-Khwarizmi</strong> pada abad ke-9 secara geometris:
+                    </p>
+                    <p>
+                        Perhatikan bentuk $x^2 + 2kx$. Bentuk ini dapat dibayangkan sebagai sebuah persegi berukuran $x \times x$ (luas $x^2$) ditambah dua persegi panjang berukuran $k \times x$ di sisi kanan dan bawahnya (masing-masing luas $kx$, total luas $2kx$).
+                    </p>
+                    <p>
+                        Untuk melengkapkan susunan berbentuk huruf "L" tersebut menjadi sebuah persegi utuh berukuran $(x + k) \times (x + k)$, kita hanya perlu <strong>menambahkan sebuah persegi kecil di pojok</strong> dengan luas $k^2 = \left(\frac{b}{2}\right)^2$:
+                        $$x^2 + 2kx + k^2 = (x + k)^2$$
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-melengkapkan-kuadrat" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h3>C. Rumus Kuadrat Baku (Rumus ABC)</h3>
+            <p>
+                Dengan menerapkan metode melengkapkan kuadrat sempurna pada bentuk umum $ax^2 + bx + c = 0$, diperoleh rumus baku penentu akar-akar untuk sembarang koefisien:
+            </p>
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: normal;">
+                    <strong>Rumus ABC:</strong>
+                    $$x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+                </p>
+            </div>
+
+            <h2>3. Makna Geometris Diskriminan ($D = b^2 - 4ac$)</h2>
+            <p>
+                Suku di dalam tanda radikal rumus kuadrat dinamakan <strong>Diskriminan ($D$)</strong>:
+                $$D = b^2 - 4ac$$
+            </p>
+            <p>
+                Secara geometri Cartesius, akar-akar dari persamaan kuadrat $ax^2 + bx + c = 0$ merupakan <strong>absis titik potong kurva parabola $y = ax^2 + bx + c$ terhadap sumbu-$X$</strong> (garis $y = 0$). Nilai diskriminan menentukan relasi posisi kurva terhadap sumbu-$X$:
+            </p>
+
+            <div class="row">
+                <div class="col col-2">
+                    <ol>
+                        <li><strong>$D > 0$ (Dua Titik Potong Real Berbeda):</strong><br>
+                            Parabola memotong sumbu-$X$ di dua titik berlainan $(x_1, 0)$ dan $(x_2, 0)$. Persamaan memiliki dua akar real berbeda ($x_1 \neq x_2$).
+                        </li>
+                        <li><strong>$D = 0$ (Satu Titik Singgung Real Kembar):</strong><br>
+                            Puncak parabola menyinggung tepat di sumbu-$X$. Persamaan memiliki dua akar real yang bernilai sama (akar kembar):
+                            $$x_1 = x_2 = -\frac{b}{2a}$$
+                        </li>
+                        <li><strong>$D < 0$ (Tidak Memotong Sumbu-$X$):</strong><br>
+                            Parabola tidak menyentuh sumbu-$X$ sama sekali. Persamaan tidak memiliki akar real (akar-akarnya imajiner/kompleks).
+                            <ul>
+                                <li>Jika $a > 0$ dan $D < 0$: Parabola seluruhnya berada di atas sumbu-$X$ (<strong>Definit Positif</strong>, $y > 0$ untuk setiap $x \in \mathbb{R}$).</li>
+                                <li>Jika $a < 0$ dan $D < 0$: Parabola seluruhnya berada di bawah sumbu-$X$ (<strong>Definit Negatif</strong>, $y < 0$ untuk setiap $x \in \mathbb{R}$).</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-diskriminan-parabola" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Karakteristik Geometri Parabola: Sumbu Simetri & Titik Puncak</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Kurva parabola $y = ax^2 + bx + c$ memiliki simetri sempurna terhadap garis vertikal yang membelah kedua akar secara adil:
+                    </p>
+                    <ul>
+                        <li><strong>Persamaan Sumbu Simetri:</strong> Garis vertikal tepat di tengah kedua akar:
+                            $$x_p = \frac{x_1 + x_2}{2} = -\frac{b}{2a}$$
+                        </li>
+                        <li><strong>Nilai Ekstrem (Optimum):</strong> Nilai fungsi pada sumbu simetri:
+                            $$y_p = -\frac{D}{4a} = -\frac{b^2 - 4ac}{4a}$$
+                        </li>
+                        <li><strong>Titik Puncak (Titik Balik):</strong>
+                            $$P\left(x_p, y_p\right) = P\left(-\frac{b}{2a}, -\frac{D}{4a}\right)$$
+                            (Berupa titik minimum jika $a > 0$, atau titik maksimum jika $a < 0$).
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-puncak-parabola" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>5. Teorema Vieta (Rumus Jumlah, Kali, dan Selisih Akar)</h2>
+            <p>
+                Jika $x_1$ dan $x_2$ adalah akar-akar dari persamaan kuadrat $ax^2 + bx + c = 0$, maka berlaku relasi Vieta tanpa perlu menghitung akar-akarnya terlebih dahulu:
+            </p>
+            <div class="row">
+                <div class="col">
+                    <p><strong>Rumus Dasar Vieta:</strong></p>
+                    <ul>
+                        <li><strong>Jumlah Akar:</strong> $x_1 + x_2 = -\dfrac{b}{a}$</li>
+                        <li><strong>Hasil Kali Akar:</strong> $x_1 \cdot x_2 = \dfrac{c}{a}$</li>
+                        <li><strong>Selisih Akar:</strong> $|x_1 - x_2| = \dfrac{\sqrt{D}}{|a|}$</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <p><strong>Bentuk Turunan Aljabar Simetris:</strong></p>
+                    <ul>
+                        <li>$x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1 x_2 = \dfrac{b^2 - 2ac}{a^2}$</li>
+                        <li>$\dfrac{1}{x_1} + \dfrac{1}{x_2} = \dfrac{x_1 + x_2}{x_1 x_2} = -\dfrac{b}{c}$</li>
+                        <li>$x_1^3 + x_2^3 = (x_1 + x_2)^3 - 3x_1 x_2(x_1 + x_2)$</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>6. Menyusun Persamaan Kuadrat Baru (PKB)</h2>
+            <p>
+                Jika suatu persamaan kuadrat baru memiliki akar-akar $\alpha$ dan $\beta$, maka persamaannya dapat disusun secara langsung menggunakan rumus:
+                $$x^2 - (\alpha + \beta)x + (\alpha \cdot \beta) = 0$$
+                atau melalui pemfaktoran $(x - \alpha)(x - \beta) = 0$.
+            </p>
+
+            <h2>7. Tabel Ringkasan Rumus & Sifat Persamaan Kuadrat</h2>
+            <div class="table-container">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead>
+                        <tr style="background: var(--card-bg, #f8fafc); border-bottom: 2px solid var(--border-color, #e2e8f0);">
+                            <th style="padding: 10px; text-align: left;">Konsep</th>
+                            <th style="padding: 10px; text-align: left;">Kondisi / Rumus</th>
+                            <th style="padding: 10px; text-align: left;">Arti Fisis / Geometris</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Rumus ABC</strong></td>
+                            <td style="padding: 10px;">$x_{1,2} = \dfrac{-b \pm \sqrt{D}}{2a}$</td>
+                            <td style="padding: 10px;">Akar-akar pembuat nol fungsi</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Diskriminan $D > 0$</strong></td>
+                            <td style="padding: 10px;">$b^2 - 4ac > 0$</td>
+                            <td style="padding: 10px;">2 akar real berlainan (memotong sumbu-$X$ di 2 titik)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Diskriminan $D = 0$</strong></td>
+                            <td style="padding: 10px;">$b^2 - 4ac = 0$</td>
+                            <td style="padding: 10px;">2 akar real kembar (menyinggung sumbu-$X$)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Diskriminan $D < 0$</strong></td>
+                            <td style="padding: 10px;">$b^2 - 4ac < 0$</td>
+                            <td style="padding: 10px;">Tidak memiliki akar real (tidak memotong sumbu-$X$)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Sumbu Simetri</strong></td>
+                            <td style="padding: 10px;">$x_p = -\dfrac{b}{2a}$</td>
+                            <td style="padding: 10px;">Garis pembagi simetri parabola</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;"><strong>Titik Puncak Ekstrem</strong></td>
+                            <td style="padding: 10px;">$P\left(-\dfrac{b}{2a}, -\dfrac{D}{4a}\right)$</td>
+                            <td style="padding: 10px;">Titik balik maksimum / minimum kurva</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>8. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- CONTOH 1 (Dasar) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Pemfaktoran & Rumus ABC (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Tentukan himpunan penyelesaian dari persamaan kuadrat $x^2 - 7x + 12 = 0$.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>Cara 1: Pemfaktoran</strong><br>
+                        Cari dua bilangan yang jika dijumlahkan bernilai $-7$ dan jika dikalikan bernilai $+12$.<br>
+                        Bilangan tersebut adalah $-3$ dan $-4$:
+                        $$\begin{aligned}
+                        x^2 - 7x + 12 &= 0 \\
+                        (x - 3)(x - 4) &= 0
+                        \end{aligned}$$
+                        Diperoleh akar-akar:
+                        $$x - 3 = 0 \implies x_1 = 3$$
+                        $$x - 4 = 0 \implies x_2 = 4$$
+                        <br>
+                        <strong>Cara 2: Rumus ABC</strong><br>
+                        $a = 1, b = -7, c = 12$.<br>
+                        Hitung diskriminan $D$:
+                        $$D = b^2 - 4ac = (-7)^2 - 4(1)(12) = 49 - 48 = 1$$
+                        $$x_{1,2} = \frac{-(-7) \pm \sqrt{1}}{2(1)} = \frac{7 \pm 1}{2}$$
+                        $$x_1 = \frac{7 - 1}{2} = 3 \quad \text{atau} \quad x_2 = \frac{7 + 1}{2} = 4$$
+                        <div class="kesimpulan">
+                            Jadi, himpunan penyelesaian dari persamaan kuadrat tersebut adalah $\{3, 4\}$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Teorema Vieta & Bentuk Aljabar Simetris (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Jika $m$ dan $n$ adalah akar-akar dari persamaan kuadrat $x^2 - 6x + 2 = 0$, tentukan nilai dari:
+                    $$\left(\frac{1}{m} + \frac{1}{n}\right)^{mn}$$
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Diketahui persamaan kuadrat $x^2 - 6x + 2 = 0$ dengan $a = 1, b = -6, c = 2$.<br>
+                        Berdasarkan Teorema Vieta:
+                        $$\begin{aligned}
+                        m + n &= -\frac{b}{a} = -\frac{-6}{1} = 6 \\
+                        m \cdot n &= \frac{c}{a} = \frac{2}{1} = 2
+                        \end{aligned}$$
+                        Sederhanakan ekspresi pecahan di dalam kurung:
+                        $$\frac{1}{m} + \frac{1}{n} = \frac{m + n}{mn} = \frac{6}{2} = 3$$
+                        Substitusikan nilai hasil kali akar $mn = 2$ sebagai pangkat:
+                        $$\left(\frac{1}{m} + \frac{1}{n}\right)^{mn} = (3)^2 = 9$$
+                        <div class="kesimpulan">
+                            Jadi, nilai dari $\left(\dfrac{1}{m} + \dfrac{1}{n}\right)^{mn}$ adalah $9$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Parameter Diskriminan & Menyusun PKB (Tingkat HOTS)</span>
+                </div>
+                <div class="soal-teks">
+                    Diketahui persamaan kuadrat $(k - 1)x^2 - 2kx + (k + 2) = 0$ dengan $k \neq 1$.<br>
+                    a) Tentukan rentang nilai $k$ agar persamaan tersebut mempunyai dua akar real yang berlainan.<br>
+                    b) Jika $x_1$ dan $x_2$ adalah akar-akar persamaan untuk $k = 2$, susunlah persamaan kuadrat baru yang akar-akarnya adalah $\frac{1}{x_1}$ dan $\frac{1}{x_2}$.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        <strong>a) Syarat mempunyai dua akar real berlainan: $D > 0$</strong><br>
+                        Identifikasi koefisien: $a = k - 1, b = -2k, c = k + 2$.
+                        $$\begin{aligned}
+                        D &= b^2 - 4ac \\
+                        &= (-2k)^2 - 4(k - 1)(k + 2) \\
+                        &= 4k^2 - 4(k^2 + k - 2) \\
+                        &= 4k^2 - 4k^2 - 4k + 8 \\
+                        &= -4k + 8
+                        \end{aligned}$$
+                        Syarat dua akar real berbeda:
+                        $$-4k + 8 > 0 \implies -4k > -8 \implies k < 2$$
+                        Karena syarat persamaan kuadrat adalah koefisien $x^2 \neq 0 \implies k - 1 \neq 0 \implies k \neq 1$, maka rentang nilai $k$ adalah:
+                        $$k < 2 \quad \text{dan} \quad k \neq 1$$
+                        <br>
+                        <strong>b) Menyusun PKB untuk $k = 2$</strong><br>
+                        Substitusikan $k = 2$ ke persamaan awal:
+                        $$(2 - 1)x^2 - 2(2)x + (2 + 2) = 0 \implies x^2 - 4x + 4 = 0$$
+                        Akar-akar baru adalah $\alpha = \frac{1}{x_1}$ dan $\beta = \frac{1}{x_2}$.<br>
+                        Dari persamaan $x^2 - 4x + 4 = 0$, diperoleh $x_1 + x_2 = 4$ dan $x_1 x_2 = 4$.<br>
+                        Hitung jumlah dan hasil kali akar baru:
+                        $$\begin{aligned}
+                        \alpha + \beta &= \frac{1}{x_1} + \frac{1}{x_2} = \frac{x_1 + x_2}{x_1 x_2} = \frac{4}{4} = 1 \\
+                        \alpha \cdot \beta &= \frac{1}{x_1} \cdot \frac{1}{x_2} = \frac{1}{x_1 x_2} = \frac{1}{4}
+                        \end{aligned}$$
+                        Persamaan Kuadrat Baru (PKB):
+                        $$\begin{aligned}
+                        x^2 - (\alpha + \beta)x + (\alpha \cdot \beta) &= 0 \\
+                        x^2 - 1x + \frac{1}{4} &= 0 \\
+                        4x^2 - 4x + 1 &= 0
+                        \end{aligned}$$
+                        <div class="kesimpulan">
+                            Jadi, nilai $k$ agar berakar dua real berlainan adalah $k < 2, k \neq 1$, dan persamaan kuadrat baru yang terbentuk adalah $4x^2 - 4x + 1 = 0$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // 1. Visualisasi Model Geometris Melengkapkan Kuadrat Sempurna (Al-Khwarizmi)
+            const elKuadrat = document.getElementById("svg-melengkapkan-kuadrat");
+            if (elKuadrat && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elKuadrat, 320, 230, {
+                    viewBox: "0 0 320 230",
+                    margin: 8,
+                    title: "Model Geometris Melengkapkan Kuadrat: x^2 + 2kx + k^2 = (x + k)^2"
+                });
+
+                const X0 = 65, Y0 = 32;
+                const xLen = 100, kLen = 45;
+
+                // 1. Persegi Besar x * x = x^2
+                geo1.buatPersegiPanjang([X0, Y0], xLen, xLen, {
+                    fill: "rgba(2, 132, 199, 0.15)",
+                    stroke: TEMA.utama,
+                    strokeWidth: 2
+                });
+                geo1.buatTeks(X0 + xLen / 2, Y0 + xLen / 2, "x²", {
+                    position: "middle-center",
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+
+                // 2. Persegi Panjang Kanan: k * x
+                geo1.buatPersegiPanjang([X0 + xLen, Y0], kLen, xLen, {
+                    fill: "rgba(13, 148, 136, 0.15)",
+                    stroke: TEMA.aksen,
+                    strokeWidth: 1.8
+                });
+                geo1.buatTeks(X0 + xLen + kLen / 2, Y0 + xLen / 2, "k · x", {
+                    position: "middle-center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // 3. Persegi Panjang Bawah: x * k
+                geo1.buatPersegiPanjang([X0, Y0 + xLen], xLen, kLen, {
+                    fill: "rgba(13, 148, 136, 0.15)",
+                    stroke: TEMA.aksen,
+                    strokeWidth: 1.8
+                });
+                geo1.buatTeks(X0 + xLen / 2, Y0 + xLen + kLen / 2, "x · k", {
+                    position: "middle-center",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+
+                // 4. Persegi Pelengkap Pojok: k * k = k^2 (Ditambahkan)
+                geo1.buatPersegiPanjang([X0 + xLen, Y0 + xLen], kLen, kLen, {
+                    fill: "rgba(225, 29, 72, 0.18)",
+                    stroke: TEMA.merah,
+                    strokeWidth: 2,
+                    strokeDasharray: "4 2"
+                });
+                geo1.buatTeks(X0 + xLen + kLen / 2, Y0 + xLen + kLen / 2, "+k²", {
+                    position: "middle-center",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Label Dimensi Sisi Luar
+                geo1.buatTeks(X0 + xLen / 2, Y0 - 12, "x", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(X0 + xLen + kLen / 2, Y0 - 12, "k", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.aksen });
+                geo1.buatTeks(X0 - 14, Y0 + xLen / 2, "x", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(X0 - 14, Y0 + xLen + kLen / 2, "k", { position: "middle-center", fontSize: "12px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 202, "x² + 2kx + k² = (x + k)² (Persegi Sempurna)", {
+                    position: "middle-center",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 2. Visualisasi Peran Geometris Diskriminan D terhadap Posisi Sumbu-X
+            const elDiskriminan = document.getElementById("svg-diskriminan-parabola");
+            if (elDiskriminan && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elDiskriminan, 340, 210, {
+                    viewBox: "0 0 340 210",
+                    margin: 8,
+                    title: "Peran Geometris Diskriminan D: D > 0, D = 0, dan D < 0"
+                });
+
+                const Y_sumbu = 130;
+
+                // Sumbu X memanjang
+                geo2.buatVektor([20, Y_sumbu], [325, Y_sumbu], { stroke: "#64748b", strokeWidth: 1.5 });
+                geo2.buatTeks(330, Y_sumbu, "X", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Kurva 1: D > 0 (Memotong di 2 titik: puncak di [65, 160])
+                const pts1 = [];
+                for (let px = 25; px <= 105; px += 4) {
+                    const py = 0.022 * Math.pow(px - 65, 2) + 160;
+                    pts1.push([px, 2 * Y_sumbu - py]); // balikkan arah parabola menghadap ke atas
+                }
+                // Agar jelas terbuka ke atas dan memotong sumbu X:
+                // y = a(x - 65)^2 + k, puncak di (65, 160) di bawah sumbu Y_sumbu=130
+                const ptsD_pos = [];
+                for (let px = 25; px <= 105; px += 3) {
+                    const py = 160 - 0.028 * Math.pow(px - 65, 2); // terbalik di layar: puncak di y_layar = 160 (bawah sumbu 130)
+                    ptsD_pos.push([px, py]);
+                }
+                geo2.buatPolyline(ptsD_pos, { stroke: TEMA.utama, strokeWidth: 2.2 });
+                // Titik Potong x1 dan x2
+                geo2.buatLingkaran([32, Y_sumbu], 4, { fill: TEMA.utama });
+                geo2.buatLingkaran([98, Y_sumbu], 4, { fill: TEMA.utama });
+                geo2.buatTeks(65, 45, "D > 0", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(65, 62, "(2 Titik Potong)", { position: "middle-center", fontSize: "9px", fill: TEMA.teks });
+
+                // Kurva 2: D = 0 (Menyinggung tepat di sumbu X di x = 170)
+                const ptsD_nol = [];
+                for (let px = 130; px <= 210; px += 3) {
+                    const py = Y_sumbu + 0.028 * Math.pow(px - 170, 2);
+                    ptsD_nol.push([px, py]);
+                }
+                geo2.buatPolyline(ptsD_nol, { stroke: TEMA.aksen, strokeWidth: 2.2 });
+                geo2.buatLingkaran([170, Y_sumbu], 4.5, { fill: TEMA.aksen });
+                geo2.buatTeks(170, 45, "D = 0", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.aksen });
+                geo2.buatTeks(170, 62, "(1 Titik Singgung)", { position: "middle-center", fontSize: "9px", fill: TEMA.teks });
+
+                // Kurva 3: D < 0 (Melayang di atas sumbu X: puncak di [270, 100])
+                const ptsD_neg = [];
+                for (let px = 230; px <= 310; px += 3) {
+                    const py = 100 + 0.028 * Math.pow(px - 270, 2);
+                    ptsD_neg.push([px, py]);
+                }
+                geo2.buatPolyline(ptsD_neg, { stroke: TEMA.merah, strokeWidth: 2.2 });
+                geo2.buatTeks(270, 45, "D < 0", { position: "middle-center", fontSize: "11px", fontWeight: "bold", fill: TEMA.merah });
+                geo2.buatTeks(270, 62, "(Definit Positif)", { position: "middle-center", fontSize: "9px", fill: TEMA.teks });
+
+                // Keterangan Bawah
+                geo2.buatTeks(170, 195, "Hubungan Nilai Diskriminan D dengan Posisi Grafik Parabola", {
+                    position: "middle-center",
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 3. Visualisasi Sumbu Simetri & Titik Puncak Parabola
+            const elPuncak = document.getElementById("svg-puncak-parabola");
+            if (elPuncak && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elPuncak, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Sumbu Simetri dan Titik Puncak Parabola"
+                });
+
+                const Ox = 60, Oy = 145, ux = 30, uy = 20;
+                const toPx = (x, y) => [Ox + x * ux, Oy - y * uy];
+
+                // Sumbu Kartesius
+                geo3.buatVektor(toPx(-1, 0), toPx(7.5, 0), { stroke: "#64748b", strokeWidth: 1.5 });
+                geo3.buatVektor(toPx(0, -2.8), toPx(0, 3.2), { stroke: "#64748b", strokeWidth: 1.5 });
+
+                geo3.buatTeks(Ox + 7.7 * ux, Oy, "x", { position: "middle-left", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+                geo3.buatTeks(Ox, Oy - 3.4 * uy, "y", { position: "bottom-center", fontSize: "11px", fontStyle: "italic", fill: "#475569" });
+
+                // Parabola: y = (x - 1)(x - 5) = x^2 - 6x + 5. Puncak di x = 3, y = -4
+                // Agar pas di kanvas: y = 0.5 * (x - 1)(x - 5), puncak di (3, -2)
+                const ptsP = [];
+                for (let x = 0.5; x <= 5.5; x += 0.2) {
+                    const y = 0.5 * (x - 1) * (x - 5);
+                    ptsP.push(toPx(x, y));
+                }
+                geo3.buatPolyline(ptsP, { stroke: TEMA.utama, strokeWidth: 2.4 });
+
+                // Titik Akar x1 = 1 dan x2 = 5
+                const ptX1 = toPx(1, 0);
+                const ptX2 = toPx(5, 0);
+                geo3.buatLingkaran(ptX1, 4.5, { fill: TEMA.utama });
+                geo3.buatTeks(ptX1[0] - 6, ptX1[1] - 12, "x₁", { position: "bottom-right", fontSize: "10.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo3.buatLingkaran(ptX2, 4.5, { fill: TEMA.utama });
+                geo3.buatTeks(ptX2[0] + 6, ptX2[1] - 12, "x₂", { position: "bottom-left", fontSize: "10.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Sumbu Simetri: x = 3
+                const sTop = toPx(3, 2.8);
+                const sBottom = toPx(3, -2.5);
+                geo3.buatSegmen(sTop, sBottom, { stroke: TEMA.merah, strokeWidth: 1.5, strokeDasharray: "4 3" });
+                geo3.buatTeks(sTop[0], sTop[1] - 6, "x = -b / 2a", {
+                    position: "bottom-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Titik Puncak P(3, -2)
+                const ptPuncak = toPx(3, -2);
+                geo3.buatLingkaran(ptPuncak, 5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(ptPuncak[0] + 8, ptPuncak[1] + 6, "P(-b/2a, -D/4a)", {
+                    position: "middle-left",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 204, "Sumbu Simetri Membagi Jarak Antara x₁ dan x₂ Sama Panjang", {
+                    position: "middle-center",
+                    fontSize: "9.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
+

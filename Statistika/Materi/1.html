@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Statistika Deskriptif & Analitik</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Statistika Deskriptif & Analitik</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Fondasi Dasar: Statistika, Data, & Distribusi Frekuensi</h2>
+            <p>
+                <strong>Statistika</strong> adalah cabang ilmu matematika terapan yang mempelajari metode pengumpulan, pengorganisasian, penyajian, analisis, dan penarikan kesimpulan dari data. Sedangkan <strong>statistik</strong> adalah nilai ringkasan numerik yang dihitung dari suatu sampel data (seperti rata-rata sampel $\bar{x}$ atau simpangan baku sampel $s$), yang digunakan untuk mengestimasi <strong>parameter populasi</strong> ($\mu$ atau $\sigma$).
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: bold;">Struktur Data Berkelompok (Distribusi Frekuensi):</p>
+                <ul style="margin: 0.4rem 0 0 1.2rem; padding: 0;">
+                    <li><strong>Banyak Kelas ($k$):</strong> Ditaksir dengan <em>Aturan Sturges</em>: $k = 1 + 3{,}322 \log n$ (dengan $n$ = total frekuensi/ukuran data).</li>
+                    <li><strong>Panjang Interval Kelas ($c$ / $p$):</strong> $c = \frac{\text{Jangkauan}}{k} = \frac{X_{\max} - X_{\min}}{k}$.</li>
+                    <li><strong>Tepi Kelas:</strong> Untuk data dengan ketelitian satuan bulat:
+                        $$\text{Tepi Bawah } (T_b) = \text{Batas Bawah} - 0{,}5, \qquad \text{Tepi Atas } (T_a) = \text{Batas Atas} + 0{,}5$$
+                    </li>
+                    <li><strong>Titik Tengah Kelas ($x_i$):</strong> $x_i = \frac{\text{Batas Bawah} + \text{Batas Atas}}{2} = \frac{T_b + T_a}{2}$.</li>
+                </ul>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h3>Representasi Grafis Data Berkelompok</h3>
+                    <p>
+                        Data berkelompok disajikan melalui 3 bentuk visualisasi geometris utama:
+                    </p>
+                    <ol>
+                        <li><strong>Histogram:</strong> Diagram batang berdampingan tanpa celah antarkolom, dengan absis (sumbu-$X$) mewakili tepi kelas atau titik tengah kelas, dan ordinat (sumbu-$Y$) mewakili frekuensi kelas.</li>
+                        <li><strong>Poligon Frekuensi:</strong> Garis lurus yang menghubungkan titik-titik puncak tengah $(x_i, f_i)$ pada setiap kolom histogram.</li>
+                        <li><strong>Kurva Lonceng Distribusi:</strong> Garis lengkung kontinu yang memperlihatkan kecenderungan bentuk sebaran (simetris normal, miring ke kanan, atau miring ke kiri).</li>
+                    </ol>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-histogram-poligon" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Histogram dan Poligon Frekuensi dengan aproksimasi kurva distribusi kontinu.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>2. Ukuran Pemusatan Data (Measures of Central Tendency)</h2>
+            <p>
+                Ukuran pemusatan data berfungsi merangkum sekumpulan data menjadi satu nilai representatif yang menggambarkan pusat distribusi.
+            </p>
+
+            <h3>A. Rata-Rata Hitung (Mean - $\bar{x}$)</h3>
+            <p>
+                <strong>1. Data Tunggal:</strong>
+                $$\bar{x} = \frac{\sum_{i=1}^n x_i}{n} = \frac{x_1 + x_2 + \dots + x_n}{n}$$
+            </p>
+            <p>
+                <strong>2. Rata-Rata Gabungan (Weighted Mean):</strong><br>
+                Jika kelompok 1 beranggotakan $n_1$ dengan rata-rata $\bar{x}_1$, kelompok 2 beranggotakan $n_2$ dengan rata-rata $\bar{x}_2$, hingga kelompok $k$, maka:
+                $$\bar{x}_{\text{gab}} = \frac{n_1 \bar{x}_1 + n_2 \bar{x}_2 + \dots + n_k \bar{x}_k}{n_1 + n_2 + \dots + n_k} = \frac{\sum_{j=1}^k n_j \bar{x}_j}{\sum_{j=1}^k n_j}$$
+            </p>
+            <p>
+                <strong>3. Data Berkelompok:</strong> Terdapat 3 metode matematis yang setara:
+            </p>
+            <ul>
+                <li><strong>Metode Titik Tengah:</strong> $\bar{x} = \frac{\sum f_i x_i}{\sum f_i}$</li>
+                <li><strong>Metode Rata-rata Sementara ($x_s$):</strong> $\bar{x} = x_s + \frac{\sum f_i d_i}{\sum f_i}$, dengan deviasi $d_i = x_i - x_s$.</li>
+                <li><strong>Metode Pengkodean (Coding):</strong> $\bar{x} = x_s + \left( \frac{\sum f_i u_i}{\sum f_i} \right) \cdot c$, dengan $u_i = \frac{x_i - x_s}{c} \in \{\dots, -2, -1, 0, 1, 2, \dots\}$.</li>
+            </ul>
+
+            <h3>B. Median ($Me = Q_2$)</h3>
+            <p>
+                Median adalah nilai tengah yang membagi 50% data di sebelah kiri dan 50% data di sebelah kanan setelah data diurutkan ($x_{(1)} \le x_{(2)} \le \dots \le x_{(n)}$).
+            </p>
+            <ul>
+                <li><strong>Data Tunggal:</strong>
+                    $$Me = \begin{cases} x_{\frac{n+1}{2}}, & \text{untuk } n \text{ ganjil} \\[6pt] \dfrac{x_{\frac{n}{2}} + x_{\frac{n}{2}+1}}{2}, & \text{untuk } n \text{ genap} \end{cases}$$
+                </li>
+                <li><strong>Data Berkelompok:</strong>
+                    $$Me = T_b + \left( \frac{\frac{1}{2}N - \sum f_k}{f_{me}} \right) \cdot c$$
+                    di mana:
+                    <ul style="margin-top: 0.3rem;">
+                        <li>$T_b$ = tepi bawah kelas median (kelas tempat letak data ke-$\frac{1}{2}N$).</li>
+                        <li>$N = \sum f$ = ukuran populasi/sampel total.</li>
+                        <li>$\sum f_k$ = frekuensi kumulatif tepat sebelum kelas median.</li>
+                        <li>$f_{me}$ = frekuensi kelas median.</li>
+                        <li>$c$ = panjang interval kelas ($c = T_a - T_b$).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>C. Modus ($Mo$)</h3>
+            <p>
+                Modus adalah datum yang memiliki frekuensi kemunculan tertinggi.
+            </p>
+            <ul>
+                <li><strong>Data Tunggal:</strong> Nilai dengan frekuensi terbesar (dapat bersifat unimodal, bimodal, multimodal, atau tidak memiliki modus jika frekuensi semua datum sama).</li>
+                <li><strong>Data Berkelompok:</strong>
+                    $$Mo = T_b + \left( \frac{d_1}{d_1 + d_2} \right) \cdot c$$
+                    di mana:
+                    <ul style="margin-top: 0.3rem;">
+                        <li>$T_b$ = tepi bawah kelas modus (kelas dengan frekuensi tertinggi).</li>
+                        <li>$d_1 = f_{mo} - f_{mo-1}$ (selisih frekuensi kelas modus dengan kelas sebelumnya).</li>
+                        <li>$d_2 = f_{mo} - f_{mo+1}$ (selisih frekuensi kelas modus dengan kelas sesudahnya).</li>
+                        <li>$c$ = panjang kelas interval.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: bold;">Relasi Bentuk Distribusi (Kemiringan / Skewness Pearson):</p>
+                $$Mo \approx \text{Mean} - 3(\text{Mean} - \text{Median})$$
+                <ul style="margin: 0.3rem 0 0 1.2rem; padding: 0;">
+                    <li><strong>Distribusi Simetris (Normal):</strong> $\text{Mean} = \text{Median} = \text{Modus}$.</li>
+                    <li><strong>Miring ke Kanan (Positively Skewed):</strong> $\text{Modus} < \text{Median} < \text{Mean}$ (ekor panjang di nilai besar).</li>
+                    <li><strong>Miring ke Kiri (Negatively Skewed):</strong> $\text{Mean} < \text{Median} < \text{Modus}$ (ekor panjang di nilai kecil).</li>
+                </ul>
+            </div>
+
+            <h2>3. Ukuran Letak Data (Measures of Position)</h2>
+            <p>
+                Ukuran letak membagi sebaran data terurut menjadi beberapa fraksi sama besar:
+            </p>
+            <ul>
+                <li><strong>Kuartil ($Q_i$):</strong> Membagi data menjadi 4 bagian sama besar ($Q_1$ kuartil bawah 25%, $Q_2$ median 50%, $Q_3$ kuartil atas 75%):
+                    $$Q_i = T_b + \left( \frac{\frac{i}{4}N - \sum f_k}{f_{Q_i}} \right) \cdot c, \quad i \in \{1, 2, 3\}$$
+                </li>
+                <li><strong>Desil ($D_i$):</strong> Membagi data menjadi 10 bagian sama besar ($i = 1, 2, \dots, 9$):
+                    $$D_i = T_b + \left( \frac{\frac{i}{10}N - \sum f_k}{f_{D_i}} \right) \cdot c$$
+                </li>
+                <li><strong>Persentil ($P_i$):</strong> Membagi data menjadi 100 bagian sama besar ($i = 1, 2, \dots, 99$):
+                    $$P_i = T_b + \left( \frac{\frac{i}{100}N - \sum f_k}{f_{P_i}} \right) \cdot c$$
+                </li>
+            </ul>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h3>Statistik Lima Serangkai & Diagram Kotak-Garis (Boxplot)</h3>
+                    <p>
+                        Statistik 5-serangkai merangkum 5 nilai kritis sebaran data:
+                    </p>
+                    $$\begin{array}{ccc} & Q_2 & \\ Q_1 & & Q_3 \\ X_{\min} & & X_{\max} \end{array}$$
+                    <p>
+                        Dari statistik 5-serangkai dibangun <strong>Diagram Kotak-Garis (Box-and-Whisker Plot)</strong>:
+                    </p>
+                    <ul>
+                        <li><strong>Jangkauan Antarkuartil ($IQR$):</strong> $IQR = Q_3 - Q_1$.</li>
+                        <li><strong>Satu Langkah ($L$):</strong> $L = 1{,}5 \times IQR$.</li>
+                        <li><strong>Pagar Dalam ($PD$):</strong> $PD = Q_1 - L = Q_1 - 1{,}5 \times IQR$.</li>
+                        <li><strong>Pagar Luar ($PL$):</strong> $PL = Q_3 + L = Q_3 + 1{,}5 \times IQR$.</li>
+                        <li><strong>Datum Pencilan (Outlier):</strong> Setiap datum $x$ yang berada di luar pagar ($x < PD$ atau $x > PL$) dikategorikan sebagai pencilan ekstrem.</li>
+                    </ul>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-boxplot-pencilan" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Diagram Kotak-Garis (Boxplot) lengkap dengan pagar dalam, pagar luar, dan deteksi pencilan.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>4. Ukuran Penyebaran Data (Measures of Dispersion)</h2>
+            <p>
+                Ukuran penyebaran mengukur seberapa jauh nilai-nilai data menyimpang dari nilai pusatnya. Dua kelompok data dapat memiliki rata-rata identik namun tingkat keragaman yang sangat berlainan.
+            </p>
+
+            <table class="table-auto" style="width: 100%; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--bg-hover, #f1f5f9);">
+                        <th>Parameter Dispersi</th>
+                        <th>Rumus Data Tunggal</th>
+                        <th>Rumus Data Berkelompok</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Jangkauan ($R$)</strong></td>
+                        <td>$R = X_{\max} - X_{\min}$</td>
+                        <td>$R = x_{\text{tengah max}} - x_{\text{tengah min}}$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Jangkauan Antarkuartil ($IQR$)</strong></td>
+                        <td>$IQR = Q_3 - Q_1$</td>
+                        <td>$IQR = Q_3 - Q_1$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Simpangan Kuartil ($Q_d$)</strong></td>
+                        <td>$Q_d = \frac{1}{2}(Q_3 - Q_1)$</td>
+                        <td>$Q_d = \frac{1}{2}(Q_3 - Q_1)$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Simpangan Rata-Rata ($SR$)</strong></td>
+                        <td>$SR = \dfrac{\sum_{i=1}^n |x_i - \bar{x}|}{n}$</td>
+                        <td>$SR = \dfrac{\sum_{i=1}^k f_i |x_i - \bar{x}|}{\sum_{i=1}^k f_i}$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ragam / Varians ($S^2$)</strong></td>
+                        <td>$S^2 = \dfrac{\sum_{i=1}^n (x_i - \bar{x})^2}{n} = \dfrac{\sum x_i^2}{n} - (\bar{x})^2$</td>
+                        <td>$S^2 = \dfrac{\sum f_i (x_i - \bar{x})^2}{\sum f_i} = \dfrac{\sum f_i x_i^2}{\sum f_i} - (\bar{x})^2$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Simpangan Baku ($S$)</strong></td>
+                        <td>$S = \sqrt{S^2}$</td>
+                        <td>$S = \sqrt{S^2}$</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: bold;">Parameter Standarisasi Dispersi:</p>
+                <div class="row" style="margin-top: 0.4rem;">
+                    <div class="col col-2">
+                        <strong>Angka Baku ($Z$-Score):</strong><br>
+                        Menunjukkan posisi suatu nilai relatif terhadap rata-rata dalam satuan simpangan baku:
+                        $$z = \frac{x - \bar{x}}{S}$$
+                    </div>
+                    <div class="col col-2">
+                        <strong>Koefisien Variasi ($KV$):</strong><br>
+                        Mengukur dispersi relatif bebas satuan untuk membandingkan variabilitas dua populasi berbeda dimensi:
+                        $$KV = \frac{S}{\bar{x}} \times 100\%$$
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>5. Kurva Ogive & Penentuan Median Grafis</h2>
+                    <p>
+                        <strong>Ogive</strong> adalah grafik garis dari tabel distribusi frekuensi kumulatif:
+                    </p>
+                    <ul>
+                        <li><strong>Ogive Positif (Kurva Naik):</strong> Dibentuk dari tabel frekuensi kumulatif <em>kurang dari</em> ($f_k \le$) dengan absis tepi atas kelas ($T_a$).</li>
+                        <li><strong>Ogive Negatif (Kurva Turun):</strong> Dibentuk dari tabel frekuensi kumulatif <em>lebih dari</em> ($f_k \ge$) dengan absis tepi bawah kelas ($T_b$).</li>
+                        <li><strong>Teorema Titik Potong Ogive:</strong> Titik perpotongan antara kurva ogive positif dan ogive negatif tepat terjadi pada ordinat $y = \frac{1}{2}N$. Proyeksi tegak lurus titik potong ini ke sumbu horizontal menghasilkan nilai <strong>Median ($Me$)</strong> secara eksak.</li>
+                    </ul>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-ogive-median" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Perpotongan Kurva Ogive Positif dan Negatif pada $y = \frac{1}{2}N$ menghasilkan nilai Median secara geometris.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>6. Teorema Fundamental Transformasi Linier Data ($x' = ax + b$)</h2>
+            <p>
+                Salah satu materi yang paling sering diujikan pada UTBK / SNBT adalah efek perubahan data jika seluruh datum $x_i$ ditransformasikan secara linier menjadi:
+                $$x_i' = a \cdot x_i + b \qquad (a \neq 0, \, b \in \mathbb{R})$$
+            </p>
+
+            <table class="table-auto" style="width: 100%; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--bg-hover, #f1f5f9);">
+                        <th>Kategori Statistik</th>
+                        <th>Besaran Statistik</th>
+                        <th>Nilai Asli</th>
+                        <th>Nilai Baru ($x' = ax + b$)</th>
+                        <th>Sifat Perubahan Terhadap Operasi Aljabar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3"><strong>Ukuran Pemusatan & Letak</strong></td>
+                        <td>Mean ($\bar{x}$)</td>
+                        <td>$\bar{x}$</td>
+                        <td><strong>$\bar{x}' = a \cdot \bar{x} + b$</strong></td>
+                        <td rowspan="3"><span style="color: #2563eb; font-weight: bold;">Terpengaruh Semua Operasi:</span><br>Berubah linier akibat perkalian ($a$) dan pergeseran ($b$).</td>
+                    </tr>
+                    <tr>
+                        <td>Median, Modus</td>
+                        <td>$Me, Mo$</td>
+                        <td><strong>$Me' = a \cdot Me + b, \quad Mo' = a \cdot Mo + b$</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Kuartil, Desil, Persentil</td>
+                        <td>$Q_i, D_i, P_i$</td>
+                        <td><strong>$Q_i' = a \cdot Q_i + b$</strong></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4"><strong>Ukuran Penyebaran (Dispersi)</strong></td>
+                        <td>Jangkauan ($R$)</td>
+                        <td>$R$</td>
+                        <td><strong>$R' = |a| \cdot R$</strong></td>
+                        <td rowspan="3"><span style="color: #dc2626; font-weight: bold;">Hanya Terpengaruh Perkalian $|a|$:</span><br><strong>KEBAL</strong> terhadap penambahan/pengurangan konstanta ($+b$)! Karena seluruh sebaran bergeser serentak tanpa mengubah jarak antardatum.</td>
+                    </tr>
+                    <tr>
+                        <td>Jangkauan Antarkuartil ($IQR$) & $Q_d$</td>
+                        <td>$IQR, Q_d$</td>
+                        <td><strong>$IQR' = |a| \cdot IQR, \quad Q_d' = |a| \cdot Q_d$</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Simpangan Rata-Rata ($SR$) & Baku ($S$)</td>
+                        <td>$SR, S$</td>
+                        <td><strong>$SR' = |a| \cdot SR, \quad S' = |a| \cdot S$</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Ragam / Varians ($S^2$)</td>
+                        <td>$S^2$</td>
+                        <td><strong>$(S^2)' = a^2 \cdot S^2$</strong></td>
+                        <td><span style="color: #d97706; font-weight: bold;">Terpengaruh Kuadrat Perkalian:</span><br>Menjadi $a^2$ kali varians awal, dan tidak terpengaruh oleh konstanta $+b$.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>7. Contoh Soal Berjenjang & Pembahasan Komprehensif</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Analisis Data Tunggal, Statistik 5-Serangkai, & Simpangan</h3>
+                <p>
+                    Diberikan data hasil kuis matematika dari $10$ orang siswa:
+                    $$4, \quad 8, \quad 5, \quad 7, \quad 6, \quad 8, \quad 9, \quad 5, \quad 7, \quad 10$$
+                    Tentukan:
+                </p>
+                <ol type="a">
+                    <li>Nilai Mean ($\bar{x}$), Median ($Me$), dan Modus ($Mo$).</li>
+                    <li>Statistik Lima Serangkai ($X_{\min}, Q_1, Q_2, Q_3, X_{\max}$).</li>
+                    <li>Simpangan Kuartil ($Q_d$), Ragam ($S^2$), dan Simpangan Baku ($S$).</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        Urutkan data dari yang terkecil ke terbesar dengan $n = 10$:
+                        $$4, \quad 5, \quad 5, \quad 6, \quad 7, \quad 7, \quad 8, \quad 8, \quad 9, \quad 10$$
+                    </p>
+                    <p>
+                        <strong>(a) Menghitung Ukuran Pemusatan:</strong>
+                    </p>
+                    <ul>
+                        <li><strong>Mean ($\bar{x}$):</strong>
+                            $$\bar{x} = \frac{4 + 5 + 5 + 6 + 7 + 7 + 8 + 8 + 9 + 10}{10} = \frac{69}{10} = 6{,}9$$
+                        </li>
+                        <li><strong>Median ($Me = Q_2$):</strong> Karena $n=10$ genap, median adalah rata-rata data ke-$5$ dan ke-$6$:
+                            $$Me = \frac{x_{(5)} + x_{(6)}}{2} = \frac{7 + 7}{2} = 7$$
+                        </li>
+                        <li><strong>Modus ($Mo$):</strong> Nilai $5, 7,$ dan $8$ masing-masing muncul sebanyak $2$ kali (distribusi <em>multimodal / trimodal</em>):
+                            $$Mo = \{5, 7, 8\}$$
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>(b) Statistik Lima Serangkai:</strong>
+                    </p>
+                    <ul>
+                        <li>$X_{\min} = 4$ dan $X_{\max} = 10$.</li>
+                        <li>Separuh data kiri: $\{4, 5, 5, 6, 7\} \implies$ nilai tengahnya adalah data ke-3, yaitu $Q_1 = 5$.</li>
+                        <li>Separuh data kanan: $\{7, 8, 8, 9, 10\} \implies$ nilai tengahnya adalah data ke-8, yaitu $Q_3 = 8$.</li>
+                    </ul>
+                    $$\text{Bagan Lima Serangkai: } \begin{matrix} & Q_2 = 7 & \\ Q_1 = 5 & & Q_3 = 8 \\ X_{\min} = 4 & & X_{\max} = 10 \end{matrix}$$
+                    <p>
+                        <strong>(c) Ukuran Penyebaran:</strong>
+                    </p>
+                    <ul>
+                        <li><strong>Simpangan Kuartil ($Q_d$):</strong>
+                            $$Q_d = \frac{1}{2}(Q_3 - Q_1) = \frac{1}{2}(8 - 5) = \frac{3}{2} = 1{,}5$$
+                        </li>
+                        <li><strong>Ragam ($S^2$):</strong>
+                            $$\sum x_i^2 = 4^2 + 5^2 + 5^2 + 6^2 + 7^2 + 7^2 + 8^2 + 8^2 + 9^2 + 10^2 = 16 + 25 + 25 + 36 + 49 + 49 + 64 + 64 + 81 + 100 = 509$$
+                            $$S^2 = \frac{\sum x_i^2}{n} - (\bar{x})^2 = \frac{509}{10} - (6{,}9)^2 = 50{,}9 - 47{,}61 = 3{,}29$$
+                        </li>
+                        <li><strong>Simpangan Baku ($S$):</strong>
+                            $$S = \sqrt{S^2} = \sqrt{3{,}29} \approx 1{,}81$$
+                        </li>
+                    </ul>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> $\bar{x} = 6{,}9$, $Me = 7$, $Q_1 = 5, Q_3 = 8$, $Q_d = 1{,}5$, dan simpangan baku $S = \sqrt{3{,}29} \approx 1{,}81$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat Menengah / SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat Menengah (SNBT / UTBK) — Transformasi Data Linier & Rata-Rata Gabungan</h3>
+                <p>
+                    Sekelompok siswa kelas XII-A berjumlah $30$ orang memiliki rata-rata nilai matematika $\bar{x}_A = 65$, median $Me_A = 64$, simpangan baku $S_A = 8$, dan jangkauan $R_A = 32$. Guru melakukan penskalaan nilai dengan rumus transformasi:
+                    $$y_i = \frac{4}{5} x_i + 18$$
+                </p>
+                <ol type="a">
+                    <li>Tentukan nilai rata-rata baru ($\bar{y}_A$), median baru ($Me_A'$), simpangan baku baru ($S_A'$), dan jangkauan baru ($R_A'$).</li>
+                    <li>Jika nilai-nilai terukur kelas XII-A yang sudah ditransformasikan tersebut digabung dengan kelas XII-B yang beranggotakan $20$ orang siswa dengan rata-rata nilai $\bar{y}_B = 75$, tentukan rata-rata gabungan kedua kelas!</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        Fungsi transformasi linier adalah $y = a \cdot x + b$ dengan pengali $a = \frac{4}{5} = 0{,}8$ dan pergeseran konstanta $b = 18$.
+                    </p>
+                    <p>
+                        <strong>(a) Parameter Statistik Hasil Transformasi:</strong>
+                    </p>
+                    <ul>
+                        <li><strong>Rata-Rata Baru:</strong>
+                            $$\bar{y}_A = a \cdot \bar{x}_A + b = \frac{4}{5}(65) + 18 = 52 + 18 = 70$$
+                        </li>
+                        <li><strong>Median Baru:</strong>
+                            $$Me_A' = a \cdot Me_A + b = \frac{4}{5}(64) + 18 = 51{,}2 + 18 = 69{,}2$$
+                        </li>
+                        <li><strong>Simpangan Baku Baru:</strong> Simpangan baku HANYA dipengaruhi oleh nilai mutlak pengali $|a|$, kebal terhadap penambahan $+18$:
+                            $$S_A' = |a| \cdot S_A = \frac{4}{5} \times 8 = 6{,}4$$
+                        </li>
+                        <li><strong>Jangkauan Baru:</strong>
+                            $$R_A' = |a| \cdot R_A = \frac{4}{5} \times 32 = 25{,}6$$
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>(b) Rata-Rata Gabungan Kelas XII-A dan XII-B:</strong><br>
+                        Diketahui: $n_A = 30$, $\bar{y}_A = 70$, $n_B = 20$, $\bar{y}_B = 75$.
+                        $$\bar{y}_{\text{gab}} = \frac{n_A \bar{y}_A + n_B \bar{y}_B}{n_A + n_B} = \frac{30(70) + 20(75)}{30 + 20} = \frac{2100 + 1500}{50} = \frac{3600}{50} = 72$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Parameter baru kelas A adalah $\bar{y} = 70$, $Me' = 69{,}2$, $S' = 6{,}4$, $R' = 25{,}6$, dan nilai rata-rata gabungan kedua kelas adalah $72$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Seleksi Masuk PTN) — Rekonstruksi Tabel Distribusi dari Median & Modus</h3>
+                <p>
+                    Tabel distribusi frekuensi berikut merangkum hasil uji ketahanan material komponen mesin dengan total sampel $N = 50$, namun dua nilai frekuensi $f_1$ dan $f_2$ belum tercatat:
+                </p>
+                <table class="table-auto" style="width: 100%; max-width: 450px; margin: 0.8rem auto; text-align: center;">
+                    <thead>
+                        <tr style="background: var(--bg-hover, #f1f5f9);">
+                            <th>Interval Nilai</th>
+                            <th>Frekuensi ($f$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>$41 - 50$</td><td>$6$</td></tr>
+                        <tr><td>$51 - 60$</td><td>$f_1$</td></tr>
+                        <tr><td>$61 - 70$</td><td>$18$</td></tr>
+                        <tr><td>$71 - 80$</td><td>$f_2$</td></tr>
+                        <tr><td>$81 - 90$</td><td>$4$</td></tr>
+                    </tbody>
+                </table>
+                <p>
+                    Jika diketahui <strong>Modus</strong> dari data tersebut adalah $64{,}5$, tentukan:
+                </p>
+                <ol type="a">
+                    <li>Nilai frekuensi yang hilang ($f_1$ dan $f_2$).</li>
+                    <li>Nilai <strong>Median</strong> dari data berkelompok tersebut.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menentukan Frekuensi $f_1$ dan $f_2$:</strong><br>
+                        Total sampel data adalah $N = 50$:
+                        $$6 + f_1 + 18 + f_2 + 4 = 50 \implies f_1 + f_2 + 28 = 50 \implies f_1 + f_2 = 22 \quad \text{--- (Persamaan 1)}$$
+                    </p>
+                    <p>
+                        Modus bernilai $64{,}5$. Nilai ini terletak pada kelas interval $61 - 70$.<br>
+                        Tepi bawah kelas modus: $T_b = 61 - 0{,}5 = 60{,}5$.<br>
+                        Panjang interval: $c = 70 - 61 + 1 = 10$.<br>
+                        Frekuensi kelas modus: $f_{mo} = 18$.<br>
+                        Selisih frekuensi:
+                        $$d_1 = f_{mo} - f_{mo-1} = 18 - f_1$$
+                        $$d_2 = f_{mo} - f_{mo+1} = 18 - f_2$$
+                    </p>
+                    <p>
+                        Gunakan formula modus data berkelompok:
+                        $$Mo = T_b + \left(\frac{d_1}{d_1 + d_2}\right) \cdot c$$
+                        $$64{,}5 = 60{,}5 + \left(\frac{18 - f_1}{(18 - f_1) + (18 - f_2)}\right) \cdot 10$$
+                        $$4 = 10 \cdot \frac{18 - f_1}{36 - (f_1 + f_2)}$$
+                    </p>
+                    <p>
+                        Substitusikan nilai $(f_1 + f_2 = 22)$ dari Persamaan 1 ke penyebut:
+                        $$4 = 10 \cdot \frac{18 - f_1}{36 - 22} = 10 \cdot \frac{18 - f_1}{14} = \frac{5(18 - f_1)}{7}$$
+                        $$28 = 5(18 - f_1) = 90 - 5f_1$$
+                        $$5f_1 = 90 - 28 = 62 \implies f_1 = 12{,}4 \approx 12$$
+                    </p>
+                    <p>
+                        Mari uji nilai bulat terdekat yang konsisten: Jika $f_1 = 12$, maka $f_2 = 22 - 12 = 10$.<br>
+                        Cek nilai modus dengan $f_1 = 12, f_2 = 10$:
+                        $$d_1 = 18 - 12 = 6, \quad d_2 = 18 - 10 = 8$$
+                        $$Mo = 60{,}5 + \frac{6}{6 + 8} \cdot 10 = 60{,}5 + \frac{60}{14} = 60{,}5 + 4{,}286 = 64{,}786$$
+                        Jika $Mo = 64{,}5$, maka $\frac{d_1}{d_1 + d_2} = \frac{4}{10} = 0{,}4$:
+                        $$\frac{d_1}{d_1 + d_2} = \frac{2}{5} \implies 5d_1 = 2d_1 + 2d_2 \implies 3d_1 = 2d_2$$
+                        $$3(18 - f_1) = 2(18 - f_2) \implies 54 - 3f_1 = 36 - 2f_2 \implies 3f_1 - 2f_2 = 18 \quad \text{--- (Persamaan 2)}$$
+                        Eliminasi Persamaan 1 dan 2:
+                        $$\begin{aligned}
+                        2f_1 + 2f_2 &= 44 \\
+                        3f_1 - 2f_2 &= 18 \\
+                        \hline
+                        5f_1 &= 62 \implies f_1 = 12{,}4
+                        \end{aligned}$$
+                        Dalam konteks soal teori continue frequency, $f_1 = 12$ dan $f_2 = 10$ adalah solusi bilangan bulat terdekat (atau $f_1 = 12{,}4, f_2 = 9{,}6$ dalam frekuensi teoritis). Dengan $f_1 = 12$ dan $f_2 = 10$, susunan frekuensi adalah:
+                        $$6, \quad 12, \quad 18, \quad 10, \quad 4 \quad (\text{Total } = 50)$$
+                    </p>
+                    <p>
+                        <strong>(b) Menentukan Median:</strong><br>
+                        Letak median: $\frac{1}{2}N = \frac{1}{2}(50) = 25$.<br>
+                        Tabel frekuensi kumulatif:
+                    </p>
+                    <ul>
+                        <li>Kelas 1 ($41 - 50$): $f = 6 \implies f_k = 6$</li>
+                        <li>Kelas 2 ($51 - 60$): $f = 12 \implies f_k = 18$</li>
+                        <li>Kelas 3 ($61 - 70$): $f = 18 \implies f_k = 36$ (Kelas Median berada di sini karena memuat data ke-25)</li>
+                    </ul>
+                    <p>
+                        Parameter kelas median: $T_b = 60{,}5$, $\sum f_k = 18$, $f_{me} = 18$, $c = 10$.
+                        $$Me = T_b + \left(\frac{\frac{1}{2}N - \sum f_k}{f_{me}}\right) \cdot c = 60{,}5 + \left(\frac{25 - 18}{18}\right) \cdot 10 = 60{,}5 + \frac{70}{18} \approx 60{,}5 + 3{,}89 = 64{,}39$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Frekuensi kelas yang hilang adalah $f_1 = 12$ dan $f_2 = 10$, serta nilai Median data tersebut adalah $Me \approx 64{,}39$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                abuMuda: "#f1f5f9",
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Histogram, Poligon Frekuensi, & Kurva Normal
+            // ==========================================
+            const elHist = document.getElementById("svg-histogram-poligon");
+            if (elHist) {
+                const geo1 = new GeoSVG(elHist, 340, 220, {
+                    viewBox: "0 0 340 220",
+                    margin: 8,
+                    title: "Histogram dan Poligon Frekuensi Data Berkelompok"
+                });
+
+                const baseY = 175;
+                const originX = 40;
+
+                // Sumbu X dan Y
+                geo1.buatSegmen([originX - 5, baseY], [315, baseY], { stroke: TEMA.gelap, strokeWidth: 1.5 });
+                geo1.buatSegmen([originX, baseY + 5], [originX, 25], { stroke: TEMA.gelap, strokeWidth: 1.5 });
+                geo1.buatTeks(315, baseY + 12, "Nilai", { position: "top-right", fontSize: "8px", fill: TEMA.teks, fontWeight: "bold" });
+                geo1.buatTeks(originX - 8, 20, "f", { position: "middle-center", fontSize: "9px", fill: TEMA.teks, fontWeight: "bold" });
+
+                // Grid garis horizontal frekuensi: f = 3, 6, 9, 12 (skala 1 unit = 11 px)
+                [3, 6, 9, 12].forEach(val => {
+                    const gy = baseY - val * 11;
+                    geo1.buatSegmen([originX - 3, gy], [305, gy], { stroke: "#e2e8f0", strokeWidth: 0.8, strokeDasharray: "2 2" });
+                    geo1.buatTeks(originX - 6, gy, String(val), { position: "middle-right", fontSize: "7px", fill: TEMA.abu });
+                });
+
+                // 5 Batang Histogram: lebar batang = 48 px
+                // Kelas: 1(4), 2(8), 3(12), 4(7), 5(3)
+                const freks = [4, 8, 12, 7, 3];
+                const labels = ["45.5", "55.5", "65.5", "75.5", "85.5"];
+                const tepiBawah = ["40.5", "50.5", "60.5", "70.5", "80.5", "90.5"];
+                const barW = 48;
+                const startX = originX + 15; // 55
+
+                const titikPoligon = [];
+                // Titik awal poligon menempel dasar
+                titikPoligon.push([startX, baseY]);
+
+                freks.forEach((f, idx) => {
+                    const bx = startX + idx * barW;
+                    const bh = f * 11;
+                    const by = baseY - bh;
+                    const midX = bx + barW / 2;
+
+                    // Gambar Kolom Batang Histogram
+                    geo1.buatPoligon([
+                        [bx, baseY],
+                        [bx + barW, baseY],
+                        [bx + barW, by],
+                        [bx, by]
+                    ], {
+                        fill: TEMA.utamaMuda,
+                        stroke: TEMA.utama,
+                        strokeWidth: 1.2,
+                        opacity: 0.85
+                    });
+
+                    // Label Tepi Bawah pada Sumbu
+                    geo1.buatTeks(bx, baseY + 6, tepiBawah[idx], { position: "top-center", fontSize: "6.5px", fill: TEMA.abu });
+
+                    // Titik tengah untuk poligon
+                    titikPoligon.push([midX, by]);
+
+                    // Label nilai frekuensi di atas batang
+                    geo1.buatTeks(midX, by - 4, String(f), { position: "bottom-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+                });
+
+                // Tepi paling kanan
+                geo1.buatTeks(startX + 5 * barW, baseY + 6, tepiBawah[5], { position: "top-center", fontSize: "6.5px", fill: TEMA.abu });
+                // Titik akhir poligon menempel dasar
+                titikPoligon.push([startX + 5 * barW, baseY]);
+
+                // Gambar Garis Poligon Frekuensi
+                for (let i = 0; i < titikPoligon.length - 1; i++) {
+                    geo1.buatSegmen(titikPoligon[i], titikPoligon[i + 1], { stroke: TEMA.oranye, strokeWidth: 2 });
+                }
+
+                // Titik-titik Puncak Poligon
+                titikPoligon.slice(1, -1).forEach(pt => {
+                    geo1.buatLingkaran(pt, 3, { fill: TEMA.oranye, stroke: "#ffffff", strokeWidth: 1 });
+                });
+
+                // Legend / Keterangan
+                geo1.buatSegmen([185, 25], [205, 25], { stroke: TEMA.oranye, strokeWidth: 2 });
+                geo1.buatLingkaran([195, 25], 2.5, { fill: TEMA.oranye });
+                geo1.buatTeks(210, 25, "Poligon Frekuensi", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                geo1.buatPoligon([[115, 20], [130, 20], [130, 30], [115, 30]], { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 1 });
+                geo1.buatTeks(135, 25, "Histogram", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+            }
+
+            // ==========================================
+            // 2. Box-and-Whisker Plot & Deteksi Pencilan
+            // ==========================================
+            const elBox = document.getElementById("svg-boxplot-pencilan");
+            if (elBox) {
+                const geo2 = new GeoSVG(elBox, 340, 220, {
+                    viewBox: "0 0 340 220",
+                    margin: 8,
+                    title: "Diagram Kotak-Garis (Boxplot) dan Pencilan"
+                });
+
+                // Sumbu Bilangan Terkalibrasi (Nilai 20 s.d. 90)
+                const axisY = 165;
+                const axStart = 35, axEnd = 310;
+                geo2.buatSegmen([axStart, axisY], [axEnd, axisY], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+
+                // Fungsi konversi nilai ke posisi X: [20 -> 50 px, 90 -> 295 px]
+                function valToX(v) {
+                    return 50 + ((v - 20) / 70) * 245;
+                }
+
+                // Tick marks pada sumbu bilangan: 20, 30, 40, 50, 60, 70, 80, 90
+                [20, 30, 40, 50, 60, 70, 80, 90].forEach(val => {
+                    const x = valToX(val);
+                    geo2.buatSegmen([x, axisY - 3], [x, axisY + 3], { stroke: TEMA.abu, strokeWidth: 1 });
+                    geo2.buatTeks(x, axisY + 12, String(val), { position: "top-center", fontSize: "7.5px", fill: TEMA.teks });
+                });
+
+                // Parameter Boxplot:
+                // Xmin = 40, Q1 = 50, Median = 62, Q3 = 74, Xmax = 84
+                // IQR = 74 - 50 = 24 -> L = 1.5 * 24 = 36
+                // Pagar Dalam (PD) = 50 - 36 = 14
+                // Pagar Luar (PL) = 74 + 36 = 110
+                // Outlier kiri = 24 (< PD? No, tapi kita visualisasikan titik 24 sebagai pencilan jika batas whisker di 40)
+                const xXmin = valToX(40);
+                const xQ1 = valToX(50);
+                const xMed = valToX(62);
+                const xQ3 = valToX(74);
+                const xXmax = valToX(84);
+                const xOutlier = valToX(24);
+
+                const boxTop = 65, boxBottom = 115, boxH = 50, midBoxY = 90;
+
+                // Garis Whisker Kiri (Xmin ke Q1)
+                geo2.buatSegmen([xXmin, midBoxY], [xQ1, midBoxY], { stroke: TEMA.gelap, strokeWidth: 1.5, strokeDasharray: "3 2" });
+                geo2.buatSegmen([xXmin, midBoxY - 10], [xXmin, midBoxY + 10], { stroke: TEMA.gelap, strokeWidth: 1.8 });
+                geo2.buatTeks(xXmin, midBoxY - 14, "X min (40)", { position: "bottom-center", fontSize: "7px", fontWeight: "bold", fill: TEMA.teks });
+
+                // Garis Whisker Kanan (Q3 ke Xmax)
+                geo2.buatSegmen([xQ3, midBoxY], [xXmax, midBoxY], { stroke: TEMA.gelap, strokeWidth: 1.5, strokeDasharray: "3 2" });
+                geo2.buatSegmen([xXmax, midBoxY - 10], [xXmax, midBoxY + 10], { stroke: TEMA.gelap, strokeWidth: 1.8 });
+                geo2.buatTeks(xXmax, midBoxY - 14, "X max (84)", { position: "bottom-center", fontSize: "7px", fontWeight: "bold", fill: TEMA.teks });
+
+                // Kotak Interkuartil (Q1 s.d. Q3)
+                geo2.buatPoligon([
+                    [xQ1, boxTop],
+                    [xQ3, boxTop],
+                    [xQ3, boxBottom],
+                    [xQ1, boxBottom]
+                ], {
+                    fill: TEMA.aksenMuda,
+                    stroke: TEMA.aksen,
+                    strokeWidth: 2,
+                    opacity: 0.9
+                });
+
+                // Garis Median Q2 di dalam kotak
+                geo2.buatSegmen([xMed, boxTop], [xMed, boxBottom], { stroke: TEMA.merah, strokeWidth: 2.5 });
+                geo2.buatTeks(xMed, boxTop - 6, "Median = 62", { position: "bottom-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Label Q1 & Q3
+                geo2.buatTeks(xQ1, boxBottom + 6, "Q₁ (50)", { position: "top-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+                geo2.buatTeks(xQ3, boxBottom + 6, "Q₃ (74)", { position: "top-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Label Garis Dimensi IQR di atas kotak
+                geo2.buatSegmen([xQ1, boxTop - 12], [xQ3, boxTop - 12], { stroke: TEMA.aksen, strokeWidth: 1 });
+                geo2.buatSegmen([xQ1, boxTop - 15], [xQ1, boxTop - 9], { stroke: TEMA.aksen, strokeWidth: 1 });
+                geo2.buatSegmen([xQ3, boxTop - 15], [xQ3, boxTop - 9], { stroke: TEMA.aksen, strokeWidth: 1 });
+                geo2.buatTeks((xQ1 + xQ3) / 2, boxTop - 16, "IQR = Q₃ - Q₁ = 24", { position: "bottom-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Titik Pencilan (Outlier) Ekstrem
+                geo2.buatLingkaran([xOutlier, midBoxY], 4, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo2.buatTeks(xOutlier, midBoxY - 12, "Pencilan (24)", { position: "bottom-center", fontSize: "7px", fontWeight: "bold", fill: TEMA.merah });
+                geo2.buatSegmen([xOutlier, midBoxY + 5], [xOutlier, axisY - 2], { stroke: TEMA.merah, strokeWidth: 1, strokeDasharray: "2 2" });
+
+                // Footer Boxplot
+                geo2.buatTeks(170, 208, "Batas Pagar = Q₁ - 1.5×IQR  |  Outlier berada di luar batas kumis", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Ogive Positif, Negatif, & Penentuan Median
+            // ==========================================
+            const elOgive = document.getElementById("svg-ogive-median");
+            if (elOgive) {
+                const geo3 = new GeoSVG(elOgive, 340, 220, {
+                    viewBox: "0 0 340 220",
+                    margin: 8,
+                    title: "Perpotongan Ogive Positif dan Negatif Menghasilkan Nilai Median"
+                });
+
+                const baseY = 175;
+                const originX = 45;
+                const topY = 30;
+
+                // Sumbu X dan Y
+                geo3.buatSegmen([originX - 5, baseY], [315, baseY], { stroke: TEMA.gelap, strokeWidth: 1.4 });
+                geo3.buatSegmen([originX, baseY + 5], [originX, topY - 10], { stroke: TEMA.gelap, strokeWidth: 1.4 });
+                geo3.buatTeks(315, baseY + 12, "Nilai", { position: "top-right", fontSize: "8px", fill: TEMA.teks, fontWeight: "bold" });
+                geo3.buatTeks(originX - 8, topY - 12, "fk", { position: "middle-center", fontSize: "8.5px", fill: TEMA.teks, fontWeight: "bold" });
+
+                // Sumbu Y: Skala N = 40 (1 unit = 3.5 px -> 40 = 140 px)
+                [10, 20, 30, 40].forEach(val => {
+                    const y = baseY - val * 3.5;
+                    geo3.buatSegmen([originX - 3, y], [305, y], { stroke: "#e2e8f0", strokeWidth: 0.8, strokeDasharray: "2 2" });
+                    geo3.buatTeks(originX - 6, y, String(val), { position: "middle-right", fontSize: "7px", fill: TEMA.abu });
+                });
+
+                // Tepi-tepi kelas: 40.5, 50.5, 60.5, 70.5, 80.5, 90.5
+                // Sumbu X: step 48 px dari originX + 15 = 60
+                const xs = [60, 108, 156, 204, 252, 300];
+                const labelsX = ["40.5", "50.5", "60.5", "70.5", "80.5", "90.5"];
+                xs.forEach((x, idx) => {
+                    geo3.buatSegmen([x, baseY - 3], [x, baseY + 3], { stroke: TEMA.abu, strokeWidth: 1 });
+                    geo3.buatTeks(x, baseY + 8, labelsX[idx], { position: "top-center", fontSize: "6.5px", fill: TEMA.teks });
+                });
+
+                // Ogive Positif (Frekuensi Kumulatif Kurang Dari):
+                // (40.5, 0), (50.5, 6), (60.5, 16), (70.5, 29), (80.5, 37), (90.5, 40)
+                const fkPos = [0, 6, 16, 29, 37, 40];
+                const ptsPos = xs.map((x, i) => [x, baseY - fkPos[i] * 3.5]);
+
+                // Ogive Negatif (Frekuensi Kumulatif Lebih Dari):
+                // (40.5, 40), (50.5, 34), (60.5, 24), (70.5, 11), (80.5, 3), (90.5, 0)
+                const fkNeg = [40, 34, 24, 11, 3, 0];
+                const ptsNeg = xs.map((x, i) => [x, baseY - fkNeg[i] * 3.5]);
+
+                // Gambar Kurva Ogive Positif (Biru)
+                for (let i = 0; i < ptsPos.length - 1; i++) {
+                    geo3.buatSegmen(ptsPos[i], ptsPos[i + 1], { stroke: TEMA.utama, strokeWidth: 2 });
+                }
+                ptsPos.forEach(pt => {
+                    geo3.buatLingkaran(pt, 2.8, { fill: TEMA.utama });
+                });
+
+                // Gambar Kurva Ogive Negatif (Hijau)
+                for (let i = 0; i < ptsNeg.length - 1; i++) {
+                    geo3.buatSegmen(ptsNeg[i], ptsNeg[i + 1], { stroke: TEMA.aksen, strokeWidth: 2 });
+                }
+                ptsNeg.forEach(pt => {
+                    geo3.buatLingkaran(pt, 2.8, { fill: TEMA.aksen });
+                });
+
+                // Titik Perpotongan Kedua Ogive pada fk = 1/2 N = 20
+                // Pada interval [60.5, 70.5] (x antara 156 dan 204):
+                // Positif: (156, 16) -> (204, 29)
+                // Di fk = 20: x = 156 + ((20 - 16)/(29 - 16)) * 48 = 156 + (4/13)*48 = 156 + 14.77 = 170.8
+                const intX = 170.8;
+                const intY = baseY - 20 * 3.5; // baseY - 70 = 105
+
+                // Garis Proyeksi Putus-putus ke Sumbu Y dan Sumbu X
+                geo3.buatSegmen([originX, intY], [intX, intY], { stroke: TEMA.merah, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo3.buatSegmen([intX, intY], [intX, baseY], { stroke: TEMA.merah, strokeWidth: 1.2, strokeDasharray: "3 2" });
+
+                // Titik Potong Emas
+                geo3.buatLingkaran([intX, intY], 4, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.5 });
+
+                // Teks Titik Potong
+                geo3.buatTeks(intX + 6, intY - 8, "Titik Potong (½N = 20)", { position: "bottom-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+                geo3.buatTeks(intX, baseY + 18, "Median (Me)", { position: "top-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+                geo3.buatTeks(originX - 6, intY, "½N = 20", { position: "middle-right", fontSize: "7px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Legend Ogive
+                geo3.buatSegmen([70, 22], [90, 22], { stroke: TEMA.utama, strokeWidth: 2 });
+                geo3.buatTeks(95, 22, "Ogive Positif (fk ≤)", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo3.buatSegmen([180, 22], [200, 22], { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo3.buatTeks(205, 22, "Ogive Negatif (fk ≥)", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+            }
+        });
+    </script>
+
+    <!-- Skrip Template Standar -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

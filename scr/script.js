@@ -12,8 +12,18 @@ const DAFTAR_TOPIK = [
             { judul: "Barisan dan Deret", folder: "Barisan_dan_Deret" },
             { judul: "Barisan dan Deret Aritmetika", folder: "Barisan_dan_Deret_Aritmetika" },
             { judul: "Barisan dan Deret Geometri", folder: "Barisan_dan_Deret_Geometri" },
+            { judul: "Bunga Tunggal", folder: "Bunga_Tunggal" },
+            { judul: "Bunga Majemuk", folder: "Bunga_Majemuk" },
+            { judul: "Deret Geometri Tak Hingga", folder: "Deret_Geometri_Tak_Hingga" },
+            { judul: "Deret Teleskopik", folder: "Deret_Teleskopik" },
             { judul: "Bentuk Akar", folder: "Bentuk_Akar" },
-            { judul: "Induksi Matematika", folder: "Induksi_Matematika" }
+            { judul: "Induksi Matematika", folder: "Induksi_Matematika" },
+            { judul: "Persamaan Aljabar", folder: "Persamaan_Aljabar" },
+            { judul: "Persamaan Eksponen", folder: "Persamaan_Eksponen" },
+            { judul: "Polinomial (Suku Banyak)", folder: "Polinom_(Suku_Banyak)" },
+            { judul: "Program Linear", folder: "Program_Linier_(Program_Linear)" },
+            { judul: "Maksimum dan Minimum", folder: "Maksimum_dan_Minimum" },
+            { judul: "Cauchy Schwarz", folder: "Cauchy_Schwarz" },
         ]
     },
     {
@@ -23,12 +33,16 @@ const DAFTAR_TOPIK = [
             { judul: "Bilangan Asli", folder: "Bilangan_Asli" },
             { judul: "Bilangan Bulat", folder: "Bilangan_Bulat" },
             { judul: "Bilangan Kompleks", folder: "Bilangan_Kompleks" },
-            { judul: "Bilangan Pecahan", folder: "Bilangan_Pecahan" }
+            { judul: "Bilangan Pecahan", folder: "Bilangan_Pecahan" },
+            { judul: "Bilangan Prima", folder: "Bilangan_Prima" },
+            { judul: "Bilangan Real", folder: "Bilangan_Real" },
         ]
     },
     {
         bidang: "Geometri & Trigonometri",
         topik: [
+            { judul: "Segitiga", folder: "Segitiga" },
+            { judul: "Poligon (Segi Banyak)", folder: "Poligon_(Segi_Banyak)" },
             { judul: "Aturan Cosinus", folder: "Aturan_Cosinus" },
             { judul: "Aturan Sinus", folder: "Aturan_Sinus" },
             { judul: "Balok", folder: "Balok" },
@@ -37,14 +51,39 @@ const DAFTAR_TOPIK = [
         ]
     },
     {
-        bidang: "Kalkulus & Kombinatorika",
+        bidang: "Kalkulus",
         topik: [
             { judul: "Asimtot Kurva", folder: "Asimtot_Kurva" },
-            { judul: "Aturan Pencacahan", folder: "Aturan_Pencacahan" },
             { judul: "Matriks", folder: "Matriks" },
             { judul: "Integral Lipat", folder: "Integral_Lipat" },
             { judul: "Integral Tak Tentu", folder: "Integral_Tak_Tentu" },
-            { judul: "Integral Tentu", folder: "Integral_Tentu" }
+            { judul: "Integral Tentu", folder: "Integral_Tentu" },
+            { judul: "Persamaan Diferensial", folder: "Persamaan_Diferensial" },
+        ]
+    },
+    {
+        bidang: "Statistika & Probabilitas",
+        topik: [
+            { judul: "Statistika", folder: "Statistika" },
+            { judul: "Rata-Rata", folder: "Rata-Rata" },
+        ]
+    },
+    {
+        bidang: "Kombinatorika",
+        topik: [
+            { judul: "Peluang", folder: "Peluang" },
+            { judul: "Aturan Pencacahan", folder: "Aturan_Pencacahan" },
+            { judul: "Permutasi dan Kombinasi", folder: "Permutasi_dan_Kombinasi" },
+            { judul: "Permutasi Siklik", folder: "Permutasi_Siklik_(Siklis)" },
+            { judul: "Prinsip Sarang Burung Merpati", folder: "Prinsip_Sarang_Merpati" }
+        ]
+    },
+    {
+        bidang: "Lainnya",
+        topik: [
+            { judul: "Logika Matematika", folder: "Logika_Matematika" },
+            { judul: "Satuan Waktu", folder: "Satuan_Waktu" },
+            { judul: "Matematika Terapan", folder: "Matematika_Terapan" },
         ]
     }
 ];

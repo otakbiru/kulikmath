@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Persegi Panjang</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Persegi Panjang</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Hierarki Geometri Persegi Panjang</h2>
+            <p>
+                <strong>Persegi Panjang (Rectangle)</strong> adalah bangun datar segi empat dua dimensi yang dibentuk oleh <strong>dua pasang sisi sejajar yang masing-masing sama panjang</strong>, serta memiliki <strong>empat buah sudut siku-siku</strong> ($90^\circ$).
+            </p>
+            <p>
+                Dalam sistem klasifikasi geometri:
+            </p>
+            <ul>
+                <li>Persegi panjang merupakan bentuk khusus dari <strong>Jajar Genjang</strong> yang keempat sudut dalamnya sama besar (masing-masing bernilai $90^\circ$).</li>
+                <li>Jika ukuran panjang dan lebarnya sama besar ($p = l$), persegi panjang tersebut berubah menjadi <strong>Persegi</strong>.</li>
+            </ul>
+
+            <h2>2. Sifat-Sifat Lengkap Persegi Panjang</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Diberikan persegi panjang $ABCD$ dengan panjang sisi mendatar $p$ dan lebar sisi tegak $l$:
+                    </p>
+                    <ol>
+                        <li><strong>Sifat Sisi:</strong>
+                            <ul>
+                                <li>Sisi-sisi yang berhadapan sejajar dan sama panjang:
+                                    $$AB = CD = p \quad \text{dan} \quad AD = BC = l$$
+                                    $$AB \parallel CD \quad \text{dan} \quad AD \parallel BC$$
+                                </li>
+                                <li>Sisi-sisi yang bersebelahan saling tegak lurus membentuk sudut $90^\circ$.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sifat Sudut:</strong>
+                            <ul>
+                                <li>Keempat sudut dalamnya adalah sudut siku-siku:
+                                    $$\angle A = \angle B = \angle C = \angle D = 90^\circ$$
+                                </li>
+                                <li>Total jumlah seluruh sudut dalamnya adalah $360^\circ$.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sifat Diagonal:</strong>
+                            <ul>
+                                <li>Memiliki dua buah garis diagonal yang <strong>persis sama panjang</strong>:
+                                    $$AC = BD = d = \sqrt{p^2 + l^2}$$
+                                    <em>(Diturunkan dari Teorema Pythagoras pada $\triangle ABC$: $d^2 = p^2 + l^2$).</em>
+                                </li>
+                                <li>Kedua diagonal berpotongan di titik tengah $O$ dan membagi diagonal menjadi empat segmen sama panjang ($OA = OB = OC = OD = \frac{1}{2}d$).</li>
+                                <li><strong>Perbedaan Kunci dengan Persegi:</strong> Diagonal persegi panjang <strong>tidak saling tegak lurus</strong> ($AC \not\perp BD$) dan <strong>tidak membagi sudut $90^\circ$ menjadi dua sudut $45^\circ$</strong>.</li>
+                                <li>Kedua diagonal membagi persegi panjang menjadi $4$ buah segitiga yang memiliki <strong>luas yang sama besar</strong> ($\frac{1}{4} L$), yaitu sepasang segitiga sama kaki kongruen atas-bawah dan sepasang segitiga sama kaki kongruen kiri-kanan.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-sifat-persegi-panjang" style="width: 100%; max-width: 340px;"></div>
+                </div>
+            </div>
+
+            <h2>3. Sifat Simetri Lipat & Simetri Putar</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Persegi panjang memiliki karakteristik kesimetrian berikut:
+                    </p>
+                    <ul>
+                        <li><strong>2 Sumbu Simetri Lipat:</strong>
+                            <ol>
+                                <li>Sumbu vertikal yang ditarik melalui titik tengah sisi panjang atas ($CD$) dan sisi panjang bawah ($AB$).</li>
+                                <li>Sumbu horizontal yang ditarik melalui titik tengah sisi lebar kiri ($AD$) dan sisi lebar kanan ($BC$).</li>
+                            </ol>
+                            <em>(Peringatan Geometri: Garis diagonal persegi panjang <strong>bukan</strong> sumbu simetri lipat, karena jika dilipat sepanjang diagonal, titik-titik sudutnya tidak akan saling berimpit).</em>
+                        </li>
+                        <li><strong>Simetri Putar Tingkat 2:</strong><br>
+                            Persegi panjang dapat diputar mengelilingi titik pusat simetri $O$ sebesar $180^\circ$ dan $360^\circ$ untuk menempati bingkainya kembali.
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-simetri-persegi-panjang" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>4. Rumus-Rumus Dasar & Identitas Aljabar Kuadrat</h2>
+            <div class="row">
+                <div class="col">
+                    <p><strong>A. Keliling Persegi Panjang ($K$):</strong>
+                    $$K = 2(p + l) \iff p + l = \frac{K}{2}$$
+                    </p>
+                    <p><strong>B. Luas Persegi Panjang ($L$):</strong>
+                    $$L = p \times l$$
+                    </p>
+                    <p><strong>C. Panjang Diagonal Sisi ($d$):</strong>
+                    $$d = \sqrt{p^2 + l^2} \iff d^2 = p^2 + l^2$$
+                    </p>
+                </div>
+                <div class="col">
+                    <div class="kesimpulan" style="margin: 0;">
+                        <p style="margin: 0; font-weight: normal;">
+                            <strong>Identitas Aljabar Penghubung $K, L$, dan $d$:</strong><br>
+                            Berdasarkan penjabaran bentuk kuadrat binomial $(p + l)^2$:
+                            $$(p + l)^2 = p^2 + l^2 + 2pl$$
+                            Substitusikan $p + l = \frac{K}{2}$, $p^2 + l^2 = d^2$, dan $pl = L$:
+                            $$\left(\frac{K}{2}\right)^2 = d^2 + 2L \iff d^2 = \left(\frac{K}{2}\right)^2 - 2L$$
+                            $$L = \frac{1}{2}\left[\left(\frac{K}{2}\right)^2 - d^2\right]$$
+                            <em>(Rumus ini sangat ampuh dalam menyelesaikan soal seleksi masuk PTN/SNBT tanpa perlu mencari nilai panjang $p$ dan lebar $l$ secara terpisah).</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>5. Teorema Bendera Inggris (British Flag Theorem)</h2>
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Teorema geometri klasik yang menyatakan bahwa untuk <strong>sembarang titik $P$</strong> yang terletak di dalam maupun di luar bidang persegi panjang $ABCD$, berlaku hubungan kuadrat jarak ke keempat titik sudutnya:
+                        $$PA^2 + PC^2 = PB^2 + PD^2$$
+                    </p>
+                    <p>
+                        <strong>Bukti Geometris Singkat:</strong><br>
+                        Tarik garis horizontal dan vertikal melalui titik $P$ yang membagi persegi panjang menjadi $4$ persegi panjang kecil. Dengan menerapkan Teorema Pythagoras pada keempat segitiga siku-siku yang terbentuk di sekitar titik $P$, jumlah kuadrat jarak titik $P$ ke pasangan sudut yang berseberangan ($A$ dan $C$) terbukti identik dengan jumlah kuadrat jarak ke pasangan sudut berseberangan lainnya ($B$ dan $D$).
+                    </p>
+                </div>
+                <div class="col col-center">
+                    <div id="svg-british-flag" style="width: 100%; max-width: 320px;"></div>
+                </div>
+            </div>
+
+            <h2>6. Tabel Ringkasan Rumus Persegi Panjang</h2>
+            <div class="table-container">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead>
+                        <tr style="background: var(--card-bg, #f8fafc); border-bottom: 2px solid var(--border-color, #e2e8f0);">
+                            <th style="padding: 10px; text-align: left;">Besaran Geometris</th>
+                            <th style="padding: 10px; text-align: left;">Simbol / Notasi</th>
+                            <th style="padding: 10px; text-align: left;">Rumus Matematis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Keliling</strong></td>
+                            <td style="padding: 10px;">$K$</td>
+                            <td style="padding: 10px;">$K = 2(p + l)$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Luas</strong></td>
+                            <td style="padding: 10px;">$L$</td>
+                            <td style="padding: 10px;">$L = p \times l$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Panjang Diagonal Sisi</strong></td>
+                            <td style="padding: 10px;">$d$</td>
+                            <td style="padding: 10px;">$d = \sqrt{p^2 + l^2}$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Hubungan $K, L$, dan $d$</strong></td>
+                            <td style="padding: 10px;">Identitas Kuadrat</td>
+                            <td style="padding: 10px;">$d^2 = \left(\dfrac{K}{2}\right)^2 - 2L$</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <td style="padding: 10px;"><strong>Jari-Jari Lingkaran Luar</strong></td>
+                            <td style="padding: 10px;">$R_{\text{luar}}$</td>
+                            <td style="padding: 10px;">$R = \dfrac{1}{2}d = \dfrac{1}{2}\sqrt{p^2 + l^2}$</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;"><strong>Teorema Titik Sembarang</strong></td>
+                            <td style="padding: 10px;">British Flag Theorem</td>
+                            <td style="padding: 10px;">$PA^2 + PC^2 = PB^2 + PD^2$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>7. Contoh Soal & Pembahasan Bertingkat</h2>
+
+            <!-- CONTOH 1 (Dasar) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 1: Luas, Keliling, dan Diagonal Sisi (Tingkat Dasar)</span>
+                </div>
+                <div class="soal-teks">
+                    Sebidang tanah berbentuk persegi panjang memiliki luas $32\text{ m}^2$. Jika panjang tanah tersebut adalah dua kali lebarnya ($p = 2l$), tentukan keliling dan panjang diagonal bidang tanah tersebut.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Diketahui luas $L = 32\text{ m}^2$ dan $p = 2l$.<br><br>
+                        <strong>1. Menentukan lebar ($l$) dan panjang ($p$):</strong><br>
+                        $$\begin{aligned}
+                        L &= p \times l \\
+                        32 &= (2l) \times l \\
+                        32 &= 2l^2 \\
+                        l^2 &= 16 \implies l = 4\text{ m}
+                        \end{aligned}$$
+                        Maka panjangnya adalah $p = 2l = 2(4) = 8\text{ m}$.<br><br>
+                        <strong>2. Menghitung keliling ($K$):</strong><br>
+                        $$K = 2(p + l) = 2(8 + 4) = 2(12) = 24\text{ m}$$
+                        <br>
+                        <strong>3. Menghitung panjang diagonal ($d$):</strong><br>
+                        $$d = \sqrt{p^2 + l^2} = \sqrt{8^2 + 4^2} = \sqrt{64 + 16} = \sqrt{80} = \sqrt{16 \times 5} = 4\sqrt{5}\text{ m}$$
+                        <div class="kesimpulan">
+                            Jadi, keliling tanah adalah $24\text{ m}$ dan panjang diagonalnya adalah $4\sqrt{5}\text{ m}$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 2 (SNBT) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 2: Luas Tanah Tersisa dari Jalan Setapak (Tingkat SNBT)</span>
+                </div>
+                <div class="soal-teks">
+                    Sebidang tanah berbentuk persegi panjang memiliki keliling $70\text{ meter}$ dan luas $300\text{ m}^2$. Di sekeliling tepi bagian dalam tanah tersebut akan dibuat jalan setapak dengan lebar $1\text{ meter}$. Tentukan luas area tanah yang tersisa di bagian dalam jalan setapak tersebut.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Misalkan panjang dan lebar mula-mula adalah $p$ dan $l$ (dengan $p \ge l$).<br><br>
+                        <strong>Langkah 1: Menentukan ukuran tanah mula-mula</strong><br>
+                        $$\begin{aligned}
+                        K &= 2(p + l) = 70 \implies p + l = 35 \implies l = 35 - p \\
+                        L &= p \times l = 300 \\
+                        p(35 - p) &= 300 \\
+                        35p - p^2 &= 300 \\
+                        p^2 - 35p + 300 &= 0 \\
+                        (p - 20)(p - 15) &= 0
+                        \end{aligned}$$
+                        Diperoleh panjang $p = 20\text{ m}$ dan lebar $l = 15\text{ m}$.<br><br>
+                        <strong>Langkah 2: Menentukan ukuran tanah bagian dalam</strong><br>
+                        Karena dibuat jalan setapak selebar $1\text{ m}$ di sekeliling tepi dalam, maka panjang dan lebar masing-masing berkurang $2 \times 1\text{ m} = 2\text{ m}$:<br>
+                        $$\begin{aligned}
+                        p_{\text{dalam}} &= p - 2(1) = 20 - 2 = 18\text{ m} \\
+                        l_{\text{dalam}} &= l - 2(1) = 15 - 2 = 13\text{ m}
+                        \end{aligned}$$
+                        <br>
+                        <strong>Langkah 3: Menghitung luas area tanah yang tersisa</strong><br>
+                        $$L_{\text{tersisa}} = p_{\text{dalam}} \times l_{\text{dalam}} = 18 \times 13 = 234\text{ m}^2$$
+                        <div class="kesimpulan">
+                            Jadi, luas area tanah yang tersisa adalah $234\text{ m}^2$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+
+            <!-- CONTOH 3 (HOTS) -->
+            <article class="soal-item">
+                <div class="soal-header">
+                    <span class="badge-soal">Contoh 3: Kesebangunan Segitiga Siku-Siku (Tingkat HOTS / Olimpiade)</span>
+                </div>
+                <div class="soal-teks">
+                    Diberikan sebuah persegi panjang $ABCD$ dengan panjang $AB = 7$ dan lebar $BC = 4$. Titik $E$ terletak pada segmen garis $AB$ sedemikian sehingga $BE = BC = 4$. Titik $F$ terletak pada sinar garis $BC$ sedemikian sehingga segmen $ED \perp DF$. Jika luas $\triangle EDF$ dapat dinyatakan dalam pecahan paling sederhana $\frac{a}{b}$, tentukan nilai dari $a - b$.
+                </div>
+                <button class="btn-solusi" onclick="toggleMateriSolusi(this)">LIHAT PEMBAHASAN</button>
+                <div class="pembahasan-box" style="display: none;">
+                    <div class="pembahasan-title">Pembahasan:</div>
+                    <div class="pembahasan-isi">
+                        Diketahui $AB = 7$ dan $BC = AD = 4$.<br>
+                        Titik $E$ pada $AB$ dengan $BE = 4 \implies AE = AB - BE = 7 - 4 = 3$.<br><br>
+                        <strong>Langkah 1: Menghitung panjang $DE$</strong><br>
+                        Pada segitiga siku-siku $\triangle ADE$ (siku-siku di $A$):
+                        $$DE = \sqrt{AD^2 + AE^2} = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5$$
+                        <br>
+                        <strong>Langkah 2: Menemukan kesebangunan segitiga</strong><br>
+                        Perhatikan sudut pada titik $D$: sudut $\angle ADC = 90^\circ$ dan diketahui $\angle EDF = 90^\circ$.<br>
+                        Misalkan $\angle ADE = \theta$, maka $\angle EDC = 90^\circ - \theta$.<br>
+                        Karena $\angle EDF = \angle EDC + \angle CDF = 90^\circ$, maka:
+                        $$(90^\circ - \theta) + \angle CDF = 90^\circ \implies \angle CDF = \theta = \angle ADE$$
+                        Pada segitiga siku-siku $\triangle DCF$ (siku-siku di $C$) dan $\triangle ADE$ (siku-siku di $A$):
+                        $$\triangle ADE \sim \triangle DCF$$
+                        <br>
+                        <strong>Langkah 3: Menghitung panjang $DF$</strong><br>
+                        Gunakan perbandingan kesebangunan sisi yang bersesuaian:
+                        $$\begin{aligned}
+                        \frac{CD}{DF} &= \frac{AD}{DE} \\
+                        \frac{7}{DF} &= \frac{4}{5} \\
+                        4 \cdot DF &= 35 \implies DF = \frac{35}{4}
+                        \end{aligned}$$
+                        <br>
+                        <strong>Langkah 4: Menghitung luas $\triangle EDF$</strong><br>
+                        Karena $\triangle EDF$ siku-siku di $D$ ($ED \perp DF$):
+                        $$\begin{aligned}
+                        L_{\triangle EDF} &= \frac{1}{2} \times DE \times DF \\
+                        &= \frac{1}{2} \times 5 \times \frac{35}{4} = \frac{175}{8}
+                        \end{aligned}$$
+                        Pecahan $\dfrac{175}{8}$ sudah merupakan pecahan paling sederhana dengan $a = 175$ dan $b = 8$.<br>
+                        Hitung nilai $a - b$:
+                        $$a - b = 175 - 8 = 167$$
+                        <div class="kesimpulan">
+                            Jadi, luas $\triangle EDF$ adalah $\dfrac{175}{8}$ dan nilai $a - b = 167$.
+                        </div>
+                    </div>
+                    <button class="btn-tutup" onclick="toggleMateriSolusi(this)">TUTUP</button>
+                </div>
+            </article>
+        </article>
+    </main>
+
+    <!-- Inisialisasi Visualisasi GeoSVG.js & Solusi Interaktif -->
+    <script>
+        // Fungsi Toggle Pembahasan Solusi Materi
+        function toggleMateriSolusi(btn) {
+            const item = btn.closest('.soal-item');
+            if (!item) return;
+            const box = item.querySelector('.pembahasan-box');
+            const openBtn = item.querySelector('.btn-solusi');
+            if (!box) return;
+
+            if (box.style.display === 'none' || !box.style.display) {
+                box.style.display = 'block';
+                if (openBtn) openBtn.style.display = 'none';
+            } else {
+                box.style.display = 'none';
+                if (openBtn) openBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Render Grafik GeoSVG saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            const TEMA = {
+                utama: "#0284c7",
+                utamaMuda: "#e0f2fe",
+                aksen: "#0d9488",
+                aksenMuda: "#ccfbf1",
+                merah: "#e11d48",
+                merahMuda: "#ffe4e6",
+                oranye: "#d97706",
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",
+                bingkai: "#cbd5e1",
+                teks: "#334155"
+            };
+
+            // 1. Visualisasi Sifat Geometris Persegi Panjang ABCD (Panjang p, Lebar l, Diagonal d)
+            const elSifat = document.getElementById("svg-sifat-persegi-panjang");
+            if (elSifat && typeof GeoSVG === "function") {
+                const geo1 = new GeoSVG(elSifat, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Sifat-Sifat Geometri Persegi Panjang ABCD: Sisi, Sudut, dan Diagonal"
+                });
+
+                const X0 = 65, Y0 = 45, p = 190, l = 110;
+                const A = [X0, Y0 + l];     // Kiri bawah
+                const B = [X0 + p, Y0 + l]; // Kanan bawah
+                const C = [X0 + p, Y0];     // Kanan atas
+                const D = [X0, Y0];         // Kiri atas
+                const O = [X0 + p / 2, Y0 + l / 2]; // Titik potong diagonal
+
+                // Poligon Persegi Panjang ABCD
+                geo1.buatPoligon([A, B, C, D], {
+                    fill: "rgba(2, 132, 199, 0.05)",
+                    stroke: TEMA.utama,
+                    strokeWidth: 2.2
+                });
+
+                // Garis Diagonal AC dan BD
+                geo1.buatSegmen(A, C, { stroke: TEMA.merah, strokeWidth: 1.6 });
+                geo1.buatSegmen(B, D, { stroke: TEMA.merah, strokeWidth: 1.6 });
+
+                // Tanda Siku-Siku di ke-4 sudut
+                geo1.buatSiku(B, A, D, { size: 10, stroke: "#64748b", strokeWidth: 1.2 });
+                geo1.buatSiku(C, B, A, { size: 10, stroke: "#64748b", strokeWidth: 1.2 });
+                geo1.buatSiku(D, C, B, { size: 10, stroke: "#64748b", strokeWidth: 1.2 });
+                geo1.buatSiku(A, D, C, { size: 10, stroke: "#64748b", strokeWidth: 1.2 });
+
+                // Tanda Sama Panjang: Sisi Panjang (2 garis) dan Sisi Lebar (1 garis)
+                geo1.buatTandaSamaPanjang(A, B, { count: 2, size: 8, stroke: TEMA.utama });
+                geo1.buatTandaSamaPanjang(C, D, { count: 2, size: 8, stroke: TEMA.utama });
+                geo1.buatTandaSamaPanjang(A, D, { count: 1, size: 8, stroke: TEMA.aksen });
+                geo1.buatTandaSamaPanjang(B, C, { count: 1, size: 8, stroke: TEMA.aksen });
+
+                // Titik-titik sudut
+                [
+                    { pt: A, lbl: "A", pos: "top-right", dx: -8, dy: 8 },
+                    { pt: B, lbl: "B", pos: "top-left", dx: 8, dy: 8 },
+                    { pt: C, lbl: "C", pos: "bottom-left", dx: 8, dy: -8 },
+                    { pt: D, lbl: "D", pos: "bottom-right", dx: -8, dy: -8 },
+                    { pt: O, lbl: "O", pos: "middle-center", dx: 10, dy: 8 }
+                ].forEach(item => {
+                    geo1.buatLingkaran(item.pt, 3.5, { fill: TEMA.gelap });
+                    geo1.buatTeks(item.pt[0] + item.dx, item.pt[1] + item.dy, item.lbl, {
+                        position: item.pos,
+                        fontSize: "11px",
+                        fontWeight: "bold",
+                        fill: TEMA.gelap
+                    });
+                });
+
+                // Label Sisi dan Diagonal
+                geo1.buatTeks(X0 + p / 2, Y0 + l + 16, "panjang (p)", { position: "top-center", fontSize: "10.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(X0 - 18, Y0 + l / 2, "lebar (l)", { position: "middle-right", fontSize: "10.5px", fontWeight: "bold", fill: TEMA.aksen });
+                geo1.buatTeks(O[0] - 25, O[1] - 22, "d = √(p² + l²)", { position: "bottom-center", fontSize: "10px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Keterangan Bawah
+                geo1.buatTeks(170, 216, "Persegi Panjang ABCD: 2 Pasang Sisi Sama, 4 Sudut 90°, Diagonal d = √(p² + l²)", {
+                    position: "middle-center",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 2. Visualisasi 2 Sumbu Simetri Lipat & Simetri Putar Tingkat 2
+            const elSimetri = document.getElementById("svg-simetri-persegi-panjang");
+            if (elSimetri && typeof GeoSVG === "function") {
+                const geo2 = new GeoSVG(elSimetri, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Dua Sumbu Simetri Lipat dan Simetri Putar Tingkat 2 pada Persegi Panjang"
+                });
+
+                const X0 = 65, Y0 = 45, p = 180, l = 100;
+                const xc = X0 + p / 2, yc = Y0 + l / 2;
+
+                // Bangun Persegi Panjang
+                geo2.buatPersegiPanjang([X0, Y0], p, l, {
+                    fill: "rgba(13, 148, 136, 0.05)",
+                    stroke: TEMA.aksen,
+                    strokeWidth: 2
+                });
+
+                // 1. Sumbu Simetri Lipat Vertikal
+                geo2.buatSegmen([xc, Y0 - 18], [xc, Y0 + l + 18], { stroke: TEMA.merah, strokeWidth: 1.8, strokeDasharray: "4 3" });
+                geo2.buatTeks(xc, Y0 - 24, "Sumbu Lipat 1", { position: "bottom-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // 2. Sumbu Simetri Lipat Horizontal
+                geo2.buatSegmen([X0 - 18, yc], [X0 + p + 18, yc], { stroke: TEMA.merah, strokeWidth: 1.8, strokeDasharray: "4 3" });
+                geo2.buatTeks(X0 + p + 22, yc, "Sumbu Lipat 2", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Pusat Rotasi di tengah
+                geo2.buatLingkaran([xc, yc], 4, { fill: TEMA.gelap });
+
+                // Busur panah rotasi 180 derajat di pusat
+                geo2.buatBusur([xc, yc], 24, -90, 90, { stroke: TEMA.utama, strokeWidth: 1.8 });
+                geo2.buatTeks(xc + 32, yc - 12, "180°", { position: "middle-left", fontSize: "10px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 204, "Hanya 2 Sumbu Lipat (Diagonal BUKAN Sumbu Lipat) + Putar 180°", {
+                    position: "middle-center",
+                    fontSize: "9px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // 3. Visualisasi Teorema Bendera Inggris (British Flag Theorem)
+            const elBritish = document.getElementById("svg-british-flag");
+            if (elBritish && typeof GeoSVG === "function") {
+                const geo3 = new GeoSVG(elBritish, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Teorema Bendera Inggris: PA² + PC² = PB² + PD²"
+                });
+
+                const X0 = 60, Y0 = 40, p = 190, l = 110;
+                const A = [X0, Y0 + l];
+                const B = [X0 + p, Y0 + l];
+                const C = [X0 + p, Y0];
+                const D = [X0, Y0];
+
+                // Persegi Panjang ABCD
+                geo3.buatPersegiPanjang([X0, Y0], p, l, {
+                    fill: "rgba(2, 132, 199, 0.05)",
+                    stroke: TEMA.utama,
+                    strokeWidth: 2
+                });
+
+                // Titik P sembarang di dalam
+                const P = [X0 + 70, Y0 + 40];
+
+                // Garis bantu horizontal dan vertikal melalui P
+                geo3.buatSegmen([X0, P[1]], [X0 + p, P[1]], { stroke: "#cbd5e1", strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo3.buatSegmen([P[0], Y0], [P[0], Y0 + l], { stroke: "#cbd5e1", strokeWidth: 1.2, strokeDasharray: "3 2" });
+
+                // Segmen PA dan PC (Warna Biru / Pasangan 1)
+                geo3.buatSegmen(P, A, { stroke: TEMA.utama, strokeWidth: 2 });
+                geo3.buatSegmen(P, C, { stroke: TEMA.utama, strokeWidth: 2 });
+
+                // Segmen PB dan PD (Warna Merah / Pasangan 2)
+                geo3.buatSegmen(P, B, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo3.buatSegmen(P, D, { stroke: TEMA.merah, strokeWidth: 2 });
+
+                // Titik P dan Titik Sudut
+                geo3.buatLingkaran(P, 5, { fill: TEMA.oranye, stroke: "#ffffff", strokeWidth: 1.5 });
+                geo3.buatTeks(P[0] + 8, P[1] - 8, "P", { position: "bottom-left", fontSize: "11px", fontWeight: "bold", fill: TEMA.oranye });
+
+                geo3.buatTeks(A[0] - 8, A[1] + 8, "A", { position: "top-right", fontSize: "10px", fontWeight: "bold", fill: TEMA.gelap });
+                geo3.buatTeks(B[0] + 8, B[1] + 8, "B", { position: "top-left", fontSize: "10px", fontWeight: "bold", fill: TEMA.gelap });
+                geo3.buatTeks(C[0] + 8, C[1] - 8, "C", { position: "bottom-left", fontSize: "10px", fontWeight: "bold", fill: TEMA.gelap });
+                geo3.buatTeks(D[0] - 8, D[1] - 8, "D", { position: "bottom-right", fontSize: "10px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 204, "British Flag Theorem: PA² + PC² = PB² + PD²", {
+                    position: "middle-center",
+                    fontSize: "10.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
+
