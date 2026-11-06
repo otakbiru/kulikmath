@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Teorema Menelaus</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Teorema Menelaus</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengantar & Pernyataan Teorema Menelaus</h2>
+            <p>
+                <strong>Teorema Menelaus</strong> adalah salah satu teorema paling penting dan mendasar dalam geometri klasik, geometri proyektif, dan kompetisi matematika (OSN/IMO). Teorema ini dinamakan atas matematikawan dan astronom Yunani Kuno <strong>Menelaus dari Aleksandria</strong> (sekitar 100 M) yang mencatatnya dalam karya terkenalnya <em>Sphaerica</em>.
+            </p>
+            <p>
+                Teorema ini memberikan syarat perlu dan cukup (kriteria ekuivalensi) agar <strong>tiga titik yang masing-masing terletak pada garis pembawa sisi segitiga bersifat kolinier (terletak pada satu garis lurus yang sama)</strong>.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: bold;">Pernyataan Teorema Menelaus:</p>
+                <p style="margin: 0.3rem 0 0 0;">
+                    Diberikan segitiga sembarang $\triangle ABC$. Sebuah garis lurus $\ell$ (disebut <em>garis transversal</em>) yang tidak melalui titik sudut segitiga memotong garis pembawa sisi-sisi segitiga di tiga titik:
+                </p>
+                <ul style="margin: 0.3rem 0 0.3rem 1.2rem; padding: 0;">
+                    <li>Titik $F$ pada garis $AB$</li>
+                    <li>Titik $E$ pada garis $AC$</li>
+                    <li>Titik $D$ pada garis $BC$ (atau perpanjangannya)</li>
+                </ul>
+                <p style="margin: 0;">
+                    Ketiga titik potong $D, E, F$ bersifat <strong>kolinier (segaris)</strong> jika dan hanya jika perkalian rasio segmen garisnya bernilai:
+                </p>
+                $$\frac{AF}{FB} \cdot \frac{BD}{DC} \cdot \frac{CE}{EA} = 1 \quad (\text{dalam panjang tak berarah})$$
+                <p style="margin: 0.3rem 0 0 0; font-size: 0.9rem;">
+                    Atau dalam konvensi segmen garis berarah (<em>directed segments</em>):
+                </p>
+                $$\frac{\vec{AF}}{\vec{FB}} \cdot \frac{\vec{BD}}{\vec{DC}} \cdot \frac{\vec{CE}}{\vec{EA}} = -1$$
+            </div>
+
+            <div class="row">
+                <div class="col col-2">
+                    <h3>Aturan Arah Putaran Siklik (Tips Menghafal)</h3>
+                    <p>
+                        Agar tidak tertukar dalam menuliskan pecahan perbandingan, ikuti lintasan putaran mengelilingi verteks segitiga secara siklik ($A \to B \to C \to A$) dengan menyisipkan titik potong transversal di antara setiap pasang titik sudut:
+                    </p>
+                    <ul>
+                        <li>Dari $A$ lewat titik potong $F$ menuju $B$: $\frac{AF}{FB}$</li>
+                        <li>Dari $B$ lewat titik potong $D$ menuju $C$: $\frac{BD}{DC}$</li>
+                        <li>Dari $C$ lewat titik potong $E$ menuju $A$: $\frac{CE}{EA}$</li>
+                    </ul>
+                    <p>
+                        Hasil kali ketiga fraksi tersebut selalu tepat bernilai <strong>1</strong>!
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0; font-size: 0.9rem;">
+                            <strong>Aksioma Pasch:</strong> Sebuah garis lurus tidak mungkin memotong ketiga segmen interior segitiga sekaligus tanpa melewati verteksnya. Oleh karena itu, garis transversal $\ell$ selalu memotong <strong>dua sisi interior dan satu perpanjangan sisi eksterior</strong>, atau memotong <strong>ketiga perpanjangan sisi di luar segitiga</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-menelaus-tipe-1" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Garis transversal $\ell$ memotong sisi interior $AB$ di $F$, $AC$ di $E$, dan perpanjangan sisi $BC$ di $D$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>2. Pembuktian Geometris Teorema Menelaus</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <p>
+                        Terdapat beberapa metode elegan untuk membuktikan Teorema Menelaus. Metode yang paling intuitif adalah menarik <strong>garis tegak lurus (ketinggian)</strong> dari ketiga titik sudut segitiga ke garis transversal $\ell$.
+                    </p>
+                    <ol>
+                        <li>Dari masing-masing verteks $A, B, C$, tarik garis tegak lurus ke garis transversal $\ell$, dengan panjang masing-masing $h_A, h_B, h_C$.</li>
+                        <li>Perhatikan pasangan segitiga siku-siku sebangun yang terbentuk di sekitar setiap titik potong:
+                            <ul>
+                                <li>Pada titik $F$: $\triangle A H_A F \sim \triangle B H_B F \implies \frac{AF}{FB} = \frac{h_A}{h_B}$</li>
+                                <li>Pada titik $D$: $\triangle B H_B D \sim \triangle C H_C D \implies \frac{BD}{DC} = \frac{h_B}{h_C}$</li>
+                                <li>Pada titik $E$: $\triangle C H_C E \sim \triangle A H_A E \implies \frac{CE}{EA} = \frac{h_C}{h_A}$</li>
+                            </ul>
+                        </li>
+                        <li>Kalikan ketiga rasio kesebangunan tersebut secara langsung:
+                            $$\frac{AF}{FB} \cdot \frac{BD}{DC} \cdot \frac{CE}{EA} = \frac{h_A}{h_B} \cdot \frac{h_B}{h_C} \cdot \frac{h_C}{h_A} = 1 \quad \blacksquare$$
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-bukti-garis-sejajar" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Pembuktian Teorema Menelaus menggunakan proyeksi ketinggian tegak lurus ($h_A, h_B, h_C$) ke garis transversal $\ell$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Dualitas Teorema Menelaus vs Teorema Ceva</h2>
+            <p>
+                Dalam geometri olimpiade, Teorema Menelaus dan Teorema Ceva merupakan sepasang <strong>teorema kembar (dual)</strong> yang saling melengkapi dalam menganalisis konfigurasi garis dan titik pada segitiga:
+            </p>
+
+            <table class="table-auto" style="width: 100%; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--bg-hover, #f1f5f9);">
+                        <th>Parameter Perbandingan</th>
+                        <th>Teorema Menelaus</th>
+                        <th>Teorema Ceva</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tujuan Pembuktian</strong></td>
+                        <td>Membuktikan <strong>Kolinieritas</strong> (3 titik terletak pada satu garis lurus).</td>
+                        <td>Membuktikan <strong>Konkurensi</strong> (3 garis berpotongan tepat di satu titik).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Konfigurasi Objek</strong></td>
+                        <td>Satu garis transversal $\ell$ memotong 3 garis sisi segitiga.</td>
+                        <td>Tiga garis sevian ($AD, BE, CF$) ditarik dari titik sudut segitiga.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Persamaan Nilai Mutlak</strong></td>
+                        <td>$\dfrac{AF}{FB} \cdot \dfrac{BD}{DC} \cdot \dfrac{CE}{EA} = 1$</td>
+                        <td>$\dfrac{AF}{FB} \cdot \dfrac{BD}{DC} \cdot \dfrac{CE}{EA} = 1$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nilai Rasio Berarah</strong></td>
+                        <td>Hasil kali $= -1$ (jumlah titik potong eksterior ganjil: $1$ atau $3$).</td>
+                        <td>Hasil kali $= +1$ (jumlah titik potong eksterior genap: $0$ atau $2$).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h3>Kebalikan Teorema Menelaus (Converse Theorem)</h3>
+                    <p>
+                        Jika titik $F$ terletak pada garis $AB$, titik $E$ pada garis $AC$, dan titik $D$ pada garis $BC$ (dengan tepat satu atau tiga titik berada pada perpanjangan sisi luar), dan memenuhi persamaan:
+                    </p>
+                    $$\frac{AF}{FB} \cdot \frac{BD}{DC} \cdot \frac{CE}{EA} = 1$$
+                    <p>
+                        maka ketiga titik $D, E,$ dan $F$ <strong>pasti terletak pada satu garis lurus (kolinier)</strong>. Sifat kebalikan ini adalah senjata utama dalam membuktikan kesejajaran dan kesegarisan pada soal-soal geometri tingkat tinggi.
+                    </p>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-menelaus-ceva-dual" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Dualitas Ceva (konkurensi 3 garis sevian di $P$) versus Menelaus (kolinieritas 3 titik pada transversal $\ell$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>4. Strategi Praktis: Memilih Segitiga Acuan & Garis Transversal</h2>
+            <p>
+                Kunci utama keberhasilan memecahkan soal menggunakan Teorema Menelaus adalah <strong>ketepatan mengisolasi sub-segitiga target</strong> dan <strong>mengidentifikasi garis transversal pemotong</strong>.
+            </p>
+            <ol>
+                <li><strong>Identifikasi Rasio yang Dicari:</strong> Tentukan segmen garis mana yang ingin dicari perbandingannya (misalnya perbandingan bagian garis sevian yang terpotong di interior segitiga).</li>
+                <li><strong>Pilih Segitiga Acuan:</strong> Pilih segitiga yang memuat ruas garis yang dicari sebagai salah satu sisinya.</li>
+                <li><strong>Pilih Garis Transversal:</strong> Pilih garis lurus ketiga yang memotong dua sisi segitiga acuan serta satu perpanjangan sisinya, dan memuat titik-titik rasio yang sudah diketahui nilainya.</li>
+            </ol>
+
+            <h2>5. Contoh Soal Berjenjang & Pembahasan Komprehensif</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Perhitungan Rasio Segmen Garis Transversal</h3>
+                <p>
+                    Pada segitiga $\triangle ABC$, titik $F$ terletak pada sisi $AB$ sedemikian sehingga $AF : FB = 1 : 2$, dan titik $E$ terletak pada sisi $AC$ sedemikian sehingga $AE : EC = 3 : 1$. Garis lurus yang melalui $F$ dan $E$ diperpanjang hingga memotong perpanjangan sisi $BC$ di titik $D$.
+                </p>
+                <ol type="a">
+                    <li>Gunakan Teorema Menelaus untuk menentukan nilai perbandingan $\frac{BD}{DC}$.</li>
+                    <li>Tentukan letak posisi titik $D$ terhadap segmen $BC$ dan hitung rasio panjang $BC : CD$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menerapkan Teorema Menelaus pada $\triangle ABC$:</strong><br>
+                        Garis transversal $FED$ memotong sisi $AB$ di $F$, sisi $AC$ di $E$, dan perpanjangan $BC$ di $D$. Berdasarkan Teorema Menelaus:
+                        $$\frac{AF}{FB} \cdot \frac{BD}{DC} \cdot \frac{CE}{EA} = 1$$
+                        Dari informasi soal:
+                        $$\frac{AF}{FB} = \frac{1}{2}$$
+                        Karena $AE : EC = 3 : 1$, maka:
+                        $$\frac{CE}{EA} = \frac{1}{3}$$
+                        Substitusikan kedua nilai ini ke persamaan Menelaus:
+                        $$\left(\frac{1}{2}\right) \cdot \frac{BD}{DC} \cdot \left(\frac{1}{3}\right) = 1$$
+                        $$\frac{1}{6} \cdot \frac{BD}{DC} = 1 \implies \frac{BD}{DC} = 6$$
+                    </p>
+                    <p>
+                        <strong>(b) Menganalisis Posisi Titik $D$ dan Rasio $BC : CD$:</strong><br>
+                        Karena $\frac{BD}{DC} = 6 > 1$, maka $BD > DC$. Artinya titik $D$ berada di luar ruas $BC$ pada sisi perpanjangan $C$ (melewati $C$).
+                        Panjang segmen memenuhi hubungan:
+                        $$BD = BC + CD$$
+                        Karena $\frac{BD}{DC} = 6$, kita dapat memisalkan $CD = 1\text{ satuan}$, sehingga $BD = 6\text{ satuan}$.
+                        $$BC = BD - CD = 6 - 1 = 5\text{ satuan}$$
+                        Maka perbandingan panjang ruas garis adalah:
+                        $$\frac{BC}{CD} = \frac{5}{1} \iff BC : CD = 5 : 1$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Rasio $\frac{BD}{DC} = 6$, titik $D$ terletak pada perpanjangan $BC$ melewati $C$, dan rasio $BC : CD = 5 : 1$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat SNBT / UTBK — Rasio Titik Potong Garis Sevian di Interior</h3>
+                <p>
+                    Pada segitiga $\triangle ABC$, titik $D$ adalah titik tengah sisi $BC$ ($BD = DC$), dan titik $E$ terletak pada sisi $AC$ sedemikian sehingga $AE : EC = 1 : 2$. Garis berat $AD$ dan garis sevian $BE$ saling berpotongan di titik $P$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan perbandingan panjang segmen $AP : PD$ dengan menerapkan Teorema Menelaus pada sub-segitiga yang sesuai.</li>
+                    <li>Tentukan perbandingan panjang segmen $BP : PE$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menghitung Rasio $AP : PD$:</strong><br>
+                        Pilihlah <strong>segitiga acuan $\triangle ADC$</strong>.
+                        Garis yang memotong sisi-sisi $\triangle ADC$ adalah garis <strong>$B - P - E$</strong>, yang bertindak sebagai garis transversal:
+                    </p>
+                    <ul>
+                        <li>Memotong sisi $AD$ di titik $P$</li>
+                        <li>Memotong sisi $AC$ di titik $E$</li>
+                        <li>Memotong perpanjangan sisi $CD$ di titik $B$</li>
+                    </ul>
+                    <p>
+                        Terapkan Teorema Menelaus pada $\triangle ADC$ dengan garis transversal $BPE$:
+                        $$\frac{AP}{PD} \cdot \frac{DB}{BC} \cdot \frac{CE}{EA} = 1$$
+                        Identifikasi rasio-rasio yang diketahui:
+                    </p>
+                    <ul>
+                        <li>Karena $D$ titik tengah $BC$, maka $DB = 1$ bagian dan $BC = 2$ bagian, sehingga $\frac{DB}{BC} = \frac{1}{2}$.</li>
+                        <li>Karena $AE : EC = 1 : 2$, maka $\frac{CE}{EA} = \frac{2}{1} = 2$.</li>
+                    </ul>
+                    <p>
+                        Substitusikan ke dalam persamaan Menelaus:
+                        $$\frac{AP}{PD} \cdot \left(\frac{1}{2}\right) \cdot 2 = 1 \implies \frac{AP}{PD} \cdot 1 = 1 \implies \frac{AP}{PD} = 1$$
+                        Artinya, $AP : PD = 1 : 1$ (titik $P$ tepat merupakan titik tengah dari ruas garis berat $AD$!).
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Rasio $BP : PE$:</strong><br>
+                        Pilihlah <strong>segitiga acuan $\triangle BCE$</strong>.
+                        Garis yang memotong sisi-sisi $\triangle BCE$ adalah garis <strong>$A - P - D$</strong> sebagai garis transversal:
+                    </p>
+                    <ul>
+                        <li>Memotong sisi $BE$ di titik $P$</li>
+                        <li>Memotong sisi $BC$ di titik $D$</li>
+                        <li>Memotong perpanjangan sisi $CE$ di titik $A$</li>
+                    </ul>
+                    <p>
+                        Terapkan Teorema Menelaus pada $\triangle BCE$ dengan garis transversal $APD$:
+                        $$\frac{BP}{PE} \cdot \frac{EA}{AC} \cdot \frac{CD}{DB} = 1$$
+                        Identifikasi rasio:
+                    </p>
+                    <ul>
+                        <li>$AE = 1$ bagian, $EC = 2$ bagian $\implies AC = 3$ bagian, sehingga $\frac{EA}{AC} = \frac{1}{3}$.</li>
+                        <li>Karena $D$ titik tengah $BC$, maka $\frac{CD}{DB} = \frac{1}{1} = 1$.</li>
+                    </ul>
+                    <p>
+                        Substitusikan ke persamaan:
+                        $$\frac{BP}{PE} \cdot \left(\frac{1}{3}\right) \cdot 1 = 1 \implies \frac{BP}{PE} = 3 \iff BP : PE = 3 : 1$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Rasio $AP : PD = 1 : 1$ dan rasio $BP : PE = 3 : 1$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Pembuktian Teorema Ceva Melalui Teorema Menelaus Ganda</h3>
+                <p>
+                    Diberikan segitiga sembarang $\triangle ABC$ dengan tiga garis sevian $AD, BE,$ dan $CF$ yang konkuren (berpotongan di satu titik interior $P$).
+                </p>
+                <p>
+                    Gunakan Teorema Menelaus secara berantai pada sub-segitiga $\triangle ABD$ dan sub-segitiga $\triangle ACD$ untuk membuktikan kebenaran Teorema Ceva:
+                    $$\frac{AF}{FB} \cdot \frac{BD}{DC} \cdot \frac{CE}{EA} = 1$$
+                </p>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>Langkah 1: Terapkan Menelaus pada $\triangle ABD$</strong><br>
+                        Perhatikan sub-segitiga $\triangle ABD$ dengan garis transversal yang melalui titik $C, P, F$:
+                    </p>
+                    <ul>
+                        <li>Titik $F$ terletak pada sisi $AB$</li>
+                        <li>Titik $P$ terletak pada sisi $AD$</li>
+                        <li>Titik $C$ terletak pada perpanjangan sisi $BD$</li>
+                    </ul>
+                    <p>
+                        Berdasarkan Teorema Menelaus pada $\triangle ABD$ dengan transversal $CPF$:
+                        $$\frac{AF}{FB} \cdot \frac{BC}{CD} \cdot \frac{DP}{PA} = 1$$
+                        Isolasi fraksi $\frac{AF}{FB}$:
+                        $$\frac{AF}{FB} = \frac{CD}{BC} \cdot \frac{PA}{DP} \quad \text{--- (Persamaan 1)}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2: Terapkan Menelaus pada $\triangle ACD$</strong><br>
+                        Perhatikan sub-segitiga $\triangle ACD$ dengan garis transversal yang melalui titik $B, P, E$:
+                    </p>
+                    <ul>
+                        <li>Titik $E$ terletak pada sisi $AC$</li>
+                        <li>Titik $P$ terletak pada sisi $AD$</li>
+                        <li>Titik $B$ terletak pada perpanjangan sisi $CD$</li>
+                    </ul>
+                    <p>
+                        Berdasarkan Teorema Menelaus pada $\triangle ACD$ dengan transversal $BPE$:
+                        $$\frac{AE}{EC} \cdot \frac{CB}{BD} \cdot \frac{DP}{PA} = 1$$
+                        Isolasi fraksi $\frac{AE}{EC}$:
+                        $$\frac{AE}{EC} = \frac{BD}{BC} \cdot \frac{PA}{DP} \quad \text{--- (Persamaan 2)}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3: Menggabungkan Kedua Persamaan</strong><br>
+                        Bagi Persamaan 1 dengan Persamaan 2:
+                        $$\frac{\frac{AF}{FB}}{\frac{AE}{EC}} = \frac{\frac{CD}{BC} \cdot \frac{PA}{DP}}{\frac{BD}{BC} \cdot \frac{PA}{DP}}$$
+                        Faktor $\frac{PA}{DP}$ dan penyebut $BC$ saling membagi habis:
+                        $$\frac{AF}{FB} \cdot \frac{EC}{AE} = \frac{CD}{BD}$$
+                        Kalikan kedua ruas dengan $\frac{BD}{CD}$:
+                        $$\frac{AF}{FB} \cdot \frac{BD}{CD} \cdot \frac{EC}{AE} = 1$$
+                        Karena $\frac{EC}{AE} = \frac{CE}{EA}$, diperoleh:
+                        $$\frac{AF}{FB} \cdot \frac{BD}{DC} \cdot \frac{CE}{EA} = 1$$
+                        Teorema Ceva terbukti secara elegan dan analitis melalui aplikasi ganda Teorema Menelaus! $\blacksquare$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Teorema Menelaus berhasil membuktikan Teorema Ceva melalui dekomposisi garis transversal $CPF$ dan $BPE$ pada dua sub-segitiga.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                abuMuda: "#f1f5f9",
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Konfigurasi Transversal Menelaus Tipe I
+            // ==========================================
+            const elTipe1 = document.getElementById("svg-menelaus-tipe-1");
+            if (elTipe1) {
+                const geo1 = new GeoSVG(elTipe1, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Konfigurasi Garis Transversal Teorema Menelaus"
+                });
+
+                const ptA = [130, 45];
+                const ptB = [60, 165];
+                const ptC = [210, 165];
+                const ptD = [285, 165]; // Titik potong di perpanjangan BC
+                const ptE = [174, 111]; // Titik potong di sisi AC
+                const ptF = [109.7, 79.7]; // Titik potong di sisi AB
+
+                // Perpanjangan Sisi BC ke Titik D (Dashed Abu-abu)
+                geo1.buatSegmen(ptC, ptD, { stroke: TEMA.abu, strokeWidth: 1.5, strokeDasharray: "4 3" });
+
+                // Segitiga Utama ABC
+                geo1.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.35
+                });
+
+                // Garis Transversal Menelaus l Melalui F, E, D (Merah Tebal)
+                const ptL1 = [75, 62.7];
+                const ptL2 = [300, 172.3];
+                geo1.buatSegmen(ptL1, ptL2, { stroke: TEMA.merah, strokeWidth: 2.2 });
+                geo1.buatTeks(ptL1[0] - 6, ptL1[1] - 4, "ℓ", { fontSize: "11px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik-titik Potong Transversal (F, E, D)
+                const potong = [
+                    { pt: ptF, l: "F", o: [-10, -4] },
+                    { pt: ptE, l: "E", o: [8, -4] },
+                    { pt: ptD, l: "D", o: [4, 8] }
+                ];
+                potong.forEach(p => {
+                    geo1.buatLingkaran(p.pt, 3.8, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                    geo1.buatTeks(p.pt[0] + p.o[0], p.pt[1] + p.o[1], p.l, { fontSize: "9.5px", fontWeight: "bold", fill: TEMA.merah });
+                });
+
+                // Titik Verteks Segitiga (A, B, C)
+                const verteks = [
+                    { pt: ptA, l: "A", o: [0, -8] },
+                    { pt: ptB, l: "B", o: [-8, 4] },
+                    { pt: ptC, l: "C", o: [-4, 10] }
+                ];
+                verteks.forEach(v => {
+                    geo1.buatLingkaran(v.pt, 3.5, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.2 });
+                    geo1.buatTeks(v.pt[0] + v.o[0], v.pt[1] + v.o[1], v.l, { fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                });
+
+                // Keterangan Bawah
+                geo1.buatTeks(160, 208, "Teorema Menelaus: (AF/FB) · (BD/DC) · (CE/EA) = 1", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Pembuktian Geometris via Ketinggian Tegak Lurus
+            // ==========================================
+            const elBukti = document.getElementById("svg-bukti-garis-sejajar");
+            if (elBukti) {
+                const geo2 = new GeoSVG(elBukti, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Pembuktian Teorema Menelaus dengan Garis Ketinggian"
+                });
+
+                const ptA = [130, 45];
+                const ptB = [60, 165];
+                const ptC = [210, 165];
+                const ptD = [285, 165];
+                const ptE = [174, 111];
+                const ptF = [109.7, 79.7];
+
+                // Kaki Tegak Lurus Proyeksi dari A, B, C ke Transversal l
+                const ptHa = [112.5, 81.1];
+                const ptHb = [103.1, 76.5];
+                const ptHc = [224.4, 135.5];
+
+                // Segitiga ABC & Perpanjangan BC
+                geo2.buatSegmen(ptC, ptD, { stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo2.buatPoligon([ptA, ptB, ptC], { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 1.8, opacity: 0.25 });
+
+                // Garis Transversal l (Merah)
+                geo2.buatSegmen([75, 62.7], [300, 172.3], { stroke: TEMA.merah, strokeWidth: 2 });
+
+                // Ketinggian h_A, h_B, h_C (Ungu)
+                geo2.buatSegmen(ptA, ptHa, { stroke: TEMA.ungu, strokeWidth: 1.8 });
+                geo2.buatSiku([ptHa[0] - 6, ptHa[1] - 3], ptHa, ptA, { size: 6, stroke: TEMA.ungu, strokeWidth: 1 });
+                geo2.buatTeks(126, 68, "hA", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.ungu });
+
+                geo2.buatSegmen(ptB, ptHb, { stroke: TEMA.ungu, strokeWidth: 1.8 });
+                geo2.buatSiku([ptHb[0] + 6, ptHb[1] + 3], ptHb, ptB, { size: 6, stroke: TEMA.ungu, strokeWidth: 1 });
+                geo2.buatTeks(78, 120, "hB", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.ungu });
+
+                geo2.buatSegmen(ptC, ptHc, { stroke: TEMA.ungu, strokeWidth: 1.8 });
+                geo2.buatSiku([ptHc[0] - 6, ptHc[1] - 3], ptHc, ptC, { size: 6, stroke: TEMA.ungu, strokeWidth: 1 });
+                geo2.buatTeks(220, 155, "hC", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.ungu });
+
+                // Titik Potong F, E, D
+                geo2.buatLingkaran(ptF, 3.2, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                geo2.buatTeks(ptF[0] - 6, ptF[1] - 6, "F", { position: "bottom-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                geo2.buatLingkaran(ptE, 3.2, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                geo2.buatTeks(ptE[0] + 6, ptE[1] - 6, "E", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                geo2.buatLingkaran(ptD, 3.2, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                geo2.buatTeks(ptD[0] + 6, ptD[1] + 6, "D", { position: "top-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Verteks A, B, C
+                geo2.buatLingkaran(ptA, 3.5, { fill: TEMA.gelap });
+                geo2.buatTeks(ptA[0], ptA[1] - 6, "A", { position: "bottom-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.gelap });
+                geo2.buatLingkaran(ptB, 3.5, { fill: TEMA.gelap });
+                geo2.buatTeks(ptB[0] - 6, ptB[1] + 4, "B", { position: "middle-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.gelap });
+                geo2.buatLingkaran(ptC, 3.5, { fill: TEMA.gelap });
+                geo2.buatTeks(ptC[0] + 6, ptC[1] + 4, "C", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Keterangan Bawah
+                geo2.buatTeks(160, 208, "(hA/hB) · (hB/hC) · (hC/hA) = 1  ⇒  Menelaus Terbukti Sahih", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.ungu
+                });
+            }
+
+            // ==========================================
+            // 3. Dualitas: Ceva (Konkurensi) vs Menelaus (Kolinieritas)
+            // ==========================================
+            const elDual = document.getElementById("svg-menelaus-ceva-dual");
+            if (elDual) {
+                const geo3 = new GeoSVG(elDual, 320, 220, {
+                    viewBox: "0 0 320 220",
+                    margin: 8,
+                    title: "Dualitas Teorema Ceva dan Teorema Menelaus"
+                });
+
+                // Pembagi Tengah Kanvas
+                geo3.buatSegmen([160, 20], [160, 190], { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "3 3" });
+
+                // --- Sisi Kiri: Teorema Ceva ---
+                const p1A = [80, 45];
+                const p1B = [25, 165];
+                const p1C = [135, 165];
+                const p1P = [80, 125]; // Titik konkurensi
+
+                const p1D = [80, 165];  // Kaki AD di BC
+                const p1E = [112, 115]; // Kaki BE di AC
+                const p1F = [48, 115];  // Kaki CF di AB
+
+                geo3.buatPoligon([p1A, p1B, p1C], { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 1.8, opacity: 0.3 });
+
+                // Garis Sevian AD, BE, CF (Oranye)
+                geo3.buatSegmen(p1A, p1D, { stroke: TEMA.oranye, strokeWidth: 1.5 });
+                geo3.buatSegmen(p1B, p1E, { stroke: TEMA.oranye, strokeWidth: 1.5 });
+                geo3.buatSegmen(p1C, p1F, { stroke: TEMA.oranye, strokeWidth: 1.5 });
+
+                // Titik P Ceva
+                geo3.buatLingkaran(p1P, 3.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                geo3.buatTeks(p1P[0] + 6, p1P[1] - 4, "P", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+                geo3.buatTeks(80, 28, "TEOREMA CEVA", { position: "middle-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo3.buatTeks(80, 182, "Konkurensi: 3 Sevian", { position: "middle-center", fontSize: "7.5px", fill: TEMA.teks });
+
+                // --- Sisi Kanan: Teorema Menelaus ---
+                const p2A = [235, 45];
+                const p2B = [185, 165];
+                const p2C = [270, 165];
+                const p2D = [305, 165]; // Titik potong eksterior
+                const p2E = [256, 115];
+                const p2F = [218, 86];
+
+                geo3.buatSegmen(p2C, p2D, { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "2 2" });
+                geo3.buatPoligon([p2A, p2B, p2C], { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 1.8, opacity: 0.3 });
+
+                // Garis Transversal Menelaus (Merah)
+                geo3.buatSegmen([205, 75], [315, 172], { stroke: TEMA.merah, strokeWidth: 1.8 });
+
+                geo3.buatLingkaran(p2F, 3, { fill: TEMA.merah });
+                geo3.buatLingkaran(p2E, 3, { fill: TEMA.merah });
+                geo3.buatLingkaran(p2D, 3, { fill: TEMA.merah });
+
+                geo3.buatTeks(240, 28, "TEOREMA MENELAUS", { position: "middle-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.aksen });
+                geo3.buatTeks(245, 182, "Kolinieritas: 3 Titik", { position: "middle-center", fontSize: "7.5px", fill: TEMA.teks });
+
+                // Keterangan Bawah
+                geo3.buatTeks(160, 208, "Dualitas: Ceva (Titik Temu) ⟷ Menelaus (Garis Potong)", {
+                    position: "middle-center",
+                    fontSize: "8.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

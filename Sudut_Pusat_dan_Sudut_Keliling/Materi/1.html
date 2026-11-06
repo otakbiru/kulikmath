@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Sudut Pusat dan Sudut Keliling Lingkaran</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Sudut Pusat & Sudut Keliling Lingkaran</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian Fundamental & Unsur Lingkaran</h2>
+            <p>
+                Dalam geometri lingkaran, sudut dapat dibedakan menjadi dua jenis utama berdasarkan posisi titik sudutnya (verteks), yaitu <strong>Sudut Pusat</strong> dan <strong>Sudut Keliling</strong>.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <ul style="margin: 0 0 0 1.2rem; padding: 0;">
+                    <li><strong>Sudut Pusat (Central Angle):</strong> Sudut yang titik sudutnya tepat berada pada titik pusat lingkaran ($O$), dan kedua kaki sudutnya merupakan jari-jari lingkaran ($OA$ dan $OB$). Sudut pusat ini menghadap busur lingkaran $AB$.</li>
+                    <li><strong>Sudut Keliling (Inscribed Angle):</strong> Sudut yang titik sudutnya terletak pada garis keliling lingkaran ($C$), dan kedua kaki sudutnya merupakan tali busur lingkaran ($CA$ dan $CB$). Sudut keliling ini juga menghadap busur $AB$.</li>
+                    <li><strong>Busur Lingkaran ($AB$):</strong> Garis lengkung bagian dari keliling lingkaran yang dibatasi oleh titik $A$ dan titik $B$.</li>
+                </ul>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>2. Teorema Sudut Keliling & Pembuktian Geometris</h2>
+                    <p>
+                        <strong>Teorema Utama:</strong> Jika sebuah sudut pusat dan sebuah sudut keliling <em>menghadap busur yang sama</em>, maka besar sudut pusat adalah <strong>dua kali lipat</strong> besar sudut keliling, atau besar sudut keliling adalah <strong>setengah</strong> dari sudut pusat:
+                    </p>
+                    $$\angle AOB = 2 \times \angle ACB \iff \angle ACB = \frac{1}{2} \angle AOB$$
+
+                    <p><strong>Gagasan Pembuktian (Inscribed Angle Theorem):</strong></p>
+                    <ol>
+                        <li>Tarik garis diameter melalui titik keliling $C$ dan titik pusat $O$.</li>
+                        <li>Perhatikan $\Delta OCA$ dan $\Delta OCB$. Keduanya merupakan <em>segitiga sama kaki</em> karena dua sisinya adalah jari-jari lingkaran ($OA = OB = OC = r$).</li>
+                        <li>Pada $\Delta OCA$, sudut alasnya sama besar: $\angle OCA = \angle OAC = \alpha$. Berdasarkan teorema sudut luar segitiga, sudut luar pada titik $O$ bernilai:
+                            $$\angle AOD = \angle OCA + \angle OAC = 2\alpha$$
+                        </li>
+                        <li>Secara serupa pada $\Delta OCB$, $\angle OCB = \angle OBC = \beta$, sehingga sudut luarnya adalah $\angle BOD = 2\beta$.</li>
+                        <li>Dengan demikian:
+                            $$\angle ACB = \alpha + \beta \implies \angle AOB = 2\alpha + 2\beta = 2(\alpha + \beta) = 2 \angle ACB \quad \blacksquare$$
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-sudut-pusat-keliling" style="display: flex; justify-content: center; align-items: center; min-height: 240px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Pembuktian relasi $\angle AOB = 2 \angle ACB$ melalui dekomposisi segitiga sama kaki berjari-jari $r$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Sifat-Sifat Turunan Sudut Keliling</h2>
+
+            <div class="row" style="margin-top: 0.5rem;">
+                <div class="col col-2">
+                    <h3>A. Teorema Thales (Sudut Menghadap Diameter)</h3>
+                    <p>
+                        Setiap sudut keliling yang menghadap <strong>diameter lingkaran</strong> (setengah lingkaran) besarnya selalu <strong>$90^\circ$ (sudut siku-siku)</strong>.
+                    </p>
+                    $$\angle APB = \frac{1}{2} \times 180^\circ = 90^\circ$$
+                    <p>
+                        <em>Konsekuensi:</em> Titik pusat lingkaran luar sembarang segitiga siku-siku selalu terletak tepat di titik tengah sisi miring (hipotenusa)-nya.
+                    </p>
+
+                    <h3>B. Kesamaan Sudut Keliling Sebusur</h3>
+                    <p>
+                        Semua sudut keliling yang menghadap busur yang sama (atau busur yang sama panjang) memiliki besar sudut yang <strong>sama besar</strong>:
+                    </p>
+                    $$\angle P_1 = \angle P_2 = \angle P_3 = \dots = \frac{1}{2} \angle AOB$$
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-teorema-thales" style="display: flex; justify-content: center; align-items: center; min-height: 240px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Teorema Thales — Seluruh sudut keliling yang menghadap diameter $AB$ selalu bernilai siku-siku ($90^\circ$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: bold;">C. Teorema Segiempat Tali Busur (Cyclic Quadrilateral):</p>
+                <p style="margin: 0.3rem 0 0 0;">
+                    Segiempat yang keempat titik sudutnya terletak pada busur lingkaran disebut <strong>segiempat tali busur</strong>. Pada segiempat tali busur $ABCD$:
+                </p>
+                $$\angle A + \angle C = 180^\circ \qquad \text{dan} \qquad \angle B + \angle D = 180^\circ$$
+                <p style="margin: 0.3rem 0 0 0; font-size: 0.9rem;">
+                    <em>Bukti:</em> Sudut $\angle B$ dan $\angle D$ masing-masing menghadap busur $ADC$ dan busur $ABC$. Karena kedua busur membentuk satu lingkaran utuh ($360^\circ$), maka $\angle B + \angle D = \frac{1}{2}(360^\circ) = 180^\circ$.
+                </p>
+            </div>
+
+            <h2>4. Sudut Antara Dua Tali Busur yang Berpotongan</h2>
+            <p>
+                Dua buah tali busur pada lingkaran dapat berpotongan di dua kemungkinan lokasi: di <strong>dalam</strong> lingkaran atau perpanjangannya di <strong>luar</strong> lingkaran.
+            </p>
+
+            <div class="row" style="margin-top: 0.5rem;">
+                <div class="col col-2">
+                    <h3>A. Berpotongan di DALAM Lingkaran</h3>
+                    <p>
+                        Jika tali busur $AC$ dan $BD$ berpotongan di titik $P$ di <strong>dalam</strong> lingkaran, maka besar sudut potongnya adalah <strong>setengah dari jumlah</strong> sudut pusat busur yang dihadapinya:
+                    </p>
+                    $$\angle APB = \angle CPD = \frac{1}{2} (\angle AOB + \angle COD) = \frac{1}{2} (\text{Busur } AB + \text{Busur } CD)$$
+
+                    <h3>B. Berpotongan di LUAR Lingkaran</h3>
+                    <p>
+                        Jika perpanjangan tali busur $AB$ dan $CD$ berpotongan di titik $P$ di <strong>luar</strong> lingkaran, maka besar sudut potongnya adalah <strong>setengah dari selisih</strong> sudut pusat busur yang dihadapinya:
+                    </p>
+                    $$\angle P = \frac{1}{2} (\angle AOC - \angle BOD) = \frac{1}{2} (\text{Busur Jauh } AC - \text{Busur Dekat } BD)$$
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-potong-tali-busur" style="display: flex; justify-content: center; align-items: center; min-height: 240px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Perpotongan dua tali busur: di dalam ($\frac{\text{busur}_1 + \text{busur}_2}{2}$) vs di luar ($\frac{\text{busur}_{\text{jauh}} - \text{busur}_{\text{dekat}}}{2}$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>5. Relasi Sudut Pusat Terhadap Panjang Busur, Luas Juring, & Tembereng</h2>
+            <p>
+                Besar sudut pusat lingkaran berbanding lurus secara proporsional terhadap panjang busur dan luas juring yang dibentuknya terhadap satu keliling dan luas lingkaran penuh:
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                $$\frac{\alpha}{360^\circ} = \frac{\text{Panjang Busur } AB}{2\pi r} = \frac{\text{Luas Juring } AOB}{\pi r^2}$$
+            </div>
+
+            <table class="table-auto" style="width: 100%; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--bg-hover, #f1f5f9);">
+                        <th>Elemen Geometri</th>
+                        <th>Rumus Matematika</th>
+                        <th>Keterangan Variabel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Panjang Busur ($s$)</strong></td>
+                        <td>$s = \dfrac{\alpha}{360^\circ} \times 2\pi r$</td>
+                        <td>$\alpha$ dalam derajat, $r$ jari-jari lingkaran.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Luas Juring ($L_j$)</strong></td>
+                        <td>$L_j = \dfrac{\alpha}{360^\circ} \times \pi r^2 = \dfrac{1}{2} s \cdot r$</td>
+                        <td>Juring dibatasi dua jari-jari dan satu busur.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Luas Tembereng ($L_t$)</strong></td>
+                        <td>$L_t = L_{\text{juring } AOB} - L_{\Delta AOB} = \dfrac{\alpha}{360^\circ}\pi r^2 - \dfrac{1}{2}r^2 \sin \alpha$</td>
+                        <td>Daerah yang dibatasi oleh tali busur dan busur lingkaran.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Komprehensif</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Hubungan Sudut Pusat, Sudut Keliling, & Teorema Thales</h3>
+                <p>
+                    Pada sebuah lingkaran dengan titik pusat $O$, ruas garis $AB$ merupakan diameter lingkaran. Titik $C$ dan titik $D$ terletak pada busur lingkaran sedemikian sehingga sudut keliling $\angle CAB = 28^\circ$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan besar sudut keliling $\angle ACB$.</li>
+                    <li>Hitung besar sudut $\angle ABC$.</li>
+                    <li>Jika titik $D$ terletak pada busur $BC$ yang sama dengan $A$, berapakah besar sudut keliling $\angle BDC$?</li>
+                    <li>Hitung besar sudut pusat $\angle BOC$ yang menghadap busur $BC$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menentukan Besar $\angle ACB$:</strong><br>
+                        Karena ruas garis $AB$ adalah diameter lingkaran, berdasarkan Teorema Thales sudut keliling yang menghadap diameter selalu berupa sudut siku-siku:
+                        $$\angle ACB = 90^\circ$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Besar $\angle ABC$:</strong><br>
+                        Perhatikan segitiga siku-siku $ABC$. Jumlah sudut dalam sebuah segitiga adalah $180^\circ$:
+                        $$\angle ABC = 180^\circ - (\angle ACB + \angle CAB) = 180^\circ - (90^\circ + 28^\circ) = 180^\circ - 118^\circ = 62^\circ$$
+                    </p>
+                    <p>
+                        <strong>(c) Menentukan Besar $\angle BDC$:</strong><br>
+                        Perhatikan bahwa sudut keliling $\angle BDC$ dan sudut keliling $\angle CAB$ keduanya sama-sama menghadap busur $BC$! Berdasarkan teorema kesamaan sudut keliling yang sebusur:
+                        $$\angle BDC = \angle CAB = 28^\circ$$
+                    </p>
+                    <p>
+                        <strong>(d) Menghitung Besar Sudut Pusat $\angle BOC$:</strong><br>
+                        Sudut pusat $\angle BOC$ menghadap busur yang sama dengan sudut keliling $\angle CAB$ (yaitu busur $BC$). Oleh karena itu, besar sudut pusat adalah dua kali sudut keliling:
+                        $$\angle BOC = 2 \times \angle CAB = 2 \times 28^\circ = 56^\circ$$
+                        <em>(Cek alternatif):</em> Karena $AB$ adalah garis lurus berpelurus di titik pusat $O$, maka $\angle AOC = 2 \angle ABC = 2(62^\circ) = 124^\circ$. Sudut $\angle BOC = 180^\circ - 124^\circ = 56^\circ$ (Sesuai sempurna).
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> $\angle ACB = 90^\circ$, $\angle ABC = 62^\circ$, $\angle BDC = 28^\circ$, dan $\angle BOC = 56^\circ$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat Menengah / SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat Menengah (SNBT / UTBK) — Segiempat Tali Busur Aljabar & Perhitungan Juring</h3>
+                <p>
+                    Diketahui segiempat tali busur $ABCD$ terletak pada lingkaran berpusat $O$ dengan jari-jari $r = 14\text{ cm}$. Sudut-sudut yang saling berhadapan dinyatakan dalam variabel $x$ dan $y$:
+                    $$\angle BAD = (3x + 10)^\circ, \qquad \angle BCD = (2x + 20)^\circ$$
+                    $$\angle ABC = (4y - 15)^\circ, \qquad \angle ADC = (y + 45)^\circ$$
+                </p>
+                <ol type="a">
+                    <li>Tentukan nilai $x$ dan besar sudut $\angle BAD$ serta $\angle BCD$.</li>
+                    <li>Tentukan nilai $y$ dan besar sudut $\angle ABC$.</li>
+                    <li>Hitung besar sudut pusat $\angle BOD$ (refleks dan minor) yang bersesuaian dengan sudut-sudut tersebut.</li>
+                    <li>Hitung panjang busur minor $BD$ dan luas juring minor $BOD$ (gunakan $\pi = \frac{22}{7}$).</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menentukan Nilai $x$ dan Besar Sudut $\angle BAD$ & $\angle BCD$:</strong><br>
+                        Berdasarkan sifat segiempat tali busur, jumlah sudut yang berhadapan adalah $180^\circ$:
+                        $$\angle BAD + \angle BCD = 180^\circ$$
+                        $$(3x + 10)^\circ + (2x + 20)^\circ = 180^\circ$$
+                        $$5x + 30 = 180 \implies 5x = 150 \implies x = 30$$
+                        Substitusikan nilai $x = 30$:
+                        $$\angle BAD = 3(30) + 10 = 100^\circ$$
+                        $$\angle BCD = 2(30) + 20 = 80^\circ$$
+                    </p>
+                    <p>
+                        <strong>(b) Menentukan Nilai $y$ dan Besar Sudut $\angle ABC$:</strong><br>
+                        Sama halnya untuk pasangan sudut berhadapan kedua:
+                        $$\angle ABC + \angle ADC = 180^\circ$$
+                        $$(4y - 15)^\circ + (y + 45)^\circ = 180^\circ$$
+                        $$5y + 30 = 180 \implies 5y = 150 \implies y = 30$$
+                        Substitusikan nilai $y = 30$:
+                        $$\angle ABC = 4(30) - 15 = 120 - 15 = 105^\circ$$
+                        $$\angle ADC = 30 + 45 = 75^\circ$$
+                    </p>
+                    <p>
+                        <strong>(c) Menentukan Sudut Pusat $\angle BOD$:</strong><br>
+                        Sudut keliling $\angle BCD = 80^\circ$ menghadap busur minor $BD$. Maka sudut pusat minor $\angle BOD$ adalah:
+                        $$\angle BOD_{\text{minor}} = 2 \times \angle BCD = 2 \times 80^\circ = 160^\circ$$
+                        Sudut keliling $\angle BAD = 100^\circ$ menghadap busur mayor $BD$, sehingga sudut pusat refleks $\angle BOD$ adalah:
+                        $$\angle BOD_{\text{refleks}} = 2 \times \angle BAD = 2 \times 100^\circ = 200^\circ$$
+                        Perhatikan bahwa $160^\circ + 200^\circ = 360^\circ$ (Satu putaran penuh).
+                    </p>
+                    <p>
+                        <strong>(d) Menghitung Panjang Busur & Luas Juring Minor $BOD$:</strong><br>
+                        Diketahui $r = 14\text{ cm}$ dan $\alpha = 160^\circ$:
+                        $$\text{Panjang Busur } BD = \frac{160^\circ}{360^\circ} \times 2\pi r = \frac{4}{9} \times 2 \times \frac{22}{7} \times 14 = \frac{4}{9} \times 88 = \frac{352}{9} \approx 39{,}11\text{ cm}$$
+                        $$\text{Luas Juring } BOD = \frac{160^\circ}{360^\circ} \times \pi r^2 = \frac{4}{9} \times \frac{22}{7} \times 14^2 = \frac{4}{9} \times \frac{22}{7} \times 196 = \frac{4}{9} \times 616 = \frac{2464}{9} \approx 273{,}78\text{ cm}^2$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> $x = 30$, $\angle BAD = 100^\circ$, $\angle BCD = 80^\circ$, sudut pusat minor $\angle BOD = 160^\circ$, panjang busur $BD = \frac{352}{9}\text{ cm}$, dan luas juring minor $BOD = \frac{2464}{9}\text{ cm}^2$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / OSN) — Teorema Sudut Potong Tali Busur di Luar & Kuasa Titik</h3>
+                <p>
+                    Dua buah tali busur $AB$ dan $CD$ diperpanjang ke luar lingkaran sehingga saling berpotongan di titik $P$. Garis $PAC$ memotong lingkaran di $A$ (jauh) dan $C$ (dekat), sedangkan garis $PBD$ memotong lingkaran di $B$ (jauh) dan $D$ (dekat).
+                </p>
+                <p>
+                    Diketahui besar sudut potong di luar lingkaran $\angle APB = 32^\circ$ dan besar busur jauh $AB$ memiliki sudut pusat $110^\circ$. Selain itu diketahui panjang segmen garis $PC = 6\text{ cm}$, $AC = 8\text{ cm}$, dan $PD = 7\text{ cm}$.
+                </p>
+                <ol type="a">
+                    <li>Hitung besar sudut pusat busur dekat $CD$ ($\angle COD$).</li>
+                    <li>Buktikan secara matematis bahwa $\Delta PAD$ sebangun dengan $\Delta PBC$.</li>
+                    <li>Hitung panjang segmen tali busur $BD$ menggunakan Teorema Kuasa Titik (Power of a Point Theorem).</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menghitung Besar Sudut Pusat Busur Dekat $CD$:</strong><br>
+                        Berdasarkan teorema sudut perpotongan tali busur di luar lingkaran:
+                        $$\angle P = \frac{1}{2} (\text{Busur Jauh } AB - \text{Busur Dekat } CD)$$
+                        $$32^\circ = \frac{1}{2} (110^\circ - \text{Busur } CD)$$
+                        $$64^\circ = 110^\circ - \text{Busur } CD$$
+                        $$\text{Busur Dekat } CD = 110^\circ - 64^\circ = 46^\circ$$
+                        Jadi, besar sudut pusat $\angle COD = 46^\circ$.
+                    </p>
+                    <p>
+                        <strong>(b) Pembuktian Kesebangunan $\Delta PAD \sim \Delta PBC$:</strong><br>
+                        Perhatikan dua segitiga $\Delta PAD$ dan $\Delta PBC$:
+                    </p>
+                    <ul>
+                        <li>Keduanya berbagi sudut yang sama pada titik $P$:
+                            $$\angle APD = \angle BPC$$
+                        </li>
+                        <li>Perhatikan segiempat tali busur $ABDC$. Pada segiempat tali busur, sudut luar pada suatu titik sudut sama dengan sudut dalam di hadapannya:
+                            $$\angle PDA = \angle PCB$$
+                            (karena $\angle BDC + \angle BAC = 180^\circ$ dan $\angle BDC + \angle PDA = 180^\circ$).
+                        </li>
+                        <li>Dengan prinsip kesamaan dua sudut (kriteria $AA$), maka terbukti secara aksiomatik bahwa:
+                            $$\Delta PAD \sim \Delta PBC \quad \blacksquare$$
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>(c) Menghitung Panjang Tali Busur $BD$ (Teorema Kuasa Titik):</strong><br>
+                        Dari kesebangunan $\Delta PAD \sim \Delta PBC$, perbandingan sisi-sisi yang bersesuaian adalah:
+                        $$\frac{PA}{PB} = \frac{PD}{PC} \implies PA \times PC = PB \times PD$$
+                        Ini adalah formulasi fundamental dari <em>Secant-Secant Power Theorem</em>!
+                    </p>
+                    <p>
+                        Diketahui dari soal:
+                        $$PC = 6\text{ cm}, \quad AC = 8\text{ cm} \implies PA = PC + AC = 6 + 8 = 14\text{ cm}$$
+                        $$PD = 7\text{ cm}, \quad PB = PD + BD = 7 + BD$$
+                        Substitusikan ke persamaan kuasa titik:
+                        $$PA \times PC = PB \times PD$$
+                        $$14 \times 6 = (7 + BD) \times 7$$
+                        $$84 = 7(7 + BD)$$
+                        Bagi kedua ruas dengan $7$:
+                        $$12 = 7 + BD \implies BD = 12 - 7 = 5\text{ cm}$$
+                        Maka panjang $PB = 7 + 5 = 12\text{ cm}$.
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Besar sudut pusat busur dekat $\angle COD = 46^\circ$, terbukti $\Delta PAD \sim \Delta PBC$, dan panjang segmen tali busur $BD = 5\text{ cm}$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                abuMuda: "#f1f5f9",
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Sudut Pusat dan Sudut Keliling Lingkaran
+            // ==========================================
+            const elPusatKeliling = document.getElementById("svg-sudut-pusat-keliling");
+            if (elPusatKeliling) {
+                const geo1 = new GeoSVG(elPusatKeliling, 340, 240, {
+                    viewBox: "0 0 340 240",
+                    margin: 8,
+                    title: "Teorema Sudut Pusat dan Sudut Keliling Lingkaran"
+                });
+
+                const Ox = 170, Oy = 130, R = 82;
+                const ptO = [Ox, Oy];
+
+                // Gambar Lingkaran Utama
+                geo1.buatLingkaran(ptO, R, { stroke: TEMA.gelap, strokeWidth: 1.8, fill: "none" });
+
+                // Titik A dan B (membentuk sudut pusat 90 derajat di bagian bawah)
+                // A di sudut 135 deg: (Ox - 58, Oy + 58) = (112, 188)
+                // B di sudut 45 deg: (Ox + 58, Oy + 58) = (228, 188)
+                const ptA = [Ox - 58, Oy + 58];
+                const ptB = [Ox + 58, Oy + 58];
+
+                // Titik C di keliling atas (sudut 270 deg / puncak jam 12): (Ox, Oy - R) = (170, 48)
+                const ptC = [Ox, Oy - R];
+
+                // Titik D (ujung perpanjangan diameter CO ke bawah keliling)
+                const ptD = [Ox, Oy + R];
+
+                // Juring Busur AB di bawah (arsir lembut)
+                geo1.buatPoligon([ptO, ptA, [Ox, Oy + 82], ptB], { fill: TEMA.utamaMuda, stroke: "none", opacity: 0.35 });
+
+                // Garis Diameter Perantara CD (Dashed Putus-Putus)
+                geo1.buatSegmen(ptC, ptD, { stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "4 3" });
+
+                // Kaki Sudut Keliling CA dan CB
+                geo1.buatSegmen(ptC, ptA, { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo1.buatSegmen(ptC, ptB, { stroke: TEMA.aksen, strokeWidth: 2 });
+
+                // Kaki Sudut Pusat OA dan OB
+                geo1.buatSegmen(ptO, ptA, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo1.buatSegmen(ptO, ptB, { stroke: TEMA.merah, strokeWidth: 2 });
+
+                // Tali busur AB (tipis dashed)
+                geo1.buatSegmen(ptA, ptB, { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "2 2" });
+
+                // Titik-titik Geometri
+                geo1.buatLingkaran(ptO, 4, { fill: TEMA.merah });
+                geo1.buatLingkaran(ptC, 4, { fill: TEMA.aksen });
+                geo1.buatLingkaran(ptA, 3.5, { fill: TEMA.utama });
+                geo1.buatLingkaran(ptB, 3.5, { fill: TEMA.utama });
+
+                // Label Titik
+                geo1.buatTeks(Ox + 10, Oy - 4, "O", { fontSize: "10px", fontWeight: "bold", fill: TEMA.merah });
+                geo1.buatTeks(ptC[0], ptC[1] - 8, "C", { position: "bottom-center", fontSize: "10px", fontWeight: "bold", fill: TEMA.aksen });
+                geo1.buatTeks(ptA[0] - 12, ptA[1] + 4, "A", { position: "middle-right", fontSize: "10px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(ptB[0] + 12, ptB[1] + 4, "B", { position: "middle-left", fontSize: "10px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Indikator Sudut Keliling pada Titik C
+                geo1.buatSudut(ptA, ptC, ptB, { radius: 24, stroke: TEMA.aksen, fill: TEMA.aksenMuda, opacity: 0.6 });
+                geo1.buatTeks(ptC[0], ptC[1] + 34, "θ = 45°", { position: "middle-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Indikator Sudut Pusat pada Titik O
+                geo1.buatSudut(ptA, ptO, ptB, { radius: 20, stroke: TEMA.merah, fill: TEMA.merahMuda, opacity: 0.6 });
+                geo1.buatTeks(Ox, Oy + 28, "2θ = 90°", { position: "middle-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Busur AB Highlight
+                geo1.buatTeks(Ox, Oy + R + 14, "Busur AB yang Dihadapi", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+            }
+
+            // ==========================================
+            // 2. Teorema Thales (Sudut Menghadap Diameter)
+            // ==========================================
+            const elThales = document.getElementById("svg-teorema-thales");
+            if (elThales) {
+                const geo2 = new GeoSVG(elThales, 340, 240, {
+                    viewBox: "0 0 340 240",
+                    margin: 8,
+                    title: "Teorema Thales: Sudut Keliling Menghadap Diameter adalah Siku-Siku"
+                });
+
+                const Ox = 170, Oy = 135, R = 80;
+                const ptO = [Ox, Oy];
+
+                // Gambar Lingkaran
+                geo2.buatLingkaran(ptO, R, { stroke: TEMA.gelap, strokeWidth: 1.8, fill: "none" });
+
+                // Diameter AB Horizontal
+                const ptA = [Ox - R, Oy]; // (90, 135)
+                const ptB = [Ox + R, Oy]; // (250, 135)
+                geo2.buatSegmen(ptA, ptB, { stroke: TEMA.utama, strokeWidth: 2.2 });
+
+                // Titik P1 (kiri atas, sudut -130 deg): Ox + 80*cos(-130) = 170 - 51.4 = 118.6, Oy + 80*sin(-130) = 135 - 61.3 = 73.7
+                const ptP1 = [118.6, 73.7];
+                // Titik P2 (tengah atas, puncak -90 deg): (170, 55)
+                const ptP2 = [Ox, Oy - R];
+                // Titik P3 (kanan atas, sudut -40 deg): Ox + 80*cos(-40) = 170 + 61.3 = 231.3, Oy + 80*sin(-40) = 135 - 51.4 = 83.6
+                const ptP3 = [231.3, 83.6];
+
+                // Segitiga AP1B (Ungu)
+                geo2.buatSegmen(ptA, ptP1, { stroke: TEMA.ungu, strokeWidth: 1.4 });
+                geo2.buatSegmen(ptP1, ptB, { stroke: TEMA.ungu, strokeWidth: 1.4 });
+                geo2.buatSiku(ptA, ptP1, ptB, { size: 10, stroke: TEMA.ungu, strokeWidth: 1.5 });
+                geo2.buatLingkaran(ptP1, 3.5, { fill: TEMA.ungu });
+                geo2.buatTeks(ptP1[0] - 8, ptP1[1] - 8, "P₁ (90°)", { position: "middle-right", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.ungu });
+
+                // Segitiga AP2B (Merah)
+                geo2.buatSegmen(ptA, ptP2, { stroke: TEMA.merah, strokeWidth: 1.5 });
+                geo2.buatSegmen(ptP2, ptB, { stroke: TEMA.merah, strokeWidth: 1.5 });
+                geo2.buatSiku(ptA, ptP2, ptB, { size: 10, stroke: TEMA.merah, strokeWidth: 1.5 });
+                geo2.buatLingkaran(ptP2, 3.5, { fill: TEMA.merah });
+                geo2.buatTeks(ptP2[0], ptP2[1] - 8, "P₂ (90°)", { position: "bottom-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Segitiga AP3B (Hijau)
+                geo2.buatSegmen(ptA, ptP3, { stroke: TEMA.aksen, strokeWidth: 1.4 });
+                geo2.buatSegmen(ptP3, ptB, { stroke: TEMA.aksen, strokeWidth: 1.4 });
+                geo2.buatSiku(ptA, ptP3, ptB, { size: 10, stroke: TEMA.aksen, strokeWidth: 1.5 });
+                geo2.buatLingkaran(ptP3, 3.5, { fill: TEMA.aksen });
+                geo2.buatTeks(ptP3[0] + 8, ptP3[1] - 8, "P₃ (90°)", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Titik A, O, B
+                geo2.buatLingkaran(ptO, 3.5, { fill: TEMA.gelap });
+                geo2.buatLingkaran(ptA, 4, { fill: TEMA.utama });
+                geo2.buatLingkaran(ptB, 4, { fill: TEMA.utama });
+
+                geo2.buatTeks(Ox, Oy + 12, "O (Pusat)", { position: "top-center", fontSize: "7.5px", fill: TEMA.gelap });
+                geo2.buatTeks(ptA[0] - 10, ptA[1], "A", { position: "middle-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(ptB[0] + 10, ptB[1], "B", { position: "middle-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Keterangan Bawah
+                geo2.buatTeks(Ox, 222, "Ruas AB adalah Diameter  ⇒  ∠AP₁B = ∠AP₂B = ∠AP₃B = 90°", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+            }
+
+            // ==========================================
+            // 3. Dua Tali Busur Berpotongan (Dalam & Luar)
+            // ==========================================
+            const elPotongTali = document.getElementById("svg-potong-tali-busur");
+            if (elPotongTali) {
+                const geo3 = new GeoSVG(elPotongTali, 340, 240, {
+                    viewBox: "0 0 340 240",
+                    margin: 8,
+                    title: "Sudut Dua Tali Busur Berpotongan di Dalam dan di Luar Lingkaran"
+                });
+
+                // Garis Pembatas Vertikal di Tengah
+                geo3.buatSegmen([170, 20], [170, 220], { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "3 3" });
+
+                // --- SISI KIRI: Berpotongan di DALAM Lingkaran ---
+                const O1x = 85, O1y = 110, R1 = 52;
+                geo3.buatLingkaran([O1x, O1y], R1, { stroke: TEMA.gelap, strokeWidth: 1.5, fill: "none" });
+                geo3.buatLingkaran([O1x, O1y], 2.5, { fill: TEMA.abu });
+
+                // Titik A, B, C, D di keliling O1:
+                // Tali busur AC dan BD berpotongan di P di dalam
+                // A di 155 deg: (85 - 47.1, 110 + 22) = (37.9, 132)
+                // C di -30 deg: (85 + 45, 110 - 26) = (130, 84)
+                // B di 35 deg: (85 + 42.6, 110 + 29.8) = (127.6, 139.8)
+                // D di -145 deg: (85 - 42.6, 110 - 29.8) = (42.4, 80.2)
+                const ptA1 = [37.9, 132];
+                const ptC1 = [130, 84];
+                const ptB1 = [127.6, 139.8];
+                const ptD1 = [42.4, 80.2];
+
+                geo3.buatSegmen(ptA1, ptC1, { stroke: TEMA.utama, strokeWidth: 1.8 });
+                geo3.buatSegmen(ptD1, ptB1, { stroke: TEMA.aksen, strokeWidth: 1.8 });
+
+                // Titik Potong P (perpotongan AC dan DB)
+                // Secara geometri garis berpotongan di dekat (84, 110)
+                const ptP = [84, 110];
+                geo3.buatLingkaran(ptP, 3.5, { fill: TEMA.merah });
+                geo3.buatTeks(ptP[0] + 6, ptP[1] - 8, "P", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Label Titik Sisi Kiri
+                geo3.buatTeks(ptA1[0] - 6, ptA1[1] + 4, "A", { fontSize: "7.5px", fill: TEMA.teks, fontWeight: "bold" });
+                geo3.buatTeks(ptB1[0] + 6, ptB1[1] + 4, "B", { fontSize: "7.5px", fill: TEMA.teks, fontWeight: "bold" });
+                geo3.buatTeks(ptC1[0] + 6, ptC1[1] - 4, "C", { fontSize: "7.5px", fill: TEMA.teks, fontWeight: "bold" });
+                geo3.buatTeks(ptD1[0] - 6, ptD1[1] - 4, "D", { fontSize: "7.5px", fill: TEMA.teks, fontWeight: "bold" });
+
+                geo3.buatTeks(85, 25, "BERPOTONGAN DI DALAM", { position: "middle-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo3.buatTeks(85, 195, "∠APB = ½ (Busur AB + Busur CD)", { position: "middle-center", fontSize: "7px", fontWeight: "bold", fill: TEMA.merah });
+                geo3.buatTeks(85, 212, "PA × PC = PB × PD", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+
+                // --- SISI KANAN: Berpotongan di LUAR Lingkaran ---
+                const O2x = 230, O2y = 110, R2 = 44;
+                geo3.buatLingkaran([O2x, O2y], R2, { stroke: TEMA.gelap, strokeWidth: 1.5, fill: "none" });
+                geo3.buatLingkaran([O2x, O2y], 2.5, { fill: TEMA.abu });
+
+                // Titik P di luar lingkaran: (315, 110)
+                const ptP_out = [315, 110];
+
+                // Garis secant 1 ke arah kiri atas memotong lingkaran di C (dekat) dan A (jauh):
+                // C(265, 85), A(195, 80)
+                const ptC2 = [264, 86];
+                const ptA2 = [196, 78];
+
+                // Garis secant 2 ke arah kiri bawah memotong lingkaran di D (dekat) dan B (jauh):
+                // D(264, 134), B(196, 142)
+                const ptD2 = [264, 134];
+                const ptB2 = [196, 142];
+
+                // Gambar garis perpanjangan secant
+                geo3.buatSegmen(ptP_out, ptA2, { stroke: TEMA.utama, strokeWidth: 1.6 });
+                geo3.buatSegmen(ptP_out, ptB2, { stroke: TEMA.aksen, strokeWidth: 1.6 });
+
+                // Titik-titik
+                geo3.buatLingkaran(ptP_out, 3.5, { fill: TEMA.merah });
+                geo3.buatLingkaran(ptC2, 2.5, { fill: TEMA.utama });
+                geo3.buatLingkaran(ptA2, 2.5, { fill: TEMA.utama });
+                geo3.buatLingkaran(ptD2, 2.5, { fill: TEMA.aksen });
+                geo3.buatLingkaran(ptB2, 2.5, { fill: TEMA.aksen });
+
+                // Label Titik Sisi Kanan
+                geo3.buatTeks(ptP_out[0] + 6, ptP_out[1], "P", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+                geo3.buatTeks(ptC2[0] + 4, ptC2[1] - 6, "C", { fontSize: "7px", fill: TEMA.teks });
+                geo3.buatTeks(ptA2[0] - 6, ptA2[1] - 4, "A", { fontSize: "7px", fill: TEMA.teks });
+                geo3.buatTeks(ptD2[0] + 4, ptD2[1] + 6, "D", { fontSize: "7px", fill: TEMA.teks });
+                geo3.buatTeks(ptB2[0] - 6, ptB2[1] + 4, "B", { fontSize: "7px", fill: TEMA.teks });
+
+                geo3.buatTeks(255, 25, "BERPOTONGAN DI LUAR", { position: "middle-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+                geo3.buatTeks(255, 195, "∠P = ½ (Busur AB − Busur CD)", { position: "middle-center", fontSize: "7px", fontWeight: "bold", fill: TEMA.merah });
+                geo3.buatTeks(255, 212, "PA × PC = PB × PD", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+            }
+        });
+    </script>
+
+    <!-- Skrip Template Standar -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
