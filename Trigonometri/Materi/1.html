@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Trigonometri Komprehensif</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Trigonometri</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Definisi & Perbandingan Trigonometri Segitiga Siku-Siku</h2>
+            <p>
+                <strong>Trigonometri</strong> berasal dari bahasa Yunani <em>trigonon</em> ("tiga sudut" atau segitiga) dan <em>metron</em> ("mengukur"). Cabang matematika ini mempelajari relasi kuantitatif antara panjang sisi-sisi dan besar sudut pada segitiga, serta fungsi-fungsi periodik yang diturunkannya.
+            </p>
+            <p>
+                Pada segitiga siku-siku dengan salah satu sudut lancip $\theta$, sisi-sisinya diklasifikasikan relatif terhadap sudut $\theta$:
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: bold;">Enam Perbandingan Rasio Trigonometri Utama:</p>
+                <div class="row" style="margin-top: 0.4rem;">
+                    <div class="col col-2">
+                        $$\sin \theta = \frac{\text{Depan } (de)}{\text{Miring } (mi)} \quad \text{[Sindemi]}$$
+                        $$\cos \theta = \frac{\text{Samping } (sa)}{\text{Miring } (mi)} \quad \text{[Cossami]}$$
+                        $$\tan \theta = \frac{\text{Depan } (de)}{\text{Samping } (sa)} = \frac{\sin \theta}{\cos \theta} \quad \text{[Tandesa]}$$
+                    </div>
+                    <div class="col col-2">
+                        $$\csc \theta = \frac{1}{\sin \theta} = \frac{\text{Miring } (mi)}{\text{Depan } (de)}$$
+                        $$\sec \theta = \frac{1}{\cos \theta} = \frac{\text{Miring } (mi)}{\text{Samping } (sa)}$$
+                        $$\cot \theta = \frac{1}{\tan \theta} = \frac{\text{Samping } (sa)}{\text{Depan } (de)}$$
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h3>Satuan Ukuran Sudut: Derajat & Radian</h3>
+                    <p>
+                        Satu putaran lingkaran penuh bernilai $360^\circ$ atau $2\pi\text{ radian}$. Maka relasi konversi baku adalah:
+                    </p>
+                    $$180^\circ = \pi\text{ rad} \iff 1^\circ = \frac{\pi}{180}\text{ rad} \approx 0{,}01745\text{ rad}$$
+                    $$1\text{ rad} = \frac{180^\circ}{\pi} \approx 57{,}296^\circ = 57^\circ 17' 45''$$
+                    <p>
+                        <strong>Panjang Busur ($s$) & Luas Juring ($L$):</strong><br>
+                        Untuk sudut $\theta$ dalam radian pada lingkaran berjari-jari $r$:
+                        $$s = r \cdot \theta \qquad \text{dan} \qquad L = \frac{1}{2} r^2 \cdot \theta$$
+                    </p>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-segitiga-siku-trigono" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Perbandingan sisi Depan ($de$), Samping ($sa$), dan Miring ($mi$) pada sudut $\theta$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>2. Tabel Nilai Sudut Istimewa ($0^\circ, 30^\circ, 45^\circ, 60^\circ, 90^\circ$)</h2>
+            <p>
+                Nilai rasio trigonometri untuk sudut-sudut istimewa pada Kuadran I diturunkan secara eksak melalui geometri segitiga sama sisi dan persegi:
+            </p>
+
+            <table class="table-auto" style="width: 100%; margin: 1rem 0; text-align: center;">
+                <thead>
+                    <tr style="background: var(--bg-hover, #f1f5f9);">
+                        <th>Rasio $\backslash$ Sudut $\theta$</th>
+                        <th>$0^\circ \ (0)$</th>
+                        <th>$30^\circ \ (\frac{\pi}{6})$</th>
+                        <th>$45^\circ \ (\frac{\pi}{4})$</th>
+                        <th>$60^\circ \ (\frac{\pi}{3})$</th>
+                        <th>$90^\circ \ (\frac{\pi}{2})$</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>$\sin \theta$</strong></td>
+                        <td>$0 = \frac{1}{2}\sqrt{0}$</td>
+                        <td>$\frac{1}{2} = \frac{1}{2}\sqrt{1}$</td>
+                        <td>$\frac{1}{2}\sqrt{2}$</td>
+                        <td>$\frac{1}{2}\sqrt{3}$</td>
+                        <td>$1 = \frac{1}{2}\sqrt{4}$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$\cos \theta$</strong></td>
+                        <td>$1 = \frac{1}{2}\sqrt{4}$</td>
+                        <td>$\frac{1}{2}\sqrt{3}$</td>
+                        <td>$\frac{1}{2}\sqrt{2}$</td>
+                        <td>$\frac{1}{2} = \frac{1}{2}\sqrt{1}$</td>
+                        <td>$0 = \frac{1}{2}\sqrt{0}$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$\tan \theta$</strong></td>
+                        <td>$0$</td>
+                        <td>$\frac{1}{3}\sqrt{3}$</td>
+                        <td>$1$</td>
+                        <td>$\sqrt{3}$</td>
+                        <td>$\infty$ <em>(tak terdefinisi)</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>$\csc \theta$</strong></td>
+                        <td>$\infty$</td>
+                        <td>$2$</td>
+                        <td>$\sqrt{2}$</td>
+                        <td>$\frac{2}{3}\sqrt{3}$</td>
+                        <td>$1$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$\sec \theta$</strong></td>
+                        <td>$1$</td>
+                        <td>$\frac{2}{3}\sqrt{3}$</td>
+                        <td>$\sqrt{2}$</td>
+                        <td>$2$</td>
+                        <td>$\infty$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$\cot \theta$</strong></td>
+                        <td>$\infty$</td>
+                        <td>$\sqrt{3}$</td>
+                        <td>$1$</td>
+                        <td>$\frac{1}{3}\sqrt{3}$</td>
+                        <td>$0$</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>3. Lingkaran Satuan & Aturan Kuadran (ASTC)</h2>
+                    <p>
+                        Pada <strong>lingkaran satuan</strong> berjari-jari $r = 1$ berpusat di $O(0, 0)$, sembarang titik pada keliling lingkaran memiliki koordinat:
+                    </p>
+                    $$P(x, y) = (\cos \theta, \sin \theta)$$
+                    <p>
+                        Persamaan lingkaran $x^2 + y^2 = 1$ membuktikan langsung identitas fundamental Pythagoras:
+                        $$\cos^2 \theta + \sin^2 \theta = 1$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0; font-weight: bold;">Tanda Nilai Positif per Kuadran (ASTC):</p>
+                        <ul style="margin: 0.3rem 0 0 1.2rem; padding: 0;">
+                            <li><strong>Kuadran I ($0^\circ - 90^\circ$):</strong> <strong>A</strong>ll (Semua positif).</li>
+                            <li><strong>Kuadran II ($90^\circ - 180^\circ$):</strong> <strong>S</strong>in & Csc positif.</li>
+                            <li><strong>Kuadran III ($180^\circ - 270^\circ$):</strong> <strong>T</strong>an & Cot positif.</li>
+                            <li><strong>Kuadran IV ($270^\circ - 360^\circ$):</strong> <strong>C</strong>os & Sec positif.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-lingkaran-satuan-kuadran" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Lingkaran satuan $P(\cos\theta, \sin\theta)$ dan tanda positif tiap kuadran (ASTC).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>4. Rumus Sudut Berelasi di Berbagai Kuadran</h2>
+            <p>
+                Untuk mereduksi sudut di kuadran II, III, dan IV ke sudut lancip $\alpha$ di kuadran I, gunakan dua prinsip relasi:
+            </p>
+
+            <table class="table-auto" style="width: 100%; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--bg-hover, #f1f5f9);">
+                        <th>Grup Relasi Sudut</th>
+                        <th>Perubahan Fungsi</th>
+                        <th>Formulasi Matematika</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Relasi Sumbu-$X$<br>($180^\circ \pm \alpha$, $360^\circ - \alpha$)</strong></td>
+                        <td><strong>Fungsi TETAP</strong><br>$\sin \to \sin$<br>$\cos \to \cos$<br>$\tan \to \tan$</td>
+                        <td>
+                            $$\sin(180^\circ - \alpha) = +\sin \alpha, \quad \cos(180^\circ - \alpha) = -\cos \alpha$$
+                            $$\sin(180^\circ + \alpha) = -\sin \alpha, \quad \tan(180^\circ + \alpha) = +\tan \alpha$$
+                            $$\cos(360^\circ - \alpha) = +\cos \alpha, \quad \sin(360^\circ - \alpha) = -\sin \alpha$$
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Relasi Sumbu-$Y$<br>($90^\circ \pm \alpha$, $270^\circ \pm \alpha$)</strong></td>
+                        <td><strong>Fungsi BERUBAH (Ko-fungsi)</strong><br>$\sin \leftrightarrow \cos$<br>$\tan \leftrightarrow \cot$<br>$\sec \leftrightarrow \csc$</td>
+                        <td>
+                            $$\sin(90^\circ - \alpha) = \cos \alpha, \quad \cos(90^\circ - \alpha) = \sin \alpha$$
+                            $$\sin(90^\circ + \alpha) = +\cos \alpha, \quad \cos(90^\circ + \alpha) = -\sin \alpha$$
+                            $$\sin(270^\circ - \alpha) = -\cos \alpha, \quad \cos(270^\circ + \alpha) = +\sin \alpha$$
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sudut Negatif ($-\alpha$)</strong></td>
+                        <td><strong>Sifat Paritas (Ganjil-Genap)</strong></td>
+                        <td>
+                            $$\cos(-\alpha) = \cos \alpha \quad (\text{Fungsi Genap})$$
+                            $$\sin(-\alpha) = -\sin \alpha, \quad \tan(-\alpha) = -\tan \alpha \quad (\text{Fungsi Ganjil})$$
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>5. Identitas Aljabar Trigonometri Lengkap</h2>
+
+            <div class="row">
+                <div class="col col-2">
+                    <div class="kesimpulan" style="margin: 0.4rem 0;">
+                        <p style="margin: 0; font-weight: bold;">A. Identitas Pythagoras:</p>
+                        $$\sin^2 \alpha + \cos^2 \alpha = 1$$
+                        $$1 + \tan^2 \alpha = \sec^2 \alpha$$
+                        $$1 + \cot^2 \alpha = \csc^2 \alpha$$
+                    </div>
+                    <div class="kesimpulan" style="margin: 0.4rem 0;">
+                        <p style="margin: 0; font-weight: bold;">B. Jumlah & Selisih Dua Sudut:</p>
+                        $$\sin(\alpha \pm \beta) = \sin \alpha \cos \beta \pm \cos \alpha \sin \beta$$
+                        $$\cos(\alpha \pm \beta) = \cos \alpha \cos \beta \mp \sin \alpha \sin \beta$$
+                        $$\tan(\alpha \pm \beta) = \frac{\tan \alpha \pm \tan \beta}{1 \mp \tan \alpha \tan \beta}$$
+                    </div>
+                </div>
+
+                <div class="col col-2">
+                    <div class="kesimpulan" style="margin: 0.4rem 0;">
+                        <p style="margin: 0; font-weight: bold;">C. Sudut Ganda (Rangkap):</p>
+                        $$\sin 2\alpha = 2\sin \alpha \cos \alpha$$
+                        $$\cos 2\alpha = \cos^2 \alpha - \sin^2 \alpha = 2\cos^2 \alpha - 1 = 1 - 2\sin^2 \alpha$$
+                        $$\tan 2\alpha = \frac{2\tan \alpha}{1 - \tan^2 \alpha}$$
+                    </div>
+                    <div class="kesimpulan" style="margin: 0.4rem 0;">
+                        <p style="margin: 0; font-weight: bold;">D. Penurunan Pangkat (Power Reduction):</p>
+                        $$\sin^2 \alpha = \frac{1 - \cos 2\alpha}{2}, \quad \cos^2 \alpha = \frac{1 + \cos 2\alpha}{2}$$
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>6. Visualisasi Grafik Gelombang Sinus & Cosinus</h2>
+                    <p>
+                        Fungsi trigonometri kontinu merupakan fungsi periodik dengan domain seluruh bilangan real $\mathbb{R}$:
+                    </p>
+                    <ul>
+                        <li><strong>Fungsi Sinus ($y = \sin x$):</strong> Melewati titik asal $(0, 0)$, amplitude $A = 1$, periode gelombang $T = 2\pi$ ($360^\circ$). Nilai minimum $-1$ dan maksimum $+1$.</li>
+                        <li><strong>Fungsi Cosinus ($y = \cos x$):</strong> Melewati puncak $(0, 1)$, amplitude $A = 1$, periode $T = 2\pi$. Merupakan gelombang sinus yang digeser ke kiri sejauh fase $\frac{\pi}{2}$ ($90^\circ$):
+                            $$\cos x = \sin\left(x + \frac{\pi}{2}\right)$$
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-grafik-sin-cos" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Gelombang kontinu $y = \sin x$ (biru) dan $y = \cos x$ (oranye) dari $0$ hingga $2\pi$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>7. Contoh Soal Berjenjang & Pembahasan Komprehensif</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Rasio Trigonometri Segitiga Siku-Siku & Analisis Kuadran</h3>
+                <p>
+                    Diketahui nilai $\sin \alpha = \frac{5}{13}$ dengan sudut $\alpha$ berada pada <strong>Kuadran II</strong> ($90^\circ < \alpha < 180^\circ$).
+                </p>
+                <ol type="a">
+                    <li>Tentukan nilai eksak dari $\cos \alpha$ dan $\tan \alpha$.</li>
+                    <li>Hitung nilai dari $\sec \alpha - \csc \alpha$.</li>
+                    <li>Tentukan nilai dari $\sin(180^\circ + \alpha) + \cos(90^\circ - \alpha)$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        Diketahui $\sin \alpha = \frac{de}{mi} = \frac{5}{13}$.<br>
+                        Gunakan Teorema Pythagoras untuk menentukan panjang sisi samping ($sa$):
+                        $$sa = \sqrt{mi^2 - de^2} = \sqrt{13^2 - 5^2} = \sqrt{169 - 25} = \sqrt{144} = 12$$
+                    </p>
+                    <p>
+                        <strong>(a) Menghitung Nilai $\cos \alpha$ dan $\tan \alpha$:</strong><br>
+                        Karena $\alpha$ berada di <strong>Kuadran II</strong>, nilai cosinus dan tangen bertanda <strong>negatif</strong>:
+                        $$\cos \alpha = -\frac{sa}{mi} = -\frac{12}{13}$$
+                        $$\tan \alpha = -\frac{de}{sa} = -\frac{5}{12}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Nilai $\sec \alpha - \csc \alpha$:</strong>
+                        $$\sec \alpha = \frac{1}{\cos \alpha} = -\frac{13}{12}$$
+                        $$\csc \alpha = \frac{1}{\sin \alpha} = +\frac{13}{5}$$
+                        $$\sec \alpha - \csc \alpha = -\frac{13}{12} - \frac{13}{5} = \frac{-65 - 156}{60} = -\frac{221}{60}$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Nilai Sudut Berelasi:</strong><br>
+                        Berdasarkan rumus relasi:
+                        $$\sin(180^\circ + \alpha) = -\sin \alpha = -\frac{5}{13}$$
+                        $$\cos(90^\circ - \alpha) = \sin \alpha = +\frac{5}{13}$$
+                        Jumlahkan keduanya:
+                        $$\sin(180^\circ + \alpha) + \cos(90^\circ - \alpha) = -\frac{5}{13} + \frac{5}{13} = 0$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> $\cos \alpha = -\frac{12}{13}$, $\tan \alpha = -\frac{5}{12}$, $\sec \alpha - \csc \alpha = -\frac{221}{60}$, dan nilai ekspresi relasi adalah $0$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat Menengah (SNBT / UTBK) — Penyederhanaan Identitas & Nilai Ekstrem Fungsi</h3>
+                <p>
+                    Diberikan fungsi trigonometri:
+                    $$f(x) = \frac{1 - \tan^2 x}{2\sec^2 x}$$
+                </p>
+                <ol type="a">
+                    <li>Sederhanakan bentuk fungsi $f(x)$ menjadi fungsi tunggal cosinus sudut ganda.</li>
+                    <li>Tentukan nilai maksimum dan nilai minimum dari $f(x)$ untuk domain $0 \le x \le 2\pi$.</li>
+                    <li>Tentukan seluruh nilai $x \in [0, 2\pi]$ yang menyebabkan fungsi mencapai nilai minimum tersebut!</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menyederhanakan Fungsi $f(x)$:</strong><br>
+                        Ubah semua komponen ke dalam sinus dan cosinus:
+                        $$\tan x = \frac{\sin x}{\cos x} \implies 1 - \tan^2 x = 1 - \frac{\sin^2 x}{\cos^2 x} = \frac{\cos^2 x - \sin^2 x}{\cos^2 x}$$
+                        $$\sec^2 x = \frac{1}{\cos^2 x} \implies 2\sec^2 x = \frac{2}{\cos^2 x}$$
+                        Substitusikan keduanya ke pecahan:
+                        $$f(x) = \frac{\frac{\cos^2 x - \sin^2 x}{\cos^2 x}}{\frac{2}{\cos^2 x}} = \frac{\cos^2 x - \sin^2 x}{2}$$
+                        Ingat identitas sudut ganda $\cos 2x = \cos^2 x - \sin^2 x$:
+                        $$f(x) = \frac{1}{2}\cos 2x$$
+                    </p>
+                    <p>
+                        <strong>(b) Menentukan Nilai Maksimum dan Minimum:</strong><br>
+                        Karena $-1 \le \cos 2x \le 1$ untuk semua bilangan real $x$:
+                        $$\text{Nilai Maksimum} = \frac{1}{2}(1) = \frac{1}{2}$$
+                        $$\text{Nilai Minimum} = \frac{1}{2}(-1) = -\frac{1}{2}$$
+                    </p>
+                    <p>
+                        <strong>(c) Nilai $x$ Pembuat Minimum ($f(x) = -\frac{1}{2}$):</strong><br>
+                        Fungsi minimum terjadi ketika $\cos 2x = -1$:
+                        $$2x = \pi + 2k\pi \implies x = \frac{\pi}{2} + k\pi$$
+                        Untuk domain $0 \le x \le 2\pi$:
+                        <ul>
+                            <li>$k = 0 \implies x = \frac{\pi}{2}$ ($90^\circ$)</li>
+                            <li>$k = 1 \implies x = \frac{3\pi}{2}$ ($270^\circ$)</li>
+                        </ul>
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> $f(x) = \frac{1}{2}\cos 2x$, nilai maksimum $=\frac{1}{2}$, nilai minimum $=-\frac{1}{2}$, tercapai pada $x = \frac{\pi}{2}$ dan $x = \frac{3\pi}{2}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Evaluasi Eksak Hasil Kali Teleskopik Cosinus</h3>
+                <p>
+                    Hitunglah nilai eksak dari perkalian trigonometri berantai berikut tanpa menggunakan kalkulator:
+                    $$P = \cos 20^\circ \cdot \cos 40^\circ \cdot \cos 80^\circ$$
+                </p>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        Gunakan trik perkalian teleskopik sudut ganda: kalikan dan bagilah $P$ dengan faktor $2\sin 20^\circ$:
+                        $$P = \frac{2\sin 20^\circ \cos 20^\circ \cdot \cos 40^\circ \cdot \cos 80^\circ}{2\sin 20^\circ}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 1:</strong> Gunakan rumus sudut ganda $2\sin \theta \cos \theta = \sin 2\theta$:
+                        $$2\sin 20^\circ \cos 20^\circ = \sin 40^\circ$$
+                        Substitusikan ke persamaan:
+                        $$P = \frac{\sin 40^\circ \cdot \cos 40^\circ \cdot \cos 80^\circ}{2\sin 20^\circ}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 2:</strong> Kalikan pembilang dan penyebut dengan $2$:
+                        $$P = \frac{2\sin 40^\circ \cos 40^\circ \cdot \cos 80^\circ}{4\sin 20^\circ} = \frac{\sin 80^\circ \cdot \cos 80^\circ}{4\sin 20^\circ}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 3:</strong> Kalikan pembilang dan penyebut dengan $2$ sekali lagi:
+                        $$P = \frac{2\sin 80^\circ \cos 80^\circ}{8\sin 20^\circ} = \frac{\sin 160^\circ}{8\sin 20^\circ}$$
+                    </p>
+                    <p>
+                        <strong>Langkah 4:</strong> Gunakan rumus sudut berelasi Kuadran II untuk $\sin 160^\circ$:
+                        $$\sin 160^\circ = \sin(180^\circ - 20^\circ) = \sin 20^\circ$$
+                        Substitusikan kembali:
+                        $$P = \frac{\sin 20^\circ}{8\sin 20^\circ} = \frac{1}{8}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Nilai eksak dari $\cos 20^\circ \cdot \cos 40^\circ \cdot \cos 80^\circ$ adalah $\mathbf{\dfrac{1}{8}}$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                abuMuda: "#f1f5f9",
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Segitiga Siku-Siku & Rasio Trigonometri
+            // ==========================================
+            const elSegitiga = document.getElementById("svg-segitiga-siku-trigono");
+            if (elSegitiga) {
+                const geo1 = new GeoSVG(elSegitiga, 340, 220, {
+                    viewBox: "0 0 340 220",
+                    margin: 8,
+                    title: "Definisi Rasio Trigonometri pada Segitiga Siku-Siku"
+                });
+
+                // Titik Sudut Segitiga Siku-Siku
+                const ptA = [50, 165];  // Sudut theta
+                const ptB = [240, 165]; // Siku-siku
+                const ptC = [240, 50];  // Puncak
+
+                // Poligon Segitiga
+                geo1.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.gelap,
+                    strokeWidth: 2,
+                    opacity: 0.4
+                });
+
+                // Sisi Depan (Merah)
+                geo1.buatSegmen(ptB, ptC, { stroke: TEMA.merah, strokeWidth: 3 });
+                // Sisi Samping (Hijau)
+                geo1.buatSegmen(ptA, ptB, { stroke: TEMA.aksen, strokeWidth: 3 });
+                // Sisi Miring (Biru)
+                geo1.buatSegmen(ptA, ptC, { stroke: TEMA.utama, strokeWidth: 3 });
+
+                // Simbol Siku-siku di B
+                geo1.buatSiku(ptA, ptB, ptC, { size: 10, stroke: TEMA.gelap, strokeWidth: 1.5 });
+
+                // Lengkungan Sudut theta di A
+                geo1.buatSudut(ptB, ptA, ptC, { radius: 28, stroke: TEMA.oranye, fill: TEMA.oranyeMuda, opacity: 0.8 });
+                geo1.buatTeks(ptA[0] + 36, ptA[1] - 8, "θ", { fontSize: "10px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik-titik Sudut
+                [ptA, ptB, ptC].forEach(pt => geo1.buatLingkaran(pt, 3.5, { fill: TEMA.gelap }));
+                geo1.buatTeks(ptA[0] - 10, ptA[1] + 4, "A", { position: "middle-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+                geo1.buatTeks(ptB[0] + 8, ptB[1] + 6, "B (90°)", { position: "top-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.gelap });
+                geo1.buatTeks(ptC[0] + 8, ptC[1], "C", { position: "middle-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Label Sisi-Sisi
+                geo1.buatTeks((ptA[0] + ptB[0]) / 2, ptA[1] + 14, "Samping (sa)", { position: "top-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+                geo1.buatTeks(ptB[0] + 12, (ptB[1] + ptC[1]) / 2, "Depan (de)", { position: "middle-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+                geo1.buatTeks((ptA[0] + ptC[0]) / 2 - 14, (ptA[1] + ptC[1]) / 2 - 10, "Miring (mi)", { position: "bottom-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Footer
+                geo1.buatTeks(170, 205, "sin θ = de/mi  |  cos θ = sa/mi  |  tan θ = de/sa", {
+                    position: "middle-center",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Lingkaran Satuan & Kuadran ASTC
+            // ==========================================
+            const elLingkaran = document.getElementById("svg-lingkaran-satuan-kuadran");
+            if (elLingkaran) {
+                const geo2 = new GeoSVG(elLingkaran, 340, 220, {
+                    viewBox: "0 0 340 220",
+                    margin: 8,
+                    title: "Lingkaran Satuan dan Kuadran ASTC"
+                });
+
+                const Ox = 170, Oy = 110, R = 75;
+
+                // Sumbu Kartesius
+                geo2.buatSegmen([Ox - 95, Oy], [Ox + 95, Oy], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+                geo2.buatSegmen([Ox, Oy + 95], [Ox, Oy - 95], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+                geo2.buatTeks(Ox + 95, Oy + 10, "X", { position: "top-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+                geo2.buatTeks(Ox - 8, Oy - 95, "Y", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+
+                // Lingkaran Satuan R = 1
+                geo2.buatLingkaran([Ox, Oy], R, { stroke: TEMA.gelap, strokeWidth: 1.8, fill: "none" });
+
+                // Titik P pada sudut theta = 45 derajat
+                // cos(45) = 0.707, sin(45) = 0.707 -> R * 0.707 = 53
+                const px = Ox + 53;
+                const py = Oy - 53;
+                const ptP = [px, py];
+
+                // Segitiga Proyeksi O-H-P
+                geo2.buatPoligon([[Ox, Oy], [px, Oy], ptP], { fill: TEMA.utamaMuda, stroke: "none", opacity: 0.5 });
+                // Garis Jari-jari OP (r = 1)
+                geo2.buatSegmen([Ox, Oy], ptP, { stroke: TEMA.utama, strokeWidth: 2 });
+                // Garis Proyeksi Sumbu Y (sin theta, Merah)
+                geo2.buatSegmen([px, Oy], ptP, { stroke: TEMA.merah, strokeWidth: 2 });
+                // Garis Proyeksi Sumbu X (cos theta, Hijau)
+                geo2.buatSegmen([Ox, Oy], [px, Oy], { stroke: TEMA.aksen, strokeWidth: 2.5 });
+
+                // Sudut theta di O
+                geo2.buatSudut([Ox + 40, Oy], [Ox, Oy], ptP, { radius: 20, stroke: TEMA.oranye, fill: TEMA.oranyeMuda, opacity: 0.8 });
+                geo2.buatTeks(Ox + 24, Oy - 6, "θ", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik P
+                geo2.buatLingkaran(ptP, 3.5, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1 });
+                geo2.buatTeks(ptP[0] + 6, ptP[1] - 6, "P(cos θ, sin θ)", { position: "bottom-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Label Kuadran ASTC
+                geo2.buatTeks(Ox + 45, Oy - 65, "K-I: ALL (+)", { position: "middle-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+                geo2.buatTeks(Ox - 45, Oy - 65, "K-II: SIN (+)", { position: "middle-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(Ox - 45, Oy + 65, "K-III: TAN (+)", { position: "middle-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+                geo2.buatTeks(Ox + 45, Oy + 65, "K-IV: COS (+)", { position: "middle-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Footer
+                geo2.buatTeks(Ox, 210, "Lingkaran Satuan r = 1  ⇒  cos² θ + sin² θ = 1", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Gelombang Sinus dan Cosinus Kontinu
+            // ==========================================
+            const elGrafik = document.getElementById("svg-grafik-sin-cos");
+            if (elGrafik) {
+                const geo3 = new GeoSVG(elGrafik, 340, 220, {
+                    viewBox: "0 0 340 220",
+                    margin: 8,
+                    title: "Gelombang Periodik Sinus dan Cosinus"
+                });
+
+                const baseY = 110;
+                const originX = 50;
+                const endX = 290;
+                const amp = 55; // Piksel amplitudo (+1 dan -1)
+
+                // Sumbu X dan Y
+                geo3.buatSegmen([originX - 15, baseY], [endX + 25, baseY], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+                geo3.buatSegmen([originX, baseY + 75], [originX, baseY - 75], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+                geo3.buatTeks(endX + 25, baseY + 10, "x", { position: "top-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+                geo3.buatTeks(originX - 8, baseY - 75, "y", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+
+                // Garis Amplitudo +1 dan -1 (Dashed)
+                geo3.buatSegmen([originX - 5, baseY - amp], [endX + 15, baseY - amp], { stroke: "#cbd5e1", strokeWidth: 0.8, strokeDasharray: "2 2" });
+                geo3.buatSegmen([originX - 5, baseY + amp], [endX + 15, baseY + amp], { stroke: "#cbd5e1", strokeWidth: 0.8, strokeDasharray: "2 2" });
+                geo3.buatTeks(originX - 6, baseY - amp, "+1", { position: "middle-right", fontSize: "7px", fill: TEMA.abu });
+                geo3.buatTeks(originX - 6, baseY + amp, "-1", { position: "middle-right", fontSize: "7px", fill: TEMA.abu });
+
+                // Tick Sudut pada Sumbu X: 0, pi/2 (110), pi (170), 3pi/2 (230), 2pi (290)
+                const ticks = [
+                    { x: originX, l: "0" },
+                    { x: originX + 60, l: "π/2" },
+                    { x: originX + 120, l: "π" },
+                    { x: originX + 180, l: "3π/2" },
+                    { x: originX + 240, l: "2π" }
+                ];
+                ticks.forEach(t => {
+                    geo3.buatSegmen([t.x, baseY - 3], [t.x, baseY + 3], { stroke: TEMA.abu, strokeWidth: 1 });
+                    geo3.buatTeks(t.x, baseY + 12, t.l, { position: "top-center", fontSize: "7px", fill: TEMA.teks });
+                });
+
+                // Kurva Sinus y = sin x (Biru)
+                const ptsSin = [];
+                for (let px = originX; px <= endX; px += 3) {
+                    const rad = ((px - originX) / 240) * (2 * Math.PI);
+                    const py = baseY - amp * Math.sin(rad);
+                    ptsSin.push([px, py]);
+                }
+                for (let i = 0; i < ptsSin.length - 1; i++) {
+                    geo3.buatSegmen(ptsSin[i], ptsSin[i + 1], { stroke: TEMA.utama, strokeWidth: 2 });
+                }
+
+                // Kurva Cosinus y = cos x (Oranye)
+                const ptsCos = [];
+                for (let px = originX; px <= endX; px += 3) {
+                    const rad = ((px - originX) / 240) * (2 * Math.PI);
+                    const py = baseY - amp * Math.cos(rad);
+                    ptsCos.push([px, py]);
+                }
+                for (let i = 0; i < ptsCos.length - 1; i++) {
+                    geo3.buatSegmen(ptsCos[i], ptsCos[i + 1], { stroke: TEMA.oranye, strokeWidth: 2, strokeDasharray: "4 2" });
+                }
+
+                // Legend
+                geo3.buatSegmen([100, 25], [125, 25], { stroke: TEMA.utama, strokeWidth: 2 });
+                geo3.buatTeks(130, 25, "y = sin x", { position: "middle-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo3.buatSegmen([200, 25], [225, 25], { stroke: TEMA.oranye, strokeWidth: 2, strokeDasharray: "4 2" });
+                geo3.buatTeks(230, 25, "y = cos x", { position: "middle-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Footer
+                geo3.buatTeks(170, 205, "Periode = 2π (360°)  |  Amplitudo = 1  |  cos x = sin(x + π/2)", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Trapesium</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Trapesium</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Definisi & Klasifikasi Trapesium</h2>
+            <p>
+                <strong>Trapesium</strong> adalah bangun datar segiempat yang memiliki <strong>tepat sepasang sisi yang sejajar</strong> namun tidak sama panjang.
+            </p>
+            <p>
+                Dua sisi yang sejajar dinamakan <strong>sisi alas</strong> (alas atas $a$ dan alas bawah $b$), sedangkan dua sisi lainnya yang tidak sejajar dinamakan <strong>kaki trapesium</strong> ($c$ dan $d$). Jarak tegak lurus antara kedua sisi sejajar disebut <strong>tinggi trapesium ($t$)</strong>.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: bold;">Klasifikasi Tiga Jenis Trapesium:</p>
+                <ol style="margin: 0.3rem 0 0 1.2rem; padding: 0;">
+                    <li><strong>Trapesium Sama Kaki (Isosceles Trapezoid):</strong>
+                        <br>Panjang kedua kakinya sama ($AD = BC$), kedua sudut alasnya sama besar ($\angle A = \angle B$ dan $\angle D = \angle C$), kedua diagonalnya sama panjang ($AC = BD$), serta memiliki satu sumbu simetri lipat vertikal. Trapesium sama kaki selalu dapat dibuatkan lingkaran luar (merupakan <em>segiempat tali busur</em>).
+                    </li>
+                    <li><strong>Trapesium Siku-Siku (Right Trapezoid):</strong>
+                        <br>Memiliki tepat dua sudut siku-siku ($90^\circ$) yang terletak pada kaki yang tegak lurus terhadap kedua sisi sejajar. Kaki tegak lurus ini sekaligus bertindak sebagai tinggi trapesium ($t$).
+                    </li>
+                    <li><strong>Trapesium Sembarang (Scalene Trapezoid):</strong>
+                        <br>Keempat sisinya memiliki panjang yang berbeda-beda, keempat sudutnya berlainan, dan tidak memiliki sumbu simetri lipat.
+                    </li>
+                </ol>
+            </div>
+
+            <div style="text-align: center; margin: 1.2rem 0;">
+                <div id="svg-klasifikasi-trapesium" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                    <em>Gambar 1: Tiga klasifikasi trapesium — Sama Kaki, Siku-Siku, dan Sembarang.</em>
+                </p>
+            </div>
+
+            <h2>2. Rumus Keliling & Luas Trapesium</h2>
+            <p>
+                Misalkan trapesium memiliki sisi sejajar $a$ (atas) dan $b$ (bawah), dua kaki $c$ dan $d$, serta tinggi $t$:
+            </p>
+
+            <table class="table-auto" style="width: 100%; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--bg-hover, #f1f5f9);">
+                        <th>Parameter Geometri</th>
+                        <th>Rumus Matematika</th>
+                        <th>Penjelasan Pembuktian</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Keliling ($K$)</strong></td>
+                        <td>$K = a + b + c + d$</td>
+                        <td>Total penjumlahan panjang seluruh sisi pembatas luar.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Luas ($L$)</strong></td>
+                        <td>$L = \dfrac{a + b}{2} \times t$</td>
+                        <td>Rata-rata sisi sejajar dikalikan tinggi tegak lurus.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tinggi Sama Kaki ($t$)</strong></td>
+                        <td>$t = \sqrt{c^2 - \left(\dfrac{b - a}{2}\right)^2}$</td>
+                        <td>Diperoleh melalui Teorema Pythagoras pada segitiga siku-siku proyeksi kaki.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tinggi Siku-Siku ($t$)</strong></td>
+                        <td>$t = \sqrt{c^2 - (b - a)^2}$</td>
+                        <td>Kaki miring $c$ sebagai hipotenusa dan selisih alas $(b - a)$ sebagai alas proyeksi.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>3. Teorema Garis Tengah (Mid-Segment / Median)</h2>
+                    <p>
+                        Jika titik $M$ adalah titik tengah kaki $AD$ dan titik $N$ adalah titik tengah kaki $BC$, maka ruas garis $MN$ disebut <strong>garis tengah (median)</strong> trapesium:
+                    </p>
+                    <ol>
+                        <li>Ruas garis $MN$ selalu sejajar dengan kedua sisi alas:
+                            $$MN \parallel AB \parallel CD$$
+                        </li>
+                        <li>Panjang ruas $MN$ adalah rata-rata aritmatika dari kedua sisi sejajar:
+                            $$MN = \frac{a + b}{2}$$
+                        </li>
+                        <li><strong>Segmen di Antara Diagonal ($PQ$):</strong><br>
+                            Jika diagonal $AC$ dan $BD$ memotong garis tengah $MN$ masing-masing di titik $P$ dan $Q$, maka panjang ruas garis $PQ$ adalah setengah dari selisih kedua sisi sejajar:
+                            $$PQ = \frac{|b - a|}{2}$$
+                            $$MP = QN = \frac{a}{2}$$
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-garis-tengah-diagonal" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Garis tengah $MN = \frac{a+b}{2}$ dan segmen perpotongan diagonal $PQ = \frac{b-a}{2}$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: bold;">4. Teorema Garis Sejajar Pembagi Kaki (Rumus Kali Silang Trapesium):</p>
+                <p style="margin: 0.3rem 0 0 0;">
+                    Jika sebuah garis $EF \parallel AB \parallel CD$ memotong kaki $AD$ di $E$ dan kaki $BC$ di $F$ dengan perbandingan $AE : ED = m : n$, maka panjang ruas garis $EF$ adalah rata-rata berbobot (perkalian silang):
+                </p>
+                $$EF = \frac{n \cdot AB + m \cdot CD}{m + n} = \frac{ED \cdot AB + AE \cdot CD}{AE + ED}$$
+                <p style="margin: 0.3rem 0 0 0; font-size: 0.9rem;">
+                    <em>Catatan:</em> Formula ini sangat sering diujikan pada tes seleksi SNBT / UTBK untuk menentukan panjang garis interior sejajar tanpa perlu menghitung sudut.
+                </p>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>5. Teorema Perpotongan Diagonal & Rasio Luas Segitiga</h2>
+                    <p>
+                        Jika kedua diagonal $AC$ dan $BD$ pada trapesium $ABCD$ ($AB \parallel CD$) berpotongan di titik $O$:
+                    </p>
+                    <ol>
+                        <li><strong>Kesebangunan Segitiga Atas & Bawah:</strong>
+                            $$\triangle AOB \sim \triangle COD \implies \frac{OA}{OC} = \frac{OB}{OD} = \frac{AB}{CD} = \frac{b}{a}$$
+                        </li>
+                        <li><strong>Relasi Luas Empat Daerah Segitiga:</strong>
+                            <br>Misalkan $L_1 = \text{Luas}(\triangle COD)$ dan $L_2 = \text{Luas}(\triangle AOB)$. Dua segitiga "sayap" samping memiliki luas yang <strong>sama persis</strong>:
+                            $$L_3 = \text{Luas}(\triangle AOD) = \text{Luas}(\triangle BOC) = L_4 = \sqrt{L_1 \cdot L_2}$$
+                        </li>
+                        <li><strong>Luas Total Trapesium:</strong>
+                            $$L_{\text{total}} = L_1 + L_2 + 2\sqrt{L_1 L_2} = (\sqrt{L_1} + \sqrt{L_2})^2$$
+                        </li>
+                        <li><strong>Rata-Rata Harmonik Sisi Sejajar:</strong><br>
+                            Ruas garis $XY$ yang ditarik melalui titik potong diagonal $O$ dan sejajar kedua sisi alas terbagi dua sama panjang oleh $O$, dengan panjang total berupa rata-rata harmonik:
+                            $$XY = \frac{2ab}{a + b} \iff XO = OY = \frac{ab}{a + b}$$
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-diagonal-empat-segitiga" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Empat daerah segitiga dari perpotongan diagonal dan garis rata-rata harmonik melalui titik $O$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Komprehensif</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Analisis Lengkap Trapesium Sama Kaki</h3>
+                <p>
+                    Sebuah trapesium sama kaki $ABCD$ memiliki panjang sisi sejajar $CD = 10\text{ cm}$ (alas atas) dan $AB = 26\text{ cm}$ (alas bawah), serta panjang masing-masing kakinya $AD = BC = 17\text{ cm}$.
+                </p>
+                <ol type="a">
+                    <li>Hitung panjang proyeksi kaki pada sisi alas bawah ($x$).</li>
+                    <li>Tentukan tinggi trapesium ($t$).</li>
+                    <li>Hitung keliling dan luas trapesium tersebut.</li>
+                    <li>Hitung panjang diagonal $AC$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menghitung Panjang Proyeksi Kaki ($x$):</strong><br>
+                        Karena trapesium bersifat simetris (sama kaki):
+                        $$x = \frac{b - a}{2} = \frac{26 - 10}{2} = \frac{16}{2} = 8\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Tinggi Trapesium ($t$):</strong><br>
+                        Terapkan Teorema Pythagoras pada segitiga siku-siku di salah satu sudut alas dengan hipotenusa $c = 17\text{ cm}$ dan sisi alas $x = 8\text{ cm}$:
+                        $$t = \sqrt{c^2 - x^2} = \sqrt{17^2 - 8^2} = \sqrt{289 - 64} = \sqrt{225} = 15\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Keliling dan Luas:</strong>
+                        $$K = a + b + 2c = 10 + 26 + 2(17) = 36 + 34 = 70\text{ cm}$$
+                        $$L = \frac{a + b}{2} \times t = \frac{10 + 26}{2} \times 15 = 18 \times 15 = 270\text{ cm}^2$$
+                    </p>
+                    <p>
+                        <strong>(d) Menghitung Panjang Diagonal ($AC$):</strong><br>
+                        Tarik garis tinggi dari $C$ ke alas $AB$ memotong di $H$. Panjang $AH = AB - x = 26 - 8 = 18\text{ cm}$.<br>
+                        Terapkan Teorema Pythagoras pada $\triangle AHC$:
+                        $$AC = \sqrt{AH^2 + CH^2} = \sqrt{18^2 + 15^2} = \sqrt{324 + 225} = \sqrt{549} = 3\sqrt{61} \approx 23{,}43\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Proyeksi $x = 8\text{ cm}$, tinggi $t = 15\text{ cm}$, keliling $K = 70\text{ cm}$, luas $L = 270\text{ cm}^2$, dan panjang diagonal $AC = 3\sqrt{61}\text{ cm}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat Menengah (SNBT / UTBK) — Garis Sejajar Pembagi Kaki & Rasio Luas Bagian</h3>
+                <p>
+                    Pada trapesium $ABCD$ dengan $AB \parallel CD$, diketahui panjang alas bawah $AB = 28\text{ cm}$ dan alas atas $CD = 13\text{ cm}$. Ruas garis $EF$ sejajar dengan $AB$ memotong kaki $AD$ di $E$ dan kaki $BC$ di $F$ sedemikian sehingga $AE : ED = 3 : 2$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan panjang ruas garis $EF$.</li>
+                    <li>Jika tinggi total trapesium $ABCD$ adalah $20\text{ cm}$, tentukan tinggi masing-masing trapesium bagian $ABFE$ dan $EFCD$.</li>
+                    <li>Hitung perbandingan luas trapesium bagian atas $\text{Luas}(EFCD)$ terhadap luas trapesium bagian bawah $\text{Luas}(ABFE)$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menghitung Panjang Ruas Garis $EF$:</strong><br>
+                        Gunakan Teorema Kali Silang Garis Sejajar Trapesium dengan rasio $m = AE = 3$ dan $n = ED = 2$:
+                        $$EF = \frac{n \cdot AB + m \cdot CD}{m + n} = \frac{2(28) + 3(13)}{3 + 2} = \frac{56 + 39}{5} = \frac{95}{5} = 19\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Tinggi Bagian:</strong><br>
+                        Berdasarkan perbandingan garis sejajar yang memotong kaki $AD$, tinggi kedua trapesium bagian berbanding lurus dengan perbandingan segmen kakinya ($t_1 : t_2 = ED : AE = 2 : 3$):
+                        $$t_{\text{atas}} = t(EFCD) = \frac{2}{2 + 3} \times 20\text{ cm} = \frac{2}{5} \times 20 = 8\text{ cm}$$
+                        $$t_{\text{bawah}} = t(ABFE) = \frac{3}{2 + 3} \times 20\text{ cm} = \frac{3}{5} \times 20 = 12\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Rasio Luas:</strong>
+                        $$\text{Luas}(EFCD) = \frac{CD + EF}{2} \times t_{\text{atas}} = \frac{13 + 19}{2} \times 8 = 16 \times 8 = 128\text{ cm}^2$$
+                        $$\text{Luas}(ABFE) = \frac{EF + AB}{2} \times t_{\text{bawah}} = \frac{19 + 28}{2} \times 12 = 47 \times 6 = 282\text{ cm}^2$$
+                        Rasio luas bagian atas terhadap bagian bawah:
+                        $$\frac{\text{Luas}(EFCD)}{\text{Luas}(ABFE)} = \frac{128}{282} = \frac{64}{141}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Panjang $EF = 19\text{ cm}$, tinggi bagian atas $8\text{ cm}$ dan bagian bawah $12\text{ cm}$, serta rasio luas bagian atas terhadap bawah adalah $64 : 141$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Perpotongan Diagonal, Partisi Luas, & Rata-Rata Harmonik</h3>
+                <p>
+                    Pada sebuah trapesium $ABCD$ dengan sisi sejajar $AB \parallel CD$, kedua diagonalnya berpotongan di titik $O$. Diketahui luas daerah segitiga $\triangle COD = 18\text{ cm}^2$ dan luas segitiga $\triangle AOB = 50\text{ cm}^2$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan rasio panjang sisi alas $CD : AB$.</li>
+                    <li>Hitung luas kedua daerah segitiga sayap samping, yaitu $\text{Luas}(\triangle AOD)$ dan $\text{Luas}(\triangle BOC)$.</li>
+                    <li>Hitung total luas trapesium $ABCD$.</li>
+                    <li>Jika garis lurus yang melalui titik $O$ dan sejajar $AB$ memotong kaki $AD$ di titik $X$ dan kaki $BC$ di titik $Y$, serta diketahui panjang $CD = 12\text{ cm}$, hitung panjang ruas garis $XY$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menentukan Rasio Sisi Alas $CD : AB$:</strong><br>
+                        Karena $AB \parallel CD$, maka $\triangle COD \sim \triangle AOB$.<br>
+                        Rasio luas dua segitiga yang sebangun berbanding lurus dengan kuadrat rasio sisi-sisinya:
+                        $$\frac{\text{Luas}(\triangle COD)}{\text{Luas}(\triangle AOB)} = \left(\frac{CD}{AB}\right)^2 \implies \frac{18}{50} = \frac{9}{25} = \left(\frac{CD}{AB}\right)^2$$
+                        Tarik akar kuadrat pada kedua ruas:
+                        $$\frac{CD}{AB} = \sqrt{\frac{9}{25}} = \frac{3}{5} \iff CD : AB = 3 : 5$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Luas Segitiga Sayap Samping:</strong><br>
+                        Berdasarkan teorema partisi luas diagonal trapesium:
+                        $$\text{Luas}(\triangle AOD) = \text{Luas}(\triangle BOC) = \sqrt{\text{Luas}(\triangle COD) \cdot \text{Luas}(\triangle AOB)}$$
+                        $$\text{Luas}(\triangle AOD) = \sqrt{18 \times 50} = \sqrt{900} = 30\text{ cm}^2$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Luas Total Trapesium:</strong><br>
+                        Jumlahkan keempat bagian luas segitiga:
+                        $$L_{\text{total}} = \text{Luas}(\triangle COD) + \text{Luas}(\triangle AOB) + \text{Luas}(\triangle AOD) + \text{Luas}(\triangle BOC)$$
+                        $$L_{\text{total}} = 18 + 50 + 30 + 30 = 128\text{ cm}^2$$
+                        <em>(Cek formula kuadrat):</em>
+                        $$L_{\text{total}} = (\sqrt{L_1} + \sqrt{L_2})^2 = (\sqrt{18} + \sqrt{50})^2 = (3\sqrt{2} + 5\sqrt{2})^2 = (8\sqrt{2})^2 = 64 \times 2 = 128\text{ cm}^2 \quad (\text{Identik})$$
+                    </p>
+                    <p>
+                        <strong>(d) Menghitung Panjang Ruas Garis $XY$ (Rata-Rata Harmonik):</strong><br>
+                        Diketahui $CD = a = 12\text{ cm}$. Karena rasio $CD : AB = 3 : 5$, maka:
+                        $$AB = b = \frac{5}{3} \times 12\text{ cm} = 20\text{ cm}$$
+                        Panjang ruas garis sejajar yang ditarik melalui titik potong diagonal $O$ adalah rata-rata harmonik dari kedua sisi sejajar:
+                        $$XY = \frac{2ab}{a + b} = \frac{2(12)(20)}{12 + 20} = \frac{480}{32} = 15\text{ cm}$$
+                        Titik $O$ membagi dua $XY$ sama panjang: $XO = OY = \frac{15}{2} = 7{,}5\text{ cm}$.
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Rasio $CD : AB = 3 : 5$, luas sayap samping $\text{Luas}(\triangle AOD) = \text{Luas}(\triangle BOC) = 30\text{ cm}^2$, luas total trapesium $128\text{ cm}^2$, dan panjang garis rata-rata harmonik $XY = 15\text{ cm}$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                abuMuda: "#f1f5f9",
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Tiga Klasifikasi Trapesium
+            // ==========================================
+            const elKlasik = document.getElementById("svg-klasifikasi-trapesium");
+            if (elKlasik) {
+                const geo1 = new GeoSVG(elKlasik, 340, 220, {
+                    viewBox: "0 0 340 220",
+                    margin: 8,
+                    title: "Tiga Klasifikasi Trapesium"
+                });
+
+                // Pembatas Panel Tipis
+                geo1.buatSegmen([112, 25], [112, 185], { stroke: "#e2e8f0", strokeWidth: 1, strokeDasharray: "2 2" });
+                geo1.buatSegmen([226, 25], [226, 185], { stroke: "#e2e8f0", strokeWidth: 1, strokeDasharray: "2 2" });
+
+                // --- Panel 1: Sama Kaki ---
+                const p1A = [20, 140], p1B = [100, 140], p1C = [80, 75], p1D = [40, 75];
+                geo1.buatPoligon([p1A, p1B, p1C, p1D], { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 1.8 });
+                // Garis tinggi putus-putus
+                geo1.buatSegmen(p1D, [40, 140], { stroke: TEMA.merah, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo1.buatSiku([48, 140], [40, 140], p1D, { size: 6, stroke: TEMA.merah, strokeWidth: 1 });
+                geo1.buatTeks(33, 108, "t", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+                // Tanda sama panjang pada kaki
+                geo1.buatTeks(60, 28, "SAMA KAKI", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(60, 160, "AD = BC | ∠A = ∠B", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+
+                // --- Panel 2: Siku-Siku ---
+                const p2A = [135, 140], p2B = [210, 140], p2C = [190, 75], p2D = [135, 75];
+                geo1.buatPoligon([p2A, p2B, p2C, p2D], { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 1.8 });
+                // Simbol siku-siku di A dan D
+                geo1.buatSiku(p2B, p2A, p2D, { size: 8, stroke: TEMA.merah, strokeWidth: 1.2 });
+                geo1.buatSiku(p2C, p2D, p2A, { size: 8, stroke: TEMA.merah, strokeWidth: 1.2 });
+                geo1.buatTeks(127, 108, "t", { fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+                geo1.buatTeks(170, 28, "SIKU-SIKU", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+                geo1.buatTeks(170, 160, "∠A = ∠D = 90°", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+
+                // --- Panel 3: Sembarang ---
+                const p3A = [240, 140], p3B = [325, 140], p3C = [300, 75], p3D = [255, 75];
+                geo1.buatPoligon([p3A, p3B, p3C, p3D], { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.8 });
+                geo1.buatTeks(282, 28, "SEMBARANG", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.oranye });
+                geo1.buatTeks(282, 160, "Semua sisi & sudut ≠", { position: "middle-center", fontSize: "7px", fill: TEMA.teks });
+
+                // Footer
+                geo1.buatTeks(170, 205, "Luas = ½ × (a + b) × t  |  Keliling = a + b + c + d", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.gelap
+                });
+            }
+
+            // ==========================================
+            // 2. Garis Tengah MN & Segmen Diagonal PQ
+            // ==========================================
+            const elMid = document.getElementById("svg-garis-tengah-diagonal");
+            if (elMid) {
+                const geo2 = new GeoSVG(elMid, 340, 220, {
+                    viewBox: "0 0 340 220",
+                    margin: 8,
+                    title: "Teorema Garis Tengah dan Segmen Di Antara Diagonal"
+                });
+
+                // Verteks Trapesium ABCD
+                // b = 240 (x: 50 -> 290), a = 140 (x: 100 -> 240)
+                const ptA = [50, 160];
+                const ptB = [290, 160];
+                const ptC = [240, 60];
+                const ptD = [100, 60];
+
+                // Poligon Trapesium
+                geo2.buatPoligon([ptA, ptB, ptC, ptD], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.35
+                });
+
+                // Diagonal AC dan BD (Dashed Ungu)
+                geo2.buatSegmen(ptA, ptC, { stroke: TEMA.ungu, strokeWidth: 1.4, strokeDasharray: "3 2" });
+                geo2.buatSegmen(ptB, ptD, { stroke: TEMA.ungu, strokeWidth: 1.4, strokeDasharray: "3 2" });
+
+                // Titik Tengah M (AD) dan N (BC)
+                const ptM = [(ptA[0] + ptD[0]) / 2, 110]; // (75, 110)
+                const ptN = [(ptB[0] + ptC[0]) / 2, 110]; // (265, 110)
+
+                // Garis Tengah MN (Hijau Tebal)
+                geo2.buatSegmen(ptM, ptN, { stroke: TEMA.aksen, strokeWidth: 2.2 });
+
+                // Titik Potong Diagonal dengan Garis Tengah: P (pada AC) dan Q (pada BD)
+                const ptP = [(ptA[0] + ptC[0]) / 2, 110]; // (145, 110)
+                const ptQ = [(ptB[0] + ptD[0]) / 2, 110]; // (195, 110)
+
+                // Highlight Segmen PQ (Merah Tebal)
+                geo2.buatSegmen(ptP, ptQ, { stroke: TEMA.merah, strokeWidth: 3 });
+
+                // Titik-titik
+                [ptA, ptB, ptC, ptD].forEach(pt => geo2.buatLingkaran(pt, 3.5, { fill: TEMA.utama }));
+                [ptM, ptN].forEach(pt => geo2.buatLingkaran(pt, 3.5, { fill: TEMA.aksen }));
+                [ptP, ptQ].forEach(pt => geo2.buatLingkaran(pt, 3.5, { fill: TEMA.merah }));
+
+                // Label Titik
+                geo2.buatTeks(ptA[0] - 8, ptA[1] + 6, "A", { position: "top-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(ptB[0] + 8, ptB[1] + 6, "B", { position: "top-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(ptC[0] + 8, ptC[1] - 6, "C (a)", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(ptD[0] - 8, ptD[1] - 6, "D", { position: "bottom-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo2.buatTeks(ptM[0] - 8, ptM[1], "M", { position: "middle-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+                geo2.buatTeks(ptN[0] + 8, ptN[1], "N", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                geo2.buatTeks(ptP[0] - 4, ptP[1] - 8, "P", { position: "bottom-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+                geo2.buatTeks(ptQ[0] + 4, ptQ[1] - 8, "Q", { position: "bottom-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Formula Anotasi
+                geo2.buatTeks(170, 35, "Garis Tengah MN = ½ (a + b)", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+                geo2.buatTeks(170, 126, "PQ = ½ (b − a)", { position: "top-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+                geo2.buatTeks(170, 195, "Alas Bawah b = 240  |  Alas Atas a = 140  ⇒  MN = 190, PQ = 50", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Empat Daerah Segitiga dari Diagonal & Rata-rata Harmonik
+            // ==========================================
+            const elEmpat = document.getElementById("svg-diagonal-empat-segitiga");
+            if (elEmpat) {
+                const geo3 = new GeoSVG(elEmpat, 340, 220, {
+                    viewBox: "0 0 340 220",
+                    margin: 8,
+                    title: "Partisi Luas Diagonal dan Garis Rata-Rata Harmonik"
+                });
+
+                // Verteks Trapesium ABCD
+                const ptA = [45, 165];
+                const ptB = [285, 165]; // b = 240
+                const ptC = [225, 45];  // a = 120
+                const ptD = [105, 45];
+
+                // Titik Potong Diagonal O: Rasio k = b/a = 2 -> O(165, 85)
+                const ptO = [165, 85];
+
+                // Empat Daerah Segitiga:
+                // 1. Segitiga Atas COD (Biru)
+                geo3.buatPoligon([ptC, ptD, ptO], { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 1.5, opacity: 0.85 });
+                geo3.buatTeks(165, 58, "L₁ (COD)", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+
+                // 2. Segitiga Bawah AOB (Oranye)
+                geo3.buatPoligon([ptA, ptB, ptO], { fill: TEMA.oranyeMuda, stroke: TEMA.oranye, strokeWidth: 1.5, opacity: 0.85 });
+                geo3.buatTeks(165, 135, "L₂ (AOB)", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // 3. Segitiga Sayap Kiri AOD (Hijau)
+                geo3.buatPoligon([ptA, ptD, ptO], { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 1.5, opacity: 0.7 });
+                geo3.buatTeks(105, 105, "L₃", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // 4. Segitiga Sayap Kanan BOC (Hijau)
+                geo3.buatPoligon([ptB, ptC, ptO], { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 1.5, opacity: 0.7 });
+                geo3.buatTeks(225, 105, "L₄", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Garis Rata-Rata Harmonik Melalui O Sejajar Alas (Merah Tebal)
+                // Memotong AD di X(85, 85) dan BC di Y(245, 85)
+                const ptX = [85, 85];
+                const ptY = [245, 85];
+                geo3.buatSegmen(ptX, ptY, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo3.buatTeks(ptX[0] - 8, ptX[1], "X", { position: "middle-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+                geo3.buatTeks(ptY[0] + 8, ptY[1], "Y", { position: "middle-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik O
+                geo3.buatLingkaran(ptO, 3.8, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo3.buatTeks(ptO[0] + 8, ptO[1] - 8, "O", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Verteks
+                [ptA, ptB, ptC, ptD].forEach(pt => geo3.buatLingkaran(pt, 3, { fill: TEMA.gelap }));
+
+                // Formula Keterangan Bawah
+                geo3.buatTeks(165, 185, "Teorema Sayap: L₃ = L₄ = √(L₁ · L₂)  |  L_total = (√L₁ + √L₂)²", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+                geo3.buatTeks(165, 202, "Garis Harmonik Melalui O: XY = 2ab / (a + b)  |  XO = OY", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.merah
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

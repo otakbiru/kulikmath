@@ -24,6 +24,7 @@ const DAFTAR_TOPIK = [
             { judul: "Program Linear", folder: "Program_Linier_(Program_Linear)" },
             { judul: "Maksimum dan Minimum", folder: "Maksimum_dan_Minimum" },
             { judul: "Cauchy Schwarz", folder: "Cauchy_Schwarz" },
+            { judul: "Floor Function", folder: "Floor_Function" },
         ]
     },
     {
@@ -36,18 +37,30 @@ const DAFTAR_TOPIK = [
             { judul: "Bilangan Pecahan", folder: "Bilangan_Pecahan" },
             { judul: "Bilangan Prima", folder: "Bilangan_Prima" },
             { judul: "Bilangan Real", folder: "Bilangan_Real" },
+            { judul: "Faktor Positif", folder: "Faktor_Positif" },
+            { judul: "Faktorial", folder: "Faktorial" },
         ]
     },
     {
-        bidang: "Geometri & Trigonometri",
+        bidang: "Geometri",
         topik: [
+            { judul: "Geometri (Bidang Datar)", folder: "Geometri_(Bidang_Datar)" },
             { judul: "Segitiga", folder: "Segitiga" },
             { judul: "Poligon (Segi Banyak)", folder: "Poligon_(Segi_Banyak)" },
-            { judul: "Aturan Cosinus", folder: "Aturan_Cosinus" },
-            { judul: "Aturan Sinus", folder: "Aturan_Sinus" },
             { judul: "Balok", folder: "Balok" },
             { judul: "Bangun Ruang Sisi Lengkung", folder: "Bangun_Ruang_Sisi_Lengkung" },
-            { judul: "Hubungan Garis dan Lingkaran", folder: "Hubungan_Garis_dan_Lingkaran" }
+            { judul: "Hubungan Garis dan Lingkaran", folder: "Hubungan_Garis_dan_Lingkaran" },
+            { judul: "Garis Singgung Lingkaran", folder: "Garis_Singgung_Lingkaran" },
+        ]
+    },
+    {
+        bidang: "Trigonometri",
+        topik: [
+            { judul: "Trigonometri", folder: "Trigonometri" },
+            { judul: "Aturan Cosinus", folder: "Aturan_Cosinus" },
+            { judul: "Aturan Sinus", folder: "Aturan_Sinus" },
+            { judul: "Fungsi Trigonometri", folder: "Fungsi_Trigonometri" },
+            { judul: "Grafik Fungsi Trigonometri", folder: "Grafik_Fungsi_Trigonometri" },
         ]
     },
     {
@@ -55,6 +68,12 @@ const DAFTAR_TOPIK = [
         topik: [
             { judul: "Asimtot Kurva", folder: "Asimtot_Kurva" },
             { judul: "Matriks", folder: "Matriks" },
+            { judul: "Determinan Matriks", folder: "Determinan_Matriks" },
+            { judul: "Dilatasi", folder: "Dilatasi" },
+            { judul: "Fungsi", folder: "Fungsi" },
+            { judul: "Fungsi Komposisi", folder: "Fungsi_Komposisi" },
+            { judul: "Fungsi Kuadrat", folder: "Fungsi_Kuadrat" },
+            { judul: "Fungsi Naik dan Turun", folder: "Fungsi_Naik_dan_Turun" },
             { judul: "Integral Lipat", folder: "Integral_Lipat" },
             { judul: "Integral Tak Tentu", folder: "Integral_Tak_Tentu" },
             { judul: "Integral Tentu", folder: "Integral_Tentu" },
@@ -62,25 +81,31 @@ const DAFTAR_TOPIK = [
         ]
     },
     {
-        bidang: "Statistika & Probabilitas",
+        bidang: "Statistika",
         topik: [
             { judul: "Statistika", folder: "Statistika" },
             { judul: "Rata-Rata", folder: "Rata-Rata" },
+            { judul: "Desil", folder: "Desil" },
+            { judul: "Diagram Lingkaran", folder: "Diagram_Lingkaran" },
         ]
     },
     {
         bidang: "Kombinatorika",
         topik: [
             { judul: "Peluang", folder: "Peluang" },
+            { judul: "Frekuensi Harapan", folder: "Frekuensi_Harapan" },
             { judul: "Aturan Pencacahan", folder: "Aturan_Pencacahan" },
             { judul: "Permutasi dan Kombinasi", folder: "Permutasi_dan_Kombinasi" },
             { judul: "Permutasi Siklik", folder: "Permutasi_Siklik_(Siklis)" },
-            { judul: "Prinsip Sarang Burung Merpati", folder: "Prinsip_Sarang_Merpati" }
+            { judul: "Prinsip Sarang Burung Merpati", folder: "Prinsip_Sarang_Merpati" },
+            { judul: "Distribusi Binomial", folder: "Distribusi_Binomial" },
         ]
     },
     {
         bidang: "Lainnya",
         topik: [
+            { judul: "Himpunan", folder: "Himpunan" },
+            { judul: "Induksi Matematika", folder: "Induksi_Matematika" },
             { judul: "Logika Matematika", folder: "Logika_Matematika" },
             { judul: "Satuan Waktu", folder: "Satuan_Waktu" },
             { judul: "Matematika Terapan", folder: "Matematika_Terapan" },

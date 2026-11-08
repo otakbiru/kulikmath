@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Trigonometri Pada Segitiga</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Trigonometri Pada Segitiga</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Notasi Baku Segitiga Sembarang</h2>
+            <p>
+                Pada sembarang segitiga $\triangle ABC$, konvensi penamaan standar yang digunakan adalah:
+            </p>
+            <ul>
+                <li>Sudut-sudut dinyatakan dengan huruf kapital: $\angle A$ (atau $\alpha$), $\angle B$ (atau $\beta$), dan $\angle C$ (atau $\gamma$).</li>
+                <li>Panjang sisi di hadapan sudut dinyatakan dengan huruf kecil yang bersesuaian:
+                    $$a = BC, \qquad b = AC, \qquad c = AB$$
+                </li>
+                <li>Jumlah ketiga sudut dalam segitiga selalu $180^\circ$:
+                    $$A + B + C = 180^\circ$$
+                </li>
+                <li>Setengah keliling segitiga (semi-perimeter):
+                    $$s = \frac{a + b + c}{2}$$
+                </li>
+            </ul>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>2. Aturan Sinus (The Law of Sines)</h2>
+                    <p>
+                        Pada sembarang segitiga $\triangle ABC$, perbandingan antara panjang sisi dengan nilai sinus sudut di hadapannya selalu bernilai <strong>konstan</strong> dan tepat sama dengan <strong>diameter lingkaran luar segitiga ($2R$)</strong>:
+                    </p>
+                    $$\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C} = 2R$$
+                    <p>
+                        di mana $R$ adalah panjang jari-jari lingkaran luar (circumcircle radius) dari $\triangle ABC$.
+                    </p>
+
+                    <p><strong>Kapan Menggunakan Aturan Sinus?</strong></p>
+                    <ol>
+                        <li>Diketahui <strong>dua sudut dan satu sisi</strong> (sudut-sudut-sisi / AAS atau sudut-sisi-sudut / ASA).</li>
+                        <li>Diketahui <strong>dua sisi dan satu sudut di hadapan salah satu sisi</strong> (sisi-sisi-sudut / SSA). <em>Catatan:</em> Pada kasus SSA dapat terjadi kasus ambigu (ambiguous case) dengan 0, 1, atau 2 segitiga yang mungkin.</li>
+                    </ol>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-aturan-sinus-lingkaran-luar" style="display: flex; justify-content: center; align-items: center; min-height: 230px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Pembuktian Aturan Sinus $\frac{a}{\sin A} = 2R$ melalui segitiga siku-siku penghadap diameter lingkaran luar.</em>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>3. Aturan Cosinus (The Law of Cosines)</h2>
+                    <p>
+                        Aturan Cosinus merupakan generalisasi langsung dari <strong>Teorema Pythagoras</strong> untuk segitiga sembarang (tidak harus siku-siku):
+                    </p>
+                    $$a^2 = b^2 + c^2 - 2bc \cos A \iff \cos A = \frac{b^2 + c^2 - a^2}{2bc}$$
+                    $$b^2 = a^2 + c^2 - 2ac \cos B \iff \cos B = \frac{a^2 + c^2 - b^2}{2ac}$$
+                    $$c^2 = a^2 + b^2 - 2ab \cos C \iff \cos C = \frac{a^2 + b^2 - c^2}{2ab}$$
+
+                    <p><strong>Kapan Menggunakan Aturan Cosinus?</strong></p>
+                    <ol>
+                        <li>Diketahui <strong>dua sisi dan sudut apitnya</strong> (sisi-sudut-sisi / SAS) untuk mencari panjang sisi ketiga.</li>
+                        <li>Diketahui <strong>ketiga panjang sisi</strong> (sisi-sisi-sisi / SSS) untuk menghitung besar ketiga sudutnya.</li>
+                    </ol>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-aturan-cosinus-proyeksi" style="display: flex; justify-content: center; align-items: center; min-height: 230px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Pembuktian Aturan Cosinus melalui proyeksi garis tinggi $h_c$ dan Teorema Pythagoras.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>4. Formulasi Luas Segitiga Berbasis Trigonometri</h2>
+            <p>
+                Terdapat beberapa rumus analitik untuk menghitung luas segitiga $\triangle ABC$ tergantung pada unsur-unsur yang diketahui:
+            </p>
+
+            <table class="table-auto" style="width: 100%; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--bg-hover, #f1f5f9);">
+                        <th>Kondisi Informasi yang Diketahui</th>
+                        <th>Rumus Luas Segitiga ($L$)</th>
+                        <th>Keterangan Variabel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Dua Sisi & Sudut Apit (SAS)</strong></td>
+                        <td>
+                            $$L = \frac{1}{2} ab \sin C = \frac{1}{2} bc \sin A = \frac{1}{2} ac \sin B$$
+                        </td>
+                        <td>Garis tinggi $h = b \sin A$ disubstitusikan ke rumus dasar $\frac{1}{2} \cdot \text{alas} \cdot \text{tinggi}$.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Satu Sisi & Dua Sudut (ASA/AAS)</strong></td>
+                        <td>
+                            $$L = \frac{a^2 \sin B \sin C}{2 \sin A} = \frac{b^2 \sin A \sin C}{2 \sin B} = \frac{c^2 \sin A \sin B}{2 \sin C}$$
+                        </td>
+                        <td>Kombinasi rumus SAS dengan substitusi Aturan Sinus $b = \frac{a \sin B}{\sin A}$.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ketiga Sisi Diketahui (SSS)<br>Formula Heron</strong></td>
+                        <td>
+                            $$L = \sqrt{s(s - a)(s - b)(s - c)}$$
+                        </td>
+                        <td>$s = \frac{a + b + c}{2}$ adalah semi-perimeter segitiga.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>5. Relasi Lingkaran Luar & Lingkaran Dalam</h2>
+                    <p>
+                        Luas segitiga $L$ memiliki kaitan geometris yang sangat erat dengan jari-jari lingkaran luar ($R$) dan jari-jari lingkaran dalam ($r$):
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0; font-weight: bold;">Jari-Jari Lingkaran Luar ($R$):</p>
+                        $$R = \frac{abc}{4L} \iff L = \frac{abc}{4R}$$
+                        <p style="margin: 0.4rem 0 0 0; font-weight: bold;">Jari-Jari Lingkaran Dalam ($r$):</p>
+                        $$r = \frac{L}{s} \iff L = r \cdot s$$
+                    </div>
+                    <p>
+                        <strong>Teorema Jarak Euler:</strong> Jarak antara titik pusat lingkaran luar ($O$) dan titik pusat lingkaran dalam ($I$) memenuhi:
+                        $$OI^2 = R(R - 2r) \implies R \ge 2r$$
+                    </p>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-luas-lingkaran-dalam-luar" style="display: flex; justify-content: center; align-items: center; min-height: 230px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Segitiga $\triangle ABC$ dengan lingkaran dalam ($r = L/s$) dan lingkaran luar ($R = abc/4L$).</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>6. Teorema Garis Bagi, Garis Berat, & Aturan Tangen</h2>
+
+            <table class="table-auto" style="width: 100%; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--bg-hover, #f1f5f9);">
+                        <th>Teorema Lanjutan</th>
+                        <th>Rumus Analitis</th>
+                        <th>Aplikasi Geometri</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Aturan Tangen (Law of Tangents)</strong></td>
+                        <td>
+                            $$\frac{a - b}{a + b} = \frac{\tan \frac{A - B}{2}}{\tan \frac{A + B}{2}}$$
+                        </td>
+                        <td>Mempermudah komputasi logaritmik dan penyelesaian kasus SAS tanpa akar kuadrat besar.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Panjang Garis Bagi Dalam ($d_A$)</strong></td>
+                        <td>
+                            $$d_A = \frac{2bc \cos\left(\frac{A}{2}\right)}{b + c}$$
+                        </td>
+                        <td>Menghitung panjang ruas garis bagi sudut interior $A$ yang membagi sudut menjadi $\frac{A}{2}$ sama besar.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Teorema Stewart (Panjang Garis Sevian)</strong></td>
+                        <td>
+                            $$b^2 m + c^2 n = a(d^2 + mn)$$
+                        </td>
+                        <td>Jika titik $D$ pada sisi $BC$ membagi alas menjadi $BD = m$ dan $DC = n$ ($m + n = a$), serta $AD = d$.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Teorema Apollonius (Panjang Garis Berat)</strong></td>
+                        <td>
+                            $$m_a^2 = \frac{2b^2 + 2c^2 - a^2}{4}$$
+                        </td>
+                        <td>Panjang garis berat $m_a$ yang ditarik dari titik $A$ ke titik tengah sisi $BC$ ($m = n = \frac{a}{2}$).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>7. Contoh Soal Berjenjang & Pembahasan Komprehensif</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Aturan Sinus & Cosinus Segitiga</h3>
+                <p>
+                    Pada sebuah segitiga $\triangle ABC$, diketahui panjang sisi $a = 6\text{ cm}$, panjang sisi $b = 10\text{ cm}$, dan besar sudut $\angle C = 60^\circ$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan panjang sisi $c$ menggunakan Aturan Cosinus.</li>
+                    <li>Hitung luas segitiga $\triangle ABC$.</li>
+                    <li>Tentukan panjang jari-jari lingkaran luar ($R$) segitiga tersebut.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menghitung Panjang Sisi $c$ (Aturan Cosinus):</strong><br>
+                        Diketahui $a = 6, b = 10, \angle C = 60^\circ$:
+                        $$c^2 = a^2 + b^2 - 2ab \cos C$$
+                        $$c^2 = 6^2 + 10^2 - 2(6)(10) \cos 60^\circ$$
+                        $$c^2 = 36 + 100 - 120 \left(\frac{1}{2}\right) = 136 - 60 = 76$$
+                        $$c = \sqrt{76} = \sqrt{4 \times 19} = 2\sqrt{19}\text{ cm}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Luas Segitiga $\triangle ABC$:</strong><br>
+                        Gunakan rumus luas dua sisi dan sudut apit:
+                        $$L = \frac{1}{2} ab \sin C = \frac{1}{2} (6)(10) \sin 60^\circ = 30 \times \frac{1}{2}\sqrt{3} = 15\sqrt{3}\text{ cm}^2$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Jari-Jari Lingkaran Luar ($R$):</strong><br>
+                        Berdasarkan Aturan Sinus $\frac{c}{\sin C} = 2R$:
+                        $$2R = \frac{c}{\sin C} = \frac{2\sqrt{19}}{\sin 60^\circ} = \frac{2\sqrt{19}}{\frac{1}{2}\sqrt{3}} = \frac{4\sqrt{19}}{\sqrt{3}}$$
+                        $$R = \frac{2\sqrt{19}}{\sqrt{3}} = \frac{2\sqrt{57}}{3}\text{ cm}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Panjang sisi $c = 2\sqrt{19}\text{ cm}$, luas segitiga $L = 15\sqrt{3}\text{ cm}^2$, dan jari-jari lingkaran luar $R = \frac{2\sqrt{57}}{3}\text{ cm}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat Menengah (SNBT / UTBK) — Gabungan Segiempat, Aturan Cosinus, & Luas Gabungan</h3>
+                <p>
+                    Sebuah lahan berbentuk segiempat konveks $ABCD$ dibagi menjadi dua bagian oleh batas diagonal $AC$. Diketahui panjang $AB = 4\text{ m}$, $BC = 4\text{ m}$, $CD = 3\text{ m}$, $AD = 5\text{ m}$, dan besar sudut $\angle B = 60^\circ$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan panjang diagonal $AC$.</li>
+                    <li>Buktikan apakah segitiga $\triangle ACD$ merupakan segitiga siku-siku.</li>
+                    <li>Hitung total luas lahan segiempat $ABCD$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menghitung Panjang Diagonal $AC$ pada $\triangle ABC$:</strong><br>
+                        Karena $AB = BC = 4$ dan $\angle B = 60^\circ$, segitiga $\triangle ABC$ adalah <em>segitiga sama sisi</em>.<br>
+                        Dapat diverifikasi via Aturan Cosinus:
+                        $$AC^2 = AB^2 + BC^2 - 2(AB)(BC) \cos 60^\circ = 4^2 + 4^2 - 2(4)(4)\left(\frac{1}{2}\right) = 16 + 16 - 16 = 16$$
+                        $$AC = \sqrt{16} = 4\text{ m}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menganalisis Jenis Segitiga $\triangle ACD$:</strong><br>
+                        Sisi-sisi $\triangle ACD$ adalah $CD = 3$, $AC = 4$, dan $AD = 5$.<br>
+                        Periksa hubungan kuadrat sisi-sisinya:
+                        $$CD^2 + AC^2 = 3^2 + 4^2 = 9 + 16 = 25$$
+                        $$AD^2 = 5^2 = 25$$
+                        Karena $CD^2 + AC^2 = AD^2$, maka berdasarkan Teorema Kebalikan Pythagoras, $\triangle ACD$ adalah <strong>segitiga siku-siku di titik $C$ ($\angle ACD = 90^\circ$)</strong>.
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Total Luas Segiempat $ABCD$:</strong><br>
+                        Total luas adalah penjumlahan luas kedua segitiga:
+                        $$\text{Luas}(\triangle ABC) = \frac{1}{2} (AB)(BC) \sin 60^\circ = \frac{1}{2} (4)(4) \left(\frac{1}{2}\sqrt{3}\right) = 4\sqrt{3}\text{ m}^2$$
+                        $$\text{Luas}(\triangle ACD) = \frac{1}{2} \times \text{alas} \times \text{tinggi} = \frac{1}{2} \times AC \times CD = \frac{1}{2} \times 4 \times 3 = 6\text{ m}^2$$
+                        $$\text{Total Luas } ABCD = 6 + 4\sqrt{3}\text{ m}^2 \approx 6 + 4(1{,}732) = 12{,}93\text{ m}^2$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Panjang diagonal $AC = 4\text{ m}$, $\triangle ACD$ terbukti siku-siku di $C$, dan total luas lahan adalah $(6 + 4\sqrt{3})\text{ m}^2$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / OSK) — Relasi Rasio Sudut dan Sisi Segitiga</h3>
+                <p>
+                    Pada sebuah segitiga $\triangle ABC$, diketahui bahwa besar sudut $\angle C$ tiga kali besar sudut $\angle A$ ($\angle C = 3\angle A$), dan besar sudut $\angle B$ dua kali besar sudut $\angle A$ ($\angle B = 2\angle A$).
+                </p>
+                <ol type="a">
+                    <li>Tentukan besar masing-masing sudut $\angle A, \angle B,$ dan $\angle C$.</li>
+                    <li>Hitung perbandingan panjang sisi $AB : BC$.</li>
+                    <li>Hitung perbandingan luas segitiga terhadap kuadrat panjang sisi terpendeknya.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menentukan Besar Sudut:</strong><br>
+                        Jumlah seluruh sudut dalam segitiga adalah $180^\circ$:
+                        $$\angle A + \angle B + \angle C = 180^\circ$$
+                        $$\angle A + 2\angle A + 3\angle A = 180^\circ$$
+                        $$6\angle A = 180^\circ \implies \angle A = 30^\circ$$
+                        Maka:
+                        $$\angle B = 2(30^\circ) = 60^\circ$$
+                        $$\angle C = 3(30^\circ) = 90^\circ$$
+                        Segitiga $\triangle ABC$ adalah segitiga siku-siku khusus $30^\circ - 60^\circ - 90^\circ$ dengan hipotenusa $AB$!
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Rasio $AB : BC$:</strong><br>
+                        Gunakan Aturan Sinus:
+                        $$\frac{AB}{\sin C} = \frac{BC}{\sin A}$$
+                        $$\frac{AB}{\sin 90^\circ} = \frac{BC}{\sin 30^\circ} \implies \frac{AB}{1} = \frac{BC}{\frac{1}{2}}$$
+                        $$\frac{AB}{BC} = \frac{1}{\frac{1}{2}} = 2 \iff AB : BC = 2 : 1$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Rasio Luas Segitiga terhadap Kuadrat Sisi Terpendek ($BC = a$):</strong><br>
+                        Panjang sisi-sisi bersesuaian:
+                        $$BC = a, \quad AC = b = a\sqrt{3}, \quad AB = c = 2a$$
+                        Luas segitiga siku-siku $\triangle ABC$:
+                        $$L = \frac{1}{2} \times AC \times BC = \frac{1}{2} (a\sqrt{3})(a) = \frac{\sqrt{3}}{2} a^2$$
+                        Rasio luas terhadap kuadrat sisi terpendek ($a^2$):
+                        $$\frac{L}{a^2} = \frac{\frac{\sqrt{3}}{2} a^2}{a^2} = \frac{\sqrt{3}}{2}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Sudut-sudut segitiga adalah $30^\circ, 60^\circ, 90^\circ$, rasio panjang $AB : BC = 2 : 1$, dan perbandingan luas terhadap kuadrat sisi terpendek adalah $\frac{\sqrt{3}}{2}$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                abuMuda: "#f1f5f9",
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Aturan Sinus & Lingkaran Luar (2R)
+            // ==========================================
+            const elSinus = document.getElementById("svg-aturan-sinus-lingkaran-luar");
+            if (elSinus) {
+                const geo1 = new GeoSVG(elSinus, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Aturan Sinus dan Lingkaran Luar Segitiga"
+                });
+
+                const Ox = 170, Oy = 115, R = 85;
+
+                // Lingkaran Luar (Abu-Abu)
+                geo1.buatLingkaran([Ox, Oy], R, { stroke: TEMA.abu, strokeWidth: 1.5, fill: "none" });
+                geo1.buatLingkaran([Ox, Oy], 3, { fill: TEMA.merah });
+                geo1.buatTeks(Ox + 8, Oy - 4, "O", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik A, B, C pada keliling
+                // A di atas (sudut -100 deg): Ox + 85*cos(-100) = 170 - 14.7 = 155, Oy + 85*sin(-100) = 115 - 83.7 = 31
+                const ptA = [155, 32];
+                // B di kiri bawah (sudut 150 deg): Ox - 73.6 = 96.4, Oy + 42.5 = 157.5
+                const ptB = [96, 158];
+                // C di kanan bawah (sudut 20 deg): Ox + 79.8 = 250, Oy + 29 = 144
+                const ptC = [250, 144];
+
+                // Titik D ujung diameter dari B melalui O: sudut -30 deg -> Ox + 73.6 = 243.6, Oy - 42.5 = 72.5
+                const ptD = [244, 73];
+
+                // Segitiga ABC (Biru)
+                geo1.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.4
+                });
+
+                // Diameter BD melalui pusat O (Merah Tebal = 2R)
+                geo1.buatSegmen(ptB, ptD, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo1.buatTeks((ptB[0] + ptD[0]) / 2 - 12, (ptB[1] + ptD[1]) / 2 - 8, "2R", { position: "bottom-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Ruas Garis CD (Dashed Oranye)
+                geo1.buatSegmen(ptC, ptD, { stroke: TEMA.oranye, strokeWidth: 1.5, strokeDasharray: "3 2" });
+                // Sudut siku-siku di C pada delta BCD (menghadap diameter BD)
+                geo1.buatSiku(ptB, ptC, ptD, { size: 9, stroke: TEMA.oranye, strokeWidth: 1.2 });
+
+                // Lengkungan sudut A dan sudut D (keduanya sama-sama menghadap busur BC)
+                geo1.buatSudut(ptB, ptA, ptC, { radius: 20, stroke: TEMA.utama, fill: TEMA.utamaMuda, opacity: 0.7 });
+                geo1.buatTeks(ptA[0], ptA[1] + 28, "A", { position: "middle-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo1.buatSudut(ptB, ptD, ptC, { radius: 18, stroke: TEMA.oranye, fill: TEMA.oranyeMuda, opacity: 0.7 });
+                geo1.buatTeks(ptD[0] - 16, ptD[1] + 8, "A", { position: "middle-center", fontSize: "7px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik Verteks
+                [ptA, ptB, ptC].forEach(pt => geo1.buatLingkaran(pt, 3.5, { fill: TEMA.utama }));
+                geo1.buatLingkaran(ptD, 3, { fill: TEMA.oranye });
+
+                // Label Titik
+                geo1.buatTeks(ptA[0], ptA[1] - 8, "A", { position: "bottom-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(ptB[0] - 8, ptB[1] + 6, "B", { position: "top-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(ptC[0] + 8, ptC[1] + 6, "C", { position: "top-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo1.buatTeks(ptD[0] + 8, ptD[1] - 4, "D", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Sisi a = BC di bawah
+                geo1.buatTeks((ptB[0] + ptC[0]) / 2, ptB[1] + 14, "sisi a = BC", { position: "top-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Footer
+                geo1.buatTeks(170, 215, "sin A = a / 2R  ⇒  a / sin A = b / sin B = c / sin C = 2R", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Aturan Cosinus via Proyeksi Pythagoras
+            // ==========================================
+            const elCosinus = document.getElementById("svg-aturan-cosinus-proyeksi");
+            if (elCosinus) {
+                const geo2 = new GeoSVG(elCosinus, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Pembuktian Aturan Cosinus via Proyeksi Ketinggian"
+                });
+
+                // Verteks Segitiga ABC
+                const ptA = [50, 165];
+                const ptB = [280, 165]; // c = 230
+                const ptC = [135, 55];
+
+                // Kaki tinggi H dari C ke AB
+                const ptH = [135, 165];
+
+                // Segitiga AHC (Hijau)
+                geo2.buatPoligon([ptA, ptH, ptC], { fill: TEMA.aksenMuda, stroke: TEMA.aksen, strokeWidth: 1.5, opacity: 0.6 });
+                // Segitiga BHC (Biru)
+                geo2.buatPoligon([ptH, ptB, ptC], { fill: TEMA.utamaMuda, stroke: TEMA.utama, strokeWidth: 1.5, opacity: 0.6 });
+
+                // Garis Tinggi hc (Merah Tebal)
+                geo2.buatSegmen(ptC, ptH, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo2.buatSiku(ptA, ptH, ptC, { size: 9, stroke: TEMA.merah, strokeWidth: 1.2 });
+                geo2.buatTeks(ptH[0] - 8, (ptC[1] + ptH[1]) / 2, "hc = b sin A", { position: "middle-right", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Lengkungan Sudut A
+                geo2.buatSudut(ptB, ptA, ptC, { radius: 24, stroke: TEMA.oranye, fill: TEMA.oranyeMuda, opacity: 0.8 });
+                geo2.buatTeks(ptA[0] + 30, ptA[1] - 8, "A", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik Verteks
+                [ptA, ptB, ptC].forEach(pt => geo2.buatLingkaran(pt, 3.5, { fill: TEMA.gelap }));
+                geo2.buatLingkaran(ptH, 2.5, { fill: TEMA.merah });
+
+                // Label Titik
+                geo2.buatTeks(ptA[0] - 8, ptA[1] + 4, "A", { position: "middle-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+                geo2.buatTeks(ptB[0] + 8, ptB[1] + 4, "B", { position: "middle-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+                geo2.buatTeks(ptC[0], ptC[1] - 8, "C", { position: "bottom-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+                geo2.buatTeks(ptH[0], ptH[1] + 12, "H", { position: "top-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Label Sisi-Sisi
+                geo2.buatTeks((ptA[0] + ptC[0]) / 2 - 12, (ptA[1] + ptC[1]) / 2 - 6, "sisi b", { position: "bottom-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+                geo2.buatTeks((ptB[0] + ptC[0]) / 2 + 10, (ptB[1] + ptC[1]) / 2 - 6, "sisi a", { position: "bottom-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Dimensi Bawah
+                geo2.buatTeks((ptA[0] + ptH[0]) / 2, ptH[1] + 14, "b cos A", { position: "top-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+                geo2.buatTeks((ptH[0] + ptB[0]) / 2, ptH[1] + 14, "c − b cos A", { position: "top-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Footer
+                geo2.buatTeks(170, 215, "Pada ΔBHC: a² = hc² + (c − b cos A)²  ⇒  a² = b² + c² − 2bc cos A", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Luas Segitiga, Lingkaran Dalam & Luar
+            // ==========================================
+            const elLingkaran = document.getElementById("svg-luas-lingkaran-dalam-luar");
+            if (elLingkaran) {
+                const geo3 = new GeoSVG(elLingkaran, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Relasi Luas Segitiga dengan Incircle dan Circumcircle"
+                });
+
+                // Segitiga ABC siku-siku indah 9-12-15 diskalakan (faktor 10)
+                // A(60, 165), B(240, 165), C(60, 45) -> siku-siku di A
+                // alas c = 180 (x=60 ke 240), tinggi b = 120 (y=45 ke 165), hipotenusa a = sqrt(180^2 + 120^2) = 216.3
+                // Incircle: r = (b + c - a) / 2 = (120 + 180 - 216.3) / 2 = 41.8
+                // Pusat I = (60 + r, 165 - r) = (102, 123)
+                const ptA = [60, 165];
+                const ptB = [250, 165];
+                const ptC = [95, 55];
+
+                // Segitiga ABC Utama
+                geo3.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.3
+                });
+
+                // Lingkaran Dalam (Incircle) r
+                // Pusat incenter I kira-kira di (128, 130), r = 32
+                const ptI = [128, 130];
+                const rIn = 32;
+                geo3.buatLingkaran(ptI, rIn, { stroke: TEMA.aksen, strokeWidth: 1.8, fill: TEMA.aksenMuda, opacity: 0.5 });
+                geo3.buatLingkaran(ptI, 3, { fill: TEMA.aksen });
+                geo3.buatTeks(ptI[0] + 6, ptI[1] - 4, "I", { fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Jari-jari r ke sisi alas AB (Merah)
+                geo3.buatSegmen(ptI, [ptI[0], ptA[1]], { stroke: TEMA.merah, strokeWidth: 1.5 });
+                geo3.buatSiku([ptI[0] + 8, ptA[1]], [ptI[0], ptA[1]], ptI, { size: 6, stroke: TEMA.merah, strokeWidth: 1 });
+                geo3.buatTeks(ptI[0] + 6, (ptI[1] + ptA[1]) / 2, "r", { fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Garis bagi sudut dari A, B, C ke I (Dashed Aksen)
+                geo3.buatSegmen(ptA, ptI, { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "2 2" });
+                geo3.buatSegmen(ptB, ptI, { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "2 2" });
+                geo3.buatSegmen(ptC, ptI, { stroke: TEMA.abu, strokeWidth: 1, strokeDasharray: "2 2" });
+
+                // Titik Verteks
+                [ptA, ptB, ptC].forEach(pt => geo3.buatLingkaran(pt, 3.5, { fill: TEMA.utama }));
+                geo3.buatTeks(ptA[0] - 8, ptA[1] + 4, "A", { position: "middle-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo3.buatTeks(ptB[0] + 8, ptB[1] + 4, "B", { position: "middle-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+                geo3.buatTeks(ptC[0], ptC[1] - 8, "C", { position: "bottom-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Rumus-rumus Kunci di Sebelah Kanan / Bawah
+                geo3.buatTeks(170, 185, "Luas L = ½ ab sin C = √[s(s−a)(s−b)(s−c)]", {
+                    position: "middle-center",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.utama
+                });
+                geo3.buatTeks(170, 202, "Lingkaran Dalam: r = L / s  |  Lingkaran Luar: R = abc / 4L", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.aksen
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

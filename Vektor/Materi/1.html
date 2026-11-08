@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Vektor</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Vektor (Aljabar & Geometri)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Definisi, Notasi, & Komponen Vektor</h2>
+            <p>
+                Dalam sains dan matematika, besaran dibedakan menjadi dua jenis utama:
+            </p>
+            <ul>
+                <li><strong>Besaran Skalar:</strong> Besaran yang hanya memiliki nilai (besar/magnitudo), seperti panjang, massa, suhu, waktu, dan luas.</li>
+                <li><strong>Besaran Vektor:</strong> Besaran yang memiliki <strong>besar (panjang)</strong> sekaligus <strong>arah tertentu</strong>, seperti perpindahan, kecepatan, percepatan, gaya, dan momentum.</li>
+            </ul>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: bold;">Notasi dan Bentuk Representasi Vektor:</p>
+                <ul style="margin: 0.3rem 0 0 1.2rem; padding: 0;">
+                    <li><strong>Vektor Dimensi Dua ($\mathbb{R}^2$):</strong>
+                        $$\vec{u} = \begin{pmatrix} x \\ y \end{pmatrix} = x\mathbf{i} + y\mathbf{j}$$
+                    </li>
+                    <li><strong>Vektor Dimensi Tiga ($\mathbb{R}^3$):</strong>
+                        $$\vec{u} = \begin{pmatrix} x \\ y \\ z \end{pmatrix} = x\mathbf{i} + y\mathbf{j} + z\mathbf{k}$$
+                    </li>
+                    <li><strong>Vektor Posisi Titik $A$ ke $B$:</strong>
+                        $$\overrightarrow{AB} = \vec{b} - \vec{a} = \begin{pmatrix} x_B - x_A \\ y_B - y_A \\ z_B - z_A \end{pmatrix}$$
+                    </li>
+                    <li><strong>Panjang (Modulus / Magnitudo) Vektor:</strong>
+                        $$|\vec{u}| = \sqrt{x^2 + y^2 + z^2}$$
+                    </li>
+                    <li><strong>Vektor Satuan (Unit Vector):</strong> Vektor dengan panjang tepat $1$ yang searah dengan $\vec{u}$:
+                        $$\hat{u} = \frac{\vec{u}}{|\vec{u}|} = \frac{1}{\sqrt{x^2 + y^2 + z^2}} \begin{pmatrix} x \\ y \\ z \end{pmatrix}$$
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>2. Operasi Aljabar & Geometris Vektor</h2>
+                    <p>
+                        <strong>A. Penjumlahan Vektor:</strong>
+                        <br>Secara geometris ditentukan melalui <em>Aturan Jajar Genjang</em> atau <em>Aturan Segitiga (Head-to-Tail)</em>:
+                    </p>
+                    $$\vec{u} + \vec{v} = \begin{pmatrix} x_1 + x_2 \\ y_1 + y_2 \\ z_1 + z_2 \end{pmatrix}$$
+                    <p>
+                        Besar (panjang) resultan penjumlahan dua vektor dengan sudut apit $\theta$:
+                    </p>
+                    $$|\vec{u} + \vec{v}| = \sqrt{|\vec{u}|^2 + |\vec{v}|^2 + 2|\vec{u}||\vec{v}|\cos\theta}$$
+                    $$|\vec{u} - \vec{v}| = \sqrt{|\vec{u}|^2 + |\vec{v}|^2 - 2|\vec{u}||\vec{v}|\cos\theta}$$
+
+                    <p><strong>B. Pembagian Ruas Garis Berbobot:</strong></p>
+                    <p>
+                        Jika titik $P$ membagi ruas garis $AB$ dengan perbandingan $AP : PB = m : n$:
+                    </p>
+                    $$\vec{p} = \frac{m\vec{b} + n\vec{a}}{m + n}$$
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-penjumlahan-vektor-jajargenjang" style="display: flex; justify-content: center; align-items: center; min-height: 230px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Penjumlahan geometris vektor $\vec{u} + \vec{v} = \vec{R}$ melalui aturan jajar genjang.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Perkalian Titik (Dot Product / Perkalian Skalar)</h2>
+            <p>
+                Perkalian titik antara dua vektor menghasilkan sebuah <strong>bilangan skalar</strong>. Perkalian ini menghubungkan komponen aljabar dengan sudut apit geometris antar-vektor:
+            </p>
+
+            <table class="table-auto" style="width: 100%; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--bg-hover, #f1f5f9);">
+                        <th>Formulasi Geometris</th>
+                        <th>Formulasi Aljabar Komponen ($\mathbb{R}^3$)</th>
+                        <th>Kondisi Khusus (Ortogonalitas & Kesejajaran)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>$$\vec{u} \cdot \vec{v} = |\vec{u}| |\vec{v}| \cos \theta$$</td>
+                        <td>$$\vec{u} \cdot \vec{v} = x_1 x_2 + y_1 y_2 + z_1 z_2$$</td>
+                        <td>
+                            <strong>Saling Tegak Lurus (Ortogonal):</strong>
+                            $$\vec{u} \perp \vec{v} \iff \vec{u} \cdot \vec{v} = 0 \quad (\theta = 90^\circ)$$
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <strong>Rumus Kosinus Sudut Antara Dua Vektor:</strong>
+                            $$\cos \theta = \frac{\vec{u} \cdot \vec{v}}{|\vec{u}| |\vec{v}|} = \frac{x_1 x_2 + y_1 y_2 + z_1 z_2}{\sqrt{x_1^2 + y_1^2 + z_1^2} \cdot \sqrt{x_2^2 + y_2^2 + z_2^2}}$$
+                        </td>
+                        <td>
+                            <strong>Searah / Sejajar (Kolinier):</strong>
+                            $$\vec{u} \parallel \vec{v} \iff \cos\theta = \pm 1 \iff \vec{u} = k \cdot \vec{v}$$
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>4. Proyeksi Vektor Ortogonal</h2>
+                    <p>
+                        Jika vektor $\vec{u}$ diproyeksikan secara tegak lurus (ortogonal) ke arah garis yang berimpit dengan vektor $\vec{v}$:
+                    </p>
+                    <ol>
+                        <li><strong>Proyeksi Skalar Ortogonal ($c$):</strong>
+                            <br>Nilai bilangan bertanda yang menyatakan panjang bayangan terarah $\vec{u}$ pada $\vec{v}$:
+                            $$c = |\vec{u}| \cos \theta = \frac{\vec{u} \cdot \vec{v}}{|\vec{v}|}$$
+                            <em>Panjang proyeksi selalu positif:</em> $|c| = \frac{|\vec{u} \cdot \vec{v}|}{|\vec{v}|}$.
+                        </li>
+                        <li><strong>Proyeksi Vektor Ortogonal ($\vec{w}$):</strong>
+                            <br>Vektor hasil proyeksi yang searah dengan vektor $\vec{v}$:
+                            $$\vec{w} = \text{proj}_{\vec{v}}(\vec{u}) = c \cdot \hat{v} = \left(\frac{\vec{u} \cdot \vec{v}}{|\vec{v}|^2}\right) \vec{v}$$
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-proyeksi-vektor-ortogonal" style="display: flex; justify-content: center; align-items: center; min-height: 230px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Proyeksi ortogonal vektor $\vec{u}$ pada $\vec{v}$ membentuk segitiga siku-siku proyeksi.</em>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>5. Perkalian Silang (Cross Product) di $\mathbb{R}^3$</h2>
+                    <p>
+                        Perkalian silang $\vec{u} \times \vec{v}$ hanya terdefinisi pada ruang tiga dimensi ($\mathbb{R}^3$) dan menghasilkan <strong>sebuah vektor baru yang tegak lurus terhadap kedua vektor asal</strong> sesuai kaidah tangan kanan:
+                    </p>
+                    $$\vec{u} \times \vec{v} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ x_1 & y_1 & z_1 \\ x_2 & y_2 & z_2 \end{vmatrix}$$
+                    $$\vec{u} \times \vec{v} = (y_1 z_2 - z_1 y_2)\mathbf{i} - (x_1 z_2 - z_1 x_2)\mathbf{j} + (x_1 y_2 - y_1 x_2)\mathbf{k}$$
+                    <p>
+                        <strong>Aplikasi Geometris Perhitungan Luas:</strong>
+                    </p>
+                    $$|\vec{u} \times \vec{v}| = |\vec{u}| |\vec{v}| \sin \theta$$
+                    $$\text{Luas Jajar Genjang} = |\vec{u} \times \vec{v}|$$
+                    $$\text{Luas Segitiga} = \frac{1}{2} |\vec{u} \times \vec{v}|$$
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-perkalian-silang-luas" style="display: flex; justify-content: center; align-items: center; min-height: 230px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Luas jajar genjang yang dibentuk oleh $\vec{u}$ dan $\vec{v}$ berukuran sama dengan magnitudo $|\vec{u} \times \vec{v}|$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Komprehensif</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Vektor Posisi, Panjang Vektor, & Perkalian Titik</h3>
+                <p>
+                    Diketahui titik-titik koordinat $A(1, 2, -1)$, $B(3, 0, 1)$, dan $C(2, 4, 1)$ pada ruang dimensi tiga.
+                </p>
+                <ol type="a">
+                    <li>Tentukan vektor posisi $\vec{u} = \overrightarrow{AB}$ dan $\vec{v} = \overrightarrow{AC}$.</li>
+                    <li>Hitung panjang masing-masing vektor $|\vec{u}|$ dan $|\vec{v}|$.</li>
+                    <li>Hitung perkalian titik $\vec{u} \cdot \vec{v}$.</li>
+                    <li>Tentukan besar nilai kosinus sudut $\theta$ di antara vektor $\vec{u}$ dan $\vec{v}$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menentukan Vektor Posisi:</strong>
+                        $$\vec{u} = \overrightarrow{AB} = \vec{b} - \vec{a} = \begin{pmatrix} 3 - 1 \\ 0 - 2 \\ 1 - (-1) \end{pmatrix} = \begin{pmatrix} 2 \\ -2 \\ 2 \end{pmatrix}$$
+                        $$\vec{v} = \overrightarrow{AC} = \vec{c} - \vec{a} = \begin{pmatrix} 2 - 1 \\ 4 - 2 \\ 1 - (-1) \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ 2 \end{pmatrix}$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Panjang Vektor:</strong>
+                        $$|\vec{u}| = \sqrt{2^2 + (-2)^2 + 2^2} = \sqrt{4 + 4 + 4} = \sqrt{12} = 2\sqrt{3}$$
+                        $$|\vec{v}| = \sqrt{1^2 + 2^2 + 2^2} = \sqrt{1 + 4 + 4} = \sqrt{9} = 3$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Perkalian Titik $\vec{u} \cdot \vec{v}$:</strong>
+                        $$\vec{u} \cdot \vec{v} = (2)(1) + (-2)(2) + (2)(2) = 2 - 4 + 4 = 2$$
+                    </p>
+                    <p>
+                        <strong>(d) Menghitung Nilai $\cos \theta$:</strong>
+                        $$\cos \theta = \frac{\vec{u} \cdot \vec{v}}{|\vec{u}| |\vec{v}|} = \frac{2}{(2\sqrt{3})(3)} = \frac{2}{6\sqrt{3}} = \frac{1}{3\sqrt{3}} = \frac{\sqrt{3}}{9}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> $\vec{u} = \begin{pmatrix} 2 \\ -2 \\ 2 \end{pmatrix}$, $\vec{v} = \begin{pmatrix} 1 \\ 2 \\ 2 \end{pmatrix}$, $|\vec{u}| = 2\sqrt{3}$, $|\vec{v}| = 3$, dan $\cos \theta = \frac{\sqrt{3}}{9}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat Menengah (SNBT / UTBK) — Vektor Saling Tegak Lurus & Proyeksi Ortogonal</h3>
+                <p>
+                    Diberikan tiga titik $A(a, -2, 3)$, $B(2, -1, 1)$, dan $C(1, 5, c)$.
+                </p>
+                <ol type="a">
+                    <li>Jika vektor $\overrightarrow{AB}$ tegak lurus terhadap vektor $\overrightarrow{BC}$, tentukan nilai dari ekspresi $a - 2c$.</li>
+                    <li>Jika diketahui vektor $\vec{p} = \begin{pmatrix} 4 \\ -2 \\ 4 \end{pmatrix}$ dan $\vec{q} = \begin{pmatrix} 2 \\ 1 \\ -2 \end{pmatrix}$, tentukan proyeksi skalar ortogonal dan proyeksi vektor ortogonal dari $\vec{p}$ pada $\vec{q}$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menyelesaikan Kondisi Tegak Lurus $\overrightarrow{AB} \perp \overrightarrow{BC}$:</strong>
+                        $$\overrightarrow{AB} = \begin{pmatrix} 2 - a \\ -1 - (-2) \\ 1 - 3 \end{pmatrix} = \begin{pmatrix} 2 - a \\ 1 \\ -2 \end{pmatrix}$$
+                        $$\overrightarrow{BC} = \begin{pmatrix} 1 - 2 \\ 5 - (-1) \\ c - 1 \end{pmatrix} = \begin{pmatrix} -1 \\ 6 \\ c - 1 \end{pmatrix}$$
+                        Dua vektor saling tegak lurus jika dan hanya jika perkalian titiknya bernilai nol:
+                        $$\overrightarrow{AB} \cdot \overrightarrow{BC} = 0$$
+                        $$(2 - a)(-1) + (1)(6) + (-2)(c - 1) = 0$$
+                        $$-2 + a + 6 - 2c + 2 = 0$$
+                        $$a - 2c + 6 = 0 \implies a - 2c = -6$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Proyeksi Ortogonal $\vec{p}$ pada $\vec{q}$:</strong><br>
+                        Hitung $\vec{p} \cdot \vec{q}$ dan $|\vec{q}|^2$:
+                        $$\vec{p} \cdot \vec{q} = (4)(2) + (-2)(1) + (4)(-2) = 8 - 2 - 8 = -2$$
+                        $$|\vec{q}| = \sqrt{2^2 + 1^2 + (-2)^2} = \sqrt{4 + 1 + 4} = \sqrt{9} = 3 \implies |\vec{q}|^2 = 9$$
+                        <ul>
+                            <li><strong>Proyeksi Skalar Ortogonal:</strong>
+                                $$c = \frac{\vec{p} \cdot \vec{q}}{|\vec{q}|} = \frac{-2}{3}$$
+                            </li>
+                            <li><strong>Proyeksi Vektor Ortogonal ($\vec{w}$):</strong>
+                                $$\vec{w} = \left(\frac{\vec{p} \cdot \vec{q}}{|\vec{q}|^2}\right) \vec{q} = -\frac{2}{9} \begin{pmatrix} 2 \\ 1 \\ -2 \end{pmatrix} = \begin{pmatrix} -4/9 \\ -2/9 \\ 4/9 \end{pmatrix}$$
+                            </li>
+                        </ul>
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Nilai $a - 2c = -6$, proyeksi skalar adalah $-\frac{2}{3}$, dan proyeksi vektor ortogonal adalah $-\frac{2}{9}\begin{pmatrix} 2 \\ 1 \\ -2 \end{pmatrix}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Relasi Vektor Titik Tengah Segitiga & Luas Cross Product</h3>
+                <p>
+                    Titik $P, Q,$ dan $R$ berturut-turut adalah titik tengah dari sisi-sisi $AB, BC,$ dan $CA$ pada segitiga $\triangle ABC$. Titik $O$ adalah sembarang titik acuan pada bidang/ruang.
+                </p>
+                <ol type="a">
+                    <li>Buktikan identitas vektor:
+                        $$\overrightarrow{OA} + \overrightarrow{OB} + \overrightarrow{OC} = \overrightarrow{OP} + \overrightarrow{OQ} + \overrightarrow{OR}$$
+                    </li>
+                    <li>Jika diketahui koordinat verteks segitiga di ruang $\mathbb{R}^3$ adalah $A(1, 0, 2)$, $B(3, 2, 0)$, dan $C(0, 4, 1)$, hitunglah luas segitiga $\triangle ABC$ menggunakan perkalian silang (cross product)!</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Membuktikan Relasi Titik Tengah:</strong><br>
+                        Karena $P$ titik tengah $AB$, $Q$ titik tengah $BC$, dan $R$ titik tengah $CA$:
+                        $$\overrightarrow{OP} = \frac{\overrightarrow{OA} + \overrightarrow{OB}}{2}$$
+                        $$\overrightarrow{OQ} = \frac{\overrightarrow{OB} + \overrightarrow{OC}}{2}$$
+                        $$\overrightarrow{OR} = \frac{\overrightarrow{OA} + \overrightarrow{OC}}{2}$$
+                        Jumlahkan ketiga persamaan ruas kanan:
+                        $$\overrightarrow{OP} + \overrightarrow{OQ} + \overrightarrow{OR} = \frac{(\overrightarrow{OA} + \overrightarrow{OB}) + (\overrightarrow{OB} + \overrightarrow{OC}) + (\overrightarrow{OA} + \overrightarrow{OC})}{2}$$
+                        $$\overrightarrow{OP} + \overrightarrow{OQ} + \overrightarrow{OR} = \frac{2\overrightarrow{OA} + 2\overrightarrow{OB} + 2\overrightarrow{OC}}{2} = \overrightarrow{OA} + \overrightarrow{OB} + \overrightarrow{OC} \quad \blacksquare$$
+                    </p>
+                    <p>
+                        <strong>(b) Menghitung Luas $\triangle ABC$ via Perkalian Silang:</strong><br>
+                        Tentukan dua vektor sisi dari titik $A$:
+                        $$\overrightarrow{AB} = \begin{pmatrix} 3 - 1 \\ 2 - 0 \\ 0 - 2 \end{pmatrix} = \begin{pmatrix} 2 \\ 2 \\ -2 \end{pmatrix}$$
+                        $$\overrightarrow{AC} = \begin{pmatrix} 0 - 1 \\ 4 - 0 \\ 1 - 2 \end{pmatrix} = \begin{pmatrix} -1 \\ 4 \\ -1 \end{pmatrix}$$
+                        Hitung cross product $\overrightarrow{AB} \times \overrightarrow{AC}$:
+                        $$\overrightarrow{AB} \times \overrightarrow{AC} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 2 & 2 & -2 \\ -1 & 4 & -1 \end{vmatrix}$$
+                        $$\mathbf{i}(2(-1) - (-2)(4)) - \mathbf{j}(2(-1) - (-2)(-1)) + \mathbf{k}(2(4) - 2(-1))$$
+                        $$= \mathbf{i}(-2 + 8) - \mathbf{j}(-2 - 2) + \mathbf{k}(8 + 2) = 6\mathbf{i} + 4\mathbf{j} + 10\mathbf{k}$$
+                        Hitung modulus cross product:
+                        $$|\overrightarrow{AB} \times \overrightarrow{AC}| = \sqrt{6^2 + 4^2 + 10^2} = \sqrt{36 + 16 + 100} = \sqrt{152} = 2\sqrt{38}$$
+                        Luas segitiga $\triangle ABC$:
+                        $$\text{Luas} = \frac{1}{2} |\overrightarrow{AB} \times \overrightarrow{AC}| = \frac{1}{2} (2\sqrt{38}) = \sqrt{38}\text{ satuan luas}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Identitas vektor terbukti benar $\overrightarrow{OA} + \overrightarrow{OB} + \overrightarrow{OC} = \overrightarrow{OP} + \overrightarrow{OQ} + \overrightarrow{OR}$, dan luas segitiga $\triangle ABC$ adalah $\sqrt{38}$ satuan luas.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                abuMuda: "#f1f5f9",
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Penjumlahan Vektor & Aturan Jajar Genjang
+            // ==========================================
+            const elJajar = document.getElementById("svg-penjumlahan-vektor-jajargenjang");
+            if (elJajar) {
+                const geo1 = new GeoSVG(elJajar, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Penjumlahan Vektor via Aturan Jajar Genjang"
+                });
+
+                const ptO = [50, 175];
+                const ptU = [200, 175]; // Vektor u horizontal
+                const ptV = [135, 75];  // Vektor v miring
+                const ptR = [285, 75];  // Resultan u + v
+
+                // Garis bantu jajar genjang (Dashed Abu-Abu)
+                geo1.buatSegmen(ptU, ptR, { stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "4 2" });
+                geo1.buatSegmen(ptV, ptR, { stroke: TEMA.abu, strokeWidth: 1.2, strokeDasharray: "4 2" });
+
+                // Vektor u (Biru)
+                geo1.buatVektor(ptO, ptU, { stroke: TEMA.utama, strokeWidth: 2.5 });
+                geo1.buatTeks((ptO[0] + ptU[0]) / 2, ptO[1] + 14, "vektor u", { position: "top-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Vektor v (Hijau)
+                geo1.buatVektor(ptO, ptV, { stroke: TEMA.aksen, strokeWidth: 2.5 });
+                geo1.buatTeks((ptO[0] + ptV[0]) / 2 - 12, (ptO[1] + ptV[1]) / 2 - 8, "vektor v", { position: "bottom-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Vektor Resultan R = u + v (Merah Tebal)
+                geo1.buatVektor(ptO, ptR, { stroke: TEMA.merah, strokeWidth: 3 });
+                geo1.buatTeks(ptR[0] + 6, ptR[1] - 4, "R = u + v", { position: "bottom-left", fontSize: "9px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Sudut theta antara u dan v di O
+                geo1.buatSudut(ptU, ptO, ptV, { radius: 26, stroke: TEMA.oranye, fill: TEMA.oranyeMuda, opacity: 0.8 });
+                geo1.buatTeks(ptO[0] + 32, ptO[1] - 12, "θ", { fontSize: "9px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik Asal O
+                geo1.buatLingkaran(ptO, 4, { fill: TEMA.gelap });
+                geo1.buatTeks(ptO[0] - 8, ptO[1] + 8, "O", { position: "top-right", fontSize: "9px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Footer
+                geo1.buatTeks(170, 215, "|R| = √(|u|² + |v|² + 2|u||v| cos θ)", {
+                    position: "middle-center",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Proyeksi Vektor Ortogonal
+            // ==========================================
+            const elProj = document.getElementById("svg-proyeksi-vektor-ortogonal");
+            if (elProj) {
+                const geo2 = new GeoSVG(elProj, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Proyeksi Vektor Ortogonal u pada v"
+                });
+
+                const ptO = [50, 165];
+                const ptB = [290, 165]; // Vektor v alas
+                const ptA = [170, 65];  // Ujung vektor u
+                const ptH = [170, 165]; // Kaki proyeksi tegak lurus
+
+                // Garis Garis Pandu Vektor v (Abu-abu Tipis)
+                geo2.buatSegmen(ptO, ptB, { stroke: TEMA.abu, strokeWidth: 1.5 });
+                geo2.buatTeks(ptB[0] + 8, ptB[1], "arah v", { position: "middle-left", fontSize: "7.5px", fill: TEMA.abu });
+
+                // Garis Proyeksi Tegak Lurus AH (Merah Putus-Putus)
+                geo2.buatSegmen(ptA, ptH, { stroke: TEMA.merah, strokeWidth: 1.5, strokeDasharray: "3 2" });
+                geo2.buatSiku(ptO, ptH, ptA, { size: 9, stroke: TEMA.merah, strokeWidth: 1.2 });
+
+                // Vektor Asal u (Biru Royal)
+                geo2.buatVektor(ptO, ptA, { stroke: TEMA.utama, strokeWidth: 2.5 });
+                geo2.buatTeks((ptO[0] + ptA[0]) / 2 - 12, (ptO[1] + ptA[1]) / 2 - 8, "vektor u", { position: "bottom-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Vektor Proyeksi w = proj_v(u) (Hijau Emerald Tebal)
+                geo2.buatVektor(ptO, ptH, { stroke: TEMA.aksen, strokeWidth: 3.5 });
+                geo2.buatTeks((ptO[0] + ptH[0]) / 2, ptO[1] + 14, "w = proj_v(u)", { position: "top-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Sudut theta di O
+                geo2.buatSudut(ptH, ptO, ptA, { radius: 28, stroke: TEMA.oranye, fill: TEMA.oranyeMuda, opacity: 0.8 });
+                geo2.buatTeks(ptO[0] + 36, ptO[1] - 10, "θ", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik-titik
+                geo2.buatLingkaran(ptO, 4, { fill: TEMA.gelap });
+                geo2.buatLingkaran(ptA, 3.5, { fill: TEMA.utama });
+                geo2.buatLingkaran(ptH, 3.5, { fill: TEMA.aksen });
+
+                // Footer
+                geo2.buatTeks(170, 215, "Proyeksi Skalar: c = (u · v) / |v|  |  Proyeksi Vektor: w = [ (u · v) / |v|² ] v", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Perkalian Silang (Cross Product) & Luas
+            // ==========================================
+            const elCross = document.getElementById("svg-perkalian-silang-luas");
+            if (elCross) {
+                const geo3 = new GeoSVG(elCross, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Perkalian Silang dan Luas Jajar Genjang"
+                });
+
+                const ptO = [55, 160];
+                const ptA = [225, 160]; // Vektor u
+                const ptB = [125, 70];  // Vektor v
+                const ptC = [295, 70];  // Titik keempat jajar genjang
+
+                // Poligon Jajar Genjang (Diarsir Oranye Lembut)
+                geo3.buatPoligon([ptO, ptA, ptC, ptB], {
+                    fill: TEMA.oranyeMuda,
+                    stroke: TEMA.oranye,
+                    strokeWidth: 1.5,
+                    opacity: 0.5
+                });
+
+                // Vektor u (Biru)
+                geo3.buatVektor(ptO, ptA, { stroke: TEMA.utama, strokeWidth: 2.5 });
+                geo3.buatTeks((ptO[0] + ptA[0]) / 2, ptO[1] + 14, "|u|", { position: "top-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Vektor v (Hijau)
+                geo3.buatVektor(ptO, ptB, { stroke: TEMA.aksen, strokeWidth: 2.5 });
+                geo3.buatTeks((ptO[0] + ptB[0]) / 2 - 12, (ptO[1] + ptB[1]) / 2 - 8, "|v|", { position: "bottom-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Garis Tinggi h = |v| sin theta (Merah Dashed)
+                const ptH = [125, 160];
+                geo3.buatSegmen(ptB, ptH, { stroke: TEMA.merah, strokeWidth: 1.5, strokeDasharray: "3 2" });
+                geo3.buatSiku(ptO, ptH, ptB, { size: 8, stroke: TEMA.merah, strokeWidth: 1 });
+                geo3.buatTeks(ptH[0] - 6, (ptB[1] + ptH[1]) / 2, "h = |v| sin θ", { position: "middle-right", fontSize: "7px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Label Luas di Tengah
+                geo3.buatTeks((ptO[0] + ptC[0]) / 2, (ptO[1] + ptC[1]) / 2, "Luas = |u × v|", { position: "middle-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Sudut theta di O
+                geo3.buatSudut(ptA, ptO, ptB, { radius: 24, stroke: TEMA.oranye, fill: TEMA.oranyeMuda, opacity: 0.8 });
+                geo3.buatTeks(ptO[0] + 30, ptO[1] - 8, "θ", { fontSize: "8.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Titik Verteks
+                geo3.buatLingkaran(ptO, 3.8, { fill: TEMA.gelap });
+                geo3.buatLingkaran(ptA, 3.5, { fill: TEMA.utama });
+                geo3.buatLingkaran(ptB, 3.5, { fill: TEMA.aksen });
+
+                // Footer
+                geo3.buatTeks(170, 215, "Luas Jajar Genjang = |u × v|  |  Luas Segitiga = ½ |u × v|", {
+                    position: "middle-center",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

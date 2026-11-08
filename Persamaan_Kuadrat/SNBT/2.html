@@ -415,24 +415,89 @@
       </article>
 
       <!-- SOAL 18 -->
-      <!-- <article class="soal-item" id="">
+      <article class="soal-item" id="18">
         <div class="soal-header">
           <div class="soal-no"></div>
         </div>
         <div class="soal-teks">
-          Teks soal 8
+          Jika $x_1$ dan $x_2$ adalah akar-akar $2x^2-(2c-1)x-c^3+4=0$, maka nilai maksimum dari $x_1^2+x_2^2$ adalah
+          ....
         </div>
-        <div class="soal-sumber">Sumber: -</div>
+        <div class="soal-sumber"><a href="https://t.me/matematikaidhamdaz" target="_blank"
+            rel="noopener noreferrer">SNBT 2014</a></div>
         <button class="btn-solusi">LIHAT PENYELESAIAN</button>
         <div class="pembahasan-box">
           <div class="pembahasan-title">Pembahasan:</div>
           <div class="pembahasan-isi">
-            Teks pembahasan 8
-            <div class="kesimpulan">Jadi, ...</div>
+            Diketahui persamaan kuadrat:
+            $$2x^2 - (2c - 1)x - c^3 + 4 = 0$$
+            Identifikasi koefisien persamaan kuadrat ($Ax^2 + Bx + C = 0$):
+            <ul>
+              <li>$a = 2$</li>
+              <li>$b = -(2c - 1)$</li>
+              <li>$c_{\text{konstanta}} = -c^3 + 4$</li>
+            </ul>
+
+            <b>Langkah 1: Menggunakan Teorema Vieta</b><br>
+            Berdasarkan rumus jumlah dan hasil kali akar-akar persamaan kuadrat:
+            $$\begin{aligned}
+            x_1 + x_2 &= -\frac{b}{a} = \frac{2c - 1}{2} \\[6pt]
+            x_1 \cdot x_2 &= \frac{c_{\text{konstanta}}}{a} = \frac{-c^3 + 4}{2}
+            \end{aligned}$$<br>
+
+            <b>Langkah 2: Menjabarkan bentuk $x_1^2 + x_2^2$</b><br>
+            Gunakan identitas aljabar:
+            $$x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2(x_1 \cdot x_2)$$
+            Substitusikan nilai dari Teorema Vieta:
+            $$\begin{aligned}
+            x_1^2 + x_2^2 &= \left(\frac{2c - 1}{2}\right)^2 - 2\left(\frac{-c^3 + 4}{2}\right) \\[6pt]
+            &= \frac{4c^2 - 4c + 1}{4} - (-c^3 + 4) \\[6pt]
+            &= c^2 - c + \frac{1}{4} + c^3 - 4 \\[6pt]
+            &= c^3 + c^2 - c - \frac{15}{4}
+            \end{aligned}$$
+            Misalkan fungsi kuadrat akar-akar tersebut dinyatakan sebagai $f(c)$:
+            $$f(c) = c^3 + c^2 - c - \frac{15}{4}$$<br>
+
+            <b>Langkah 3: Menentukan nilai stasioner dengan turunan pertama</b><br>
+            Nilai ekstrim (stasioner) tercapai saat turunan pertama bernilai nol ($f'(c) = 0$):
+            $$\begin{aligned}
+            f'(c) &= 3c^2 + 2c - 1 = 0 \\
+            (3c - 1)(c + 1) &= 0
+            \end{aligned}$$
+            Diperoleh dua titik stasioner:
+            $$c = \frac{1}{3} \quad \text{atau} \quad c = -1$$<br>
+
+            <b>Langkah 4: Menguji jenis titik stasioner (Uji Turunan Kedua)</b><br>
+            Turunan kedua fungsi:
+            $$f''(c) = 6c + 2$$
+            <ul>
+              <li>Untuk $c = -1$:
+                $$f''(-1) = 6(-1) + 2 = -4 < 0 \implies \text{Titik balik maksimum lokal}$$
+              </li>
+              <li>Untuk $c = \frac{1}{3}$:
+                $$f''\left(\frac{1}{3}\right) = 6\left(\frac{1}{3}\right) + 2 = 4 > 0 \implies \text{Titik balik minimum lokal}$$
+              </li>
+            </ul>
+
+            <b>Langkah 5: Menghitung nilai maksimum</b><br>
+            Substitusikan $c = -1$ ke dalam fungsi $f(c)$:
+            $$\begin{aligned}
+            f(-1) &= (-1)^3 + (-1)^2 - (-1) - \frac{15}{4} \\[6pt]
+            &= -1 + 1 + 1 - \frac{15}{4} \\[6pt]
+            &= 1 - \frac{15}{4} \\[6pt]
+            &= \color{blue}\boxed{\boxed{\color{black}-\frac{11}{4}}} \quad \left(\text{atau } -2\frac{3}{4} = -2{,}75\right)
+            \end{aligned}$$
+
+            <!-- Visualisasi Grafik GeoSVG -->
+            <div id="svg-soal-18" style="display: flex; justify-content: center; margin: 1.2rem 0;"></div>
+
+            <div class="kesimpulan">
+              Jadi, nilai maksimum dari $x_1^2 + x_2^2$ adalah <b>$-\dfrac{11}{4}$</b> (atau <b>$-2\dfrac{3}{4}$</b>).
+            </div>
           </div>
           <button class="btn-tutup">TUTUP</button>
         </div>
-      </article> -->
+      </article>
 
       <!-- SOAL 19 -->
       <!-- <article class="soal-item" id="">
@@ -481,6 +546,163 @@
   </main>
 
   <script src="../../scr/script.js"></script>
+  <script>
+    function renderVisualisasiSoal18() {
+      if (typeof GeoSVG === 'undefined') {
+        setTimeout(renderVisualisasiSoal18, 100);
+        return;
+      }
+      const el = document.getElementById("svg-soal-18");
+      if (!el || el.dataset.rendered === "true") return;
+
+      const width = 340;
+      const height = 270;
+      const pad = 28;
+
+      const geo = new GeoSVG(el, width, height, {
+        clearContainer: true,
+        viewBox: `0 0 ${width} ${height}`,
+        preserveAspectRatio: "xMidYMid meet"
+      });
+
+      if (geo.svg) {
+        geo.svg.style.maxWidth = "100%";
+        geo.svg.style.height = "auto";
+        geo.svg.style.display = "block";
+        geo.svg.style.margin = "0 auto";
+      }
+
+      const cMin = -2.2, cMax = 1.4;
+      const yMin = -6.0, yMax = 0.5;
+      const skalaC = (width - 2 * pad) / (cMax - cMin);
+      const skalaY = (height - 2 * pad) / (yMax - yMin);
+
+      const P = (c, y) => [
+        pad + (c - cMin) * skalaC,
+        height - pad - (y - yMin) * skalaY
+      ];
+
+      const f = c => c * c * c + c * c - c - 3.75;
+
+      // Grid garis bantu
+      for (let c = -2; c <= 1; c++) {
+        geo.buatSegmen(P(c, yMin), P(c, yMax), {
+          stroke: "var(--border-color)",
+          strokeWidth: 0.8,
+          strokeDasharray: "2 2"
+        });
+      }
+      for (let y = -5; y <= 0; y++) {
+        geo.buatSegmen(P(cMin, y), P(cMax, y), {
+          stroke: "var(--border-color)",
+          strokeWidth: 0.8,
+          strokeDasharray: "2 2"
+        });
+      }
+
+      // Sumbu koordinat (c horizontal, f(c) vertikal)
+      geo.buatVektor(P(cMin, 0), P(cMax, 0), { stroke: "var(--text-muted)", strokeWidth: 1.4 });
+      geo.buatVektor(P(0, yMin), P(0, yMax), { stroke: "var(--text-muted)", strokeWidth: 1.4 });
+
+      // Label sumbu
+      geo.buatTeks(P(cMax, 0)[0] + 6, P(cMax, 0)[1], "c", {
+        position: "middle-left",
+        fontSize: "11px",
+        fontStyle: "italic",
+        fontWeight: "bold",
+        fill: "var(--text-main)"
+      });
+      geo.buatTeks(P(0, yMax)[0], P(0, yMax)[1] - 8, "f(c)", {
+        position: "top-center",
+        fontSize: "11px",
+        fontStyle: "italic",
+        fontWeight: "bold",
+        fill: "var(--text-main)"
+      });
+      geo.buatTeks(P(0, 0)[0] - 8, P(0, 0)[1] + 12, "0", {
+        position: "middle-center",
+        fontSize: "10px",
+        fill: "var(--text-muted)"
+      });
+
+      // Ticks sumbu c
+      [-2, -1, 1].forEach(c => {
+        const pt = P(c, 0);
+        geo.buatSegmen([pt[0], pt[1] - 3], [pt[0], pt[1] + 3], { stroke: "var(--text-muted)", strokeWidth: 1 });
+        geo.buatTeks(pt[0], pt[1] + 12, String(c), { position: "middle-center", fontSize: "10px", fill: "var(--text-muted)" });
+      });
+
+      // Ticks sumbu y
+      [-5, -4, -3, -2, -1].forEach(y => {
+        const pt = P(0, y);
+        geo.buatSegmen([pt[0] - 3, pt[1]], [pt[0] + 3, pt[1]], { stroke: "var(--text-muted)", strokeWidth: 1 });
+        geo.buatTeks(pt[0] - 8, pt[1], String(y), { position: "middle-right", fontSize: "10px", fill: "var(--text-muted)" });
+      });
+
+      // Kurva kubik f(c) = c³ + c² - c - 3.75
+      const polylinePts = [];
+      for (let c = -2.0; c <= 1.25; c += 0.04) {
+        polylinePts.push(P(c, f(c)));
+      }
+      for (let i = 0; i < polylinePts.length - 1; i++) {
+        geo.buatSegmen(polylinePts[i], polylinePts[i + 1], {
+          stroke: "#0284c7",
+          strokeWidth: 2.2
+        });
+      }
+
+      // Titik balik maksimum lokal: (-1, -2.75)
+      const ptMax = P(-1, -2.75);
+      // Garis singgung horizontal f'(c) = 0
+      geo.buatSegmen([ptMax[0] - 25, ptMax[1]], [ptMax[0] + 25, ptMax[1]], {
+        stroke: "#ef4444",
+        strokeWidth: 1.5,
+        strokeDasharray: "3 2"
+      });
+      // Proyeksi ke sumbu c dan sumbu y
+      geo.buatSegmen(ptMax, P(-1, 0), { stroke: "var(--border-color)", strokeWidth: 1, strokeDasharray: "2 2" });
+      geo.buatSegmen(ptMax, P(0, -2.75), { stroke: "var(--border-color)", strokeWidth: 1, strokeDasharray: "2 2" });
+
+      geo.buatLingkaran(ptMax, 4.5, { fill: "#ef4444", stroke: "var(--bg-card)", strokeWidth: 2 });
+      geo.buatTeks(ptMax[0] - 8, ptMax[1] - 8, "Maksimum (−1, −¹¹⁄₄)", {
+        position: "bottom-right",
+        fontSize: "10.5px",
+        fontWeight: "bold",
+        fill: "#ef4444"
+      });
+
+      // Titik balik minimum lokal: (1/3, -3.926)
+      const ptMin = P(1 / 3, f(1 / 3));
+      geo.buatLingkaran(ptMin, 4, { fill: "#f59e0b", stroke: "var(--bg-card)", strokeWidth: 1.5 });
+      geo.buatTeks(ptMin[0] + 8, ptMin[1] + 6, "Minimum (⅓, −3.93)", {
+        position: "top-left",
+        fontSize: "10px",
+        fill: "var(--text-muted)"
+      });
+
+      // Label fungsi f(c)
+      geo.buatTeks(P(0.7, -1.8)[0], P(0.7, -1.8)[1], "f(c) = c³ + c² − c − ¹⁵⁄₄", {
+        position: "middle-left",
+        fontSize: "10px",
+        fontStyle: "italic",
+        fill: "#0284c7"
+      });
+
+      el.dataset.rendered = "true";
+    }
+
+    document.addEventListener("DOMContentLoaded", renderVisualisasiSoal18);
+
+    const soal18Item = document.getElementById("18");
+    if (soal18Item) {
+      const btnSolusi18 = soal18Item.querySelector(".btn-solusi");
+      if (btnSolusi18) {
+        btnSolusi18.addEventListener("click", () => {
+          setTimeout(renderVisualisasiSoal18, 50);
+        });
+      }
+    }
+  </script>
 </body>
 
 </html>

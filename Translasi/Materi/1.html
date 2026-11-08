@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Translasi (Pergeseran Geometri)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Translasi (Pergeseran Geometri)</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pengertian & Sifat-Sifat Fundamental Translasi</h2>
+            <p>
+                <strong>Translasi (Pergeseran)</strong> adalah suatu transformasi geometri yang memindahkan setiap titik pada bidang datar sepanjang jarak dan arah tertentu yang dinyatakan oleh suatu <strong>vektor translasi</strong> $T = \begin{pmatrix} a \\ b \end{pmatrix}$.
+            </p>
+            <p>
+                Translasi tergolong ke dalam <strong>transformasi isometri langsung</strong>, yaitu transformasi yang mempertahankan jarak antar-titik, bentuk bangun, ukuran, dan orientasi sudut bangun aslinya.
+            </p>
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: bold;">Sifat-Sifat Aksiomatik Translasi:</p>
+                <ul style="margin: 0.4rem 0 0 1.2rem; padding: 0;">
+                    <li><strong>Kongruensi (Isometri):</strong> Bangun hasil bayangan kongruen secara sempurna dengan bangun asal ($\Delta A'B'C' \cong \Delta ABC$).</li>
+                    <li><strong>Invariansi Luas & Keliling:</strong> Luas daerah dan keliling bangun tidak mengalami perubahan setelah ditranslasikan ($L' = L, K' = K$).</li>
+                    <li><strong>Kesejajaran Garis:</strong> Setiap ruas garis atau garis lurus hasil translasi selalu <strong>sejajar</strong> dengan garis asalnya atau berimpit ($g' \parallel g$). Gradien garis bayangan sama persis dengan gradien aslinya ($m' = m$).</li>
+                    <li><strong>Keseragaman Vektor:</strong> Seluruh titik sudut objek bergeser dengan vektor perpindahan yang identik, baik besar maupun arahnya.</li>
+                </ul>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>2. Formulasi Matematis Translasi Titik</h2>
+                    <p>
+                        Jika sebuah titik $P(x, y)$ ditranslasikan oleh vektor pergeseran $T = \begin{pmatrix} a \\ b \end{pmatrix}$, maka koordinat bayangannya $P'(x', y')$ ditentukan oleh:
+                    </p>
+                    $$\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} \iff \begin{cases} x' = x + a \\ y' = y + b \end{cases}$$
+
+                    <p>
+                        <strong>Makna Komponen Vektor $T = \begin{pmatrix} a \\ b \end{pmatrix}$:</strong>
+                    </p>
+                    <ul>
+                        <li><strong>Komponen $a$ (Horizontal / Sumbu-$X$):</strong>
+                            <br>Jika $a > 0$, bergeser ke <strong>kanan</strong> sejauh $a$ satuan.
+                            <br>Jika $a < 0$, bergeser ke <strong>kiri</strong> sejauh $|a|$ satuan.
+                        </li>
+                        <li><strong>Komponen $b$ (Vertikal / Sumbu-$Y$):</strong>
+                            <br>Jika $b > 0$, bergeser ke <strong>atas</strong> sejauh $b$ satuan.
+                            <br>Jika $b < 0$, bergeser ke <strong>bawah</strong> sejauh $|b|$ satuan.
+                        </li>
+                    </ul>
+
+                    <p><strong>Relasi Balik (Invers Translasi):</strong></p>
+                    $$\begin{cases} x = x' - a \\ y = y' - b \end{cases} \iff \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x' \\ y' \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix}$$
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-translasi-titik-vektor" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Pergeseran titik $P(2, 1)$ oleh vektor $T = \begin{pmatrix} 5 \\ 3 \end{pmatrix}$ menghasilkan titik $P'(7, 4)$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>3. Komposisi Translasi (Translasi Berurutan)</h2>
+                    <p>
+                        Jika suatu objek ditranslasikan berturut-turut oleh translasi pertama $T_1 = \begin{pmatrix} a_1 \\ b_1 \end{pmatrix}$ kemudian dilanjutkan oleh translasi kedua $T_2 = \begin{pmatrix} a_2 \\ b_2 \end{pmatrix}$, maka komposisi translasi tersebut setara dengan sebuah translasi tunggal:
+                    </p>
+                    $$(T_2 \circ T_1) = T_1 + T_2 = \begin{pmatrix} a_1 + a_2 \\ b_1 + b_2 \end{pmatrix}$$
+
+                    <p><strong>Sifat-Sifat Aljabar Komposisi Translasi:</strong></p>
+                    <ol>
+                        <li><strong>Komutatif:</strong> $T_1 \circ T_2 = T_2 \circ T_1$. Urutan pergeseran tidak mempengaruhi letak bayangan akhir.</li>
+                        <li><strong>Asosiatif:</strong> $(T_1 \circ T_2) \circ T_3 = T_1 \circ (T_2 \circ T_3)$.</li>
+                        <li><strong>Elemen Identitas ($T_0$):</strong> Terdapat translasi nol $T_0 = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$ sedemikian sehingga $T \circ T_0 = T$.</li>
+                        <li><strong>Elemen Invers ($T^{-1}$):</strong> Untuk setiap translasi $T = \begin{pmatrix} a \\ b \end{pmatrix}$, terdapat invers translasi $T^{-1} = \begin{pmatrix} -a \\ -b \end{pmatrix}$ sedemikian sehingga $T \circ T^{-1} = T_0$.</li>
+                    </ol>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-translasi-poligon-segitiga" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Translasi poligon $\Delta ABC \to \Delta A'B'C'$ dengan vektor pergeseran seragam pada setiap verteks.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>4. Translasi Garis dan Kurva pada Bidang Koordinat</h2>
+            <p>
+                Untuk menentukan persamaan bayangan dari suatu garis, kurva parabola, atau lingkaran yang ditranslasikan oleh $T = \begin{pmatrix} a \\ b \end{pmatrix}$, gunakan metode <strong>substitusi relasi balik</strong>:
+                $$x = x' - a \qquad \text{dan} \qquad y = y' - b$$
+            </p>
+
+            <table class="table-auto" style="width: 100%; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--bg-hover, #f1f5f9);">
+                        <th>Bentuk Objek Geometri</th>
+                        <th>Persamaan Kurva Awal</th>
+                        <th>Persamaan Bayangan Hasil Translasi $T = \begin{pmatrix} a \\ b \end{pmatrix}$</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Garis Lurus</strong></td>
+                        <td>$Ax + By + C = 0$</td>
+                        <td>$A(x - a) + B(y - b) + C = 0 \iff Ax + By + (C - Aa - Bb) = 0$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bentuk Eksplisit Garis</strong></td>
+                        <td>$y = mx + c$</td>
+                        <td>$y - b = m(x - a) + c \iff y = mx + (c + b - ma)$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Parabola Kuadrat</strong></td>
+                        <td>$y = Ax^2 + Bx + C$</td>
+                        <td>$(y - b) = A(x - a)^2 + B(x - a) + C$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Puncak Parabola</strong></td>
+                        <td>Titik Puncak $(x_p, y_p)$</td>
+                        <td>Titik Puncak Baru $(x_p + a, y_p + b)$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lingkaran Baku</strong></td>
+                        <td>$(x - h)^2 + (y - k)^2 = r^2$</td>
+                        <td>$(x - (h + a))^2 + (y - (k + b))^2 = r^2 \quad (\text{Jari-jari } r \text{ tetap})$</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h3>Jarak Antara Garis Awal dan Garis Bayangan</h3>
+                    <p>
+                        Karena garis hasil translasi $g'$ selalu sejajar dengan garis asal $g$, jarak tegak lurus antara kedua garis sejajar tersebut dapat dihitung menggunakan rumus jarak Euclidean:
+                    </p>
+                    $$d(g, g') = \frac{|Aa + Bb|}{\sqrt{A^2 + B^2}}$$
+                    <p>
+                        Pergeseran tegak lurus mencapai nilai maksimum ketika vektor translasi $\vec{T} = \begin{pmatrix} a \\ b \end{pmatrix}$ searah dengan vektor normal garis $\vec{n} = \begin{pmatrix} A \\ B \end{pmatrix}$.
+                    </p>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-translasi-garis-kurva" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Translasi kurva parabola dan garis lurus mempertahankan kurvatur dan gradien kemiringan.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>5. Contoh Soal Berjenjang & Pembahasan Komprehensif</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Translasi Titik & Poligon Segitiga</h3>
+                <p>
+                    Diketahui segitiga $ABC$ memiliki titik-titik sudut $A(-3, 2)$, $B(1, -1)$, dan $C(2, 5)$. Segitiga tersebut ditranslasikan oleh vektor $T = \begin{pmatrix} 4 \\ -3 \end{pmatrix}$ menghasilkan bayangan $\Delta A'B'C'$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan koordinat bayangan titik-titik sudut $A', B',$ dan $C'$.</li>
+                    <li>Jika titik $D'(7, -2)$ adalah bayangan dari titik $D$ di bawah translasi $T$ yang sama, tentukan koordinat titik asal $D$.</li>
+                    <li>Tentukan vektor translasi invers $T^{-1}$ yang memetakan kembali $\Delta A'B'C'$ ke $\Delta ABC$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        Vektor translasi adalah $T = \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} 4 \\ -3 \end{pmatrix}$.
+                    </p>
+                    <p>
+                        <strong>(a) Menentukan Koordinat Titik Sudut Bayangan:</strong>
+                    </p>
+                    <ul>
+                        <li>Titik $A(-3, 2)$:
+                            $$\begin{pmatrix} x_{A}' \\ y_{A}' \end{pmatrix} = \begin{pmatrix} -3 \\ 2 \end{pmatrix} + \begin{pmatrix} 4 \\ -3 \end{pmatrix} = \begin{pmatrix} 1 \\ -1 \end{pmatrix} \implies A'(1, -1)$$
+                        </li>
+                        <li>Titik $B(1, -1)$:
+                            $$\begin{pmatrix} x_{B}' \\ y_{B}' \end{pmatrix} = \begin{pmatrix} 1 \\ -1 \end{pmatrix} + \begin{pmatrix} 4 \\ -3 \end{pmatrix} = \begin{pmatrix} 5 \\ -4 \end{pmatrix} \implies B'(5, -4)$$
+                        </li>
+                        <li>Titik $C(2, 5)$:
+                            $$\begin{pmatrix} x_{C}' \\ y_{C}' \end{pmatrix} = \begin{pmatrix} 2 \\ 5 \end{pmatrix} + \begin{pmatrix} 4 \\ -3 \end{pmatrix} = \begin{pmatrix} 6 \\ 2 \end{pmatrix} \implies C'(6, 2)$$
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>(b) Menentukan Titik Asal $D$ dari Bayangan $D'(7, -2)$:</strong><br>
+                        Gunakan relasi balik:
+                        $$\begin{pmatrix} x_D \\ y_D \end{pmatrix} = \begin{pmatrix} x_D' \\ y_D' \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} 7 \\ -2 \end{pmatrix} - \begin{pmatrix} 4 \\ -3 \end{pmatrix} = \begin{pmatrix} 7 - 4 \\ -2 - (-3) \end{pmatrix} = \begin{pmatrix} 3 \\ 1 \end{pmatrix} \implies D(3, 1)$$
+                    </p>
+                    <p>
+                        <strong>(c) Menentukan Vektor Translasi Invers $T^{-1}$:</strong><br>
+                        Vektor invers adalah lawan tanda dari vektor translasi awal:
+                        $$T^{-1} = -T = \begin{pmatrix} -4 \\ 3 \end{pmatrix}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Bayangan segitiga adalah $A'(1, -1)$, $B'(5, -4)$, $C'(6, 2)$; titik asal $D(3, 1)$; dan vektor invers $T^{-1} = \begin{pmatrix} -4 \\ 3 \end{pmatrix}$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat Menengah (SNBT / UTBK) — Translasi Garis & Komposisi Vektor</h3>
+                <p>
+                    Garis lurus $g$ memiliki persamaan $3x - 4y + 12 = 0$. Garis tersebut ditranslasikan berturut-turut oleh translasi $T_1 = \begin{pmatrix} 2 \\ -1 \end{pmatrix}$ kemudian dilanjutkan oleh $T_2 = \begin{pmatrix} -5 \\ 3 \end{pmatrix}$ menghasilkan garis $g'$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan vektor translasi tunggal hasil komposisi $T = T_2 \circ T_1$.</li>
+                    <li>Tentukan persamaan bayangan garis $g'$.</li>
+                    <li>Hitung jarak tegak lurus antara garis asal $g$ dan garis bayangan $g'$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Komposisi Vektor Translasi Tunggal:</strong>
+                        $$T = T_2 \circ T_1 = T_1 + T_2 = \begin{pmatrix} 2 \\ -1 \end{pmatrix} + \begin{pmatrix} -5 \\ 3 \end{pmatrix} = \begin{pmatrix} 2 + (-5) \\ -1 + 3 \end{pmatrix} = \begin{pmatrix} -3 \\ 2 \end{pmatrix}$$
+                        Jadi, $a = -3$ dan $b = 2$.
+                    </p>
+                    <p>
+                        <strong>(b) Menentukan Persamaan Garis Bayangan $g'$:</strong><br>
+                        Gunakan relasi substitusi balik:
+                        $$x = x' - a = x' - (-3) = x' + 3$$
+                        $$y = y' - b = y' - 2$$
+                        Substitusikan nilai $x$ dan $y$ ke dalam persamaan garis asal $3x - 4y + 12 = 0$:
+                        $$3(x' + 3) - 4(y' - 2) + 12 = 0$$
+                        $$3x' + 9 - 4y' + 8 + 12 = 0$$
+                        $$3x' - 4y' + 29 = 0$$
+                        Maka persamaan garis bayangan $g'$ adalah <strong>$3x - 4y + 29 = 0$</strong>.
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Jarak Antara Garis $g$ dan $g'$:</strong><br>
+                        Garis $g: 3x - 4y + 12 = 0$ dan $g': 3x - 4y + 29 = 0$ adalah dua garis yang saling sejajar dengan koefisien $A = 3$, $B = -4$, $C_1 = 12$, dan $C_2 = 29$.<br>
+                        Rumus jarak dua garis sejajar:
+                        $$d = \frac{|C_2 - C_1|}{\sqrt{A^2 + B^2}} = \frac{|29 - 12|}{\sqrt{3^2 + (-4)^2}} = \frac{17}{\sqrt{9 + 16}} = \frac{17}{\sqrt{25}} = \frac{17}{5} = 3{,}4\text{ satuan}$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Vektor komposisi $T = \begin{pmatrix} -3 \\ 2 \end{pmatrix}$, persamaan garis bayangan adalah $3x - 4y + 29 = 0$, dan jarak tegak lurus antargaris adalah $3{,}4$ satuan panjang.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Translasi Kurva Kuadrat & Kondisi Tangensi Garis</h3>
+                <p>
+                    Sebuah parabola memiliki persamaan $y = x^2 - 4x + 7$. Parabola tersebut ditranslasikan oleh vektor pergeseran $T = \begin{pmatrix} h \\ k \end{pmatrix}$ menghasilkan parabola bayangan $P'$.
+                </p>
+                <ol type="a">
+                    <li>Jika titik puncak parabola bayangan $P'$ berada di titik $(-1, 5)$, tentukan nilai komponen vektor $h$ dan $k$.</li>
+                    <li>Tentukan persamaan parabola bayangan $P'$.</li>
+                    <li>Jika parabola bayangan $P'$ tersebut kemudian menyinggung garis lurus $y = 2x + c$, tentukan nilai konstanta $c$ dan titik singgung keduanya.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menentukan Titik Puncak dan Vektor Translasi $(h, k)$:</strong><br>
+                        Tentukan titik puncak parabola awal $y = x^2 - 4x + 7$:
+                        $$x_p = -\frac{B}{2A} = -\frac{-4}{2(1)} = 2$$
+                        $$y_p = 2^2 - 4(2) + 7 = 4 - 8 + 7 = 3$$
+                        Puncak parabola asal adalah $P(2, 3)$.<br>
+                        Karena translasi memetakan puncak $P(x_p, y_p)$ ke $P'(x_p', y_p') = (-1, 5)$:
+                        $$x_p' = x_p + h \implies -1 = 2 + h \implies h = -3$$
+                        $$y_p' = y_p + k \implies 5 = 3 + k \implies k = 2$$
+                        Maka vektor translasinya adalah $T = \begin{pmatrix} -3 \\ 2 \end{pmatrix}$.
+                    </p>
+                    <p>
+                        <strong>(b) Menentukan Persamaan Parabola Bayangan $P'$:</strong><br>
+                        Bentuk baku parabola dengan puncak $(x_p', y_p') = (-1, 5)$ dan koefisien kelengkungan $A = 1$:
+                        $$y' - y_p' = A(x' - x_p')^2$$
+                        $$y - 5 = 1(x - (-1))^2$$
+                        $$y - 5 = (x + 1)^2 = x^2 + 2x + 1$$
+                        $$y = x^2 + 2x + 6$$
+                    </p>
+                    <p>
+                        <strong>(c) Menentukan Nilai $c$ saat Menyinggung Garis $y = 2x + c$:</strong><br>
+                        Samakan kedua persamaan kurva:
+                        $$x^2 + 2x + 6 = 2x + c$$
+                        $$x^2 + (2 - 2)x + (6 - c) = 0 \implies x^2 + (6 - c) = 0$$
+                        Syarat dua kurva saling bersinggungan adalah nilai diskriminan $D = 0$:
+                        $$D = B^2 - 4AC = 0$$
+                        $$0^2 - 4(1)(6 - c) = 0$$
+                        $$-4(6 - c) = 0 \implies 6 - c = 0 \implies c = 6$$
+                        Substitusikan $c = 6$ kembali ke persamaan persekutuan:
+                        $$x^2 + (6 - 6) = 0 \implies x^2 = 0 \implies x = 0$$
+                        Koordinat ordinat titik singgung:
+                        $$y = 2(0) + 6 = 6$$
+                        Maka titik singgungnya adalah $(0, 6)$.
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Vektor translasi $T = \begin{pmatrix} -3 \\ 2 \end{pmatrix}$, persamaan parabola bayangan $y = x^2 + 2x + 6$, nilai konstanta $c = 6$, dan titik singgung berada pada koordinat $(0, 6)$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                abuMuda: "#f1f5f9",
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Translasi Titik & Komponen Vektor T = [a, b]
+            // ==========================================
+            const elTitik = document.getElementById("svg-translasi-titik-vektor");
+            if (elTitik) {
+                const geo1 = new GeoSVG(elTitik, 340, 220, {
+                    viewBox: "0 0 340 220",
+                    margin: 8,
+                    title: "Konsep Translasi Titik dan Komponen Vektor"
+                });
+
+                const Ox = 60, Oy = 165;
+                const u = 26; // Skala piksel per unit
+
+                // Sumbu Kartesius
+                geo1.buatSegmen([Ox - 25, Oy], [315, Oy], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+                geo1.buatSegmen([Ox, Oy + 25], [Ox, 25], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+                geo1.buatTeks(315, Oy + 12, "X", { position: "top-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.teks });
+                geo1.buatTeks(Ox - 8, 25, "Y", { position: "middle-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.teks });
+                geo1.buatTeks(Ox - 8, Oy + 10, "O", { fontSize: "8px", fill: TEMA.abu });
+
+                // Grid titik sumbu
+                [2, 4, 6, 8].forEach(v => {
+                    const gx = Ox + v * u;
+                    geo1.buatSegmen([gx, Oy - 3], [gx, Oy + 3], { stroke: TEMA.abu, strokeWidth: 1 });
+                    geo1.buatTeks(gx, Oy + 10, String(v), { position: "top-center", fontSize: "7px", fill: TEMA.abu });
+                });
+                [1, 2, 3, 4].forEach(v => {
+                    const gy = Oy - v * u;
+                    geo1.buatSegmen([Ox - 3, gy], [Ox + 3, gy], { stroke: TEMA.abu, strokeWidth: 1 });
+                    geo1.buatTeks(Ox - 8, gy, String(v), { position: "middle-right", fontSize: "7px", fill: TEMA.abu });
+                });
+
+                // Titik P(2, 1) -> (Ox + 2*u, Oy - 1*u) = (112, 139)
+                const ptP = [Ox + 2 * u, Oy - 1 * u];
+                // Vektor T = (5, 3) -> geser dx = 5*u = 130, dy = -3*u = -78
+                // Titik Bayangan P'(7, 4) -> (Ox + 7*u, Oy - 4*u) = (242, 61)
+                const ptP_ = [Ox + 7 * u, Oy - 4 * u];
+                const ptCorner = [ptP_[0], ptP[1]]; // (242, 139)
+
+                // Garis Putus-putus Segitiga Komponen Perpindahan
+                geo1.buatSegmen(ptP, ptCorner, { stroke: TEMA.oranye, strokeWidth: 1.5, strokeDasharray: "3 2" });
+                geo1.buatSegmen(ptCorner, ptP_, { stroke: TEMA.oranye, strokeWidth: 1.5, strokeDasharray: "3 2" });
+                geo1.buatSiku(ptP, ptCorner, ptP_, { size: 8, stroke: TEMA.oranye, strokeWidth: 1 });
+
+                // Label Komponen Horizontal dan Vertikal
+                geo1.buatTeks((ptP[0] + ptCorner[0]) / 2, ptCorner[1] + 10, "+a = 5 (kanan)", { position: "top-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+                geo1.buatTeks(ptCorner[0] + 8, (ptCorner[1] + ptP_[1]) / 2, "+b = 3 (atas)", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.oranye });
+
+                // Vektor Translasi T Langsung (Panah Merah)
+                geo1.buatVektor(ptP, ptP_, { stroke: TEMA.merah, strokeWidth: 2.2 });
+                geo1.buatTeks((ptP[0] + ptP_[0]) / 2 - 12, (ptP[1] + ptP_[1]) / 2 - 12, "T = (5, 3)", { position: "bottom-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Asal P
+                geo1.buatLingkaran(ptP, 4, { fill: TEMA.aksen, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo1.buatTeks(ptP[0] - 8, ptP[1] + 6, "P(2, 1)", { position: "top-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Titik Bayangan P'
+                geo1.buatLingkaran(ptP_, 4, { fill: TEMA.utama, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo1.buatTeks(ptP_[0] + 8, ptP_[1] - 6, "P'(7, 4)", { position: "bottom-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+            }
+
+            // ==========================================
+            // 2. Translasi Poligon Segitiga (Isometri)
+            // ==========================================
+            const elSegitiga = document.getElementById("svg-translasi-poligon-segitiga");
+            if (elSegitiga) {
+                const geo2 = new GeoSVG(elSegitiga, 340, 220, {
+                    viewBox: "0 0 340 220",
+                    margin: 8,
+                    title: "Translasi Bangun Datar Segitiga"
+                });
+
+                // Vektor Pergeseran: dx = 140, dy = -45
+                const dx = 140, dy = -45;
+
+                // Segitiga Asal ABC
+                const ptA = [50, 160];
+                const ptB = [135, 160];
+                const ptC = [90, 85];
+
+                // Segitiga Bayangan A'B'C'
+                const ptA_ = [ptA[0] + dx, ptA[1] + dy]; // (190, 115)
+                const ptB_ = [ptB[0] + dx, ptB[1] + dy]; // (275, 115)
+                const ptC_ = [ptC[0] + dx, ptC[1] + dy]; // (230, 40)
+
+                // Vektor Pergeseran pada Setiap Verteks (Panah Merah Putus-Putus)
+                geo2.buatVektor(ptA, ptA_, { stroke: TEMA.merah, strokeWidth: 1.5, strokeDasharray: "4 2" });
+                geo2.buatVektor(ptB, ptB_, { stroke: TEMA.merah, strokeWidth: 1.5, strokeDasharray: "4 2" });
+                geo2.buatVektor(ptC, ptC_, { stroke: TEMA.merah, strokeWidth: 1.5, strokeDasharray: "4 2" });
+
+                // Gambar Poligon Asal ABC (Hijau)
+                geo2.buatPoligon([ptA, ptB, ptC], {
+                    fill: TEMA.aksenMuda,
+                    stroke: TEMA.aksen,
+                    strokeWidth: 2,
+                    opacity: 0.8
+                });
+                geo2.buatTeks(90, 140, "Δ ABC", { position: "middle-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Gambar Poligon Bayangan A'B'C' (Biru)
+                geo2.buatPoligon([ptA_, ptB_, ptC_], {
+                    fill: TEMA.utamaMuda,
+                    stroke: TEMA.utama,
+                    strokeWidth: 2,
+                    opacity: 0.8
+                });
+                geo2.buatTeks(230, 95, "Δ A'B'C'", { position: "middle-center", fontSize: "9px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Titik Verteks
+                [ptA, ptB, ptC].forEach(pt => geo2.buatLingkaran(pt, 3.5, { fill: TEMA.aksen }));
+                [ptA_, ptB_, ptC_].forEach(pt => geo2.buatLingkaran(pt, 3.5, { fill: TEMA.utama }));
+
+                // Label Titik
+                geo2.buatTeks(ptA[0] - 8, ptA[1] + 4, "A", { position: "middle-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+                geo2.buatTeks(ptB[0] + 8, ptB[1] + 4, "B", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+                geo2.buatTeks(ptC[0], ptC[1] - 8, "C", { position: "bottom-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                geo2.buatTeks(ptA_[0] - 8, ptA_[1] + 4, "A'", { position: "middle-right", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(ptB_[0] + 8, ptB_[1] + 4, "B'", { position: "middle-left", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+                geo2.buatTeks(ptC_[0], ptC_[1] - 8, "C'", { position: "bottom-center", fontSize: "8.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Keterangan Bawah
+                geo2.buatTeks(170, 205, "Isometri: Bentuk & Luas Sama  |  Vektor Perpindahan AA' = BB' = CC' = T", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Translasi Kurva Parabola
+            // ==========================================
+            const elKurva = document.getElementById("svg-translasi-garis-kurva");
+            if (elKurva) {
+                const geo3 = new GeoSVG(elKurva, 340, 220, {
+                    viewBox: "0 0 340 220",
+                    margin: 8,
+                    title: "Translasi Kurva Parabola pada Bidang Kartesius"
+                });
+
+                // Sumbu Koordinat
+                const Ox = 110, Oy = 150;
+                geo3.buatSegmen([30, Oy], [320, Oy], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+                geo3.buatSegmen([Ox, 195], [Ox, 25], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+                geo3.buatTeks(320, Oy + 10, "X", { position: "top-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+                geo3.buatTeks(Ox - 8, 25, "Y", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+
+                // Parabola Asal: Puncak di (Ox, Oy) = (110, 150)
+                // Bentuk: y = 0.035 * x^2
+                const ptsParabola1 = [];
+                for (let x = -40; x <= 40; x += 4) {
+                    const py = Oy - 0.035 * (x * x);
+                    ptsParabola1.push([Ox + x, py]);
+                }
+                for (let i = 0; i < ptsParabola1.length - 1; i++) {
+                    geo3.buatSegmen(ptsParabola1[i], ptsParabola1[i + 1], { stroke: TEMA.aksen, strokeWidth: 2 });
+                }
+
+                // Vektor Perpindahan Puncak: T = (80, -60) -> dx = 80, dy = -60
+                const P1 = [Ox, Oy];
+                const P2 = [Ox + 80, Oy - 60]; // (190, 90)
+
+                // Parabola Bayangan: Puncak di (190, 90)
+                const ptsParabola2 = [];
+                for (let x = -40; x <= 40; x += 4) {
+                    const py = P2[1] - 0.035 * (x * x);
+                    ptsParabola2.push([P2[0] + x, py]);
+                }
+                for (let i = 0; i < ptsParabola2.length - 1; i++) {
+                    geo3.buatSegmen(ptsParabola2[i], ptsParabola2[i + 1], { stroke: TEMA.utama, strokeWidth: 2 });
+                }
+
+                // Panah Vektor Translasi dari Puncak 1 ke Puncak 2
+                geo3.buatVektor(P1, P2, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo3.buatTeks((P1[0] + P2[0]) / 2 - 10, (P1[1] + P2[1]) / 2 - 8, "T = (h, k)", { position: "bottom-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Titik Puncak
+                geo3.buatLingkaran(P1, 3.8, { fill: TEMA.aksen });
+                geo3.buatTeks(P1[0] - 6, P1[1] + 12, "P(0, 0)", { position: "top-center", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                geo3.buatLingkaran(P2, 3.8, { fill: TEMA.utama });
+                geo3.buatTeks(P2[0] + 6, P2[1] - 10, "P'(h, k)", { position: "bottom-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Label Persamaan Kurva
+                geo3.buatTeks(55, 80, "y = ax²", { position: "bottom-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.aksen });
+                geo3.buatTeks(250, 40, "y - k = a(x - h)²", { position: "bottom-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Keterangan Bawah
+                geo3.buatTeks(170, 208, "Translasi Kurva: Substitusikan x → x - h dan y → y - k", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Turunan Fungsi Trigonometri</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Materi -->
+        <div class="page-header">
+            <p class="intro-text">
+                Ringkasan dan penjelasan lengkap materi <span class="topic-highlight">Turunan Fungsi Trigonometri</span>
+            </p>
+            <!-- Tombol Navigasi ke Materi | Dasar | SNBT | HOTS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+
+        <!-- Isi Materi -->
+        <article class="materi-card">
+            <h2>1. Pembuktian Formal Turunan Dasar dari Definisi Limit</h2>
+            <p>
+                Diferensiasi fungsi trigonometri dibangun di atas dua nilai limit trigonometri fundamental:
+            </p>
+            $$\lim_{h \to 0} \frac{\sin h}{h} = 1 \qquad \text{dan} \qquad \lim_{h \to 0} \frac{\cos h - 1}{h} = 0$$
+
+            <div class="kesimpulan" style="margin: 0.8rem 0;">
+                <p style="margin: 0; font-weight: bold;">A. Pembuktian $\dfrac{d}{dx}(\sin x) = \cos x$:</p>
+                $$\begin{aligned}
+                f'(x) &= \lim_{h \to 0} \frac{\sin(x + h) - \sin x}{h} = \lim_{h \to 0} \frac{\sin x \cos h + \cos x \sin h - \sin x}{h}\\[4pt]
+                &= \lim_{h \to 0} \left[ \sin x \cdot \frac{\cos h - 1}{h} + \cos x \cdot \frac{\sin h}{h} \right] = \sin x(0) + \cos x(1) = \mathbf{\cos x} \quad \blacksquare
+                \end{aligned}$$
+
+                <p style="margin: 0.5rem 0 0 0; font-weight: bold;">B. Pembuktian $\dfrac{d}{dx}(\cos x) = -\sin x$:</p>
+                $$\begin{aligned}
+                f'(x) &= \lim_{h \to 0} \frac{\cos(x + h) - \cos x}{h} = \lim_{h \to 0} \frac{\cos x \cos h - \sin x \sin h - \cos x}{h}\\[4pt]
+                &= \lim_{h \to 0} \left[ \cos x \cdot \frac{\cos h - 1}{h} - \sin x \cdot \frac{\sin h}{h} \right] = \cos x(0) - \sin x(1) = \mathbf{-\sin x} \quad \blacksquare
+                \end{aligned}$$
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>2. Enam Rumus Turunan Trigonometri Baku</h2>
+                    <p>
+                        Dengan memanfaatkan turunan dasar sinus dan cosinus serta aturan pembagian fungsi, diturunkan enam turunan fungsi trigonometri baku:
+                    </p>
+                    <table class="table-auto" style="width: 100%;">
+                        <thead>
+                            <tr style="background: var(--bg-hover, #f1f5f9);">
+                                <th>Fungsi Asal $f(x)$</th>
+                                <th>Turunan Pertama $f'(x)$</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>$\sin x$</td><td>$\mathbf{\cos x}$</td></tr>
+                            <tr><td>$\cos x$</td><td>$\mathbf{-\sin x}$</td></tr>
+                            <tr><td>$\tan x$</td><td>$\mathbf{\sec^2 x}$</td></tr>
+                            <tr><td>$\cot x$</td><td>$\mathbf{-\csc^2 x}$</td></tr>
+                            <tr><td>$\sec x$</td><td>$\mathbf{\sec x \tan x}$</td></tr>
+                            <tr><td>$\csc x$</td><td>$\mathbf{-\csc x \cot x}$</td></tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 6px;">
+                        <em>Mnemonic Emas:</em> Setiap fungsi yang berawalan dengan <strong>"Co"</strong> ($\cos, \cot, \csc$) selalu menghasilkan turunan bertanda <strong>negatif ($-$)</strong>!
+                    </p>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-turunan-sin-ke-cos" style="display: flex; justify-content: center; align-items: center; min-height: 230px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 1: Korespondensi nilai ekstrem fungsi sinus ($f'=0$) dengan titik potong sumbu kurva cosinus.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>3. Aturan Rantai (Chain Rule) pada Komposisi Trigonometri</h2>
+            <p>
+                Jika argumen sudut merupakan fungsi diferensiabel $u = u(x)$, aturan rantai diterapkan secara bertingkat:
+            </p>
+
+            <table class="table-auto" style="width: 100%; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: var(--bg-hover, #f1f5f9);">
+                        <th>Tipe Komposisi</th>
+                        <th>Bentuk Fungsi $y$</th>
+                        <th>Formulasi Turunan $\frac{dy}{dx}$</th>
+                        <th>Contoh Penerapan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sudut Linear / Aljabar</strong></td>
+                        <td>$y = \sin(u(x))$</td>
+                        <td>$y' = \cos(u) \cdot u'$</td>
+                        <td>$\frac{d}{dx}[\sin(3x^2 - 1)] = 6x \cos(3x^2 - 1)$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pangkat Trigonometri</strong></td>
+                        <td>$y = \sin^n(x)$</td>
+                        <td>$y' = n \sin^{n-1}(x) \cdot \cos x$</td>
+                        <td>$\frac{d}{dx}[\sin^3 x] = 3\sin^2 x \cos x$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pangkat & Sudut Majemuk</strong></td>
+                        <td>$y = \sin^n(u(x))$</td>
+                        <td><strong>$y' = n \sin^{n-1}(u) \cdot \cos(u) \cdot u'$</strong></td>
+                        <td>$\frac{d}{dx}[\sin^2(3x - 1)] = 3\sin(6x - 2)$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Perkalian Fungsi</strong></td>
+                        <td>$y = u(x) \cdot \sin(v(x))$</td>
+                        <td>$y' = u' \sin(v) + u v' \cos(v)$</td>
+                        <td>$\frac{d}{dx}[x^2 \sin x] = 2x \sin x + x^2 \cos x$</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>4. Persamaan Garis Singgung & Normal Kurva Trigonometri</h2>
+                    <p>
+                        Untuk menentukan garis singgung pada kurva $y = f(x)$ di titik berabsis $x = x_1$:
+                    </p>
+                    <ol>
+                        <li>Hitung ordinat titik singgung: $y_1 = f(x_1)$.</li>
+                        <li>Hitung gradien garis singgung: $m = f'(x_1)$.</li>
+                        <li><strong>Persamaan Garis Singgung (PGS):</strong>
+                            $$y - y_1 = m(x - x_1)$$
+                        </li>
+                        <li><strong>Persamaan Garis Normal (PGN):</strong>
+                            $$y - y_1 = -\frac{1}{m}(x - x_1) \qquad (m \neq 0)$$
+                        </li>
+                    </ol>
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-garis-singgung-trigono" style="display: flex; justify-content: center; align-items: center; min-height: 230px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 2: Garis singgung ($m = \cos x_1$) dan garis normal kurva $y = \sin x$ di titik $x = \frac{\pi}{3}$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col col-2">
+                    <h2>5. Turunan Tingkat Tinggi & Siklus Periodik Derivatif</h2>
+                    <p>
+                        Fungsi sinus dan cosinus memiliki sifat keunikan turunan tingkat tinggi yang membentuk <strong>siklus berulang dengan periode 4</strong>:
+                    </p>
+                    $$\begin{aligned}
+                    f(x) &= \sin x\\
+                    f'(x) &= \cos x = \sin\left(x + \frac{\pi}{2}\right)\\
+                    f''(x) &= -\sin x = \sin(x + \pi)\\
+                    f'''(x) &= -\cos x = \sin\left(x + \frac{3\pi}{2}\right)\\
+                    f^{(4)}(x) &= \sin x = f(x)
+                    \end{aligned}$$
+                    <p>
+                        <strong>Formula Umum Turunan ke-$n$:</strong>
+                    </p>
+                    $$\frac{d^n}{dx^n}(\sin x) = \sin\left(x + \frac{n\pi}{2}\right)$$
+                    $$\frac{d^n}{dx^n}(\cos x) = \cos\left(x + \frac{n\pi}{2}\right)$$
+                </div>
+                <div class="col col-2" style="text-align: center;">
+                    <div id="svg-lingkaran-kecepatan-sudut" style="display: flex; justify-content: center; align-items: center; min-height: 230px;"></div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                        <em>Gambar 3: Vektor posisi $\vec{r}$, kecepatan tangensial $\vec{v} = \vec{r}'$, dan percepatan sentripetal $\vec{a} = \vec{r}''$.</em>
+                    </p>
+                </div>
+            </div>
+
+            <h2>6. Contoh Soal Berjenjang & Pembahasan Komprehensif</h2>
+
+            <!-- Contoh Soal 1: Tingkat Dasar -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #2563eb; margin-top: 0;">Contoh 1: Tingkat Dasar — Aturan Perkalian & Rantai Sederhana</h3>
+                <p>
+                    Tentukan turunan pertama dari fungsi trigonometri berikut:
+                </p>
+                <ol type="a">
+                    <li>$f(x) = \sin(5x - 2)$</li>
+                    <li>$g(x) = x^2 \cos x$</li>
+                    <li>$h(x) = \tan^3(2x)$</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-1', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-1" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Fungsi $f(x) = \sin(5x - 2)$:</strong><br>
+                        Misalkan $u = 5x - 2 \implies u' = 5$:
+                        $$f'(x) = \cos(5x - 2) \cdot u' = 5\cos(5x - 2)$$
+                    </p>
+                    <p>
+                        <strong>(b) Fungsi $g(x) = x^2 \cos x$ (Aturan Perkalian):</strong><br>
+                        Misalkan $u = x^2 \implies u' = 2x$, dan $v = \cos x \implies v' = -\sin x$:
+                        $$g'(x) = u'v + uv' = (2x)(\cos x) + (x^2)(-\sin x) = 2x \cos x - x^2 \sin x$$
+                    </p>
+                    <p>
+                        <strong>(c) Fungsi $h(x) = \tan^3(2x)$ (Aturan Rantai Bertingkat):</strong><br>
+                        Turunkan pangkat luar terlebih dahulu, lalu kalikan dengan turunan tangen dan turunan sudutnya:
+                        $$h'(x) = 3\tan^2(2x) \cdot \frac{d}{dx}[\tan(2x)]$$
+                        $$h'(x) = 3\tan^2(2x) \cdot [\sec^2(2x) \cdot 2] = 6\tan^2(2x)\sec^2(2x)$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> $f'(x) = 5\cos(5x - 2)$, $g'(x) = 2x\cos x - x^2\sin x$, dan $h'(x) = 6\tan^2(2x)\sec^2(2x)$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 2: Tingkat SNBT -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #059669; margin-top: 0;">Contoh 2: Tingkat Menengah (SNBT / UTBK) — Aturan Rantai Kuadrat & Persamaan Garis Singgung</h3>
+                <p>
+                    Diberikan fungsi $f(x) = \sin^2(3x - 1)$.
+                </p>
+                <ol type="a">
+                    <li>Tentukan turunan pertama $f'(x)$ dan sederhanakan ke dalam bentuk fungsi sinus tunggal menggunakan sudut rangkap.</li>
+                    <li>Tentukan persamaan garis singgung kurva $y = \cos(2x)$ di titik yang berabsis $x = \frac{\pi}{6}$.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-2', this)" style="background: #059669; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-2" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menurunkan $f(x) = [\sin(3x - 1)]^2$:</strong><br>
+                        Gunakan aturan rantai:
+                        $$f'(x) = 2 \cdot \sin(3x - 1) \cdot \frac{d}{dx}[\sin(3x - 1)]$$
+                        $$f'(x) = 2 \sin(3x - 1) \cdot [\cos(3x - 1) \cdot 3] = 3 \cdot [2\sin(3x - 1)\cos(3x - 1)]$$
+                        Gunakan identitas sudut rangkap $2\sin \alpha \cos \alpha = \sin(2\alpha)$:
+                        $$f'(x) = 3 \sin(2(3x - 1)) = 3\sin(6x - 2)$$
+                    </p>
+                    <p>
+                        <strong>(b) Persamaan Garis Singgung $y = \cos(2x)$ di $x = \frac{\pi}{6}$:</strong>
+                        <ul>
+                            <li>Ordinat titik singgung $y_1$:
+                                $$y_1 = \cos\left(2 \cdot \frac{\pi}{6}\right) = \cos\left(\frac{\pi}{3}\right) = \frac{1}{2}$$
+                                Titik singgung adalah $\left(\frac{\pi}{6}, \frac{1}{2}\right)$.
+                            </li>
+                            <li>Gradien garis singgung $m$:
+                                $$y' = -2\sin(2x) \implies m = -2\sin\left(2 \cdot \frac{\pi}{6}\right) = -2\sin\left(\frac{\pi}{3}\right) = -2\left(\frac{\sqrt{3}}{2}\right) = -\sqrt{3}$$
+                            </li>
+                            <li>Persamaan Garis Singgung:
+                                $$y - y_1 = m(x - x_1) \implies y - \frac{1}{2} = -\sqrt{3}\left(x - \frac{\pi}{6}\right)$$
+                                $$y = -\sqrt{3}x + \frac{\sqrt{3}\pi}{6} + \frac{1}{2}$$
+                            </li>
+                        </ul>
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> $f'(x) = 3\sin(6x - 2)$ dan persamaan garis singgung adalah $y - \frac{1}{2} = -\sqrt{3}\left(x - \frac{\pi}{6}\right)$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Soal 3: Tingkat HOTS -->
+            <div class="contoh-soal" style="margin-bottom: 1.5rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; background: var(--card-bg, #ffffff);">
+                <h3 style="color: #7c3aed; margin-top: 0;">Contoh 3: Tingkat HOTS (Olimpiade / Kompetisi) — Reduksi Pecahan Trigonometri & Nilai Turunan</h3>
+                <p>
+                    Diberikan fungsi pecahan trigonometri:
+                    $$f(x) = \frac{\sin x}{1 + \cos x}$$
+                </p>
+                <ol type="a">
+                    <li>Sederhanakan bentuk fungsi $f(x)$ menggunakan rumus sudut setengah sebelum melakukan diferensiasi.</li>
+                    <li>Tentukan turunan pertama $f'(x)$ dari bentuk yang telah disederhanakan.</li>
+                    <li>Hitung nilai eksak dari $f'\left(\frac{\pi}{3}\right)$.</li>
+                    <li>Buktikan bahwa menurunkan langsung menggunakan aturan pembagian menghasilkan nilai yang identik.</li>
+                </ol>
+
+                <button class="toggle-btn" onclick="toggleSolution('solusi-3', this)" style="background: #7c3aed; color: #ffffff; border: none; padding: 0.45rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">Lihat Pembahasan</button>
+                <div id="solusi-3" class="solusi" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                    <p><strong>Pembahasan:</strong></p>
+                    <p>
+                        <strong>(a) Menyederhanakan Fungsi $f(x)$:</strong><br>
+                        Ingat identitas sudut setengah:
+                        $$\sin x = 2\sin\left(\frac{x}{2}\right)\cos\left(\frac{x}{2}\right)$$
+                        $$1 + \cos x = 2\cos^2\left(\frac{x}{2}\right)$$
+                        Maka:
+                        $$f(x) = \frac{2\sin(x/2)\cos(x/2)}{2\cos^2(x/2)} = \frac{\sin(x/2)}{\cos(x/2)} = \tan\left(\frac{x}{2}\right)$$
+                    </p>
+                    <p>
+                        <strong>(b) Menentukan Turunan Pertama $f'(x)$:</strong>
+                        $$f'(x) = \frac{d}{dx}\left[\tan\left(\frac{x}{2}\right)\right] = \sec^2\left(\frac{x}{2}\right) \cdot \frac{1}{2} = \frac{1}{2}\sec^2\left(\frac{x}{2}\right)$$
+                    </p>
+                    <p>
+                        <strong>(c) Menghitung Nilai $f'\left(\frac{\pi}{3}\right)$:</strong><br>
+                        Untuk $x = \frac{\pi}{3}$, maka $\frac{x}{2} = \frac{\pi}{6}$ ($30^\circ$):
+                        $$\cos\left(\frac{\pi}{6}\right) = \frac{\sqrt{3}}{2} \implies \sec\left(\frac{\pi}{6}\right) = \frac{2}{\sqrt{3}} \implies \sec^2\left(\frac{\pi}{6}\right) = \frac{4}{3}$$
+                        $$f'\left(\frac{\pi}{3}\right) = \frac{1}{2} \times \frac{4}{3} = \frac{2}{3}$$
+                    </p>
+                    <p>
+                        <strong>(d) Verifikasi via Aturan Pembagian Langsung:</strong>
+                        $$f'(x) = \frac{\cos x(1 + \cos x) - \sin x(-\sin x)}{(1 + \cos x)^2} = \frac{\cos x + \cos^2 x + \sin^2 x}{(1 + \cos x)^2}$$
+                        Karena $\cos^2 x + \sin^2 x = 1$:
+                        $$f'(x) = \frac{\cos x + 1}{(1 + \cos x)^2} = \frac{1}{1 + \cos x}$$
+                        Untuk $x = \frac{\pi}{3}$:
+                        $$f'\left(\frac{\pi}{3}\right) = \frac{1}{1 + \cos(\pi/3)} = \frac{1}{1 + \frac{1}{2}} = \frac{1}{\frac{3}{2}} = \frac{2}{3} \quad (\text{Terbukti Identik!})$$
+                    </p>
+                    <div class="kesimpulan" style="margin: 0.5rem 0;">
+                        <p style="margin: 0;"><strong>Kesimpulan:</strong> Fungsi setara dengan $\tan(\frac{x}{2})$, turunan $f'(x) = \frac{1}{2}\sec^2(\frac{x}{2}) = \frac{1}{1+\cos x}$, dan nilai eksak $f'(\frac{\pi}{3}) = \mathbf{\dfrac{2}{3}}$.</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Skrip Interaktif Visualisasi GeoSVG.js & Toggle Pembahasan -->
+    <script>
+        function toggleSolution(id, btn) {
+            const el = document.getElementById(id);
+            if (el.style.display === "none" || el.style.display === "") {
+                el.style.display = "block";
+                btn.textContent = "Tutup Pembahasan";
+            } else {
+                el.style.display = "none";
+                btn.textContent = "Lihat Pembahasan";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof GeoSVG === "undefined") {
+                console.warn("GeoSVG belum dimuat.");
+                return;
+            }
+
+            const TEMA = {
+                utama: "#2563eb",       // Biru royal
+                utamaMuda: "#dbeafe",
+                aksen: "#059669",       // Hijau emerald
+                aksenMuda: "#d1fae5",
+                merah: "#dc2626",       // Merah ruby
+                merahMuda: "#fee2e2",
+                oranye: "#d97706",      // Amber / oranye
+                oranyeMuda: "#fef3c7",
+                ungu: "#7c3aed",        // Ungu violet
+                unguMuda: "#ede9fe",
+                gelap: "#1e293b",       // Slate gelap
+                abu: "#94a3b8",         // Abu-abu border
+                abuMuda: "#f1f5f9",
+                teks: "#334155"         // Slate teks
+            };
+
+            // ==========================================
+            // 1. Korespondensi Turunan Sinus ke Cosinus
+            // ==========================================
+            const elSinCos = document.getElementById("svg-turunan-sin-ke-cos");
+            if (elSinCos) {
+                const geo1 = new GeoSVG(elSinCos, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Hubungan Turunan antara Sinus dan Cosinus"
+                });
+
+                const baseY = 115;
+                const originX = 45;
+                const endX = 285;
+                const amp = 50;
+
+                // Sumbu X dan Y
+                geo1.buatSegmen([originX - 10, baseY], [endX + 25, baseY], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+                geo1.buatSegmen([originX, baseY + 75], [originX, baseY - 75], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+                geo1.buatTeks(endX + 25, baseY + 10, "x", { position: "top-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+                geo1.buatTeks(originX - 8, baseY - 75, "y", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+
+                // Tick Sudut: 0, pi/2 (105), pi (165), 3pi/2 (225), 2pi (285)
+                const ticks = [
+                    { x: originX, l: "0" },
+                    { x: originX + 60, l: "π/2" },
+                    { x: originX + 120, l: "π" },
+                    { x: originX + 180, l: "3π/2" },
+                    { x: originX + 240, l: "2π" }
+                ];
+                ticks.forEach(t => {
+                    geo1.buatSegmen([t.x, baseY - 3], [t.x, baseY + 3], { stroke: TEMA.abu, strokeWidth: 1 });
+                    geo1.buatTeks(t.x, baseY + 12, t.l, { position: "top-center", fontSize: "7px", fill: TEMA.teks });
+                });
+
+                // Kurva f(x) = sin x (Biru Tebal)
+                const ptsSin = [];
+                for (let px = originX; px <= endX; px += 3) {
+                    const rad = ((px - originX) / 240) * (2 * Math.PI);
+                    const py = baseY - amp * Math.sin(rad);
+                    ptsSin.push([px, py]);
+                }
+                for (let i = 0; i < ptsSin.length - 1; i++) {
+                    geo1.buatSegmen(ptsSin[i], ptsSin[i + 1], { stroke: TEMA.utama, strokeWidth: 2.2 });
+                }
+
+                // Kurva f'(x) = cos x (Merah Putus-Putus)
+                const ptsCos = [];
+                for (let px = originX; px <= endX; px += 3) {
+                    const rad = ((px - originX) / 240) * (2 * Math.PI);
+                    const py = baseY - amp * Math.cos(rad);
+                    ptsCos.push([px, py]);
+                }
+                for (let i = 0; i < ptsCos.length - 1; i++) {
+                    geo1.buatSegmen(ptsCos[i], ptsCos[i + 1], { stroke: TEMA.merah, strokeWidth: 2, strokeDasharray: "4 2" });
+                }
+
+                // Garis Proyeksi Puncak Sinus ke Nol Cosinus di x = pi/2 (105)
+                geo1.buatSegmen([105, baseY - amp], [105, baseY], { stroke: TEMA.oranye, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo1.buatSegmen([95, baseY - amp], [115, baseY - amp], { stroke: TEMA.utama, strokeWidth: 1.5 }); // Garis singgung datar m = 0
+                geo1.buatLingkaran([105, baseY - amp], 3, { fill: TEMA.utama });
+                geo1.buatLingkaran([105, baseY], 3, { fill: TEMA.merah });
+                geo1.buatTeks(105, baseY - amp - 8, "f'=0 (Puncak)", { position: "bottom-center", fontSize: "7px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Garis Proyeksi Lembah Sinus ke Nol Cosinus di x = 3pi/2 (225)
+                geo1.buatSegmen([225, baseY + amp], [225, baseY], { stroke: TEMA.oranye, strokeWidth: 1.2, strokeDasharray: "3 2" });
+                geo1.buatSegmen([215, baseY + amp], [235, baseY + amp], { stroke: TEMA.utama, strokeWidth: 1.5 }); // Garis singgung datar m = 0
+                geo1.buatLingkaran([225, baseY + amp], 3, { fill: TEMA.utama });
+                geo1.buatLingkaran([225, baseY], 3, { fill: TEMA.merah });
+                geo1.buatTeks(225, baseY + amp + 8, "f'=0 (Lembah)", { position: "top-center", fontSize: "7px", fontWeight: "bold", fill: TEMA.utama });
+
+                // Legend
+                geo1.buatSegmen([100, 25], [125, 25], { stroke: TEMA.utama, strokeWidth: 2.2 });
+                geo1.buatTeks(130, 25, "f(x) = sin x", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.utama });
+
+                geo1.buatSegmen([200, 25], [225, 25], { stroke: TEMA.merah, strokeWidth: 2, strokeDasharray: "4 2" });
+                geo1.buatTeks(230, 25, "f'(x) = cos x", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Footer
+                geo1.buatTeks(170, 215, "Puncak/Lembah Sinus (Gradien Nol) Bersesuaian Tepat dengan Titik Nol Cosinus", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 2. Garis Singgung dan Garis Normal Trigonometri
+            // ==========================================
+            const elPGS = document.getElementById("svg-garis-singgung-trigono");
+            if (elPGS) {
+                const geo2 = new GeoSVG(elPGS, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Garis Singgung dan Garis Normal pada Kurva Sinus"
+                });
+
+                const baseY = 145;
+                const originX = 50;
+
+                // Sumbu Kartesius
+                geo2.buatSegmen([originX - 15, baseY], [315, baseY], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+                geo2.buatSegmen([originX, baseY + 65], [originX, 25], { stroke: TEMA.gelap, strokeWidth: 1.2 });
+                geo2.buatTeks(315, baseY + 10, "x", { position: "top-right", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+                geo2.buatTeks(originX - 8, 25, "y", { position: "middle-center", fontSize: "8px", fontWeight: "bold", fill: TEMA.teks });
+
+                // Kurva Sinus y = 65 * sin x
+                const ptsSin2 = [];
+                for (let px = originX; px <= 290; px += 3) {
+                    const rad = ((px - originX) / 190) * Math.PI; // 0 sampai pi
+                    const py = baseY - 65 * Math.sin(rad);
+                    ptsSin2.push([px, py]);
+                }
+                for (let i = 0; i < ptsSin2.length - 1; i++) {
+                    geo2.buatSegmen(ptsSin2[i], ptsSin2[i + 1], { stroke: TEMA.utama, strokeWidth: 2 });
+                }
+
+                // Titik Singgung pada x = pi/3 (rentang 190 * (1/3) = 63.3 -> px = 50 + 63.3 = 113.3)
+                // py = baseY - 65 * sin(pi/3) = 145 - 65 * 0.866 = 145 - 56.3 = 88.7
+                const ptP = [113.3, 88.7];
+
+                // Gradien m = cos(pi/3) = 0.5 di dunia matematika
+                // Karena di layar koordinat y mengarah ke bawah, kurva naik memiliki dy/dx negatif di layar: m_layar = -0.55
+                // Garis Singgung (Merah): panjang 160 px
+                const ptT1 = [ptP[0] - 70, ptP[1] + 38.5]; // (43.3, 127.2)
+                const ptT2 = [ptP[0] + 80, ptP[1] - 44];   // (193.3, 44.7)
+                geo2.buatSegmen(ptT1, ptT2, { stroke: TEMA.merah, strokeWidth: 2.2 });
+                geo2.buatTeks(ptT2[0] + 6, ptT2[1], "PGS (m = cos π/3 = ½)", { position: "middle-left", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.merah });
+
+                // Garis Normal (Hijau): tegak lurus m_layar_n = 1/0.55 = +1.82
+                const ptN1 = [ptP[0] - 35, ptP[1] - 63.7]; // (78.3, 25)
+                const ptN2 = [ptP[0] + 45, ptP[1] + 81.9]; // (158.3, 170.6)
+                geo2.buatSegmen(ptN1, ptN2, { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo2.buatTeks(ptN1[0] - 6, ptN1[1] + 4, "PGN (mn = −2)", { position: "middle-right", fontSize: "7.5px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Simbol Siku-Siku di P
+                geo2.buatSiku([ptT2[0], ptT2[1]], ptP, [ptN1[0], ptN1[1]], { size: 9, stroke: TEMA.gelap, strokeWidth: 1.2 });
+
+                // Titik P
+                geo2.buatLingkaran(ptP, 4, { fill: TEMA.gelap, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo2.buatTeks(ptP[0] + 8, ptP[1] + 12, "P(π/3, ½√3)", { position: "top-left", fontSize: "8px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Footer
+                geo2.buatTeks(170, 215, "PGS: y − ½√3 = ½(x − π/3)  |  PGN: y − ½√3 = −2(x − π/3)", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+
+            // ==========================================
+            // 3. Vektor Kecepatan & Percepatan Harmonik
+            // ==========================================
+            const elVektor = document.getElementById("svg-lingkaran-kecepatan-sudut");
+            if (elVektor) {
+                const geo3 = new GeoSVG(elVektor, 340, 230, {
+                    viewBox: "0 0 340 230",
+                    margin: 8,
+                    title: "Interpretasi Kinematika Gerak Melingkar Harmonik"
+                });
+
+                const Ox = 170, Oy = 115, R = 72;
+
+                // Sumbu Kartesius
+                geo3.buatSegmen([Ox - 85, Oy], [Ox + 85, Oy], { stroke: "#cbd5e1", strokeWidth: 1 });
+                geo3.buatSegmen([Ox, Oy + 85], [Ox, Oy - 85], { stroke: "#cbd5e1", strokeWidth: 1 });
+
+                // Lingkaran Orbit
+                geo3.buatLingkaran([Ox, Oy], R, { stroke: TEMA.abu, strokeWidth: 1.4, fill: "none" });
+
+                // Posisi Partikel P di sudut theta = 45 derajat
+                // P = (Ox + R*0.707, Oy - R*0.707) = (170 + 51, 115 - 51) = (221, 64)
+                const ptP = [Ox + 51, Oy - 51];
+
+                // 1. Vektor Posisi r (Biru dari O ke P)
+                geo3.buatVektor([Ox, Oy], ptP, { stroke: TEMA.utama, strokeWidth: 2 });
+                geo3.buatTeks((Ox + ptP[0]) / 2 + 8, (Oy + ptP[1]) / 2 + 10, "r = (cos θ, sin θ)", { position: "top-left", fontSize: "7px", fontWeight: "bold", fill: TEMA.utama });
+
+                // 2. Vektor Kecepatan v = r' (Merah, tangensial arah jam 10:30)
+                // dx = -50*0.707 = -35, dy = -50*0.707 = -35 -> ujung di (221 - 35, 64 - 35) = (186, 29)
+                const ptV = [ptP[0] - 35, ptP[1] - 35];
+                geo3.buatVektor(ptP, ptV, { stroke: TEMA.merah, strokeWidth: 2 });
+                geo3.buatTeks(ptV[0] - 8, ptV[1] - 4, "v = r' = (−sin θ, cos θ)", { position: "bottom-right", fontSize: "7px", fontWeight: "bold", fill: TEMA.merah });
+
+                // 3. Vektor Percepatan a = r'' (Hijau, sentripetal mengarah ke O)
+                // dari P menuju O sepanjang 45 px:
+                const ptA_acc = [ptP[0] - 32, ptP[1] + 32];
+                geo3.buatVektor(ptP, ptA_acc, { stroke: TEMA.aksen, strokeWidth: 2 });
+                geo3.buatTeks(ptA_acc[0] + 12, ptA_acc[1] + 8, "a = r'' = −r", { position: "top-left", fontSize: "7px", fontWeight: "bold", fill: TEMA.aksen });
+
+                // Simbol Siku antara r dan v di P
+                geo3.buatSiku([Ox, Oy], ptP, ptV, { size: 8, stroke: TEMA.gelap, strokeWidth: 1 });
+
+                // Titik P dan Pusat O
+                geo3.buatLingkaran([Ox, Oy], 3, { fill: TEMA.gelap });
+                geo3.buatLingkaran(ptP, 3.8, { fill: TEMA.merah, stroke: "#ffffff", strokeWidth: 1.2 });
+                geo3.buatTeks(ptP[0] + 6, ptP[1] + 4, "P(θ)", { fontSize: "8px", fontWeight: "bold", fill: TEMA.gelap });
+
+                // Footer
+                geo3.buatTeks(170, 215, "Siklus Periodik Orde 4: r''' = −v  |  r'''' = r  ⇒  d⁴/dx⁴(sin x) = sin x", {
+                    position: "middle-center",
+                    fontSize: "7.5px",
+                    fontWeight: "bold",
+                    fill: TEMA.teks
+                });
+            }
+        });
+    </script>
+
+    <!-- Script Blog Global -->
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
