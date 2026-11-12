@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latihan Soal HOTS - Barisan dan Deret [3]</title>
+
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Style Blog -->
+  <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="home-btn">🏠 HOME</a>
+      <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Header Soal -->
+    <div class="page-header">
+      <p class="intro-text">
+        Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+        materi <span class="topic-highlight">Barisan dan Deret</span>
+      </p>
+      <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+      <div id="level-nav" class="level-nav"></div>
+    </div>
+
+    <!-- Pagination Atas (Otomatis) -->
+    <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+    <!-- ================= DAFTAR SOAL ================= -->
+
+    <!-- SOAL 21 -->
+    <article class="soal-item" id="21">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Moneko membuat beberapa logo \(M\) untuk debutnya sebagai idol. Logo tersebut terdiri dari 5 titik \(ABCDE\), sinar \(BA\), segmen \(BC\), segmen \(CD\), dan sinar \(DE\) sehingga tidak ada segmen/sinar yang berpotongan kecuali di \(B, C,\) dan \(D\). Setelah itu, Moneko mempartisi sebuah bidang dengan \(200\) logo \(M\) (yang tidak harus berbeda).<br>
+        Berapa banyak daerah maksimal yang mungkin Moneko buat?
+      </div>
+      <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM Oktober 2026</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Setiap logo \(M\) merupakan kurva terbuka tak-berhingga di kedua ujungnya (sinar \(BA\) dan sinar \(DE\)) yang tersusun atas \(4\) bagian lurus (2 sinar dan 2 segmen).<br><br>
+          Misalkan \(R_n\) adalah banyaknya daerah maksimal yang terbentuk oleh \(n\) buah logo \(M\):
+          <ul>
+            <li>Untuk \(n = 1\), satu logo \(M\) yang tak-berhingga di kedua ujungnya membagi bidang menjadi \(R_1 = 2\) daerah.</li>
+            <li>Ketika logo ke-\(k\) ditambahkan pada bidang yang telah memuat \(k - 1\) logo, keempat bagian lurus dari logo ke-\(k\) masing-masing dapat memotong keempat bagian lurus dari setiap logo sebelumnya paling banyak di \(4 \times 4 = 16\) titik potong.</li>
+            <li>Secara keseluruhan, logo ke-\(k\) dapat memotong \(k - 1\) logo sebelumnya di maksimal \(I_k = 16(k - 1)\) titik potong berbeda.</li>
+            <li>Titik-titik potong ini membagi kurva logo ke-\(k\) menjadi \(I_k + 1 = 16(k - 1) + 1\) bagian, di mana setiap bagian membelah satu daerah lama menjadi dua daerah baru. Dengan demikian, penambahan daerah maksimal pada langkah ke-\(k\) adalah:
+              \[R_k - R_{k-1} = 16(k - 1) + 1\]
+            </li>
+          </ul>
+          Dengan menjumlahkan secara teleskopik dari \(k = 1\) hingga \(n\) (dengan \(R_0 = 1\) daerah awal bidang utuh):
+          \[\begin{aligned}
+          R_n &= 1 + \sum_{k=1}^{n} \big(16(k - 1) + 1\big)\\
+          &= 1 + n + 16 \cdot \dfrac{n(n - 1)}{2}\\
+          &= 8n^2 - 7n + 1
+          \end{aligned}\]
+          Substitusikan \(n = 200\):
+          \[\begin{aligned}
+          R_{200} &= 8(200)^2 - 7(200) + 1\\
+          &= 320000 - 1400 + 1\\
+          &= \color{blue}\boxed{\boxed{\color{black}318601}}
+          \end{aligned}\]
+          <div class="kesimpulan">Jadi, banyaknya daerah maksimal yang mungkin Moneko buat dengan \(200\) logo \(M\) adalah \(318601\).</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- Pagination Bawah (Otomatis) -->
+    <div class="pagination-wrapper"></div>
+  </main>
+
+  <script src="../../scr/script.js"></script>
+</body>
+
+</html>

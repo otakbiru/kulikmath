@@ -39,6 +39,7 @@ const DAFTAR_TOPIK = [
             { judul: "Bilangan Real", folder: "Bilangan_Real" },
             { judul: "Faktor Positif", folder: "Faktor_Positif" },
             { judul: "Faktorial", folder: "Faktorial" },
+            { judul: "Modulo", folder: "Modulo" },
         ]
     },
     {
@@ -46,6 +47,8 @@ const DAFTAR_TOPIK = [
         topik: [
             { judul: "Geometri (Bidang Datar)", folder: "Geometri_(Bidang_Datar)" },
             { judul: "Segitiga", folder: "Segitiga" },
+            { judul: "Persegi", folder: "Persegi" },
+            { judul: "Persegi Panjang", folder: "Persegi_Panjang" },
             { judul: "Poligon (Segi Banyak)", folder: "Poligon_(Segi_Banyak)" },
             { judul: "Balok", folder: "Balok" },
             { judul: "Bangun Ruang Sisi Lengkung", folder: "Bangun_Ruang_Sisi_Lengkung" },
@@ -114,6 +117,34 @@ const DAFTAR_TOPIK = [
 ];
 
 /* ==========================================================================
+   1B. DATA ARSIP SOAL KOMPETISI & UJIAN (KTOM, OSN, SNBT, UAS)
+   ========================================================================== */
+const DAFTAR_ARSIP = [
+    {
+        kategori: "KTOM",
+        folder: "Arsip_Soal/KTOM",
+        paket: [
+            { judul: "KTOM Oktober 2026", file: "KTOM Oktober 2026.html" }
+        ]
+    },
+    {
+        kategori: "OSN",
+        folder: "Arsip_Soal/OSN",
+        paket: []
+    },
+    {
+        kategori: "SNBT",
+        folder: "Arsip_Soal/SNBT",
+        paket: []
+    },
+    {
+        kategori: "UAS",
+        folder: "Arsip_Soal/UAS",
+        paket: []
+    }
+];
+
+/* ==========================================================================
    2. FITUR DARK MODE
    ========================================================================== */
 function initTheme() {
@@ -142,10 +173,14 @@ function updateThemeButton(theme) {
    ========================================================================== */
 function initSoalAndMateriPage() {
     const pathParts = window.location.pathname.split("/").filter(Boolean);
-    const fileName = pathParts[pathParts.length - 1] || "1.html";
-    const folderType = pathParts[pathParts.length - 2] || "Exercise";
+    const rawFileName = decodeURIComponent(pathParts[pathParts.length - 1] || "1.html");
+    const fileName = rawFileName;
+    const folderType = decodeURIComponent(pathParts[pathParts.length - 2] || "Exercise");
+    const parentFolder = decodeURIComponent(pathParts[pathParts.length - 3] || "");
+    const isNumericPage = /^\d+\.html$/i.test(fileName);
+    const isArsipPage = parentFolder === "Arsip_Soal";
 
-    const pageNumber = parseInt(fileName.replace(".html", ""), 10) || 1;
+    const pageNumber = isNumericPage ? (parseInt(fileName.replace(".html", ""), 10) || 1) : 1;
 
     // Pemetaan nama folder ke nama Tingkat
     const levelMap = {
@@ -162,22 +197,34 @@ function initSoalAndMateriPage() {
         levelSpan.textContent = namaTingkat;
     }
 
-    // Render tombol navigasi Tingkat: Materi | Dasar | SNBT | HOTS
+    // Render tombol navigasi Tingkat (untuk halaman topik) atau daftar paket sejenis (untuk halaman Arsip_Soal)
     const navContainer = document.getElementById("level-nav");
     if (navContainer) {
-        const levels = [
-            { label: "📖 Materi", folder: "Materi" },
-            { label: "Dasar", folder: "Exercise" },
-            { label: "SNBT", folder: "SNBT" },
-            { label: "HOTS", folder: "HOTS" }
-        ];
+        if (isArsipPage) {
+            const grupArsip = DAFTAR_ARSIP.find(g => g.kategori.toLowerCase() === folderType.toLowerCase());
+            if (grupArsip && grupArsip.paket.length > 0) {
+                let navHTML = `<span class="level-label">Paket ${grupArsip.kategori}:</span>`;
+                grupArsip.paket.forEach(p => {
+                    const isActive = p.file.toLowerCase() === fileName.toLowerCase() ? "active" : "";
+                    navHTML += `<a href="./${encodeURIComponent(p.file).replace(/%20/g, " ")}" class="level-pill ${isActive}">${p.judul}</a>`;
+                });
+                navContainer.innerHTML = navHTML;
+            }
+        } else {
+            const levels = [
+                { label: "📖 Materi", folder: "Materi" },
+                { label: "Dasar", folder: "Exercise" },
+                { label: "SNBT", folder: "SNBT" },
+                { label: "HOTS", folder: "HOTS" }
+            ];
 
-        let navHTML = `<span class="level-label">Tingkat:</span>`;
-        levels.forEach(lv => {
-            const isActive = folderType.toLowerCase() === lv.folder.toLowerCase() ? "active" : "";
-            navHTML += `<a href="../${lv.folder}/1.html" class="level-pill ${isActive}">${lv.label}</a>`;
-        });
-        navContainer.innerHTML = navHTML;
+            let navHTML = `<span class="level-label">Tingkat:</span>`;
+            levels.forEach(lv => {
+                const isActive = folderType.toLowerCase() === lv.folder.toLowerCase() ? "active" : "";
+                navHTML += `<a href="../${lv.folder}/1.html" class="level-pill ${isActive}">${lv.label}</a>`;
+            });
+            navContainer.innerHTML = navHTML;
+        }
     }
 
     // Penomoran otomatis soal (1.html -> 1..10, 2.html -> 11..20) & tombol pembahasan
@@ -188,9 +235,9 @@ function initSoalAndMateriPage() {
         soalItems.forEach((item, idx) => {
             const currentNo = startNumber + idx;
 
-            // Isi nomor soal
+            // Isi nomor soal jika belum memiliki label khusus (seperti "Bagian A - No. 1")
             const noEl = item.querySelector(".soal-no");
-            if (noEl) {
+            if (noEl && !noEl.textContent.trim()) {
                 noEl.textContent = `No. ${currentNo}`;
             }
 
@@ -213,10 +260,10 @@ function initSoalAndMateriPage() {
                 });
             }
         });
-
-        // Jalankan deteksi jumlah file otomatis untuk Pagination
     }
-    buildAutoPagination(pageNumber);
+    if (isNumericPage && !isArsipPage) {
+        buildAutoPagination(pageNumber);
+    }
 }
 
 /* ==========================================================================
@@ -319,6 +366,34 @@ function initIndexPage() {
         const rawQuery = filterText.trim();
         const query = rawQuery.toLowerCase();
         let html = "";
+
+        // Render Arsip Soal Kompetisi & Ujian (KTOM, OSN, SNBT, UAS)
+        const arsipFiltered = DAFTAR_ARSIP.map(g => ({
+            ...g,
+            paket: g.paket.filter(p =>
+                !query ||
+                p.judul.toLowerCase().includes(query) ||
+                g.kategori.toLowerCase().includes(query)
+            )
+        })).filter(g => g.paket.length > 0);
+
+        if (arsipFiltered.length > 0) {
+            html += `
+          <div class="category-block">
+            <h2 class="category-heading">Arsip Soal Kompetisi & Ujian</h2>
+            <div class="topic-grid">
+              ${arsipFiltered.map(g => `
+                <div class="topic-card">
+                  <div class="topic-name">${g.kategori}</div>
+                  <div class="topic-links">
+                    ${g.paket.map(p => `<a href="./${g.folder}/${p.file}">${p.judul}</a>`).join("")}
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `;
+        }
 
         DAFTAR_TOPIK.forEach(grup => {
             const filtered = grup.topik.filter(t =>

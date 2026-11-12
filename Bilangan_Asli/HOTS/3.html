@@ -358,6 +358,88 @@
             </div>
         </article>
 
+        <!-- SOAL 29 -->
+        <article class="soal-item" id="29">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sebuah bilangan asli empat digit disebut <i>jinshi</i> apabila jumlah digitnya genap. Sebuah bilangan asli empat digit disebut <i>maomao</i> apabila keempat digitnya taknol, berbeda, dan jumlah keempatnya ganjil.<br>
+                Tentukan banyak bilangan asli \(n\) sehingga \(n\) <i>maomao</i> dan \(n + 1\) <i>jinshi</i>.
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM Oktober 2026</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan \(n = \overline{abcd}\) adalah bilangan <i>maomao</i> dengan \(a, b, c, d \in \{1, 2, \dots, 9\}\) saling berbeda dan \(S(n) = a + b + c + d\) bernilai ganjil. Tinjau dua kasus berdasarkan digit satuan \(d\):</p>
+                    <ul>
+                        <li>
+                            <b>Kasus 1: \(d \neq 9\) (yaitu \(d \in \{1, 2, \dots, 8\}\)).</b><br>
+                            Penjumlahan \(n + 1\) tidak menghasilkan simpanan (<i>carry</i>), sehingga \(n + 1\) tetap empat digit dan jumlah digitnya adalah \(S(n + 1) = S(n) + 1\). Karena \(S(n)\) ganjil, maka \(S(n + 1)\) pasti genap, sehingga \(n + 1\) selalu <i>jinshi</i>.
+                        </li>
+                        <li>
+                            <b>Kasus 2: \(d = 9\).</b><br>
+                            Karena keempat digit \(n\) berbeda dan taknol, maka \(c \in \{1, 2, \dots, 8\}\). Saat ditambah 1, diperoleh \(n + 1 = \overline{ab(c+1)0}\) dengan jumlah digit:
+                            \[S(n + 1) = a + b + (c + 1) + 0 = (a + b + c + 9) - 8 = S(n) - 8\]
+                            Karena \(S(n)\) ganjil, maka \(S(n) - 8\) tetap ganjil, sehingga \(n + 1\) <b>bukan</b> <i>jinshi</i>.
+                        </li>
+                    </ul>
+                    <p>Dengan demikian, syarat perlu dan cukup adalah \(n\) merupakan bilangan <i>maomao</i> dengan \(d \neq 9\).</p>
+                    <p>Dari himpunan \(\{1, 2, \dots, 9\}\) yang terdiri atas 5 digit ganjil dan 4 digit genap:</p>
+                    <ol>
+                        <li>
+                            <b>Total bilangan <i>maomao</i>:</b> agar jumlah 4 digit bernilai ganjil, komposisi keempat digit haruslah (1 ganjil, 3 genap) atau (3 ganjil, 1 genap):
+                            \[\left[\binom{5}{1}\binom{4}{3} + \binom{5}{3}\binom{4}{1}\right] \times 4! = (5 \times 4 + 10 \times 4) \times 24 = 60 \times 24 = 1440\]
+                        </li>
+                        <li>
+                            <b>Bilangan <i>maomao</i> dengan \(d = 9\):</b> karena \(d = 9\) ganjil, maka 3 digit pertama \(\{a, b, c\} \subset \{1, 2, \dots, 8\}\) (4 ganjil, 4 genap) harus berjumlah genap, yaitu (0 ganjil, 3 genap) atau (2 ganjil, 1 genap):
+                            \[\left[\binom{4}{0}\binom{4}{3} + \binom{4}{2}\binom{4}{1}\right] \times 3! = (4 + 24) \times 6 = 168\]
+                        </li>
+                    </ol>
+                    <p>Banyaknya bilangan asli \(n\) yang memenuhi adalah:</p>
+                    \[1440 - 168 = \color{blue}\boxed{\boxed{\color{black}1272}}\]
+                    <div class="kesimpulan">Jadi, banyak bilangan asli \(n\) sehingga \(n\) <i>maomao</i> dan \(n + 1\) <i>jinshi</i> adalah \(1272\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 30 -->
+        <article class="soal-item" id="30">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Bilangan asli \(a, b, c\) yang tidak semuanya sama memenuhi
+                \[\text{KPK}(a, b) \mid \text{FPB}(b, c) \quad \text{dan} \quad \text{KPK}(a, c) \mid \text{FPB}(c, b)\]
+                Tentukan nilai terbesar yang mungkin dari
+                \[360 \times \left(\dfrac{\text{FPB}(a, b) + \text{FPB}(b, c) + \text{FPB}(c, a)}{\text{KPK}(a, b) + \text{KPK}(b, c) + \text{KPK}(c, a)}\right).\]
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM Oktober 2026</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Berdasarkan sifat dasar FPB dan KPK pada bilangan asli, berlaku \(b \mid \text{KPK}(a, b)\) dan \(\text{FPB}(b, c) \mid b\). Dari syarat pertama \(\text{KPK}(a, b) \mid \text{FPB}(b, c)\), kita peroleh rantai keterbagian:</p>
+                    \[b \mid \text{KPK}(a, b) \mid \text{FPB}(b, c) \mid b \implies \text{KPK}(a, b) = \text{FPB}(b, c) = b\]
+                    <p>Secara simetris, dari syarat kedua \(\text{KPK}(a, c) \mid \text{FPB}(c, b)\), diperoleh:</p>
+                    \[c \mid \text{KPK}(a, c) \mid \text{FPB}(c, b) \mid c \implies \text{KPK}(a, c) = \text{FPB}(c, b) = c\]
+                    <p>Akibatnya, \(b = \text{FPB}(b, c) = c\), serta \(\text{KPK}(a, b) = b \implies a \mid b\).</p>
+                    <p>Karena \(a, b, c\) tidak semuanya sama dan \(b = c\), maka \(a \neq b\), sehingga kita dapat menuliskan \(b = c = ka\) untuk suatu bilangan bulat \(k \ge 2\). Dengan demikian:</p>
+                    <ul>
+                        <li>\(\text{FPB}(a, b) = a\), \(\text{FPB}(b, c) = ka\), \(\text{FPB}(c, a) = a\)</li>
+                        <li>\(\text{KPK}(a, b) = \text{KPK}(b, c) = \text{KPK}(c, a) = ka\)</li>
+                    </ul>
+                    <p>Substitusikan ke dalam ekspresi yang dicari:</p>
+                    \[\begin{aligned}
+                    360 \times \left(\dfrac{a + ka + a}{ka + ka + ka}\right) &= 360 \times \left(\dfrac{k + 2}{3k}\right)\\
+                    &= 120 \times \left(1 + \dfrac{2}{k}\right)
+                    \end{aligned}\]
+                    <p>Agar nilainya terbesar, pilih bilangan bulat terkecil \(k \ge 2\), yaitu \(k = 2\) (contohnya \(a = 1, b = c = 2\)):</p>
+                    \[120 \times \left(1 + \dfrac{2}{2}\right) = 120 \times 2 = \color{blue}\boxed{\boxed{\color{black}240}}\]
+                    <div class="kesimpulan">Jadi, nilai terbesar yang mungkin dari ekspresi tersebut adalah \(240\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>

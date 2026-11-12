@@ -397,6 +397,69 @@
       </div>
     </article>
 
+    <!-- SOAL 8 -->
+    <article class="soal-item" id="8">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Tentukan banyaknya bilangan asli enam digit yang habis dibagi \(99\) dan tidak mengandung digit \(9\).
+      </div>
+      <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM Oktober 2026</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Misalkan bilangan enam digit tersebut adalah \(N = \overline{d_1 d_2 d_3 d_4 d_5 d_6}\) dengan \(d_1 \in \{1, 2, \dots, 8\}\) dan \(d_2, d_3, d_4, d_5, d_6 \in \{0, 1, \dots, 8\}\).<br><br>
+          Karena \(100 \equiv 1 \pmod{99}\), maka berlaku:
+          \[N = \overline{d_1 d_2}\cdot 100^2 + \overline{d_3 d_4}\cdot 100 + \overline{d_5 d_6} \equiv 10(d_1 + d_3 + d_5) + (d_2 + d_4 + d_6) \pmod{99}\]
+          Misalkan \(X = d_1 + d_3 + d_5\) dan \(Y = d_2 + d_4 + d_6\). Rentang nilai \(X\) dan \(Y\) adalah \(1 \le X \le 24\) dan \(0 \le Y \le 24\).<br>
+          Agar \(99 \mid N\), haruslah \(10X + Y\) merupakan kelipatan \(99\). Karena \(10 \le 10X + Y \le 264\), maka \(10X + Y \in \{99, 198\}\), yang menghasilkan tepat 4 pasangan \((X, Y)\):
+          \[(X, Y) \in \{(9, 9),\; (18, 18),\; (8, 19),\; (19, 8)\}\]
+          Misalkan \(A(s)\) adalah banyaknya tripel \((d_1, d_3, d_5) \in \{1..8\} \times \{0..8\}^2\) dengan jumlah \(s\), dan \(B(s)\) adalah banyaknya tripel \((d_2, d_4, d_6) \in \{0..8\}^3\) dengan jumlah \(s\). Menggunakan kombinasi berulang (<i>stars and bars</i>) dan simetri \(d_i \leftrightarrow 8 - d_i\):
+          <ul>
+            <li>\(B(8) = \dbinom{8+2}{2} = 45\), \(\quad B(9) = \dbinom{9+2}{2} - 3 = 52\)</li>
+            <li>\(B(18) = B(24 - 18) = B(6) = \dbinom{6+2}{2} = 28\), \(\quad B(19) = B(24 - 19) = B(5) = \dbinom{5+2}{2} = 21\)</li>
+            <li>Dengan substitusi \(d_1' = d_1 - 1 \in \{0..7\}\):<br>
+              \(A(8) = \dbinom{7+2}{2} = 36\), \(\quad A(9) = \dbinom{8+2}{2} - 1 = 44\)<br>
+              \(A(18) = A(25 - 18) = \dbinom{6+2}{2} = 28\), \(\quad A(19) = A(25 - 19) = \dbinom{5+2}{2} = 21\)
+            </li>
+          </ul>
+          Total banyaknya bilangan yang memenuhi adalah:
+          \[\begin{aligned}
+          \text{Total} &= A(9)B(9) + A(18)B(18) + A(8)B(19) + A(19)B(8)\\
+          &= (44 \times 52) + (28 \times 28) + (36 \times 21) + (21 \times 45)\\
+          &= 2288 + 784 + 756 + 945\\
+          &= \color{blue}\boxed{\boxed{\color{black}4773}}
+          \end{aligned}\]
+          <div class="kesimpulan">Jadi, banyaknya bilangan asli enam digit yang habis dibagi \(99\) dan tidak mengandung digit \(9\) adalah \(4773\).</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- SOAL 9 -->
+    <article class="soal-item" id="9">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Sebuah negara memiliki tiga kota, yaitu \(A, B,\) dan \(C\). Philbert hendak melakukan perjalanan dari kota \(A\) menuju kota \(C\) melalui kota \(B\). Di antara kota \(A\) dan \(B\), terdapat \(4\) buah rumah yang wajib dikunjungi seluruhnya sebelum mencapai kota \(B\). Di antara kota \(B\) dan \(C\), terdapat \(5\) buah rumah yang wajib dikunjungi seluruhnya setelah dari kota \(B\) dan sebelum mencapai kota \(C\). Tentukan banyaknya urutan kunjungan rumah yang dapat ditempuh Philbert.
+      </div>
+      <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM September 2026</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          Perjalanan dibagi menjadi dua tahap independen:
+          <ul>
+            <li><strong>Tahap 1 (Kota \(A\) ke Kota \(B\)):</strong> mengunjungi seluruh \(4\) rumah dapat diurutkan dalam \(4! = 24\) cara.</li>
+            <li><strong>Tahap 2 (Kota \(B\) ke Kota \(C\)):</strong> mengunjungi seluruh \(5\) rumah dapat diurutkan dalam \(5! = 120\) cara.</li>
+          </ul>
+          Berdasarkan aturan perkalian, total banyaknya urutan kunjungan rumah yang dapat ditempuh adalah:
+          \[4! \times 5! = 24 \times 120 = \color{blue}\boxed{\boxed{\color{black}2880}}\]
+          <div class="kesimpulan">Jadi, banyaknya urutan kunjungan rumah yang dapat ditempuh Philbert adalah \(2880\).</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
     <!-- Pagination Bawah (Otomatis) -->
     <div class="pagination-wrapper"></div>
   </main>

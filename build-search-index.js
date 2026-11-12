@@ -42,7 +42,56 @@ function buildIndex() {
   const entries = [];
 
   const dirs = fs.readdirSync(ROOT, { withFileTypes: true })
-    .filter((d) => d.isDirectory() && !['.git', 'node_modules', 'scr', 'www', '.vscode'].includes(d.name));
+    .filter((d) => d.isDirectory() && !['.git', 'node_modules', 'scr', 'www', '.vscode', 'Arsip_Soal'].includes(d.name));
+
+  // Indeks halaman khusus di Arsip_Soal/<Kategori>/*.html
+  const arsipRoot = path.join(ROOT, 'Arsip_Soal');
+  if (fs.existsSync(arsipRoot) && fs.statSync(arsipRoot).isDirectory()) {
+    const arsipCats = fs.readdirSync(arsipRoot, { withFileTypes: true }).filter((d) => d.isDirectory());
+    for (const catDir of arsipCats) {
+      const catPath = path.join(arsipRoot, catDir.name);
+      const htmlFiles = fs.readdirSync(catPath).filter((f) => /\.html$/i.test(f));
+      for (const file of htmlFiles) {
+        const fullPath = path.join(catPath, file);
+        const rawHtml = fs.readFileSync(fullPath, 'utf8');
+        const uncommented = rawHtml.replace(/<!--[\s\S]*?-->/g, '');
+        const relUrl = `./Arsip_Soal/${catDir.name}/${file}`;
+        const paketTitle = file.replace(/\.html$/i, '');
+
+        const articleRe = /<article[^>]*class=["'][^"']*soal-item[^"']*["'][^>]*>([\s\S]*?)<\/article>/gi;
+        let match;
+        let idxInPage = 0;
+        while ((match = articleRe.exec(uncommented)) !== null) {
+          idxInPage++;
+          const fullTag = match[0];
+          const inner = match[1];
+          const idMatch = fullTag.match(/<article[^>]*\bid=["']([^"']+)["']/i);
+          const anchorId = idMatch ? idMatch[1] : String(idxInPage);
+
+          const beforeSolusi = inner.split(/<button[^>]*class=["'][^"']*btn-solusi|<div[^>]*class=["'][^"']*pembahasan-box/i)[0];
+          const noMatch = beforeSolusi.match(/<div[^>]*class=["'][^"']*soal-no[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
+          const customNo = stripTagsAndClean(noMatch ? noMatch[1] : '');
+
+          const withoutSumber = beforeSolusi.replace(/<div[^>]*class=["'][^"']*soal-sumber[^"']*["'][^>]*>[\s\S]*?<\/div>/gi, '');
+          const withoutNo = withoutSumber.replace(/<div[^>]*class=["'][^"']*soal-no[^"']*["'][^>]*>[\s\S]*?<\/div>/gi, '');
+          const sumberMatch = beforeSolusi.match(/<div[^>]*class=["'][^"']*soal-sumber[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
+
+          const soalText = stripTagsAndClean(withoutNo);
+          const sumberText = stripTagsAndClean(sumberMatch ? sumberMatch[1] : '');
+          if (!soalText || soalText.length < 10) continue;
+
+          entries.push({
+            t: paketTitle,
+            l: catDir.name,
+            n: customNo || `No. ${idxInPage}`,
+            s: sumberText,
+            u: `${relUrl}#${anchorId}`,
+            q: soalText
+          });
+        }
+      }
+    }
+  }
 
   for (const dir of dirs) {
     const topicFolder = dir.name;

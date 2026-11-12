@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Polinom (Suku Banyak) [5]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Polinom (Suku Banyak)</span>
+            </p>
+            <!-- Tombol Tingkat dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 41 -->
+        <article class="soal-item" id="41">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sebuah polinomial \(P\) berderajat tiga memiliki tepat dua akar real berbeda: \(3\) dan \(7\). Jika \(P(4) = 81\), tentukan nilai terbesar yang mungkin dari \(|P(-1)|\).
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM Oktober 2026</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Karena \(P(x)\) adalah polinomial berderajat tiga yang memiliki tepat dua akar real berbeda (\(3\) dan \(7\)), maka ketiga akar \(P(x)\) haruslah bilangan real dengan salah satu dari \(3\) atau \(7\) merupakan akar kembar (multiplisitas 2).<br><br>
+                    Terdapat dua kasus yang mungkin:<br>
+                    <ul>
+                        <li>
+                            <strong>Kasus 1: Akar kembar di \(x = 3\)</strong>
+                            \[P(x) = a(x - 3)^2(x - 7)\]
+                            Substitusikan \(P(4) = 81\):
+                            \[P(4) = a(4 - 3)^2(4 - 7) = -3a = 81 \implies a = -27\]
+                            Sehingga untuk \(x = -1\):
+                            \[P(-1) = -27(-1 - 3)^2(-1 - 7) = -27(16)(-8) = 3456 \implies |P(-1)| = 3456\]
+                        </li>
+                        <li>
+                            <strong>Kasus 2: Akar kembar di \(x = 7\)</strong>
+                            \[P(x) = a(x - 3)(x - 7)^2\]
+                            Substitusikan \(P(4) = 81\):
+                            \[P(4) = a(4 - 3)(4 - 7)^2 = 9a = 81 \implies a = 9\]
+                            Sehingga untuk \(x = -1\):
+                            \[P(-1) = 9(-1 - 3)(-1 - 7)^2 = 9(-4)(64) = -2304 \implies |P(-1)| = 2304\]
+                        </li>
+                    </ul>
+                    Maka nilai terbesar yang mungkin dari \(|P(-1)|\) adalah:
+                    \[\max(3456, 2304) = \color{blue}\boxed{\boxed{\color{black}3456}}\]
+                    <div class="kesimpulan">Jadi, nilai terbesar yang mungkin dari \(|P(-1)|\) adalah \(3456\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 42 -->
+        <article class="soal-item" id="42">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Raymond menuliskan sebuah sistem persamaan. Steven menumpahkan kopi ke kertas tersebut hingga menutupi sebuah bilangan:
+                \[\begin{cases}
+                x + y + z = 7\\
+                xy + yz + xz = 8\\
+                xyz = \blacksquare
+                \end{cases}\]
+                Akan tetapi, Raymond mengingat bahwa terdapat tepat tiga tripel terurut \((x, y, z)\) berupa bilangan real positif yang memenuhi sistem persamaan tersebut. Nilai yang seharusnya menggantikan \(\blacksquare\) dapat dinyatakan dalam bentuk \(\dfrac{m}{n}\) dengan \(m\) dan \(n\) merupakan bilangan bulat positif yang saling prima. Tentukan nilai dari \(m + n\).
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM September 2026</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Berdasarkan Teorema Vieta, \(x, y,\) dan \(z\) merupakan ketiga akar dari persamaan polinomial derajat tiga:
+                    \[P(t) = t^3 - 7t^2 + 8t - k = 0 \iff f(t) = t^3 - 7t^2 + 8t = k\]
+                    dengan \(k = \blacksquare = xyz\).<br><br>
+                    Karena sistem persamaan simetris terhadap permutasi \((x, y, z)\):
+                    <ul>
+                        <li>Jika ketiga akar bernilai berbeda, akan terdapat \(3! = 6\) tripel terurut.</li>
+                        <li>Jika ketiga akar bernilai sama, hanya terdapat \(1\) tripel terurut.</li>
+                        <li>Agar terdapat <strong>tepat \(3\) tripel terurut</strong>, persamaan kubik tersebut harus memiliki dua akar kembar positif \(a\) dan satu akar positif berbeda \(b\) (menghasilkan \(\dfrac{3!}{2!} = 3\) permutasi: \((a, a, b), (a, b, a), (b, a, a)\)).</li>
+                    </ul>
+                    Akar kembar \(t = a\) harus merupakan titik stasioner dari \(f(t) = t^3 - 7t^2 + 8t\), yaitu memenuhi \(f'(a) = 0\):
+                    \[f'(t) = 3t^2 - 14t + 8 = (3t - 2)(t - 4) = 0 \implies a = \dfrac{2}{3} \;\text{ atau }\; a = 4\]
+                    Kita uji kedua kemungkinan nilai \(a\) terhadap syarat \(x + y + z = 2a + b = 7\) dengan \(a, b > 0\):
+                    <ul>
+                        <li><strong>Jika \(a = 4\):</strong> maka \(b = 7 - 2(4) = -1 < 0\) (tidak memenuhi syarat real positif).</li>
+                        <li><strong>Jika \(a = \dfrac{2}{3}\):</strong> maka \(b = 7 - 2\left(\dfrac{2}{3}\right) = \dfrac{17}{3} > 0\) (memenuhi syarat real positif).</li>
+                    </ul>
+                    Dengan demikian, nilai \(\blacksquare = k = a^2 b\) adalah:
+                    \[\blacksquare = \left(\dfrac{2}{3}\right)^2 \left(\dfrac{17}{3}\right) = \dfrac{68}{27}\]
+                    Karena \(\text{FPB}(68, 27) = 1\), diperoleh \(m = 68\) dan \(n = 27\), sehingga:
+                    \[m + n = 68 + 27 = \color{blue}\boxed{\boxed{\color{black}95}}\]
+                    <div class="kesimpulan">Jadi, nilai dari \(m + n\) adalah \(95\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 43 -->
+        <article class="soal-item" id="43">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan \(x_1, x_2, \dots, x_n\) adalah seluruh solusi real berbeda dari
+                \[(x - 1)(x - 2)\cdots(x - 2026) = 2026.\]
+                Tentukan nilai dari
+                \[\sum_{i=1}^{n} \left(x_i - \dfrac{2027}{2}\right)^{1013}.\]
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM September 2026</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Lakukan substitusi titik tengah \(u = x - \dfrac{2027}{2}\), sehingga \(x = u + \dfrac{2027}{2}\).<br><br>
+                    Pasangkan faktor ke-\(k\) dan faktor ke-\((2027 - k)\) untuk setiap \(k = 1, 2, \dots, 1013\):
+                    \[(x - k)\big(x - (2027 - k)\big) = \left(u + \dfrac{2027 - 2k}{2}\right)\left(u - \dfrac{2027 - 2k}{2}\right) = u^2 - \left(\dfrac{2027 - 2k}{2}\right)^2\]
+                    Persamaan polinomial pada soal berubah menjadi persamaan dalam \(u^2\):
+                    \[\prod_{k=1}^{1013} \left[u^2 - \left(\dfrac{2027 - 2k}{2}\right)^2\right] = 2026\]
+                    Karena ruas kiri merupakan fungsi genap terhadap \(u\), maka himpunan solusi real \(u_i = x_i - \dfrac{2027}{2}\) bersifat simetris terhadap \(0\) (jika \(u_i\) adalah solusi real, maka \(-u_i\) juga merupakan solusi real).<br><br>
+                    Mengingat pangkat \(1013\) adalah bilangan ganjil, setiap pasangan solusi berlawanan tanda saling menghilangkan (\(u_i^{1013} + (-u_i)^{1013} = 0\)), sehingga:
+                    \[\sum_{i=1}^{n} \left(x_i - \dfrac{2027}{2}\right)^{1013} = \sum_{i=1}^{n} u_i^{1013} = \color{blue}\boxed{\boxed{\color{black}0}}\]
+                    <div class="kesimpulan">Jadi, nilai dari penjumlahan tersebut adalah \(0\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

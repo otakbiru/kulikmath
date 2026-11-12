@@ -498,6 +498,103 @@
             </div>
         </article>
 
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Tentukan bilangan asli terkecil yang tidak dapat dinyatakan dalam bentuk</p>
+                \[
+                \left\lfloor\dfrac{1}{m}\right\rfloor + \left\lfloor\dfrac{2}{m}\right\rfloor + \left\lfloor\dfrac{3}{m}\right\rfloor + \dots + \left\lfloor\dfrac{2026}{m}\right\rfloor
+                \]
+                <p>dengan \(m\) adalah suatu bilangan asli.</p>
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM Oktober 2026</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan fungsi \(f(m)\) menyatakan jumlahan tersebut untuk setiap bilangan asli \(m\):</p>
+                    \[
+                    f(m) = \sum_{k=1}^{2026} \left\lfloor\dfrac{k}{m}\right\rfloor
+                    \]
+                    <p>Perhatikan bahwa semakin besar nilai \(m\), nilai \(f(m)\) semakin mengecil (monoton turun untuk \(m \le 2026\)):</p>
+                    <ul>
+                        <li>
+                            Untuk setiap \(m\) pada rentang \(1014 \le m \le 2026\), berlaku \(2m > 2026\). Akibatnya:
+                            \[
+                            \left\lfloor\dfrac{k}{m}\right\rfloor = \begin{cases} 0, & \text{jika } 1 \le k < m \\ 1, & \text{jika } m \le k \le 2026 \end{cases}
+                            \]
+                            Sehingga untuk \(1014 \le m \le 2026\), nilai \(f(m)\) adalah:
+                            \[
+                            f(m) = 2026 - m + 1 = 2027 - m
+                            \]
+                            Saat \(m\) bergerak dari \(2026\) turun sampai \(1014\), nilai \(f(m)\) menghasilkan <b>seluruh</b> bilangan asli berurutan mulai dari \(f(2026) = 1\) hingga \(f(1014) = 2027 - 1014 = 1013\).
+                        </li>
+                        <li>
+                            Selanjutnya, tinjau untuk \(m = 1013\) (perhatikan bahwa \(2026 = 2 \times 1013\)):
+                            <ul>
+                                <li>Untuk \(1 \le k \le 1012\): \(\left\lfloor\dfrac{k}{1013}\right\rfloor = 0\)</li>
+                                <li>Untuk \(1013 \le k \le 2025\): \(\left\lfloor\dfrac{k}{1013}\right\rfloor = 1\) (sebanyak \(1013\) suku)</li>
+                                <li>Untuk \(k = 2026\): \(\left\lfloor\dfrac{2026}{1013}\right\rfloor = 2\)</li>
+                            </ul>
+                            Maka diperoleh:
+                            \[
+                            f(1013) = 1013(1) + 2 = 1015
+                            \]
+                        </li>
+                    </ul>
+                    <p>Karena untuk \(m < 1013\) berlaku \(f(m) > f(1013) = 1015\), maka nilai \(1014\) terlewat di antara \(f(1014) = 1013\) dan \(f(1013) = 1015\).</p>
+                    <div class="kesimpulan">
+                        Jadi, bilangan asli terkecil yang tidak dapat dinyatakan dalam bentuk tersebut adalah <strong>1014</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diberikan bilangan real \(\alpha > 0\) sehingga</p>
+                \[\alpha^2 = 3\alpha + 1.\]
+                <p>Tentukan sisa pembagian \(\lfloor\alpha^{69}\rfloor\) dengan \(67\).</p>
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM Oktober 2026</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Persamaan kuadrat \(x^2 - 3x - 1 = 0\) memiliki akar positif \(\alpha = \dfrac{3 + \sqrt{13}}{2}\) dan akar sekawan \(\beta = \dfrac{3 - \sqrt{13}}{2}\), dengan sifat Vieta \(\alpha + \beta = 3\) dan \(\alpha\beta = -1\).</p>
+                    <p>Definisikan barisan \(L_n = \alpha^n + \beta^n\) untuk \(n \ge 0\). Karena \(L_0 = 2\), \(L_1 = 3\), dan \(L_n = 3L_{n-1} + L_{n-2}\), maka \(L_n\) selalu berupa bilangan bulat untuk setiap \(n \ge 0\).</p>
+                    <p>Perhatikan bahwa \(-1 < \beta = \dfrac{3 - \sqrt{13}}{2} < 0\). Untuk \(n = 69\) (ganjil), berlaku \(-1 < \beta^{69} < 0\), sehingga:</p>
+                    \[
+                    \alpha^{69} = L_{69} - \beta^{69} \implies L_{69} < \alpha^{69} < L_{69} + 1 \implies \lfloor\alpha^{69}\rfloor = L_{69} = \alpha^{69} + \beta^{69}
+                    \]
+                    <p>Selanjutnya kita hitung \(L_{69} \pmod{67}\). Tinjau simbol Legendre dari diskriminan \(13\) terhadap bilangan prima \(p = 67\):</p>
+                    \[
+                    \left(\dfrac{13}{67}\right) = \left(\dfrac{67}{13}\right) = \left(\dfrac{2}{13}\right) = -1 \implies 13^{\frac{67-1}{2}} = 13^{33} \equiv -1 \pmod{67}
+                    \]
+                    <p>Di dalam gelanggang \(\mathbb{Z}_{67}[\sqrt{13}]\), menggunakan sifat automorfisma Frobenius \((u + v\sqrt{13})^{67} \equiv u^{67} + v^{67}(\sqrt{13})^{67} \equiv u - v\sqrt{13} \pmod{67}\), diperoleh:</p>
+                    \[
+                    \alpha^{67} \equiv \beta \pmod{67} \quad \text{dan} \quad \beta^{67} \equiv \alpha \pmod{67}
+                    \]
+                    <p>Kalikan masing-masing dengan \(\alpha^2\) dan \(\beta^2\) (mengingat \(\alpha\beta = -1\)):</p>
+                    \[
+                    \begin{aligned}
+                    L_{69} = \alpha^{69} + \beta^{69} &\equiv \beta\alpha^2 + \alpha\beta^2 \pmod{67}\\
+                    &\equiv \alpha\beta(\alpha + \beta) \pmod{67}\\
+                    &\equiv (-1)(3) = -3 \equiv \color{blue}\boxed{\boxed{\color{black}64}} \pmod{67}
+                    \end{aligned}
+                    \]
+                    <div class="kesimpulan">
+                        Jadi, sisa pembagian \(\lfloor\alpha^{69}\rfloor\) dengan \(67\) adalah <strong>64</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah -->
         <div class="pagination-wrapper"></div>
     </main>

@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KTOM Oktober 2026 - Arsip Soal & Pembahasan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Arsip Soal & Pembahasan Lengkap <span class="level-highlight">KTOM</span> —
+                <span class="topic-highlight">KTOM Oktober 2026</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <h2 class="category-heading" style="margin: 1.2rem 0 0.8rem;">Bagian A — Isian Singkat (Nomor 1–14)</h2>
+
+        <!-- BAGIAN A NO 1 -->
+        <article class="soal-item" id="A1">
+            <div class="soal-no">Bagian A - No. 1</div>
+            <div class="soal-teks">
+                Diberikan segitiga \(JEY\) dengan \(JY = 13\), \(YE = 14\), dan \(EJ = 15\). Misalkan \(O\) adalah pusat lingkaran luar segitiga \(JEY\). Misalkan hasil refleksi titik \(O\) terhadap garis \(JY, YE, EJ\) adalah \(A, D, N\) berturut-turut. Tentukan luas dari segienam \(JAYDEN\).
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Geometri_(Bidang_Datar)/HOTS/3.html#21">Geometri (Bidang Datar)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div class="row">
+                        <div class="col-2">
+                            Perhatikan bahwa \(\triangle JEY\) adalah segitiga lancip karena \(13^2 + 14^2 = 365 > 15^2 = 225\), sehingga pusat lingkaran luar \(O\) terletak di dalam \(\triangle JEY\).<br><br>
+                            Luas \(\triangle JEY\) dapat dipartisi menjadi tiga segitiga yang berpusat di \(O\):
+                            \[[JEY] = [OJY] + [OYE] + [OEJ]\]
+                            Karena titik \(A, D, N\) berturut-turut merupakan hasil refleksi titik \(O\) terhadap sisi \(JY, YE, EJ\), maka:
+                            <ul>
+                                <li>\(\triangle AJY \cong \triangle OJY \implies [AJY] = [OJY]\)</li>
+                                <li>\(\triangle DYE \cong \triangle OYE \implies [DYE] = [OYE]\)</li>
+                                <li>\(\triangle NEJ \cong \triangle OEJ \implies [NEJ] = [OEJ]\)</li>
+                            </ul>
+                        </div>
+                        <div class="col col-center">
+                            <div class="grafik-container" id="svg-arsip-jayden" style="width: 100%; max-width: 320px;"></div>
+                        </div>
+                    </div>
+                    Dengan demikian, luas segienam \(JAYDEN\) adalah gabungan luas \(\triangle JEY\) dan ketiga segitiga hasil refleksi tersebut:
+                    \[\begin{aligned}
+                    [JAYDEN] &= [JEY] + [AJY] + [DYE] + [NEJ]\\
+                    &= [JEY] + \left([OJY] + [OYE] + [OEJ]\right)\\
+                    &= 2[JEY]
+                    \end{aligned}\]
+                    Kita hitung luas \(\triangle JEY\) menggunakan rumus Heron dengan setengah keliling \(s = \dfrac{13 + 14 + 15}{2} = 21\):
+                    \[\begin{aligned}
+                    [JEY] &= \sqrt{s(s - 13)(s - 14)(s - 15)}\\
+                    &= \sqrt{21 \cdot 8 \cdot 7 \cdot 6}\\
+                    &= 84
+                    \end{aligned}\]
+                    Sehingga luas segienam \(JAYDEN\) adalah:
+                    \[[JAYDEN] = 2 \times 84 = \color{blue}\boxed{\boxed{\color{black}168}}\]
+                    <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                            const k = 15;
+                            const dx = 3 * k;
+                            const dy = 5 * k;
+                            const Y = [dx + 0 * k, dy + 0 * k];
+                            const E = [dx + 14 * k, dy + 0 * k];
+                            const J = [dx + 5 * k, dy + 12 * k];
+                            const O = [dx + 7 * k, dy + 4.125 * k];
+                            const A = [dx - 2 * k, dy + 7.875 * k];
+                            const D = [dx + 7 * k, dy - 4.125 * k];
+                            const N = [dx + 12 * k, dy + 7.875 * k];
+
+                            const geo = new GeoSVG("svg-arsip-jayden", 20 * k, 18 * k, { margin: 18 });
+                            geo.buatPoligon([J, A, Y, D, E, N], { fill: "rgba(20, 184, 166, 0.18)", stroke: "#0d9488", strokeWidth: 2 });
+                            geo.buatSegitiga(J, E, Y, { fill: "rgba(37, 99, 235, 0.12)", stroke: "#2563eb", strokeWidth: 2 });
+                            geo.buatSegmen(O, J, { strokeDasharray: "4,4", stroke: "#64748b" });
+                            geo.buatSegmen(O, E, { strokeDasharray: "4,4", stroke: "#64748b" });
+                            geo.buatSegmen(O, Y, { strokeDasharray: "4,4", stroke: "#64748b" });
+
+                            geo.buatTitik(J, { label: "J", labelPosition: "tengah atas", fontSize: "14px" });
+                            geo.buatTitik(A, { label: "A", labelPosition: "kiri atas", fontSize: "14px" });
+                            geo.buatTitik(Y, { label: "Y", labelPosition: "kiri bawah", fontSize: "14px" });
+                            geo.buatTitik(D, { label: "D", labelPosition: "tengah bawah", fontSize: "14px" });
+                            geo.buatTitik(E, { label: "E", labelPosition: "kanan bawah", fontSize: "14px" });
+                            geo.buatTitik(N, { label: "N", labelPosition: "kanan atas", fontSize: "14px" });
+                            geo.buatTitik(O, { label: "O", labelPosition: "kanan bawah", fontSize: "14px" });
+                        });
+                    </script>
+                    <div class="kesimpulan">Jadi, luas dari segienam \(JAYDEN\) adalah \(168\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 2 -->
+        <article class="soal-item" id="A2">
+            <div class="soal-no">Bagian A - No. 2</div>
+            <div class="soal-teks">
+                Jika bilangan real \(x\) memenuhi \(\dfrac{x}{2} + \dfrac{2}{x} = 3\), tentukan nilai dari
+                \[\dfrac{x^4}{16} + \dfrac{16}{x^4}.\]
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Aljabar/HOTS/6.html#9">Aljabar</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan \(u = \dfrac{x}{2}\), sehingga \(\dfrac{1}{u} = \dfrac{2}{x}\). Persamaan yang diketahui dapat ditulis menjadi:
+                    \[u + \dfrac{1}{u} = 3\]
+                    Kuadratkan kedua ruas untuk memperoleh nilai \(u^2 + \dfrac{1}{u^2}\):
+                    \[\begin{aligned}
+                    \left(u + \dfrac{1}{u}\right)^2 &= 3^2\\[4pt]
+                    u^2 + 2 + \dfrac{1}{u^2} &= 9\\[4pt]
+                    u^2 + \dfrac{1}{u^2} &= 7
+                    \end{aligned}\]
+                    Kuadratkan sekali lagi untuk memperoleh nilai \(u^4 + \dfrac{1}{u^4} = \dfrac{x^4}{16} + \dfrac{16}{x^4}\):
+                    \[\begin{aligned}
+                    \left(u^2 + \dfrac{1}{u^2}\right)^2 &= 7^2\\[4pt]
+                    u^4 + 2 + \dfrac{1}{u^4} &= 49\\[4pt]
+                    \dfrac{x^4}{16} + \dfrac{16}{x^4} &= 49 - 2 = \color{blue}\boxed{\boxed{\color{black}47}}
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, nilai dari \(\dfrac{x^4}{16} + \dfrac{16}{x^4}\) adalah \(47\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 3 -->
+        <article class="soal-item" id="A3">
+            <div class="soal-no">Bagian A - No. 3</div>
+            <div class="soal-teks">
+                Sebuah polinomial \(P\) berderajat tiga memiliki tepat dua akar real berbeda: \(3\) dan \(7\). Jika \(P(4) = 81\), tentukan nilai terbesar yang mungkin dari \(|P(-1)|\).
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Polinom_(Suku_Banyak)/HOTS/5.html#41">Polinomial (Suku Banyak)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Karena \(P(x)\) adalah polinomial berderajat tiga yang memiliki tepat dua akar real berbeda (\(3\) dan \(7\)), maka ketiga akar \(P(x)\) haruslah bilangan real dengan salah satu dari \(3\) atau \(7\) merupakan akar kembar (multiplisitas 2).<br><br>
+                    Terdapat dua kasus yang mungkin:<br>
+                    <ul>
+                        <li>
+                            <strong>Kasus 1: Akar kembar di \(x = 3\)</strong>
+                            \[P(x) = a(x - 3)^2(x - 7)\]
+                            Substitusikan \(P(4) = 81\):
+                            \[P(4) = a(4 - 3)^2(4 - 7) = -3a = 81 \implies a = -27\]
+                            Sehingga untuk \(x = -1\):
+                            \[P(-1) = -27(-1 - 3)^2(-1 - 7) = -27(16)(-8) = 3456 \implies |P(-1)| = 3456\]
+                        </li>
+                        <li>
+                            <strong>Kasus 2: Akar kembar di \(x = 7\)</strong>
+                            \[P(x) = a(x - 3)(x - 7)^2\]
+                            Substitusikan \(P(4) = 81\):
+                            \[P(4) = a(4 - 3)(4 - 7)^2 = 9a = 81 \implies a = 9\]
+                            Sehingga untuk \(x = -1\):
+                            \[P(-1) = 9(-1 - 3)(-1 - 7)^2 = 9(-4)(64) = -2304 \implies |P(-1)| = 2304\]
+                        </li>
+                    </ul>
+                    Maka nilai terbesar yang mungkin dari \(|P(-1)|\) adalah:
+                    \[\max(3456, 2304) = \color{blue}\boxed{\boxed{\color{black}3456}}\]
+                    <div class="kesimpulan">Jadi, nilai terbesar yang mungkin dari \(|P(-1)|\) adalah \(3456\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 4 -->
+        <article class="soal-item" id="A4">
+            <div class="soal-no">Bagian A - No. 4</div>
+            <div class="soal-teks">
+                Terdapat tiga dadu reguler dengan enam sisi sehingga angka-angka pada keenam sisi adalah \(1, 2, 3, 4, 5,\) dan \(6\) dilempar secara bersamaan. Jika peluang tiga angka yang didapat oleh lemparan dadu tersebut membentuk sisi-sisi segitiga tumpul adalah \(T\), tentukan nilai dari \(216T\).
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Peluang/HOTS/2.html#16">Peluang</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Ruang sampel pelemparan tiga dadu bersisi enam adalah \(n(S) = 6^3 = 216\), sehingga \(216T\) menyatakan banyaknya pasangan berurutan \((a, b, c) \in \{1, 2, 3, 4, 5, 6\}^3\) yang membentuk panjang sisi-sisi segitiga tumpul.<br><br>
+                    Misalkan urutan panjang ketiga sisi dari yang terkecil adalah \(x \le y \le z\). Syarat agar \(x, y, z\) membentuk segitiga tumpul adalah memenuhi ketaksamaan segitiga sekaligus kuadrat sisi terpanjang lebih besar dari jumlah kuadrat dua sisi lainnya:
+                    \[x + y > z \quad \text{dan} \quad x^2 + y^2 < z^2\]
+                    Kita daftar semua kombinasi tak-berurutan \(\{x, y, z\}\) berdasarkan nilai sisi terpanjang \(z\):
+                    <ul>
+                        <li><strong>\(z = 3\):</strong> hanya \((2, 2, 3)\) karena \(2 + 2 > 3\) dan \(2^2 + 2^2 = 8 < 9\) \(\implies \dfrac{3!}{2!} = 3\) urutan.</li>
+                        <li><strong>\(z = 4\):</strong> hanya \((2, 3, 4)\) karena \(2 + 3 > 4\) dan \(2^2 + 3^2 = 13 < 16\) \(\implies 3! = 6\) urutan.</li>
+                        <li><strong>\(z = 5\):</strong>
+                            <ul>
+                                <li>\((2, 4, 5)\): \(2 + 4 > 5\) dan \(4 + 16 = 20 < 25\) \(\implies 3! = 6\) urutan.</li>
+                                <li>\((3, 3, 5)\): \(3 + 3 > 5\) dan \(9 + 9 = 18 < 25\) \(\implies \dfrac{3!}{2!} = 3\) urutan.</li>
+                            </ul>
+                        </li>
+                        <li><strong>\(z = 6\):</strong>
+                            <ul>
+                                <li>\((2, 5, 6)\): \(2 + 5 > 6\) dan \(4 + 25 = 29 < 36\) \(\implies 3! = 6\) urutan.</li>
+                                <li>\((3, 4, 6)\): \(3 + 4 > 6\) dan \(9 + 16 = 25 < 36\) \(\implies 3! = 6\) urutan.</li>
+                                <li>\((3, 5, 6)\): \(3 + 5 > 6\) dan \(9 + 25 = 34 < 36\) \(\implies 3! = 6\) urutan.</li>
+                                <li>\((4, 4, 6)\): \(4 + 4 > 6\) dan \(16 + 16 = 32 < 36\) \(\implies \dfrac{3!}{2!} = 3\) urutan.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    Jumlah seluruh kejadian yang memenuhi adalah:
+                    \[216T = 3 + 6 + (6 + 3) + (6 + 6 + 6 + 3) = \color{blue}\boxed{\boxed{\color{black}39}}\]
+                    <div class="kesimpulan">Jadi, nilai dari \(216T\) adalah \(39\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 5 -->
+        <article class="soal-item" id="A5">
+            <div class="soal-no">Bagian A - No. 5</div>
+            <div class="soal-teks">
+                Sebuah bilangan asli empat digit disebut <i>jinshi</i> apabila jumlah digitnya genap. Sebuah bilangan asli empat digit disebut <i>maomao</i> apabila keempat digitnya taknol, berbeda, dan jumlah keempatnya ganjil.<br>
+                Tentukan banyak bilangan asli \(n\) sehingga \(n\) <i>maomao</i> dan \(n + 1\) <i>jinshi</i>.
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Bilangan_Asli/HOTS/3.html#29">Bilangan Asli</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan \(n = \overline{abcd}\) adalah bilangan <i>maomao</i> dengan \(a, b, c, d \in \{1, 2, \dots, 9\}\) saling berbeda dan \(S(n) = a + b + c + d\) bernilai ganjil. Tinjau dua kasus berdasarkan digit satuan \(d\):</p>
+                    <ul>
+                        <li>
+                            <b>Kasus 1: \(d \neq 9\) (yaitu \(d \in \{1, 2, \dots, 8\}\)).</b><br>
+                            Penjumlahan \(n + 1\) tidak menghasilkan simpanan (<i>carry</i>), sehingga \(n + 1\) tetap empat digit dan jumlah digitnya adalah \(S(n + 1) = S(n) + 1\). Karena \(S(n)\) ganjil, maka \(S(n + 1)\) pasti genap, sehingga \(n + 1\) selalu <i>jinshi</i>.
+                        </li>
+                        <li>
+                            <b>Kasus 2: \(d = 9\).</b><br>
+                            Karena keempat digit \(n\) berbeda dan taknol, maka \(c \in \{1, 2, \dots, 8\}\). Saat ditambah 1, diperoleh \(n + 1 = \overline{ab(c+1)0}\) dengan jumlah digit:
+                            \[S(n + 1) = a + b + (c + 1) + 0 = (a + b + c + 9) - 8 = S(n) - 8\]
+                            Karena \(S(n)\) ganjil, maka \(S(n) - 8\) tetap ganjil, sehingga \(n + 1\) <b>bukan</b> <i>jinshi</i>.
+                        </li>
+                    </ul>
+                    <p>Dengan demikian, syarat perlu dan cukup adalah \(n\) merupakan bilangan <i>maomao</i> dengan \(d \neq 9\).</p>
+                    <p>Dari himpunan \(\{1, 2, \dots, 9\}\) yang terdiri atas 5 digit ganjil dan 4 digit genap:</p>
+                    <ol>
+                        <li>
+                            <b>Total bilangan <i>maomao</i>:</b> agar jumlah 4 digit bernilai ganjil, komposisi keempat digit haruslah (1 ganjil, 3 genap) atau (3 ganjil, 1 genap):
+                            \[\left[\binom{5}{1}\binom{4}{3} + \binom{5}{3}\binom{4}{1}\right] \times 4! = (5 \times 4 + 10 \times 4) \times 24 = 60 \times 24 = 1440\]
+                        </li>
+                        <li>
+                            <b>Bilangan <i>maomao</i> dengan \(d = 9\):</b> karena \(d = 9\) ganjil, maka 3 digit pertama \(\{a, b, c\} \subset \{1, 2, \dots, 8\}\) (4 ganjil, 4 genap) harus berjumlah genap, yaitu (0 ganjil, 3 genap) atau (2 ganjil, 1 genap):
+                            \[\left[\binom{4}{0}\binom{4}{3} + \binom{4}{2}\binom{4}{1}\right] \times 3! = (4 + 24) \times 6 = 168\]
+                        </li>
+                    </ol>
+                    <p>Banyaknya bilangan asli \(n\) yang memenuhi adalah:</p>
+                    \[1440 - 168 = \color{blue}\boxed{\boxed{\color{black}1272}}\]
+                    <div class="kesimpulan">Jadi, banyak bilangan asli \(n\) sehingga \(n\) <i>maomao</i> dan \(n + 1\) <i>jinshi</i> adalah \(1272\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 6 -->
+        <article class="soal-item" id="A6">
+            <div class="soal-no">Bagian A - No. 6</div>
+            <div class="soal-teks">
+                Bilangan asli \(a, b, c\) yang tidak semuanya sama memenuhi
+                \[\text{KPK}(a, b) \mid \text{FPB}(b, c) \quad \text{dan} \quad \text{KPK}(a, c) \mid \text{FPB}(c, b)\]
+                Tentukan nilai terbesar yang mungkin dari
+                \[360 \times \left(\dfrac{\text{FPB}(a, b) + \text{FPB}(b, c) + \text{FPB}(c, a)}{\text{KPK}(a, b) + \text{KPK}(b, c) + \text{KPK}(c, a)}\right).\]
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Bilangan_Asli/HOTS/3.html#30">Bilangan Asli</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Berdasarkan sifat dasar FPB dan KPK pada bilangan asli, berlaku \(b \mid \text{KPK}(a, b)\) dan \(\text{FPB}(b, c) \mid b\). Dari syarat pertama \(\text{KPK}(a, b) \mid \text{FPB}(b, c)\), kita peroleh rantai keterbagian:</p>
+                    \[b \mid \text{KPK}(a, b) \mid \text{FPB}(b, c) \mid b \implies \text{KPK}(a, b) = \text{FPB}(b, c) = b\]
+                    <p>Secara simetris, dari syarat kedua \(\text{KPK}(a, c) \mid \text{FPB}(c, b)\), diperoleh:</p>
+                    \[c \mid \text{KPK}(a, c) \mid \text{FPB}(c, b) \mid c \implies \text{KPK}(a, c) = \text{FPB}(c, b) = c\]
+                    <p>Akibatnya, \(b = \text{FPB}(b, c) = c\), serta \(\text{KPK}(a, b) = b \implies a \mid b\).</p>
+                    <p>Karena \(a, b, c\) tidak semuanya sama dan \(b = c\), maka \(a \neq b\), sehingga kita dapat menuliskan \(b = c = ka\) untuk suatu bilangan bulat \(k \ge 2\). Dengan demikian:</p>
+                    <ul>
+                        <li>\(\text{FPB}(a, b) = a\), \(\text{FPB}(b, c) = ka\), \(\text{FPB}(c, a) = a\)</li>
+                        <li>\(\text{KPK}(a, b) = \text{KPK}(b, c) = \text{KPK}(c, a) = ka\)</li>
+                    </ul>
+                    <p>Substitusikan ke dalam ekspresi yang dicari:</p>
+                    \[\begin{aligned}
+                    360 \times \left(\dfrac{a + ka + a}{ka + ka + ka}\right) &= 360 \times \left(\dfrac{k + 2}{3k}\right)\\
+                    &= 120 \times \left(1 + \dfrac{2}{k}\right)
+                    \end{aligned}\]
+                    <p>Agar nilainya terbesar, pilih bilangan bulat terkecil \(k \ge 2\), yaitu \(k = 2\) (contohnya \(a = 1, b = c = 2\)):</p>
+                    \[120 \times \left(1 + \dfrac{2}{2}\right) = 120 \times 2 = \color{blue}\boxed{\boxed{\color{black}240}}\]
+                    <div class="kesimpulan">Jadi, nilai terbesar yang mungkin dari ekspresi tersebut adalah \(240\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 7 -->
+        <article class="soal-item" id="A7">
+            <div class="soal-no">Bagian A - No. 7</div>
+            <div class="soal-teks">
+                Diberikan sebuah persegi \(ABCD\) dan titik-titik \(E\) dan \(F\) pada sisi \(AB\) dan sisi \(BC\) berturut-turut sehingga \(AE : EB = 1 : 1\) dan \(BF : FC = 2 : 1\). Misalkan \(X\) adalah perpotongan garis \(EF\) dan \(BD\). Jika \(EX = 20\), tentukan panjang sisi persegi \(ABCD\).
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Persegi/HOTS/2.html#11">Persegi</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div class="row">
+                        <div class="col-2">
+                            Misalkan panjang sisi persegi \(ABCD\) adalah \(s\). Dari perbandingan yang diketahui:
+                            \[EB = \dfrac{1}{2}s \quad \text{dan} \quad BF = \dfrac{2}{3}s\]
+                            Pada segitiga siku-siku \(EBF\) (\(\angle EBF = 90^\circ\)), panjang hipotenusa \(EF\) adalah:
+                            \[\begin{aligned}
+                            EF &= \sqrt{EB^2 + BF^2}\\
+                            &= \sqrt{\left(\dfrac{1}{2}s\right)^2 + \left(\dfrac{2}{3}s\right)^2}\\
+                            &= s\sqrt{\dfrac{1}{4} + \dfrac{4}{9}} = s\sqrt{\dfrac{25}{36}} = \dfrac{5}{6}s
+                            \end{aligned}\]
+                        </div>
+                        <div class="col col-center">
+                            <div class="grafik-container" id="svg-arsip-persegi" style="width: 100%; max-width: 260px;"></div>
+                        </div>
+                    </div>
+                    Perhatikan bahwa diagonal persegi \(BD\) membagi dua sudut siku-siku \(\angle ABC = 90^\circ\) menjadi dua sudut \(45^\circ\) yang sama besar. Artinya, \(BX\) merupakan garis bagi dalam \(\angle EBF\) pada \(\triangle EBF\).<br><br>
+                    Berdasarkan Teorema Garis Bagi pada \(\triangle EBF\):
+                    \[\dfrac{EX}{XF} = \dfrac{EB}{BF} = \dfrac{\frac{1}{2}s}{\frac{2}{3}s} = \dfrac{3}{4}\]
+                    Sehingga panjang \(EX\) adalah \(\dfrac{3}{3 + 4} = \dfrac{3}{7}\) bagian dari \(EF\):
+                    \[EX = \dfrac{3}{7} EF = \dfrac{3}{7} \left(\dfrac{5}{6}s\right) = \dfrac{5}{14}s\]
+                    Substitusikan \(EX = 20\):
+                    \[\dfrac{5}{14}s = 20 \implies s = \dfrac{20 \times 14}{5} = \color{blue}\boxed{\boxed{\color{black}56}}\]
+                    <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                            const s = 180;
+                            const geo = new GeoSVG("svg-arsip-persegi", s, s, { margin: 24 });
+                            const D = [0, 0], C = [s, 0], B = [s, s], A = [0, s];
+                            const E = [0.5 * s, s];
+                            const F = [s, (1 / 3) * s];
+                            const X = [(5 / 7) * s, (5 / 7) * s];
+
+                            geo.buatPersegi(0, 0, s);
+                            geo.buatPoligon([E, B, F], { fill: "rgba(20, 184, 166, 0.16)", stroke: "none" });
+                            geo.buatSegmen(B, D, { stroke: "#2563eb", strokeWidth: 2 });
+                            geo.buatSegmen(E, F, { stroke: "#0d9488", strokeWidth: 2 });
+
+                            geo.buatTitik(A, { label: "A", labelPosition: "kiri atas", fontSize: "14px" });
+                            geo.buatTitik(B, { label: "B", labelPosition: "kanan atas", fontSize: "14px" });
+                            geo.buatTitik(C, { label: "C", labelPosition: "kanan bawah", fontSize: "14px" });
+                            geo.buatTitik(D, { label: "D", labelPosition: "kiri bawah", fontSize: "14px" });
+                            geo.buatTitik(E, { label: "E", labelPosition: "tengah atas", fontSize: "14px" });
+                            geo.buatTitik(F, { label: "F", labelPosition: "kanan tengah", fontSize: "14px" });
+                            geo.buatTitik(X, { label: "X", labelPosition: "kiri atas", fontSize: "14px" });
+                        });
+                    </script>
+                    <div class="kesimpulan">Jadi, panjang sisi persegi \(ABCD\) adalah \(56\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 8 -->
+        <article class="soal-item" id="A8">
+            <div class="soal-no">Bagian A - No. 8</div>
+            <div class="soal-teks">
+                <p>Tentukan bilangan asli terkecil yang tidak dapat dinyatakan dalam bentuk</p>
+                \[\left\lfloor\dfrac{1}{m}\right\rfloor + \left\lfloor\dfrac{2}{m}\right\rfloor + \left\lfloor\dfrac{3}{m}\right\rfloor + \dots + \left\lfloor\dfrac{2026}{m}\right\rfloor\]
+                <p>dengan \(m\) adalah suatu bilangan asli.</p>
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Floor_Function/HOTS/1.html#9">Floor Function</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan fungsi \(f(m)\) menyatakan jumlahan tersebut untuk setiap bilangan asli \(m\):</p>
+                    \[f(m) = \sum_{k=1}^{2026} \left\lfloor\dfrac{k}{m}\right\rfloor\]
+                    <p>Perhatikan bahwa semakin besar nilai \(m\), nilai \(f(m)\) semakin mengecil (monoton turun untuk \(m \le 2026\)):</p>
+                    <ul>
+                        <li>
+                            Untuk setiap \(m\) pada rentang \(1014 \le m \le 2026\), berlaku \(2m > 2026\). Akibatnya:
+                            \[\left\lfloor\dfrac{k}{m}\right\rfloor = \begin{cases} 0, & \text{jika } 1 \le k < m \\ 1, & \text{jika } m \le k \le 2026 \end{cases}\]
+                            Sehingga untuk \(1014 \le m \le 2026\), nilai \(f(m)\) adalah:
+                            \[f(m) = 2026 - m + 1 = 2027 - m\]
+                            Saat \(m\) bergerak dari \(2026\) turun sampai \(1014\), nilai \(f(m)\) menghasilkan <b>seluruh</b> bilangan asli berurutan mulai dari \(f(2026) = 1\) hingga \(f(1014) = 2027 - 1014 = 1013\).
+                        </li>
+                        <li>
+                            Selanjutnya, tinjau untuk \(m = 1013\) (perhatikan bahwa \(2026 = 2 \times 1013\)):
+                            <ul>
+                                <li>Untuk \(1 \le k \le 1012\): \(\left\lfloor\dfrac{k}{1013}\right\rfloor = 0\)</li>
+                                <li>Untuk \(1013 \le k \le 2025\): \(\left\lfloor\dfrac{k}{1013}\right\rfloor = 1\) (sebanyak \(1013\) suku)</li>
+                                <li>Untuk \(k = 2026\): \(\left\lfloor\dfrac{2026}{1013}\right\rfloor = 2\)</li>
+                            </ul>
+                            Maka diperoleh:
+                            \[f(1013) = 1013(1) + 2 = 1015\]
+                        </li>
+                    </ul>
+                    <p>Karena untuk \(m < 1013\) berlaku \(f(m) > f(1013) = 1015\), maka nilai \(1014\) terlewat di antara \(f(1014) = 1013\) dan \(f(1013) = 1015\).</p>
+                    <div class="kesimpulan">Jadi, bilangan asli terkecil yang tidak dapat dinyatakan dalam bentuk tersebut adalah <strong>1014</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 9 -->
+        <article class="soal-item" id="A9">
+            <div class="soal-no">Bagian A - No. 9</div>
+            <div class="soal-teks">
+                Tentukan bilangan asli \(T\) terkecil sehingga
+                \[(n + T)^{n+T} - n^n\]
+                habis dibagi \(11\) untuk setiap bilangan asli \(n\).
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Modulo/HOTS/2.html#19">Modulo</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Agar \((n + T)^{n+T} \equiv n^n \pmod{11}\) berlaku untuk setiap bilangan asli \(n\), kita tinjau dua kondisi keterbagian terhadap \(T\):
+                    <ol>
+                        <li>
+                            <strong>Periodisitas Basis (\(\bmod\; 11\)):</strong><br>
+                            Substitusikan \(n = 11\). Maka \(n^n = 11^{11} \equiv 0 \pmod{11}\), sehingga haruslah:
+                            \[(11 + T)^{11+T} \equiv T^{11+T} \equiv 0 \pmod{11} \implies 11 \mid T\]
+                        </li>
+                        <li>
+                            <strong>Periodisitas Eksponen (\(\bmod\; 10\)):</strong><br>
+                            Karena \(11 \mid T\), maka untuk setiap \(n\) yang relatif prima dengan \(11\) (\(\gcd(n, 11) = 1\)) berlaku \(n + T \equiv n \pmod{11}\), sehingga:
+                            \[(n + T)^{n+T} \equiv n^{n+T} \equiv n^n \cdot n^T \pmod{11}\]
+                            Agar \(n^n \cdot n^T \equiv n^n \pmod{11}\) untuk semua \(\gcd(n, 11) = 1\) (khususnya saat \(n = 2\) yang merupakan akar primitif modulo \(11\) dengan orde \(\varphi(11) = 10\)), haruslah:
+                            \[n^T \equiv 1 \pmod{11} \implies 10 \mid T\]
+                        </li>
+                    </ol>
+                    Sebaliknya, jika \(11 \mid T\) dan \(10 \mid T\), Teorema Kecil Fermat menjamin \((n + T)^{n+T} \equiv n^n \pmod{11}\) untuk setiap \(n \in \mathbb{N}\).<br><br>
+                    Maka bilangan asli \(T\) terkecil yang memenuhi adalah:
+                    \[T = \text{KPK}(11, 10) = \color{blue}\boxed{\boxed{\color{black}110}}\]
+                    <div class="kesimpulan">Jadi, bilangan asli \(T\) terkecil yang memenuhi adalah \(110\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 10 -->
+        <article class="soal-item" id="A10">
+            <div class="soal-no">Bagian A - No. 10</div>
+            <div class="soal-teks">
+                Misalkan \(S\) adalah jumlah semua nilai \(ij \cdot (-1)^{i+j}\) untuk setiap pasang bilangan bulat \((i, j)\) dengan \(1 \le i < j \le 24\). Yakni,
+                \[S = \sum_{1 \le i < j \le 24} ij \cdot (-1)^{i+j}.\]
+                Tentukan nilai dari \(|S|\).
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Aljabar/HOTS/6.html#10">Aljabar</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan \(a_i = i \cdot (-1)^i\) untuk \(i = 1, 2, \dots, 24\). Perhatikan bahwa \(a_i a_j = ij \cdot (-1)^{i+j}\) dan \(a_i^2 = i^2\).<br><br>
+                    Berdasarkan identitas kuadrat penjumlahan:
+                    \[\left(\sum_{i=1}^{24} a_i\right)^2 = \sum_{i=1}^{24} a_i^2 + 2 \sum_{1 \le i < j \le 24} a_i a_j = \sum_{i=1}^{24} i^2 + 2S\]
+                    Kita hitung masing-masing suku:
+                    <ul>
+                        <li>
+                            <strong>Jumlah linear \(\displaystyle\sum_{i=1}^{24} a_i\):</strong>
+                            \[\sum_{i=1}^{24} i(-1)^i = (-1 + 2) + (-3 + 4) + \dots + (-23 + 24) = \underbrace{1 + 1 + \dots + 1}_{12\text{ pasang}} = 12\]
+                        </li>
+                        <li>
+                            <strong>Jumlah kuadrat \(\displaystyle\sum_{i=1}^{24} i^2\):</strong>
+                            \[\sum_{i=1}^{24} i^2 = \dfrac{24(24 + 1)(2 \cdot 24 + 1)}{6} = \dfrac{24 \times 25 \times 49}{6} = 4900\]
+                        </li>
+                    </ul>
+                    Substitusikan ke persamaan awal:
+                    \[\begin{aligned}
+                    12^2 &= 4900 + 2S\\
+                    2S &= 144 - 4900 = -4756\\
+                    S &= -2378 \implies |S| = \color{blue}\boxed{\boxed{\color{black}2378}}
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, nilai dari \(|S|\) adalah \(2378\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 11 -->
+        <article class="soal-item" id="A11">
+            <div class="soal-no">Bagian A - No. 11</div>
+            <div class="soal-teks">
+                Tentukan banyaknya bilangan asli enam digit yang habis dibagi \(99\) dan tidak mengandung digit \(9\).
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Aturan_Pencacahan/HOTS/1.html#8">Aturan Pencacahan</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan bilangan enam digit tersebut adalah \(N = \overline{d_1 d_2 d_3 d_4 d_5 d_6}\) dengan \(d_1 \in \{1, 2, \dots, 8\}\) dan \(d_2, d_3, d_4, d_5, d_6 \in \{0, 1, \dots, 8\}\).<br><br>
+                    Karena \(100 \equiv 1 \pmod{99}\), maka berlaku:
+                    \[N = \overline{d_1 d_2}\cdot 100^2 + \overline{d_3 d_4}\cdot 100 + \overline{d_5 d_6} \equiv 10(d_1 + d_3 + d_5) + (d_2 + d_4 + d_6) \pmod{99}\]
+                    Misalkan \(X = d_1 + d_3 + d_5\) dan \(Y = d_2 + d_4 + d_6\). Rentang nilai \(X\) dan \(Y\) adalah \(1 \le X \le 24\) dan \(0 \le Y \le 24\).<br>
+                    Agar \(99 \mid N\), haruslah \(10X + Y\) merupakan kelipatan \(99\). Karena \(10 \le 10X + Y \le 264\), maka \(10X + Y \in \{99, 198\}\), yang menghasilkan tepat 4 pasangan \((X, Y)\):
+                    \[(X, Y) \in \{(9, 9),\; (18, 18),\; (8, 19),\; (19, 8)\}\]
+                    Misalkan \(A(s)\) adalah banyaknya tripel \((d_1, d_3, d_5) \in \{1..8\} \times \{0..8\}^2\) dengan jumlah \(s\), dan \(B(s)\) adalah banyaknya tripel \((d_2, d_4, d_6) \in \{0..8\}^3\) dengan jumlah \(s\). Menggunakan kombinasi berulang (<i>stars and bars</i>) dan simetri \(d_i \leftrightarrow 8 - d_i\):
+                    <ul>
+                        <li>\(B(8) = \dbinom{8+2}{2} = 45\), \(\quad B(9) = \dbinom{9+2}{2} - 3 = 52\)</li>
+                        <li>\(B(18) = B(24 - 18) = B(6) = \dbinom{6+2}{2} = 28\), \(\quad B(19) = B(24 - 19) = B(5) = \dbinom{5+2}{2} = 21\)</li>
+                        <li>Dengan substitusi \(d_1' = d_1 - 1 \in \{0..7\}\):<br>
+                            \(A(8) = \dbinom{7+2}{2} = 36\), \(\quad A(9) = \dbinom{8+2}{2} - 1 = 44\)<br>
+                            \(A(18) = A(25 - 18) = \dbinom{6+2}{2} = 28\), \(\quad A(19) = A(25 - 19) = \dbinom{5+2}{2} = 21\)
+                        </li>
+                    </ul>
+                    Total banyaknya bilangan yang memenuhi adalah:
+                    \[\begin{aligned}
+                    \text{Total} &= A(9)B(9) + A(18)B(18) + A(8)B(19) + A(19)B(8)\\
+                    &= (44 \times 52) + (28 \times 28) + (36 \times 21) + (21 \times 45)\\
+                    &= 2288 + 784 + 756 + 945\\
+                    &= \color{blue}\boxed{\boxed{\color{black}4773}}
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, banyaknya bilangan asli enam digit yang habis dibagi \(99\) dan tidak mengandung digit \(9\) adalah \(4773\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 12 -->
+        <article class="soal-item" id="A12">
+            <div class="soal-no">Bagian A - No. 12</div>
+            <div class="soal-teks">
+                Diberikan segitiga \(ABC\) dengan \(\overline{AB} = 5\), \(\overline{BC} = 9\), dan \(\overline{CA} = 2\sqrt{13}\). Apabila luas segitiga dengan panjang sisi-sisinya adalah \(\sin A\), \(\sin B\), dan \(\sin C\) dapat dinyatakan dalam bentuk \(\dfrac{a}{b}\), dengan \(a\) dan \(b\) adalah dua bilangan asli yang saling relatif prima, tentukan nilai dari \(a + b\).
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Aturan_Sinus/HOTS/1.html#2">Aturan Sinus</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Misalkan \(c = AB = 5\), \(a_0 = BC = 9\), dan \(b_0 = CA = 2\sqrt{13}\). Dengan menggunakan Aturan Cosinus pada \(\triangle ABC\) untuk sudut \(A\):
+                    \[\begin{aligned}
+                    \cos A &= \dfrac{b_0^2 + c^2 - a_0^2}{2 b_0 c} = \dfrac{52 + 25 - 81}{2(2\sqrt{13})(5)} = \dfrac{-4}{20\sqrt{13}} = -\dfrac{1}{5\sqrt{13}}\\[6pt]
+                    \sin A &= \sqrt{1 - \cos^2 A} = \sqrt{1 - \dfrac{1}{325}} = \sqrt{\dfrac{324}{325}} = \dfrac{18}{5\sqrt{13}}
+                    \end{aligned}\]
+                    Maka luas \(\triangle ABC\) dan diameter lingkaran luarnya (\(2R\)) berdasarkan Aturan Sinus adalah:
+                    \[[ABC] = \dfrac{1}{2} b_0 c \sin A = \dfrac{1}{2}(2\sqrt{13})(5)\left(\dfrac{18}{5\sqrt{13}}\right) = 9\]
+                    \[2R = \dfrac{a_0}{\sin A} = \dfrac{9}{\frac{18}{5\sqrt{13}}} = \dfrac{5\sqrt{13}}{2}\]
+                    Berdasarkan Aturan Sinus, berlaku \(\sin A = \dfrac{a_0}{2R}\), \(\sin B = \dfrac{b_0}{2R}\), dan \(\sin C = \dfrac{c}{2R}\). Artinya, segitiga dengan sisi-sisi \(\sin A, \sin B, \sin C\) sebangun dengan \(\triangle ABC\) dengan faktor skala \(k = \dfrac{1}{2R}\).<br><br>
+                    Oleh karena itu, luas segitiga dengan sisi-sisi \(\sin A, \sin B, \sin C\) adalah:
+                    \[L = k^2 [ABC] = \dfrac{[ABC]}{(2R)^2} = \dfrac{9}{\left(\frac{5\sqrt{13}}{2}\right)^2} = \dfrac{9}{\frac{325}{4}} = \dfrac{36}{325}\]
+                    Karena \(\text{FPB}(36, 325) = 1\), diperoleh \(a = 36\) dan \(b = 325\), sehingga:
+                    \[a + b = 36 + 325 = \color{blue}\boxed{\boxed{\color{black}361}}\]
+                    <div class="kesimpulan">Jadi, nilai dari \(a + b\) adalah \(361\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 13 -->
+        <article class="soal-item" id="A13">
+            <div class="soal-no">Bagian A - No. 13</div>
+            <div class="soal-teks">
+                <p>Diberikan bilangan real \(\alpha > 0\) sehingga</p>
+                \[\alpha^2 = 3\alpha + 1.\]
+                <p>Tentukan sisa pembagian \(\lfloor\alpha^{69}\rfloor\) dengan \(67\).</p>
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Floor_Function/HOTS/1.html#10">Floor Function</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Persamaan kuadrat \(x^2 - 3x - 1 = 0\) memiliki akar positif \(\alpha = \dfrac{3 + \sqrt{13}}{2}\) dan akar sekawan \(\beta = \dfrac{3 - \sqrt{13}}{2}\), dengan sifat Vieta \(\alpha + \beta = 3\) dan \(\alpha\beta = -1\).</p>
+                    <p>Definisikan barisan \(L_n = \alpha^n + \beta^n\) untuk \(n \ge 0\). Karena \(L_0 = 2\), \(L_1 = 3\), dan \(L_n = 3L_{n-1} + L_{n-2}\), maka \(L_n\) selalu berupa bilangan bulat untuk setiap \(n \ge 0\).</p>
+                    <p>Perhatikan bahwa \(-1 < \beta = \dfrac{3 - \sqrt{13}}{2} < 0\). Untuk \(n = 69\) (ganjil), berlaku \(-1 < \beta^{69} < 0\), sehingga:</p>
+                    \[\alpha^{69} = L_{69} - \beta^{69} \implies L_{69} < \alpha^{69} < L_{69} + 1 \implies \lfloor\alpha^{69}\rfloor = L_{69} = \alpha^{69} + \beta^{69}\]
+                    <p>Selanjutnya kita hitung \(L_{69} \pmod{67}\). Tinjau simbol Legendre dari diskriminan \(13\) terhadap bilangan prima \(p = 67\):</p>
+                    \[\left(\dfrac{13}{67}\right) = \left(\dfrac{67}{13}\right) = \left(\dfrac{2}{13}\right) = -1 \implies 13^{\frac{67-1}{2}} = 13^{33} \equiv -1 \pmod{67}\]
+                    <p>Di dalam gelanggang \(\mathbb{Z}_{67}[\sqrt{13}]\), menggunakan sifat automorfisma Frobenius \((u + v\sqrt{13})^{67} \equiv u^{67} + v^{67}(\sqrt{13})^{67} \equiv u - v\sqrt{13} \pmod{67}\), diperoleh:</p>
+                    \[\alpha^{67} \equiv \beta \pmod{67} \quad \text{dan} \quad \beta^{67} \equiv \alpha \pmod{67}\]
+                    <p>Kalikan masing-masing dengan \(\alpha^2\) dan \(\beta^2\) (mengingat \(\alpha\beta = -1\)):</p>
+                    \[\begin{aligned}
+                    L_{69} = \alpha^{69} + \beta^{69} &\equiv \beta\alpha^2 + \alpha\beta^2 \pmod{67}\\
+                    &\equiv \alpha\beta(\alpha + \beta) \pmod{67}\\
+                    &\equiv (-1)(3) = -3 \equiv \color{blue}\boxed{\boxed{\color{black}64}} \pmod{67}
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, sisa pembagian \(\lfloor\alpha^{69}\rfloor\) dengan \(67\) adalah <strong>64</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN A NO 14 -->
+        <article class="soal-item" id="A14">
+            <div class="soal-no">Bagian A - No. 14</div>
+            <div class="soal-teks">
+                Moneko membuat beberapa logo \(M\) untuk debutnya sebagai idol. Logo tersebut terdiri dari 5 titik \(ABCDE\), sinar \(BA\), segmen \(BC\), segmen \(CD\), dan sinar \(DE\) sehingga tidak ada segmen/sinar yang berpotongan kecuali di \(B, C,\) dan \(D\). Setelah itu, Moneko mempartisi sebuah bidang dengan \(200\) logo \(M\) (yang tidak harus berbeda).<br>
+                Berapa banyak daerah maksimal yang mungkin Moneko buat?
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Barisan_dan_Deret/HOTS/3.html#21">Barisan dan Deret</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    Setiap logo \(M\) merupakan kurva terbuka tak-berhingga di kedua ujungnya (sinar \(BA\) dan sinar \(DE\)) yang tersusun atas \(4\) bagian lurus (2 sinar dan 2 segmen).<br><br>
+                    Misalkan \(R_n\) adalah banyaknya daerah maksimal yang terbentuk oleh \(n\) buah logo \(M\):
+                    <ul>
+                        <li>Untuk \(n = 1\), satu logo \(M\) yang tak-berhingga di kedua ujungnya membagi bidang menjadi \(R_1 = 2\) daerah.</li>
+                        <li>Ketika logo ke-\(k\) ditambahkan pada bidang yang telah memuat \(k - 1\) logo, keempat bagian lurus dari logo ke-\(k\) masing-masing dapat memotong keempat bagian lurus dari setiap logo sebelumnya paling banyak di \(4 \times 4 = 16\) titik potong.</li>
+                        <li>Secara keseluruhan, logo ke-\(k\) dapat memotong \(k - 1\) logo sebelumnya di maksimal \(I_k = 16(k - 1)\) titik potong berbeda.</li>
+                        <li>Titik-titik potong ini membagi kurva logo ke-\(k\) menjadi \(I_k + 1 = 16(k - 1) + 1\) bagian, di mana setiap bagian membelah satu daerah lama menjadi dua daerah baru. Dengan demikian, penambahan daerah maksimal pada langkah ke-\(k\) adalah:
+                            \[R_k - R_{k-1} = 16(k - 1) + 1\]
+                        </li>
+                    </ul>
+                    Dengan menjumlahkan secara teleskopik dari \(k = 1\) hingga \(n\) (dengan \(R_0 = 1\) daerah awal bidang utuh):
+                    \[\begin{aligned}
+                    R_n &= 1 + \sum_{k=1}^{n} \big(16(k - 1) + 1\big)\\
+                    &= 1 + n + 16 \cdot \dfrac{n(n - 1)}{2}\\
+                    &= 8n^2 - 7n + 1
+                    \end{aligned}\]
+                    Substitusikan \(n = 200\):
+                    \[\begin{aligned}
+                    R_{200} &= 8(200)^2 - 7(200) + 1\\
+                    &= 320000 - 1400 + 1\\
+                    &= \color{blue}\boxed{\boxed{\color{black}318601}}
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, banyaknya daerah maksimal yang mungkin Moneko buat dengan \(200\) logo \(M\) adalah \(318601\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <h2 class="category-heading" style="margin: 2rem 0 0.8rem;">Bagian B — Uraian (Nomor 1–4)</h2>
+
+        <!-- BAGIAN B NO 1 -->
+        <article class="soal-item" id="B1">
+            <div class="soal-no">Bagian B - No. 1</div>
+            <div class="soal-teks">
+                <p>Untuk dua himpunan bilangan real \(A\) dan \(B\), definisikan \(A + B\) sebagai himpunan semua bilangan yang bisa dinyatakan sebagai penjumlahan suatu elemen \(A\) dengan suatu elemen \(B\). Yakni, \(A + B = \{a + b \mid a \in A, b \in B\}\). Sebagai contoh, jika \(A = \{1, 2, 4\}\) dan \(B = \{3, 5\}\), maka \(A + B = \{4, 5, 6, 7, 9\}\).</p>
+                <p>Misalkan \(A = \{x_1, x_2, \dots, x_n\}\) dan \(B = \{y_1, y_2, \dots, y_m\}\) di mana \(x_1 < x_2 < \dots < x_n\) dan \(y_1 < y_2 < \dots < y_m\).</p>
+                <ol type="a" style="margin: 0.5rem 0 0 1.4rem;">
+                    <li>Di koordinat kartesius, kita akan memberi nilai pada semua titik \((i, j)\) dengan \(i, j\) bulat dengan \(1 \le i \le n\), \(1 \le j \le m\), sehingga titik \((i, j)\) diberi nilai \(x_i + y_j\). Buktikan bahwa nilai pada titik \((i, j)\) kurang dari nilai (jika ada) pada titik \((i + 1, j)\) maupun \((i, j + 1)\).</li>
+                    <li>Misalkan \(|X|\) adalah banyaknya elemen di himpunan \(X\). Buktikan bahwa
+                        \[|A + B| \ge |A| + |B| - 1.\]
+                    </li>
+                    <li>Diberikan bilangan asli \(n\) dan \(m\). Carilah suatu himpunan \(A, B\) dengan \(|A| = n\) dan \(|B| = m\) sehingga kesamaan terjadi di (b).</li>
+                    <li>Diberikan dua himpunan real positif \(P\) dan \(Q\) dengan \(|P| = |Q| = n \ge 1\). Jika \(R\) adalah himpunan semua bilangan real positif yang bisa dinyatakan sebagai elemen \(P\) dibagi dengan elemen \(Q\), buktikan bahwa \(|R| \ge 2n - 1\).</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Himpunan/HOTS/1.html#7">Himpunan</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>(a) Bukti kemonotonan nilai pada titik kisi \((i, j)\):</strong></p>
+                    <p>Misalkan \(v(i, j) = x_i + y_j\) menyatakan nilai pada titik \((i, j)\).</p>
+                    <ul>
+                        <li>Jika titik \((i + 1, j)\) ada (yakni \(1 \le i \le n - 1\)), karena barisan elemen \(A\) terurut naik (\(x_i < x_{i+1}\)), maka dengan menambahkan \(y_j\) pada kedua ruas diperoleh:
+                            \[v(i, j) = x_i + y_j < x_{i+1} + y_j = v(i + 1, j)\]
+                        </li>
+                        <li>Jika titik \((i, j + 1)\) ada (yakni \(1 \le j \le m - 1\)), karena barisan elemen \(B\) terurut naik (\(y_j < y_{j+1}\)), maka dengan menambahkan \(x_i\) pada kedua ruas diperoleh:
+                            \[v(i, j) = x_i + y_j < x_i + y_{j+1} = v(i, j + 1)\]
+                        </li>
+                    </ul>
+                    <p>Terbukti bahwa nilai pada titik \((i, j)\) selalu kurang dari nilai pada titik \((i + 1, j)\) maupun \((i, j + 1)\). \(\blacksquare\)</p>
+                    <br>
+
+                    <p><strong>(b) Bukti \(|A + B| \ge |A| + |B| - 1\):</strong></p>
+                    <p>Tinjau lintasan titik-titik kisi sebanyak \(n + m - 1\) titik berikut:</p>
+                    \[(1, 1) \to (1, 2) \to \dots \to (1, m) \to (2, m) \to (3, m) \to \dots \to (n, m)\]
+                    <p>Setiap langkah pada lintasan tersebut bergerak dari \((i, j)\) ke \((i, j + 1)\) atau dari \((i, j)\) ke \((i + 1, j)\). Berdasarkan hasil bagian (a), nilai fungsi \(v(i, j) = x_i + y_j\) sepanjang lintasan tersebut membentuk barisan yang <strong>monoton naik tegas</strong>:</p>
+                    \[x_1 + y_1 < x_1 + y_2 < \dots < x_1 + y_m < x_2 + y_m < \dots < x_n + y_m\]
+                    <p>Karena terdapat \(n + m - 1\) bilangan yang nilainya saling berbeda secara tegas dan semuanya merupakan elemen dari \(A + B\), maka banyaknya elemen berbeda di \(A + B\) memenuhi:</p>
+                    \[|A + B| \ge n + m - 1 = |A| + |B| - 1 \quad \blacksquare\]
+                    <br>
+
+                    <p><strong>(c) Konstruksi himpunan \(A\) dan \(B\) yang mencapai kesamaan:</strong></p>
+                    <p>Pilih barisan aritmetika dengan beda yang sama (misalnya beda \(1\)):</p>
+                    \[A = \{1, 2, \dots, n\} \quad \text{dan} \quad B = \{1, 2, \dots, m\}\]
+                    <p>Untuk setiap \(a \in A\) dan \(b \in B\), nilai \(a + b\) merupakan bilangan bulat yang memenuhi \(2 \le a + b \le n + m\). Sebaliknya, setiap bilangan bulat \(k \in \{2, 3, \dots, n + m\}\) dapat dinyatakan sebagai \(a + b\) dengan \(a \in A, b \in B\). Dengan demikian:</p>
+                    \[A + B = \{2, 3, \dots, n + m\} \implies |A + B| = (n + m) - 2 + 1 = n + m - 1 = |A| + |B| - 1\]
+                    <br>
+
+                    <p><strong>(d) Bukti \(|R| \ge 2n - 1\) untuk himpunan hasil bagi \(R = \left\{\dfrac{p}{q} \;\middle|\; p \in P, q \in Q\right\}\):</strong></p>
+                    <p>Urutkan elemen-elemen positif dari \(P\) dan \(Q\) sebagai berikut:</p>
+                    \[0 < p_1 < p_2 < \dots < p_n \quad \text{dan} \quad 0 < q_n < q_{n-1} < \dots < q_1\]
+                    <p>(perhatikan bahwa elemen \(Q\) kita indeks secara menurun sehingga \(\dfrac{1}{q_1} < \dfrac{1}{q_2} < \dots < \dfrac{1}{q_n}\)).</p>
+                    <p>Beri nilai pada setiap titik kisi \((i, j)\) dengan \(1 \le i, j \le n\) sebesar \(w(i, j) = \dfrac{p_i}{q_j}\). Karena seluruh elemen bernilai real positif:</p>
+                    <ul>
+                        <li>Dari \(p_i < p_{i+1}\) dan \(q_j > 0\), diperoleh \(w(i, j) = \dfrac{p_i}{q_j} < \dfrac{p_{i+1}}{q_j} = w(i + 1, j)\).</li>
+                        <li>Dari \(\dfrac{1}{q_j} < \dfrac{1}{q_{j+1}}\) dan \(p_i > 0\), diperoleh \(w(i, j) = \dfrac{p_i}{q_j} < \dfrac{p_i}{q_{j+1}} = w(i, j + 1)\).</li>
+                    </ul>
+                    <p>Dengan meninjau lintasan \((1, 1) \to (1, 2) \to \dots \to (1, n) \to (2, n) \to \dots \to (n, n)\), diperoleh \(2n - 1\) anggota \(R\) yang terurut naik tegas:</p>
+                    \[\dfrac{p_1}{q_1} < \dfrac{p_1}{q_2} < \dots < \dfrac{p_1}{q_n} < \dfrac{p_2}{q_n} < \dots < \dfrac{p_n}{q_n}\]
+                    <p>Karena ke-\((2n - 1)\) bilangan tersebut semuanya berbeda dan termuat di dalam \(R\), terbukti bahwa \(|R| \ge 2n - 1\). \(\blacksquare\)</p>
+                    <div class="kesimpulan">Jadi, keempat pernyataan (a), (b), (c) dengan \(A = \{1, \dots, n\}, B = \{1, \dots, m\}\), dan (d) terbukti secara lengkap.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN B NO 2 -->
+        <article class="soal-item" id="B2">
+            <div class="soal-no">Bagian B - No. 2</div>
+            <div class="soal-teks">
+                Buktikan bahwa untuk setiap bilangan asli \(n \ge 2\), pertidaksamaan berikut berlaku:
+                \[\sqrt[2]{2 + \sqrt[3]{3 + \sqrt[4]{\dots + \sqrt[n]{n}}}} < 2.\]
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Bentuk_Akar/HOTS/2.html#17">Bentuk Akar</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Langkah 1: Lema Pertidaksamaan Eksponen \(k + 2 \le 2^k\) untuk setiap bilangan bulat \(k \ge 2\)</strong></p>
+                    <p>Kita buktikan \(k + 2 \le 2^k\) dengan induksi matematika pada \(k \ge 2\):</p>
+                    <ul>
+                        <li><strong>Basis (\(k = 2\)):</strong> \(2 + 2 = 4 \le 2^2 = 4\) (benar).</li>
+                        <li><strong>Langkah Induksi:</strong> Andaikan benar untuk suatu \(k \ge 2\), yaitu \(k + 2 \le 2^k\). Maka untuk \(k + 1\):
+                            \[2^{k+1} = 2 \cdot 2^k \ge 2(k + 2) = 2k + 4 = (k + 1) + (k + 3) > (k + 1) + 2\]
+                            Dengan demikian, \(k + 2 \le 2^k\) berlaku untuk setiap bilangan bulat \(k \ge 2\) (dan ketaksamaan tegas \(k < 2^k\) juga berlaku).
+                        </li>
+                    </ul>
+                    <br>
+
+                    <p><strong>Langkah 2: Induksi Mundur pada Ekor Bentuk Akar Bersusun</strong></p>
+                    <p>Untuk setiap \(k \in \{2, 3, \dots, n\}\), definisikan bentuk akar ekor ke-\(k\):</p>
+                    \[T_k = \sqrt[k]{k + \sqrt[k+1]{(k+1) + \dots + \sqrt[n]{n}}}\]
+                    <p>sehingga memenuhi relasi rekursif \(T_k = \sqrt[k]{k + T_{k+1}}\) untuk \(2 \le k \le n - 1\), dengan nilai ujung terdalam \(T_n = \sqrt[n]{n}\).</p>
+                    <p>Kita buktikan bahwa \(T_k < 2\) untuk semua \(k = n, n - 1, \dots, 2\) secara mundur:</p>
+                    <ul>
+                        <li><strong>Basis (\(k = n\)):</strong> Berdasarkan Lema pada Langkah 1, berlaku \(n < n + 2 \le 2^n\), sehingga:
+                            \[T_n = \sqrt[n]{n} < \sqrt[n]{2^n} = 2\]
+                        </li>
+                        <li><strong>Langkah Induksi Mundur:</strong> Andaikan untuk suatu \(k \in \{2, \dots, n - 1\}\) telah berlaku \(T_{k+1} < 2\). Karena fungsi akar pangkat ke-\(k\) monoton naik tegas pada bilangan real positif, serta menggunakan \(k + 2 \le 2^k\), diperoleh:
+                            \[T_k = \sqrt[k]{k + T_{k+1}} < \sqrt[k]{k + 2} \le \sqrt[k]{2^k} = 2\]
+                        </li>
+                    </ul>
+                    <p>Dengan mengambil \(k = 2\), diperoleh:</p>
+                    \[T_2 = \sqrt[2]{2 + \sqrt[3]{3 + \sqrt[4]{\dots + \sqrt[n]{n}}}} < 2 \quad \blacksquare\]
+                    <div class="kesimpulan">Jadi, terbukti bahwa untuk setiap bilangan asli \(n \ge 2\) berlaku \(\sqrt[2]{2 + \sqrt[3]{3 + \sqrt[4]{\dots + \sqrt[n]{n}}}} < 2\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN B NO 3 -->
+        <article class="soal-item" id="B3">
+            <div class="soal-no">Bagian B - No. 3</div>
+            <div class="soal-teks">
+                Misalkan \(\omega\) adalah lingkaran luar segitiga lancip \(ABC\), dan \(M\) adalah titik tengah busur \(BC\) pada \(\omega\) yang tidak memuat \(A\). Diberikan titik \(D\) dan \(E\) berturut-turut pada sisi \(AB\) dan \(AC\) sehingga \(DE\) sejajar \(BC\). Garis \(DM\) dan \(EM\) berturut-turut memotong \(\omega\) kembali di titik \(P \neq M\) dan \(Q \neq M\). Misalkan garis \(AM\) dan \(DE\) berpotongan di \(X\).<br><br>
+                Jika \(I\) adalah titik pada \(\omega\) sehingga \(\angle XIM = 90^\circ\), buktikan bahwa garis \(DE\), garis \(PQ\), dan garis singgung \(\omega\) di titik \(I\) berpotongan pada satu titik.
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Geometri_(Bidang_Datar)/HOTS/3.html#22">Geometri (Bidang Datar)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div class="grafik-container" id="svg-arsip-ktom-b3" style="width: 100%; max-width: 520px; margin: 0 auto 1.2rem auto;"></div>
+                    <p><strong>Langkah 1: Konsiklisitas \(A, P, D, X\) dan \(A, Q, E, X\)</strong></p>
+                    <p>Karena \(M\) adalah titik tengah busur \(BC\) pada \(\omega\), maka garis singgung \(\ell_M\) terhadap \(\omega\) di titik \(M\) sejajar dengan \(BC\). Mengingat \(DE \parallel BC\), berlaku \(\ell_M \parallel DE\).</p>
+                    <p>Berdasarkan Teorema Sudut Antara Tali Busur dan Garis Singgung pada \(\omega\):</p>
+                    <ul>
+                        <li>\(\angle MDX = \angle(\ell_M, MP) = \angle MAP = \angle XAP\), sehingga empat titik \(A, P, D, X\) terletak pada satu lingkaran (konsiklis).</li>
+                        <li>Secara simetris, \(\angle MEX = \angle(\ell_M, MQ) = \angle MAQ = \angle XAQ\), sehingga empat titik \(A, Q, E, X\) juga konsiklis.</li>
+                    </ul>
+                    <br>
+
+                    <p><strong>Langkah 2: Garis \(DE\) Menyinggung Lingkaran Luar \(\triangle PQX\) di Titik \(X\)</strong></p>
+                    <p>Dari segiempat tali busur \(AQEX\), sudut keliling yang menghadap tali busur \(EX\) memberikan:</p>
+                    \[\angle MQX = \angle EQX = \angle EAX = \angle CAM\]
+                    <p>Karena \(M\) adalah titik tengah busur \(BC\), garis \(AM\) membagi dua \(\angle BAC\), sehingga \(\angle CAM = \angle BAM\). Dengan menggunakan \(\angle PQM = \angle PAM\) pada \(\omega\) dan segiempat tali busur \(APDX\):</p>
+                    \[\angle PQX = \angle PQM + \angle MQX = \angle PAM + \angle BAM = \angle PAB = \angle DAP = \angle DXP\]
+                    <p>Karena \(\angle PQX = \angle DXP\), berdasarkan kebalikan Teorema Garis Singgung-Tali Busur, garis \(DE\) <strong>menyinggung</strong> lingkaran luar \(\triangle PQX\) tepat di titik \(X\).</p>
+                    <p>Misalkan \(T\) adalah titik potong garis \(PQ\) dan garis \(DE\). Kuasa titik \(T\) terhadap lingkaran luar \(\triangle PQX\) dan terhadap \(\omega\) menghasilkan:</p>
+                    \[\operatorname{Pow}_{\omega}(T) = TP \cdot TQ = TX^2\]
+                    <br>
+
+                    <p><strong>Langkah 3: Garis Singgung \(\omega\) di Titik \(I\) Melalui Titik \(T\)</strong></p>
+                    <p>Misalkan garis singgung \(\omega\) di titik \(I\) memotong garis \(DE\) di titik \(T'\). Perhatikan bahwa \(X\) dan \(T'\) keduanya berada pada garis \(DE\), sehingga garis \(DE\) sama dengan garis \(T'X\).</p>
+                    <ul>
+                        <li>Karena \(T'I\) dan \(\ell_M\) keduanya merupakan garis singgung terhadap \(\omega\) di \(I\) dan \(M\), keduanya membentuk sudut lancip yang sama besar terhadap tali busur \(IM\), sebut sebesar \(\alpha = \angle(T'I, IM) = \angle(\ell_M, IM)\).</li>
+                        <li>Karena \(T'X \parallel \ell_M\), maka garis \(T'X\) juga membentuk sudut sebesar \(\alpha\) terhadap garis \(IM\).</li>
+                        <li>Mengingat \(\angle XIM = 90^\circ\) (\(IX \perp IM\)), maka pada \(\triangle T'IX\) berlaku:
+                            \[\angle T'IX = 90^\circ - \alpha \quad \text{dan} \quad \angle T'XI = 90^\circ - \alpha\]
+                            sehingga \(\triangle T'IX\) sama kaki dengan \(T'I = T'X\).
+                        </li>
+                    </ul>
+                    <p>Karena \(T'I\) menyinggung \(\omega\) di \(I\), maka kuasa titik \(T'\) terhadap \(\omega\) adalah:</p>
+                    \[\operatorname{Pow}_{\omega}(T') = T'I^2 = T'X^2\]
+                    <p>Perhatikan bahwa himpunan titik \(Z\) yang memenuhi \(\operatorname{Pow}_{\omega}(Z) = ZX^2\) merupakan garis kuasa (<i>radical axis</i>) antara lingkaran \(\omega\) dan lingkaran berjari-jari nol di titik \(X\), yang memotong garis \(DE\) di tepat satu titik. Karena \(T\) dan \(T'\) keduanya terletak pada garis \(DE\) serta memenuhi persamaan kuasa tersebut, haruslah \(T = T'\).</p>
+                    <p>Terbukti bahwa garis \(DE\), garis \(PQ\), dan garis singgung \(\omega\) di titik \(I\) berpotongan pada satu titik \(T\). \(\blacksquare\)</p>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                            const deg = Math.PI / 180;
+                            const R = 95;
+                            const cx = 130, cy = 125;
+                            const pt = (ang) => [cx + R * Math.cos(ang), cy - R * Math.sin(ang)];
+
+                            const B = pt(-140 * deg);
+                            const C = pt(-40 * deg);
+                            const M = pt(-90 * deg);
+                            const A = pt(70 * deg);
+
+                            function line(P1, P2) {
+                                return [P1[1] - P2[1], P2[0] - P1[0], P1[0] * P2[1] - P1[1] * P2[0]];
+                            }
+                            function inter(L1, L2) {
+                                const det = L1[0] * L2[1] - L1[1] * L2[0];
+                                return [(L1[1] * L2[2] - L2[1] * L1[2]) / det, (L2[0] * L1[2] - L1[0] * L2[2]) / det];
+                            }
+                            function secCircle(Z) {
+                                const dx = Z[0] - M[0], dy = Z[1] - M[1];
+                                const mx = M[0] - cx, my = M[1] - cy;
+                                const t = -2 * (mx * dx + my * dy) / (dx * dx + dy * dy);
+                                return [M[0] + t * dx, M[1] + t * dy];
+                            }
+
+                            const yDE = cy + 0.12 * R;
+                            const L_DE = [0, 1, -yDE];
+                            const D = inter(line(A, B), L_DE);
+                            const E = inter(line(A, C), L_DE);
+                            const X = inter(line(A, M), L_DE);
+                            const P = secCircle(D);
+                            const Q = secCircle(E);
+
+                            const xNorm = (X[0] - cx) / R, yNorm = (cy - X[1]) / R;
+                            const ux = 1 - yNorm, uy = -xNorm;
+                            const I = secCircle([M[0] + ux, M[1] + uy]);
+                            const T = inter(line(P, Q), L_DE);
+
+                            const geo = new GeoSVG("svg-arsip-ktom-b3", 470, 260, { margin: 16 });
+                            geo.buatLingkaran([cx, cy], R, { stroke: "#1e293b", strokeWidth: 1.8 });
+                            geo.buatSegitiga(A, B, C, { fill: "rgba(37, 99, 235, 0.08)", stroke: "#2563eb", strokeWidth: 1.6 });
+
+                            geo.buatSegmen(D, T, { stroke: "#0d9488", strokeWidth: 1.8 });
+                            geo.buatSegmen(P, T, { stroke: "#dc2626", strokeWidth: 1.8 });
+                            geo.buatSegmen(I, T, { stroke: "#9333ea", strokeWidth: 1.8, strokeDasharray: "5,4" });
+
+                            geo.buatSegmen(M, P, { stroke: "#64748b", strokeWidth: 1.2, strokeDasharray: "3,3" });
+                            geo.buatSegmen(M, Q, { stroke: "#64748b", strokeWidth: 1.2, strokeDasharray: "3,3" });
+                            geo.buatSegmen(A, M, { stroke: "#64748b", strokeWidth: 1.3 });
+                            geo.buatSegmen(X, I, { stroke: "#9333ea", strokeWidth: 1.3 });
+                            geo.buatSegmen(M, I, { stroke: "#9333ea", strokeWidth: 1.3 });
+
+                            geo.buatTitik(A, { label: "A", labelPosition: "tengah atas", fontSize: "13px" });
+                            geo.buatTitik(B, { label: "B", labelPosition: "kiri bawah", fontSize: "13px" });
+                            geo.buatTitik(C, { label: "C", labelPosition: "kanan bawah", fontSize: "13px" });
+                            geo.buatTitik(M, { label: "M", labelPosition: "tengah bawah", fontSize: "13px" });
+                            geo.buatTitik(D, { label: "D", labelPosition: "kiri atas", fontSize: "13px" });
+                            geo.buatTitik(E, { label: "E", labelPosition: "kanan atas", fontSize: "13px" });
+                            geo.buatTitik(X, { label: "X", labelPosition: "kiri atas", fontSize: "13px" });
+                            geo.buatTitik(P, { label: "P", labelPosition: "kiri atas", fontSize: "13px" });
+                            geo.buatTitik(Q, { label: "Q", labelPosition: "kanan atas", fontSize: "13px" });
+                            geo.buatTitik(I, { label: "I", labelPosition: "kanan bawah", fontSize: "13px" });
+                            geo.buatTitik(T, { label: "T", labelPosition: "kanan atas", fontSize: "13px" });
+                        });
+                    </script>
+                    <div class="kesimpulan">Jadi, terbukti bahwa garis \(DE\), garis \(PQ\), dan garis singgung \(\omega\) di titik \(I\) berpotongan pada satu titik.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- BAGIAN B NO 4 -->
+        <article class="soal-item" id="B4">
+            <div class="soal-no">Bagian B - No. 4</div>
+            <div class="soal-teks">
+                Definisikan suatu bilangan asli sebagai <i>kuat</i> jika berbentuk \(n^k\) untuk suatu bilangan asli \(n > 1\) dan \(k > 2\). Misalkan \(S(n)\) menyatakan jumlah digit desimal dari bilangan asli \(n\), misalnya \(S(2026) = 2 + 0 + 2 + 6 = 10\).<br><br>
+                Tentukan ada atau tidaknya bilangan asli \(n\) sedemikian sehingga memenuhi syarat berikut: Jika \(\mathcal{C} \subseteq \mathbb{Z}^+\) menyatakan seluruh bilangan asli yang muncul setidaknya sekali pada barisan
+                \[n,\; S(n),\; S(S(n)),\; \dots\]
+                maka berlaku bahwa tepat \(99{,}9\%\) dari elemen himpunan \(\mathcal{C}\) merupakan bilangan kuat.
+            </div>
+            <div class="soal-sumber">Topik: <a href="../../Bilangan_Asli/HOTS/4.html#31">Bilangan Asli</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Jawab: Ada.</strong> Kita akan mengonstruksi secara eksplisit bilangan asli \(n\) sehingga himpunan \(\mathcal{C}\) memiliki tepat \(1000\) elemen berbeda, yang terdiri atas \(999\) bilangan pangkat tiga sempurna lebih dari \(1\) (sehingga merupakan bilangan <i>kuat</i> dengan \(k = 3 > 2\)) dan \(1\) elemen terakhir bernilai \(1\) (yang bukan bilangan <i>kuat</i> karena definisi mensyaratkan basis \(> 1\)).</p>
+                    <br>
+
+                    <p><strong>Langkah 1: Lema Konstruksi Pangkat Tiga dengan Jumlah Digit \(r^3\)</strong></p>
+                    <p>Untuk setiap bilangan asli \(r \ge 1\), definisikan bilangan asli \(f(r) > 1\) sebagai penjumlahan \(r\) buah perpangkatan \(10\) dengan eksponen berbasis \(4\):</p>
+                    \[f(r) = \sum_{j=1}^{r} 10^{4^j}\]
+                    <p>Tinjau ekspansi pangkat tiga dari \(f(r)\) menggunakan Teorema Multinomial:</p>
+                    \[\big(f(r)\big)^3 = \left(\sum_{j=1}^{r} 10^{4^j}\right)^3 = \sum_{j=1}^{r} 10^{3 \cdot 4^j} + 3 \sum_{i \neq j} 10^{2 \cdot 4^i + 4^j} + 6 \sum_{1 \le i < j < l \le r} 10^{4^i + 4^j + 4^l}\]
+                    <p>Perhatikan dua sifat penting pada ekspansi desimal di atas:</p>
+                    <ol>
+                        <li>Karena setiap bilangan asli memiliki representasi basis-\(4\) yang tunggal, seluruh eksponen \(3 \cdot 4^j\), \(2 \cdot 4^i + 4^j\), dan \(4^i + 4^j + 4^l\) untuk kombinasi indeks yang berbeda memiliki nilai yang <strong>saling berbeda</strong>.</li>
+                        <li>Koefisien di depan setiap perpangkatan \(10\) hanya bernilai \(1, 3,\) atau \(6\) (semuanya kurang dari \(10\)), sehingga <strong>tidak terjadi simpanan (<i>carry</i>)</strong> sama sekali ketika dijumlahkan dalam basis \(10\).</li>
+                    </ol>
+                    <p>Akibatnya, jumlah seluruh digit desimal dari \(\big(f(r)\big)^3\) sama persis dengan jumlah seluruh koefisien multinomialnya, yaitu:</p>
+                    \[S\!\left(\big(f(r)\big)^3\right) = (\underbrace{1 + 1 + \dots + 1}_{r\text{ suku}})^3 = r^3\]
+                    <br>
+
+                    <p><strong>Langkah 2: Konstruksi Barisan Mundur sepanjang \(1000\) Suku</strong></p>
+                    <p>Definisikan barisan bilangan asli \(r_{999}, r_{998}, \dots, r_0\) secara rekursif mundur:</p>
+                    <ul>
+                        <li>Tetapkan \(r_{999} = 1\), sehingga \(n_{999} = r_{999}^3 = 1\). Perhatikan bahwa \(1\) <strong>bukan</strong> bilangan <i>kuat</i> karena definisi bilangan kuat mensyaratkan bilangan berbentuk \(m^k\) dengan \(m > 1\) dan \(k > 2\) (sehingga setiap bilangan kuat bernilai \(\ge 2^3 = 8\)).</li>
+                        <li>Untuk \(i = 998, 997, \dots, 0\), definisikan \(r_i = f(r_{i+1})\) dan \(n_i = r_i^3\).</li>
+                    </ul>
+                    <p>Berdasarkan Lema pada Langkah 1, untuk setiap \(i \in \{0, 1, \dots, 998\}\) berlaku:</p>
+                    \[S(n_i) = S\!\left(\big(f(r_{i+1})\big)^3\right) = r_{i+1}^3 = n_{i+1}\]
+                    <p>dan karena \(r_i = f(r_{i+1}) \ge 10^4 > 1\), maka setiap \(n_i = r_i^3\) (\(0 \le i \le 998\)) merupakan bilangan <i>kuat</i> (dengan eksponen \(k = 3 > 2\)), serta memenuhi \(n_0 > n_1 > \dots > n_{998} > n_{999} = 1\).</p>
+                    <p>Saat kita memilih \(n = n_0\), barisan \(n, S(n), S(S(n)), \dots\) adalah:</p>
+                    \[n_0,\; n_1,\; n_2,\; \dots,\; n_{998},\; 1,\; 1,\; 1,\; \dots\]
+                    <p>Himpunan seluruh elemen berbeda yang muncul adalah \(\mathcal{C} = \{n_0, n_1, \dots, n_{998}, 1\}\) dengan \(|\mathcal{C}| = 1000\), di mana tepat \(999\) elemen (\(n_0, \dots, n_{998}\)) merupakan bilangan kuat dan \(1\) elemen (\(1\)) bukan bilangan kuat. Persentase elemen kuat di \(\mathcal{C}\) adalah:</p>
+                    \[\dfrac{999}{1000} \times 100\% = 99{,}9\% \quad \blacksquare\]
+                    <div class="kesimpulan">Jadi, <strong>ada</strong> bilangan asli \(n\) yang memenuhi syarat tersebut.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

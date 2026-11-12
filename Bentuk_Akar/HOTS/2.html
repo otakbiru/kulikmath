@@ -251,6 +251,50 @@
             </div>
         </article>
 
+        <!-- SOAL 17 -->
+        <article class="soal-item" id="17">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Buktikan bahwa untuk setiap bilangan asli \(n \ge 2\), pertidaksamaan berikut berlaku:
+                \[\sqrt[2]{2 + \sqrt[3]{3 + \sqrt[4]{\dots + \sqrt[n]{n}}}} < 2.\]
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM Oktober 2026 (Bagian B No. 2)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Langkah 1: Lema Pertidaksamaan Eksponen \(k + 2 \le 2^k\) untuk setiap bilangan bulat \(k \ge 2\)</strong></p>
+                    <p>Kita buktikan \(k + 2 \le 2^k\) dengan induksi matematika pada \(k \ge 2\):</p>
+                    <ul>
+                        <li><strong>Basis (\(k = 2\)):</strong> \(2 + 2 = 4 \le 2^2 = 4\) (benar).</li>
+                        <li><strong>Langkah Induksi:</strong> Andaikan benar untuk suatu \(k \ge 2\), yaitu \(k + 2 \le 2^k\). Maka untuk \(k + 1\):
+                            \[2^{k+1} = 2 \cdot 2^k \ge 2(k + 2) = 2k + 4 = (k + 1) + (k + 3) > (k + 1) + 2\]
+                            Dengan demikian, \(k + 2 \le 2^k\) berlaku untuk setiap bilangan bulat \(k \ge 2\) (dan ketaksamaan tegas \(k < 2^k\) juga berlaku).
+                        </li>
+                    </ul>
+                    <br>
+
+                    <p><strong>Langkah 2: Induksi Mundur pada Ekor Bentuk Akar Bersusun</strong></p>
+                    <p>Untuk setiap \(k \in \{2, 3, \dots, n\}\), definisikan bentuk akar ekor ke-\(k\):</p>
+                    \[T_k = \sqrt[k]{k + \sqrt[k+1]{(k+1) + \dots + \sqrt[n]{n}}}\]
+                    <p>sehingga memenuhi relasi rekursif \(T_k = \sqrt[k]{k + T_{k+1}}\) untuk \(2 \le k \le n - 1\), dengan nilai ujung terdalam \(T_n = \sqrt[n]{n}\).</p>
+                    <p>Kita buktikan bahwa \(T_k < 2\) untuk semua \(k = n, n - 1, \dots, 2\) secara mundur:</p>
+                    <ul>
+                        <li><strong>Basis (\(k = n\)):</strong> Berdasarkan Lema pada Langkah 1, berlaku \(n < n + 2 \le 2^n\), sehingga:
+                            \[T_n = \sqrt[n]{n} < \sqrt[n]{2^n} = 2\]
+                        </li>
+                        <li><strong>Langkah Induksi Mundur:</strong> Andaikan untuk suatu \(k \in \{2, \dots, n - 1\}\) telah berlaku \(T_{k+1} < 2\). Karena fungsi akar pangkat ke-\(k\) monoton naik tegas pada bilangan real positif, serta menggunakan \(k + 2 \le 2^k\), diperoleh:
+                            \[T_k = \sqrt[k]{k + T_{k+1}} < \sqrt[k]{k + 2} \le \sqrt[k]{2^k} = 2\]
+                        </li>
+                    </ul>
+                    <p>Dengan mengambil \(k = 2\), diperoleh:</p>
+                    \[T_2 = \sqrt[2]{2 + \sqrt[3]{3 + \sqrt[4]{\dots + \sqrt[n]{n}}}} < 2 \quad \blacksquare\]
+                    <div class="kesimpulan">Jadi, terbukti bahwa untuk setiap bilangan asli \(n \ge 2\) berlaku \(\sqrt[2]{2 + \sqrt[3]{3 + \sqrt[4]{\dots + \sqrt[n]{n}}}} < 2\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
