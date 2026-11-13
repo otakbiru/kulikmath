@@ -17,9 +17,27 @@ const DAFTAR_TOPIK = [
             { judul: "Deret Geometri Tak Hingga", folder: "Deret_Geometri_Tak_Hingga" },
             { judul: "Deret Teleskopik", folder: "Deret_Teleskopik" },
             { judul: "Bentuk Akar", folder: "Bentuk_Akar" },
+            { judul: "Pangkat (Eksponen)", folder: "Pangkat_(Eksponen)" },
+            { judul: "Logaritma", folder: "Logaritma" },
+            { judul: "Nilai Mutlak", folder: "Nilai_Mutlak" },
+            { judul: "Perbandingan", folder: "Perbandingan" },
+            { judul: "Perbandingan Berbalik Nilai", folder: "Perbandingan_Berbalik_Nilai" },
+            { judul: "Skala & Perbandingan Geometri", folder: "Skala" },
             { judul: "Induksi Matematika", folder: "Induksi_Matematika" },
             { judul: "Persamaan Aljabar", folder: "Persamaan_Aljabar" },
+            { judul: "Persamaan Bentuk Akar", folder: "Persamaan_Bentuk_Akar" },
             { judul: "Persamaan Eksponen", folder: "Persamaan_Eksponen" },
+            { judul: "Persamaan Kuadrat", folder: "Persamaan_Kuadrat" },
+            { judul: "Persamaan Logaritma", folder: "Persamaan_Logaritma" },
+            { judul: "Persamaan Nilai Mutlak", folder: "Persamaan_Nilai_Mutlak" },
+            { judul: "Pertidaksamaan Bentuk Aljabar", folder: "Pertidaksamaan_Bentuk_Aljabar" },
+            { judul: "Pertidaksamaan Linear Dua Variabel", folder: "Pertidaksamaan_Linear_Dua_Variabel" },
+            { judul: "Pertidaksamaan Logaritma", folder: "Pertidaksamaan_Logaritma" },
+            { judul: "Sistem Persamaan Aljabar", folder: "Sistem_Persamaan_Aljabar" },
+            { judul: "Sistem Persamaan Linear Dua Variabel (SPLDV)", folder: "Sistem_Persamaan_Linear_Dua_Variabel" },
+            { judul: "Sistem Persamaan Linear Tiga Variabel (SPLTV)", folder: "Sistem_Persamaan_Linear_Tiga_Variabel" },
+            { judul: "Sistem Persamaan Linear-Kuadrat (SPLK)", folder: "Sistem_Persamaan_Linear-Kuadrat" },
+            { judul: "Sistem Pertidaksamaan Linear Dua Variabel (SPtLDV)", folder: "Sistem_Pertidaksamaan_Linear_Dua_Variabel" },
             { judul: "Polinomial (Suku Banyak)", folder: "Polinom_(Suku_Banyak)" },
             { judul: "Program Linear", folder: "Program_Linier_(Program_Linear)" },
             { judul: "Maksimum dan Minimum", folder: "Maksimum_dan_Minimum" },
@@ -39,6 +57,7 @@ const DAFTAR_TOPIK = [
             { judul: "Bilangan Real", folder: "Bilangan_Real" },
             { judul: "Faktor Positif", folder: "Faktor_Positif" },
             { judul: "Faktorial", folder: "Faktorial" },
+            { judul: "KPK (Kelipatan Persekutuan Terkecil)", folder: "KPK" },
             { judul: "Modulo", folder: "Modulo" },
         ]
     },
@@ -47,23 +66,45 @@ const DAFTAR_TOPIK = [
         topik: [
             { judul: "Geometri (Bidang Datar)", folder: "Geometri_(Bidang_Datar)" },
             { judul: "Segitiga", folder: "Segitiga" },
+            { judul: "Kesebangunan", folder: "Kesebangunan" },
+            { judul: "Kesebangunan pada Segitiga", folder: "Kesebangunan_pada_Segitiga" },
+            { judul: "Teorema Menelaus", folder: "Teorema_Menelaus" },
             { judul: "Persegi", folder: "Persegi" },
             { judul: "Persegi Panjang", folder: "Persegi_Panjang" },
+            { judul: "Jajar Genjang", folder: "Jajar_Genjang" },
+            { judul: "Trapesium", folder: "Trapesium" },
             { judul: "Poligon (Segi Banyak)", folder: "Poligon_(Segi_Banyak)" },
-            { judul: "Balok", folder: "Balok" },
-            { judul: "Bangun Ruang Sisi Lengkung", folder: "Bangun_Ruang_Sisi_Lengkung" },
+            { judul: "Lingkaran", folder: "Lingkaran" },
+            { judul: "Segiempat Siklik (Segiempat Tali Busur)", folder: "Segiempat_Siklik" },
+            { judul: "Sudut Pusat dan Sudut Keliling Lingkaran", folder: "Sudut_Pusat_dan_Sudut_Keliling" },
+            { judul: "Persamaan Garis Lurus", folder: "Persamaan_Garis_Lurus" },
+            { judul: "Persamaan Lingkaran", folder: "Persamaan_Lingkaran" },
             { judul: "Hubungan Garis dan Lingkaran", folder: "Hubungan_Garis_dan_Lingkaran" },
             { judul: "Garis Singgung Lingkaran", folder: "Garis_Singgung_Lingkaran" },
+            { judul: "Koordinat Kutub", folder: "Koordinat_Kutub" },
+            { judul: "Refleksi (Pencerminan)", folder: "Refleksi_(Pencerminan)" },
+            { judul: "Rotasi (Perputaran)", folder: "Rotasi" },
+            { judul: "Translasi (Pergeseran Geometri)", folder: "Translasi" },
+            { judul: "Vektor (Aljabar & Geometri)", folder: "Vektor" },
+            { judul: "Panjang Vektor", folder: "Panjang_Vektor" },
+            { judul: "Kubus", folder: "Kubus" },
+            { judul: "Balok", folder: "Balok" },
+            { judul: "Limas", folder: "Limas" },
+            { judul: "Kerucut", folder: "Kerucut" },
+            { judul: "Bangun Ruang Sisi Lengkung", folder: "Bangun_Ruang_Sisi_Lengkung" },
         ]
     },
     {
         bidang: "Trigonometri",
         topik: [
             { judul: "Trigonometri", folder: "Trigonometri" },
+            { judul: "Trigonometri Pada Segitiga", folder: "Trigonometri_Pada_Segitiga" },
             { judul: "Aturan Cosinus", folder: "Aturan_Cosinus" },
             { judul: "Aturan Sinus", folder: "Aturan_Sinus" },
             { judul: "Fungsi Trigonometri", folder: "Fungsi_Trigonometri" },
             { judul: "Grafik Fungsi Trigonometri", folder: "Grafik_Fungsi_Trigonometri" },
+            { judul: "Persamaan Trigonometri", folder: "Persamaan_Trigonometri" },
+            { judul: "Sistem Persamaan Trigonometri", folder: "Sistem_Persamaan_Trigonometri" },
         ]
     },
     {
@@ -72,14 +113,24 @@ const DAFTAR_TOPIK = [
             { judul: "Asimtot Kurva", folder: "Asimtot_Kurva" },
             { judul: "Matriks", folder: "Matriks" },
             { judul: "Determinan Matriks", folder: "Determinan_Matriks" },
+            { judul: "Invers Matriks", folder: "Invers_Matriks" },
             { judul: "Dilatasi", folder: "Dilatasi" },
             { judul: "Fungsi", folder: "Fungsi" },
             { judul: "Fungsi Komposisi", folder: "Fungsi_Komposisi" },
+            { judul: "Invers Fungsi", folder: "Invers_Fungsi" },
             { judul: "Fungsi Kuadrat", folder: "Fungsi_Kuadrat" },
             { judul: "Fungsi Naik dan Turun", folder: "Fungsi_Naik_dan_Turun" },
-            { judul: "Integral Lipat", folder: "Integral_Lipat" },
+            { judul: "Limit", folder: "Limit" },
+            { judul: "Limit Tak Hingga", folder: "Limit_Tak_Hingga" },
+            { judul: "Limit Trigonometri", folder: "Limit_Trigonometri" },
+            { judul: "Laju Perubahan", folder: "Laju_Perubahan" },
+            { judul: "Turunan (Kalkulus Diferensial)", folder: "Turunan" },
+            { judul: "Turunan Fungsi Trigonometri", folder: "Turunan_Fungsi_Trigonometri" },
             { judul: "Integral Tak Tentu", folder: "Integral_Tak_Tentu" },
+            { judul: "Integral Trigonometri Tak Tentu", folder: "Integral_Trigonometri_Tak_Tentu" },
             { judul: "Integral Tentu", folder: "Integral_Tentu" },
+            { judul: "Integral Lipat", folder: "Integral_Lipat" },
+            { judul: "Luas Daerah di Bawah Kurva", folder: "Luas_Daerah_Di_Bawah_Kurva" },
             { judul: "Persamaan Diferensial", folder: "Persamaan_Diferensial" },
         ]
     },
@@ -88,6 +139,7 @@ const DAFTAR_TOPIK = [
         topik: [
             { judul: "Statistika", folder: "Statistika" },
             { judul: "Rata-Rata", folder: "Rata-Rata" },
+            { judul: "Kuartil", folder: "Kuartil" },
             { judul: "Desil", folder: "Desil" },
             { judul: "Diagram Lingkaran", folder: "Diagram_Lingkaran" },
         ]
@@ -99,7 +151,9 @@ const DAFTAR_TOPIK = [
             { judul: "Frekuensi Harapan", folder: "Frekuensi_Harapan" },
             { judul: "Aturan Pencacahan", folder: "Aturan_Pencacahan" },
             { judul: "Permutasi dan Kombinasi", folder: "Permutasi_dan_Kombinasi" },
+            { judul: "Kombinasi dengan Pengulangan", folder: "Kombinasi_dengan_Pengulangan" },
             { judul: "Permutasi Siklik", folder: "Permutasi_Siklik_(Siklis)" },
+            { judul: "Koefisien Binomial", folder: "Koefisien_Binomial" },
             { judul: "Prinsip Sarang Burung Merpati", folder: "Prinsip_Sarang_Merpati" },
             { judul: "Distribusi Binomial", folder: "Distribusi_Binomial" },
         ]
@@ -124,7 +178,8 @@ const DAFTAR_ARSIP = [
         kategori: "KTOM",
         folder: "Arsip_Soal/KTOM",
         paket: [
-            { judul: "KTOM Oktober 2026", file: "KTOM Oktober 2026.html" }
+            { judul: "KTOM Oktober 2026", file: "KTOM Oktober 2026.html" },
+            { judul: "KTOM September 2026", file: "KTOM September 2026.html" }
         ]
     },
     {
@@ -178,7 +233,32 @@ function initSoalAndMateriPage() {
     const folderType = decodeURIComponent(pathParts[pathParts.length - 2] || "Exercise");
     const parentFolder = decodeURIComponent(pathParts[pathParts.length - 3] || "");
     const isNumericPage = /^\d+\.html$/i.test(fileName);
-    const isArsipPage = parentFolder === "Arsip_Soal";
+    const isArsipPage = parentFolder === "Arsip_Soal" || fileName.toLowerCase() === "templatearsipsoal.html";
+
+    if (isArsipPage) {
+        document.body.classList.add("is-arsip-page");
+
+        // Tambahkan tombol Cetak / PDF di navbar khusus halaman Arsip Soal
+        const navBarContainer = document.querySelector(".navbar .nav-container");
+        const themeBtn = document.getElementById("theme-toggle");
+        if (navBarContainer && !document.getElementById("print-arsip-btn")) {
+            const printBtn = document.createElement("button");
+            printBtn.id = "print-arsip-btn";
+            printBtn.type = "button";
+            printBtn.className = "theme-btn btn-print";
+            printBtn.textContent = "🖨️ Cetak / PDF";
+            printBtn.addEventListener("click", () => window.print());
+            if (themeBtn) {
+                const actionsWrap = document.createElement("div");
+                actionsWrap.className = "nav-actions";
+                themeBtn.parentNode.insertBefore(actionsWrap, themeBtn);
+                actionsWrap.appendChild(printBtn);
+                actionsWrap.appendChild(themeBtn);
+            } else {
+                navBarContainer.appendChild(printBtn);
+            }
+        }
+    }
 
     const pageNumber = isNumericPage ? (parseInt(fileName.replace(".html", ""), 10) || 1) : 1;
 

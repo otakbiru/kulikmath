@@ -104,6 +104,23 @@ body {
     border-color: var(--teal-primary);
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-print {
+    background: var(--teal-primary);
+    color: #ffffff;
+    border-color: var(--teal-primary);
+}
+
+.btn-print:hover {
+    background: var(--teal-hover);
+    border-color: var(--teal-hover);
+}
+
 /* Container Utama */
 .container {
     max-width: 850px;
@@ -754,4 +771,117 @@ mark.search-highlight {
     font-weight: 700;
     padding: 0 0.2rem;
     border-radius: 3px;
+}
+
+/* ==========================================================================
+   MODE CETAK / PRINT PDF (@media print)
+   ========================================================================== */
+@media print {
+    @page {
+        margin: 1.5cm;
+    }
+
+    :root,
+    [data-theme="dark"] {
+        --bg-body: #ffffff;
+        --bg-card: #ffffff;
+        --bg-subtle: #f8fafc;
+        --text-main: #0f172a;
+        --text-muted: #475569;
+        --teal-primary: #0f766e;
+        --teal-light: #cbd5e1;
+        --border-color: #cbd5e1;
+        --shadow: none;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        padding-bottom: 0 !important;
+        font-size: 10.5pt;
+        line-height: 1.6;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .container {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Sembunyikan navigasi atas, daftar paket, pagination, serta tombol solusi & tutup */
+    .navbar,
+    .level-nav,
+    .pagination-wrapper,
+    .btn-solusi,
+    .btn-tutup,
+    .btn-print {
+        display: none !important;
+    }
+
+    .page-header {
+        background: #ffffff !important;
+        box-shadow: none !important;
+        margin-bottom: 1.25rem !important;
+        padding: 0.85rem 1.15rem !important;
+    }
+
+    .intro-text {
+        margin-bottom: 0 !important;
+    }
+
+    .soal-item {
+        background: #ffffff !important;
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        padding: 1rem 1.2rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* Tampilkan semua kotak pembahasan pada halaman Arsip Soal saat dicetak */
+    body.is-arsip-page .pembahasan-box {
+        display: block !important;
+        animation: none !important;
+        background-color: #f8fafc !important;
+        border: 1px solid #cbd5e1 !important;
+        margin-top: 0.9rem !important;
+        padding: 0.9rem 1.1rem !important;
+    }
+
+    .soal-teks,
+    .pembahasan-box,
+    .materi-card,
+    .table-wrapper {
+        overflow: visible !important;
+    }
+
+    .soal-sumber a {
+        border-bottom: none !important;
+        color: #475569 !important;
+    }
+
+    .kesimpulan,
+    [data-theme="dark"] .kesimpulan {
+        background-color: #fef3c7 !important;
+        color: #92400e !important;
+        border-left: 4px solid #d97706 !important;
+    }
+
+    /* Hindari pemotongan judul atau blok visual antar halaman */
+    .category-heading,
+    .soal-no,
+    .pembahasan-title {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .row,
+    .kesimpulan,
+    .grafik-container,
+    svg,
+    table {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
 }

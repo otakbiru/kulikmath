@@ -355,43 +355,79 @@
             </div>
         </article>
 
-        <!-- SOAL 19 
-        <article class="soal-item" id="19">
-            <div class="soal-no"></div>
-            <div class="soal-teks">
-                Tulis teks soal kedua di sini...
-            </div>
-            <div class="soal-sumber"></div>
-            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
-            <div class="pembahasan-box">
-                <div class="pembahasan-title">Pembahasan:</div>
-                <div class="pembahasan-isi">
-                    Tulis pembahasan soal kedua di sini...
-                    <div class="kesimpulan">Jadi, </div>
-                </div>
-                <button class="btn-tutup">TUTUP</button>
-            </div>
-        </article>
--->
-
-        <!-- SOAL 20 
+        <!-- SOAL 20 -->
         <article class="soal-item" id="20">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal kedua di sini...
+                <ol type="a" style="margin: 0.5rem 0 0 1.4rem;">
+                    <li>Misalkan \(q\) adalah bilangan prima ganjil dan bilangan asli \(n\) memenuhi keterbagian \(q \mid n^2 + 1\). Misalkan \(d\) adalah bilangan asli terkecil sehingga memenuhi \(n^d \equiv 1 \pmod q\), yang kita kenal sebagai <em>order</em> dari \(n\) dalam modulo \(q\) dalam bahasa teori bilangan. Buktikan bahwa \(d = 4\).<br>
+                        <strong>Hint:</strong> Buktikan bahwa \(d = 1, 2, 3\) tidak memenuhi dan \(d = 4\) memenuhi.
+                    </li>
+                    <li>Buktikan bahwa jika \(n^m \equiv 1 \pmod q\), maka \(d \mid m\). Ini adalah sifat order yang paling berguna di teori bilangan.<br>
+                        <strong>Hint:</strong> Misalkan \(m = da + b\) untuk \(a\) bulat dan \(0 \le b < d\). Gunakan fakta bahwa \(d\) adalah bilangan asli <strong>terkecil</strong> yang memenuhi \(n^d \equiv 1 \pmod q\).
+                    </li>
+                    <li>Buktikan bahwa \(4 \mid q - 1\).<br>
+                        <strong>Hint:</strong> Fermat's Little Theorem.<br>
+                        Perhatikan bahwa dari bagian (a), (b), (c) telah terbukti bahwa jika \(n^2 + 1\) memiliki faktor prima ganjil \(q\), maka \(q \equiv 1 \pmod 4\).
+                    </li>
+                    <li>Misalkan bilangan bulat \(x, y, z\) memenuhi \(4xy - x - y = z^2\). Buktikan bahwa \(4x - 1 \mid (2z)^2 + 1\) dan \(4y - 1 \mid (2z)^2 + 1\).</li>
+                    <li>Buktikan bahwa \(x \le 0\) dan \(y \le 0\).<br>
+                        <strong>Hint:</strong> Jika \(x\) bilangan bulat positif, buktikan bahwa ada bilangan prima \(p \equiv 3 \pmod 4\) sehingga \(p \mid 4x - 1\).
+                    </li>
+                </ol>
             </div>
-            <div class="soal-sumber"></div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM September 2026 (Bagian B No. 1)</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan soal kedua di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <p><strong>(a) Bukti bahwa \(d = 4\):</strong></p>
+                    <p>Dari \(q \mid n^2 + 1\), kita peroleh \(n^2 \equiv -1 \pmod q\). Kuadratkan kedua ruas:</p>
+                    \[n^4 = (n^2)^2 \equiv (-1)^2 \equiv 1 \pmod q\]
+                    <p>Sehingga \(d = 4\) memenuhi \(n^d \equiv 1 \pmod q\). Selanjutnya kita buktikan \(d \neq 1, 2, 3\) (mengingat \(q\) prima ganjil, maka \(1 \not\equiv -1 \pmod q\) karena \(q \nmid 2\)):</p>
+                    <ul>
+                        <li><strong>Jika \(d = 2\):</strong> \(n^2 \equiv -1 \not\equiv 1 \pmod q\), tidak memenuhi.</li>
+                        <li><strong>Jika \(d = 1\):</strong> andaikan \(n^1 \equiv 1 \pmod q\), maka \(n^2 \equiv 1^2 = 1 \pmod q\), kontradiksi dengan \(n^2 \equiv -1 \pmod q\).</li>
+                        <li><strong>Jika \(d = 3\):</strong> andaikan \(n^3 \equiv 1 \pmod q\), maka karena \(n^4 \equiv 1 \pmod q\) dan \(\gcd(n, q) = 1\), diperoleh \(n \equiv n^4 \cdot (n^3)^{-1} \equiv 1 \pmod q\), yang kembali menghasilkan \(n^2 \equiv 1 \pmod q\), kontradiksi.</li>
+                    </ul>
+                    <p>Dengan demikian, bilangan asli terkecil \(d\) yang memenuhi \(n^d \equiv 1 \pmod q\) adalah \(d = 4\). \(\blacksquare\)</p>
+                    <br>
+
+                    <p><strong>(b) Bukti bahwa \(n^m \equiv 1 \pmod q \implies d \mid m\):</strong></p>
+                    <p>Berdasarkan Algoritma Pembagian, tulis \(m = da + b\) untuk suatu bilangan bulat \(a\) dan \(0 \le b < d\). Karena \(n^d \equiv 1 \pmod q\) dan \(\gcd(n, q) = 1\), maka:</p>
+                    \[1 \equiv n^m = n^{da + b} = (n^d)^a \cdot n^b \equiv 1^a \cdot n^b \equiv n^b \pmod q\]
+                    <p>Andaikan \(b > 0\), maka \(b\) adalah bilangan asli yang memenuhi \(n^b \equiv 1 \pmod q\) dengan \(1 \le b < d\). Hal ini bertentangan dengan definisi \(d\) sebagai bilangan asli <strong>terkecil</strong> yang memenuhi \(n^d \equiv 1 \pmod q\). Oleh karena itu, haruslah \(b = 0\), sehingga \(m = da\) atau \(d \mid m\). \(\blacksquare\)</p>
+                    <br>
+
+                    <p><strong>(c) Bukti bahwa \(4 \mid q - 1\):</strong></p>
+                    <p>Karena \(q \mid n^2 + 1\), maka \(q \nmid n\), sehingga \(\gcd(n, q) = 1\). Berdasarkan Teorema Kecil Fermat (<em>Fermat's Little Theorem</em>), berlaku:</p>
+                    \[n^{q-1} \equiv 1 \pmod q\]
+                    <p>Berdasarkan sifat order pada bagian (b) dengan \(m = q - 1\) dan \(d = 4\) dari bagian (a), diperoleh \(4 \mid q - 1\) (atau \(q \equiv 1 \pmod 4\)). \(\blacksquare\)</p>
+                    <br>
+
+                    <p><strong>(d) Bukti bahwa \(4x - 1 \mid (2z)^2 + 1\) dan \(4y - 1 \mid (2z)^2 + 1\):</strong></p>
+                    <p>Kalikan kedua ruas persamaan \(4xy - x - y = z^2\) dengan \(4\), lalu tambahkan \(1\) pada kedua ruas untuk memfaktorkan ruas kiri (<em>Simon's Favorite Factoring Trick</em>):</p>
+                    \[\begin{aligned}
+                    16xy - 4x - 4y &= 4z^2\\
+                    16xy - 4x - 4y + 1 &= (2z)^2 + 1\\
+                    (4x - 1)(4y - 1) &= (2z)^2 + 1
+                    \end{aligned}\]
+                    <p>Karena \(x, y, z\) bilangan bulat, maka \(4x - 1\) dan \(4y - 1\) adalah bilangan bulat yang hasil kalinya sama dengan \((2z)^2 + 1\). Terbukti bahwa \(4x - 1 \mid (2z)^2 + 1\) dan \(4y - 1 \mid (2z)^2 + 1\). \(\blacksquare\)</p>
+                    <br>
+
+                    <p><strong>(e) Bukti bahwa \(x \le 0\) dan \(y \le 0\):</strong></p>
+                    <p>Andaikan \(x > 0\) (yakni \(x \ge 1\) karena \(x \in \mathbb{Z}\)). Maka \(4x - 1 \ge 3\) adalah bilangan bulat positif ganjil yang memenuhi:</p>
+                    \[4x - 1 \equiv -1 \equiv 3 \pmod 4\]
+                    <p>Setiap bilangan bulat positif \(> 1\) yang kongruen dengan \(3 \pmod 4\) pasti memiliki setidaknya satu faktor prima ganjil \(p \equiv 3 \pmod 4\) (sebab hasil kali bilangan-bilangan prima yang semuanya kongruen dengan \(1 \pmod 4\) akan selalu kongruen dengan \(1 \pmod 4\), tidak pernah \(3 \pmod 4\)).</p>
+                    <p>Akan tetapi, karena \(p \mid 4x - 1\) dan dari bagian (d) berlaku \(4x - 1 \mid (2z)^2 + 1\), maka diperoleh:</p>
+                    \[p \mid (2z)^2 + 1\]
+                    <p>Jika \(z \neq 0\), berdasarkan kesimpulan bagian (a)–(c) untuk \(n = 2|z|\), setiap faktor prima ganjil dari \(n^2 + 1\) harus memenuhi \(p \equiv 1 \pmod 4\) (dan jika \(z = 0\), maka \((2z)^2 + 1 = 1\) tidak memiliki faktor prima sama sekali). Hal ini bertentangan dengan \(p \equiv 3 \pmod 4\). Kontradiksi! Dengan demikian, pengandaian salah, sehingga haruslah \(x \le 0\).</p>
+                    <p>Dengan argumen yang simetris terhadap \(4y - 1\), apabila \(y \ge 1\) maka \(4y - 1 \ge 3\) memiliki faktor prima \(p \equiv 3 \pmod 4\) yang membagi \((2z)^2 + 1\), menghasilkan kontradiksi yang sama. Maka terbukti bahwa \(x \le 0\) dan \(y \le 0\). \(\blacksquare\)</p>
+                    <div class="kesimpulan">Jadi, kelima pernyataan (a), (b), (c), (d), dan (e) telah terbukti secara lengkap.</div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
             </div>
         </article>
--->
         <!-- Copy-paste blok <article class="soal-item">...</article> sampai 10 blok -->
 
         <!-- Pagination Bawah (Otomatis) -->

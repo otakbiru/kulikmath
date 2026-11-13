@@ -81,6 +81,49 @@
       </div>
     </article>
 
+    <!-- SOAL 22 -->
+    <article class="soal-item" id="22">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        <p>Dua barisan takhingga \(a_1, a_2, a_3, \dots\) dan \(b_1, b_2, b_3, \dots\) dikatakan <em>menabrak</em> jika terdapat bilangan asli \(m\) dengan \(a_m = b_m\).</p>
+        <p>Tentukan ada atau tidaknya barisan takhingga bilangan bulat \(z_1, z_2, z_3, \dots\) yang menabrak seluruh barisan takhingga bilangan bulat yang periodik.</p>
+        <p><strong>Catatan:</strong> Barisan \(x_1, x_2, x_3, \dots\) dikatakan periodik jika terdapat bilangan asli \(p\) sehingga \(x_i = x_{i+p}\) untuk setiap bilangan asli \(i\).</p>
+      </div>
+      <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM September 2026 (Bagian B No. 3)</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          <p><strong>Jawab: Ada.</strong></p>
+          <p><strong>Langkah 1: Reduksi ke Pasangan \((p, c) \in \mathbb{N} \times \mathbb{Z}\)</strong><br>
+          Perhatikan bahwa jika suatu barisan bilangan bulat \((x_i)_{i \ge 1}\) bersifat periodik dengan periode \(p \in \mathbb{N}\) (yakni \(x_{i+p} = x_i\) untuk setiap \(i \ge 1\)), maka dengan induksi sederhana berlaku bahwa nilai suku pada setiap indeks kelipatan \(p\) selalu konstan:</p>
+          \[x_{kp} = x_p \quad \text{untuk setiap bilangan asli } k \ge 1.\]
+          <p>Dengan demikian, agar barisan \((z_i)_{i \ge 1}\) menabrak barisan periodik \((x_i)_{i \ge 1}\) yang berperiode \(p\) dengan nilai \(x_p = c \in \mathbb{Z}\), cukup terdapat satu bilangan asli \(k \ge 1\) sehingga \(z_{kp} = c\).</p>
+
+          <p><strong>Langkah 2: Ketercacahan Himpunan \(\mathbb{N} \times \mathbb{Z}\)</strong><br>
+          Himpunan bilangan asli \(\mathbb{N} = \{1, 2, 3, \dots\}\) dan himpunan bilangan bulat \(\mathbb{Z} = \{0, 1, -1, 2, -2, \dots\}\) keduanya merupakan himpunan tercacah (<em>countable</em>), sehingga hasil kali Kartesius \(\mathbb{N} \times \mathbb{Z}\) juga tercacah. Artinya, seluruh pasangan \((p, c) \in \mathbb{N} \times \mathbb{Z}\) dapat diurutkan menjadi satu barisan takhingga:</p>
+          \[(p_1, c_1),\; (p_2, c_2),\; (p_3, c_3),\; \dots\]
+          <p>(Sebagai contoh eksplisit, kita dapat mengurutkan bilangan bulat sebagai \(w_1 = 0, w_2 = 1, w_3 = -1, w_4 = 2, w_5 = -2, \dots\) lalu memetakan setiap pasangan \((p, w_r)\) ke indeks tunggal menggunakan fungsi pemasangan Cantor \(n(p, r) = \dfrac{(p + r - 2)(p + r - 1)}{2} + p\)).</p>
+
+          <p><strong>Langkah 3: Konstruksi Indeks Kelipatan \(m_n\) dan Barisan \((z_i)_{i \ge 1}\)</strong><br>
+          Kita pilih barisan indeks bilangan asli \(m_1 < m_2 < m_3 < \dots\) yang naik tegas secara rekursif sedemikian sehingga \(m_n\) merupakan kelipatan dari \(p_n\) untuk setiap \(n \ge 1\):</p>
+          <ul>
+            <li>Tetapkan \(m_1 = p_1\).</li>
+            <li>Untuk setiap \(n \ge 2\), pilih \(m_n = \left(\left\lfloor\dfrac{m_{n-1}}{p_n}\right\rfloor + 1\right) p_n\). Jelas bahwa \(m_n\) adalah kelipatan bulat positif dari \(p_n\) dan memenuhi \(m_n > m_{n-1}\).</li>
+          </ul>
+          <p>Karena \(m_1 < m_2 < m_3 < \dots\) naik tegas, seluruh indeks \(m_n\) saling berbeda. Sekarang definisikan barisan bilangan bulat \((z_i)_{i \ge 1}\) dengan aturan:</p>
+          \[z_i = \begin{cases} c_n, & \text{jika } i = m_n \text{ untuk suatu } n \ge 1, \\ 0, & \text{untuk } i \text{ lainnya.} \end{cases}\]
+
+          <p><strong>Langkah 4: Verifikasi Sifat Menabrak</strong><br>
+          Ambil sebarang barisan bilangan bulat periodik \((x_i)_{i \ge 1}\). Misalkan \(p \in \mathbb{N}\) adalah periodenya dan \(c = x_p \in \mathbb{Z}\). Pasangan \((p, c)\) pasti muncul dalam daftar pencacahan kita sebagai \((p_n, c_n)\) untuk suatu indeks \(n \ge 1\). Karena \(m_n = k_n p_n\) adalah kelipatan positif dari \(p_n = p\), maka berlaku:</p>
+          \[x_{m_n} = x_{k_n p} = x_p = c = c_n = z_{m_n}\]
+          <p>Terbukti bahwa barisan \((z_i)_{i \ge 1}\) menabrak \((x_i)_{i \ge 1}\) pada suku ke-\(m_n\). \(\blacksquare\)</p>
+          <div class="kesimpulan">Jadi, <strong>ada</strong> barisan takhingga bilangan bulat \(z_1, z_2, z_3, \dots\) yang menabrak seluruh barisan takhingga bilangan bulat yang periodik.</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
     <!-- Pagination Bawah (Otomatis) -->
     <div class="pagination-wrapper"></div>
   </main>
