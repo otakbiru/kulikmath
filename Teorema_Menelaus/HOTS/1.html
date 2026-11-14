@@ -88,6 +88,37 @@
             </div>
         </article>
 
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Pada segitiga \(ABC\), titik \(F\) membagi sisi \(AC\) dalam perbandingan \(1 : 2\). Misalkan \(G\) titik tengah \(BF\) dan \(E\) titik perpotongan antara sisi \(BC\) dengan \(AG\). Maka titik \(E\) membagi sisi \(BC\) dalam perbandingan
+                <ol class="pilgan pilgan-5kolom">
+                    <li>\(1 : 4\)</li>
+                    <li>\(1 : 3\)</li>
+                    <li>\(2 : 5\)</li>
+                    <li>\(4 : 11\)</li>
+                    <li>\(3 : 8\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">OSK SMA 2006 (Bagian I No. 4)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-2" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Diketahui titik \(F\) membagi \(AC\) dengan \(AF : FC = 1 : 2\) (sehingga \(CA : AF = 3 : 1\)), dan \(G\) adalah titik tengah \(BF\) (sehingga \(FG : GB = 1 : 1\)).</p>
+                    <p>Perhatikan \(\triangle CBF\) yang dipotong oleh garis transversal \(A - G - E\) (titik \(A\) pada perpanjangan \(CF\), titik \(E\) pada \(CB\), dan titik \(G\) pada \(BF\)). Menurut <strong>Teorema Menelaus</strong>:</p>
+                    \[\frac{BE}{EC} \cdot \frac{CA}{AF} \cdot \frac{FG}{GB} = 1\]
+                    <p>Substitusikan perbandingan yang diketahui:</p>
+                    \[\frac{BE}{EC} \cdot \frac{3}{1} \cdot \frac{1}{1} = 1 \implies \frac{BE}{EC} = \frac{1}{3}\]
+                    <p><em>(Alternatif dengan metode titik berat / mass points: pilih massa \(m_A = 2\) dan \(m_C = 1\) agar \(m_A \cdot AF = m_C \cdot FC\), sehingga \(m_F = 3\). Karena \(G\) tengah \(BF\), maka \(m_B = m_F = 3\). Pada sisi \(BC\), diperoleh \(BE : EC = m_C : m_B = 1 : 3\).)</em></p>
+                    <div class="kesimpulan">Jadi, titik \(E\) membagi sisi \(BC\) dengan perbandingan <strong>\(1 : 3\)</strong>.<br><b>JAWAB: B</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -144,6 +175,27 @@
 
             document.addEventListener('DOMContentLoaded', function () {
                 tunggu(gambarSoal1);
+                tunggu(function () {
+                    const el2 = document.getElementById("svg-solusi-2");
+                    if (!el2 || el2.dataset.rendered) return;
+                    el2.dataset.rendered = "true";
+                    const geo2 = new GeoSVG("svg-solusi-2", 260, 205, { margin: 16, clearContainer: true });
+                    const A = { x: 110, y: 24 };
+                    const B = { x: 28, y: 174 };
+                    const C = { x: 230, y: 174 };
+                    const F = { x: 150, y: 74 };
+                    const G = { x: 89, y: 124 };
+                    const E = { x: 78.5, y: 174 };
+                    geo2.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    geo2.buatSegmen(B, F, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    geo2.buatSegmen(A, E, { stroke: "#dc2626", strokeWidth: 1.8 });
+                    geo2.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                    geo2.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    geo2.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                    geo2.buatTitik(F, { label: "F", labelPosition: "top-right", size: 3.5, color: "var(--teal-primary)" });
+                    geo2.buatTitik(G, { label: "G", labelPosition: "top-left", size: 3.5, color: "#dc2626" });
+                    geo2.buatTitik(E, { label: "E", labelPosition: "bottom-center", size: 3.5, color: "#dc2626" });
+                });
             });
         })();
     </script>

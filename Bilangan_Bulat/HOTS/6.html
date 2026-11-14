@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bilangan Bulat [6]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bilangan Bulat</span>
+            </p>
+            <!-- Tombol Tingkat (Materi | Dasar | SNBT | HOTS) dirender otomatis oleh JS -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 51 -->
+        <article class="soal-item" id="51">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Banyaknya solusi pasangan bilangan bulat positif persamaan \(3x + 5y = 501\) adalah
+                <ol class="pilgan pilgan-5kolom">
+                    <li>\(33\)</li>
+                    <li>\(34\)</li>
+                    <li>\(35\)</li>
+                    <li>\(36\)</li>
+                    <li>\(37\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">OSK SMA 2006 (Bagian I No. 10)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Perhatikan bahwa \(501 = 3 \times 167\), sehingga persamaan \(3x + 5y = 501\) dapat ditulis sebagai:</p>
+                    \[5y = 501 - 3x = 3(167 - x)\]
+                    <p>Karena ruas kanan habis dibagi \(3\) dan \(\gcd(3, 5) = 1\), maka \(y\) haruslah kelipatan \(3\). Misalkan \(y = 3k\) dengan \(k \in \mathbb{Z}^+\) (sebab \(y \gt 0\)). Substitusikan ke persamaan awal:</p>
+                    \[3x + 5(3k) = 501 \iff x + 5k = 167 \iff x = 167 - 5k\]
+                    <p>Agar pasangan \((x, y)\) sama-sama bilangan bulat positif, syaratnya:</p>
+                    <ul>
+                        <li>\(y = 3k \ge 1 \implies k \ge 1\)</li>
+                        <li>\(x = 167 - 5k \ge 1 \iff 5k \le 166 \implies k \le \left\lfloor \dfrac{166}{5} \right\rfloor = 33\)</li>
+                    </ul>
+                    <p>Jadi nilai \(k\) yang memenuhi adalah \(1, 2, 3, \dots, 33\), sehingga terdapat tepat \(33\) pasangan solusi.</p>
+                    <div class="kesimpulan">Jadi, banyaknya solusi pasangan bilangan bulat positif adalah <strong>33</strong>.<br><b>JAWAB: A</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 52 -->
+        <article class="soal-item" id="52">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Nanang mencari semua bilangan empat-angka yang selisihnya dengan jumlah keempat angkanya adalah \(2007\). Banyaknya bilangan yang ditemukan Nanang tidak akan lebih dari \(\dots\)
+            </div>
+            <div class="soal-sumber">OSK SMA 2006 (Bagian II No. 17)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan bilangan empat-angka tersebut adalah \(N = \overline{abcd} = 1000a + 100b + 10c + d\) dengan \(a \in \{1, 2, \dots, 9\}\) dan \(b, c, d \in \{0, 1, \dots, 9\}\).</p>
+                    <p>Jumlah keempat angkanya adalah \(S(N) = a + b + c + d \le 36 \lt 1000 \le N\), sehingga selisihnya pasti bernilai \(N - S(N) = 2007\):</p>
+                    \[\begin{aligned}
+                    N - S(N) &= (1000a + 100b + 10c + d) - (a + b + c + d) \\
+                             &= 999a + 99b + 9c \\
+                             &= 9(111a + 11b + c) = 2007
+                    \end{aligned}\]
+                    <p>Bagi kedua ruas dengan \(9\) (karena \(2007 = 9 \times 223\)):</p>
+                    \[111a + 11b + c = 223\]
+                    <p>Perhatikan batas nilai \(11b + c \le 99 + 9 = 108\):</p>
+                    <ul>
+                        <li>Jika \(a = 1\): \(11b + c = 223 - 111 = 112 \gt 108\) (tidak mungkin).</li>
+                        <li>Jika \(a \ge 3\): \(111a \ge 333 \gt 223\) (tidak mungkin).</li>
+                        <li>Jika \(a = 2\): \(11b + c = 223 - 222 = 1\). Karena \(b \ge 0\) dan \(0 \le c \le 9\), haruslah \(b = 0\) dan \(c = 1\).</li>
+                    </ul>
+                    <p>Sementara itu, angka satuan \(d\) saling meniadakan dalam selisih \(N - S(N)\), sehingga \(d\) dapat dipilih bebas dari \(0\) sampai \(9\). Semua bilangan yang memenuhi ada tepat \(10\) bilangan, yakni \(2010, 2011, 2012, \dots, 2019\). Maka banyaknya bilangan yang dapat ditemukan Nanang paling banyak \(10\).</p>
+                    <div class="kesimpulan">Jadi, banyaknya bilangan yang ditemukan Nanang tidak akan lebih dari <strong>10</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

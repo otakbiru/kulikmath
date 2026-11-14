@@ -368,6 +368,74 @@
             </script>
         </article>
 
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Pada segitiga \(ABC\) yang tumpul di \(C\), titik \(M\) adalah titik tengah \(AB\). Melalui \(C\) dibuat garis tegak lurus pada \(BC\) yang memotong \(AB\) di titik \(E\). Dari \(M\) tarik garis memotong \(BC\) tegak lurus di \(D\). Jika luas segitiga \(ABC\) adalah \(54\) satuan luas, maka luas segitiga \(BED\) adalah \(\dots\)
+            </div>
+            <div class="soal-sumber">OSK SMA 2006 (Bagian II No. 20)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-3" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Karena \(\triangle ABC\) tumpul di \(C\) (\(\angle ACB \gt 90^\circ\)), garis melalui \(C\) tegak lurus \(BC\) masuk ke bagian dalam sudut \(C\) dan memotong sisi \(AB\) di titik \(E\).</p>
+                    <p>Perhatikan \(\triangle BEC\) dan \(\triangle BDM\):</p>
+                    <ul>
+                        <li>\(\angle BCE = \angle BDM = 90^\circ\) (karena \(CE \perp BC\) dan \(MD \perp BC\)),</li>
+                        <li>\(\angle EBC = \angle MBD = \angle B\) (sudut sekutu; baik \(E\) maupun \(M\) terletak pada ruas \(AB\)).</li>
+                    </ul>
+                    <p>Menurut kriteria <strong>Sudut–Sudut (AA)</strong>, kedua segitiga tersebut sebangun (\(\triangle BEC \sim \triangle BDM\)), sehingga berlaku perbandingan sisi bersesuaian:</p>
+                    \[\frac{BC}{BM} = \frac{BE}{BD} \implies BE \cdot BD = BM \cdot BC\]
+                    <p><em>(Catatan: karena sudut \(B\) lancip dalam \(\triangle ABC\) yang tumpul di \(C\), titik \(D\) selalu berada pada sinar \(BC\).)</em> Hitung luas \(\triangle BED\) dan bandingkan dengan \(\triangle BMC\):</p>
+                    \[\begin{aligned}
+                    L_{\triangle BED} &= \frac{1}{2} \cdot BE \cdot BD \cdot \sin B \\
+                                      &= \frac{1}{2} \cdot BM \cdot BC \cdot \sin B \\
+                                      &= L_{\triangle BMC}
+                    \end{aligned}\]
+                    <p>Karena \(M\) adalah titik tengah \(AB\), garis berat \(CM\) membagi luas \(\triangle ABC\) menjadi dua bagian sama besar:</p>
+                    \[L_{\triangle BED} = L_{\triangle BMC} = \frac{1}{2} L_{\triangle ABC} = \frac{1}{2} \times 54 = 27\]
+                    <div class="kesimpulan">Jadi, luas segitiga \(BED\) adalah <strong>27</strong> satuan luas.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+            <script>
+            (function () {
+                function gambarHots3() {
+                    if (typeof GeoSVG === "undefined") { setTimeout(gambarHots3, 100); return; }
+                    const el = document.getElementById("svg-solusi-3");
+                    if (!el || el.dataset.rendered) return;
+                    el.dataset.rendered = "true";
+                    const geo = new GeoSVG("svg-solusi-3", 280, 195, { margin: 16, clearContainer: true });
+                    const B = { x: 35, y: 160 };
+                    const C = { x: 175, y: 160 };
+                    const A = { x: 235, y: 32 };
+                    const E = { x: 175, y: 70.4 };
+                    const M = { x: 135, y: 96 };
+                    const D = { x: 135, y: 160 };
+                    geo.buatSegitiga(B, E, D, { fill: "rgba(13, 148, 136, 0.16)", stroke: "var(--teal-primary)", strokeWidth: 2 });
+                    geo.buatSegitiga(A, B, C, { fill: "none", stroke: "var(--text-main)", strokeWidth: 2 });
+                    geo.buatSegmen(E, C, { stroke: "#dc2626", strokeWidth: 1.7 });
+                    geo.buatSegmen(M, D, { stroke: "var(--teal-primary)", strokeWidth: 1.7 });
+                    geo.buatSiku(E, C, B, { size: 9, stroke: "#dc2626" });
+                    geo.buatSiku(M, D, B, { size: 9, stroke: "var(--teal-primary)" });
+                    geo.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    geo.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 3.5, color: "var(--teal-primary)" });
+                    geo.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.5, color: "#dc2626" });
+                    geo.buatTitik(M, { label: "M", labelPosition: "top-left", size: 3.5, color: "var(--teal-primary)" });
+                    geo.buatTitik(E, { label: "E", labelPosition: "top-left", size: 3.5, color: "#dc2626" });
+                    geo.buatTitik(A, { label: "A", labelPosition: "top-right", size: 3.5, color: "var(--text-main)" });
+                }
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", gambarHots3);
+                } else {
+                    gambarHots3();
+                }
+            })();
+            </script>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>

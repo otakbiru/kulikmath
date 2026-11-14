@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciri-Ciri Bilangan Habis Dibagi 2 Sampai 11 - KulikMath</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Artikel -->
+        <div class="page-header">
+            <p class="intro-text">
+                Artikel Khusus <span id="auto-level" class="level-highlight">...</span> —
+                <span class="topic-highlight">Ciri-Ciri Bilangan Habis Dibagi 2, 3, 4, 5, 6, 7, 8, 9, 10, dan 11</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Artikel -->
+        <article class="materi-card">
+            <h2>1. Ringkasan Cepat (Cheat Sheet)</h2>
+            <p>
+                Untuk sembarang bilangan bulat dalam basis desimal (\(10\)), kita dapat mengecek apakah bilangan tersebut
+                habis dibagi \(2\) sampai \(11\) tanpa membagi habis seluruh digitnya. Tabel berikut merangkum aturan cepat
+                untuk setiap pembagi dari \(2\) hingga \(11\):
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pembagi</th>
+                            <th>Ciri Bilangan Habis Dibagi</th>
+                            <th>Contoh Cek Cepat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>\(2\)</strong></td>
+                            <td class="text-left">Digit terakhirnya genap (\(0, 2, 4, 6,\) atau \(8\)).</td>
+                            <td class="text-left">\(7.314\): digit akhir \(4\) genap \(\implies\) habis dibagi \(2\).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>\(3\)</strong></td>
+                            <td class="text-left">Jumlah seluruh digitnya habis dibagi \(3\).</td>
+                            <td class="text-left">\(5.421\): \(5+4+2+1=12\) (kelipatan \(3\)) \(\implies\) habis dibagi \(3\).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>\(4\)</strong></td>
+                            <td class="text-left">Bilangan dari <strong>\(2\) digit terakhir</strong> habis dibagi \(4\).</td>
+                            <td class="text-left">\(9.352\): \(52 = 4 \times 13 \implies\) habis dibagi \(4\).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>\(5\)</strong></td>
+                            <td class="text-left">Digit terakhirnya \(0\) atau \(5\).</td>
+                            <td class="text-left">\(6.875\): berakhir \(5 \implies\) habis dibagi \(5\).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>\(6\)</strong></td>
+                            <td class="text-left">Habis dibagi \(2\) (genap) <strong>dan</strong> habis dibagi \(3\) (jumlah digit kelipatan \(3\)).</td>
+                            <td class="text-left">\(4.362\): genap dan \(4+3+6+2=15\) habis dibagi \(3 \implies\) habis dibagi \(6\).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>\(7\)</strong></td>
+                            <td class="text-left">
+                                <strong>Metode Potong-Kurang:</strong> pisahkan digit satuan \(u\), hitung \(s - 2u\) berulang kali sampai kelipatan \(7\) (termasuk \(0\)).<br>
+                                <strong>Alternatif Blok \(3\) Digit:</strong> selisih selang-seling blok \(3\) digit dari kanan habis dibagi \(7\).
+                            </td>
+                            <td class="text-left">\(1.624\): \(162 - 2(4) = 154 \to 15 - 2(4) = 7 \implies\) habis dibagi \(7\).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>\(8\)</strong></td>
+                            <td class="text-left">Bilangan dari <strong>\(3\) digit terakhir</strong> habis dibagi \(8\).</td>
+                            <td class="text-left">\(27.432\): \(432 = 8 \times 54 \implies\) habis dibagi \(8\).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>\(9\)</strong></td>
+                            <td class="text-left">Jumlah seluruh digitnya habis dibagi \(9\).</td>
+                            <td class="text-left">\(8.379\): \(8+3+7+9=27\) (kelipatan \(9\)) \(\implies\) habis dibagi \(9\).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>\(10\)</strong></td>
+                            <td class="text-left">Digit terakhirnya \(0\).</td>
+                            <td class="text-left">\(12.480\): berakhir \(0 \implies\) habis dibagi \(10\).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>\(11\)</strong></td>
+                            <td class="text-left">Jumlah selang-seling digit dari kanan (\(d_0 - d_1 + d_2 - d_3 + \dots\)) habis dibagi \(11\) (termasuk \(0\)).</td>
+                            <td class="text-left">\(91.828\): \(8 - 2 + 8 - 1 + 9 = 22\) (kelipatan \(11\)) \(\implies\) habis dibagi \(11\).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>2. Ide Dasar: Nilai Tempat Desimal &amp; Aritmetika Modulo</h2>
+            <p>
+                Semua aturan di atas bukan trik hapalan acak, melainkan akibat langsung dari penulisan bilangan bulat tak-negatif
+                \(N = \overline{d_k d_{k-1} \dots d_1 d_0}\) dalam basis \(10\):
+                \[N = d_k \cdot 10^k + d_{k-1} \cdot 10^{k-1} + \dots + d_1 \cdot 10 + d_0 = \sum_{i=0}^{k} d_i \cdot 10^i\]
+                Dengan menggunakan <a href="../../Modulo/Materi/1.html">aritmetika modulo</a> terhadap suatu pembagi \(m\),
+                kita cukup melihat nilai sisa \(10^i \bmod m\). Jika sebuah bilangan negatif diuji, cukup buang tanda minusnya karena
+                \(m \mid (-N) \iff m \mid N\).
+            </p>
+
+            <h2>3. Kelompok 1: Berbasis Digit Akhir (\(2, 4, 8, 5, 10\))</h2>
+            <p>
+                Karena \(10 = 2 \times 5\), pangkat dari \(10\) langsung menghilangkan digit-digit di depan ketika dimodulokan
+                oleh pembagi berbentuk \(2^k\), \(5^k\), atau \(10^k\):
+            </p>
+            <ul>
+                <li>
+                    <strong>Pembagi \(2, 4,\) dan \(8\) (\(2^1, 2^2, 2^3\)):</strong>
+                    <ul>
+                        <li>Karena \(10 \equiv 0 \pmod{2}\), seluruh suku mulai \(d_1 \cdot 10\) habis dibagi \(2\), sehingga \(N \equiv d_0 \pmod{2}\). Cukup cek <strong>\(1\) digit terakhir</strong>.</li>
+                        <li>Karena \(100 = 4 \times 25 \equiv 0 \pmod{4}\), suku mulai \(d_2 \cdot 10^2\) hilang dalam \(\bmod 4\), sehingga \(N \equiv \overline{d_1 d_0} \pmod{4}\). Cukup cek <strong>\(2\) digit terakhir</strong>.</li>
+                        <li>Karena \(1000 = 8 \times 125 \equiv 0 \pmod{8}\), suku mulai \(d_3 \cdot 10^3\) habis dibagi \(8\), sehingga \(N \equiv \overline{d_2 d_1 d_0} \pmod{8}\). Cukup cek <strong>\(3\) digit terakhir</strong>.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Trik Tambahan untuk \(8\) (Tanpa Membagi Ratusan):</strong><br>
+                    Untuk tiga digit terakhir \(\overline{abc} = 100a + \overline{bc}\), perhatikan bahwa \(100 = 8 \times 12 + 4 \equiv 4 \pmod{8}\). Jadi:
+                    <ul>
+                        <li>Jika digit ratusan \(a\) <strong>genap</strong>, maka \(100a \equiv 0 \pmod{8} \implies\) cukup cek apakah \(\overline{bc}\) habis dibagi \(8\).</li>
+                        <li>Jika digit ratusan \(a\) <strong>ganjil</strong>, maka \(100a \equiv 4 \pmod{8} \implies\) cek apakah \((\overline{bc} + 4)\) habis dibagi \(8\).</li>
+                    </ul>
+                    <em>Contoh:</em> \(27.432\) memiliki \(a = 4\) (genap) dan \(8 \mid 32\); sedangkan \(5.316\) memiliki \(a = 3\) (ganjil) dan \(16 + 4 = 20\) tidak habis dibagi \(8\) (sisa \(4\)).
+                </li>
+                <li>
+                    <strong>Pembagi \(5\) dan \(10\):</strong><br>
+                    Karena \(10 \equiv 0 \pmod{5}\) sekaligus \(10 \equiv 0 \pmod{10}\), maka \(N \equiv d_0 \pmod{5}\) dan \(N \equiv d_0 \pmod{10}\).
+                    Artinya, satu-satunya digit satuan yang habis dibagi \(5\) adalah \(0\) atau \(5\), sedangkan yang habis dibagi \(10\) hanyalah \(0\).
+                </li>
+            </ul>
+
+            <h2>4. Kelompok 2: Berbasis Jumlah Digit (\(3\) dan \(9\))</h2>
+            <p>
+                Perhatikan bahwa \(10 = 9 + 1 \equiv 1 \pmod{9}\). Akibatnya, untuk setiap pangkat \(i \ge 0\):
+                \[10^i \equiv 1^i = 1 \pmod{9}\]
+                Substitusikan ke ekspansi desimal \(N\):
+                \[N = \sum_{i=0}^{k} d_i \cdot 10^i \equiv d_k + d_{k-1} + \dots + d_1 + d_0 \pmod{9}\]
+                Karena \(3 \mid 9\), kongruensi yang persis sama juga berlaku untuk modulo \(3\):
+                \[N \equiv d_k + d_{k-1} + \dots + d_1 + d_0 \pmod{3}\]
+            </p>
+            <div class="kesimpulan">
+                💡 Keunggulan Aturan \(3\) dan \(9\):<br>
+                Aturan jumlah digit tidak hanya mengecek habis dibagi, tetapi sekaligus memberikan <strong>sisa pembagian yang persis sama</strong> oleh \(3\) maupun \(9\).
+                Misalnya, \(4.721\) memiliki jumlah digit \(4+7+2+1 = 14 \equiv 5 \pmod{9}\), sehingga sisa pembagian \(4.721\) oleh \(9\) pasti \(5\) (dan oleh \(3\) bersisa \(2\)).
+            </div>
+
+            <h2>5. Kelompok 3: Berbasis Selisih Selang-Seling (\(11\))</h2>
+            <p>
+                Karena \(10 = 11 - 1 \equiv -1 \pmod{11}\), nilai \(10^i \bmod 11\) bergantian antara \(+1\) dan \(-1\):
+                \[10^0 \equiv +1, \quad 10^1 \equiv -1, \quad 10^2 \equiv +1, \quad 10^3 \equiv -1 \pmod{11}\]
+                Sehingga diperoleh:
+                \[N \equiv d_0 - d_1 + d_2 - d_3 + \dots + (-1)^k d_k \pmod{11}\]
+            </p>
+            <p>
+                <strong>Hati-Hati Menentukan Sisa Pembagian dengan \(11\):</strong><br>
+                Untuk sekadar menguji <em>habis atau tidaknya</em> dibagi \(11\), tanda selang-seling boleh dimulai dari kiri maupun kanan karena \(11 \mid S \iff 11 \mid (-S)\).
+                Namun, jika Anda ingin mencari <strong>sisa pembagian</strong> \(N \bmod 11\), penjumlahan wajib memberi tanda <strong>\(+\)</strong> pada <strong>digit satuan (\(d_0\), paling kanan)</strong> lalu bergantian ke kiri.
+                <br><em>Contoh:</em> Untuk \(739\), dari kanan: \(+9 - 3 + 7 = 13 \equiv 2 \pmod{11}\). Memang benar \(739 = 11 \times 67 + 2\).
+                (Jika keliru memulai \(+\) dari kiri pada \(739\), hasilnya \(7 - 3 + 9 = 13\) kebetulan sama karena jumlah digitnya ganjil, tetapi pada bilangan berjumlah digit genap seperti \(25\) akan menghasilkan \(2 - 5 = -3 \equiv 8\) padahal \(25 \bmod 11 = 3\).)
+            </p>
+
+            <h2>6. Kelompok 4: Faktor Gabungan yang Saling Koprima (\(6\))</h2>
+            <p>
+                Prinsip dasar faktorisasi keterbagian menyatakan bahwa jika \(m = a \cdot b\) dengan syarat
+                \(\text{FPB}(a, b) = 1\) (saling koprima), maka:
+                \[m \mid N \iff a \mid N \text{ dan } b \mid N\]
+                Untuk \(m = 6 = 2 \times 3\), karena \(\text{FPB}(2, 3) = 1\), bilangan \(N\) habis dibagi \(6\) jika dan hanya jika
+                \(N\) genap (habis dibagi \(2\)) <strong>dan</strong> jumlah digitnya kelipatan \(3\) (habis dibagi \(3\)).
+            </p>
+            <p>
+                <strong>Peringatan Syarat Koprima:</strong> Prinsip ini <em>tidak berlaku</em> bila dua faktornya memiliki faktor persekutuan lebih dari \(1\).
+                Contohnya, \(12\) habis dibagi \(2\) dan habis dibagi \(4\), tetapi \(12\) tidak habis dibagi \(2 \times 4 = 8\) karena \(\text{FPB}(2, 4) = 2 \neq 1\).
+                Sebaliknya, untuk pasangan koprima lain yang sering muncul pada soal SNBT dan olimpiade, polanya langsung berlaku:
+            </p>
+            <ul>
+                <li>\(12 \mid N \iff 3 \mid N \text{ dan } 4 \mid N\)</li>
+                <li>\(15 \mid N \iff 3 \mid N \text{ dan } 5 \mid N\)</li>
+                <li>\(36 \mid N \iff 4 \mid N \text{ dan } 9 \mid N\)</li>
+                <li>\(72 \mid N \iff 8 \mid N \text{ dan } 9 \mid N\)</li>
+                <li>\(77 \mid N \iff 7 \mid N \text{ dan } 11 \mid N\)</li>
+            </ul>
+
+            <h2>7. Kelompok 5: Kasus Khusus Bilangan Prima \(7\)</h2>
+            <p>
+                Tidak seperti \(9\) atau \(11\), sisa \(10 \equiv 3 \pmod{7}\) tidak bernilai \(0, +1,\) atau \(-1\), sehingga aturan digitnya tidak sesederhana menjumlahkan digit.
+                Ada dua teknik standar yang cepat digunakan di lapangan:
+            </p>
+
+            <h3>Metode A: Potong Digit Satuan &amp; Kurangkan \(2u\) (Untuk Bilangan \(3\)–\(5\) Digit)</h3>
+            <p>
+                Tuliskan bilangan \(N = 10s + u\), dengan \(u\) adalah digit satuan dan \(s\) adalah bilangan sisa di depannya.
+                Kurangkan \(21u\) (jelas habis dibagi \(7\)) dari \(N\):
+                \[N - 21u = (10s + u) - 21u = 10s - 20u = 10(s - 2u)\]
+                Karena \(7 \mid 21u\) dan \(\text{FPB}(10, 7) = 1\), berlaku ekuivalensi:
+                \[7 \mid N \iff 7 \mid 10(s - 2u) \iff 7 \mid (s - 2u)\]
+                Jika hasil \(s - 2u\) masih besar, ulangi langkah yang sama sampai terlihat apakah hasilnya kelipatan \(7\) (termasuk \(0, -7, -14,\) dst.).
+            </p>
+            <p>
+                <em>Contoh:</em> Uji apakah \(4.858\) habis dibagi \(7\):
+                \[4858 \;\longrightarrow\; 485 - 2(8) = 469 \;\longrightarrow\; 46 - 2(9) = 28\]
+                Karena \(28 = 7 \times 4\), maka \(4.858\) habis dibagi \(7\) (\(4.858 = 7 \times 694\)).
+                <br><em>Catatan Penting:</em> Metode A hanya mempertahankan status <em>habis/tidaknya</em> dibagi \(7\), <strong>bukan</strong> sisa pembagiannya (karena ada faktor pengali \(10\)). Untuk mencari sisa pembagian oleh \(7\), gunakan Metode B di bawah.
+            </p>
+
+            <h3>Metode B: Blok \(3\) Digit Selang-Seling via \(1001\) (Untuk Bilangan Besar &amp; Mencari Sisa)</h3>
+            <p>
+                Perhatikan identitas ajaib di teori bilangan dasar:
+                \[1001 = 7 \times 11 \times 13 \implies 1000 = 10^3 \equiv -1 \pmod{7,\; 11,\; 13}\]
+                Artinya, apabila bilangan sangat panjang dipecah menjadi kelompok \(3\) digit dari kanan,
+                \(N = \overline{\dots B_2 B_1 B_0} = B_0 + B_1 \cdot 10^3 + B_2 \cdot 10^6 + \dots\), maka:
+                \[N \equiv B_0 - B_1 + B_2 - B_3 + \dots \pmod{7,\; 11,\; 13}\]
+            </p>
+            <p>
+                <em>Contoh:</em> Uji bilangan \(138.523.154\) terhadap \(7\):
+                \[154 - 523 + 138 = -231\]
+                Cek \(-231\) dengan Metode A: \(23 - 2(1) = 21 = 7 \times 3\). Maka \(138.523.154\) habis dibagi \(7\)!
+                (Selain itu, dengan hasil blok yang sama \(-231 = -(11 \times 21)\), sekaligus terlihat bahwa \(138.523.154\) juga habis dibagi \(11\).)
+            </p>
+        </article>
+
+        <!-- Contoh Penerapan Interaktif -->
+        <div style="margin-top: 2rem;">
+            <h2 class="category-heading" style="margin-bottom: 1rem;">Contoh Penerapan Pada Soal Seleksi</h2>
+
+            <!-- Contoh 1 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Diketahui bilangan \(7\) digit \(\overline{42A836B}\) habis dibagi \(72\). Tentukan semua pasangan digit \((A, B)\) yang memenuhi!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <div class="pembahasan-isi">
+                        <p>
+                            Faktorkan pembagi ke pasangan yang saling koprima: \(72 = 8 \times 9\) dengan \(\text{FPB}(8, 9) = 1\).
+                            Artinya, \(\overline{42A836B}\) harus habis dibagi \(8\) <strong>dan</strong> habis dibagi \(9\).
+                        </p>
+                        <p>
+                            <strong>Langkah 1: Uji keterbagian oleh \(8\) (tiga digit terakhir).</strong><br>
+                            Agar \(8 \mid \overline{36B}\), perhatikan bahwa \(360 = 8 \times 45\). Karena \(360 + B\) harus kelipatan \(8\) dengan \(0 \le B \le 9\), nilai \(B\) yang mungkin hanyalah:
+                            \[B \in \{0, 8\}\]
+                        </p>
+                        <p>
+                            <strong>Langkah 2: Uji keterbagian oleh \(9\) (jumlah seluruh digit).</strong><br>
+                            Jumlah seluruh digitnya adalah:
+                            \[4 + 2 + A + 8 + 3 + 6 + B = 23 + A + B\]
+                        </p>
+                        <ul>
+                            <li>Untuk \(B = 0\): \(23 + A\) kelipatan \(9\). Karena \(0 \le A \le 9\), hanya \(23 + 4 = 27\) yang memenuhi \(\implies A = 4\).</li>
+                            <li>Untuk \(B = 8\): \(31 + A\) kelipatan \(9\). Karena \(0 \le A \le 9\), hanya \(31 + 5 = 36\) yang memenuhi \(\implies A = 5\).</li>
+                        </ul>
+                        <div class="kesimpulan">Jadi, pasangan \((A, B)\) yang memenuhi adalah \(\mathbf{(4, 0)}\) dan \(\mathbf{(5, 8)}\) (yaitu \(4.248.360\) dan \(4.258.368\)).</div>
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh 2 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Bilangan \(6\) digit \(\overline{6A4B52}\) habis dibagi \(77\). Tentukan semua pasangan digit \((A, B)\) yang mungkin!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <div class="pembahasan-isi">
+                        <p>
+                            Karena \(77 = 7 \times 11\) dan \(\text{FPB}(7, 11) = 1\), bilangan \(\overline{6A4B52}\) wajib habis dibagi \(11\) sekaligus \(7\).
+                        </p>
+                        <p>
+                            <strong>Langkah 1: Syarat habis dibagi \(11\).</strong><br>
+                            Jumlah selang-seling digit dari kanan ke kiri harus habis dibagi \(11\):
+                            \[2 - 5 + B - 4 + A - 6 = A + B - 13 \equiv 0 \pmod{11}\]
+                            Karena \(0 \le A + B \le 18\), hanya ada dua kemungkinan:
+                            \[A + B = 2 \quad \text{atau} \quad A + B = 13\]
+                        </p>
+                        <p>
+                            <strong>Langkah 2: Syarat habis dibagi \(7\) (metode blok \(3\) digit).</strong><br>
+                            Pisahkan menjadi dua blok \(3\) digit: \(\overline{B52} - \overline{6A4} \equiv 0 \pmod{7}\):
+                            \[\begin{aligned}
+                            (100B + 52) - (604 + 10A) &= 100B - 10A - 552 \\
+                            &\equiv 2B - 3A - 6 \pmod{7}
+                            \end{aligned}\]
+                            <em>(Catatan: \(100 \equiv 2\), \(10 \equiv 3\), dan \(552 = 7 \times 78 + 6 \equiv 6 \pmod{7}\).)</em>
+                        </p>
+                        <ul>
+                            <li>
+                                Jika \(A + B = 2 \implies B = 2 - A\):<br>
+                                \(2(2 - A) - 3A - 6 = -5A - 2 \equiv 2A - 2 \equiv 0 \pmod{7} \implies A = 1,\; B = 1\).
+                                (Memenuhi batas digit \(0 \le A, B \le 9\).)
+                            </li>
+                            <li>
+                                Jika \(A + B = 13 \implies B = 13 - A\):<br>
+                                \(2(13 - A) - 3A - 6 = 20 - 5A \equiv 2A + 6 \equiv 0 \pmod{7} \implies A = 4,\; B = 9\).
+                                (Memenuhi batas digit \(0 \le A, B \le 9\).)
+                            </li>
+                        </ul>
+                        <div class="kesimpulan">Jadi, pasangan \((A, B)\) yang mungkin adalah \(\mathbf{(1, 1)}\) dan \(\mathbf{(4, 9)}\) (yaitu \(614.152 = 77 \times 7.976\) dan \(644.952 = 77 \times 8.376\)).</div>
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh 3 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Tentukan masing-masing sisa pembagian bilangan \(N = 259.418.372\) apabila dibagi oleh \(7\), \(9\), dan \(11\)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <div class="pembahasan-isi">
+                        <p>
+                            <strong>1. Sisa pembagian oleh \(7\) dan \(11\) (pakai blok \(3\) digit sekaligus):</strong><br>
+                            Pecah \(N = 259.418.372\) dari kanan:
+                            \[372 - 418 + 259 = 213\]
+                            Karena \(10^3 \equiv -1\) berlaku untuk modulo \(7\) maupun modulo \(11\), sisa pembagian \(N\) sama persis dengan sisa pembagian \(213\):
+                        </p>
+                        <ul>
+                            <li><strong>Oleh \(7\):</strong> \(213 = 7 \times 30 + 3 \implies\) bersisa \(\mathbf{3}\).</li>
+                            <li><strong>Oleh \(11\):</strong> \(213 = 11 \times 19 + 4\) (atau dari digit \(213\): \(3 - 1 + 2 = 4\)) \(\implies\) bersisa \(\mathbf{4}\).</li>
+                        </ul>
+                        <p>
+                            <strong>2. Sisa pembagian oleh \(9\) (pakai jumlah semua digit):</strong><br>
+                            \[2 + 5 + 9 + 4 + 1 + 8 + 3 + 7 + 2 = 41 = 9 \times 4 + 5\]
+                            Sehingga \(N\) dibagi \(9\) bersisa \(\mathbf{5}\).
+                        </p>
+                        <div class="kesimpulan">Jadi, sisa pembagian \(259.418.372\) berturut-turut adalah \(\mathbf{3}\) (oleh \(7\)), \(\mathbf{5}\) (oleh \(9\)), dan \(\mathbf{4}\) (oleh \(11\)).</div>
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

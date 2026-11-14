@@ -111,6 +111,35 @@
             </div>
         </article>
 
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan \(T\) adalah himpunan semua titik pada bidang-\(xy\) yang memenuhi \(|x| + |y| \le 4\). Luas daerah \(T\) adalah
+                <ol class="pilgan pilgan-5kolom">
+                    <li>\(4\)</li>
+                    <li>\(8\)</li>
+                    <li>\(12\)</li>
+                    <li>\(16\)</li>
+                    <li>\(32\)</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">OSK SMA 2006 (Bagian I No. 7)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-3" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Batas daerah \(|x| + |y| = 4\) pada masing-masing kuadran berupa empat ruas garis yang menghubungkan titik-titik potong sumbu koordinat, yakni \((4, 0)\), \((0, 4)\), \((-4, 0)\), dan \((0, -4)\).</p>
+                    <p>Keempat titik tersebut membentuk sebuah belah ketupat (sekaligus persegi miring) dengan panjang kedua diagonalnya sama dengan \(d_1 = 4 - (-4) = 8\) dan \(d_2 = 4 - (-4) = 8\).</p>
+                    <p>Luas daerah \(T\) adalah:</p>
+                    \[L_T = \frac{1}{2} \cdot d_1 \cdot d_2 = \frac{1}{2} \times 8 \times 8 = 32\]
+                    <div class="kesimpulan">Jadi, luas daerah \(T\) adalah <strong>32</strong>.<br><b>JAWAB: E</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- SOAL 3
         <article class="soal-item" id="3">
             <div class="soal-no"></div>
@@ -268,6 +297,35 @@
         <div class="pagination-wrapper"></div>
     </main>
 
+    <script>
+        (function () {
+            function renderDiagram3() {
+                if (typeof GeoSVG === "undefined") return;
+                const el3 = document.getElementById("svg-solusi-3");
+                if (!el3 || el3.dataset.rendered) return;
+                el3.dataset.rendered = "true";
+                const geo3 = new GeoSVG("svg-solusi-3", 220, 220, { margin: 16, clearContainer: true });
+                const ox = 110, oy = 110, k = 18;
+                const pt = (mx, my) => ({ x: ox + k * mx, y: oy - k * my });
+                const P1 = pt(4, 0), P2 = pt(0, 4), P3 = pt(-4, 0), P4 = pt(0, -4);
+                geo3.buatPoligon([P1, P2, P3, P4], { fill: "rgba(13, 148, 136, 0.16)", stroke: "var(--teal-primary)", strokeWidth: 2 });
+                geo3.buatSegmen(pt(-5.2, 0), pt(5.2, 0), { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+                geo3.buatSegmen(pt(0, -5.2), pt(0, 5.2), { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+                geo3.buatTitik(P1, { label: "(4, 0)", labelPosition: "bottom-right", size: 3.5, color: "var(--teal-primary)" });
+                geo3.buatTitik(P2, { label: "(0, 4)", labelPosition: "top-right", size: 3.5, color: "var(--teal-primary)" });
+                geo3.buatTitik(P3, { label: "(-4, 0)", labelPosition: "bottom-left", size: 3.5, color: "var(--teal-primary)" });
+                geo3.buatTitik(P4, { label: "(0, -4)", labelPosition: "bottom-right", size: 3.5, color: "var(--teal-primary)" });
+                geo3.buatTeks(pt(5.2, 0.45).x, pt(5.2, 0.45).y, "x", { position: "middle-center", fontSize: 11, fill: "var(--text-muted)" });
+                geo3.buatTeks(pt(-0.45, 5.2).x, pt(-0.45, 5.2).y, "y", { position: "middle-center", fontSize: 11, fill: "var(--text-muted)" });
+                geo3.buatTeks(pt(1.3, 1.1).x, pt(1.3, 1.1).y, "T", { position: "middle-center", fontSize: 14, fontWeight: "bold", fill: "var(--teal-primary)" });
+            }
+            if (typeof GeoSVG !== "undefined") {
+                renderDiagram3();
+            } else {
+                window.addEventListener("load", renderDiagram3);
+            }
+        })();
+    </script>
     <script src="../../scr/script.js"></script>
 </body>
 

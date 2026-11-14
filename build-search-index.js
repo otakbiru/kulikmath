@@ -25,24 +25,68 @@ function stripTagsAndClean(html) {
     .trim();
 }
 
-function extractTopicMap() {
+function extractScriptConfig() {
   const scriptPath = path.join(ROOT, 'scr', 'script.js');
   const content = fs.readFileSync(scriptPath, 'utf8');
-  const map = {};
-  const re = /\{\s*judul:\s*"([^"]+)"\s*,\s*folder:\s*"([^"]+)"\s*\}/g;
+
+  const topicMap = {};
+  const topicRe = /\{\s*judul:\s*"([^"]+)"\s*,\s*folder:\s*"([^"]+)"\s*\}/g;
   let m;
-  while ((m = re.exec(content)) !== null) {
-    map[m[2]] = m[1];
+  while ((m = topicRe.exec(content)) !== null) {
+    topicMap[m[2]] = m[1];
   }
-  return map;
+
+  // Parse DAFTAR_ARTIKEL entries so indexed articles reuse exact category & title metadata
+  const artikelTitleByUrl = {};
+  const artikelCategoryByFolder = {};
+  const artikelBlockMatch = content.match(/const\s+DAFTAR_ARTIKEL\s*=\s*\[([\s\S]*?)\r?\n\];/);
+  if (artikelBlockMatch) {
+    const groupRe = /kategori:\s*"([^"]+)"[\s\S]*?folder:\s*"([^"]+)"[\s\S]*?artikel:\s*\[([\s\S]*?)\](?=\s*,?\s*\})/g;
+    let gm;
+    while ((gm = groupRe.exec(artikelBlockMatch[1])) !== null) {
+      const kategori = gm[1];
+      const folder = gm[2].replace(/\\/g, '/').replace(/^\/+|\/+$/g, '');
+      artikelCategoryByFolder[folder] = kategori;
+
+      const itemRe = /\{\s*judul:\s*"([^"]+)"\s*,\s*file:\s*"([^"]+)"\s*\}/g;
+      let am;
+      while ((am = itemRe.exec(gm[3])) !== null) {
+        artikelTitleByUrl[`./${folder}/${am[2]}`] = { judul: am[1], kategori };
+      }
+    }
+  }
+
+  return { topicMap, artikelTitleByUrl, artikelCategoryByFolder };
+}
+
+function extractMateriText(uncommentedHtml) {
+  const cards = [];
+  const cardRe = /<article[^>]*class=["'][^"']*materi-card[^"']*["'][^>]*>([\s\S]*?)<\/article>/gi;
+  let match;
+  while ((match = cardRe.exec(uncommentedHtml)) !== null) {
+    const cleaned = match[1]
+      .replace(/<div[^>]*class=["'][^"']*pembahasan-box[\s\S]*?<\/div>\s*<\/div>/gi, ' ')
+      .replace(/<button[\s\S]*?<\/button>/gi, ' ');
+    const text = stripTagsAndClean(cleaned);
+    if (
+      text &&
+      text.length > 40 &&
+      !text.includes('Tulis penjelasan materi') &&
+      !text.includes('Judul Sub-Bab Pertama') &&
+      !text.includes('Tulis isi artikel')
+    ) {
+      cards.push(text);
+    }
+  }
+  return cards.join(' ');
 }
 
 function buildIndex() {
-  const topicMap = extractTopicMap();
+  const { topicMap, artikelTitleByUrl, artikelCategoryByFolder } = extractScriptConfig();
   const entries = [];
 
   const dirs = fs.readdirSync(ROOT, { withFileTypes: true })
-    .filter((d) => d.isDirectory() && !['.git', 'node_modules', 'scr', 'www', '.vscode', 'Arsip_Soal'].includes(d.name));
+    .filter((d) => d.isDirectory() && !['.git', 'node_modules', 'scr', 'www', '.vscode', 'Arsip_Soal', 'Artikel'].includes(d.name));
 
   // Indeks halaman khusus di Arsip_Soal/<Kategori>/*.html
   const arsipRoot = path.join(ROOT, 'Arsip_Soal');
@@ -93,6 +137,54 @@ function buildIndex() {
     }
   }
 
+  // Indeks halaman artikel khusus di Artikel/*.html dan Artikel/<Kategori>/*.html
+  const artikelRoot = path.join(ROOT, 'Artikel');
+  function pushArtikelEntry(fullPath, relUrl, fallbackKategori) {
+    const rawHtml = fs.readFileSync(fullPath, 'utf8');
+    const uncommented = rawHtml.replace(/<!--[\s\S]*?-->/g, '');
+    const text = extractMateriText(uncommented);
+    if (!text) return;
+
+    const meta = artikelTitleByUrl[relUrl];
+    const highlightMatch = uncommented.match(/<span[^>]*class=["'][^"']*topic-highlight[^"']*["'][^>]*>([\s\S]*?)<\/span>/i);
+    const highlightTitle = stripTagsAndClean(highlightMatch ? highlightMatch[1] : '');
+    const fileTitle = path.basename(fullPath, path.extname(fullPath));
+    const articleTitle = (meta && meta.judul) || (highlightTitle && highlightTitle !== 'Judul Artikel' ? highlightTitle : fileTitle);
+
+    entries.push({
+      t: articleTitle,
+      l: 'Artikel',
+      n: (meta && meta.kategori) || fallbackKategori,
+      s: '',
+      u: relUrl,
+      q: text.slice(0, 1500)
+    });
+  }
+
+  if (fs.existsSync(artikelRoot) && fs.statSync(artikelRoot).isDirectory()) {
+    const topItems = fs.readdirSync(artikelRoot, { withFileTypes: true });
+    for (const item of topItems) {
+      if (item.isFile() && /\.html$/i.test(item.name)) {
+        pushArtikelEntry(
+          path.join(artikelRoot, item.name),
+          `./Artikel/${item.name}`,
+          artikelCategoryByFolder['Artikel'] || 'Artikel Khusus'
+        );
+      } else if (item.isDirectory()) {
+        const catPath = path.join(artikelRoot, item.name);
+        const fallbackKategori = artikelCategoryByFolder[`Artikel/${item.name}`] || item.name.replace(/_/g, ' ');
+        const htmlFiles = fs.readdirSync(catPath).filter((f) => /\.html$/i.test(f));
+        for (const file of htmlFiles) {
+          pushArtikelEntry(
+            path.join(catPath, file),
+            `./Artikel/${item.name}/${file}`,
+            fallbackKategori
+          );
+        }
+      }
+    }
+  }
+
   for (const dir of dirs) {
     const topicFolder = dir.name;
     const topicTitle = topicMap[topicFolder] || topicFolder.replace(/_/g, ' ');
@@ -116,27 +208,16 @@ function buildIndex() {
         const relUrl = `./${topicFolder}/${sub}/${file}`;
 
         if (sub === 'Materi') {
-          const materiMatch = uncommented.match(/<article[^>]*class=["'][^"']*materi-card[^"']*["'][^>]*>([\s\S]*?)<\/article>/i);
-          if (materiMatch) {
-            const cleanedMateri = materiMatch[1]
-              .replace(/<div[^>]*class=["'][^"']*pembahasan-box[\s\S]*?<\/div>\s*<\/div>/gi, ' ')
-              .replace(/<button[\s\S]*?<\/button>/gi, ' ');
-            const text = stripTagsAndClean(cleanedMateri);
-            if (
-              text &&
-              text.length > 40 &&
-              !text.includes('Tulis penjelasan materi') &&
-              !text.includes('Judul Sub-Bab Pertama')
-            ) {
-              entries.push({
-                t: topicTitle,
-                l: LEVEL_MAP[sub],
-                n: 'Ringkasan Materi',
-                s: '',
-                u: relUrl,
-                q: text.slice(0, 1200)
-              });
-            }
+          const text = extractMateriText(uncommented);
+          if (text) {
+            entries.push({
+              t: topicTitle,
+              l: LEVEL_MAP[sub],
+              n: 'Ringkasan Materi',
+              s: '',
+              u: relUrl,
+              q: text.slice(0, 1200)
+            });
           }
         } else {
           const articleRe = /<article[^>]*class=["'][^"']*soal-item[^"']*["'][^>]*>([\s\S]*?)<\/article>/gi;

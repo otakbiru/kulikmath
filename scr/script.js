@@ -184,17 +184,26 @@ const DAFTAR_ARSIP = [
         ]
     },
     {
+        kategori: "OSK",
+        folder: "Arsip_Soal/OSK",
+        paket: [
+            { judul: "OSK SMA 2006", file: "OSK SMA 2006.html" }
+        ]
+    },
+    {
         kategori: "OSN",
         folder: "Arsip_Soal/OSN",
         paket: [
-            { judul: "OSN SMA 2003", file: "OSN SMA 2003.html" }
+            { judul: "OSN SMA 2003", file: "OSN SMA 2003.html" },
+            { judul: "OSN SMA 2006", file: "OSN SMA 2006.html" }
         ]
     },
     {
         kategori: "OSP",
         folder: "Arsip_Soal/OSP",
         paket: [
-            { judul: "OSP SMA 2003", file: "OSP SMA 2003.html" }
+            { judul: "OSP SMA 2003", file: "OSP SMA 2003.html" },
+            { judul: "OSP SMA 2006", file: "OSP SMA 2006.html" }
         ]
     },
     {
@@ -206,6 +215,44 @@ const DAFTAR_ARSIP = [
         kategori: "UAS",
         folder: "Arsip_Soal/UAS",
         paket: []
+    }
+];
+
+/* ==========================================================================
+   1C. DATA ARTIKEL KHUSUS (RUBRIK ARTIKEL LINTAS TOPIK)
+   ========================================================================== */
+const DAFTAR_ARTIKEL = [
+    {
+        kategori: "Teori Bilangan",
+        folder: "Artikel/Teori_Bilangan",
+        artikel: [
+            { judul: "Ciri Bilangan Habis Dibagi 2 Sampai 11", file: "Ciri Bilangan Habis Dibagi 2 Sampai 11.html" }
+        ]
+    },
+    {
+        kategori: "Aljabar",
+        folder: "Artikel/Aljabar",
+        artikel: []
+    },
+    {
+        kategori: "Geometri",
+        folder: "Artikel/Geometri",
+        artikel: []
+    },
+    {
+        kategori: "Kalkulus",
+        folder: "Artikel/Kalkulus",
+        artikel: []
+    },
+    {
+        kategori: "Kombinatorika",
+        folder: "Artikel/Kombinatorika",
+        artikel: []
+    },
+    {
+        kategori: "Umum",
+        folder: "Artikel/Umum",
+        artikel: []
     }
 ];
 
@@ -243,6 +290,14 @@ function initSoalAndMateriPage() {
     const folderType = decodeURIComponent(pathParts[pathParts.length - 2] || "Exercise");
     const isNumericPage = /^\d+\.html$/i.test(fileName);
     const isArsipPage = pathParts.some(p => decodeURIComponent(p).toLowerCase() === "arsip_soal") || fileName.toLowerCase() === "templatearsipsoal.html";
+    const isArtikelPage = pathParts.some(p => decodeURIComponent(p).toLowerCase() === "artikel") || fileName.toLowerCase() === "templateartikel.html";
+    const grupArtikel = isArtikelPage
+        ? DAFTAR_ARTIKEL.find(g => {
+            const folderTail = (g.folder.split("/").pop() || "").toLowerCase();
+            return folderTail === folderType.toLowerCase() ||
+                g.kategori.toLowerCase() === folderType.replace(/_/g, " ").toLowerCase();
+        })
+        : null;
 
     if (isArsipPage) {
         document.body.classList.add("is-arsip-page");
@@ -295,7 +350,14 @@ function initSoalAndMateriPage() {
         "SNBT": "SNBT",
         "HOTS": "HOTS"
     };
-    const namaTingkat = levelMap[folderType] || folderType;
+    let namaTingkat = levelMap[folderType] || folderType;
+    if (isArtikelPage) {
+        namaTingkat = grupArtikel
+            ? grupArtikel.kategori
+            : (fileName.toLowerCase() === "templateartikel.html" || folderType.toLowerCase() === "artikel"
+                ? "Artikel"
+                : folderType.replace(/_/g, " "));
+    }
 
     // Isi otomatis teks tingkat pada kalimat pembuka
     const levelSpan = document.getElementById("auto-level");
@@ -303,18 +365,27 @@ function initSoalAndMateriPage() {
         levelSpan.textContent = namaTingkat;
     }
 
-    // Render tombol navigasi Tingkat (untuk halaman topik) atau daftar paket sejenis (untuk halaman Arsip_Soal)
+    // Helper pembangun pill navigasi untuk Arsip_Soal maupun Artikel
+    function buildGroupNavHTML(labelPrefix, items, activeFileName) {
+        let html = `<span class="level-label">${labelPrefix}</span>`;
+        items.forEach(item => {
+            const isActive = item.file.toLowerCase() === activeFileName.toLowerCase() ? "active" : "";
+            html += `<a href="./${encodeURIComponent(item.file).replace(/%20/g, " ")}" class="level-pill ${isActive}">${item.judul}</a>`;
+        });
+        return html;
+    }
+
+    // Render tombol navigasi Tingkat (topik) atau daftar item sejenis (Arsip_Soal / Artikel)
     const navContainer = document.getElementById("level-nav");
     if (navContainer) {
         if (isArsipPage) {
             const grupArsip = DAFTAR_ARSIP.find(g => g.kategori.toLowerCase() === folderType.toLowerCase());
             if (grupArsip && grupArsip.paket.length > 0) {
-                let navHTML = `<span class="level-label">Paket ${grupArsip.kategori}:</span>`;
-                grupArsip.paket.forEach(p => {
-                    const isActive = p.file.toLowerCase() === fileName.toLowerCase() ? "active" : "";
-                    navHTML += `<a href="./${encodeURIComponent(p.file).replace(/%20/g, " ")}" class="level-pill ${isActive}">${p.judul}</a>`;
-                });
-                navContainer.innerHTML = navHTML;
+                navContainer.innerHTML = buildGroupNavHTML(`Paket ${grupArsip.kategori}:`, grupArsip.paket, fileName);
+            }
+        } else if (isArtikelPage) {
+            if (grupArtikel && grupArtikel.artikel.length > 0) {
+                navContainer.innerHTML = buildGroupNavHTML(`Artikel ${grupArtikel.kategori}:`, grupArtikel.artikel, fileName);
             }
         } else {
             const levels = [
@@ -367,7 +438,7 @@ function initSoalAndMateriPage() {
             }
         });
     }
-    if (isNumericPage && !isArsipPage) {
+    if (isNumericPage && !isArsipPage && !isArtikelPage) {
         buildAutoPagination(pageNumber);
     }
 }
@@ -463,71 +534,187 @@ function buildSearchSnippet(text, query) {
     }).join("");
 }
 
+function escapeHTML(str) {
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+}
+
 function initIndexPage() {
     const listContainer = document.getElementById("topic-list-container");
     const searchInput = document.getElementById("search-input");
     if (!listContainer) return;
 
+    document.body.classList.add("is-index-page");
+    let controlsContainer = document.getElementById("index-controls");
+    if (!controlsContainer) {
+        controlsContainer = document.createElement("div");
+        controlsContainer.id = "index-controls";
+        controlsContainer.className = "index-controls";
+        listContainer.parentNode.insertBefore(controlsContainer, listContainer);
+    }
+
+    const totalArsip = DAFTAR_ARSIP.reduce((sum, g) => sum + g.paket.length, 0);
+    const totalArtikel = DAFTAR_ARTIKEL.reduce((sum, g) => sum + g.artikel.length, 0);
+    const totalTopik = DAFTAR_TOPIK.reduce((sum, g) => sum + g.topik.length, 0);
+
+    let activeTab = "semua";
+    let activeBidang = "ALL";
+    const expandedBidang = new Set();
+
+    function renderTopicCardHTML(t) {
+        return `
+          <div class="topic-card">
+            <div class="topic-name">${t.judul}</div>
+            <div class="topic-links">
+              <a href="./${t.folder}/Materi/1.html">Materi</a>
+              <a href="./${t.folder}/Exercise/1.html">Dasar</a>
+              <a href="./${t.folder}/SNBT/1.html">SNBT</a>
+              <a href="./${t.folder}/HOTS/1.html">HOTS</a>
+            </div>
+          </div>
+        `;
+    }
+
+    function renderCollectionBlock(heading, collections, itemsKey, unitLabel, query) {
+        const filtered = collections.map(g => ({
+            ...g,
+            [itemsKey]: g[itemsKey].filter(item =>
+                !query ||
+                item.judul.toLowerCase().includes(query) ||
+                g.kategori.toLowerCase().includes(query)
+            )
+        })).filter(g => g[itemsKey].length > 0);
+
+        if (filtered.length === 0) return "";
+        return `
+          <div class="category-block">
+            <h2 class="category-heading">${heading}</h2>
+            <div class="collection-grid">
+              ${filtered.map(g => `
+                <div class="collection-card">
+                  <div class="collection-head">
+                    <div class="topic-name">${g.kategori}</div>
+                    <span class="count-pill">${g[itemsKey].length} ${unitLabel}</span>
+                  </div>
+                  <div class="collection-links">
+                    ${g[itemsKey].map(item => `<a href="./${g.folder}/${item.file}">${item.judul}</a>`).join("")}
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `;
+    }
+
+    function renderControls(query) {
+        const tabs = [
+            { id: "semua", label: "Semua", count: totalArsip + totalArtikel + totalTopik },
+            { id: "arsip", label: "Arsip Soal", count: totalArsip },
+            { id: "artikel", label: "Artikel", count: totalArtikel },
+            { id: "topik", label: "Topik Materi", count: totalTopik }
+        ];
+
+        let ctrlHTML = `
+          <div class="rubric-tabs" role="tablist" aria-label="Filter Rubrik">
+            ${tabs.map(tb => `
+              <button type="button" class="rubric-tab ${!query && activeTab === tb.id ? "active" : ""}" data-tab="${tb.id}">
+                <span>${tb.label}</span>
+                <span class="tab-count">${tb.count}</span>
+              </button>
+            `).join("")}
+          </div>
+        `;
+
+        if (!query && activeTab === "topik") {
+            ctrlHTML += `
+              <div class="bidang-chips" aria-label="Filter Bidang Topik">
+                <button type="button" class="bidang-chip ${activeBidang === "ALL" ? "active" : ""}" data-bidang-chip="ALL">Semua Bidang</button>
+                ${DAFTAR_TOPIK.map(g => `
+                  <button type="button" class="bidang-chip ${activeBidang === g.bidang ? "active" : ""}" data-bidang-chip="${escapeHTML(g.bidang)}">${g.bidang} (${g.topik.length})</button>
+                `).join("")}
+              </div>
+            `;
+        }
+
+        controlsContainer.innerHTML = ctrlHTML;
+    }
+
     function renderTopics(filterText = "") {
         const rawQuery = filterText.trim();
         const query = rawQuery.toLowerCase();
+        const isSearching = query.length > 0;
+        renderControls(query);
+
         let html = "";
+        const showArsip = isSearching || activeTab === "semua" || activeTab === "arsip";
+        const showArtikel = isSearching || activeTab === "semua" || activeTab === "artikel";
+        const showTopik = isSearching || activeTab === "semua" || activeTab === "topik";
 
-        // Render Arsip Soal Kompetisi & Ujian (KTOM, OSN, SNBT, UAS)
-        const arsipFiltered = DAFTAR_ARSIP.map(g => ({
-            ...g,
-            paket: g.paket.filter(p =>
-                !query ||
-                p.judul.toLowerCase().includes(query) ||
-                g.kategori.toLowerCase().includes(query)
-            )
-        })).filter(g => g.paket.length > 0);
-
-        if (arsipFiltered.length > 0) {
-            html += `
-          <div class="category-block">
-            <h2 class="category-heading">Arsip Soal Kompetisi & Ujian</h2>
-            <div class="topic-grid">
-              ${arsipFiltered.map(g => `
-                <div class="topic-card">
-                  <div class="topic-name">${g.kategori}</div>
-                  <div class="topic-links">
-                    ${g.paket.map(p => `<a href="./${g.folder}/${p.file}">${p.judul}</a>`).join("")}
-                  </div>
-                </div>
-              `).join("")}
-            </div>
-          </div>
-        `;
+        if (showArsip) {
+            html += renderCollectionBlock("Arsip Soal Kompetisi &amp; Ujian", DAFTAR_ARSIP, "paket", "paket", query);
+        }
+        if (showArtikel) {
+            html += renderCollectionBlock("Artikel &amp; Catatan Khusus", DAFTAR_ARTIKEL, "artikel", "artikel", query);
         }
 
-        DAFTAR_TOPIK.forEach(grup => {
-            const filtered = grup.topik.filter(t =>
-                t.judul.toLowerCase().includes(query) ||
-                grup.bidang.toLowerCase().includes(query)
-            );
+        if (showTopik) {
+            const bidangFilterActive = !isSearching && activeTab === "topik" && activeBidang !== "ALL";
+            const topikGroups = DAFTAR_TOPIK
+                .filter(grup => !bidangFilterActive || grup.bidang === activeBidang)
+                .map(grup => ({
+                    bidang: grup.bidang,
+                    items: grup.topik.filter(t =>
+                        !query ||
+                        t.judul.toLowerCase().includes(query) ||
+                        grup.bidang.toLowerCase().includes(query)
+                    )
+                }))
+                .filter(g => g.items.length > 0);
 
-            if (filtered.length > 0) {
-                html += `
-          <div class="category-block">
-            <h2 class="category-heading">${grup.bidang}</h2>
-            <div class="topic-grid">
-              ${filtered.map(t => `
-                <div class="topic-card">
-                  <div class="topic-name">${t.judul}</div>
-                  <div class="topic-links">
-                    <a href="./${t.folder}/Materi/1.html">Materi</a>
-                    <a href="./${t.folder}/Exercise/1.html">Dasar</a>
-                    <a href="./${t.folder}/SNBT/1.html">SNBT</a>
-                    <a href="./${t.folder}/HOTS/1.html">HOTS</a>
-                  </div>
-                </div>
-              `).join("")}
-            </div>
-          </div>
-        `;
+            if (topikGroups.length > 0) {
+                if (bidangFilterActive) {
+                    const g = topikGroups[0];
+                    html += `
+                      <div class="category-block">
+                        <h2 class="category-heading">${g.bidang} (${g.items.length} topik)</h2>
+                        <div class="topic-grid">
+                          ${g.items.map(renderTopicCardHTML).join("")}
+                        </div>
+                      </div>
+                    `;
+                } else {
+                    const allExpanded = topikGroups.every(g => expandedBidang.has(g.bidang));
+                    html += `
+                      <div class="category-block">
+                        <div class="section-header-row">
+                          <h2 class="category-heading">Materi &amp; Bank Soal per Bidang</h2>
+                          ${!isSearching ? `<button type="button" class="toggle-all-btn" data-toggle-all="${allExpanded ? "close" : "open"}">${allExpanded ? "Tutup Semua" : "Buka Semua"}</button>` : ""}
+                        </div>
+                        <div class="accordion-list">
+                          ${topikGroups.map(g => {
+                              const isOpen = isSearching || expandedBidang.has(g.bidang);
+                              return `
+                                <div class="bidang-accordion">
+                                  <button type="button" class="bidang-toggle" aria-expanded="${isOpen}" data-bidang-toggle="${escapeHTML(g.bidang)}">
+                                    <span>${g.bidang}</span>
+                                    <span class="bidang-toggle-right">
+                                      <span class="count-pill">${g.items.length} topik</span>
+                                      <span class="bidang-chevron" aria-hidden="true">▾</span>
+                                    </span>
+                                  </button>
+                                  ${isOpen ? `<div class="bidang-panel"><div class="topic-grid">${g.items.map(renderTopicCardHTML).join("")}</div></div>` : ""}
+                                </div>
+                              `;
+                          }).join("")}
+                        </div>
+                      </div>
+                    `;
+                }
             }
-        });
+        }
 
         // Pencarian isi soal & materi seperti daftar post Blogspot (aktif saat minimal 2 karakter)
         if (query.length >= 2 && Array.isArray(window.KULIKMATH_SEARCH_INDEX)) {
@@ -552,7 +739,7 @@ function initIndexPage() {
             if (shownPosts.length > 0) {
                 html += `
           <div class="category-block search-results-block">
-            <h2 class="category-heading">Daftar Soal & Materi yang Memuat "${rawQuery}" (${matchedPosts.length} ditemukan)</h2>
+            <h2 class="category-heading">Daftar Soal & Materi yang Memuat "${escapeHTML(rawQuery)}" (${matchedPosts.length} ditemukan)</h2>
             <div class="search-post-list">
               ${shownPosts.map(({ item }) => `
                 <a href="${item.u}" class="search-post-card">
@@ -571,7 +758,7 @@ function initIndexPage() {
             }
         }
 
-        listContainer.innerHTML = html || `<p style="color: var(--text-muted);">Tidak ditemukan topik maupun soal dengan kata kunci "${rawQuery}".</p>`;
+        listContainer.innerHTML = html || `<p style="color: var(--text-muted);">Tidak ditemukan topik maupun soal dengan kata kunci "${escapeHTML(rawQuery)}".</p>`;
 
         if (query.length >= 2 && typeof renderMathInElement === "function") {
             renderMathInElement(listContainer, {
@@ -585,6 +772,47 @@ function initIndexPage() {
             });
         }
     }
+
+    controlsContainer.addEventListener("click", e => {
+        const tabBtn = e.target.closest("[data-tab]");
+        if (tabBtn) {
+            activeTab = tabBtn.dataset.tab;
+            if (activeTab !== "topik") activeBidang = "ALL";
+            if (searchInput && searchInput.value.trim()) searchInput.value = "";
+            renderTopics("");
+            return;
+        }
+
+        const chipBtn = e.target.closest("[data-bidang-chip]");
+        if (chipBtn) {
+            activeBidang = chipBtn.dataset.bidangChip;
+            renderTopics(searchInput ? searchInput.value : "");
+        }
+    });
+
+    listContainer.addEventListener("click", e => {
+        const toggleBtn = e.target.closest("[data-bidang-toggle]");
+        if (toggleBtn) {
+            const bidang = toggleBtn.dataset.bidangToggle;
+            if (expandedBidang.has(bidang)) {
+                expandedBidang.delete(bidang);
+            } else {
+                expandedBidang.add(bidang);
+            }
+            renderTopics(searchInput ? searchInput.value : "");
+            return;
+        }
+
+        const toggleAllBtn = e.target.closest("[data-toggle-all]");
+        if (toggleAllBtn) {
+            if (toggleAllBtn.dataset.toggleAll === "open") {
+                DAFTAR_TOPIK.forEach(g => expandedBidang.add(g.bidang));
+            } else {
+                expandedBidang.clear();
+            }
+            renderTopics(searchInput ? searchInput.value : "");
+        }
+    });
 
     renderTopics();
 
