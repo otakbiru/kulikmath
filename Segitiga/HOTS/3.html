@@ -390,24 +390,38 @@
             </div>
         </article>
 
-        <!-- SOAL 30 
+        <!-- SOAL 30 -->
         <article class="soal-item" id="30">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal di sini...
+                <p>Misalkan \(ABC\) sebuah segitiga lancip. Misalkan \(D\) titik tengah sisi \(AC\), dan \(E\) titik pada garis \(BD\) sehingga \(B\) berada di antara \(D\) dan \(E\), serta \(BE = 2BD\). Diberikan sebuah titik \(X\) pada garis yang melalui \(B\) dan tegak lurus \(BD\), sehingga \(XC\) sejajar dengan \(AB\).</p>
+                <p>Jika \(\angle ABX = 125^\circ\), tentukan nilai dari \(\angle EXB\).</p>
             </div>
-            <div class="soal-sumber"></div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM November 2026 (Bagian A No. 7)</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <div id="svg-solusi-30" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Perpanjang ruas garis \(BD\) melewati titik \(D\) hingga ke titik \(B'\) sedemikian sehingga \(D\) menjadi titik tengah \(BB'\) (yakni \(DB' = BD\), sehingga \(BB' = 2BD\)).</p>
+                    <ul>
+                        <li>Pada segiempat \(ABCB'\), kedua diagonalnya \(AC\) dan \(BB'\) saling membagi dua sama panjang di titik \(D\) (\(AD = DC\) dan \(BD = DB'\)). Akibatnya, \(ABCB'\) adalah <strong>jajar genjang</strong>, sehingga \(CB' \parallel AB\).</li>
+                        <li>Karena diketahui \(XC \parallel AB\) dan melalui titik \(C\) hanya ada tepat satu garis yang sejajar \(AB\), maka titik \(X, C,\) dan \(B'\) segaris (kolinear). Dengan demikian, garis \(B'X\) sejajar dengan garis \(AB\) (\(B'X \parallel AB\)).</li>
+                        <li>Karena \(AB \parallel B'X\) dan dipotong oleh garis transversal \(BX\) dengan \(\angle ABX = 125^\circ\), pasangan sudut dalam sepihaknya memenuhi:
+                            \[\angle B'XB = 180^\circ - \angle ABX = 180^\circ - 125^\circ = 55^\circ\]
+                        </li>
+                        <li>Selanjutnya, perhatikan bahwa \(B\) terletak di antara \(B'\) dan \(E\) pada garis \(BD\), serta:
+                            \[BB' = 2BD = BE\]
+                            Artinya, \(B\) adalah titik tengah ruas garis \(B'E\). Karena \(BX \perp B'E\) di titik tengah \(B\), maka garis \(BX\) merupakan garis sumbu dari ruas garis \(B'E\).
+                        </li>
+                    </ul>
+                    <p>Berdasarkan simetri pencerminan terhadap garis sumbu \(BX\), segitiga \(\triangle B'XB\) kongruen dengan \(\triangle EXB\), sehingga:</p>
+                    \[\angle EXB = \angle B'XB = \color{blue}\boxed{\boxed{\color{black}55^\circ}}\]
+                    <div class="kesimpulan">Jadi, nilai dari \(\angle EXB\) adalah <strong>55</strong> (atau \(55^\circ\)).</div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
             </div>
         </article>
-        -->
 
         <!-- Pagination Bawah -->
         <div class="pagination-wrapper"></div>
@@ -594,6 +608,36 @@
                     geo29.buatTitik(D, { label: "D", labelPosition: "kanan tengah", size: 2 });
                     geo29.buatTitik(E, { label: "E", labelPosition: "kanan tengah", size: 2 });
                     geo29.buatTitik(F, { label: "F", labelPosition: "kanan bawah", size: 2 });
+                }
+
+                // Diagram Soal 30
+                const el30 = document.getElementById("svg-solusi-30");
+                if (el30) {
+                    const geo30 = new GeoSVG("svg-solusi-30", 300, 250, { margin: 25 });
+                    const B = [125, 125];
+                    const D = [125, 77];
+                    const B1 = [125, 29];
+                    const E = [125, 221];
+                    const X = [125 + 96 / Math.tan(55 * Math.PI / 180), 125];
+                    const C = [0.52 * B1[0] + 0.48 * X[0], 0.52 * B1[1] + 0.48 * X[1]];
+                    const A = [2 * D[0] - C[0], 2 * D[1] - C[1]];
+
+                    geo30.buatSegitiga(A, B, C, { stroke: "#334155", strokeWidth: 1.8 });
+                    geo30.buatSegmen(A, B1, { stroke: "#94a3b8", dasharray: "4,3" });
+                    geo30.buatSegmen(B1, E, { stroke: "#0d9488", strokeWidth: 1.6 });
+                    geo30.buatSegmen(B, X, { stroke: "#334155", strokeWidth: 1.6 });
+                    geo30.buatSegmen(B1, X, { stroke: "#2563eb", strokeWidth: 1.6 });
+                    geo30.buatSegmen(E, X, { stroke: "#2563eb", strokeWidth: 1.6, dasharray: "4,3" });
+
+                    geo30.buatSiku(D, B, X, { size: 7 });
+
+                    geo30.buatTitik(A, { label: "A", labelPosition: "kiri atas", size: 2.5 });
+                    geo30.buatTitik(B, { label: "B", labelPosition: "kiri tengah", size: 2.5 });
+                    geo30.buatTitik(C, { label: "C", labelPosition: "kanan atas", size: 2.5 });
+                    geo30.buatTitik(D, { label: "D", labelPosition: "kiri tengah", size: 2.5 });
+                    geo30.buatTitik(B1, { label: "B'", labelPosition: "tengah atas", size: 2.5 });
+                    geo30.buatTitik(E, { label: "E", labelPosition: "tengah bawah", size: 2.5 });
+                    geo30.buatTitik(X, { label: "X", labelPosition: "kanan tengah", size: 2.5 });
                 }
             }
         });

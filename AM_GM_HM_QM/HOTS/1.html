@@ -387,6 +387,53 @@
             </div>
         </article>
 
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Suatu tripel bilangan real positif \((a, b, c)\) dikatakan <em>pahlawan</em> jika \(a, b, c \neq 1\) dan memenuhi \(a + b + c = ab + bc + ca\). Tentukan bilangan real positif \(\alpha\) terbesar yang memenuhi
+                \[\sqrt{\left|\dfrac{ab - 1}{c - 1}\right|} + \sqrt{\left|\dfrac{ca - 1}{b - 1}\right|} + \sqrt{\left|\dfrac{bc - 1}{a - 1}\right|} \ge \alpha\]
+                untuk seluruh tripel pahlawan \((a, b, c)\).
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM November 2026 (Bagian B No. 1)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Langkah 1: Penyederhanaan Aljabar dan Tanda Nilai Mutlak</strong><br>
+                    Dari syarat \(a + b + c = ab + bc + ca\), perhatikan identitas berikut:</p>
+                    \[(ab - 1) + (c - 1)(a + b - 1) = (ab + bc + ca) - (a + b + c) = 0 \implies \dfrac{ab - 1}{c - 1} = -(a + b - 1)\]
+                    <p>Secara siklis diperoleh pula \(\dfrac{ca - 1}{b - 1} = -(c + a - 1)\) dan \(\dfrac{bc - 1}{a - 1} = -(b + c - 1)\).</p>
+                    <p>Selanjutnya, tulis ulang persamaan syarat sebagai \(c(a + b - 1) = a + b - ab\). Andaikan \(a + b \le 1\); karena \(a, b > 0\), maka \(0 < a < 1\) sehingga \(a + b - ab = a + b(1 - a) > 0\), sedangkan ruas kiri \(c(a + b - 1) \le 0\) (kontradiksi). Oleh karena itu, untuk setiap tripel pahlawan berlaku:</p>
+                    \[a + b - 1 > 0, \qquad b + c - 1 > 0, \qquad c + a - 1 > 0\]
+                    <p>Misalkan:</p>
+                    \[u = \sqrt{b + c - 1} > 0, \qquad v = \sqrt{c + a - 1} > 0, \qquad w = \sqrt{a + b - 1} > 0\]
+                    <p>Maka ruas kiri pertidaksamaan pada soal adalah \(S = u + v + w\), dan dari \(u^2 = b + c - 1\), \(v^2 = c + a - 1\), \(w^2 = a + b - 1\) diperoleh:</p>
+                    \[a = \dfrac{v^2 + w^2 - u^2 + 1}{2}, \qquad b = \dfrac{w^2 + u^2 - v^2 + 1}{2}, \qquad c = \dfrac{u^2 + v^2 - w^2 + 1}{2}\]
+
+                    <p><strong>Langkah 2: Membuktikan \(u + v + w \ge 3\)</strong><br>
+                    Substitusikan bentuk \(a, b, c\) di atas ke dalam \(4(ab + bc + ca) - 4(a + b + c) = 0\) (dengan memisalkan \(s = u^2 + v^2 + w^2\) sehingga \(2a = s + 1 - 2u^2\), \(2b = s + 1 - 2v^2\), \(2c = s + 1 - 2w^2\)):</p>
+                    \[\begin{aligned}
+                    0 &= 3(s + 1)^2 - 4s(s + 1) + 4(u^2v^2 + v^2w^2 + w^2u^2) - (2s + 6) \\
+                    &= 2(u^2v^2 + v^2w^2 + w^2u^2) - (u^4 + v^4 + w^4) - 3
+                    \end{aligned}\]
+                    <p>Menggunakan pemfaktoran identitas Heron \(2(u^2v^2 + v^2w^2 + w^2u^2) - (u^4 + v^4 + w^4) = (u + v + w)(u + v - w)(v + w - u)(w + u - v)\), diperoleh:</p>
+                    \[(u + v + w)(u + v - w)(v + w - u)(w + u - v) = 3\]
+                    <p>Misalkan \(X = u + v - w\), \(Y = v + w - u\), dan \(Z = w + u - v\). Karena jumlah dua di antaranya selalu positif (\(X + Y = 2v > 0\), \(Y + Z = 2w > 0\), \(Z + X = 2u > 0\)), paling banyak satu dari \(X, Y, Z\) yang dapat bernilai \(\le 0\). Mengingat hasil kalinya \((u + v + w)XYZ = 3 > 0\) dan \(u + v + w > 0\), maka haruslah \(X, Y, Z > 0\). Berdasarkan ketaksamaan AM-GM pada \(X, Y, Z > 0\):</p>
+                    \[XYZ \le \left(\dfrac{X + Y + Z}{3}\right)^3 = \left(\dfrac{u + v + w}{3}\right)^3\]
+                    <p>Kalikan kedua ruas dengan \(u + v + w > 0\):</p>
+                    \[3 = (u + v + w)XYZ \le \dfrac{(u + v + w)^4}{27} \implies (u + v + w)^4 \ge 81 \implies u + v + w \ge 3\]
+
+                    <p><strong>Langkah 3: Menunjukkan \(\alpha = 3\) adalah Konstanta Terbesar (Infinum Tercapai sebagai Limit)</strong><br>
+                    Tinjau keluarga tripel \((a, b, c)\) dengan \(a = 1 + t\), \(b = 1 + 2t\), dan \(c = \dfrac{a + b - ab}{a + b - 1} = \dfrac{1 - 2t^2}{1 + 3t}\) untuk \(t \in \left(0, \frac{1}{\sqrt{2}}\right)\). Untuk setiap \(t\) pada interval tersebut, berlaku \(a, b, c > 0\), \(a, b, c \neq 1\), serta \(a + b + c = ab + bc + ca\). Saat \(t \to 0^+\), berlaku \((a, b, c) \to (1, 1, 1)\), sehingga:</p>
+                    \[\lim_{t \to 0^+} (u + v + w) = \sqrt{1 + 1 - 1} + \sqrt{1 + 1 - 1} + \sqrt{1 + 1 - 1} = 3\]
+                    <p>Dengan demikian, tidak ada \(\alpha > 3\) yang memenuhi pertidaksamaan untuk seluruh tripel pahlawan, sehingga nilai terbesar yang memenuhi adalah \(\alpha = \color{blue}\boxed{\boxed{\color{black}3}}\).</p>
+                    <div class="kesimpulan">Jadi, bilangan real positif \(\alpha\) terbesar yang memenuhi adalah <strong>3</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Copy-paste blok <article class="soal-item">...</article> sampai 10 blok -->
 
         <!-- Pagination Bawah (Otomatis) -->

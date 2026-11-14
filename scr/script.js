@@ -178,14 +178,24 @@ const DAFTAR_ARSIP = [
         kategori: "KTOM",
         folder: "Arsip_Soal/KTOM",
         paket: [
+            { judul: "KTOM September 2026", file: "KTOM September 2026.html" },
             { judul: "KTOM Oktober 2026", file: "KTOM Oktober 2026.html" },
-            { judul: "KTOM September 2026", file: "KTOM September 2026.html" }
+            { judul: "KTOM November 2026", file: "KTOM November 2026 - Kontes Akhir Tahun 2026 Babak 1.html" },
         ]
     },
     {
         kategori: "OSN",
         folder: "Arsip_Soal/OSN",
-        paket: []
+        paket: [
+            { judul: "OSN SMA 2003", file: "OSN SMA 2003.html" }
+        ]
+    },
+    {
+        kategori: "OSP",
+        folder: "Arsip_Soal/OSP",
+        paket: [
+            { judul: "OSP SMA 2003", file: "OSP SMA 2003.html" }
+        ]
     },
     {
         kategori: "SNBT",
@@ -231,9 +241,8 @@ function initSoalAndMateriPage() {
     const rawFileName = decodeURIComponent(pathParts[pathParts.length - 1] || "1.html");
     const fileName = rawFileName;
     const folderType = decodeURIComponent(pathParts[pathParts.length - 2] || "Exercise");
-    const parentFolder = decodeURIComponent(pathParts[pathParts.length - 3] || "");
     const isNumericPage = /^\d+\.html$/i.test(fileName);
-    const isArsipPage = parentFolder === "Arsip_Soal" || fileName.toLowerCase() === "templatearsipsoal.html";
+    const isArsipPage = pathParts.some(p => decodeURIComponent(p).toLowerCase() === "arsip_soal") || fileName.toLowerCase() === "templatearsipsoal.html";
 
     if (isArsipPage) {
         document.body.classList.add("is-arsip-page");
@@ -257,6 +266,23 @@ function initSoalAndMateriPage() {
             } else {
                 navBarContainer.appendChild(printBtn);
             }
+        }
+
+        // Sisipkan kredit & tautan KulikMath khusus untuk tampilan cetak (@media print)
+        const printCreditHTML = `<span>by <strong>KulikMath</strong></span><span class="print-arsip-sep" aria-hidden="true">&bull;</span><a href="https://otakbiru.github.io/kulikmath/" target="_blank" rel="noopener noreferrer">otakbiru.github.io/kulikmath/</a>`;
+        const pageHeader = document.querySelector(".page-header");
+        if (pageHeader && !pageHeader.querySelector(".print-arsip-brand")) {
+            const brandEl = document.createElement("div");
+            brandEl.className = "print-arsip-brand";
+            brandEl.innerHTML = printCreditHTML;
+            pageHeader.appendChild(brandEl);
+        }
+        const mainContainer = document.querySelector("main.container");
+        if (mainContainer && !mainContainer.querySelector(".print-arsip-footer")) {
+            const footerEl = document.createElement("footer");
+            footerEl.className = "print-arsip-footer";
+            footerEl.innerHTML = printCreditHTML;
+            mainContainer.appendChild(footerEl);
         }
     }
 

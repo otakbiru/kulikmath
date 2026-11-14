@@ -121,24 +121,43 @@
             </div>
         </article>
 
-        <!-- SOAL 2 
+        <!-- SOAL 2 -->
         <article class="soal-item" id="2">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal kedua di sini...
+                <p>Di dalam suatu lingkaran \(L_1\) berjari-jari \(1\) dan berpusat di titik asal dilukis suatu lingkaran \(L_2\) yang bersinggungan dengan lingkaran \(L_1\), dan dengan sumbu-\(x\) dan sumbu-\(y\) positif. Jari-jari lingkaran \(L_2\) adalah ....</p>
+                <ol class="pilgan pilgan-5kolom">
+                    <li>\(\dfrac{1}{3}\)</li>
+                    <li>\(\dfrac{2}{5}\)</li>
+                    <li>\(\sqrt{2} - 1\)</li>
+                    <li>\(\dfrac{1}{2}\)</li>
+                    <li>\(2 - \sqrt{2}\)</li>
+                </ol>
             </div>
-            <div class="soal-sumber"></div>
+            <div class="soal-sumber">OSK SMA 2003</div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan soal kedua di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <div id="svg-solusi-2" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Lingkaran \(L_1\) berpusat di titik asal \(O(0, 0)\) dengan jari-jari \(R = 1\), sehingga persamaannya adalah \(x^2 + y^2 = 1\).</p>
+                    <p>Misalkan lingkaran \(L_2\) berjari-jari \(r\) (dengan \(0 < r < 1\)). Karena \(L_2\) terletak di kuadran I dan menyinggung sumbu-\(x\) positif di \(A(r, 0)\) serta sumbu-\(y\) positif di \(B(0, r)\), maka pusat lingkaran \(L_2\) adalah \(P(r, r)\) dengan persamaan \((x - r)^2 + (y - r)^2 = r^2\).</p>
+                    <p>Jarak antara pusat \(O(0, 0)\) dan pusat \(P(r, r)\) adalah:</p>
+                    \[OP = \sqrt{(r - 0)^2 + (r - 0)^2} = \sqrt{2r^2} = r\sqrt{2}\]
+                    <p>Karena \(L_2\) berada di dalam dan bersinggungan dalam dengan \(L_1\) di titik singgung \(T\), maka ketiga titik \(O, P,\) dan \(T\) segaris dengan panjang jari-jari \(L_1\):</p>
+                    \[\begin{aligned}
+                    OT &= OP + PT \\
+                    1 &= r\sqrt{2} + r \\
+                    1 &= r\left(\sqrt{2} + 1\right) \\
+                    r &= \dfrac{1}{\sqrt{2} + 1}
+                    \end{aligned}\]
+                    <p>Rasionalkan penyebut dengan mengalikan sekawannya:</p>
+                    \[r = \dfrac{1}{\sqrt{2} + 1} \cdot \dfrac{\sqrt{2} - 1}{\sqrt{2} - 1} = \dfrac{\sqrt{2} - 1}{2 - 1} = \color{blue}\boxed{\boxed{\color{black}\sqrt{2} - 1}}\]
+                    <div class="kesimpulan">Jadi, jari-jari lingkaran \(L_2\) adalah \(\sqrt{2} - 1\).<br><b>JAWAB: C</b></div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
             </div>
         </article>
--->
 
         <!-- SOAL 3
         <article class="soal-item" id="3">
@@ -298,6 +317,65 @@
     </main>
 
     <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const el = document.getElementById("svg-solusi-2");
+            if (el && typeof GeoSVG !== "undefined") {
+                const W = 280, H = 280;
+                const geo = new GeoSVG("svg-solusi-2", W, H, {
+                    margin: 22,
+                    title: "Lingkaran L1 dan L2 bersinggungan dengan sumbu-x dan sumbu-y positif"
+                });
+                if (geo.svg) {
+                    geo.svg.style.width = "100%";
+                    geo.svg.style.maxWidth = `${W}px`;
+                    geo.svg.style.height = "auto";
+                }
+
+                const O = [140, 140];
+                const R = 100;
+                const r = R * (Math.SQRT2 - 1);
+
+                const P = [O[0] + r, O[1] - r];
+                const A = [O[0] + r, O[1]];
+                const B = [O[0], O[1] - r];
+                const T = [O[0] + R / Math.SQRT2, O[1] - R / Math.SQRT2];
+
+                // Sumbu koordinat x dan y
+                geo.buatVektor([O[0] - R - 20, O[1]], [O[0] + R + 24, O[1]], { stroke: "#64748b", strokeWidth: 1.5 });
+                geo.buatVektor([O[0], O[1] + R + 20], [O[0], O[1] - R - 24], { stroke: "#64748b", strokeWidth: 1.5 });
+                geo.buatTeks(O[0] + R + 28, O[1] + 2, "x", { fontSize: "12px", fontWeight: "bold", fill: "#64748b", position: "middle-right" });
+                geo.buatTeks(O[0] + 6, O[1] - R - 26, "y", { fontSize: "12px", fontWeight: "bold", fill: "#64748b", position: "top-right" });
+
+                // Lingkaran L1 dan L2
+                geo.buatLingkaran(O, R, { stroke: "#334155", strokeWidth: 2, fill: "none" });
+                geo.buatLingkaran(P, r, { stroke: "#0d9488", strokeWidth: 2, fill: "rgba(13, 148, 136, 0.12)" });
+
+                // Jari-jari ke titik singgung sumbu & garis penghubung pusat O-P-T
+                geo.buatSegmen(P, A, { stroke: "#0d9488", strokeWidth: 1.5, dashed: "4 3" });
+                geo.buatSegmen(P, B, { stroke: "#0d9488", strokeWidth: 1.5, dashed: "4 3" });
+                geo.buatSegmen(O, T, { stroke: "#dc2626", strokeWidth: 1.8 });
+
+                geo.buatSiku(P, A, O, { size: 7, stroke: "#0d9488" });
+                geo.buatSiku(P, B, O, { size: 7, stroke: "#0d9488" });
+
+                // Titik-titik penting
+                geo.buatTitik(O, { label: "O", labelPosition: "bottom-left", size: 3, color: "#334155" });
+                geo.buatTitik(P, { label: "P", labelPosition: "top-left", size: 3, color: "#dc2626" });
+                geo.buatTitik(T, { label: "T", labelPosition: "top-right", size: 3, color: "#dc2626" });
+                geo.buatTitik(A, { label: "A", labelPosition: "bottom-center", size: 2.5, color: "#0d9488" });
+                geo.buatTitik(B, { label: "B", labelPosition: "middle-left", size: 2.5, color: "#0d9488" });
+
+                // Keterangan lingkaran & panjang jari-jari
+                geo.buatTeks(O[0] - R * 0.76, O[1] - R * 0.76, "L₁", { fontSize: "12px", fontWeight: "bold", fill: "#334155", position: "top-left" });
+                geo.buatTeks(P[0] - r * 0.75, P[1] - r * 0.75, "L₂", { fontSize: "11px", fontWeight: "bold", fill: "#0d9488", position: "top-left" });
+                geo.buatTeks(P[0] + 6, (P[1] + A[1]) / 2, "r", { fontSize: "12px", fontWeight: "bold", fill: "#0d9488", position: "middle-right" });
+                geo.buatTeks((O[0] + A[0]) / 2, O[1] + 8, "r", { fontSize: "12px", fontWeight: "bold", fill: "#0d9488", position: "bottom-center" });
+                geo.buatTeks((P[0] + T[0]) / 2 - 4, (P[1] + T[1]) / 2 - 6, "r", { fontSize: "12px", fontWeight: "bold", fill: "#dc2626", position: "top-left" });
+                geo.buatTeks(O[0] + R + 4, O[1] + 10, "1", { fontSize: "11px", fontWeight: "bold", fill: "#334155", position: "bottom-right" });
+            }
+        });
+    </script>
 </body>
 
 </html>

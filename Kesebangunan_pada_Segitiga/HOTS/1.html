@@ -122,24 +122,75 @@
         </article>
 
         <!-- SOAL 2 -->
-        <!--
         <article class="soal-item" id="2">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal ke-2 di sini...
+                <p>Misalkan \(\triangle ABC\) adalah segitiga siku-siku dengan \(AB = 3\), \(BC = 4\) dan \(AC = 5\). Definisikan titik \(D_1\) sebagai titik pada \(AC\) sedemikian sehingga \(BD_1\) tegak lurus dengan \(AC\). Definisikan \(E_1\) sebagai titik pada \(BC\) sedemikian sehingga \(D_1E_1\) tegak lurus terhadap \(BC\).</p>
+                <p>Untuk semua \(n \ge 2\), definisikan \(D_n\) sebagai titik pada \(AC\) sedemikian sehingga \(E_{n-1}D_n\) tegak lurus terhadap \(AC\) dan \(E_n\) sebagai titik pada \(BC\) sehingga \(D_nE_n\) tegak lurus terhadap \(BC\).</p>
+                <p>Tentukan sisa pembagian dari \(25^{2026} \cdot D_{2026}E_{2026}\) saat dibagi oleh \(255\).</p>
             </div>
-            <div class="soal-sumber"></div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM November 2026 (Bagian A No. 5)</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan soal ke-2 di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <div id="svg-solusi-2" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Karena \(AB = 3\), \(BC = 4\), dan \(AC = 5\) memenuhi \(AB^2 + BC^2 = 3^2 + 4^2 = 5^2 = AC^2\), maka \(\triangle ABC\) siku-siku di \(B\) dengan:</p>
+                    \[\sin C = \dfrac{AB}{AC} = \dfrac{3}{5} \quad \text{dan} \quad \cos C = \dfrac{BC}{AC} = \dfrac{4}{5}\]
+                    <p>Perhatikan barisan segitiga siku-siku yang sebangun dengan \(\triangle ABC\) dan memiliki titik sudut lancip di \(C\):</p>
+                    <ul>
+                        <li>Pada \(\triangle BCD_1\) yang siku-siku di \(D_1\), hipotenusanya adalah \(BC = 4\), sehingga:
+                            \[CD_1 = BC \cos C = 4 \cdot \dfrac{4}{5}\]
+                        </li>
+                        <li>Pada \(\triangle CD_1E_1\) yang siku-siku di \(E_1\), hipotenusanya adalah \(CD_1\), sehingga:
+                            \[D_1E_1 = CD_1 \sin C = 4 \cdot \dfrac{4}{5} \cdot \dfrac{3}{5} = 3 \cdot \left(\dfrac{16}{25}\right)^1, \qquad CE_1 = CD_1 \cos C = 4 \cdot \left(\dfrac{4}{5}\right)^2\]
+                        </li>
+                        <li>Untuk setiap \(n \ge 2\), karena \(\triangle CE_{n-1}D_n\) siku-siku di \(D_n\) dan \(\triangle CD_nE_n\) siku-siku di \(E_n\), setiap langkah dari \(n - 1\) ke \(n\) mengalikan ukuran segitiga dengan faktor \(\cos^2 C = \left(\dfrac{4}{5}\right)^2 = \dfrac{16}{25}\):
+                            \[CD_n = CE_{n-1} \cos C, \qquad CE_n = CD_n \cos C = \dfrac{16}{25}\,CE_{n-1}\]
+                            \[D_nE_n = CD_n \sin C = \dfrac{16}{25}\,D_{n-1}E_{n-1}\]
+                        </li>
+                    </ul>
+                    <p>Dengan demikian, barisan panjang \(D_nE_n\) membentuk barisan geometri dengan suku pertama \(D_1E_1 = 3 \cdot \dfrac{16}{25}\) dan rasio \(r = \dfrac{16}{25}\), sehingga untuk setiap \(n \ge 1\):</p>
+                    \[D_nE_n = 3 \cdot \left(\dfrac{16}{25}\right)^n = \dfrac{3 \cdot 16^n}{25^n}\]
+                    <p>Untuk \(n = 2026\), diperoleh:</p>
+                    \[25^{2026} \cdot D_{2026}E_{2026} = 25^{2026} \cdot \dfrac{3 \cdot 16^{2026}}{25^{2026}} = 3 \cdot 16^{2026}\]
+                    <p>Sekarang kita hitung sisa pembagian \(3 \cdot 16^{2026}\) oleh \(255\). Perhatikan bahwa \(16^2 = 256 \equiv 1 \pmod{255}\), sehingga:</p>
+                    \[3 \cdot 16^{2026} = 3 \cdot \left(16^2\right)^{1013} \equiv 3 \cdot 1^{1013} = 3 \pmod{255}\]
+                    <p>Karena \(0 \le 3 < 255\), sisa pembagiannya adalah \(\color{blue}\boxed{\boxed{\color{black}3}}\).</p>
+                    <div class="kesimpulan">Jadi, sisa pembagian dari \(25^{2026} \cdot D_{2026}E_{2026}\) saat dibagi oleh \(255\) adalah <strong>3</strong>.</div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
             </div>
         </article>
-        -->
+
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Dalam sebuah segitiga \(ABC\) siku-siku sama kaki, dibuat persegi \(PQRS\) sebagai berikut: Titik \(P\) pada sisi \(AB\), titik \(Q\) pada sisi \(AC\), sedangkan titik-titik \(R\) dan \(S\) pada sisi miring \(BC\). Jika luas segitiga \(ABC\) adalah \(x\), berapakah luas persegi \(PQRS\)?
+            </div>
+            <div class="soal-sumber">OSP SMA 2003 (Bagian I No. 8)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-3" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Karena \(R\) dan \(S\) terletak pada sisi miring \(BC\), maka sudut siku-siku segitiga sama kaki \(\triangle ABC\) berada di titik \(A\), dengan \(\angle B = \angle C = 45^\circ\) dan panjang alas \(BC = c\). Tinggi segitiga terhadap sisi miring \(BC\) adalah \(t = \frac{1}{2}BC = \frac{c}{2}\), sehingga luasnya:</p>
+                    \[x = \frac{1}{2} \cdot c \cdot \frac{c}{2} = \frac{c^2}{4} \implies c^2 = 4x\]
+                    <p>Misalkan panjang sisi persegi \(PQRS\) adalah \(s\). Perhatikan dua segitiga kecil di kanan dan kiri persegi:</p>
+                    <ul>
+                        <li>\(\triangle PBR\) siku-siku di \(R\) dengan \(\angle B = 45^\circ\), sehingga segitiga siku-siku sama kaki dan \(BR = PR = s\).</li>
+                        <li>\(\triangle QCS\) siku-siku di \(S\) dengan \(\angle C = 45^\circ\), sehingga segitiga siku-siku sama kaki dan \(SC = QS = s\).</li>
+                    </ul>
+                    <p>Karena titik \(B, R, S, C\) segaris pada sisi miring \(BC\), diperoleh:</p>
+                    \[BC = BR + RS + SC = s + s + s = 3s \implies s = \frac{c}{3}\]
+                    <p>Oleh karena itu, luas persegi \(PQRS\) adalah:</p>
+                    \[[PQRS] = s^2 = \left(\frac{c}{3}\right)^2 = \frac{c^2}{9} = \frac{4x}{9}\]
+                    <div class="kesimpulan">Jadi, luas persegi \(PQRS\) adalah \(\mathbf{\dfrac{4}{9}x}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
 
         <!-- SOAL 3 -->
         <!--
@@ -306,6 +357,89 @@
     </main>
 
     <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof GeoSVG !== "undefined") {
+                const el2 = document.getElementById("svg-solusi-2");
+                if (el2) {
+                    const geo2 = new GeoSVG("svg-solusi-2", 310, 210, { margin: 25 });
+                    const B = [35, 175];
+                    const C = [275, 175];
+                    const A = [35, 25];
+                    const D1 = [35 + 240 * (9 / 25), 25 + 150 * (9 / 25)];
+                    const E1 = [D1[0], 175];
+                    const r = 16 / 25;
+                    const D2 = [C[0] + r * (D1[0] - C[0]), C[1] + r * (D1[1] - C[1])];
+                    const E2 = [D2[0], 175];
+
+                    geo2.buatSegitiga(A, B, C, { stroke: "#334155", strokeWidth: 1.8 });
+                    geo2.buatSegmen(B, D1, { stroke: "#0d9488", strokeWidth: 1.6 });
+                    geo2.buatSegmen(D1, E1, { stroke: "#2563eb", strokeWidth: 1.6 });
+                    geo2.buatSegmen(E1, D2, { stroke: "#0d9488", strokeWidth: 1.4, dasharray: "4,3" });
+                    geo2.buatSegmen(D2, E2, { stroke: "#2563eb", strokeWidth: 1.4, dasharray: "4,3" });
+
+                    geo2.buatSiku(A, B, C, { size: 8 });
+                    geo2.buatSiku(B, D1, C, { size: 7 });
+                    geo2.buatSiku(D1, E1, C, { size: 7 });
+                    geo2.buatSiku(E1, D2, C, { size: 6 });
+                    geo2.buatSiku(D2, E2, C, { size: 6 });
+
+                    geo2.buatTitik(A, { label: "A", labelPosition: "kiri atas", size: 2.5 });
+                    geo2.buatTitik(B, { label: "B", labelPosition: "kiri bawah", size: 2.5 });
+                    geo2.buatTitik(C, { label: "C", labelPosition: "kanan bawah", size: 2.5 });
+                    geo2.buatTitik(D1, { label: "D₁", labelPosition: "kanan atas", size: 2.5 });
+                    geo2.buatTitik(E1, { label: "E₁", labelPosition: "tengah bawah", size: 2.5 });
+                    geo2.buatTitik(D2, { label: "D₂", labelPosition: "kanan atas", size: 2.5 });
+                    geo2.buatTitik(E2, { label: "E₂", labelPosition: "tengah bawah", size: 2.5 });
+                }
+            }
+        });
+    </script>
+    <script>
+        (function () {
+            function renderDiagram3() {
+                const el = document.getElementById("svg-solusi-3");
+                if (!el || typeof GeoSVG === "undefined") return;
+                const geo = new GeoSVG("svg-solusi-3", 260, 145, { margin: 20, clearContainer: true });
+                const B = { x: 25, y: 120 };
+                const C = { x: 235, y: 120 };
+                const A = { x: 130, y: 15 };
+                const R = { x: 95, y: 120 };
+                const S = { x: 165, y: 120 };
+                const P = { x: 95, y: 50 };
+                const Q = { x: 165, y: 50 };
+
+                geo.buatSegitiga(A, B, C, { fill: "none", stroke: "var(--text-main)", strokeWidth: 2 });
+                geo.buatPoligon([P, Q, S, R], {
+                    fill: "rgba(13, 148, 136, 0.14)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2
+                });
+                geo.buatSiku(B, A, C, { size: 10, stroke: "var(--text-main)" });
+                geo.buatSiku(P, R, S, { size: 8, stroke: "var(--teal-primary)" });
+                geo.buatSiku(Q, S, R, { size: 8, stroke: "var(--teal-primary)" });
+
+                geo.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                geo.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                geo.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                geo.buatTitik(P, { label: "P", labelPosition: "top-left", size: 3.5, color: "var(--teal-primary)" });
+                geo.buatTitik(Q, { label: "Q", labelPosition: "top-right", size: 3.5, color: "var(--teal-primary)" });
+                geo.buatTitik(R, { label: "R", labelPosition: "bottom-center", size: 3.5, color: "var(--teal-primary)" });
+                geo.buatTitik(S, { label: "S", labelPosition: "bottom-center", size: 3.5, color: "var(--teal-primary)" });
+
+                geo.buatTeks(60, 134, "s", { position: "middle-center", fontSize: 12, fill: "var(--text-main)" });
+                geo.buatTeks(130, 134, "s", { position: "middle-center", fontSize: 12, fontWeight: "bold", fill: "var(--teal-primary)" });
+                geo.buatTeks(200, 134, "s", { position: "middle-center", fontSize: 12, fill: "var(--text-main)" });
+                geo.buatTeks(84, 85, "s", { position: "middle-center", fontSize: 12, fill: "var(--teal-primary)" });
+            }
+
+            if (typeof GeoSVG !== "undefined") {
+                renderDiagram3();
+            } else {
+                window.addEventListener("load", renderDiagram3);
+            }
+        })();
+    </script>
 </body>
 
 </html>

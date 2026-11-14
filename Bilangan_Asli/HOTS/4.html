@@ -11,6 +11,11 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
 
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+        </script>
+
     <!-- Style Blog -->
     <link rel="stylesheet" href="../../scr/style.css">
 </head>
@@ -45,47 +50,75 @@
         <article class="soal-item" id="31">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Definisikan suatu bilangan asli sebagai <i>kuat</i> jika berbentuk \(n^k\) untuk suatu bilangan asli \(n > 1\) dan \(k > 2\). Misalkan \(S(n)\) menyatakan jumlah digit desimal dari bilangan asli \(n\), misalnya \(S(2026) = 2 + 0 + 2 + 6 = 10\).<br><br>
-                Tentukan ada atau tidaknya bilangan asli \(n\) sedemikian sehingga memenuhi syarat berikut: Jika \(\mathcal{C} \subseteq \mathbb{Z}^+\) menyatakan seluruh bilangan asli yang muncul setidaknya sekali pada barisan
+                Definisikan suatu bilangan asli sebagai <i>kuat</i> jika berbentuk \(n^k\) untuk suatu bilangan asli \(n
+                > 1\) dan \(k > 2\). Misalkan \(S(n)\) menyatakan jumlah digit desimal dari bilangan asli \(n\),
+                misalnya \(S(2026) = 2 + 0 + 2 + 6 = 10\).<br><br>
+                Tentukan ada atau tidaknya bilangan asli \(n\) sedemikian sehingga memenuhi syarat berikut: Jika
+                \(\mathcal{C} \subseteq \mathbb{Z}^+\) menyatakan seluruh bilangan asli yang muncul setidaknya sekali
+                pada barisan
                 \[n,\; S(n),\; S(S(n)),\; \dots\]
                 maka berlaku bahwa tepat \(99{,}9\%\) dari elemen himpunan \(\mathcal{C}\) merupakan bilangan kuat.
             </div>
-            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM Oktober 2026 (Bagian B No. 4)</a></div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM
+                    Oktober 2026 (Bagian B No. 4)</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    <p><strong>Jawab: Ada.</strong> Kita akan mengonstruksi secara eksplisit bilangan asli \(n\) sehingga himpunan \(\mathcal{C}\) memiliki tepat \(1000\) elemen berbeda, yang terdiri atas \(999\) bilangan pangkat tiga sempurna lebih dari \(1\) (sehingga merupakan bilangan <i>kuat</i> dengan \(k = 3 > 2\)) dan \(1\) elemen terakhir bernilai \(1\) (yang bukan bilangan <i>kuat</i> karena definisi mensyaratkan basis \(> 1\)).</p>
+                    <p><strong>Jawab: Ada.</strong> Kita akan mengonstruksi secara eksplisit bilangan asli \(n\)
+                        sehingga himpunan \(\mathcal{C}\) memiliki tepat \(1000\) elemen berbeda, yang terdiri atas
+                        \(999\) bilangan pangkat tiga sempurna lebih dari \(1\) (sehingga merupakan bilangan <i>kuat</i>
+                        dengan \(k = 3 > 2\)) dan \(1\) elemen terakhir bernilai \(1\) (yang bukan bilangan <i>kuat</i>
+                        karena definisi mensyaratkan basis \(> 1\)).</p>
                     <br>
 
                     <p><strong>Langkah 1: Lema Konstruksi Pangkat Tiga dengan Jumlah Digit \(r^3\)</strong></p>
-                    <p>Untuk setiap bilangan asli \(r \ge 1\), definisikan bilangan asli \(f(r) > 1\) sebagai penjumlahan \(r\) buah perpangkatan \(10\) dengan eksponen berbasis \(4\):</p>
+                    <p>Untuk setiap bilangan asli \(r \ge 1\), definisikan bilangan asli \(f(r) > 1\) sebagai
+                        penjumlahan \(r\) buah perpangkatan \(10\) dengan eksponen berbasis \(4\):</p>
                     \[f(r) = \sum_{j=1}^{r} 10^{4^j}\]
                     <p>Tinjau ekspansi pangkat tiga dari \(f(r)\) menggunakan Teorema Multinomial:</p>
-                    \[\big(f(r)\big)^3 = \left(\sum_{j=1}^{r} 10^{4^j}\right)^3 = \sum_{j=1}^{r} 10^{3 \cdot 4^j} + 3 \sum_{i \neq j} 10^{2 \cdot 4^i + 4^j} + 6 \sum_{1 \le i < j < l \le r} 10^{4^i + 4^j + 4^l}\]
-                    <p>Perhatikan dua sifat penting pada ekspansi desimal di atas:</p>
-                    <ol>
-                        <li>Karena setiap bilangan asli memiliki representasi basis-\(4\) yang tunggal, seluruh eksponen \(3 \cdot 4^j\), \(2 \cdot 4^i + 4^j\), dan \(4^i + 4^j + 4^l\) untuk kombinasi indeks yang berbeda memiliki nilai yang <strong>saling berbeda</strong>.</li>
-                        <li>Koefisien di depan setiap perpangkatan \(10\) hanya bernilai \(1, 3,\) atau \(6\) (semuanya kurang dari \(10\)), sehingga <strong>tidak terjadi simpanan (<i>carry</i>)</strong> sama sekali ketika dijumlahkan dalam basis \(10\).</li>
-                    </ol>
-                    <p>Akibatnya, jumlah seluruh digit desimal dari \(\big(f(r)\big)^3\) sama persis dengan jumlah seluruh koefisien multinomialnya, yaitu:</p>
-                    \[S\!\left(\big(f(r)\big)^3\right) = (\underbrace{1 + 1 + \dots + 1}_{r\text{ suku}})^3 = r^3\]
-                    <br>
+                    \[\big(f(r)\big)^3 = \left(\sum_{j=1}^{r} 10^{4^j}\right)^3 = \sum_{j=1}^{r} 10^{3 \cdot 4^j} + 3
+                    \sum_{i \neq j} 10^{2 \cdot 4^i + 4^j} + 6 \sum_{1 \le i < j < l \le r} 10^{4^i + 4^j + 4^l}\] <p>
+                        Perhatikan dua sifat penting pada ekspansi desimal di atas:</p>
+                        <ol>
+                            <li>Karena setiap bilangan asli memiliki representasi basis-\(4\) yang tunggal, seluruh
+                                eksponen \(3 \cdot 4^j\), \(2 \cdot 4^i + 4^j\), dan \(4^i + 4^j + 4^l\) untuk kombinasi
+                                indeks yang berbeda memiliki nilai yang <strong>saling berbeda</strong>.</li>
+                            <li>Koefisien di depan setiap perpangkatan \(10\) hanya bernilai \(1, 3,\) atau \(6\)
+                                (semuanya kurang dari \(10\)), sehingga <strong>tidak terjadi simpanan
+                                    (<i>carry</i>)</strong> sama sekali ketika dijumlahkan dalam basis \(10\).</li>
+                        </ol>
+                        <p>Akibatnya, jumlah seluruh digit desimal dari \(\big(f(r)\big)^3\) sama persis dengan jumlah
+                            seluruh koefisien multinomialnya, yaitu:</p>
+                        \[S\!\left(\big(f(r)\big)^3\right) = (\underbrace{1 + 1 + \dots + 1}_{r\text{ suku}})^3 = r^3\]
+                        <br>
 
-                    <p><strong>Langkah 2: Konstruksi Barisan Mundur sepanjang \(1000\) Suku</strong></p>
-                    <p>Definisikan barisan bilangan asli \(r_{999}, r_{998}, \dots, r_0\) secara rekursif mundur:</p>
-                    <ul>
-                        <li>Tetapkan \(r_{999} = 1\), sehingga \(n_{999} = r_{999}^3 = 1\). Perhatikan bahwa \(1\) <strong>bukan</strong> bilangan <i>kuat</i> karena definisi bilangan kuat mensyaratkan bilangan berbentuk \(m^k\) dengan \(m > 1\) dan \(k > 2\) (sehingga setiap bilangan kuat bernilai \(\ge 2^3 = 8\)).</li>
-                        <li>Untuk \(i = 998, 997, \dots, 0\), definisikan \(r_i = f(r_{i+1})\) dan \(n_i = r_i^3\).</li>
-                    </ul>
-                    <p>Berdasarkan Lema pada Langkah 1, untuk setiap \(i \in \{0, 1, \dots, 998\}\) berlaku:</p>
-                    \[S(n_i) = S\!\left(\big(f(r_{i+1})\big)^3\right) = r_{i+1}^3 = n_{i+1}\]
-                    <p>dan karena \(r_i = f(r_{i+1}) \ge 10^4 > 1\), maka setiap \(n_i = r_i^3\) (\(0 \le i \le 998\)) merupakan bilangan <i>kuat</i> (dengan eksponen \(k = 3 > 2\)), serta memenuhi \(n_0 > n_1 > \dots > n_{998} > n_{999} = 1\).</p>
-                    <p>Saat kita memilih \(n = n_0\), barisan \(n, S(n), S(S(n)), \dots\) adalah:</p>
-                    \[n_0,\; n_1,\; n_2,\; \dots,\; n_{998},\; 1,\; 1,\; 1,\; \dots\]
-                    <p>Himpunan seluruh elemen berbeda yang muncul adalah \(\mathcal{C} = \{n_0, n_1, \dots, n_{998}, 1\}\) dengan \(|\mathcal{C}| = 1000\), di mana tepat \(999\) elemen (\(n_0, \dots, n_{998}\)) merupakan bilangan kuat dan \(1\) elemen (\(1\)) bukan bilangan kuat. Persentase elemen kuat di \(\mathcal{C}\) adalah:</p>
-                    \[\dfrac{999}{1000} \times 100\% = 99{,}9\% \quad \blacksquare\]
-                    <div class="kesimpulan">Jadi, <strong>ada</strong> bilangan asli \(n\) yang memenuhi syarat tersebut.</div>
+                        <p><strong>Langkah 2: Konstruksi Barisan Mundur sepanjang \(1000\) Suku</strong></p>
+                        <p>Definisikan barisan bilangan asli \(r_{999}, r_{998}, \dots, r_0\) secara rekursif mundur:
+                        </p>
+                        <ul>
+                            <li>Tetapkan \(r_{999} = 1\), sehingga \(n_{999} = r_{999}^3 = 1\). Perhatikan bahwa \(1\)
+                                <strong>bukan</strong> bilangan <i>kuat</i> karena definisi bilangan kuat mensyaratkan
+                                bilangan berbentuk \(m^k\) dengan \(m > 1\) dan \(k > 2\) (sehingga setiap bilangan kuat
+                                bernilai \(\ge 2^3 = 8\)).
+                            </li>
+                            <li>Untuk \(i = 998, 997, \dots, 0\), definisikan \(r_i = f(r_{i+1})\) dan \(n_i = r_i^3\).
+                            </li>
+                        </ul>
+                        <p>Berdasarkan Lema pada Langkah 1, untuk setiap \(i \in \{0, 1, \dots, 998\}\) berlaku:</p>
+                        \[S(n_i) = S\!\left(\big(f(r_{i+1})\big)^3\right) = r_{i+1}^3 = n_{i+1}\]
+                        <p>dan karena \(r_i = f(r_{i+1}) \ge 10^4 > 1\), maka setiap \(n_i = r_i^3\) (\(0 \le i \le
+                            998\)) merupakan bilangan <i>kuat</i> (dengan eksponen \(k = 3 > 2\)), serta memenuhi \(n_0
+                            > n_1 > \dots > n_{998} > n_{999} = 1\).</p>
+                        <p>Saat kita memilih \(n = n_0\), barisan \(n, S(n), S(S(n)), \dots\) adalah:</p>
+                        \[n_0,\; n_1,\; n_2,\; \dots,\; n_{998},\; 1,\; 1,\; 1,\; \dots\]
+                        <p>Himpunan seluruh elemen berbeda yang muncul adalah \(\mathcal{C} = \{n_0, n_1, \dots,
+                            n_{998}, 1\}\) dengan \(|\mathcal{C}| = 1000\), di mana tepat \(999\) elemen (\(n_0, \dots,
+                            n_{998}\)) merupakan bilangan kuat dan \(1\) elemen (\(1\)) bukan bilangan kuat. Persentase
+                            elemen kuat di \(\mathcal{C}\) adalah:</p>
+                        \[\dfrac{999}{1000} \times 100\% = 99{,}9\% \quad \blacksquare\]
+                        <div class="kesimpulan">Jadi, <strong>ada</strong> bilangan asli \(n\) yang memenuhi syarat
+                            tersebut.</div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
             </div>
@@ -95,30 +128,40 @@
         <article class="soal-item" id="32">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Sebuah bilangan bulat dua digit \(\overline{ab}\) dikalikan dengan \(9\). Bilangan bulat tiga digit yang dihasilkan berbentuk \(\overline{acb}\) untuk suatu digit \(c\). Tentukan jumlah dari semua nilai \(\overline{ab}\) yang mungkin.
+                Sebuah bilangan bulat dua digit \(\overline{ab}\) dikalikan dengan \(9\). Bilangan bulat tiga digit yang
+                dihasilkan berbentuk \(\overline{acb}\) untuk suatu digit \(c\). Tentukan jumlah dari semua nilai
+                \(\overline{ab}\) yang mungkin.
             </div>
-            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM September 2026</a></div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM
+                    September 2026</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    <p>Tuliskan persamaan nilai tempat desimal dari \(9 \times \overline{ab} = \overline{acb}\) dengan \(a \in \{1, \dots, 9\}\) dan \(b, c \in \{0, \dots, 9\}\):</p>
+                    <p>Tuliskan persamaan nilai tempat desimal dari \(9 \times \overline{ab} = \overline{acb}\) dengan
+                        \(a \in \{1, \dots, 9\}\) dan \(b, c \in \{0, \dots, 9\}\):</p>
                     \[\begin{aligned}
                     9(10a + b) &= 100a + 10c + b\\
                     90a + 9b &= 100a + 10c + b\\
                     8b &= 10(a + c)\\
                     4b &= 5(a + c)
                     \end{aligned}\]
-                    <p>Karena \(\text{FPB}(4, 5) = 1\), maka \(5\) harus membagi \(b\). Mengingat \(b \in \{0, 1, \dots, 9\}\), hanya ada dua kemungkinan untuk \(b\):</p>
+                    <p>Karena \(\text{FPB}(4, 5) = 1\), maka \(5\) harus membagi \(b\). Mengingat \(b \in \{0, 1, \dots,
+                        9\}\), hanya ada dua kemungkinan untuk \(b\):</p>
                     <ul>
-                        <li><strong>Jika \(b = 0\):</strong> maka \(a + c = 0\), yang tidak mungkin karena \(a \ge 1\) dan \(c \ge 0\).</li>
+                        <li><strong>Jika \(b = 0\):</strong> maka \(a + c = 0\), yang tidak mungkin karena \(a \ge 1\)
+                            dan \(c \ge 0\).</li>
                         <li><strong>Jika \(b = 5\):</strong> maka \(4(5) = 5(a + c) \implies a + c = 4\).<br>
-                            Karena \(a \ge 1\) dan \(c \ge 0\), nilai \(a\) yang memenuhi adalah \(a \in \{1, 2, 3, 4\}\) (dengan \(c = 4 - a \in \{3, 2, 1, 0\}\)).
+                            Karena \(a \ge 1\) dan \(c \ge 0\), nilai \(a\) yang memenuhi adalah \(a \in \{1, 2, 3,
+                            4\}\) (dengan \(c = 4 - a \in \{3, 2, 1, 0\}\)).
                         </li>
                     </ul>
-                    <p>Keempat bilangan \(\overline{ab}\) yang mungkin adalah \(15, 25, 35,\) dan \(45\) (masing-masing menghasilkan \(135, 225, 315,\) dan \(405\)). Jumlah seluruh nilai \(\overline{ab}\) yang mungkin adalah:</p>
+                    <p>Keempat bilangan \(\overline{ab}\) yang mungkin adalah \(15, 25, 35,\) dan \(45\) (masing-masing
+                        menghasilkan \(135, 225, 315,\) dan \(405\)). Jumlah seluruh nilai \(\overline{ab}\) yang
+                        mungkin adalah:</p>
                     \[15 + 25 + 35 + 45 = \color{blue}\boxed{\boxed{\color{black}120}}\]
-                    <div class="kesimpulan">Jadi, jumlah dari semua nilai \(\overline{ab}\) yang mungkin adalah \(120\).</div>
+                    <div class="kesimpulan">Jadi, jumlah dari semua nilai \(\overline{ab}\) yang mungkin adalah \(120\).
+                    </div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
             </div>
@@ -128,23 +171,30 @@
         <article class="soal-item" id="33">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Bilangan asli \(8833\) memiliki properti bahwa \(8833 = 88^2 + 33^2\). Diketahui bahwa hanya terdapat sebuah bilangan asli empat digit \(N \neq 8833\), dengan \(N = \overline{abcd}\) dengan properti \(\overline{abcd} = (\overline{ab})^2 + (\overline{cd})^2\). Tentukan nilai \(N\).
+                Bilangan asli \(8833\) memiliki properti bahwa \(8833 = 88^2 + 33^2\). Diketahui bahwa hanya terdapat
+                sebuah bilangan asli empat digit \(N \neq 8833\), dengan \(N = \overline{abcd}\) dengan properti
+                \(\overline{abcd} = (\overline{ab})^2 + (\overline{cd})^2\). Tentukan nilai \(N\).
             </div>
-            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM September 2026</a></div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM
+                    September 2026</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    <p>Misalkan \(x = \overline{ab} \in \{10, 11, \dots, 99\}\) dan \(y = \overline{cd} \in \{0, 1, \dots, 99\}\). Maka \(N = 100x + y\), sehingga persamaan pada soal dapat ditulis sebagai:</p>
+                    <p>Misalkan \(x = \overline{ab} \in \{10, 11, \dots, 99\}\) dan \(y = \overline{cd} \in \{0, 1,
+                        \dots, 99\}\). Maka \(N = 100x + y\), sehingga persamaan pada soal dapat ditulis sebagai:</p>
                     \[\begin{aligned}
                     100x + y &= x^2 + y^2\\
                     x(100 - x) &= y(y - 1)
                     \end{aligned}\]
                     <p>Diketahui bahwa pasangan \((x, y) = (88, 33)\) memenuhi persamaan di atas karena:</p>
                     \[88(100 - 88) = 88 \times 12 = 1056 = 33 \times 32\]
-                    <p>Perhatikan bahwa bentuk \(x(100 - x)\) bersifat simetris terhadap substitusi \(x \leftrightarrow 100 - x\). Dengan mengganti \(x = 88\) menjadi \(x = 100 - 88 = 12\) dan mempertahankan \(y = 33\), persamaan tetap terpenuhi:</p>
+                    <p>Perhatikan bahwa bentuk \(x(100 - x)\) bersifat simetris terhadap substitusi \(x \leftrightarrow
+                        100 - x\). Dengan mengganti \(x = 88\) menjadi \(x = 100 - 88 = 12\) dan mempertahankan \(y =
+                        33\), persamaan tetap terpenuhi:</p>
                     \[12(100 - 12) = 12 \times 88 = 33(33 - 1) \implies 12^2 + 33^2 = 144 + 1089 = 1233\]
-                    <p>Karena \(x = 12 \in \{10, \dots, 99\}\), diperoleh \(N = \overline{1233} = \color{blue}\boxed{\boxed{\color{black}1233}}\).</p>
+                    <p>Karena \(x = 12 \in \{10, \dots, 99\}\), diperoleh \(N = \overline{1233} =
+                        \color{blue}\boxed{\boxed{\color{black}1233}}\).</p>
                     <div class="kesimpulan">Jadi, nilai \(N\) adalah \(1233\).</div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
@@ -158,35 +208,49 @@
                 Tentukan bilangan bulat \(m\) terkecil sehingga terdapat bilangan asli \(a, b > 1\) yang memenuhi
                 \[a^2 + b^2 + 2026 = mab.\]
             </div>
-            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM September 2026</a></div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM
+                    September 2026</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    <p>Karena \(a, b > 1\) adalah bilangan asli, maka \(a^2 + b^2 + 2026 > 0\) dan \(ab > 0\), sehingga \(m\) haruslah bilangan bulat positif (\(m \ge 1\)).</p>
+                    <p>Karena \(a, b > 1\) adalah bilangan asli, maka \(a^2 + b^2 + 2026 > 0\) dan \(ab > 0\), sehingga
+                        \(m\) haruslah bilangan bulat positif (\(m \ge 1\)).</p>
                     <p><strong>Langkah 1: Analisis Modulo \(4\)</strong><br>
-                    Perhatikan bahwa \(2026 \equiv 2 \pmod 4\). Andaikan salah satu dari \(a\) atau \(b\) genap, maka dari \(a^2 + b^2 + 2026 = mab\) diperoleh \(a^2 + b^2 \equiv 0 \pmod 2\), yang berarti \(a\) dan \(b\) keduanya harus genap. Namun jika \(a\) dan \(b\) keduanya genap, maka \(4 \mid a^2 + b^2\) dan \(4 \mid mab\), sehingga \(4 \mid 2026\), kontradiksi karena \(2026 \equiv 2 \pmod 4\).<br>
-                    Dengan demikian, \(a\) dan \(b\) keduanya ganjil, sehingga \(a^2 \equiv b^2 \equiv 1 \pmod 4\). Akibatnya:</p>
+                        Perhatikan bahwa \(2026 \equiv 2 \pmod 4\). Andaikan salah satu dari \(a\) atau \(b\) genap,
+                        maka dari \(a^2 + b^2 + 2026 = mab\) diperoleh \(a^2 + b^2 \equiv 0 \pmod 2\), yang berarti
+                        \(a\) dan \(b\) keduanya harus genap. Namun jika \(a\) dan \(b\) keduanya genap, maka \(4 \mid
+                        a^2 + b^2\) dan \(4 \mid mab\), sehingga \(4 \mid 2026\), kontradiksi karena \(2026 \equiv 2
+                        \pmod 4\).<br>
+                        Dengan demikian, \(a\) dan \(b\) keduanya ganjil, sehingga \(a^2 \equiv b^2 \equiv 1 \pmod 4\).
+                        Akibatnya:</p>
                     \[mab = a^2 + b^2 + 2026 \equiv 1 + 1 + 2 \equiv 0 \pmod 4\]
                     <p>Karena \(a\) dan \(b\) ganjil (\(\gcd(ab, 4) = 1\)), maka haruslah \(4 \mid m\).</p>
                     <p><strong>Langkah 2: Analisis Modulo \(3\)</strong><br>
-                    Perhatikan bahwa \(2026 \equiv 1 \pmod 3\). Andaikan \(3 \mid a\), maka \(3 \mid mab\) dan \(3 \mid a^2\), sehingga:</p>
+                        Perhatikan bahwa \(2026 \equiv 1 \pmod 3\). Andaikan \(3 \mid a\), maka \(3 \mid mab\) dan \(3
+                        \mid a^2\), sehingga:</p>
                     \[0 \equiv 0 + b^2 + 1 \pmod 3 \implies b^2 \equiv 2 \pmod 3\]
-                    <p>Hal ini mustahil karena kuadrat bilangan bulat selalu kongruen dengan \(0\) atau \(1\) modulo \(3\). Dengan argumen serupa, \(3 \nmid b\). Karena \(3 \nmid a\) dan \(3 \nmid b\), maka \(a^2 \equiv b^2 \equiv 1 \pmod 3\), sehingga:</p>
+                    <p>Hal ini mustahil karena kuadrat bilangan bulat selalu kongruen dengan \(0\) atau \(1\) modulo
+                        \(3\). Dengan argumen serupa, \(3 \nmid b\). Karena \(3 \nmid a\) dan \(3 \nmid b\), maka \(a^2
+                        \equiv b^2 \equiv 1 \pmod 3\), sehingga:</p>
                     \[mab = a^2 + b^2 + 2026 \equiv 1 + 1 + 1 \equiv 0 \pmod 3\]
                     <p>Karena \(\gcd(ab, 3) = 1\), maka haruslah \(3 \mid m\).</p>
                     <p><strong>Langkah 3: Konstruksi Solusi untuk \(m = 12\)</strong><br>
-                    Dari \(4 \mid m\) dan \(3 \mid m\), diperoleh \(12 \mid m\). Karena \(m > 0\), nilai terkecil yang mungkin adalah \(m = 12\). Kita tunjukkan bahwa \(m = 12\) benar-benar dapat dicapai.<br>
-                    Substitusikan \(m = 12\) dan lengkapi kuadrat sempurna terhadap \(a\):</p>
+                        Dari \(4 \mid m\) dan \(3 \mid m\), diperoleh \(12 \mid m\). Karena \(m > 0\), nilai terkecil
+                        yang mungkin adalah \(m = 12\). Kita tunjukkan bahwa \(m = 12\) benar-benar dapat dicapai.<br>
+                        Substitusikan \(m = 12\) dan lengkapi kuadrat sempurna terhadap \(a\):</p>
                     \[\begin{aligned}
                     a^2 - 12ab + b^2 + 2026 &= 0\\
                     (a - 6b)^2 &= 35b^2 - 2026
                     \end{aligned}\]
-                    <p>Kita uji nilai \(b > 1\) ganjil yang tidak habis dibagi \(3\) serta memenuhi \(35b^2 > 2026\) (yaitu \(b \ge 8\)). Untuk \(b = 11\):</p>
+                    <p>Kita uji nilai \(b > 1\) ganjil yang tidak habis dibagi \(3\) serta memenuhi \(35b^2 > 2026\)
+                        (yaitu \(b \ge 8\)). Untuk \(b = 11\):</p>
                     \[(a - 66)^2 = 35(11)^2 - 2026 = 4235 - 2026 = 2209 = 47^2\]
-                    <p>Diperoleh \(a - 66 = \pm 47\), sehingga \(a = 19\) atau \(a = 113\). Pasangan bilangan asli \((a, b) = (19, 11)\) memenuhi \(a, b > 1\) dan:</p>
+                    <p>Diperoleh \(a - 66 = \pm 47\), sehingga \(a = 19\) atau \(a = 113\). Pasangan bilangan asli \((a,
+                        b) = (19, 11)\) memenuhi \(a, b > 1\) dan:</p>
                     \[19^2 + 11^2 + 2026 = 361 + 121 + 2026 = 2508 = 12 \times 19 \times 11\]
-                    <p>Dengan demikian, nilai bilangan bulat \(m\) terkecil yang memenuhi adalah \(\color{blue}\boxed{\boxed{\color{black}12}}\).</p>
+                    <p>Dengan demikian, nilai bilangan bulat \(m\) terkecil yang memenuhi adalah
+                        \(\color{blue}\boxed{\boxed{\color{black}12}}\).</p>
                     <div class="kesimpulan">Jadi, bilangan bulat \(m\) terkecil yang memenuhi adalah \(12\).</div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
@@ -197,34 +261,170 @@
         <article class="soal-item" id="35">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Carilah banyaknya bilangan asli \(x > 2\) sehingga untuk seluruh bilangan asli \(1 < y < x\) dan \(\text{FPB}(x, y) = 1\), berlaku bahwa \(y\) adalah bilangan prima.
+                Carilah banyaknya bilangan asli \(x > 2\) sehingga untuk seluruh bilangan asli \(1 < y < x\) dan
+                    \(\text{FPB}(x, y)=1\), berlaku bahwa \(y\) adalah bilangan prima. </div>
+                    <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank"
+                            rel="noopener noreferrer">KTOM September 2026</a></div>
+                    <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                    <div class="pembahasan-box">
+                        <div class="pembahasan-title">Pembahasan:</div>
+                        <div class="pembahasan-isi">
+                            <p>Misalkan \(p\) adalah bilangan prima terkecil yang <strong>tidak</strong> membagi \(x\)
+                                (\(p \nmid x\)).</p>
+                            <ul>
+                                <li>Jika \(p^2 < x\), maka \(y=p^2\) merupakan bilangan asli komposit (bukan prima) yang
+                                        memenuhi \(1 < y < x\) serta \(\text{FPB}(x, p^2)=1\). Hal ini melanggar syarat
+                                        soal.</li>
+                                <li>Sebaliknya, jika \(x \le p^2\), maka setiap bilangan prima \(q < p\) habis membagi
+                                        \(x\). Akibatnya, sebarang bilangan komposit \(y> 1\) yang relatif prima
+                                        terhadap \(x\) (\(\text{FPB}(x, y) = 1\)) hanya boleh memiliki faktor-faktor
+                                        prima \(\ge p\), sehingga \(y \ge p^2 \ge x\). Artinya, tidak ada bilangan
+                                        komposit \(y\) pada interval \(1 < y < x\) yang relatif prima dengan \(x\),
+                                            sehingga setiap \(1 < y < x\) dengan \(\text{FPB}(x, y)=1\) pasti bilangan
+                                            prima.</li>
+                            </ul>
+                            <p>Dengan demikian, syarat soal ekuivalen dengan \(2 < x \le p^2\), di mana \(p\) adalah
+                                    bilangan prima terkecil yang tidak membagi \(x\). Kita bagi kasus berdasarkan nilai
+                                    \(p\):</p>
+                                    <ol>
+                                        <li><strong>Kasus \(p = 2\)</strong> (\(2 \nmid x\) dan \(2 < x \le
+                                                2^2=4\)):<br>
+                                                Diperoleh \(x = 3\) (ada \(1\) bilangan).</li>
+                                        <li><strong>Kasus \(p = 3\)</strong> (\(2 \mid x\), \(3 \nmid x\), dan \(2 < x
+                                                \le 3^2=9\)):<br>
+                                                Kelipatan \(2\) yang tidak habis dibagi \(3\) dan \(\le 9\) adalah \(x
+                                                \in \{4, 8\}\) (ada \(2\) bilangan).</li>
+                                        <li><strong>Kasus \(p = 5\)</strong> (\(6 \mid x\), \(5 \nmid x\), dan \(2 < x
+                                                \le 5^2=25\)):<br>
+                                                Kelipatan \(6\) yang tidak habis dibagi \(5\) dan \(\le 25\) adalah \(x
+                                                \in \{6, 12, 18, 24\}\) (ada \(4\) bilangan).</li>
+                                        <li><strong>Kasus \(p = 7\)</strong> (\(30 \mid x\), \(7 \nmid x\), dan \(2 < x
+                                                \le 7^2=49\)):<br>
+                                                Kelipatan \(30\) yang tidak habis dibagi \(7\) dan \(\le 49\) adalah \(x
+                                                = 30\) (ada \(1\) bilangan).</li>
+                                        <li><strong>Kasus \(p \ge 11\)</strong>:<br>
+                                            Agar semua bilangan prima kurang dari \(p\) membagi \(x\), nilai \(x\)
+                                            haruslah kelipatan dari hasil kali seluruh bilangan prima sebelum \(p\).
+                                            Untuk \(p = 11\), kelipatan terkecilnya adalah \(2 \times 3 \times 5 \times
+                                            7 = 210 > 11^2 = 121\). Berdasarkan Postulat Bertrand (\(p_k < 2p_{k-1}\)),
+                                                untuk setiap \(p_k \ge 11\) selalu berlaku \(2 \cdot 3 \cdot 5 \cdots
+                                                p_{k-1}> p_k^2\), sehingga tidak ada lagi nilai \(x\) yang memenuhi.
+                                        </li>
+                                    </ol>
+                                    <p>Seluruh bilangan asli \(x > 2\) yang memenuhi adalah \(\{3, 4, 6, 8, 12, 18, 24,
+                                        30\}\), sehingga banyaknya ada:</p>
+                                    \[1 + 2 + 4 + 1 = \color{blue}\boxed{\boxed{\color{black}8}}\]
+                                    <div class="kesimpulan">Jadi, banyaknya bilangan asli \(x > 2\) yang memenuhi adalah
+                                        \(8\).</div>
+                        </div>
+                        <button class="btn-tutup">TUTUP</button>
+                    </div>
+        </article>
+
+        <!-- SOAL 36 -->
+        <article class="soal-item" id="36">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan \(a, b, c, d, e, f, g, h, i\) menyatakan bilangan-bilangan bulat positif berbeda yang kurang
+                dari atau sama dengan sembilan. Jika jumlah setiap tiga bilangan dalam setiap lingkaran bernilai sama,
+                berapakah nilai \(a + d + g\)?
+                <div id="svg-soal-36" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
             </div>
-            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM September 2026</a></div>
+            <div class="soal-sumber">OSK SMA 2003 (Bagian II No. 20)</div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    <p>Misalkan \(p\) adalah bilangan prima terkecil yang <strong>tidak</strong> membagi \(x\) (\(p \nmid x\)).</p>
-                    <ul>
-                        <li>Jika \(p^2 < x\), maka \(y = p^2\) merupakan bilangan asli komposit (bukan prima) yang memenuhi \(1 < y < x\) serta \(\text{FPB}(x, p^2) = 1\). Hal ini melanggar syarat soal.</li>
-                        <li>Sebaliknya, jika \(x \le p^2\), maka setiap bilangan prima \(q < p\) habis membagi \(x\). Akibatnya, sebarang bilangan komposit \(y > 1\) yang relatif prima terhadap \(x\) (\(\text{FPB}(x, y) = 1\)) hanya boleh memiliki faktor-faktor prima \(\ge p\), sehingga \(y \ge p^2 \ge x\). Artinya, tidak ada bilangan komposit \(y\) pada interval \(1 < y < x\) yang relatif prima dengan \(x\), sehingga setiap \(1 < y < x\) dengan \(\text{FPB}(x, y) = 1\) pasti bilangan prima.</li>
-                    </ul>
-                    <p>Dengan demikian, syarat soal ekuivalen dengan \(2 < x \le p^2\), di mana \(p\) adalah bilangan prima terkecil yang tidak membagi \(x\). Kita bagi kasus berdasarkan nilai \(p\):</p>
-                    <ol>
-                        <li><strong>Kasus \(p = 2\)</strong> (\(2 \nmid x\) dan \(2 < x \le 2^2 = 4\)):<br>
-                        Diperoleh \(x = 3\) (ada \(1\) bilangan).</li>
-                        <li><strong>Kasus \(p = 3\)</strong> (\(2 \mid x\), \(3 \nmid x\), dan \(2 < x \le 3^2 = 9\)):<br>
-                        Kelipatan \(2\) yang tidak habis dibagi \(3\) dan \(\le 9\) adalah \(x \in \{4, 8\}\) (ada \(2\) bilangan).</li>
-                        <li><strong>Kasus \(p = 5\)</strong> (\(6 \mid x\), \(5 \nmid x\), dan \(2 < x \le 5^2 = 25\)):<br>
-                        Kelipatan \(6\) yang tidak habis dibagi \(5\) dan \(\le 25\) adalah \(x \in \{6, 12, 18, 24\}\) (ada \(4\) bilangan).</li>
-                        <li><strong>Kasus \(p = 7\)</strong> (\(30 \mid x\), \(7 \nmid x\), dan \(2 < x \le 7^2 = 49\)):<br>
-                        Kelipatan \(30\) yang tidak habis dibagi \(7\) dan \(\le 49\) adalah \(x = 30\) (ada \(1\) bilangan).</li>
-                        <li><strong>Kasus \(p \ge 11\)</strong>:<br>
-                        Agar semua bilangan prima kurang dari \(p\) membagi \(x\), nilai \(x\) haruslah kelipatan dari hasil kali seluruh bilangan prima sebelum \(p\). Untuk \(p = 11\), kelipatan terkecilnya adalah \(2 \times 3 \times 5 \times 7 = 210 > 11^2 = 121\). Berdasarkan Postulat Bertrand (\(p_k < 2p_{k-1}\)), untuk setiap \(p_k \ge 11\) selalu berlaku \(2 \cdot 3 \cdot 5 \cdots p_{k-1} > p_k^2\), sehingga tidak ada lagi nilai \(x\) yang memenuhi.</li>
-                    </ol>
-                    <p>Seluruh bilangan asli \(x > 2\) yang memenuhi adalah \(\{3, 4, 6, 8, 12, 18, 24, 30\}\), sehingga banyaknya ada:</p>
-                    \[1 + 2 + 4 + 1 = \color{blue}\boxed{\boxed{\color{black}8}}\]
-                    <div class="kesimpulan">Jadi, banyaknya bilangan asli \(x > 2\) yang memenuhi adalah \(8\).</div>
+                    <p>Misalkan jumlah ketiga bilangan di dalam setiap lingkaran bernilai konstan sama dengan \(S\).</p>
+                    <p><strong>1. Menentukan nilai \(S\):</strong><br>
+                        Bilangan bulat positif berbeda yang kurang dari atau sama dengan \(9\) hanyalah himpunan \(\{1,
+                        2, 3, 4, 5, 6, 7, 8, 9\}\), sehingga \(\{a, b, c, d, e, f, g, h, i\} = \{1, 2, \dots, 9\}\) dan
+                        jumlah kesembilan huruf tersebut adalah:</p>
+                    \[a + b + c + d + e + f + g + h + i = 1 + 2 + \dots + 9 = 45\]
+                    <p>Jika kita menjumlahkan isi seluruh \(9\) lingkaran, setiap bilangan tetap \((1, 2, \dots, 9)\)
+                        terhitung tepat \(1\) kali, sedangkan setiap huruf \((a, b, \dots, i)\) berada di irisan dua
+                        lingkaran sehingga terhitung \(2\) kali:</p>
+                    \[\begin{aligned}
+                    9S &= (1 + 2 + \dots + 9) + 2(a + b + c + d + e + f + g + h + i) \\
+                    9S &= 45 + 2(45) = 135 \\
+                    S &= 15
+                    \end{aligned}\]
+                    <p><strong>2. Menentukan \(a + d + g\):</strong><br>
+                        Bandingkan jumlah dua lingkaran yang bersebelahan dan berbagi huruf yang sama:</p>
+                    \[\begin{aligned}
+                    \text{Lingkaran 2 \& 3: } (a + 2 + b) - (b + 3 + c) = 0 &\implies a - c = 1 \\
+                    \text{Lingkaran 5 \& 6: } (d + 5 + e) - (e + 6 + f) = 0 &\implies d - f = 1 \\
+                    \text{Lingkaran 8 \& 9: } (g + 8 + h) - (h + 9 + i) = 0 &\implies g - i = 1
+                    \end{aligned}\]
+                    <p>Jumlahkan ketiga persamaan di atas:</p>
+                    \[(a + d + g) - (c + f + i) = 3 \qquad \cdots (1)\]
+                    <p>Sekarang jumlahkan isi Lingkaran 1, Lingkaran 4, dan Lingkaran 7:</p>
+                    \[(i + 1 + a) + (c + 4 + d) + (f + 7 + g) = 3S = 45\]
+                    \[(a + d + g) + (c + f + i) + 12 = 45 \implies (a + d + g) + (c + f + i) = 33 \qquad \cdots (2)\]
+                    <p>Jumlahkan persamaan \((1)\) dan \((2)\):</p>
+                    \[2(a + d + g) = 36 \implies a + d + g = 18\]
+                    <p><em>(Verifikasi kelayakan: susunan \((a, b, c, d, e, f, g, h, i) = (9, 4, 8, 3, 7, 2, 6, 1, 5)\)
+                            menggunakan seluruh angka \(1\) sampai \(9\) tepat sekali, menghasilkan jumlah \(15\) pada
+                            setiap lingkaran, dan memberikan \(a + d + g = 9 + 3 + 6 = 18\).)</em></p>
+                    <div class="kesimpulan">Jadi, nilai \(a + d + g\) adalah <strong>18</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 37 -->
+        <article class="soal-item" id="37">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan \(m\) dan \(n\) dua bilangan asli yang memenuhi \(m^2 - 2003 = n^2\). Berapakah \(mn\)?
+            </div>
+            <div class="soal-sumber">OSP SMA 2003 (Bagian I No. 11)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Pindahkan suku kuadrat ke satu ruas lalu faktorkan:</p>
+                    \[(m - n)(m + n) = 2003\]
+                    <p>Karena \(m, n\) adalah bilangan asli, maka \(m + n > m - n > 0\). Periksa bahwa \(2003\) adalah bilangan prima (tidak habis dibagi bilangan prima mana pun yang \(\le \lfloor\sqrt{2003}\rfloor = 44\)). Akibatnya satu-satunya pemfaktoran \(2003\) sebagai hasil kali dua bilangan asli yang berbeda urutannya adalah:</p>
+                    \[m - n = 1 \quad \text{dan} \quad m + n = 2003\]
+                    <p>Jumlahkan dan kurangkan kedua persamaan tersebut:</p>
+                    \[\begin{aligned}
+                    2m &= 2004 \implies m = 1002 \\
+                    2n &= 2002 \implies n = 1001
+                    \end{aligned}\]
+                    <p>Sehingga hasil kali \(mn\) adalah:</p>
+                    \[mn = 1002 \times 1001 = 1002 \times (1000 + 1) = 1\,002\,000 + 1\,002 = 1\,003\,002\]
+                    <div class="kesimpulan">Jadi, nilai \(mn\) adalah \(\mathbf{1\,003\,002}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 38 -->
+        <article class="soal-item" id="38">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan \(k, m, n\) adalah bilangan-bilangan asli demikian, sehingga \(k \gt n \gt 1\) dan faktor persekutuan terbesar \(k\) dan \(n\) sama dengan \(1\). Buktikan bahwa jika \(k - n\) membagi \(k^m - n^{m-1}\), maka \(k \le 2n - 1\).
+            </div>
+            <div class="soal-sumber">OSN SMA 2003 (Hari II No. 7)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena \(k - n \equiv 0 \pmod{k - n}\), maka berlaku \(k \equiv n \pmod{k - n}\), sehingga untuk sebarang bilangan asli \(m \ge 1\):</p>
+                    \[k^m \equiv n^m \pmod{k - n}\]
+                    <p>Substitusikan ke syarat keterbagian \((k - n) \mid (k^m - n^{m-1})\):</p>
+                    \[k^m - n^{m-1} \equiv n^m - n^{m-1} = n^{m-1}(n - 1) \equiv 0 \pmod{k - n}\]
+                    <p>Dengan demikian:</p>
+                    \[(k - n) \mid n^{m-1}(n - 1)\]
+                    <p>Selanjutnya, karena diketahui \(\gcd(k, n) = 1\), maka dengan algoritma Euclid berlaku:</p>
+                    \[\gcd(k - n, n) = \gcd(k, n) = 1\]
+                    <p>Karena \(k - n\) relatif prima terhadap \(n\), maka \(k - n\) juga relatif prima terhadap \(n^{m-1}\), yakni \(\gcd(k - n, n^{m-1}) = 1\).</p>
+                    <p>Berdasarkan Lema Euclid, karena \((k - n) \mid n^{m-1}(n - 1)\) dan \(\gcd(k - n, n^{m-1}) = 1\), wajiblah:</p>
+                    \[(k - n) \mid (n - 1)\]
+                    <p>Diketahui \(n \gt 1\), sehingga \(n - 1 \ge 1\) merupakan bilangan bulat positif, sedangkan \(k \gt n\) menjamin \(k - n \ge 1\) bernilai positif. Akibatnya:</p>
+                    \[k - n \le n - 1 \iff k \le 2n - 1 \qquad \blacksquare\]
+                    <div class="kesimpulan">Jadi, terbukti bahwa <strong>\(k \le 2n - 1\)</strong>.</div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
             </div>
@@ -234,6 +434,60 @@
         <div class="pagination-wrapper"></div>
     </main>
 
+    <script>
+        (function () {
+            function renderDiagram36() {
+                const el36 = document.getElementById("svg-soal-36");
+                if (!el36 || typeof GeoSVG === "undefined") return;
+                const geo36 = new GeoSVG("svg-soal-36", 340, 340, { margin: 16, clearContainer: true });
+                const cx = 170;
+                const cy = 170;
+                const R = 105;
+                const r = 58;
+                const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
+
+                for (let k = 0; k < 9; k++) {
+                    const theta = -Math.PI / 2 - (k * 2 * Math.PI) / 9;
+                    const x = cx + R * Math.cos(theta);
+                    const y = cy + R * Math.sin(theta);
+                    geo36.buatLingkaran({ x, y }, r, {
+                        stroke: "var(--teal-primary)",
+                        strokeWidth: 1.8,
+                        fill: "rgba(13, 148, 136, 0.04)"
+                    });
+                }
+
+                for (let k = 0; k < 9; k++) {
+                    const thetaOuter = -Math.PI / 2 - (k * 2 * Math.PI) / 9;
+                    const ox = cx + (R + 12) * Math.cos(thetaOuter);
+                    const oy = cy + (R + 12) * Math.sin(thetaOuter);
+                    geo36.buatTeks(ox, oy, String(k + 1), {
+                        position: "middle-center",
+                        fontSize: 16,
+                        fontWeight: "bold",
+                        fill: "var(--text-main)"
+                    });
+
+                    const thetaMid = -Math.PI / 2 - ((k + 0.5) * 2 * Math.PI) / 9;
+                    const Rmid = R * Math.cos(Math.PI / 9);
+                    const lx = cx + Rmid * Math.cos(thetaMid);
+                    const ly = cy + Rmid * Math.sin(thetaMid);
+                    geo36.buatTeks(lx, ly, letters[k], {
+                        position: "middle-center",
+                        fontSize: 15,
+                        fontWeight: "bold",
+                        fill: "var(--teal-primary)"
+                    });
+                }
+            }
+
+            if (typeof GeoSVG !== "undefined") {
+                renderDiagram36();
+            } else {
+                window.addEventListener("load", renderDiagram36);
+            }
+        })();
+    </script>
     <script src="../../scr/script.js"></script>
 </body>
 

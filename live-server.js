@@ -42,6 +42,7 @@ const MIME_TYPES = {
     '.woff2': 'font/woff2',
     '.ttf': 'font/ttf',
     '.otf': 'font/otf',
+    '.mp4': 'video/mp4',
     '.pdf': 'application/pdf',
     '.txt': 'text/plain; charset=utf-8'
 };
@@ -114,8 +115,15 @@ try {
 }
 
 const server = http.createServer((req, res) => {
-    const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
-    let pathname = decodeURIComponent(parsedUrl.pathname);
+    let pathname;
+    try {
+        const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+        pathname = decodeURIComponent(parsedUrl.pathname);
+    } catch (_) {
+        res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
+        res.end('URL tidak valid');
+        return;
+    }
 
     // SSE Endpoint for Live Reload
     if (pathname === '/__live_reload__') {
@@ -134,12 +142,11 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    // Resolve file path
+    // Resolve file path safely inside ROOT_DIR
     let filePath = path.join(ROOT_DIR, pathname);
-
-    // Prevent directory traversal
-    if (!filePath.startsWith(ROOT_DIR)) {
-        res.writeHead(403, { 'Content-Type': 'text/plain' });
+    const relPath = path.relative(ROOT_DIR, filePath);
+    if (relPath.startsWith('..') || path.isAbsolute(relPath)) {
+        res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
         res.end('Akses Ditolak');
         return;
     }
@@ -147,7 +154,11 @@ const server = http.createServer((req, res) => {
     fs.stat(filePath, (err, stats) => {
         if (err) {
             res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-            res.end(`<h1>404 Tidak Ditemukan</h1><p>Berkas <code>${pathname}</code> tidak ditemukan di KulikMath.</p>`);
+            if (req.method === 'HEAD') {
+                res.end();
+            } else {
+                res.end(`<h1>404 Tidak Ditemukan</h1><p>Berkas <code>${pathname}</code> tidak ditemukan di KulikMath.</p>`);
+            }
             return;
         }
 
@@ -157,16 +168,21 @@ const server = http.createServer((req, res) => {
                 filePath = indexHtml;
             } else {
                 // List directory entries
-                fs.readdir(filePath, (err, files) => {
-                    if (err) {
-                        res.writeHead(500, { 'Content-Type': 'text/plain' });
-                        res.end('Gagal membaca direktori');
+                fs.readdir(filePath, (dirErr, files) => {
+                    if (dirErr) {
+                        res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
+                        res.end(req.method === 'HEAD' ? undefined : 'Gagal membaca direktori');
                         return;
                     }
                     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+                    if (req.method === 'HEAD') {
+                        res.end();
+                        return;
+                    }
+                    const base = pathname.endsWith('/') ? pathname : `${pathname}/`;
                     const listItems = files.map(f => {
-                        const rel = path.join(pathname, f).replace(/\\/g, '/');
-                        return `<li><a href="${rel}">${f}</a></li>`;
+                        const href = base.split('/').map(encodeURIComponent).join('/') + encodeURIComponent(f);
+                        return `<li><a href="${href}">${f}</a></li>`;
                     }).join('');
                     res.end(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Indeks ${pathname}</title></head><body><h2>Daftar Berkas: ${pathname}</h2><ul><li><a href="..">.. (kembali)</a></li>${listItems}</ul></body></html>`);
                 });
@@ -177,21 +193,28 @@ const server = http.createServer((req, res) => {
         const ext = path.extname(filePath).toLowerCase();
         const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
+        if (req.method === 'HEAD') {
+            res.writeHead(200, {
+                'Content-Type': contentType,
+                'Cache-Control': 'no-cache'
+            });
+            res.end();
+            return;
+        }
+
         if (ext === '.html' || ext === '.htm') {
             fs.readFile(filePath, 'utf8', (readErr, content) => {
                 if (readErr) {
-                    res.writeHead(500, { 'Content-Type': 'text/plain' });
+                    res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
                     res.end('Gagal membaca berkas HTML');
                     return;
                 }
 
-                // Inject live reload script before </body>, or append at the end
-                let finalHtml = content;
-                if (finalHtml.includes('</body>')) {
-                    finalHtml = finalHtml.replace('</body>', `${LIVE_RELOAD_SCRIPT}\n</body>`);
-                } else {
-                    finalHtml += LIVE_RELOAD_SCRIPT;
-                }
+                // Inject live reload script before the final </body>, or append at the end
+                const bodyCloseIdx = content.lastIndexOf('</body>');
+                const finalHtml = bodyCloseIdx !== -1
+                    ? `${content.slice(0, bodyCloseIdx)}${LIVE_RELOAD_SCRIPT}\n${content.slice(bodyCloseIdx)}`
+                    : `${content}${LIVE_RELOAD_SCRIPT}`;
 
                 const buffer = Buffer.from(finalHtml, 'utf8');
                 res.writeHead(200, {
@@ -214,9 +237,22 @@ const server = http.createServer((req, res) => {
     });
 });
 
+let activePort = port;
+
+server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.warn(`[live-server] Port ${activePort} sedang digunakan, mencoba port ${activePort + 1}...`);
+        activePort += 1;
+        server.listen(activePort);
+    } else {
+        console.error('[live-server] Kesalahan server:', err);
+    }
+});
+
 function startServer(targetPort) {
-    server.listen(targetPort, () => {
-        const localUrl = `http://localhost:${targetPort}`;
+    activePort = targetPort;
+    server.listen(activePort, () => {
+        const localUrl = `http://localhost:${activePort}`;
         console.log('\n\x1b[32m=======================================================');
         console.log(`   KulikMath Live Server Aktif`);
         console.log(`   Lokal:    \x1b[1m\x1b[36m${localUrl}\x1b[0m`);
@@ -225,16 +261,7 @@ function startServer(targetPort) {
         console.log('\x1b[32m=======================================================\x1b[0m\n');
 
         if (shouldOpen) {
-            exec(`start ${localUrl}`);
-        }
-    });
-
-    server.on('error', (err) => {
-        if (err.code === 'EADDRINUSE') {
-            console.warn(`[live-server] Port ${targetPort} sedang digunakan, mencoba port ${targetPort + 1}...`);
-            startServer(targetPort + 1);
-        } else {
-            console.error('[live-server] Kesalahan server:', err);
+            exec(`start "" "${localUrl}"`);
         }
     });
 }

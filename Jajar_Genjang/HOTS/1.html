@@ -121,6 +121,36 @@
         </article>
 
         <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan sebuah segiempat \(ABCD\) sebarang. Misalkan \(P, Q, R, S\) berturut-turut adalah titik-titik tengah \(AB, BC, CD, DA\). Misalkan pula \(PR\) dan \(QS\) berpotongan di \(O\). Buktikan bahwa \(PO = OR\) dan \(QO = OS\).
+            </div>
+            <div class="soal-sumber">OSN SMA 2003 (Hari I No. 2)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-2" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Pernyataan \(PO = OR\) dan \(QO = OS\) ekuivalen dengan membuktikan bahwa diagonal \(PR\) dan \(QS\) pada segiempat \(PQRS\) saling membagi dua sama panjang (atau \(PQRS\) membentuk jajargenjang, disebut <em>Jajargenjang Varignon</em>).</p>
+                    <p><strong>Cara 1: Dalil Garis Tengah Segitiga</strong></p>
+                    <p>Tarik diagonal \(AC\) pada segiempat \(ABCD\):</p>
+                    <ul>
+                        <li>Pada \(\triangle ABC\), karena \(P\) adalah titik tengah \(AB\) dan \(Q\) adalah titik tengah \(BC\), menurut dalil garis tengah segitiga berlaku \(PQ \parallel AC\) dan \(PQ = \frac{1}{2}AC\).</li>
+                        <li>Pada \(\triangle ADC\), karena \(S\) adalah titik tengah \(DA\) dan \(R\) adalah titik tengah \(DC\), berlaku pula \(SR \parallel AC\) dan \(SR = \frac{1}{2}AC\).</li>
+                    </ul>
+                    <p>Akibatnya \(PQ \parallel SR\) dan \(PQ = SR\). Karena memiliki sepasang sisi berhadapan yang sejajar dan sama panjang, segiempat \(PQRS\) adalah sebuah <strong>jajar genjang</strong>. (Argumen serupa pada diagonal \(BD\) juga memberi \(PS \parallel QR\) dan \(PS = QR = \frac{1}{2}BD\); bahkan bila \(ABCD\) cekung atau bersilang, vektor di bawah tetap berlaku umum.)</p>
+                    <p><strong>Cara 2: Vektor Posisi (Berlaku Umum untuk Segiempat Cembung maupun Cekung)</strong></p>
+                    <p>Tetapkan titik pangkal acuan \(X\) sebarang sehingga \(\vec{P} = \frac{\vec{A} + \vec{B}}{2}\), \(\vec{Q} = \frac{\vec{B} + \vec{C}}{2}\), \(\vec{R} = \frac{\vec{C} + \vec{D}}{2}\), dan \(\vec{S} = \frac{\vec{D} + \vec{A}}{2}\). Titik tengah ruas \(PR\) dan titik tengah ruas \(QS\) berturut-turut adalah:</p>
+                    \[\frac{\vec{P} + \vec{R}}{2} = \frac{\vec{A} + \vec{B} + \vec{C} + \vec{D}}{4} = \frac{\vec{Q} + \vec{S}}{2}\]
+                    <p>Karena ruas garis \(PR\) dan \(QS\) berpotongan tepat di titik tengah bersamanya, yaitu \(O\), maka terbukti bahwa \(PO = OR\) dan \(QO = OS\). \(\blacksquare\)</p>
+                    <div class="kesimpulan">Jadi, terbukti bahwa <strong>\(PO = OR\) dan \(QO = OS\)</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 2 -->
         <!--
         <article class="soal-item" id="2">
             <div class="soal-no"></div>
@@ -304,6 +334,49 @@
         <div class="pagination-wrapper"></div>
     </main>
 
+    <script>
+        (function () {
+            function renderDiagram2() {
+                if (typeof GeoSVG === "undefined") return;
+                const el2 = document.getElementById("svg-solusi-2");
+                if (!el2 || el2.dataset.rendered) return;
+                el2.dataset.rendered = "true";
+
+                const geo2 = new GeoSVG("svg-solusi-2", 290, 225, { margin: 16, clearContainer: true });
+                const A = { x: 42, y: 172 };
+                const B = { x: 222, y: 192 };
+                const C = { x: 256, y: 52 };
+                const D = { x: 96, y: 34 };
+                const P = { x: (A.x + B.x) / 2, y: (A.y + B.y) / 2 };
+                const Q = { x: (B.x + C.x) / 2, y: (B.y + C.y) / 2 };
+                const R = { x: (C.x + D.x) / 2, y: (C.y + D.y) / 2 };
+                const S = { x: (D.x + A.x) / 2, y: (D.y + A.y) / 2 };
+                const O = { x: (P.x + R.x) / 2, y: (P.y + R.y) / 2 };
+
+                geo2.buatPoligon([A, B, C, D], { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 1.8 });
+                geo2.buatSegmen(A, C, { stroke: "var(--text-muted)", strokeWidth: 1.3, dashed: true });
+                geo2.buatPoligon([P, Q, R, S], { fill: "rgba(13, 148, 136, 0.14)", stroke: "var(--teal-primary)", strokeWidth: 2 });
+                geo2.buatSegmen(P, R, { stroke: "#dc2626", strokeWidth: 1.6, dashed: true });
+                geo2.buatSegmen(Q, S, { stroke: "#dc2626", strokeWidth: 1.6, dashed: true });
+
+                geo2.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                geo2.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                geo2.buatTitik(C, { label: "C", labelPosition: "top-right", size: 3.5, color: "var(--text-main)" });
+                geo2.buatTitik(D, { label: "D", labelPosition: "top-left", size: 3.5, color: "var(--text-main)" });
+                geo2.buatTitik(P, { label: "P", labelPosition: "bottom-center", size: 3.5, color: "var(--teal-primary)" });
+                geo2.buatTitik(Q, { label: "Q", labelPosition: "middle-right", size: 3.5, color: "var(--teal-primary)" });
+                geo2.buatTitik(R, { label: "R", labelPosition: "top-center", size: 3.5, color: "var(--teal-primary)" });
+                geo2.buatTitik(S, { label: "S", labelPosition: "middle-left", size: 3.5, color: "var(--teal-primary)" });
+                geo2.buatTitik(O, { label: "O", labelPosition: "bottom-right", size: 4, color: "#dc2626" });
+            }
+
+            if (typeof GeoSVG !== "undefined") {
+                renderDiagram2();
+            } else {
+                window.addEventListener("load", renderDiagram2);
+            }
+        })();
+    </script>
     <script src="../../scr/script.js"></script>
 </body>
 

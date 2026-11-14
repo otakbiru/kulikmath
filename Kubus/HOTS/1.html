@@ -103,6 +103,42 @@
             </div>
         </article>
 
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Titik-titik \(P\) dan \(Q\) berturut-turut adalah titik tengah rusuk \(AE\) dan \(CG\) pada kubus \(ABCD.EFGH\). Jika panjang rusuk kubus adalah \(1\) satuan, tentukan luas segi-empat \(DPFQ\).
+            </div>
+            <div class="soal-sumber">OSP SMA 2003 (Bagian II No. 3)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-2" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Karena kubus bersisi \(1\) serta \(P\) dan \(Q\) adalah titik tengah rusuk tegak \(AE\) dan \(CG\), maka \(AP = PE = CQ = QG = \frac{1}{2}\).</p>
+                    <p><strong>Langkah 1: Menentukan jenis segiempat \(DPFQ\)</strong></p>
+                    <p>Keempat segitiga siku-siku \(\triangle DAP\), \(\triangle FEP\), \(\triangle FGQ\), dan \(\triangle DCQ\) saling kongruen dengan kaki siku-siku \(1\) dan \(\frac{1}{2}\). Oleh karena itu, keempat sisi \(DPFQ\) sama panjang:</p>
+                    \[DP = PF = FQ = QD = \sqrt{1^2 + \left(\frac{1}{2}\right)^2} = \sqrt{\frac{5}{4}} = \frac{\sqrt{5}}{2}\]
+                    <p>Selain itu, pada kubus berlaku \(\vec{DA} = \vec{GF}\) dan \(\vec{AP} = \vec{QG} = \frac{1}{2}\vec{AE}\), sehingga:</p>
+                    \[\vec{DP} = \vec{DA} + \vec{AP} = \vec{GF} + \vec{QG} = \vec{QF}\]
+                    <p>Artinya \(DP \parallel QF\) dan \(DP = QF\), sehingga titik \(D, P, F, Q\) sebidang dan \(DPFQ\) berbentuk jajargenjang bersisi sama, yakni sebuah <strong>belah ketupat</strong>.</p>
+                    <p><strong>Langkah 2: Menghitung kedua diagonal dan luas belah ketupat \(DPFQ\)</strong></p>
+                    <ul>
+                        <li>Diagonal \(DF\) adalah diagonal ruang kubus bersisi \(1\):
+                            \[DF = \sqrt{1^2 + 1^2 + 1^2} = \sqrt{3}\]
+                        </li>
+                        <li>Diagonal \(PQ\) menghubungkan titik tengah \(AE\) dan \(CG\). Karena \(AP \parallel CQ\) dan \(AP = CQ = \frac{1}{2}\), maka \(ACQP\) merupakan persegi panjang sehingga:
+                            \[PQ = AC = \sqrt{1^2 + 1^2} = \sqrt{2}\]
+                        </li>
+                    </ul>
+                    <p>Dengan demikian, luas belah ketupat \(DPFQ\) adalah:</p>
+                    \[L_{DPFQ} = \frac{1}{2} \cdot DF \cdot PQ = \frac{1}{2} \cdot \sqrt{3} \cdot \sqrt{2} = \frac{\sqrt{6}}{2}\text{ satuan luas}\]
+                    <div class="kesimpulan">Jadi, luas segi-empat \(DPFQ\) adalah <strong>\(\dfrac{\sqrt{6}}{2}\)</strong> satuan luas.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -237,6 +273,52 @@
                     geo.buatTitik(pF, { label: "F", labelPosition: "middle-right", color: "#1e293b", size: 3 });
                     geo.buatTitik(pH, { label: "H", labelPosition: "top-left", color: "#16a34a", size: 4 });
                     geo.buatTitik(pG, { label: "G", labelPosition: "top-right", color: "#1e293b", size: 3 });
+                }
+
+                // 3. Diagram Soal 2: Belah Ketupat DPFQ pada Kubus ABCD.EFGH
+                const el3 = document.getElementById("svg-solusi-2");
+                if (el3 && !el3.dataset.rendered) {
+                    el3.dataset.rendered = "true";
+                    const W2 = 260, H2 = 230;
+                    const geo2 = new GeoSVG("svg-solusi-2", W2, H2, {
+                        margin: 14,
+                        title: "Kubus ABCD.EFGH dan Belah Ketupat DPFQ"
+                    });
+                    if (geo2.svg) {
+                        geo2.svg.style.width = "100%";
+                        geo2.svg.style.maxWidth = `${W2}px`;
+                        geo2.svg.style.height = "auto";
+                    }
+                    const s2 = 112, dx2 = 52, dy2 = 38;
+                    const A = { x: 42, y: 192 };
+                    const B = { x: A.x + s2, y: A.y };
+                    const C = { x: A.x + s2 + dx2, y: A.y - dy2 };
+                    const D = { x: A.x + dx2, y: A.y - dy2 };
+                    const E = { x: A.x, y: A.y - s2 };
+                    const F = { x: A.x + s2, y: A.y - s2 };
+                    const G = { x: A.x + s2 + dx2, y: A.y - s2 - dy2 };
+                    const H = { x: A.x + dx2, y: A.y - s2 - dy2 };
+                    const P = { x: (A.x + E.x) / 2, y: (A.y + E.y) / 2 };
+                    const Q = { x: (C.x + G.x) / 2, y: (C.y + G.y) / 2 };
+                    geo2.buatSegmen(A, D, { stroke: "#cbd5e1", strokeWidth: 1.2, dashed: true });
+                    geo2.buatSegmen(D, C, { stroke: "#cbd5e1", strokeWidth: 1.2, dashed: true });
+                    geo2.buatSegmen(D, H, { stroke: "#cbd5e1", strokeWidth: 1.2, dashed: true });
+                    geo2.buatPoligon([D, P, F, Q], { fill: "rgba(13, 148, 136, 0.16)", stroke: "var(--teal-primary)", strokeWidth: 2.2 });
+                    geo2.buatSegmen(D, F, { stroke: "#dc2626", strokeWidth: 1.6, dashed: true });
+                    geo2.buatSegmen(P, Q, { stroke: "#dc2626", strokeWidth: 1.6, dashed: true });
+                    [[A, B], [B, C], [E, F], [F, G], [G, H], [H, E], [A, E], [B, F], [C, G]].forEach(([u, v]) => {
+                        geo2.buatSegmen(u, v, { stroke: "#475569", strokeWidth: 1.4 });
+                    });
+                    geo2.buatTitik(A, { label: "A", labelPosition: "bottom-left", color: "#475569", size: 2.5 });
+                    geo2.buatTitik(B, { label: "B", labelPosition: "bottom-right", color: "#475569", size: 2.5 });
+                    geo2.buatTitik(C, { label: "C", labelPosition: "middle-right", color: "#475569", size: 2.5 });
+                    geo2.buatTitik(E, { label: "E", labelPosition: "top-left", color: "#475569", size: 2.5 });
+                    geo2.buatTitik(G, { label: "G", labelPosition: "top-right", color: "#475569", size: 2.5 });
+                    geo2.buatTitik(H, { label: "H", labelPosition: "top-left", color: "#475569", size: 2.5 });
+                    geo2.buatTitik(D, { label: "D", labelPosition: "bottom-center", color: "var(--teal-primary)", size: 4 });
+                    geo2.buatTitik(P, { label: "P", labelPosition: "middle-left", color: "#dc2626", size: 4 });
+                    geo2.buatTitik(F, { label: "F", labelPosition: "top-center", color: "var(--teal-primary)", size: 4 });
+                    geo2.buatTitik(Q, { label: "Q", labelPosition: "middle-right", color: "#dc2626", size: 4 });
                 }
             }
 

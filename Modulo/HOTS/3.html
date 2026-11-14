@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Modulo [3]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Modulo</span>
+            </p>
+            <!-- Tombol Tingkat dirender otomatis oleh script.js -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 21 -->
+        <article class="soal-item" id="21">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Jika banyaknya tripel terurut bilangan asli \((a, b, c)\) di mana \(a, b, c < 2026\) sehingga</p>
+                \[ab + bc + ca \text{ merupakan kelipatan } 2026\]
+                <p>dapat dinyatakan sebagai \(n^2 + m\), untuk bilangan bulat taknegatif \(n\) dan \(m\) dengan \(0 \le m \le 2n\), tentukan nilai dari \(n + m\).</p>
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM November 2026 (Bagian A No. 9)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan \(M = 2026 = 2 \times 1013\) (perkalian dua bilangan prima berbeda). Terlebih dahulu kita hitung banyaknya solusi \((a, b, c) \in \{0, 1, \dots, M - 1\}^3\) yang memenuhi \(ab + bc + ca \equiv 0 \pmod M\).</p>
+                    <p>Untuk sebarang bilangan prima \(q\), tinjau kongruensi \(uv + vw + wu \equiv 0 \pmod q \iff w(u + v) \equiv -uv \pmod q\) pada \(\mathbb{Z}_q^3\):</p>
+                    <ul>
+                        <li>Jika \(u + v \not\equiv 0 \pmod q\), terdapat \(q(q - 1)\) pasangan \((u, v)\), dan karena \(\gcd(u + v, q) = 1\), masing-masing memberikan tepat \(1\) nilai \(w \equiv -uv(u + v)^{-1} \pmod q\).</li>
+                        <li>Jika \(u + v \equiv 0 \pmod q\) (yakni \(v \equiv -u \pmod q\)), kongruensi menjadi \(0 \cdot w \equiv u^2 \pmod q\), yang hanya dipenuhi saat \(u \equiv v \equiv 0 \pmod q\) dengan \(w \in \mathbb{Z}_q\) bebas (\(q\) pilihan).</li>
+                    </ul>
+                    <p>Dengan demikian, terdapat tepat \(q(q - 1) + q = q^2\) solusi di \(\mathbb{Z}_q^3\). Berdasarkan Teorema Sisa Tiongkok (CRT) untuk \(M = 2 \times 1013\), banyaknya solusi \((a, b, c) \in \{0, 1, \dots, M - 1\}^3\) adalah:</p>
+                    \[2^2 \times 1013^2 = (2 \times 1013)^2 = M^2\]
+                    <p>Karena soal mensyaratkan \(a, b, c \in \{1, 2, \dots, M - 1\}\) (tidak boleh ada yang bernilai \(0\)), kita kurangi solusi di \(\{0, 1, \dots, M - 1\}^3\) yang memuat setidaknya satu angka \(0\):</p>
+                    <ol style="margin: 0.4rem 0 0.6rem 1.4rem;">
+                        <li><strong>Ketiganya nol (\(a = b = c = 0\)):</strong> terdapat \(1\) tripel.</li>
+                        <li><strong>Tepat dua yang nol (misalnya \(a = b = 0, c \neq 0\)):</strong> otomatis memenuhi \(ab + bc + ca = 0\) untuk semua \(c \in \{1, \dots, M - 1\}\), sehingga terdapat \(\binom{3}{2}(M - 1) = 3(M - 1)\) tripel.</li>
+                        <li><strong>Tepat satu yang nol (misalnya \(a = 0\) dan \(b, c \in \{1, \dots, M - 1\}\)):</strong> syaratnya menjadi \(bc \equiv 0 \pmod{2026}\). Karena \(1 \le b, c \le 2025\), salah satu dari \(\{b, c\}\) harus kelipatan \(1013\) (hanya ada \(1\) bilangan, yakni \(1013\)) dan yang lainnya harus bilangan genap di \(\{1, \dots, 2025\}\) (ada \(1012 = \frac{M - 2}{2}\) bilangan). Terdapat \(2 \times 1012 = 2024 = M - 2\) pasangan \((b, c)\), sehingga untuk \(3\) kemungkinan posisi angka nol terdapat \(3(M - 2)\) tripel.</li>
+                    </ol>
+                    <p>Kurangkan ketiga kasus tersebut dari \(M^2\):</p>
+                    \[\begin{aligned}
+                    N &= M^2 - \big(1 + 3(M - 1) + 3(M - 2)\big) \\
+                    &= M^2 - (6M - 8) \\
+                    &= (M - 3)^2 - 1 \\
+                    &= (M - 4)^2 + 2(M - 4)
+                    \end{aligned}\]
+                    <p>Substitusikan \(M = 2026\):</p>
+                    \[N = 2022^2 + 2(2022) = 2022^2 + 4044\]
+                    <p>Bentuk ini sesuai dengan \(n^2 + m\) di mana \(0 \le m \le 2n\), yaitu untuk \(n = 2022\) dan \(m = 4044\). Maka:</p>
+                    \[n + m = 2022 + 4044 = \color{blue}\boxed{\boxed{\color{black}6066}}\]
+
+                    <div class="kesimpulan">
+                        Jadi, nilai dari \(n + m\) adalah <strong>6066</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 22 -->
+        <article class="soal-item" id="22">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Diberikan bilangan asli \(n > 1\). Buktikan bahwa terdapat bilangan asli \((a, b, c, d)\) dengan \(a > b > c > d\) sedemikian sehingga \(10^a + 10^b + c! + d!\) memiliki sisa \(2026\) jika dibagi \(66^n + 67^n + 68^n\).</p>
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM November 2026 (Bagian B No. 4)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan \(M = 66^n + 67^n + 68^n\). Karena \(n > 1\), maka \(M \ge 66^2 + 67^2 + 68^2 = 13469 > 2026\), sehingga bilangan \(2026\) merupakan sisa pembagian yang sah modulo \(M\).</p>
+                    <p><strong>Langkah 1: Membuktikan \(\gcd(10, M) = 1\)</strong></p>
+                    <ul>
+                        <li><strong>Keterbagian oleh \(2\):</strong> Karena \(66^n\) dan \(68^n\) genap sedangkan \(67^n\) ganjil, maka:
+                            \[M = 66^n + 67^n + 68^n \equiv 0 + 1 + 0 = 1 \pmod 2 \implies 2 \nmid M\]
+                        </li>
+                        <li><strong>Keterbagian oleh \(5\):</strong> Perhatikan bahwa \(66 \equiv 1 \pmod 5\), \(67 \equiv 2 \pmod 5\), dan \(68 \equiv 3 \pmod 5\), sehingga \(M \equiv 1^n + 2^n + 3^n \pmod 5\). Uji keempat kemungkinan residu \(n \pmod 4\):
+                            <ul>
+                                <li>Jika \(n \equiv 0 \pmod 4\): \(M \equiv 1 + 1 + 1 = 3 \not\equiv 0 \pmod 5\)</li>
+                                <li>Jika \(n \equiv 1 \pmod 4\): \(M \equiv 1 + 2 + 3 = 6 \equiv 1 \not\equiv 0 \pmod 5\)</li>
+                                <li>Jika \(n \equiv 2 \pmod 4\): \(M \equiv 1 + 4 + 4 = 9 \equiv 4 \not\equiv 0 \pmod 5\)</li>
+                                <li>Jika \(n \equiv 3 \pmod 4\): \(M \equiv 1 + 3 + 2 = 6 \equiv 1 \not\equiv 0 \pmod 5\)</li>
+                            </ul>
+                            Dalam semua kasus berlaku \(5 \nmid M\).
+                        </li>
+                    </ul>
+                    <p>Karena \(2 \nmid M\) dan \(5 \nmid M\), maka \(\gcd(10, M) = 1\).</p>
+
+                    <p><strong>Langkah 2: Konstruksi Kuadrupel \((a, b, c, d)\) dengan Teorema Euler</strong><br>
+                    Perhatikan dekomposisi bilangan \(2026\) berikut:</p>
+                    \[2026 = 1000 + 1000 + 24 + 2 = 10^3 + 10^3 + 4! + 2!\]
+                    <p>Karena \(\gcd(10, M) = 1\), berdasarkan Teorema Euler berlaku \(10^{\varphi(M)} \equiv 1 \pmod M\). Pilih kuadrupel bilangan asli:</p>
+                    \[a = 3 + 2\varphi(M), \qquad b = 3 + \varphi(M), \qquad c = 4, \qquad d = 2\]
+                    <p>Karena \(M > 13469\), maka \(\varphi(M) \ge 2\), sehingga jelas berlaku urutan tegas:</p>
+                    \[a = 3 + 2\varphi(M) > b = 3 + \varphi(M) > c = 4 > d = 2 \ge 1\]
+                    <p>Selanjutnya, evaluasi nilai \(10^a + 10^b + c! + d! \pmod M\):</p>
+                    \[\begin{aligned}
+                    10^a + 10^b + c! + d! &= 10^3 \cdot \left(10^{\varphi(M)}\right)^2 + 10^3 \cdot 10^{\varphi(M)} + 4! + 2! \\
+                    &\equiv 10^3 \cdot 1^2 + 10^3 \cdot 1 + 24 + 2 \pmod M \\
+                    &\equiv 1000 + 1000 + 24 + 2 = 2026 \pmod M
+                    \end{aligned}\]
+                    <p>Mengingat \(0 \le 2026 < M\), terbukti bahwa \(10^a + 10^b + c! + d!\) memiliki sisa \(2026\) jika dibagi \(66^n + 67^n + 68^n\). \(\blacksquare\)</p>
+
+                    <div class="kesimpulan">
+                        Jadi, terbukti bahwa selalu terdapat bilangan asli \(a > b > c > d\) yang memenuhi, salah satunya \((a, b, c, d) = \big(3 + 2\varphi(M),\; 3 + \varphi(M),\; 4,\; 2\big)\) dengan \(M = 66^n + 67^n + 68^n\).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 23 -->
+        <article class="soal-item" id="23">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Misalkan \(N\) adalah bilangan bulat terkecil yang bersifat: bersisa \(2\) jika dibagi \(5\), bersisa \(3\) jika dibagi oleh \(7\), dan bersisa \(4\) jika dibagi \(9\). Berapakah hasil penjumlahan digit-digit dari \(N\)?</p>
+                <ol class="pilgan pilgan-5kolom">
+                    <li>4</li>
+                    <li>8</li>
+                    <li>13</li>
+                    <li>22</li>
+                    <li>40</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">OSK SMA 2003</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Untuk bilangan bulat positif \(N\), ketiga syarat sisa pembagian dapat ditulis sebagai sistem kongruensi:</p>
+                    \[\begin{cases}
+                    N \equiv 2 \pmod 5 \\
+                    N \equiv 3 \pmod 7 \\
+                    N \equiv 4 \pmod 9
+                    \end{cases}\]
+                    <p>Perhatikan pola sisanya: jika setiap kongruensi dikalikan dengan \(2\), seluruh ruas kanan menjadi \(-1\) terhadap masing-masing modulo:</p>
+                    \[\begin{aligned}
+                    2N &\equiv 4 \equiv -1 \pmod 5 \\
+                    2N &\equiv 6 \equiv -1 \pmod 7 \\
+                    2N &\equiv 8 \equiv -1 \pmod 9
+                    \end{aligned}\]
+                    <p>Artinya, \(2N + 1\) habis dibagi oleh \(5, 7,\) dan \(9\). Karena \(\gcd(5, 7, 9) = 1\), maka \(2N + 1\) harus merupakan kelipatan dari \(\text{KPK}(5, 7, 9) = 5 \times 7 \times 9 = 315\):</p>
+                    \[2N + 1 = 315k \implies 2N = 315k - 1 \qquad (k \in \mathbb{Z}^+)\]
+                    <p>Agar \(315k - 1\) bernilai genap (habis dibagi \(2\)), maka \(k\) harus berupa bilangan ganjil. Nilai positif ganjil terkecil adalah \(k = 1\), sehingga:</p>
+                    \[2N = 315(1) - 1 = 314 \implies N = 157\]
+                    <p>Periksa kembali: \(157 = 5 \times 31 + 2\), \(157 = 7 \times 22 + 3\), dan \(157 = 9 \times 17 + 4\) (semua syarat terpenuhi).</p>
+                    <p>Jumlah digit-digit dari \(N = 157\) adalah:</p>
+                    \[1 + 5 + 7 = \color{blue}\boxed{\boxed{\color{black}13}}\]
+                    <div class="kesimpulan">Jadi, hasil penjumlahan digit-digit dari \(N\) adalah \(13\).<br><b>JAWAB: C</b></div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 24 -->
+        <article class="soal-item" id="24">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Berapakah sisa pembagian \(1 \cdot 1! + 2 \cdot 2! + 3 \cdot 3! + \dots + 99 \cdot 99! + 100 \cdot 100!\) oleh \(101\)?
+            </div>
+            <div class="soal-sumber">OSP SMA 2003 (Bagian I No. 18)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Perhatikan identitas teleskopik untuk setiap bilangan bulat positif \(k\):</p>
+                    \[k \cdot k! = \big((k + 1) - 1\big) k! = (k + 1)! - k!\]
+                    <p>Terapkan identitas ini pada setiap suku penjumlahan dari \(k = 1\) hingga \(k = 100\):</p>
+                    \[\begin{aligned}
+                    \sum_{k=1}^{100} k \cdot k! &= (2! - 1!) + (3! - 2!) + (4! - 3!) + \dots + (101! - 100!) \\
+                    &= 101! - 1! \\
+                    &= 101! - 1
+                    \end{aligned}\]
+                    <p>Karena \(101!\) merupakan kelipatan \(101\) (\(101! \equiv 0 \pmod{101}\)), diperoleh:</p>
+                    \[101! - 1 \equiv 0 - 1 \equiv -1 \equiv 100 \pmod{101}\]
+                    <div class="kesimpulan">Jadi, sisa pembagian jumlah tersebut oleh \(101\) adalah <strong>100</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 25 -->
+        <article class="soal-item" id="25">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Buktikan bahwa \(a^9 - a\) habis dibagi \(6\), untuk setiap bilangan bulat \(a\).
+            </div>
+            <div class="soal-sumber">OSN SMA 2003 (Hari I No. 1)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena \(6 = 2 \times 3\) dengan \(\gcd(2, 3) = 1\), maka \(a^9 - a\) habis dibagi \(6\) jika dan hanya jika \(a^9 - a\) habis dibagi \(2\) dan habis dibagi \(3\).</p>
+                    <p>Faktorkan \(a^9 - a\) secara bertahap dengan selisih kuadrat:</p>
+                    \[\begin{aligned}
+                    a^9 - a &= a(a^8 - 1) \\
+                            &= a(a^4 - 1)(a^4 + 1) \\
+                            &= a(a^2 - 1)(a^2 + 1)(a^4 + 1) \\
+                            &= (a - 1) \, a \, (a + 1)(a^2 + 1)(a^4 + 1)
+                    \end{aligned}\]
+                    <p>Perhatikan hasil kali tiga faktor pertamanya, yaitu \((a - 1) \, a \, (a + 1)\), yang merupakan <strong>tiga bilangan bulat berurutan</strong>:</p>
+                    <ul>
+                        <li>Di antara tiga bilangan bulat berurutan pasti terdapat paling sedikit satu bilangan genap, sehingga \(2 \mid (a - 1)a(a + 1) \mid (a^9 - a)\).</li>
+                        <li>Di antara tiga bilangan bulat berurutan pasti terdapat tepat satu bilangan kelipatan \(3\), sehingga \(3 \mid (a - 1)a(a + 1) \mid (a^9 - a)\).</li>
+                    </ul>
+                    <p><em>(Alternatif via kongruensi modulo: \(a^9 \equiv a \pmod{2}\) karena paritasnya sama, dan menurut Teorema Kecil Fermat \(a^3 \equiv a \pmod{3} \implies a^9 = (a^3)^3 \equiv a^3 \equiv a \pmod{3}\).)</em></p>
+                    <p>Karena \(a^9 - a\) habis dibagi \(2\) dan \(3\) serta \(\gcd(2, 3) = 1\), maka \(a^9 - a\) pasti habis dibagi \(6\). \(\blacksquare\)</p>
+                    <div class="kesimpulan">Jadi, terbukti bahwa <strong>\(a^9 - a\) habis dibagi \(6\)</strong> untuk setiap bilangan bulat \(a\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

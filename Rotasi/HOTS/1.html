@@ -79,6 +79,39 @@ Maka nilai $a + b = 3 + 5 = 8$.
             </div>
         </article>
 
+        <!-- SOAL 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Titik \(P\) terletak di dalam persegi \(ABCD\) demikian rupa, sehingga \(AP : BP : CP = 1 : 2 : 3\). Berapakah besar sudut \(APB\)?
+            </div>
+            <div class="soal-sumber">OSP SMA 2003 (Bagian I No. 13)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-2" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Misalkan \(AP = k\), \(BP = 2k\), dan \(CP = 3k\) untuk suatu \(k > 0\).</p>
+                    <p>Putar \(\triangle BPA\) sebesar \(90^\circ\) terhadap titik sudut \(B\) sedemikian sehingga sisi \(BA\) berimpit dengan sisi \(BC\) (yaitu bayangan titik \(A\) tepat jatuh di \(C\), dan bayangan titik \(P\) kita namakan \(P'\)).</p>
+                    <p>Akibat sifat rotasi (\(\triangle BP'C \cong \triangle BPA\)), diperoleh:</p>
+                    <ul>
+                        <li>\(BP' = BP = 2k\) dan \(CP' = AP = k\).</li>
+                        <li>\(\angle PBP' = \angle ABC = 90^\circ\).</li>
+                        <li>\(\angle APB = \angle CP'B\).</li>
+                    </ul>
+                    <p>Perhatikan \(\triangle PBP'\): karena siku-siku sama kaki di \(B\) dengan \(BP = BP' = 2k\), maka:</p>
+                    \[\angle BP'P = 45^\circ \quad \text{dan} \quad PP' = 2k\sqrt{2}\]
+                    <p>Selanjutnya perhatikan \(\triangle CPP'\) yang memiliki panjang sisi \(CP' = k\), \(PP' = 2k\sqrt{2}\), dan \(CP = 3k\). Karena memenuhi hubungan Pythagoras:</p>
+                    \[(CP')^2 + (PP')^2 = k^2 + (2k\sqrt{2})^2 = k^2 + 8k^2 = 9k^2 = (CP)^2\]
+                    <p>maka \(\triangle CPP'\) siku-siku di \(P'\), sehingga \(\angle CP'P = 90^\circ\).</p>
+                    <p>Dengan demikian, besar sudut yang dicari adalah:</p>
+                    \[\angle APB = \angle CP'B = \angle CP'P + \angle PP'B = 90^\circ + 45^\circ = 135^\circ\]
+                    <div class="kesimpulan">Jadi, besar sudut \(APB\) adalah \(\mathbf{135^\circ}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- SOAL 2 
         <article class="soal-item" id="2">
             <div class="soal-no"></div>
@@ -254,6 +287,60 @@ Maka nilai $a + b = 3 + 5 = 8$.
         <div class="pagination-wrapper"></div>
     </main>
 
+    <script>
+        (function () {
+            function renderDiagram2() {
+                const el = document.getElementById("svg-solusi-2");
+                if (!el || typeof GeoSVG === "undefined") return;
+                const geo = new GeoSVG("svg-solusi-2", 240, 225, { margin: 18, clearContainer: true });
+                const k = 50, ox = 45, oy = 170;
+                const s = Math.sqrt(5 + 2 * Math.SQRT2);
+                const Px = (4 + s * s - 9) / (2 * s);
+                const Py = (4 + s * s - 1) / (2 * s);
+                const toSvg = (mx, my) => ({ x: ox + k * mx, y: oy - k * my });
+
+                const B = toSvg(0, 0);
+                const C = toSvg(s, 0);
+                const D = toSvg(s, s);
+                const A = toSvg(0, s);
+                const P = toSvg(Px, Py);
+                const Pp = toSvg(Py, -Px);
+
+                geo.buatPoligon([A, B, C, D], { fill: "none", stroke: "var(--text-main)", strokeWidth: 2 });
+                geo.buatSegitiga(B, Pp, C, {
+                    fill: "rgba(13, 148, 136, 0.12)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 1.8
+                });
+                geo.buatSegmen(A, P, { stroke: "var(--text-main)", strokeWidth: 1.6 });
+                geo.buatSegmen(B, P, { stroke: "var(--text-main)", strokeWidth: 1.6 });
+                geo.buatSegmen(C, P, { stroke: "var(--text-main)", strokeWidth: 1.6 });
+                geo.buatSegmen(P, Pp, { stroke: "#dc2626", strokeWidth: 1.6, dashed: true });
+
+                geo.buatSiku(P, B, Pp, { size: 9, stroke: "var(--teal-primary)" });
+                geo.buatSiku(P, Pp, C, { size: 9, stroke: "#dc2626" });
+
+                geo.buatTitik(A, { label: "A", labelPosition: "top-left", size: 3.5, color: "var(--text-main)" });
+                geo.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                geo.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                geo.buatTitik(D, { label: "D", labelPosition: "top-right", size: 3.5, color: "var(--text-main)" });
+                geo.buatTitik(P, { label: "P", labelPosition: "top-right", size: 4, color: "var(--teal-primary)" });
+                geo.buatTitik(Pp, { label: "P'", labelPosition: "bottom-center", size: 4, color: "#dc2626" });
+
+                geo.buatTeks((A.x + P.x) / 2 - 8, (A.y + P.y) / 2, "k", { position: "middle-center", fontSize: 12, fill: "var(--text-main)" });
+                geo.buatTeks((B.x + P.x) / 2 - 10, (B.y + P.y) / 2, "2k", { position: "middle-center", fontSize: 12, fill: "var(--text-main)" });
+                geo.buatTeks((C.x + P.x) / 2 + 10, (C.y + P.y) / 2 - 4, "3k", { position: "middle-center", fontSize: 12, fill: "var(--text-main)" });
+                geo.buatTeks((B.x + Pp.x) / 2 - 4, (B.y + Pp.y) / 2 + 12, "2k", { position: "middle-center", fontSize: 12, fill: "var(--teal-primary)" });
+                geo.buatTeks((C.x + Pp.x) / 2 + 10, (C.y + Pp.y) / 2 + 8, "k", { position: "middle-center", fontSize: 12, fill: "var(--teal-primary)" });
+            }
+
+            if (typeof GeoSVG !== "undefined") {
+                renderDiagram2();
+            } else {
+                window.addEventListener("load", renderDiagram2);
+            }
+        })();
+    </script>
     <script src="../../scr/script.js"></script>
 </body>
 

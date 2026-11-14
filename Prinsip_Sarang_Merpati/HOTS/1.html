@@ -11,6 +11,11 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
 
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
     <!-- Style Blog -->
     <link rel="stylesheet" href="../../scr/style.css">
 </head>
@@ -203,6 +208,39 @@
             </div>
         </article>
 
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tiga buah titik terletak pada daerah yang dibatasi oleh sumbu \(y\) dan grafik persamaan \(7x - 3y^2 + 21 = 0\). Buktikan bahwa sedikitnya dua di antara ketiga titik tersebut mempunyai jarak tidak lebih dari \(4\) satuan.
+            </div>
+            <div class="soal-sumber">OSP SMA 2003 (Bagian II No. 5)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-4" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Nyatakan \(x\) sebagai fungsi dari \(y\) pada persamaan kurva:</p>
+                    \[7x - 3y^2 + 21 = 0 \iff x = \frac{3}{7}y^2 - 3\]
+                    <p>Kurva tersebut merupakan parabola yang membuka ke kanan dengan titik puncak di \((-3, 0)\). Perpotongannya dengan sumbu-\(y\) (\(x = 0\)) memenuhi \(\frac{3}{7}y^2 = 3 \iff y^2 = 7\), yakni di titik \((0, \sqrt{7})\) dan \((0, -\sqrt{7})\).</p>
+                    <p>Dengan demikian, daerah tertutup \(D\) yang dibatasi oleh parabola dan sumbu-\(y\) adalah:</p>
+                    \[D = \left\{(x, y) \in \mathbb{R}^2 \;\middle|\; -\sqrt{7} \le y \le \sqrt{7} \text{ dan } \frac{3}{7}y^2 - 3 \le x \le 0\right\}\]
+                    <p>Partisi daerah \(D\) di sepanjang sumbu-\(x\) menjadi dua sub-daerah berdasarkan tanda ordinat \(y\):</p>
+                    \[D_1 = \{(x, y) \in D \mid y \ge 0\} \qquad \text{dan} \qquad D_2 = \{(x, y) \in D \mid y \lt 0\}\]
+                    <p>Perhatikan bahwa setiap titik \((x, y) \in D_1\) termuat dalam persegi panjang \([-3, 0] \times [0, \sqrt{7}]\), sedangkan setiap titik \((x, y) \in D_2\) termuat dalam persegi panjang \([-3, 0] \times [-\sqrt{7}, 0]\).</p>
+                    <p>Karena ada \(3\) titik yang ditempatkan ke dalam \(2\) sub-daerah \(D_1\) dan \(D_2\), menurut <strong>Prinsip Sarang Merpati (Pigeonhole Principle)</strong> pasti terdapat sedikitnya \(2\) titik yang berada pada sub-daerah yang sama.</p>
+                    <p>Misalkan dua titik tersebut adalah \(A(x_1, y_1)\) dan \(B(x_2, y_2)\). Karena keduanya terletak di dalam sebuah persegi panjang berukuran lebar \(3\) dan tinggi \(\sqrt{7}\), maka berlaku \(|x_1 - x_2| \le 3\) dan \(|y_1 - y_2| \le \sqrt{7}\), sehingga jarak keduanya memenuhi:</p>
+                    \[\begin{aligned}
+                    AB &= \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2} \\
+                       &\le \sqrt{3^2 + (\sqrt{7})^2} \\
+                       &= \sqrt{9 + 7} = \sqrt{16} = 4 \qquad \blacksquare
+                    \end{aligned}\]
+                    <div class="kesimpulan">Jadi, terbukti bahwa sedikitnya dua di antara ketiga titik tersebut mempunyai jarak tidak lebih dari <strong>\(4\) satuan</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- SOAL 4 (Placeholder) -->
         <!--
         <article class="soal-item" id="4">
@@ -312,6 +350,56 @@
         <div class="pagination-wrapper"></div>
     </main>
 
+    <script>
+        (function () {
+            function renderDiagram4() {
+                if (typeof GeoSVG === "undefined") return;
+                const el = document.getElementById("svg-solusi-4");
+                if (!el || el.dataset.rendered) return;
+                el.dataset.rendered = "true";
+
+                const geo = new GeoSVG("svg-solusi-4", 290, 225, { margin: 18, clearContainer: true });
+                const ox = 215, oy = 112, sx = 46, sy = 30;
+                const pt = (mx, my) => ({ x: ox + sx * mx, y: oy - sy * my });
+                const s7 = Math.sqrt(7);
+
+                const polyPts = [];
+                const steps = 40;
+                for (let i = 0; i <= steps; i++) {
+                    const y = -s7 + (2 * s7 * i) / steps;
+                    const x = (3 / 7) * y * y - 3;
+                    polyPts.push(pt(x, y));
+                }
+
+                geo.buatPoligon(polyPts, { fill: "rgba(13, 148, 136, 0.14)", stroke: "var(--teal-primary)", strokeWidth: 2 });
+                geo.buatSegmen(pt(-3.55, 0), pt(0.75, 0), { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+                geo.buatSegmen(pt(0, -3.2), pt(0, 3.25), { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+                geo.buatSegmen(pt(-3, 0), pt(0, 0), { stroke: "var(--teal-primary)", strokeWidth: 1.6, dashed: true });
+                geo.buatSegmen(pt(-3, 0), pt(-3, s7), { stroke: "#dc2626", strokeWidth: 1.4, dashed: true });
+                geo.buatSegmen(pt(-3, s7), pt(0, s7), { stroke: "#dc2626", strokeWidth: 1.4, dashed: true });
+                geo.buatSegmen(pt(-3, 0), pt(0, s7), { stroke: "#dc2626", strokeWidth: 2, dashed: true });
+
+                geo.buatTitik(pt(-3, 0), { label: "(-3, 0)", labelPosition: "bottom-left", size: 3.5, color: "var(--teal-primary)" });
+                geo.buatTitik(pt(0, s7), { label: "(0, √7)", labelPosition: "top-right", size: 3.5, color: "var(--teal-primary)" });
+                geo.buatTitik(pt(0, -s7), { label: "(0, -√7)", labelPosition: "bottom-right", size: 3.5, color: "var(--teal-primary)" });
+                geo.buatTitik(pt(-3, s7), { label: "(-3, √7)", labelPosition: "top-left", size: 3, color: "#dc2626" });
+
+                geo.buatTeks(pt(-0.75, 0.9).x, pt(-0.75, 0.9).y, "D₁", { position: "middle-center", fontSize: 13, fontWeight: "bold", fill: "var(--teal-primary)" });
+                geo.buatTeks(pt(-0.75, -1.1).x, pt(-0.75, -1.1).y, "D₂", { position: "middle-center", fontSize: 13, fontWeight: "bold", fill: "var(--teal-primary)" });
+                geo.buatTeks(pt(-1.5, 2.95).x, pt(-1.5, 2.95).y, "3", { position: "middle-center", fontSize: 12, fontWeight: "bold", fill: "#dc2626" });
+                geo.buatTeks(pt(-3.35, 1.32).x, pt(-3.35, 1.32).y, "√7", { position: "middle-center", fontSize: 12, fontWeight: "bold", fill: "#dc2626" });
+                geo.buatTeks(pt(-1.72, 1.58).x, pt(-1.72, 1.58).y, "4", { position: "middle-center", fontSize: 12, fontWeight: "bold", fill: "#dc2626" });
+                geo.buatTeks(pt(0.78, 0.28).x, pt(0.78, 0.28).y, "x", { position: "middle-center", fontSize: 11, fill: "var(--text-muted)" });
+                geo.buatTeks(pt(-0.22, 3.25).x, pt(-0.22, 3.25).y, "y", { position: "middle-center", fontSize: 11, fill: "var(--text-muted)" });
+            }
+
+            if (typeof GeoSVG !== "undefined") {
+                renderDiagram4();
+            } else {
+                window.addEventListener("load", renderDiagram4);
+            }
+        })();
+    </script>
     <script src="../../scr/script.js"></script>
 </body>
 

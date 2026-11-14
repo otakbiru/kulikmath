@@ -174,24 +174,117 @@
       </article>
 
       <!-- SOAL 25 -->
-      <!-- <article class="soal-item" id="">
+      <article class="soal-item" id="25">
         <div class="soal-header">
           <div class="soal-no"></div>
         </div>
         <div class="soal-teks">
-          Teks soal 5
+          Dari sepuluh orang siswa akan dibentuk \(5\) kelompok, masing-masing beranggota dua orang. Berapa banyaknya cara membentuk kelima kelompok ini?
         </div>
-        <div class="soal-sumber">Sumber: -</div>
+        <div class="soal-sumber">OSK SMA 2003 (Bagian II No. 13)</div>
         <button class="btn-solusi">LIHAT PENYELESAIAN</button>
         <div class="pembahasan-box">
           <div class="pembahasan-title">Pembahasan:</div>
           <div class="pembahasan-isi">
-            Teks pembahasan 5
-            <div class="kesimpulan">Jadi, ...</div>
+            <p><strong>Cara 1 (Kombinasi dan pembagian simetri):</strong><br>
+            Jika kelima kelompok dianggap berlabel (misalnya Kelompok 1 sampai Kelompok 5), banyaknya cara memilih anggota secara berturut-turut adalah:</p>
+            \[\binom{10}{2}\binom{8}{2}\binom{6}{2}\binom{4}{2}\binom{2}{2} = \frac{10!}{2!\,8!} \cdot \frac{8!}{2!\,6!} \cdot \frac{6!}{2!\,4!} \cdot \frac{4!}{2!\,2!} \cdot \frac{2!}{2!\,0!} = \frac{10!}{(2!)^5}\]
+            <p>Karena urutan kelima kelompok tidak dibedakan (seluruh kelompok beranggotakan \(2\) orang), setiap partisi yang sama terhitung sebanyak \(5!\) kali. Maka banyaknya cara membentuk kelima kelompok adalah:</p>
+            \[\frac{10!}{(2!)^5 \cdot 5!} = \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1}{32 \times 120} = 9 \times 7 \times 5 \times 3 = 945\]
+            <p><strong>Cara 2 (Pencacahan berurutan):</strong><br>
+            Pilih siswa pertama (bebas), ia memiliki \(9\) pilihan pasangan. Dari \(8\) siswa tersisa, ambil satu siswa, ia memiliki \(7\) pilihan pasangan; demikian seterusnya hingga tersisa \(2\) siswa. Total cara:</p>
+            \[9 \times 7 \times 5 \times 3 \times 1 = 945\]
+            <div class="kesimpulan">Jadi, banyaknya cara membentuk kelima kelompok tersebut adalah <strong>945</strong>.</div>
           </div>
           <button class="btn-tutup">TUTUP</button>
         </div>
-      </article> -->
+      </article>
+
+      <!-- SOAL 26 -->
+      <article class="soal-item" id="26">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Dengan mengkombinasikan ketiga warna dasar merah, kuning, dan biru dapat dibentuk warna-warna yang lain. Misalkan terdapat \(5\) kaleng cat warna merah, \(5\) kaleng warna kuning, dan \(5\) kaleng warna biru. Budi boleh memilih kaleng manapun untuk mencampurkan warna, dan semua cat dalam sebuah kaleng harus dipakai semua. Ada berapa pilihan warna yang dihasilkan?
+        </div>
+        <div class="soal-sumber">OSP SMA 2003 (Bagian I No. 14)</div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            <p>Misalkan Budi memilih \(r\) kaleng cat merah, \(k\) kaleng cat kuning, dan \(b\) kaleng cat biru dengan \(r, k, b \in \{0, 1, 2, 3, 4, 5\}\) dan tidak ketiganya nol \((r, k, b) \neq (0, 0, 0)\).</p>
+            <p>Total banyaknya kombinasi kaleng yang dapat dipilih (belum memperhatikan kesamaan warna) adalah:</p>
+            \[6^3 - 1 = 215\]
+            <p>Dua campuran menghasilkan <strong>warna yang sama</strong> apabila perbandingan ketiganya sama, yaitu \((r_1 : k_1 : b_1) = (r_2 : k_2 : b_2)\). Setiap perbandingan diwakili secara unik oleh tripel \((r, k, b)\) yang saling relatif prima, yakni \(\text{FPB}(r, k, b) = 1\).</p>
+            <p>Kurangkan dari \(215\) tripel semua tripel yang memiliki faktor persekutuan \(d > 1\) (untuk \(\max(r, k, b) \le 5\), faktor prima pembagi bersama hanyalah \(2, 3,\) atau \(5\)):</p>
+            <ul>
+              <li>Tripel kelipatan \(2\) (selain \((0,0,0)\)): \(r, k, b \in \{0, 2, 4\} \implies 3^3 - 1 = 26\) tripel.</li>
+              <li>Tripel kelipatan \(3\) (selain \((0,0,0)\)): \(r, k, b \in \{0, 3\} \implies 2^3 - 1 = 7\) tripel.</li>
+              <li>Tripel kelipatan \(5\) (selain \((0,0,0)\)): \(r, k, b \in \{0, 5\} \implies 2^3 - 1 = 7\) tripel.</li>
+            </ul>
+            <p>Karena \(\text{KPK}(2, 3) = 6 > 5\), \(\text{KPK}(2, 5) = 10 > 5\), dan \(\text{KPK}(3, 5) = 15 > 5\), ketiga kelompok tersebut saling lepas (kecuali \((0,0,0)\) yang memang sudah dikeluarkan).</p>
+            <p>Jadi, banyaknya tripel dengan \(\text{FPB}(r, k, b) = 1\) (banyaknya pilihan warna berbeda) adalah:</p>
+            \[215 - (26 + 7 + 7) = 215 - 40 = 175\]
+            <div class="kesimpulan">Jadi, banyaknya pilihan warna yang dihasilkan adalah <strong>175</strong>.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+      <!-- SOAL 27 -->
+      <article class="soal-item" id="27">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Empat pasang suami isteri menonton pagelaran orkestra. Tempat duduk mereka harus dipisah antara kelompok suami dan kelompok isteri. Untuk masing-masing kelompok disediakan \(4\) buah tempat duduk bersebelahan dalam satu barisan. Ada berapa banyak cara memberikan tempat duduk kepada mereka?
+        </div>
+        <div class="soal-sumber">OSP SMA 2003 (Bagian I No. 16)</div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            <p>Terdapat \(4\) orang suami dan \(4\) orang isteri yang duduk terpisah dalam dua kelompok kursi bersebelahan (masing-masing \(4\) kursi) dalam satu barisan:</p>
+            <ul>
+              <li><strong>Urutan blok kelompok:</strong> blok kursi suami dan blok kursi isteri dapat menempati sisi kiri-kanan (atau depan-belakang) dalam \(2! = 2\) cara.</li>
+              <li><strong>Susunan di blok suami:</strong> ke-\(4\) suami bertukar tempat pada \(4\) kursinya sebanyak \(4! = 24\) cara.</li>
+              <li><strong>Susunan di blok isteri:</strong> ke-\(4\) isteri bertukar tempat pada \(4\) kursinya sebanyak \(4! = 24\) cara.</li>
+            </ul>
+            <p>Dengan kaidah perkalian, banyaknya cara seluruhnya adalah:</p>
+            \[2! \times 4! \times 4! = 2 \times 24 \times 24 = 1152\]
+            <div class="kesimpulan">Jadi, banyaknya cara memberikan tempat duduk kepada mereka adalah <strong>1152</strong>.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+      <!-- SOAL 28 -->
+      <article class="soal-item" id="28">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Berapakah banyaknya cara memilih tiga bilangan berbeda sehingga tidak ada dua bilangan yang berurutan, jika bilangan-bilangan tersebut dipilih dari himpunan \(\{1, 2, 3, \dots, 9, 10\}\)?
+        </div>
+        <div class="soal-sumber">OSP SMA 2003 (Bagian I No. 20)</div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            <p>Misalkan tiga bilangan yang dipilih secara terurut adalah \(a < b < c\) dari himpunan \(\{1, 2, \dots, 10\}\). Karena tidak boleh ada dua bilangan berurutan, berlaku syarat:</p>
+            \[1 \le a, \qquad b - a \ge 2, \qquad c - b \ge 2, \qquad c \le 10\]
+            <p>Definisikan tiga bilangan baru dengan menggeser \(b\) dan \(c\):</p>
+            \[x = a, \qquad y = b - 1, \qquad z = c - 2\]
+            <p>Perhatikan bahwa syarat di atas tepat ekuivalen dengan:</p>
+            \[1 \le x < y < z \le 8\]
+            <p>Setiap pilihan \((a, b, c)\) berkorespondensi satu-satu dengan pemilihan \(3\) bilangan berbeda dari himpunan \(\{1, 2, \dots, 8\}\). Banyaknya cara adalah:</p>
+            \[\binom{8}{3} = \frac{8 \times 7 \times 6}{3 \times 2 \times 1} = 56\]
+            <div class="kesimpulan">Jadi, banyaknya cara memilih ketiga bilangan tersebut adalah <strong>56</strong>.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
 
       <!-- SOAL 26 -->
       <!-- <article class="soal-item" id="">

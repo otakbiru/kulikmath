@@ -35,6 +35,7 @@ self.addEventListener('activate', (event) => {
 // dan fallback ke cache lokal saat perangkat sedang offline.
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  if (new URL(event.request.url).pathname === '/__live_reload__') return;
 
   event.respondWith(
     fetch(event.request)

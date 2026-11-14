@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal - Floor Function [2]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Floor Function</span>
+            </p>
+            <!-- Tombol Tingkat dirender otomatis oleh script.js -->
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 11 -->
+        <article class="soal-item" id="11">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <p>Tentukan banyaknya bilangan real \(x\) yang memenuhi persamaan dan pertidaksamaan</p>
+                \[\lfloor x \rfloor \cdot \lceil x \rceil = x^2 < 2026.\]
+            </div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM November 2026 (Bagian A No. 6)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kita bagi analisis ke dalam dua kasus berdasarkan apakah \(x\) bilangan bulat atau bukan:</p>
+                    <p><strong>Kasus 1: \(x\) adalah bilangan bulat (\(x = k \in \mathbb{Z}\))</strong><br>
+                    Jika \(x = k \in \mathbb{Z}\), maka \(\lfloor x \rfloor = k\) dan \(\lceil x \rceil = k\), sehingga persamaan \(\lfloor x \rfloor \cdot \lceil x \rceil = k^2 = x^2\) otomatis terpenuhi. Syarat \(x^2 < 2026\) memberikan:</p>
+                    \[k^2 < 2026 \iff -45 \le k \le 45 \qquad (\text{karena } 45^2 = 2025 < 2026 < 2116 = 46^2)\]
+                    <p>Banyaknya solusi bulat adalah \(45 - (-45) + 1 = 91\) bilangan.</p>
+
+                    <p><strong>Kasus 2: \(x\) bukan bilangan bulat (\(x \in \mathbb{R} \setminus \mathbb{Z}\))</strong><br>
+                    Misalkan \(n = \lfloor x \rfloor \in \mathbb{Z}\), sehingga \(n < x < n + 1\) dan \(\lceil x \rceil = n + 1\). Persamaan menjadi:</p>
+                    \[x^2 = n(n + 1)\]
+                    <ul>
+                        <li>Jika \(n = 0\) atau \(n = -1\), maka \(n(n + 1) = 0 \implies x = 0 \in \mathbb{Z}\) (bukan di dalam interval buka \((n, n + 1)\)).</li>
+                        <li>Untuk setiap bilangan bulat \(n \ge 1\), berlaku \(n^2 < n(n + 1) < (n + 1)^2\), sehingga terdapat tepat satu solusi real positif \(x = \sqrt{n(n + 1)} \in (n, n + 1)\). Syarat \(x^2 < 2026\) memberikan:
+                            \[n(n + 1) < 2026 \implies 1 \le n \le 44 \qquad (\text{karena } 44 \times 45 = 1980 < 2026 < 2070 = 45 \times 46)\]
+                            Diperoleh \(44\) solusi real positif tak-bulat.
+                        </li>
+                        <li>Untuk setiap bilangan bulat \(n \le -2\), tulis \(n = -(m + 1)\) dengan \(m \ge 1\) (sehingga \(n + 1 = -m\)). Maka \(n(n + 1) = m(m + 1)\), dan terdapat tepat satu solusi real negatif \(x = -\sqrt{m(m + 1)} \in (-(m + 1), -m) = (n, n + 1)\). Syarat \(x^2 = m(m + 1) < 2026\) memberikan \(1 \le m \le 44\).<br>
+                            Diperoleh \(44\) solusi real negatif tak-bulat.
+                        </li>
+                    </ul>
+                    <p>Jumlahkan banyaknya solusi dari seluruh kasus:</p>
+                    \[\text{Total solusi} = 91 + 44 + 44 = \color{blue}\boxed{\boxed{\color{black}179}}\]
+
+                    <div class="kesimpulan">
+                        Jadi, banyaknya bilangan real \(x\) yang memenuhi adalah <strong>179</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 12 -->
+        <article class="soal-item" id="12">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Untuk setiap bilangan real \(\alpha\), kita definisikan \(\lfloor \alpha \rfloor\) sebagai bilangan bulat yang kurang dari atau sama dengan \(\alpha\). Sebagai contoh \(\lfloor 4{,}9 \rfloor = 4\) dan \(\lfloor 7 \rfloor = 7\). Jika \(x\) dan \(y\) bilangan real sehingga \(\lfloor \sqrt{x} \rfloor = 9\) dan \(\lfloor \sqrt{y} \rfloor = 12\), maka nilai terkecil yang mungkin dicapai oleh \(\lfloor y - x \rfloor\) adalah ....
+            </div>
+            <div class="soal-sumber">OSK SMA 2003 (Bagian II No. 18)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Berdasarkan definisi fungsi lantai (<em>floor function</em>), syarat \(\lfloor \sqrt{x} \rfloor = 9\) dan \(\lfloor \sqrt{y} \rfloor = 12\) ekuivalen dengan:</p>
+                    \[\begin{aligned}
+                    9 \le \sqrt{x} < 10 &\implies 81 \le x < 100 \\
+                    12 \le \sqrt{y} < 13 &\implies 144 \le y < 169
+                    \end{aligned}\]
+                    <p>Untuk mencari batas bawah dari \(y - x\), gunakan nilai minimum \(y\) dan batas atas \(x\):</p>
+                    \[y - x > 144 - 100 = 44\]
+                    <p>Karena \(y - x > 44\), maka bilangan bulat terbesar yang tidak melebihi \(y - x\) pasti memenuhi:</p>
+                    \[\lfloor y - x \rfloor \ge 44\]
+                    <p><strong>Pemeriksaan ketercapaian:</strong> Karena \(x\) dan \(y\) merupakan bilangan real (tidak harus bulat), kita dapat memilih misalnya \(x = 99{,}5\) (sehingga \(\lfloor \sqrt{99{,}5} \rfloor = 9\)) dan \(y = 144\) (sehingga \(\lfloor \sqrt{144} \rfloor = 12\)). Untuk pasangan ini:</p>
+                    \[\lfloor y - x \rfloor = \lfloor 144 - 99{,}5 \rfloor = \lfloor 44{,}5 \rfloor = 44\]
+                    <div class="kesimpulan">Jadi, nilai terkecil yang mungkin dicapai oleh \(\lfloor y - x \rfloor\) adalah <strong>44</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 13 -->
+        <article class="soal-item" id="13">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan semua solusi bilangan real persamaan \(\lfloor x^2 \rfloor + \lceil x^2 \rceil = 2003\).<br><br>
+                <em>[Catatan : Untuk sebarang bilangan real \(\alpha\), notasi \(\lfloor \alpha \rfloor\) menyatakan bilangan bulat terbesar yang lebih kecil atau sama dengan \(\alpha\), sedangkan \(\lceil \alpha \rceil\) menyatakan bilangan bulat terkecil yang lebih besar atau sama dengan \(\alpha\).]</em>
+            </div>
+            <div class="soal-sumber">OSN SMA 2003 (Hari I No. 3)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan \(y = x^2 \ge 0\), sehingga persamaan menjadi \(\lfloor y \rfloor + \lceil y \rceil = 2003\). Tinjau dua kemungkinan nilai \(y\):</p>
+                    <ul>
+                        <li><strong>Kasus 1: \(y\) adalah bilangan bulat (\(y \in \mathbb{Z}\)).</strong><br>
+                            Maka \(\lfloor y \rfloor = \lceil y \rceil = y\), sehingga \(y + y = 2003 \iff 2y = 2003\). Tidak ada solusi bilangan bulat \(y\) karena \(2003\) bernilai ganjil.
+                        </li>
+                        <li><strong>Kasus 2: \(y\) bukan bilangan bulat (\(y \notin \mathbb{Z}\)).</strong><br>
+                            Misalkan \(k = \lfloor y \rfloor \in \mathbb{Z}\). Karena \(y\) bukan bilangan bulat, berlaku \(k \lt y \lt k + 1\), akibatnya \(\lceil y \rceil = k + 1\). Substitusikan ke persamaan:
+                            \[k + (k + 1) = 2003 \iff 2k + 1 = 2003 \iff 2k = 2002 \iff k = 1001\]
+                            Dengan demikian, \(y = x^2\) harus memenuhi:
+                            \[1001 \lt x^2 \lt 1002\]
+                        </li>
+                    </ul>
+                    <p>Karena \(1001 \gt 0\), pertidaksamaan kuadrat \(1001 \lt x^2 \lt 1002\) pada himpunan bilangan real ekuivalen dengan \(\sqrt{1001} \lt |x| \lt \sqrt{1002}\), yaitu:</p>
+                    \[-\sqrt{1002} \lt x \lt -\sqrt{1001} \qquad \text{atau} \qquad \sqrt{1001} \lt x \lt \sqrt{1002}\]
+                    <div class="kesimpulan">Jadi, semua solusi bilangan realnya adalah <strong>\(x \in (-\sqrt{1002}, -\sqrt{1001}) \cup (\sqrt{1001}, \sqrt{1002})\)</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

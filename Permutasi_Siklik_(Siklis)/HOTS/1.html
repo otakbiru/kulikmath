@@ -97,6 +97,44 @@
       </article>
 
       <!-- SOAL 3 -->
+      <article class="soal-item" id="3">
+        <div class="soal-header">
+          <div class="soal-no"></div>
+        </div>
+        <div class="soal-teks">
+          Balairung sebuah istana berbentuk segi-6 beraturan dengan panjang sisi \(6\text{ meter}\). Lantai balairung tersebut ditutupi dengan ubin-ubin keramik berbentuk segitiga samasisi dengan panjang sisi \(50\text{ cm}\). Setiap ubin keramik dibagi ke dalam \(3\) daerah segitiga yang kongruen, lihat gambar. Setiap daerah segitiga diberi satu warna tertentu sehingga setiap ubin memiliki tiga warna berbeda. Raja menginginkan agar tidak ada dua ubin yang memiliki pola warna sama. Paling sedikit berapa warna yang diperlukan?
+          <div id="svg-soal-3" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+        </div>
+        <div class="soal-sumber">OSN SMA 2003 (Hari II No. 6)</div>
+        <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+        <div class="pembahasan-box">
+          <div class="pembahasan-title">Pembahasan:</div>
+          <div class="pembahasan-isi">
+            <div id="svg-solusi-3" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+            <p><strong>Langkah 1: Menghitung banyaknya ubin pada lantai balairung</strong></p>
+            <p>Balairung berbentuk segi-6 beraturan dengan sisi \(6\text{ m} = 600\text{ cm}\) dapat dibagi tepat menjadi \(6\) buah segitiga samasisi kongruen yang masing-masing bersisi \(600\text{ cm}\).</p>
+            <p>Karena setiap ubin berbentuk segitiga samasisi bersisi \(50\text{ cm}\), rasio panjang sisi segitiga besar terhadap ubin adalah \(\frac{600}{50} = 12\). Setiap segitiga samasisi besar memuat tepat \(12^2 = 144\) ubin segitiga samasisi (atau lewat perbandingan luas: \(\frac{6 \cdot \frac{\sqrt{3}}{4} \cdot 600^2}{\frac{\sqrt{3}}{4} \cdot 50^2} = 6 \cdot 12^2\)). Total banyaknya ubin yang menutupi balairung adalah:</p>
+            \[6 \times 144 = 864\text{ ubin}\]
+            <p><strong>Langkah 2: Menghitung banyaknya pola warna berbeda dari \(n\) warna</strong></p>
+            <p>Misalkan tersedia \(n\) warna berbeda. Setiap ubin menggunakan \(3\) warna berbeda, yang dapat dipilih dalam \(\binom{n}{3}\) cara.</p>
+            <p>Ketika ubin keramik dipasang di lantai (menghadap ke atas, hanya dapat diputar \(0^\circ\), \(120^\circ\), atau \(240^\circ\) di bidang lantai tanpa dibalik), ketiga warna tersebut membentuk <strong>permutasi siklik</strong> pada \(3\) daerah kongruen sebanyak \((3 - 1)! = 2! = 2\) pola berbeda untuk setiap pilihan \(3\) warna (searah jarum jam dan berlawanan arah jarum jam).</p>
+            <p>Jadi, banyaknya pola warna berbeda yang dapat dibuat dari \(n\) warna adalah:</p>
+            \[\binom{n}{3} \times (3 - 1)! = \frac{n(n - 1)(n - 2)}{6} \times 2 = \frac{n(n - 1)(n - 2)}{3}\]
+            <p><strong>Langkah 3: Menentukan nilai minimum \(n\)</strong></p>
+            <p>Agar tidak ada dua ubin dengan pola warna yang sama, banyaknya pola berbeda minimal harus sama dengan banyaknya ubin (\(864\)):</p>
+            \[\frac{n(n - 1)(n - 2)}{3} \ge 864 \iff n(n - 1)(n - 2) \ge 2592\]
+            <p>Uji nilai \(n\) di sekitar batas tersebut (karena \(n(n - 1)(n - 2)\) monoton naik untuk \(n \ge 2\)):</p>
+            <ul>
+              <li>Untuk \(n = 14\): \(14 \times 13 \times 12 = 2184 \lt 2592\) (hanya menghasilkan \(728\) pola, tidak cukup).</li>
+              <li>Untuk \(n = 15\): \(15 \times 14 \times 13 = 2730 \ge 2592\) (menghasilkan \(910 \ge 864\) pola, memenuhi).</li>
+            </ul>
+            <div class="kesimpulan">Jadi, paling sedikit diperlukan <strong>15 warna</strong>.</div>
+          </div>
+          <button class="btn-tutup">TUTUP</button>
+        </div>
+      </article>
+
+      <!-- SOAL 3 -->
       <!-- <article class="soal-item" id="">
         <div class="soal-header">
           <div class="soal-no"></div>
@@ -262,6 +300,62 @@
 
   </main>
 
+  <script>
+    (function () {
+      function renderDiagrams() {
+        if (typeof GeoSVG === "undefined") return;
+
+        const elSoal = document.getElementById("svg-soal-3");
+        if (elSoal && !elSoal.dataset.rendered) {
+          elSoal.dataset.rendered = "true";
+          const geoS = new GeoSVG("svg-soal-3", 170, 145, { margin: 14, clearContainer: true });
+          const cx = 85, cy = 88, R = 60;
+          const O = { x: cx, y: cy };
+          const A = { x: cx, y: cy - R };
+          const B = { x: cx - (R * Math.sqrt(3)) / 2, y: cy + R * 0.5 };
+          const C = { x: cx + (R * Math.sqrt(3)) / 2, y: cy + R * 0.5 };
+          geoS.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.06)", stroke: "var(--text-main)", strokeWidth: 2 });
+          geoS.buatSegmen(O, A, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+          geoS.buatSegmen(O, B, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+          geoS.buatSegmen(O, C, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+        }
+
+        const elSol = document.getElementById("svg-solusi-3");
+        if (elSol && !elSol.dataset.rendered) {
+          elSol.dataset.rendered = "true";
+          const geoH = new GeoSVG("svg-solusi-3", 240, 205, { margin: 14, clearContainer: true });
+          const cx = 120, cy = 96, R = 70;
+          const C = { x: cx, y: cy };
+          const V = [];
+          for (let k = 0; k < 6; k++) {
+            const ang = (k * 60 * Math.PI) / 180;
+            V.push({ x: cx + R * Math.cos(ang), y: cy + R * Math.sin(ang) });
+          }
+          const lerp = (p, q, t) => ({ x: p.x + (q.x - p.x) * t, y: p.y + (q.y - p.y) * t });
+
+          geoH.buatPoligon(V, { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+          geoH.buatSegitiga(C, V[4], V[5], { fill: "rgba(13, 148, 136, 0.16)", stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+          for (let k = 0; k < 6; k++) {
+            geoH.buatSegmen(C, V[k], { stroke: "var(--text-main)", strokeWidth: 1.3 });
+          }
+          for (let k = 1; k < 4; k++) {
+            const t = k / 4;
+            geoH.buatSegmen(lerp(C, V[4], t), lerp(C, V[5], t), { stroke: "var(--teal-primary)", strokeWidth: 0.9 });
+            geoH.buatSegmen(lerp(V[4], V[5], t), lerp(C, V[5], t), { stroke: "var(--teal-primary)", strokeWidth: 0.9 });
+            geoH.buatSegmen(lerp(V[5], V[4], t), lerp(C, V[4], t), { stroke: "var(--teal-primary)", strokeWidth: 0.9 });
+          }
+          geoH.buatTeks(cx, 17, "6 m", { position: "middle-center", fontSize: 12, fontWeight: "bold", fill: "var(--text-main)" });
+          geoH.buatTeks(cx, 183, "Total = 6 × 144 = 864 ubin", { position: "middle-center", fontSize: 11.5, fontWeight: "bold", fill: "var(--teal-primary)" });
+        }
+      }
+
+      if (typeof GeoSVG !== "undefined") {
+        renderDiagrams();
+      } else {
+        window.addEventListener("load", renderDiagrams);
+      }
+    })();
+  </script>
   <script src="../../scr/script.js"></script>
 </body>
 

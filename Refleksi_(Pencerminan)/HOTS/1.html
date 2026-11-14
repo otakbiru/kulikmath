@@ -83,24 +83,45 @@ Sehingga diperoleh persamaan garis bayangan akhir $3x + 2y + 14 = 0$.
             </div>
         </article>
 
-        <!-- SOAL 2 
+        <!-- SOAL 2 -->
         <article class="soal-item" id="2">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal kedua di sini...
+                Diberikan segitiga sama sisi \(ABC\) dengan \(D\) sebagai titik tengah \(BC\). Titik \(G\) dan \(H\) berturut-turut adalah proyeksi tegak lurus dari \(D\) ke \(AB\) dan \(AC\). Selanjutnya, titik \(E\) dan \(F\) diperoleh dengan mencerminkan titik \(D\) terhadap garis \(AB\) dan \(AC\) secara berturut-turut. Jika keliling segi tujuh \(AEGBCHF\) adalah \(30\sqrt{3} + 30\), tentukan panjang sisi segitiga \(ABC\).
             </div>
-            <div class="soal-sumber"></div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM November 2026 (Bagian A No. 4)</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan soal kedua di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <div id="svg-solusi-2" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Misalkan panjang sisi segitiga sama sisi \(ABC\) adalah \(s = AB = BC = CA\). Karena \(D\) adalah titik tengah \(BC\), maka:</p>
+                    \[BD = DC = \dfrac{s}{2}\]
+                    <p>Tinjau segitiga siku-siku \(BDG\) (siku-siku di \(G\)) dan \(CDH\) (siku-siku di \(H\)) dengan \(\angle B = \angle C = 60^\circ\):</p>
+                    \[\begin{aligned}
+                    GB &= CH = BD \cos 60^\circ = \dfrac{s}{2} \cdot \dfrac{1}{2} = \dfrac{s}{4} \\[6pt]
+                    DG &= DH = BD \sin 60^\circ = \dfrac{s}{2} \cdot \dfrac{\sqrt{3}}{2} = \dfrac{s\sqrt{3}}{4}
+                    \end{aligned}\]
+                    <p>Karena \(E\) adalah hasil pencerminan titik \(D\) terhadap garis \(AB\) (dengan \(G\) sebagai proyeksi tegak lurus \(D\) pada \(AB\)), maka garis \(AB\) adalah sumbu dari ruas garis \(DE\) di titik \(G\). Akibat sifat pencerminan terhadap \(AB\):</p>
+                    <ul>
+                        <li>\(EG = DG = \dfrac{s\sqrt{3}}{4}\)</li>
+                        <li>\(AE = AD\), di mana \(AD = s \sin 60^\circ = \dfrac{s\sqrt{3}}{2}\) adalah garis tinggi \(\triangle ABC\).</li>
+                    </ul>
+                    <p>Secara simetris, karena \(F\) adalah hasil pencerminan titik \(D\) terhadap garis \(AC\) (dengan \(H\) pada \(AC\)), berlaku pula:</p>
+                    \[HF = DH = \dfrac{s\sqrt{3}}{4} \quad \text{dan} \quad FA = AD = \dfrac{s\sqrt{3}}{2}\]
+                    <p>Jumlahkan ketujuh sisi dari segi tujuh \(AEGBCHF\):</p>
+                    \[\begin{aligned}
+                    \text{Keliling}(AEGBCHF) &= (AE + EG + HF + FA) + (GB + BC + CH) \\[6pt]
+                    &= \left(\dfrac{s\sqrt{3}}{2} + \dfrac{s\sqrt{3}}{4} + \dfrac{s\sqrt{3}}{4} + \dfrac{s\sqrt{3}}{2}\right) + \left(\dfrac{s}{4} + s + \dfrac{s}{4}\right) \\[6pt]
+                    &= \dfrac{3s\sqrt{3}}{2} + \dfrac{3s}{2} = \dfrac{3s}{2}\left(\sqrt{3} + 1\right)
+                    \end{aligned}\]
+                    <p>Diketahui keliling segi tujuh \(AEGBCHF\) adalah \(30\sqrt{3} + 30 = 30\left(\sqrt{3} + 1\right)\), sehingga:</p>
+                    \[\dfrac{3s}{2}\left(\sqrt{3} + 1\right) = 30\left(\sqrt{3} + 1\right) \implies \dfrac{3s}{2} = 30 \implies s = \color{blue}\boxed{\boxed{\color{black}20}}\]
+                    <div class="kesimpulan">Jadi, panjang sisi segitiga \(ABC\) adalah <strong>20</strong>.</div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
             </div>
         </article>
--->
 
         <!-- SOAL 3
         <article class="soal-item" id="3">
@@ -259,6 +280,42 @@ Sehingga diperoleh persamaan garis bayangan akhir $3x + 2y + 14 = 0$.
     </main>
 
     <script src="../../scr/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof GeoSVG !== "undefined") {
+                const el2 = document.getElementById("svg-solusi-2");
+                if (el2) {
+                    const geo2 = new GeoSVG("svg-solusi-2", 320, 230, { margin: 25 });
+                    const s = 150;
+                    const D = [160, 195];
+                    const B = [160 - s / 2, 195];
+                    const C = [160 + s / 2, 195];
+                    const A = [160, 195 - (s * Math.sqrt(3)) / 2];
+                    const G = [0.25 * A[0] + 0.75 * B[0], 0.25 * A[1] + 0.75 * B[1]];
+                    const H = [0.25 * A[0] + 0.75 * C[0], 0.25 * A[1] + 0.75 * C[1]];
+                    const E = [2 * G[0] - D[0], 2 * G[1] - D[1]];
+                    const F = [2 * H[0] - D[0], 2 * H[1] - D[1]];
+
+                    geo2.buatPoligon([A, E, G, B, C, H, F], { fill: "rgba(13, 148, 136, 0.08)", stroke: "#0d9488", strokeWidth: 2 });
+                    geo2.buatSegitiga(A, B, C, { stroke: "#334155", strokeWidth: 1.5 });
+                    geo2.buatSegmen(A, D, { stroke: "#64748b", dasharray: "4,4" });
+                    geo2.buatSegmen(D, E, { stroke: "#2563eb", dasharray: "4,4" });
+                    geo2.buatSegmen(D, F, { stroke: "#2563eb", dasharray: "4,4" });
+                    geo2.buatSiku(D, G, B, { size: 7 });
+                    geo2.buatSiku(D, H, C, { size: 7 });
+
+                    geo2.buatTitik(A, { label: "A", labelPosition: "tengah atas", size: 2.5 });
+                    geo2.buatTitik(B, { label: "B", labelPosition: "kiri bawah", size: 2.5 });
+                    geo2.buatTitik(C, { label: "C", labelPosition: "kanan bawah", size: 2.5 });
+                    geo2.buatTitik(D, { label: "D", labelPosition: "tengah bawah", size: 2.5 });
+                    geo2.buatTitik(G, { label: "G", labelPosition: "kiri atas", size: 2.5 });
+                    geo2.buatTitik(H, { label: "H", labelPosition: "kanan atas", size: 2.5 });
+                    geo2.buatTitik(E, { label: "E", labelPosition: "kiri tengah", size: 2.5 });
+                    geo2.buatTitik(F, { label: "F", labelPosition: "kanan tengah", size: 2.5 });
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

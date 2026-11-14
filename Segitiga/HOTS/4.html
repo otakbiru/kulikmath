@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Segitiga [4]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Segitiga</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 31 -->
+        <article class="soal-item" id="31">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Segitiga \(ABC\) adalah segitiga samasisi dengan panjang sisi \(1\) satuan. Melalui \(B\) dibuat garis yang tegak lurus \(BC\). Garis tersebut berpotongan dengan perpanjangan garis \(AC\) di titik \(D\). Berapakah panjang \(BD\)?
+            </div>
+            <div class="soal-sumber">OSK SMA 2003 (Bagian II No. 17)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-31" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Karena \(\triangle ABC\) adalah segitiga samasisi dengan panjang sisi \(1\), setiap sudut dalamnya bernilai \(60^\circ\), sehingga \(\angle ABC = \angle ACB = \angle BAC = 60^\circ\).</p>
+                    <p><strong>Cara 1 (Trigonometri pada segitiga siku-siku):</strong><br>
+                    Garis \(BD\) tegak lurus dengan \(BC\), sehingga \(\triangle DBC\) siku-siku di \(B\) dengan \(\angle BCD = \angle BCA = 60^\circ\) dan \(BC = 1\). Oleh karena itu:</p>
+                    \[\tan \angle BCD = \frac{BD}{BC} \implies BD = BC \cdot \tan 60^\circ = 1 \cdot \sqrt{3} = \sqrt{3}\]
+                    <p><strong>Cara 2 (Geometri dasar &amp; Teorema Pythagoras):</strong><br>
+                    Perhatikan \(\triangle ABD\). Karena \(BD \perp BC\), maka \(\angle ABD = 90^\circ - \angle ABC = 90^\circ - 60^\circ = 30^\circ\). Di sisi lain, \(\angle BAD = 180^\circ - \angle BAC = 120^\circ\), sehingga \(\angle ADB = 180^\circ - 120^\circ - 30^\circ = 30^\circ\). Akibatnya \(\triangle ABD\) sama kaki dengan \(AD = AB = 1\), sehingga \(CD = CA + AD = 2\).</p>
+                    <p>Dengan Teorema Pythagoras pada \(\triangle DBC\):</p>
+                    \[BD = \sqrt{CD^2 - BC^2} = \sqrt{2^2 - 1^2} = \sqrt{3}\]
+                    <div class="kesimpulan">Jadi, panjang \(BD\) adalah \(\mathbf{\sqrt{3}}\) satuan.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 32 -->
+        <article class="soal-item" id="32">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Suatu garis vertikal membagi segitiga dengan titik sudut \((0,0)\), \((1,1)\), dan \((9,1)\) menjadi dua daerah dengan luas yang sama. Apakah persamaan garis tersebut?
+            </div>
+            <div class="soal-sumber">OSP SMA 2003 (Bagian I No. 10)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-32" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Misalkan titik-titik sudut segitiga tersebut adalah \(O(0,0)\), \(A(1,1)\), dan \(B(9,1)\). Sisi \(AB\) terletak mendatar pada garis \(y = 1\) sepanjang \(9 - 1 = 8\) satuan, sedangkan jarak vertikal dari \(O(0,0)\) ke \(y = 1\) adalah \(1\) satuan. Maka luas total \(\triangle OAB\) adalah:</p>
+                    \[[OAB] = \frac{1}{2} \times 8 \times 1 = 4\]
+                    <p>Luas masing-masing belahan haruslah setengahnya, yaitu \(2\) satuan luas.</p>
+                    <p>Perhatikan persamaan garis sisi \(OB\) yang melalui \((0,0)\) dan \((9,1)\):</p>
+                    \[y = \frac{1}{9}x\]
+                    <p>Jika garis vertikal \(x = k\) memotong di \(0 \le k \le 1\), luas di sebelah kiri garis \(x = k\) paling besar saat \(k = 1\), yang hanya sebesar \(\frac{1}{2}(1)\left(1 - \frac{1}{9}\right) = \frac{4}{9} < 2\). Jadi pasti \(1 < k < 9\).</p>
+                    <p>Untuk \(1 < k < 9\), bagian di sebelah kanan garis \(x = k\) berupa segitiga siku-siku yang dibatasi oleh \(x = k\), \(y = 1\), dan \(y = \frac{1}{9}x\):</p>
+                    <ul>
+                        <li>Panjang alas mendatar pada \(y = 1\) adalah \(9 - k\).</li>
+                        <li>Panjang sisi tegak pada \(x = k\) adalah \(1 - \dfrac{k}{9} = \dfrac{9 - k}{9}\).</li>
+                    </ul>
+                    <p>Dengan menyamakan luas daerah kanan dengan \(2\):</p>
+                    \[\begin{aligned}
+                    \frac{1}{2} \cdot (9 - k) \cdot \frac{9 - k}{9} &= 2 \\
+                    \frac{(9 - k)^2}{18} &= 2 \\
+                    (9 - k)^2 &= 36
+                    \end{aligned}\]
+                    <p>Karena \(1 < k < 9\), maka \(9 - k > 0\), sehingga \(9 - k = 6 \implies k = 3\).</p>
+                    <div class="kesimpulan">Jadi, persamaan garis vertikal tersebut adalah \(\mathbf{x = 3}\).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 33 -->
+        <article class="soal-item" id="33">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diketahui segitiga \(ABC\) siku-siku di \(C\) dengan panjang sisi-sisinya merupakan bilangan bulat. Tentukan panjang sisi-sisi segitiga tersebut jika hasil kali dari dua sisi yang bukan sisi miring sama dengan tiga kali keliling segitiga.
+            </div>
+            <div class="soal-sumber">OSN SMA 2003 (Hari II No. 8)</div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan dua sisi siku-sikunya adalah \(a\) dan \(b\), serta sisi miringnya adalah \(c\) (\(a, b, c \in \mathbb{Z}^+\)). Diketahui dua syarat:</p>
+                    \[\begin{aligned}
+                    a^2 + b^2 &= c^2 && \text{(Teorema Pythagoras)} \\
+                    ab &= 3(a + b + c) && \text{(syarat soal)}
+                    \end{aligned}\]
+                    <p>Perhatikan identitas selisih kuadrat berikut dari \(a^2 + b^2 = c^2\):</p>
+                    \[2ab = (a + b)^2 - (a^2 + b^2) = (a + b)^2 - c^2 = (a + b - c)(a + b + c)\]
+                    <p>Substitusikan \(ab = 3(a + b + c)\) ke ruas kiri:</p>
+                    \[2 \cdot 3(a + b + c) = (a + b - c)(a + b + c)\]
+                    <p>Karena \(a + b + c \gt 0\), bagi kedua ruas dengan \((a + b + c)\):</p>
+                    \[a + b - c = 6 \iff c = a + b - 6\]
+                    <p>Substitusikan \(c = a + b - 6\) kembali ke persamaan \(ab = 3(a + b + c)\):</p>
+                    \[\begin{aligned}
+                    ab &= 3(2a + 2b - 6) = 6a + 6b - 18 \\
+                    ab - 6a - 6b + 36 &= 36 - 18 \\
+                    (a - 6)(b - 6) &= 18
+                    \end{aligned}\]
+                    <p>Karena \(a, b \ge 1\), maka \(a - 6 \ge -5\) dan \(b - 6 \ge -5\). Seluruh pasangan faktor negatif dari \(18\), yakni \((-18, -1)\), \((-9, -2)\), dan \((-6, -3)\), selalu memiliki minimal satu faktor \(\le -6\) (yang menyebabkan \(a \le 0\) atau \(b \le 0\), tidak mungkin). Oleh karena itu, \((a - 6)\) dan \((b - 6)\) haruslah pasangan pembagi positif dari \(18\).</p>
+                    <p>Tanpa mengurangi keumuman, misalkan \(a \le b\). Ketiga pasangan faktor positif dari \(18\) adalah:</p>
+                    <ul>
+                        <li>\((a - 6, b - 6) = (1, 18) \implies (a, b) = (7, 24)\) dan \(c = 7 + 24 - 6 = 25\).<br>
+                            <em>Cek:</em> \(7^2 + 24^2 = 625 = 25^2\) dan \(7 \cdot 24 = 168 = 3(7 + 24 + 25)\).</li>
+                        <li>\((a - 6, b - 6) = (2, 9) \implies (a, b) = (8, 15)\) dan \(c = 8 + 15 - 6 = 17\).<br>
+                            <em>Cek:</em> \(8^2 + 15^2 = 289 = 17^2\) dan \(8 \cdot 15 = 120 = 3(8 + 15 + 17)\).</li>
+                        <li>\((a - 6, b - 6) = (3, 6) \implies (a, b) = (9, 12)\) dan \(c = 9 + 12 - 6 = 15\).<br>
+                            <em>Cek:</em> \(9^2 + 12^2 = 225 = 15^2\) dan \(9 \cdot 12 = 108 = 3(9 + 12 + 15)\).</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, panjang sisi-sisi segitiga siku-siku tersebut adalah <strong>\((7, 24, 25)\)</strong>, <strong>\((8, 15, 17)\)</strong>, atau <strong>\((9, 12, 15)\)</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script>
+        (function () {
+            function renderDiagram31() {
+                const el31 = document.getElementById("svg-solusi-31");
+                if (!el31 || typeof GeoSVG === "undefined") return;
+                const geo31 = new GeoSVG("svg-solusi-31", 230, 255, { margin: 25, clearContainer: true });
+                const side = 130;
+                const h = side * Math.sqrt(3) / 2;
+                const B = { x: 45, y: 230 };
+                const C = { x: 45 + side, y: 230 };
+                const A = { x: 45 + side / 2, y: 230 - h };
+                const D = { x: 45, y: 230 - 2 * h };
+
+                geo31.buatSegitiga(B, C, A, {
+                    fill: "rgba(13, 148, 136, 0.08)",
+                    stroke: "var(--teal-primary)",
+                    strokeWidth: 2
+                });
+                geo31.buatSegmen(A, D, { stroke: "var(--text-main)", strokeWidth: 1.8, dashed: true });
+                geo31.buatSegmen(B, D, { stroke: "var(--teal-primary)", strokeWidth: 2.2 });
+                geo31.buatSiku(D, B, C, { size: 12, stroke: "var(--text-main)" });
+                geo31.buatSudut(B, C, A, {
+                    radius: 22,
+                    label: "60°",
+                    labelRadius: 36,
+                    stroke: "var(--teal-primary)",
+                    labelColor: "var(--teal-primary)",
+                    fontSize: 12
+                });
+
+                geo31.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 4, color: "var(--text-main)" });
+                geo31.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 4, color: "var(--text-main)" });
+                geo31.buatTitik(A, { label: "A", labelPosition: "top-right", size: 4, color: "var(--text-main)" });
+                geo31.buatTitik(D, { label: "D", labelPosition: "top-left", size: 4, color: "var(--text-main)" });
+
+                geo31.buatTeks((B.x + C.x) / 2, B.y + 16, "1", {
+                    position: "middle-center",
+                    fontSize: 13,
+                    fontWeight: "bold",
+                    fill: "var(--text-main)"
+                });
+                geo31.buatTeks((A.x + B.x) / 2 + 12, (A.y + B.y) / 2 + 6, "1", {
+                    position: "middle-center",
+                    fontSize: 12,
+                    fill: "var(--teal-primary)"
+                });
+                geo31.buatTeks((A.x + C.x) / 2 + 12, (A.y + C.y) / 2 - 6, "1", {
+                    position: "middle-center",
+                    fontSize: 12,
+                    fill: "var(--teal-primary)"
+                });
+                geo31.buatTeks((A.x + D.x) / 2 + 12, (A.y + D.y) / 2 - 6, "1", {
+                    position: "middle-center",
+                    fontSize: 12,
+                    fill: "var(--text-main)"
+                });
+                geo31.buatTeks(B.x - 18, (B.y + D.y) / 2, "√3", {
+                    position: "middle-center",
+                    fontSize: 14,
+                    fontWeight: "bold",
+                    fill: "var(--teal-primary)"
+                });
+            }
+
+            if (typeof GeoSVG !== "undefined") {
+                renderDiagram31();
+            } else {
+                window.addEventListener("load", renderDiagram31);
+            }
+        })();
+    </script>
+    <script>
+        (function () {
+            function renderDiagram32() {
+                const el32 = document.getElementById("svg-solusi-32");
+                if (!el32 || typeof GeoSVG === "undefined") return;
+                const geo = new GeoSVG("svg-solusi-32", 310, 155, { margin: 22, clearContainer: true });
+                const ox = 25, oy = 120, sx = 28, sy = 90;
+                const pt = (mx, my) => ({ x: ox + sx * mx, y: oy - sy * my });
+
+                const O = pt(0, 0);
+                const A = pt(1, 1);
+                const B = pt(9, 1);
+                const C = pt(3, 1);
+                const D = pt(3, 1 / 3);
+
+                geo.buatSegmen(pt(-0.3, 0), pt(9.6, 0), { stroke: "var(--text-muted)", strokeWidth: 1 });
+                geo.buatSegmen(pt(0, -0.15), pt(0, 1.25), { stroke: "var(--text-muted)", strokeWidth: 1 });
+                geo.buatSegitiga(O, A, B, { fill: "rgba(100, 116, 139, 0.06)", stroke: "var(--text-main)", strokeWidth: 2 });
+                geo.buatSegitiga(C, B, D, { fill: "rgba(13, 148, 136, 0.16)", stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                geo.buatSegmen(pt(3, -0.05), pt(3, 1.2), { stroke: "#dc2626", strokeWidth: 2, dashed: true });
+
+                geo.buatTitik(O, { label: "(0,0)", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                geo.buatTitik(A, { label: "(1,1)", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                geo.buatTitik(B, { label: "(9,1)", labelPosition: "top-right", size: 3.5, color: "var(--text-main)" });
+                geo.buatTitik(C, { label: "(3,1)", labelPosition: "top-center", size: 3.5, color: "#dc2626" });
+
+                geo.buatTeks(pt(3, -0.18).x, pt(3, -0.18).y, "x = 3", {
+                    position: "middle-center",
+                    fontSize: 12,
+                    fontWeight: "bold",
+                    fill: "#dc2626"
+                });
+                geo.buatTeks(pt(5, 0.78).x, pt(5, 0.78).y, "Luas = 2", {
+                    position: "middle-center",
+                    fontSize: 12,
+                    fontWeight: "bold",
+                    fill: "var(--teal-primary)"
+                });
+            }
+
+            if (typeof GeoSVG !== "undefined") {
+                renderDiagram32();
+            } else {
+                window.addEventListener("load", renderDiagram32);
+            }
+        })();
+    </script>
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

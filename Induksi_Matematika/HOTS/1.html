@@ -133,24 +133,49 @@
         </article>
 
         <!-- SOAL 2 -->
-        <!--
         <article class="soal-item" id="2">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal ke-2 di sini...
+                <p>Diberikan bilangan asli \(n \ge 2\). Uwu dan Owo sedang bermain dengan \(n\) buah batu yang awalnya berada di satu tumpukan. Dalam satu langkah, Uwu dapat memilih satu tumpukan batu yang terdiri dari \(m \ge 2\) batu, lalu memisahnya menjadi dua tumpukan batu yang terdiri dari \(x\) dan \(y\) batu berturut-turut, di mana \(x\) dan \(y\) adalah bilangan asli sehingga \(x + y = m\). Setiap kali Uwu melakukan langkah ini, Owo membakar \(x^2 + y^2\) hektar hutan dari kebun Uwu. Uwu melakukan langkah ini berkali-kali hingga terdapat \(n\) kumpulan yang terdiri dari \(1\) batu.</p>
+                <p>Misalkan \(c\) adalah minimal hektar hutan yang dibakar Owo dari seluruh kemungkinan langkah-langkah Uwu. Untuk setiap bilangan asli \(n \ge 2\), buktikan bahwa</p>
+                \[c \ge n^2 - n\]
+                <p>dan tentukan seluruh \(n\) sehingga kesamaan terjadi.</p>
             </div>
-            <div class="soal-sumber"></div>
+            <div class="soal-sumber"><a href="https://ktom-tomi.or.id" target="_blank" rel="noopener noreferrer">KTOM November 2026 (Bagian B No. 2)</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan soal ke-2 di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <p><strong>Metode 1: Fungsi Potensial / Invarian Teleskopik</strong><br>
+                    Definisikan fungsi potensial \(\Phi(m) = m^2 - m\) untuk setiap tumpukan berukuran \(m \ge 1\). Perhatikan bahwa ketika sebuah tumpukan berukuran \(m = x + y\) dipisah menjadi dua tumpukan berukuran \(x\) dan \(y\), selisih antara luas hutan yang dibakar pada langkah tersebut (\(x^2 + y^2\)) dengan penurunan nilai potensial \(\Phi(x + y) - \Phi(x) - \Phi(y)\) memenuhi identitas:</p>
+                    \[\begin{aligned}
+                    (x^2 + y^2) - \big[\Phi(x + y) - \Phi(x) - \Phi(y)\big] &= (x^2 + y^2) - \big[(x + y)^2 - (x + y) - (x^2 - x) - (y^2 - y)\big] \\
+                    &= (x^2 + y^2) - 2xy \\
+                    &= (x - y)^2
+                    \end{aligned}\]
+                    <p>Sehingga pada setiap langkah ke-\(i\) yang memecah tumpukan \(x_i + y_i\) menjadi \(x_i\) dan \(y_i\), banyaknya hektar hutan yang dibakar adalah:</p>
+                    \[x_i^2 + y_i^2 = \big[\Phi(x_i + y_i) - \Phi(x_i) - \Phi(y_i)\big] + (x_i - y_i)^2\]
+                    <p>Permainan dimulai dari satu tumpukan berukuran \(n\) (dengan total potensial awal \(\Phi(n) = n^2 - n\)) dan berakhir setelah \(n - 1\) langkah menjadi \(n\) tumpukan berukuran \(1\) (dengan total potensial akhir \(n \cdot \Phi(1) = n(1^2 - 1) = 0\)). Jika persamaan di atas dijumlahkan untuk seluruh \(n - 1\) langkah, suku perubahan potensial saling menghilangkan secara teleskopik, menghasilkan rumus eksak total hektar hutan yang dibakar:</p>
+                    \[\text{Total hektar terbakar} = (n^2 - n) + \sum_{i=1}^{n-1} (x_i - y_i)^2\]
+                    <p>Karena \((x_i - y_i)^2 \ge 0\) untuk setiap langkah \(i\), terbukti bahwa untuk sembarang urutan langkah Uwu berlaku:</p>
+                    \[\text{Total hektar terbakar} \ge n^2 - n \implies c \ge n^2 - n \quad \blacksquare\]
+
+                    <p><strong>Metode 2: Induksi Matematika Kuat pada \(n\)</strong><br>
+                    Perluas definisi untuk \(n = 1\) dengan \(c(1) = 0 = 1^2 - 1\) (benar). Untuk \(n = 2\), satu-satunya langkah adalah \(2 = 1 + 1\) dengan biaya \(1^2 + 1^2 = 2 = 2^2 - 2\) (benar). Asumsikan untuk suatu \(n \ge 2\), berlaku \(c(k) \ge k^2 - k\) untuk semua \(1 \le k < n\). Jika langkah pertama memisah \(n = x + y\) (\(1 \le x, y < n\)), maka total hektar minimal untuk pilihan langkah pertama tersebut memenuhi:</p>
+                    \[\begin{aligned}
+                    (x^2 + y^2) + c(x) + c(y) &\ge (x^2 + y^2) + (x^2 - x) + (y^2 - y) \\
+                    &= (x + y)^2 + (x - y)^2 - (x + y) \\
+                    &= n^2 - n + (x - y)^2 \ge n^2 - n \quad \blacksquare
+                    \end{aligned}\]
+
+                    <p><strong>Syarat Kesamaan (\(c = n^2 - n\)):</strong><br>
+                    Berdasarkan identitas \(\text{Total} = (n^2 - n) + \sum_{i=1}^{n-1} (x_i - y_i)^2\), kesamaan \(c = n^2 - n\) tercapai jika dan hanya jika terdapat urutan langkah di mana \(x_i = y_i\) pada <strong>setiap langkah</strong>, artinya setiap tumpukan yang berukuran \(\ge 2\) harus selalu dibagi menjadi dua tumpukan yang sama rata. Hal ini dapat dilakukan hingga seluruh tumpukan berukuran \(1\) jika dan hanya jika \(n\) merupakan perpangkatan dari \(2\):</p>
+                    \[n = \color{blue}\boxed{\boxed{\color{black}2^k}} \quad \text{untuk suatu bilangan asli } k \ge 1\]
+                    <div class="kesimpulan">Jadi, terbukti bahwa \(c \ge n^2 - n\), dan kesamaan \(c = n^2 - n\) terjadi jika dan hanya jika <strong>\(n = 2^k\)</strong> untuk suatu bilangan asli \(k \ge 1\).</div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
             </div>
         </article>
-        -->
 
         <!-- SOAL 3 -->
         <!--
