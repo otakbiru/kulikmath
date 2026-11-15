@@ -187,7 +187,9 @@ const DAFTAR_ARSIP = [
         kategori: "OSK",
         folder: "Arsip_Soal/OSK",
         paket: [
-            { judul: "OSK SMA 2006", file: "OSK SMA 2006.html" }
+            { judul: "OSK SMA 2006", file: "OSK SMA 2006.html" },
+            { judul: "OSK SMA 2007", file: "OSK SMA 2007.html" },
+            { judul: "OSK SMA 2011", file: "OSK SMA 2011.html" }
         ]
     },
     {
@@ -195,7 +197,8 @@ const DAFTAR_ARSIP = [
         folder: "Arsip_Soal/OSN",
         paket: [
             { judul: "OSN SMA 2003", file: "OSN SMA 2003.html" },
-            { judul: "OSN SMA 2006", file: "OSN SMA 2006.html" }
+            { judul: "OSN SMA 2006", file: "OSN SMA 2006.html" },
+            { judul: "OSN SMA 2007", file: "OSN SMA 2007.html" }
         ]
     },
     {
@@ -203,7 +206,8 @@ const DAFTAR_ARSIP = [
         folder: "Arsip_Soal/OSP",
         paket: [
             { judul: "OSP SMA 2003", file: "OSP SMA 2003.html" },
-            { judul: "OSP SMA 2006", file: "OSP SMA 2006.html" }
+            { judul: "OSP SMA 2006", file: "OSP SMA 2006.html" },
+            { judul: "OSP SMA 2007", file: "OSP SMA 2007.html" }
         ]
     },
     {
@@ -226,7 +230,8 @@ const DAFTAR_ARTIKEL = [
         kategori: "Teori Bilangan",
         folder: "Artikel/Teori_Bilangan",
         artikel: [
-            { judul: "Ciri Bilangan Habis Dibagi 2 Sampai 11", file: "Ciri Bilangan Habis Dibagi 2 Sampai 11.html" }
+            { judul: "Ciri Bilangan Habis Dibagi 2 Sampai 11", file: "Ciri Bilangan Habis Dibagi 2 Sampai 11.html" },
+            { judul: "Aksioma Peano", file: "Aksioma Peano.html" }
         ]
     },
     {
@@ -237,7 +242,9 @@ const DAFTAR_ARTIKEL = [
     {
         kategori: "Geometri",
         folder: "Artikel/Geometri",
-        artikel: []
+        artikel: [
+            { judul: "Golden Ratio (Rasio Emas)", file: "Golden Ratio (Rasio Emas).html" }
+        ]
     },
     {
         kategori: "Kalkulus",
@@ -311,7 +318,16 @@ function initSoalAndMateriPage() {
             printBtn.type = "button";
             printBtn.className = "theme-btn btn-print";
             printBtn.textContent = "🖨️ Cetak / PDF";
-            printBtn.addEventListener("click", () => window.print());
+            printBtn.addEventListener("click", async () => {
+                if (typeof preloadKatexFonts === "function") {
+                    await Promise.race([
+                        preloadKatexFonts(),
+                        new Promise(resolve => setTimeout(resolve, 1500))
+                    ]);
+                }
+                fitEquationsForPrint();
+                window.print();
+            });
             if (themeBtn) {
                 const actionsWrap = document.createElement("div");
                 actionsWrap.className = "nav-actions";
@@ -822,12 +838,121 @@ function initIndexPage() {
 }
 
 /* ==========================================================================
-   6. INISIALISASI SAAT HALAMAN DIMUAT & RENDER KATEX
+   6. PENYESUAIAN UKURAN EQUATION SAAT CETAK & INISIALISASI KATEX
    ========================================================================== */
+function getPrintContentInnerWidth(el) {
+    if (!el) return 0;
+    const cs = window.getComputedStyle(el);
+    const padL = parseFloat(cs.paddingLeft) || 0;
+    const padR = parseFloat(cs.paddingRight) || 0;
+    return Math.max(0, el.clientWidth - padL - padR);
+}
+
+function restoreEquationsAfterPrint() {
+    document.querySelectorAll(".katex[data-print-scaled='1']").forEach(el => {
+        el.style.fontSize = el.dataset.printOrigFontSize || "";
+        delete el.dataset.printOrigFontSize;
+        delete el.dataset.printScaled;
+    });
+}
+
+function scaleKatexForPrint(katexEl, availWidth, eqWidth) {
+    if (eqWidth <= availWidth || availWidth <= 0) return;
+    const baseFontPx = parseFloat(window.getComputedStyle(katexEl).fontSize) || 16;
+    const scale = Math.max(0.42, (availWidth / eqWidth) * 0.95);
+    katexEl.dataset.printOrigFontSize = katexEl.style.fontSize || "";
+    katexEl.dataset.printScaled = "1";
+    katexEl.style.fontSize = `${(baseFontPx * scale).toFixed(2)}px`;
+}
+
+function fitEquationsForPrint() {
+    restoreEquationsAfterPrint();
+
+    const body = document.body;
+    if (!body) return;
+    body.classList.add("print-measure-mode");
+
+    try {
+        // 1. Display equations (.katex-display > .katex)
+        document.querySelectorAll(".katex-display").forEach(disp => {
+            const katexEl = disp.querySelector(":scope > .katex") || disp.querySelector(".katex");
+            if (!katexEl) return;
+
+            const availWidth = disp.clientWidth - 4;
+            if (availWidth <= 0) return;
+
+            const prevDisplay = katexEl.style.display;
+            const prevWidth = katexEl.style.width;
+            katexEl.style.display = "inline-block";
+            katexEl.style.width = "auto";
+            const eqWidth = Math.max(katexEl.getBoundingClientRect().width, katexEl.scrollWidth);
+            katexEl.style.display = prevDisplay;
+            katexEl.style.width = prevWidth;
+
+            scaleKatexForPrint(katexEl, availWidth, eqWidth);
+        });
+
+        // 2. Inline equations yang tidak terpecah baris & melebihi lebar kotak induknya
+        document.querySelectorAll(".katex").forEach(katexEl => {
+            if (katexEl.closest(".katex-display")) return;
+            if (katexEl.parentElement && katexEl.parentElement.closest(".katex")) return;
+
+            const blockHost = katexEl.closest("td, th, li, p, div.kesimpulan, div.soal-teks, div.pembahasan-isi, article.materi-card");
+            if (!blockHost) return;
+
+            const availWidth = getPrintContentInnerWidth(blockHost) - 4;
+            const rectWidth = katexEl.getBoundingClientRect().width;
+            scaleKatexForPrint(katexEl, availWidth, rectWidth);
+        });
+    } finally {
+        body.classList.remove("print-measure-mode");
+    }
+}
+
+function initPrintEquationFit() {
+    if (window.__kulikmathPrintFitBound) return;
+    window.__kulikmathPrintFitBound = true;
+
+    window.addEventListener("beforeprint", fitEquationsForPrint);
+    window.addEventListener("afterprint", restoreEquationsAfterPrint);
+
+    if (typeof window.matchMedia === "function") {
+        const mql = window.matchMedia("print");
+        const onPrintChange = e => {
+            if (!e.matches) restoreEquationsAfterPrint();
+        };
+        if (typeof mql.addEventListener === "function") {
+            mql.addEventListener("change", onPrintChange);
+        } else if (typeof mql.addListener === "function") {
+            mql.addListener(onPrintChange);
+        }
+    }
+}
+
+let katexPreloadPromise = null;
+
+function preloadKatexFonts() {
+    if (!document.fonts || !document.querySelector(".katex")) {
+        return Promise.resolve();
+    }
+    if (katexPreloadPromise) return katexPreloadPromise;
+
+    const loads = [];
+    document.fonts.forEach(fontFace => {
+        if (fontFace.family && fontFace.family.indexOf("KaTeX_") === 0 && fontFace.status !== "loaded") {
+            loads.push(fontFace.load().catch(() => null));
+        }
+    });
+
+    katexPreloadPromise = Promise.all(loads);
+    return katexPreloadPromise;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     initTheme();
     initIndexPage();
     initSoalAndMateriPage();
+    initPrintEquationFit();
 
     if (typeof renderMathInElement === "function") {
         renderMathInElement(document.body, {
@@ -839,5 +964,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ],
             throwOnError: false
         });
+        preloadKatexFonts();
     }
 });

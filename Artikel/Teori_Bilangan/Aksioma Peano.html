@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aksioma Peano - KulikMath</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Artikel -->
+        <div class="page-header">
+            <p class="intro-text">
+                Artikel Khusus <span id="auto-level" class="level-highlight">...</span> —
+                <span class="topic-highlight">Aksioma Peano (Fondasi Aksiomatik Bilangan Asli)</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Artikel -->
+        <article class="materi-card">
+            <h2>1. Mengapa Bilangan Asli Perlu Aksioma?</h2>
+            <p>
+                Sehari-hari kita menggunakan bilangan cacah dan <a href="../../Bilangan_Bulat/Materi/1.html">bilangan bulat</a> beserta operasi penjumlahan dan perkalian secara intuitif.
+                Namun pada akhir abad ke-19, matematikawan Italia <strong>Giuseppe Peano</strong> (dalam karyanya <em>Arithmetices principia</em>, 1889, sejalan dengan gagasan Richard Dedekind tahun 1888) mengajukan pertanyaan mendasar:
+                <em>Apa syarat minimal yang cukup untuk mendefinisikan himpunan bilangan asli \(\mathbb{N}\) secara ketat tanpa mengandaikan operasi penjumlahan atau perkalian terlebih dahulu?</em>
+            </p>
+            <p>
+                Jawabannya dikenal sebagai <strong>Aksioma Peano</strong>. Seluruh struktur \(\mathbb{N}\) dibangun hanya dari tiga konsep primitif (konsep awal yang tidak didefinisikan lebih jauh):
+            </p>
+            <ul>
+                <li>Sebuah himpunan yang disebut <strong>himpunan bilangan asli</strong>, dilambangkan \(\mathbb{N}\).</li>
+                <li>Sebuah elemen awal khusus bernama <strong>\(0\)</strong> (pada beberapa buku teks modern \(\mathbb{N} = \{0, 1, 2, \dots\}\), sedangkan formulasi asli Peano memakai \(1\); keduanya ekuivalen secara struktural).</li>
+                <li>Sebuah aturan atau <strong>fungsi penerus</strong> (<em>successor function</em>) \(S : \mathbb{N} \to \mathbb{N}\), di mana \(S(n)\) secara intuitif bermakna "bilangan tepat sesudah \(n\)" (yang nantinya sama dengan \(n + 1\)).</li>
+            </ul>
+
+            <h2>2. Lima Aksioma Peano</h2>
+            <p>
+                Dengan modal \(0\) dan fungsi penerus \(S\), kelima pernyataan berikut menjadi dasar resmi himpunan bilangan asli \(\mathbb{N}\):
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aksioma</th>
+                            <th>Formulasi Formal</th>
+                            <th>Makna Geometri / Struktural</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Aksioma 1</strong><br>(Elemen Awal)</td>
+                            <td class="text-left">\(0 \in \mathbb{N}\)</td>
+                            <td class="text-left">Himpunan \(\mathbb{N}\) tidak kosong dan memiliki titik start \(0\).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aksioma 2</strong><br>(Ketertutupan)</td>
+                            <td class="text-left">\(\forall n \in \mathbb{N},\; S(n) \in \mathbb{N}\)</td>
+                            <td class="text-left">Setiap bilangan asli memiliki penerus di dalam \(\mathbb{N}\), sehingga rantai bilangan tidak pernah putus.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aksioma 3</strong><br>(Keinjektifan \(S\))</td>
+                            <td class="text-left">\(\forall m, n \in \mathbb{N},\; S(m) = S(n) \implies m = n\)</td>
+                            <td class="text-left">Dua bilangan berbeda tidak mungkin punya penerus yang sama. Mencegah percabangan bentuk "Y" atau loop ke tengah rantai.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aksioma 4</strong><br>(\(0\) Tanpa Pendahulu)</td>
+                            <td class="text-left">\(\forall n \in \mathbb{N},\; S(n) \neq 0\)</td>
+                            <td class="text-left">\(0\) bukan penerus bilangan mana pun. Mencegah rantai berbalik memukul \(0\) menjadi siklus tertutup.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aksioma 5</strong><br>(Aksioma Induksi)</td>
+                            <td class="text-left">Jika \(K \subseteq \mathbb{N}\) memenuhi:<br>(i) \(0 \in K\), dan<br>(ii) \(\forall n \in \mathbb{N},\; n \in K \implies S(n) \in K\),<br>maka \(K = \mathbb{N}\).</td>
+                            <td class="text-left">Semua anggota \(\mathbb{N}\) dapat dijangkau dari \(0\) lewat langkah berhingga \(S\). Menutup pintu bagi "pulau bilangan liar" di luar rantai utama.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="svg-peano-model" style="display: flex; justify-content: center; margin: 1.2rem 0;"></div>
+
+            <p>
+                Melalui fungsi penerus, nama-nama angka desimal yang kita kenal sebenarnya hanyalah singkatan dari penerapan \(S\) secara berulang:
+                \[1 := S(0), \qquad 2 := S(1) = S(S(0)), \qquad 3 := S(2) = S(S(S(0))), \qquad 4 := S(3), \;\dots\]
+                Dengan Aksioma 1–4 saja, kita sudah dapat memastikan bahwa \(0, 1, 2, 3, \dots\) semuanya berada di \(\mathbb{N}\) dan semuanya saling berbeda!
+                (Misalnya \(1 \neq 0\) karena Aksioma 4 menyebut \(S(0) \neq 0\); lalu \(2 \neq 1 \iff S(1) \neq S(0)\) dijamin oleh kontrapositif Aksioma 3 karena \(1 \neq 0\), dan seterusnya.)
+            </p>
+
+            <h2>3. Mengapa Tidak Satu Pun Aksioma Boleh Dihapus?</h2>
+            <p>
+                Setiap aksioma dari Aksioma 3 sampai Aksioma 5 membuang struktur aneh yang bukan bilangan asli. Perhatikan apa yang terjadi apabila salah satu aksioma dilonggarkan (dengan tetap mempertahankan aksioma lainnya):
+            </p>
+            <ul>
+                <li>
+                    <strong>Jika Aksioma 3 dihapus:</strong> Ambil himpunan hingga \(M = \{0, 1\}\) dengan \(S(0) = 1\) dan \(S(1) = 1\).
+                    Perhatikan bahwa \(0 \in M\), \(S(n) \neq 0\) untuk semua \(n \in M\) (Aksioma 4 aman), dan Aksioma 5 pun terpenuhi karena dari \(0\) kita bisa mencapai \(1\). Namun \(S(0) = S(1) = 1\) padahal \(0 \neq 1\).
+                </li>
+                <li>
+                    <strong>Jika Aksioma 4 dihapus:</strong> Ambil aritmetika jam \(\mathbb{Z}/3\mathbb{Z} = \{0, 1, 2\}\) dengan \(S(0) = 1\), \(S(1) = 2\), dan \(S(2) = 0\).
+                    Fungsi \(S\) injektif (Aksioma 3 aman) dan induksi berlaku (Aksioma 5 aman), tetapi himpunannya hanya berisi \(3\) elemen dalam sebuah siklus tertutup.
+                </li>
+                <li>
+                    <strong>Jika Aksioma 5 dihapus:</strong> Ambil himpunan \(M = \mathbb{N} \cup \{a_0, a_1, a_2, \dots\}\) (terdiri dari rantai \(\mathbb{N}\) standar ditambah satu rantai salinan terpisah yang tidak terhubung dengan \(0\)), atau \(M = \mathbb{N} \cup \{0{,}5,\; 1{,}5,\; 2{,}5,\; \dots\}\) dengan \(S(x) = x + 1\).
+                    Aksioma 1–4 semuanya terpenuhi, namun \(K = \mathbb{N} \subsetneq M\) sudah memenuhi sifat basis dan induksi tanpa mencakup seluruh \(M\).
+                </li>
+            </ul>
+
+            <div class="kesimpulan">
+                💡 <strong>Teorema Kategorisitas Dedekind &amp; Hubungannya dengan Induksi Matematika:</strong><br>
+                Apabila Aksioma 5 dirumuskan pada <a href="../../Logika_Matematika/Materi/1.html">logika orde kedua</a> (berlaku untuk <em>semua</em> himpunan bagian \(K \subseteq \mathbb{N}\)), maka model Aksioma Peano bersifat <strong>tunggal secara isomorfisme</strong>: setiap dua model \((\mathbb{N}_1, 0_1, S_1)\) dan \((\mathbb{N}_2, 0_2, S_2)\) memiliki korespondensi satu-ke-satu yang mempertahankan titik awal dan penerus.<br>
+                Dalam pembuktian sehari-hari, untuk membuktikan pernyataan \(P(n)\) berlaku bagi semua \(n \in \mathbb{N}\), kita cukup membentuk himpunan \(K = \{n \in \mathbb{N} \mid P(n) \text{ benar}\}\), lalu menerapkan Aksioma 5—inilah dasar resmi metode <a href="../../Induksi_Matematika/Materi/1.html">Induksi Matematika</a>.
+            </div>
+
+            <h2>4. Mendefinisikan Penjumlahan, Perkalian, dan Urutan dari Nol</h2>
+            <p>
+                Hal paling menakjubkan dari Aksioma Peano adalah operasi penjumlahan (\(+\)), perkalian (\(\times\)), maupun relasi ketaksamaan (\(\le\)) tidak perlu dijadikan aksioma tambahan—semuanya <strong>didefinisikan secara rekursif</strong> hanya bermodal \(0\) dan \(S\):
+            </p>
+
+            <h3>A. Definisi Rekursif Penjumlahan (\(+\))</h3>
+            <p>Untuk setiap \(m, n \in \mathbb{N}\), penjumlahan \(m + n\) didefinisikan oleh dua aturan:</p>
+            \[\text{(i)}\quad m + 0 := m \qquad \text{dan} \qquad \text{(ii)}\quad m + S(n) := S(m + n)\]
+            <p>
+                Dari definisi ini langsung terlihat mengapa \(S(m)\) persis sama dengan \(m + 1\):
+                \[m + 1 = m + S(0) = S(m + 0) = S(m)\]
+                Sebagai contoh formal, pembuktian mengapa \(2 + 2 = 4\) di dalam sistem Peano berjalan murni lewat substitusi berulang:
+                \[\begin{aligned}
+                2 + 2 &= 2 + S(1) \\
+                      &= S(2 + 1) = S(2 + S(0)) \\
+                      &= S(S(2 + 0)) = S(S(2)) = S(3) = 4
+                \end{aligned}\]
+            </p>
+
+            <h3>B. Definisi Rekursif Perkalian (\(\cdot\))</h3>
+            <p>Setelah penjumlahan terdefinisi, perkalian \(m \cdot n\) didefinisikan sebagai penjumlahan berulang secara rekursif:</p>
+            \[\text{(i)}\quad m \cdot 0 := 0 \qquad \text{dan} \qquad \text{(ii)}\quad m \cdot S(n) := (m \cdot n) + m\]
+            <p>
+                Sebagai latihan cek cepat: \(m \cdot 1 = m \cdot S(0) = (m \cdot 0) + m = 0 + m\) (yang juga bernilai \(m\) setelah \(0 + m = m\) dibuktikan lewat induksi pada Contoh 2 di bawah).
+            </p>
+
+            <h3>C. Definisi Hubungan Urutan (\(\le\) dan \(\lt\))</h3>
+            <p>Untuk setiap \(a, b \in \mathbb{N}\), kita definisikan:</p>
+            \[a \le b \iff \exists k \in \mathbb{N} \text{ sehingga } b = a + k, \qquad\text{serta}\qquad a \lt b \iff (a \le b \text{ dan } a \neq b)\]
+            <p>
+                Dengan modal definisi penjumlahan, perkalian, urutan, dan Aksioma 5, seluruh hukum aritmetika sekolah—asosiatif, komutatif, distributif, hingga prinsip urutan rapi (<em>Well-Ordering Principle</em>)—dapat diturunkan sebagai teorema!
+            </p>
+        </article>
+
+        <!-- Contoh Penerapan Interaktif -->
+        <div style="margin-top: 2rem;">
+            <h2 class="category-heading" style="margin-bottom: 1rem;">Contoh Pembuktian Formal Dari Aksioma Peano</h2>
+
+            <!-- Contoh 1 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Dengan hanya menggunakan Aksioma 1–5 (tanpa mendefinisikan pengurangan), buktikan bahwa tidak ada bilangan asli yang menjadi penerusnya sendiri, yaitu \(S(n) \neq n\) untuk setiap \(n \in \mathbb{N}\)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <div class="pembahasan-isi">
+                        <p>
+                            Definisikan himpunan bagian \(K = \{n \in \mathbb{N} \mid S(n) \neq n\}\). Kita akan membuktikan \(K = \mathbb{N}\) memakai Aksioma 5:
+                        </p>
+                        <ol>
+                            <li>
+                                <strong>Langkah Basis (\(0 \in K\)):</strong><br>
+                                Menurut <strong>Aksioma 4</strong>, tidak ada \(x \in \mathbb{N}\) yang memenuhi \(S(x) = 0\). Khususnya untuk \(x = 0\), pasti berlaku \(S(0) \neq 0\). Jadi \(0 \in K\).
+                            </li>
+                            <li>
+                                <strong>Langkah Induksi (\(n \in K \implies S(n) \in K\)):</strong><br>
+                                Misalkan \(n \in K\), berarti \(S(n) \neq n\) (hipotesis induksi). Kita ingin menunjukkan \(S(S(n)) \neq S(n)\).<br>
+                                Andaikan untuk kontradiksi bahwa \(S(S(n)) = S(n)\). Berdasarkan <strong>Aksioma 3</strong> (keinjeksian \(S\)), persamaan \(S(a) = S(b)\) menuntut \(a = b\), sehingga dari \(S(S(n)) = S(n)\) langsung diperoleh:
+                                \[S(n) = n\]
+                                Ini bertentangan dengan hipotesis induksi \(S(n) \neq n\). Maka pengandaian salah, dan wajiblah \(S(S(n)) \neq S(n)\), artinya \(S(n) \in K\).
+                            </li>
+                        </ol>
+                        <p>
+                            Berdasarkan <strong>Aksioma 5</strong>, diperoleh \(K = \mathbb{N}\). Jadi \(S(n) \neq n\) berlaku untuk semua \(n \in \mathbb{N}\). \(\blacksquare\)
+                        </p>
+                        <div class="kesimpulan">Terbukti bahwa <strong>\(\forall n \in \mathbb{N},\; S(n) \neq n\)</strong>.</div>
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh 2 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Dalam definisi penjumlahan Peano, \(n + 0 = n\) diberikan langsung sebagai aturan awal, namun \(0 + n = n\) <em>tidak</em> diasumsikan langsung. Buktikan secara formal bahwa:
+                    <ol style="margin-top: 0.4rem;">
+                        <li>\(0 + n = n\) untuk setiap \(n \in \mathbb{N}\).</li>
+                        <li>Sifat asosiatif penjumlahan: \((a + b) + c = a + (b + c)\) untuk semua \(a, b, c \in \mathbb{N}\).</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <div class="pembahasan-isi">
+                        <p><strong>Bagian (1): Membuktikan \(0 + n = n\).</strong></p>
+                        <p>Bentuk himpunan \(K_1 = \{n \in \mathbb{N} \mid 0 + n = n\}\):</p>
+                        <ul>
+                            <li><strong>Basis (\(n = 0\)):</strong> Dari definisi penjumlahan bagian (i) dengan \(m = 0\), diperoleh \(0 + 0 = 0\). Jadi \(0 \in K_1\).</li>
+                            <li><strong>Induksi:</strong> Andaikan \(k \in K_1\), yaitu \(0 + k = k\). Untuk \(S(k)\), terapkan definisi penjumlahan bagian (ii):
+                                \[0 + S(k) = S(0 + k) = S(k)\]
+                                sehingga \(S(k) \in K_1\).
+                            </li>
+                        </ul>
+                        <p>Menurut Aksioma 5, \(K_1 = \mathbb{N}\), yakni \(0 + n = n\) untuk semua \(n \in \mathbb{N}\).</p>
+
+                        <p style="margin-top: 0.9rem;"><strong>Bagian (2): Membuktikan \((a + b) + c = a + (b + c)\).</strong></p>
+                        <p>Tetapkan sebarang \(a, b \in \mathbb{N}\), lalu lakukan induksi pada \(c\) dengan himpunan \(K_2 = \{c \in \mathbb{N} \mid (a + b) + c = a + (b + c)\}\):</p>
+                        <ul>
+                            <li><strong>Basis (\(c = 0\)):</strong> Menggunakan definisi penjumlahan bagian (i) pada kedua ruas:
+                                \[(a + b) + 0 = a + b = a + (b + 0)\]
+                                Jadi \(0 \in K_2\).
+                            </li>
+                            <li><strong>Induksi:</strong> Andaikan \(c \in K_2\), yakni \((a + b) + c = a + (b + c)\). Untuk \(S(c)\), gunakan definisi bagian (ii) berulang kali:
+                                \[\begin{aligned}
+                                (a + b) + S(c) &= S\big((a + b) + c\big) \qquad &\text{(definisi } + \text{)} \\
+                                                 &= S\big(a + (b + c)\big) \qquad &\text{(hipotesis induksi)} \\
+                                                 &= a + S(b + c) \qquad &\text{(definisi } + \text{)} \\
+                                                 &= a + \big(b + S(c)\big) \qquad &\text{(definisi } + \text{)}
+                                \end{aligned}\]
+                                Sehingga \(S(c) \in K_2\).
+                            </li>
+                        </ul>
+                        <p>Menurut Aksioma 5, \(K_2 = \mathbb{N}\), sehingga sifat asosiatif penjumlahan berlaku untuk semua \(a, b, c \in \mathbb{N}\). \(\blacksquare\)</p>
+                        <div class="kesimpulan">Terbukti bahwa <strong>\(0 + n = n\)</strong> dan <strong>\((a + b) + c = a + (b + c)\)</strong> untuk semua \(a, b, c, n \in \mathbb{N}\).</div>
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh 3 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Dengan bertumpu pada Aksioma Peano dan definisi penjumlahan, buktikan dua sifat penting berikut:
+                    <ol style="margin-top: 0.4rem;">
+                        <li>Setiap bilangan asli tak nol \(n \in \mathbb{N} \setminus \{0\}\) memiliki tepat satu pendahulu, yakni ada tunggal \(p \in \mathbb{N}\) sehingga \(n = S(p)\).</li>
+                        <li><strong>Hukum Kanselasi Penjumlahan:</strong> Untuk semua \(a, b, c \in \mathbb{N}\), jika \(a + c = b + c\) maka \(a = b\).</li>
+                    </ol>
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <div class="pembahasan-isi">
+                        <p><strong>Bagian (1): Eksistensi dan ketunggalan pendahulu untuk \(n \neq 0\).</strong></p>
+                        <ul>
+                            <li><strong>Eksistensi:</strong> Definisikan \(K = \{0\} \cup \{S(p) \mid p \in \mathbb{N}\} \subseteq \mathbb{N}\).
+                                Jelas \(0 \in K\). Selanjutnya untuk sebarang \(n \in K\) (bahkan untuk setiap \(n \in \mathbb{N}\)), elemen \(S(n)\) langsung termasuk dalam \(\{S(p) \mid p \in \mathbb{N}\} \subseteq K\).
+                                Menurut <strong>Aksioma 5</strong>, haruslah \(K = \mathbb{N}\). Artinya setiap \(n \in \mathbb{N}\) yang bukan \(0\) wajib berbentuk \(S(p)\) untuk suatu \(p \in \mathbb{N}\).
+                            </li>
+                            <li><strong>Ketunggalan:</strong> Jika \(n = S(p_1) = S(p_2)\), maka menurut <strong>Aksioma 3</strong> (\(S\) injektif), haruslah \(p_1 = p_2\).</li>
+                        </ul>
+
+                        <p style="margin-top: 0.9rem;"><strong>Bagian (2): Hukum kanselasi \(a + c = b + c \implies a = b\).</strong></p>
+                        <p>Tetapkan sebarang \(a, b \in \mathbb{N}\), lalu bentuk \(K_3 = \{c \in \mathbb{N} \mid \text{jika } a + c = b + c,\text{ maka } a = b\}\):</p>
+                        <ul>
+                            <li><strong>Basis (\(c = 0\)):</strong> Jika \(a + 0 = b + 0\), maka menurut definisi penjumlahan diperoleh langsung \(a = b\). Jadi \(0 \in K_3\).</li>
+                            <li><strong>Induksi:</strong> Andaikan \(c \in K_3\). Misalkan \(a + S(c) = b + S(c)\). Menurut definisi penjumlahan:
+                                \[S(a + c) = a + S(c) = b + S(c) = S(b + c)\]
+                                Berdasarkan <strong>Aksioma 3</strong>, dari \(S(a + c) = S(b + c)\) diperoleh \(a + c = b + c\).
+                                Karena \(c \in K_3\) (hipotesis induksi), hal ini berakibat \(a = b\). Dengan demikian \(S(c) \in K_3\).
+                            </li>
+                        </ul>
+                        <p>Berdasarkan <strong>Aksioma 5</strong>, \(K_3 = \mathbb{N}\), sehingga hukum kanselasi berlaku untuk semua \(a, b, c \in \mathbb{N}\). \(\blacksquare\)</p>
+                        <div class="kesimpulan">Terbukti bahwa setiap \(n \neq 0\) berpendahulu tunggal dan \(a + c = b + c \implies a = b\).</div>
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            function renderAllDiagrams() {
+                if (typeof GeoSVG === "undefined") return;
+
+                const el = document.getElementById("svg-peano-model");
+                if (el && !el.dataset.rendered) {
+                    el.dataset.rendered = "true";
+                    const geo = new GeoSVG("svg-peano-model", 350, 224, { margin: 12, clearContainer: true });
+
+                    // --- Baris 1: Model sah N ---
+                    geo.buatTeks(14, 18, "Model Sah ℕ (Aksioma 1–5 terpenuhi):", { position: "middle-left", fontSize: 10.5, fill: "#0d9488", fontWeight: "bold" });
+                    const xs1 = [34, 92, 150, 208, 266];
+                    const y1 = 44;
+                    xs1.forEach((x, idx) => {
+                        geo.buatLingkaran(x, y1, 13, { fill: "rgba(13, 148, 136, 0.12)", stroke: "#0d9488", strokeWidth: 1.8 });
+                        geo.buatTeks(x, y1 + 1, String(idx), { position: "middle-center", fontSize: 11, fill: "var(--text-main)", fontWeight: "bold" });
+                        if (idx < xs1.length - 1) {
+                            const nx = xs1[idx + 1];
+                            geo.buatVektor({ x: x + 15, y: y1 }, { x: nx - 16, y: y1 }, { stroke: "#0d9488", strokeWidth: 1.8 });
+                            geo.buatTeks((x + nx) / 2, y1 - 11, "S", { position: "middle-center", fontSize: 10, fill: "#0d9488" });
+                        }
+                    });
+                    geo.buatVektor({ x: 281, y: y1 }, { x: 306, y: y1 }, { stroke: "#0d9488", strokeWidth: 1.8 });
+                    geo.buatTeks(316, y1, "⋯", { position: "middle-left", fontSize: 14, fill: "#0d9488" });
+
+                    // --- Baris 2: Pelanggaran Aksioma 4 (Siklus tertutup) ---
+                    geo.buatTeks(14, 80, "Tanpa Aksioma 4 (gagal: siklus 0 → 1 → 2 → 0):", { position: "middle-left", fontSize: 10.5, fill: "#dc2626", fontWeight: "bold" });
+                    const xs2 = [42, 104, 166];
+                    const y2 = 122;
+                    xs2.forEach((x, idx) => {
+                        geo.buatLingkaran(x, y2, 12, { fill: "rgba(220, 38, 38, 0.10)", stroke: "#dc2626", strokeWidth: 1.6 });
+                        geo.buatTeks(x, y2 + 1, String(idx), { position: "middle-center", fontSize: 11, fill: "var(--text-main)", fontWeight: "bold" });
+                        if (idx < xs2.length - 1) {
+                            geo.buatVektor({ x: x + 14, y: y2 }, { x: xs2[idx + 1] - 15, y: y2 }, { stroke: "#dc2626", strokeWidth: 1.6 });
+                        }
+                    });
+                    // Panah balik dari 2 ke 0
+                    geo.buatSegmen({ x: 166, y: y2 - 12 }, { x: 166, y: 96 }, { stroke: "#dc2626", strokeWidth: 1.5, dashed: true });
+                    geo.buatSegmen({ x: 166, y: 96 }, { x: 42, y: 96 }, { stroke: "#dc2626", strokeWidth: 1.5, dashed: true });
+                    geo.buatVektor({ x: 42, y: 96 }, { x: 42, y: y2 - 14 }, { stroke: "#dc2626", strokeWidth: 1.5 });
+                    geo.buatTeks(104, 90, "S(2) = 0", { position: "middle-center", fontSize: 9.5, fill: "#dc2626" });
+                    geo.buatTeks(190, y2, "himpunan berhingga!", { position: "middle-left", fontSize: 10, fill: "var(--text-muted)" });
+
+                    // --- Baris 3: Pelanggaran Aksioma 5 (Rantai ekstra terpisah) ---
+                    geo.buatTeks(14, 158, "Tanpa Aksioma 5 (gagal: muncul pulau liar tak terjangkau dari 0):", { position: "middle-left", fontSize: 10.5, fill: "#d97706", fontWeight: "bold" });
+                    const y3 = 192;
+                    const mainNodes = [34, 82, 130];
+                    mainNodes.forEach((x, idx) => {
+                        geo.buatLingkaran(x, y3, 12, { fill: "rgba(13, 148, 136, 0.10)", stroke: "#0d9488", strokeWidth: 1.5 });
+                        geo.buatTeks(x, y3 + 1, String(idx), { position: "middle-center", fontSize: 10.5, fill: "var(--text-main)" });
+                        if (idx < mainNodes.length - 1) {
+                            geo.buatVektor({ x: x + 13, y: y3 }, { x: mainNodes[idx + 1] - 14, y: y3 }, { stroke: "#0d9488", strokeWidth: 1.5 });
+                        }
+                    });
+                    geo.buatTeks(150, y3, "⋯", { position: "middle-left", fontSize: 13, fill: "#0d9488" });
+
+                    const extraNodes = [
+                        { x: 204, label: "a₀" },
+                        { x: 254, label: "a₁" },
+                        { x: 304, label: "a₂" }
+                    ];
+                    extraNodes.forEach((nd, idx) => {
+                        geo.buatLingkaran(nd.x, y3, 12, { fill: "rgba(217, 119, 6, 0.14)", stroke: "#d97706", strokeWidth: 1.6 });
+                        geo.buatTeks(nd.x, y3 + 1, nd.label, { position: "middle-center", fontSize: 10.5, fill: "var(--text-main)" });
+                        if (idx < extraNodes.length - 1) {
+                            geo.buatVektor({ x: nd.x + 13, y: y3 }, { x: extraNodes[idx + 1].x - 14, y: y3 }, { stroke: "#d97706", strokeWidth: 1.6 });
+                        }
+                    });
+                    geo.buatTeks(322, y3, "⋯", { position: "middle-left", fontSize: 13, fill: "#d97706" });
+                }
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", renderAllDiagrams);
+            } else {
+                renderAllDiagrams();
+            }
+            window.addEventListener("load", renderAllDiagrams);
+        })();
+    </script>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

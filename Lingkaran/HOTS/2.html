@@ -163,8 +163,57 @@
         </article>
 
         <!-- Pagination Bawah (Otomatis) -->
+
+        <!-- OSK SMA 2007 NO 19 -->
+        <article class="soal-item" id="14">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sebuah lingkaran berjari-jari \(1\). Luas maksimal segitiga sama sisi yang dapat dimuat di dalam lingkaran adalah \(\cdots\)
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK SMA 2007.html#19">OSK SMA 2007 No. 19</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="svg-solusi-19" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+                    <p>Segitiga sama sisi terbesar yang muat di dalam lingkaran berjari-jari \(R = 1\) adalah segitiga sama sisi yang <strong>ketiga titik sudutnya terletak tepat pada lingkaran</strong> (lingkaran menjadi lingkaran luar \(\triangle ABC\)).</p>
+                    <p>Pada segitiga sama sisi bersisi \(a\), jari-jari lingkaran luarnya adalah \(R = \dfrac{a}{\sqrt{3}}\), sehingga \(a = R\sqrt{3} = \sqrt{3}\). Luasnya adalah:</p>
+                    \[L = \frac{\sqrt{3}}{4}a^2 = \frac{\sqrt{3}}{4}(\sqrt{3})^2 = \frac{3\sqrt{3}}{4}\]
+                    <div class="kesimpulan">Jadi, luas maksimalnya adalah <strong>\(\dfrac{3\sqrt{3}}{4}\)</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <div class="pagination-wrapper"></div>
     </main>
+
+    <script>
+        (function () {
+            function draw19() {
+                if (typeof GeoSVG === "undefined") return;
+                const el19 = document.getElementById("svg-solusi-19");
+                if (el19 && !el19.dataset.rendered) {
+                    el19.dataset.rendered = "true";
+                    const geo19 = new GeoSVG("svg-solusi-19", 220, 205, { margin: 16, clearContainer: true });
+                    const O = { x: 110, y: 102 }, R = 74;
+                    const A = { x: O.x, y: O.y - R };
+                    const B = { x: O.x - R * Math.sqrt(3) / 2, y: O.y + R / 2 };
+                    const C = { x: O.x + R * Math.sqrt(3) / 2, y: O.y + R / 2 };
+                    geo19.buatLingkaran(O.x, O.y, R, { fill: "none", stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    geo19.buatSegitiga(A, B, C, { fill: "rgba(13, 148, 136, 0.12)", stroke: "var(--teal-primary)", strokeWidth: 2 });
+                    geo19.buatSegmen(O, A, { stroke: "#dc2626", strokeWidth: 1.5, dashed: true });
+                    geo19.buatTitik(O, { label: "O", labelPosition: "bottom-center", size: 3, color: "#dc2626" });
+                    geo19.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.5, color: "var(--teal-primary)" });
+                    geo19.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.5, color: "var(--teal-primary)" });
+                    geo19.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.5, color: "var(--teal-primary)" });
+                    geo19.buatTeks(O.x + 12, O.y - 34, "R = 1", { position: "middle-left", fontSize: 10, fill: "#dc2626" });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", draw19); else draw19();
+            window.addEventListener("load", draw19);
+        })();
+    </script>
 
     <script src="../../scr/script.js"></script>
     <script>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bilangan Bulat</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bilangan Bulat</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Bilangan-bilangan $1, 2, 3, \dots, 15, 16$ disusun pada persegi $4 \times 4$. Untuk $i = 1, 2, 3, 4$, misalkan $b_i$ adalah jumlah bilangan-bilangan pada baris ke-$i$ dan $k_i$ adalah jumlah bilangan-bilangan pada kolom ke-$i$. Misalkan pula $d_1$ dan $d_2$ adalah jumlah bilangan-bilangan pada kedua diagonal. Susunan tersebut dapat disebut <em>antimagic</em> jika $b_1, b_2, b_3, b_4, k_1, k_2, k_3, k_4, d_1, d_2$ dapat disusun menjadi sepuluh bilangan berurutan. Tentukan bilangan terbesar di antara sepuluh bilangan berurutan ini yang dapat diperoleh dari sebuah <em>antimagic</em>.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2007.html">OSP SMA 2007 (Bagian 2 • No. 5)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Jumlah seluruh bilangan dari $1$ hingga $16$ adalah $\dfrac{16 \times 17}{2} = 136$. Oleh karena itu:</p>
+                $$S = b_1 + b_2 + b_3 + b_4 + k_1 + k_2 + k_3 + k_4 = 2 \times 136 = 272$$
+                <p>Misalkan sepuluh bilangan berurutan tersebut adalah $m, m+1, m+2, \dots, m+9$, di mana bilangan terbesarnya adalah $m + 9$. Kita ingin memaksimalkan $m$.</p>
+                <p>Karena $b_1, \dots, b_4, k_1, \dots, k_4$ adalah $8$ bilangan berbeda dari himpunan $\{m, m+1, \dots, m+9\}$, jumlah kedelapan bilangan tersebut paling sedikit sama dengan jumlah $8$ bilangan terkecil dalam himpunan itu:</p>
+                $$272 = S \ge m + (m + 1) + \cdots + (m + 7) = 8m + 28$$
+                $$8m \le 244 \implies m \le 30{,}5 \implies m \le 30$$
+                <p>Jadi, bilangan terbesar yang mungkin paling banyak adalah $m + 9 = 30 + 9 = 39$.</p>
+                <p>Sekarang kita tunjukkan bahwa $m = 30$ (dengan bilangan terbesar $39$) memang dapat dicapai melalui konstruksi berikut:</p>
+                <div style="overflow-x:auto; margin: 12px 0;">
+                    <table style="margin:0 auto; border-collapse:collapse; text-align:center; font-family:monospace; font-size:1.05em;">
+                        <tr>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">15</td>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">2</td>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">12</td>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">4</td>
+                            <td style="padding:6px 10px; color:var(--teal-primary); font-weight:bold;">= 33</td>
+                        </tr>
+                        <tr>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">1</td>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">14</td>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">10</td>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">5</td>
+                            <td style="padding:6px 10px; color:var(--teal-primary); font-weight:bold;">= 30</td>
+                        </tr>
+                        <tr>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">8</td>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">9</td>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">3</td>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">16</td>
+                            <td style="padding:6px 10px; color:var(--teal-primary); font-weight:bold;">= 36</td>
+                        </tr>
+                        <tr>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">11</td>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">13</td>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">6</td>
+                            <td style="border:1.5px solid var(--border-color); padding:6px 10px;">7</td>
+                            <td style="padding:6px 10px; color:var(--teal-primary); font-weight:bold;">= 37</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:6px 10px; color:var(--teal-primary); font-weight:bold;">35</td>
+                            <td style="padding:6px 10px; color:var(--teal-primary); font-weight:bold;">38</td>
+                            <td style="padding:6px 10px; color:var(--teal-primary); font-weight:bold;">31</td>
+                            <td style="padding:6px 10px; color:var(--teal-primary); font-weight:bold;">32</td>
+                            <td style="padding:6px 10px; color:#d97706; font-weight:bold;">↘ 39 / ↙ 34</td>
+                        </tr>
+                    </table>
+                </div>
+                <p>Diperoleh sepuluh jumlah yang berurutan: $30, 31, 32, 33, 34, 35, 36, 37, 38, 39$.</p>
+                <div class="kesimpulan">
+                    Jadi, bilangan terbesar yang dapat diperoleh adalah <strong>$39$</strong>.
+                </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <div class="pagination-wrapper"></div>
+
+        <footer class="footer">
+            <p>by KulikMath • <a href="https://otakbiru.github.io/kulikmath/" style="color: var(--teal-primary);">otakbiru.github.io/kulikmath/</a></p>
+        </footer>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

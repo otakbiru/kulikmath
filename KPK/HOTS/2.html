@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - KPK</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">KPK</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <article class="soal-item" id="2">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan $a$ dan $b$ dua bilangan asli, yang satu bukan kelipatan yang lainnya. Misalkan pula $\text{KPK}(a,b)$ adalah bilangan 2-angka, sedangkan $\text{FPB}(a,b)$ dapat diperoleh dengan membalik urutan angka pada $\text{KPK}(a,b)$. Tentukan $b$ terbesar yang mungkin.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2007.html">OSP SMA 2007 (Bagian 2 • No. 2)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $\text{KPK}(a, b) = 10q + p$ dengan $1 \le q \le 9$ dan $0 \le p \le 9$, sehingga $\text{FPB}(a, b) = 10p + q$.</p>
+                <p><strong>Kasus 1: $p \ge 1$.</strong></p>
+                <p>Karena $\text{FPB}(a, b) \mid \text{KPK}(a, b)$, maka $(10p + q) \mid (10q + p)$. Akibatnya:</p>
+                $$(10p + q) \mid \big(10(10p + q) - (10q + p)\big) = 99p$$
+                <p>Karena $10p + q > 10p > 9p > 0$, tidak mungkin $10p + q$ membagi $9p$. Oleh karena itu, faktor $11$ pada $99p$ harus membagi $10p + q$:</p>
+                $$11 \mid (10p + q) \implies 11 \mid (11p + q - p) \implies 11 \mid (q - p)$$
+                <p>Karena $-8 \le q - p \le 8$, haruslah $q - p = 0 \implies q = p$. Akibatnya $\text{KPK}(a, b) = \text{FPB}(a, b)$, yang memaksa $a = b$ (kontradiksi dengan syarat satu bukan kelipatan yang lainnya).</p>
+
+                <p><strong>Kasus 2: $p = 0$.</strong></p>
+                <p>(Sesuai solusi resmi Panitia Pusat, jika $\text{KPK}(a, b) = \overline{q0} = 10q$, maka membalik urutannya menghasilkan $0q = q$). Maka $\text{KPK}(a, b) = 10q$ dan $\text{FPB}(a, b) = q$.</p>
+                <p>Tulis $a = xq$ dan $b = yq$ dengan $\gcd(x, y) = 1$ dan $x, y > 1$ (karena $a \nmid b$ dan $b \nmid a$). Maka:</p>
+                $$\text{KPK}(a, b) = xyq = 10q \implies xy = 10$$
+                <p>Karena $x, y > 1$ dan $\gcd(x, y) = 1$, pasangan $(x, y)$ yang mungkin hanyalah $\{2, 5\}$. Untuk memaksimalkan $b = yq$, pilih $y = 5$ (dan $x = 2$) serta $q = 9$:</p>
+                $$b_{\text{maks}} = 5 \times 9 = 45 \quad (\text{dengan } a = 2 \times 9 = 18)$$
+                <p>Cek: $\text{KPK}(18, 45) = 90$ dan $\text{FPB}(18, 45) = 9$.</p>
+                <div class="kesimpulan">
+                    Jadi, nilai $b$ terbesar yang mungkin adalah <strong>$45$</strong>.
+                </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <div class="pagination-wrapper"></div>
+
+        <footer class="footer">
+            <p>by KulikMath • <a href="https://otakbiru.github.io/kulikmath/" style="color: var(--teal-primary);">otakbiru.github.io/kulikmath/</a></p>
+        </footer>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

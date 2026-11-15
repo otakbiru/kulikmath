@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Aturan Pencacahan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Aturan Pencacahan</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan $r, s$ dua bilangan asli dan $P$ sebuah papan catur dengan $r$ baris dan $s$ lajur. Misalkan $M$ menyatakan banyak maksimal benteng yang dapat diletakkan pada $P$ sehingga tidak ada dua benteng yang saling menyerang.
+                <br>(a) Tentukan $M$.
+                <br>(b) Ada berapa cara meletakkan $M$ buah benteng pada $P$ sehingga tidak ada dua benteng yang saling menyerang?
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN SMA 2007.html">OSN SMA 2007 (Hari Kedua - No. 5)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $m = \min(r, s)$ dan $n = \max(r, s)$.</p>
+                    <p><strong>(a) Menentukan $M$:</strong></p>
+                    <p>Agar tidak ada dua benteng yang saling menyerang, setiap baris paling banyak ditempati $1$ benteng sehingga total benteng tidak melebihi $r$. Demikian pula, setiap lajur paling banyak ditempati $1$ benteng sehingga total benteng tidak melebihi $s$. Maka $M \le \min(r, s) = m$.</p>
+                    <p>Sebaliknya, meletakkan $m$ benteng pada petak-petak diagonal $(1,1), (2,2), \dots, (m,m)$ menghasilkan $m$ benteng yang semuanya berada pada baris berbeda dan lajur berbeda (tidak saling menyerang). Jadi:</p>
+                    $$M = \min(r, s)$$
+
+                    <p><strong>(b) Banyaknya cara peletakan:</strong></p>
+                    <p>Tanpa mengurangi keumuman, tinjau dimensi yang lebih kecil berukuran $m = \min(r, s)$ dan dimensi yang lebih besar berukuran $n = \max(r, s)$ (jika $r \le s$, setiap dari $r$ baris harus diisi tepat $1$ benteng; jika $s < r$, setiap dari $s$ lajur harus diisi tepat $1$ benteng).</p>
+                    <ul>
+                        <li>Untuk posisi ke-$1$ pada dimensi berukuran $m$, ada $n$ pilihan pada dimensi lainnya.</li>
+                        <li>Untuk posisi ke-$2$, ada $n - 1$ pilihan.</li>
+                        <li>$\dots$ hingga posisi ke-$m$, ada $n - m + 1$ pilihan.</li>
+                    </ul>
+                    <p>Jadi banyaknya cara peletakan adalah permutasi $P(n, m)$:</p>
+                    $$n(n - 1)\cdots(n - m + 1) = \frac{n!}{(n - m)!} = \frac{\big(\max(r, s)\big)!}{\big(\max(r, s) - \min(r, s)\big)!}$$
+                    <div class="kesimpulan">
+                        Jadi, <strong>(a) $M = \min(r, s)$</strong> dan <strong>(b) $\dfrac{(\max(r,s))!}{(\max(r,s)-\min(r,s))!}$</strong> cara.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <div class="pagination-wrapper"></div>
+
+        <footer class="footer">
+            <p>by KulikMath • <a href="https://otakbiru.github.io/kulikmath/" style="color: var(--teal-primary);">otakbiru.github.io/kulikmath/</a></p>
+        </footer>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Segitiga</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Segitiga</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <article class="soal-item" id="6">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Misalkan $ABC$ segitiga dengan $\angle ABC = \angle ACB = 70^\circ$. Misalkan titik $D$ pada sisi $BC$ sehingga $AD$ garis tinggi, titik $E$ pada sisi $AB$ sehingga $\angle ACE = 10^\circ$, dan titik $F$ adalah perpotongan $AD$ dan $CE$. Buktikan bahwa $CF = BC$.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN SMA 2007.html">OSN SMA 2007 (Hari Pertama - No. 1)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn07-1" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <div id="geo-osn07-1" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Karena $\angle ABC = \angle ACB = 70^\circ$, segitiga $ABC$ adalah segitiga sama kaki dengan $AB = AC$.</p>
+                    <p>Karena $AD$ adalah garis tinggi dari titik puncak $A$ pada segitiga sama kaki $ABC$, maka $AD$ juga merupakan garis sumbu dari sisi $BC$ (tegak lurus $BC$ dan membagi $BC$ menjadi dua bagian sama panjang, yakni $BD = DC$).</p>
+                    <p>Karena $F$ terletak pada garis sumbu $AD$ dari ruas garis $BC$, berlaku $FB = FC$, sehingga $\triangle FBC$ sama kaki dengan $\angle FBC = \angle FCB$.</p>
+                    <p>Diketahui $\angle ACB = 70^\circ$ dan $\angle ACE = 10^\circ$, maka:</p>
+                    $$\angle FCB = \angle ACB - \angle ACE = 70^\circ - 10^\circ = 60^\circ$$
+                    <p>Akibatnya $\angle FBC = \angle FCB = 60^\circ$, sehingga $\angle BFC = 180^\circ - 60^\circ - 60^\circ = 60^\circ$. Jadi $\triangle FBC$ adalah segitiga sama sisi.</p>
+                    <div class="kesimpulan">
+                        Terbukti bahwa <strong>$CF = BC$</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <div class="pagination-wrapper"></div>
+
+        <footer class="footer">
+            <p>by KulikMath • <a href="https://otakbiru.github.io/kulikmath/" style="color: var(--teal-primary);">otakbiru.github.io/kulikmath/</a></p>
+        </footer>
+    </main>
+
+    <!-- Render Diagram Geometri via GeoSVG.js -->
+    <script>
+        (function () {
+            function renderAllDiagrams() {
+                if (typeof GeoSVG === "undefined") return;
+
+                // No. 1: Segitiga sama kaki ABC (70-70-40)
+                const c1 = document.getElementById("geo-osn07-1");
+                if (c1 && !c1.querySelector("svg")) {
+                    const g1 = new GeoSVG(c1, { width: 250, height: 220 });
+                    const B = { x: 60, y: 190 }, C = { x: 190, y: 190 }, D = { x: 125, y: 190 };
+                    const A = { x: 125, y: 12 };
+                    const E = { x: 87, y: 115 };
+                    const F = { x: 125, y: 78 };
+                    g1.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    g1.buatSegmen(A, D, { stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                    g1.buatSegmen(C, E, { stroke: "var(--teal-primary)", strokeWidth: 2 });
+                    g1.buatSegmen(B, F, { stroke: "#d97706", strokeWidth: 1.8, dashed: true });
+                    g1.buatSiku(A, D, C, { size: 9, stroke: "var(--text-muted)" });
+                    g1.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                    g1.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    g1.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                    g1.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 3.5, color: "var(--text-muted)" });
+                    g1.buatTitik(E, { label: "E", labelPosition: "top-left", size: 3.5, color: "var(--teal-primary)" });
+                    g1.buatTitik(F, { label: "F", labelPosition: "top-right", size: 3.5, color: "#d97706" });
+                }
+
+                // No. 7: Lingkaran S dengan diameter AB, tali busur CD, garis singgung di C,D -> P, Q, R
+                const c7 = document.getElementById("geo-osn07-7");
+                if (c7 && !c7.querySelector("svg")) {
+                    const g7 = new GeoSVG(c7, { width: 290, height: 240 });
+                    const O = { x: 175, y: 120 }, r = 68;
+                    const A = { x: O.x - r, y: O.y }, B = { x: O.x + r, y: O.y };
+                    // C di atas kiri-kanan, D di bawah agar garis singgung bertemu di kiri (di luar A)
+                    const angC = -115 * Math.PI / 180, angD = 125 * Math.PI / 180;
+                    const C = { x: O.x + r * Math.cos(angC), y: O.y + r * Math.sin(angC) };
+                    const D = { x: O.x + r * Math.cos(angD), y: O.y + r * Math.sin(angD) };
+
+                    function intersect(p1, p2, p3, p4) {
+                        const d = (p1.x - p2.x) * (p3.y - p4.y) - (p1.y - p2.y) * (p3.x - p4.x);
+                        const px = ((p1.x * p2.y - p1.y * p2.x) * (p3.x - p4.x) - (p1.x - p2.x) * (p3.x * p4.y - p3.y * p4.x)) / d;
+                        const py = ((p1.x * p2.y - p1.y * p2.x) * (p3.y - p4.y) - (p1.y - p2.y) * (p3.x * p4.y - p3.y * p4.x)) / d;
+                        return { x: px, y: py };
+                    }
+                    const Q = intersect(A, C, B, D);
+                    const R = intersect(A, D, B, C);
+                    const P = { x: (Q.x + R.x) / 2, y: (Q.y + R.y) / 2 };
+
+                    g7.buatLingkaran(O, r, { fill: "rgba(100, 116, 139, 0.04)", stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    g7.buatSegmen(A, B, { stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    g7.buatSegmen(A, P, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: true });
+                    g7.buatSegmen(Q, R, { stroke: "var(--teal-primary)", strokeWidth: 2 });
+                    g7.buatSegmen(R, B, { stroke: "var(--text-muted)", strokeWidth: 1.4 });
+                    g7.buatSegmen(Q, B, { stroke: "var(--text-muted)", strokeWidth: 1.4 });
+                    g7.buatSegmen(P, C, { stroke: "#d97706", strokeWidth: 1.6, dashed: true });
+                    g7.buatSegmen(P, D, { stroke: "#d97706", strokeWidth: 1.6, dashed: true });
+                    g7.buatTitik(O, { label: "O", labelPosition: "bottom-right", size: 3, color: "var(--text-muted)" });
+                    g7.buatTitik(A, { label: "A", labelPosition: "top-left", size: 3.5, color: "var(--text-main)" });
+                    g7.buatTitik(B, { label: "B", labelPosition: "right", size: 3.5, color: "var(--text-main)" });
+                    g7.buatTitik(C, { label: "C", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                    g7.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 3.5, color: "var(--text-main)" });
+                    g7.buatTitik(P, { label: "P", labelPosition: "left", size: 3.5, color: "#d97706" });
+                    g7.buatTitik(Q, { label: "Q", labelPosition: "bottom-left", size: 3.5, color: "var(--teal-primary)" });
+                    g7.buatTitik(R, { label: "R", labelPosition: "top-left", size: 3.5, color: "var(--teal-primary)" });
+                }
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", renderAllDiagrams);
+            } else {
+                renderAllDiagrams();
+            }
+        })();
+    </script>
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

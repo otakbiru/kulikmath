@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Ratio (Rasio Emas) - KulikMath</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/otakbiru/GeoSVG/1d750d8692599eaa8f6c8d44185ab48a0052e773/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Artikel -->
+        <div class="page-header">
+            <p class="intro-text">
+                Artikel Khusus <span id="auto-level" class="level-highlight">...</span> —
+                <span class="topic-highlight">Golden Ratio (Rasio Emas)</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Artikel -->
+        <article class="materi-card">
+            <h2>1. Definisi Geometri &amp; Nilai Eksak Rasio Emas (\(\varphi\))</h2>
+            <p>
+                <strong>Rasio Emas</strong> (<em>Golden Ratio</em>), yang dilambangkan dengan huruf Yunani <strong>\(\varphi\)</strong> (<em>phi</em>),
+                bermula dari masalah klasik dalam buku <em>Elements</em> karya Euclid (Buku VI, Definisi 3): membagi sebuah ruas garis menjadi dua bagian tidak sama panjang
+                sedemikian rupa sehingga <strong>perbandingan panjang seluruh ruas garis terhadap bagian yang lebih panjang sama dengan perbandingan bagian yang lebih panjang terhadap bagian yang lebih pendek</strong>.
+            </p>
+
+            <div id="svg-golden-line" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+
+            <p>
+                Misalkan ruas garis dibagi menjadi bagian panjang \(a\) dan bagian pendek \(b\) dengan \(a \gt b \gt 0\). Definisi rasio emas menuntut:
+                \[\frac{a + b}{a} = \frac{a}{b} = \varphi\]
+                Karena \(\dfrac{a + b}{a} = 1 + \dfrac{b}{a} = 1 + \dfrac{1}{\varphi}\), kita peroleh persamaan karakteristik rasio emas:
+                \[1 + \frac{1}{\varphi} = \varphi \iff \varphi^2 - \varphi - 1 = 0\]
+                Dengan rumus kuadrat dan memilih akar positif (\(\varphi \gt 0\)), diperoleh nilai eksak \(\varphi\):
+                \[\varphi = \frac{1 + \sqrt{5}}{2} \approx 1{,}6180339887\dots\]
+            </p>
+            <p>
+                Akar kedua dari persamaan \(x^2 - x - 1 = 0\) disebut <strong>sekawan rasio emas</strong> (<em>conjugate</em>), dilambangkan dengan \(\psi\):
+                \[\psi = 1 - \varphi = -\frac{1}{\varphi} = \frac{1 - \sqrt{5}}{2} \approx -0{,}6180339887\dots\]
+                Adapun kebalikan positifnya adalah \(\dfrac{1}{\varphi} = \varphi - 1 = \dfrac{\sqrt{5} - 1}{2} \approx 0{,}6180339887\dots\).
+                Artinya, \(\varphi\) adalah satu-satunya bilangan real positif yang <strong>apabila dikurangi \(1\) menghasilkan kebalikannya sendiri</strong>, dan <strong>apabila ditambah \(1\) menghasilkan kuadratnya sendiri</strong>.
+            </p>
+
+            <h2>2. Sifat-Sifat Aljabar Istimewa \(\varphi\)</h2>
+            <p>
+                Karena \(\varphi\) memenuhi identitas dasar \(\varphi^2 = \varphi + 1\), semua pangkat bulat dari \(\varphi\) dapat direduksi menjadi bentuk linear \(A\varphi + B\) tanpa perlu menghitung bentuk akar secara berulang:
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sifat / Bentuk</th>
+                            <th>Identitas Eksak</th>
+                            <th>Penurunan Singkat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Kuadrat &amp; Kebalikan</strong></td>
+                            <td class="text-left">\(\varphi^2 = \varphi + 1\) dan \(\dfrac{1}{\varphi} = \varphi - 1\)</td>
+                            <td class="text-left">Langsung dari \(\varphi^2 - \varphi - 1 = 0\) dibagi \(\varphi\).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jumlah &amp; Hasil Kali Akar</strong></td>
+                            <td class="text-left">\(\varphi + \psi = 1\), \(\;\varphi - \psi = \sqrt{5}\), \(\;\varphi\psi = -1\)</td>
+                            <td class="text-left">Teorema Vieta pada persamaan \(x^2 - x - 1 = 0\).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reduksi Pangkat Positif</strong></td>
+                            <td class="text-left">\(\varphi^n = F_n\varphi + F_{n-1}\) untuk \(n \ge 1\)</td>
+                            <td class="text-left">\(\varphi^3 = \varphi(\varphi+1) = 2\varphi+1\), \(\;\varphi^4 = 3\varphi+2\), \(\;\varphi^5 = 5\varphi+3\), dst.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hubungan Simetris \(\varphi^n + \psi^n\)</strong></td>
+                            <td class="text-left">\(\varphi^n + \psi^n = L_n \in \mathbb{Z}\) (Bilangan Lucas)</td>
+                            <td class="text-left">\(n=1 \to 1\), \(\;n=2 \to 3\), \(\;n=3 \to 4\), \(\;n=4 \to 7\), \(\;n=5 \to 11\), dst.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pecahan Kontinu Tak Hingga</strong></td>
+                            <td class="text-left">\(\varphi = 1 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \ddots}}} = [1; 1, 1, 1, \dots]\)</td>
+                            <td class="text-left">Substitusi berulang \(\varphi = 1 + \dfrac{1}{\varphi}\) ke penyebutnya sendiri.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Akar Bersarang Tak Hingga</strong></td>
+                            <td class="text-left">\(\varphi = \sqrt{1 + \sqrt{1 + \sqrt{1 + \sqrt{1 + \dots}}}}\)</td>
+                            <td class="text-left">Substitusi berulang \(\varphi = \sqrt{1 + \varphi}\) (untuk \(\varphi \gt 0\)).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>3. Hubungan dengan Barisan Fibonacci &amp; Rumus Binet</h2>
+            <p>
+                Barisan Fibonacci didefinisikan secara rekursif dengan \(F_0 = 0,\; F_1 = 1,\) dan \(F_n = F_{n-1} + F_{n-2}\) untuk \(n \ge 2\):
+                \[0,\; 1,\; 1,\; 2,\; 3,\; 5,\; 8,\; 13,\; 21,\; 34,\; 55,\; 89,\; 144,\; \dots\]
+                Jika kita mencari solusi barisan geometri \(F_n = r^n\) untuk rekurensi \(F_n - F_{n-1} - F_{n-2} = 0\), diperoleh persamaan karakteristik:
+                \[r^2 - r - 1 = 0\]
+                yang akar-akarnya adalah \(\varphi\) dan \(\psi\). Dengan mencocokkan syarat awal \(F_0 = 0\) dan \(F_1 = 1\), diperoleh <strong>Rumus Binet</strong>:
+                \[F_n = \frac{\varphi^n - \psi^n}{\varphi - \psi} = \frac{1}{\sqrt{5}}\left[\left(\frac{1 + \sqrt{5}}{2}\right)^n - \left(\frac{1 - \sqrt{5}}{2}\right)^n\right]\]
+            </p>
+            <p>
+                Karena \(|\psi| \approx 0{,}618 \lt 1\), suku \(\psi^n\) menyusut menuju \(0\) dengan sangat cepat ketika \(n\) membesar. Akibatnya, perbandingan dua suku Fibonacci yang berurutan konvergen menuju \(\varphi\):
+                \[\lim_{n \to \infty} \frac{F_{n+1}}{F_n} = \lim_{n \to \infty} \frac{\varphi^{n+1} - \psi^{n+1}}{\varphi^n - \psi^n} = \varphi = \frac{1 + \sqrt{5}}{2}\]
+            </p>
+            <div class="kesimpulan">
+                💡 <strong>Identitas Cassini &amp; Konvergensi Selang-Seling:</strong><br>
+                Untuk setiap \(n \ge 1\) berlaku \(F_{n+1}F_{n-1} - F_n^2 = (-1)^n\), atau jika dibagi \(F_n F_{n-1}\):
+                \[\frac{F_{n+1}}{F_n} - \frac{F_n}{F_{n-1}} = \frac{(-1)^n}{F_n F_{n-1}}\]
+                Artinya, pecahan \(\dfrac{F_{n+1}}{F_n}\) menghampiri \(\varphi\) secara <strong>bergantian dari bawah dan dari atas</strong>:
+                \(\dfrac{1}{1} = 1{,}0 \lt \varphi \lt \dfrac{2}{1} = 2{,}0\), lalu \(\dfrac{3}{2} = 1{,}5 \lt \varphi \lt \dfrac{5}{3} \approx 1{,}667\), \(\dfrac{8}{5} = 1{,}6 \lt \varphi \lt \dfrac{13}{8} = 1{,}625\), dan seterusnya.
+            </div>
+
+            <h2>4. Geometri Rasio Emas: Persegi Panjang Emas, Segitiga Emas &amp; Pentagon</h2>
+
+            <h3>A. Persegi Panjang Emas (<em>Golden Rectangle</em>) &amp; Spiral Emas</h3>
+            <p>
+                Sebuah persegi panjang dengan panjang \(p\) dan lebar \(\ell\) disebut <strong>Persegi Panjang Emas</strong> apabila \(\dfrac{p}{\ell} = \varphi\).
+                Keistimewaan utamanya adalah sifat <em>self-similarity</em> (kesebangunan berulang): jika kita memotong sebuah persegi terbesar berukuran \(\ell \times \ell\) dari salah satu sisinya,
+                maka persegi panjang sisa yang berukuran \(\ell \times (p - \ell)\) memiliki rasio panjang terhadap lebar:
+                \[\frac{\ell}{p - \ell} = \frac{1}{\frac{p}{\ell} - 1} = \frac{1}{\varphi - 1} = \varphi\]
+                Artinya, persegi panjang sisa kembali merupakan Persegi Panjang Emas! Jika pemotongan persegi ini diteruskan tanpa henti dan kita menggambar busur seperempat lingkaran di dalam setiap persegi, terbentuk kurva <strong>Spiral Emas</strong>.
+            </p>
+
+            <div id="svg-golden-rect" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+
+            <h3>B. Segitiga Emas (\(36^\circ\text{–}72^\circ\text{–}72^\circ\)) &amp; Nilai Trigonometri Sudut \(18^\circ, 36^\circ, 72^\circ\)</h3>
+            <p>
+                <strong>Segitiga Emas</strong> adalah segitiga sama kaki \(ABC\) dengan \(AB = AC\), sudut puncak \(\angle A = 36^\circ\), dan sudut alas \(\angle B = \angle C = 72^\circ\).
+                Apabila kita menarik garis bagi sudut \(\angle B\) yang memotong sisi \(AC\) di titik \(D\):
+            </p>
+
+            <div id="svg-golden-triangle" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+
+            <ul>
+                <li>Garis bagi \(BD\) membagi \(\angle B = 72^\circ\) menjadi \(\angle ABD = \angle DBC = 36^\circ\).</li>
+                <li>Pada \(\triangle ABD\), karena \(\angle DAB = \angle ABD = 36^\circ\), maka \(\triangle ABD\) sama kaki dengan \(AD = BD\).</li>
+                <li>Pada \(\triangle BCD\), sudut ketiga adalah \(\angle BDC = 180^\circ - 36^\circ - 72^\circ = 72^\circ = \angle C\), sehingga \(\triangle BCD\) juga sama kaki dengan \(BD = BC\) dan sebangun dengan \(\triangle ABC\)!</li>
+                <li>Misalkan panjang alas \(BC = 1\) dan kaki \(AB = AC = x\). Maka \(AD = BD = BC = 1\) dan \(CD = x - 1\). Dari kesebangunan \(\triangle ABC \sim \triangle BCD\):
+                    \[\frac{AB}{BC} = \frac{BC}{CD} \implies \frac{x}{1} = \frac{1}{x - 1} \implies x^2 - x - 1 = 0 \implies x = \varphi = \frac{1 + \sqrt{5}}{2}\]
+                </li>
+            </ul>
+            <p>
+                <strong>Penurunan Cepat Sudut Istimewa \(18^\circ, 36^\circ, 54^\circ, 72^\circ\):</strong><br>
+                Dengan menarik garis tinggi dari \(A\) ke alas \(BC\) pada \(\triangle ABC\) (\(AB = AC = \varphi,\; BC = 1\)), setengah alas di hadapan sudut \(\frac{1}{2}\angle A = 18^\circ\) bernilai \(\frac{1}{2}\), sehingga:
+                \[\sin 18^\circ = \cos 72^\circ = \frac{1/2}{\varphi} = \frac{\varphi - 1}{2} = \frac{\sqrt{5} - 1}{4}\]
+                Sebaliknya, tarik garis tinggi dari \(D\) ke sisi \(AB\) pada segitiga sama kaki \(\triangle ABD\) (\(AD = BD = 1,\; AB = \varphi\)), maka setengah alasnya adalah \(\frac{\varphi}{2}\), sehingga:
+                \[\cos 36^\circ = \sin 54^\circ = \frac{\varphi / 2}{1} = \frac{\varphi}{2} = \frac{\sqrt{5} + 1}{4}\]
+            </p>
+
+            <h3>C. Segi Lima Beraturan (<em>Regular Pentagon</em>)</h3>
+            <p>
+                Pada segi lima beraturan \(ABCDE\) dengan panjang sisi \(s\) dan panjang diagonal \(d\), setiap sudut dalamnya berukuran \(\dfrac{(5-2)\times 180^\circ}{5} = 108^\circ\).
+                Dua diagonal yang ditarik dari satu titik sudut (misalnya \(AC\) dan \(AD\)) membagi sudut \(108^\circ\) menjadi tiga bagian sama besar (\(36^\circ\)), sehingga \(\triangle ACD\) adalah Segitiga Emas \(36^\circ\text{–}72^\circ\text{–}72^\circ\) dengan kaki \(AC = AD = d\) dan alas \(CD = s\).
+                Dengan demikian, pada setiap segi lima beraturan selalu berlaku:
+                \[\frac{\text{Panjang Diagonal}}{\text{Panjang Sisi}} = \frac{d}{s} = \varphi = \frac{1 + \sqrt{5}}{2}\]
+            </p>
+        </article>
+
+        <!-- Contoh Penerapan Interaktif -->
+        <div style="margin-top: 2rem;">
+            <h2 class="category-heading" style="margin-bottom: 1rem;">Contoh Penerapan Pada Soal Seleksi</h2>
+
+            <!-- Contoh 1 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 1</div>
+                <div class="soal-teks">
+                    Diketahui bilangan real positif \(x\) memenuhi persamaan \(x^2 - x - 1 = 0\). Tentukan nilai eksak dari \(x^6 - \dfrac{1}{x^6}\)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <div class="pembahasan-isi">
+                        <p>
+                            Karena \(x \gt 0\) dan \(x^2 - x - 1 = 0\), maka \(x = \varphi = \dfrac{1 + \sqrt{5}}{2}\).
+                            Bagi persamaan dengan \(x \neq 0\):
+                            \[x - \frac{1}{x} = 1\]
+                        </p>
+                        <p>
+                            Kuadratkan kedua ruas untuk memperoleh \(x^2 + \dfrac{1}{x^2}\) dan \(x + \dfrac{1}{x}\):
+                            \[x^2 + \frac{1}{x^2} = \left(x - \frac{1}{x}\right)^2 + 2 = 1^2 + 2 = 3\]
+                            \[\left(x + \frac{1}{x}\right)^2 = x^2 + \frac{1}{x^2} + 2 = 3 + 2 = 5 \implies x + \frac{1}{x} = \sqrt{5} \quad (\text{karena } x \gt 0)\]
+                        </p>
+                        <p>
+                            Selanjutnya hitung \(x^3 - \dfrac{1}{x^3}\) dan \(x^3 + \dfrac{1}{x^3}\):
+                            \[x^3 - \frac{1}{x^3} = \left(x - \frac{1}{x}\right)\left(x^2 + 1 + \frac{1}{x^2}\right) = 1 \cdot (3 + 1) = 4\]
+                            \[x^3 + \frac{1}{x^3} = \left(x + \frac{1}{x}\right)\left(x^2 - 1 + \frac{1}{x^2}\right) = \sqrt{5} \cdot (3 - 1) = 2\sqrt{5}\]
+                        </p>
+                        <p>
+                            Kalikan keduanya:
+                            \[x^6 - \frac{1}{x^6} = \left(x^3 - \frac{1}{x^3}\right)\left(x^3 + \frac{1}{x^3}\right) = 4 \cdot 2\sqrt{5} = 8\sqrt{5}\]
+                            <em>(Cara alternatif via linearisasi Fibonacci: \(x^6 = F_6\varphi + F_5 = 8\varphi + 5\) dan \(\dfrac{1}{x^6} = \psi^6 = 8\psi + 5\), sehingga \(x^6 - \dfrac{1}{x^6} = 8(\varphi - \psi) = 8\sqrt{5}\).)</em>
+                        </p>
+                        <div class="kesimpulan">Jadi, nilai eksak dari \(x^6 - \dfrac{1}{x^6}\) adalah \(\mathbf{8\sqrt{5}}\).</div>
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh 2 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 2</div>
+                <div class="soal-teks">
+                    Misalkan \(a = \sqrt{1 + \sqrt{1 + \sqrt{1 + \dots}}}\) dan \(b = \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \ddots}}}\). Tentukan nilai dari \(a^4 + b^4\)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <div class="pembahasan-isi">
+                        <p>
+                            Dari sifat akar bersarang dan pecahan kontinu rasio emas:
+                        </p>
+                        <ul>
+                            <li>\(a \gt 0\) memenuhi \(a = \sqrt{1 + a} \iff a^2 - a - 1 = 0 \implies a = \varphi\).</li>
+                            <li>\(b \gt 0\) memenuhi \(b = \dfrac{1}{1 + b} \iff b^2 + b - 1 = 0 \implies b = \dfrac{1}{\varphi} = \varphi - 1\).</li>
+                        </ul>
+                        <p>
+                            Dengan demikian, berlaku hubungan:
+                            \[a - b = \varphi - (\varphi - 1) = 1 \qquad \text{dan} \qquad ab = \varphi \cdot \frac{1}{\varphi} = 1\]
+                            Hitung \(a^2 + b^2\) terlebih dahulu:
+                            \[a^2 + b^2 = (a - b)^2 + 2ab = 1^2 + 2(1) = 3\]
+                            Kuadratkan sekali lagi untuk mendapatkan \(a^4 + b^4\):
+                            \[a^4 + b^4 = (a^2 + b^2)^2 - 2(ab)^2 = 3^2 - 2(1)^2 = 9 - 2 = 7\]
+                        </p>
+                        <div class="kesimpulan">Jadi, nilai dari \(a^4 + b^4\) adalah \(\mathbf{7}\).</div>
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+
+            <!-- Contoh 3 -->
+            <div class="soal-item">
+                <div class="soal-no">Contoh 3</div>
+                <div class="soal-teks">
+                    Pada segi lima beraturan \(ABCDE\) dengan panjang sisi \(2\text{ cm}\), diagonal \(AC\) dan \(BD\) berpotongan di titik \(P\). Tentukan panjang ruas garis \(CP\) dan \(AP\)!
+                </div>
+                <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+                <div class="pembahasan-box">
+                    <div class="pembahasan-title">Penyelesaian:</div>
+                    <div class="pembahasan-isi">
+                        <p>
+                            Setiap sudut dalam segi lima beraturan berukuran \(108^\circ\). Tinjau segitiga sama kaki \(\triangle ABC\) (\(AB = BC = 2\text{ cm}\), \(\angle ABC = 108^\circ\)):
+                            \[\angle BAC = \angle BCA = \frac{180^\circ - 108^\circ}{2} = 36^\circ\]
+                            Secara simetris pada \(\triangle BCD\) (\(BC = CD = 2\text{ cm}\)), diperoleh \(\angle CBD = \angle BDC = 36^\circ\).
+                        </p>
+                        <p>
+                            Sekarang tinjau \(\triangle BCP\):
+                        </p>
+                        <ul>
+                            <li>\(\angle PCB = \angle BCA = 36^\circ\) dan \(\angle PBC = \angle CBD = 36^\circ\)? Perhatikan bahwa \(P\) adalah perpotongan \(AC\) dan \(BD\): pada \(\triangle BCP\), \(\angle PBC = \angle CBD = 36^\circ\) dan \(\angle PCB = \angle BCA = 36^\circ\), sehingga \(\angle BPC = 180^\circ - 36^\circ - 36^\circ = 108^\circ\).</li>
+                            <li>Di pihak lain, pada \(\triangle CDP\), \(\angle PCD = \angle BCD - \angle BCA = 108^\circ - 36^\circ = 72^\circ\) dan \(\angle PDC = 36^\circ\), sehingga \(\angle CPD = 180^\circ - 72^\circ - 36^\circ = 72^\circ = \angle PCD\).</li>
+                            <li>Karena \(\angle CPD = \angle PCD = 72^\circ\), maka \(\triangle CDP\) adalah segitiga sama kaki dengan:
+                                \[CP = CD = 2\text{ cm}\]
+                            </li>
+                        </ul>
+                        <p>
+                            Selanjutnya, panjang diagonal \(AC\) pada segi lima beraturan bersisi \(s = 2\text{ cm}\) adalah:
+                            \[AC = s\varphi = 2\left(\frac{1 + \sqrt{5}}{2}\right) = 1 + \sqrt{5}\text{ cm}\]
+                            Maka panjang \(AP\) adalah:
+                            \[AP = AC - CP = (1 + \sqrt{5}) - 2 = \sqrt{5} - 1\text{ cm}\]
+                        </p>
+                        <div class="kesimpulan">Jadi, panjang \(CP = \mathbf{2\text{ cm}}\) dan panjang \(AP = \mathbf{(\sqrt{5} - 1)\text{ cm}}\).</div>
+                    </div>
+                    <button class="btn-tutup">TUTUP</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            function renderAllDiagrams() {
+                if (typeof GeoSVG === "undefined") return;
+                const phi = (1 + Math.sqrt(5)) / 2;
+
+                // 1. Pembagian ruas garis dalam Rasio Emas
+                const elLine = document.getElementById("svg-golden-line");
+                if (elLine && !elLine.dataset.rendered) {
+                    elLine.dataset.rendered = "true";
+                    const geo1 = new GeoSVG("svg-golden-line", 320, 96, { margin: 14, clearContainer: true });
+                    const xA = 24, xC = 296, y = 44;
+                    const total = xC - xA;
+                    const aLen = total / phi;
+                    const xB = xA + aLen;
+                    const A = { x: xA, y }, B = { x: xB, y }, C = { x: xC, y };
+
+                    geo1.buatSegmen(A, B, { stroke: "var(--teal-primary)", strokeWidth: 3 });
+                    geo1.buatSegmen(B, C, { stroke: "#d97706", strokeWidth: 3 });
+                    geo1.buatTitik(A, { label: "A", labelPosition: "top-center", size: 4, color: "var(--text-main)" });
+                    geo1.buatTitik(B, { label: "B", labelPosition: "top-center", size: 4, color: "#dc2626" });
+                    geo1.buatTitik(C, { label: "C", labelPosition: "top-center", size: 4, color: "var(--text-main)" });
+
+                    geo1.buatTeks((xA + xB) / 2, y - 14, "a", { position: "middle-center", fontSize: 12, fill: "var(--teal-primary)" });
+                    geo1.buatTeks((xB + xC) / 2, y - 14, "b", { position: "middle-center", fontSize: 12, fill: "#d97706" });
+
+                    const yDim = y + 22;
+                    geo1.buatSegmen({ x: xA, y: yDim }, { x: xC, y: yDim }, { stroke: "var(--text-muted)", strokeWidth: 1.4, dashed: true });
+                    geo1.buatSegmen({ x: xA, y: yDim - 4 }, { x: xA, y: yDim + 4 }, { stroke: "var(--text-muted)", strokeWidth: 1.4 });
+                    geo1.buatSegmen({ x: xC, y: yDim - 4 }, { x: xC, y: yDim + 4 }, { stroke: "var(--text-muted)", strokeWidth: 1.4 });
+                    geo1.buatTeks((xA + xC) / 2, yDim + 13, "(a + b) / a = a / b = φ ≈ 1,618", {
+                        position: "middle-center",
+                        fontSize: 11,
+                        fill: "var(--text-main)"
+                    });
+                }
+
+                // 2. Persegi Panjang Emas & Spiral Emas
+                const elRect = document.getElementById("svg-golden-rect");
+                if (elRect && !elRect.dataset.rendered) {
+                    elRect.dataset.rendered = "true";
+                    const geo2 = new GeoSVG("svg-golden-rect", 280, 185, { margin: 14, clearContainer: true });
+                    const x0 = 24, y0 = 18, H = 136, W = H * phi;
+                    const s1 = H;
+                    const s2 = W - s1;
+                    const s3 = s1 - s2;
+                    const s4 = s2 - s3;
+                    const s5 = s3 - s4;
+
+                    geo2.buatPersegiPanjang(x0, y0, s1, s1, { fill: "rgba(13, 148, 136, 0.10)", stroke: "var(--text-main)", strokeWidth: 1.6 });
+                    geo2.buatPersegiPanjang(x0 + s1, y0, s2, s2, { fill: "rgba(217, 119, 6, 0.10)", stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    geo2.buatPersegiPanjang(x0 + W - s3, y0 + s2, s3, s3, { fill: "rgba(59, 130, 246, 0.10)", stroke: "var(--text-main)", strokeWidth: 1.4 });
+                    geo2.buatPersegiPanjang(x0 + s1, y0 + H - s4, s4, s4, { fill: "rgba(220, 38, 38, 0.10)", stroke: "var(--text-main)", strokeWidth: 1.3 });
+                    geo2.buatPersegiPanjang(x0 + s1, y0 + s2, s5, s5, { fill: "rgba(13, 148, 136, 0.14)", stroke: "var(--text-main)", strokeWidth: 1.2 });
+                    geo2.buatPersegiPanjang(x0, y0, W, H, { fill: "none", stroke: "var(--text-main)", strokeWidth: 2 });
+
+                    // Kurva Spiral Emas (busur 90 derajat di tiap persegi)
+                    const arcStyle = { stroke: "#dc2626", strokeWidth: 2.2 };
+                    geo2.buatBusur(x0 + s1, y0 + s1, s1, 180, 270, arcStyle);
+                    geo2.buatBusur(x0 + s1, y0 + s2, s2, 270, 360, arcStyle);
+                    geo2.buatBusur(x0 + W - s3, y0 + s2, s3, 0, 90, arcStyle);
+                    geo2.buatBusur(x0 + s1 + s4, y0 + H - s4, s4, 90, 180, arcStyle);
+                    geo2.buatBusur(x0 + s1 + s5, y0 + s2 + s5, s5, 180, 270, arcStyle);
+
+                    geo2.buatTeks(x0 + W / 2, y0 + H + 15, "p = φ · ℓ", { position: "middle-center", fontSize: 11, fill: "var(--text-main)" });
+                    geo2.buatTeks(x0 - 10, y0 + H / 2, "ℓ", { position: "middle-center", fontSize: 11, fill: "var(--text-main)" });
+                }
+
+                // 3. Segitiga Emas (36° - 72° - 72°) dengan garis bagi BD
+                const elTri = document.getElementById("svg-golden-triangle");
+                if (elTri && !elTri.dataset.rendered) {
+                    elTri.dataset.rendered = "true";
+                    const geo3 = new GeoSVG("svg-golden-triangle", 270, 215, { margin: 18, clearContainer: true });
+                    const base = 106;
+                    const leg = base * phi;
+                    const hTri = Math.sqrt(leg * leg - (base / 2) * (base / 2));
+                    const A = { x: 135, y: 192 - hTri };
+                    const B = { x: 135 - base / 2, y: 192 };
+                    const C = { x: 135 + base / 2, y: 192 };
+                    const D = { x: A.x + (C.x - A.x) / phi, y: A.y + (C.y - A.y) / phi };
+
+                    geo3.buatSegitiga(A, B, C, { fill: "rgba(13, 148, 136, 0.07)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    geo3.buatPoligon([B, C, D], { fill: "rgba(217, 119, 6, 0.14)", stroke: "none" });
+                    geo3.buatSegmen(B, D, { stroke: "#dc2626", strokeWidth: 1.8 });
+
+                    geo3.buatSudut(B, A, C, { radius: 26, fill: "rgba(13, 148, 136, 0.15)", stroke: "var(--teal-primary)", label: "36°", labelRadius: 38, labelColor: "var(--teal-primary)", fontSize: "10px" });
+                    geo3.buatSudut(D, B, C, { radius: 22, fill: "rgba(220, 38, 38, 0.15)", stroke: "#dc2626", label: "36°", labelRadius: 34, labelColor: "#dc2626", fontSize: "10px" });
+                    geo3.buatSudut(B, C, A, { radius: 20, fill: "rgba(217, 119, 6, 0.15)", stroke: "#d97706", label: "72°", labelRadius: 31, labelColor: "#d97706", fontSize: "10px" });
+
+                    geo3.buatTandaSamaPanjang(A, D, { stroke: "var(--teal-primary)", size: 7 });
+                    geo3.buatTandaSamaPanjang(B, D, { stroke: "#dc2626", size: 7 });
+                    geo3.buatTandaSamaPanjang(B, C, { stroke: "var(--text-main)", size: 7 });
+
+                    geo3.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                    geo3.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    geo3.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                    geo3.buatTitik(D, { label: "D", labelPosition: "top-right", size: 3.5, color: "#dc2626" });
+
+                    geo3.buatTeks((A.x + B.x) / 2 - 14, (A.y + B.y) / 2, "φ", { position: "middle-center", fontSize: 12, fill: "var(--text-main)" });
+                    geo3.buatTeks((B.x + C.x) / 2, B.y + 14, "1", { position: "middle-center", fontSize: 11, fill: "var(--text-main)" });
+                    geo3.buatTeks((C.x + D.x) / 2 + 22, (C.y + D.y) / 2 + 2, "φ − 1", { position: "middle-center", fontSize: 10, fill: "#d97706" });
+                }
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", renderAllDiagrams);
+            } else {
+                renderAllDiagrams();
+            }
+            window.addEventListener("load", renderAllDiagrams);
+        })();
+    </script>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
