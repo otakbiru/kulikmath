@@ -187,6 +187,7 @@ const DAFTAR_ARSIP = [
         kategori: "OSK",
         folder: "Arsip_Soal/OSK",
         paket: [
+            { judul: "OSK SMA 2002", file: "OSK SMA 2002.html" },
             { judul: "OSK SMA 2006", file: "OSK SMA 2006.html" },
             { judul: "OSK SMA 2007", file: "OSK SMA 2007.html" },
             { judul: "OSK SMA 2011", file: "OSK SMA 2011.html" }
@@ -196,6 +197,7 @@ const DAFTAR_ARSIP = [
         kategori: "OSN",
         folder: "Arsip_Soal/OSN",
         paket: [
+            { judul: "OSN SMA 2002", file: "OSN SMA 2002.html" },
             { judul: "OSN SMA 2003", file: "OSN SMA 2003.html" },
             { judul: "OSN SMA 2006", file: "OSN SMA 2006.html" },
             { judul: "OSN SMA 2007", file: "OSN SMA 2007.html" }
@@ -205,6 +207,7 @@ const DAFTAR_ARSIP = [
         kategori: "OSP",
         folder: "Arsip_Soal/OSP",
         paket: [
+            { judul: "OSP SMA 2002", file: "OSP SMA 2002.html" },
             { judul: "OSP SMA 2003", file: "OSP SMA 2003.html" },
             { judul: "OSP SMA 2006", file: "OSP SMA 2006.html" },
             { judul: "OSP SMA 2007", file: "OSP SMA 2007.html" },
@@ -245,7 +248,8 @@ const DAFTAR_ARTIKEL = [
         folder: "Artikel/Geometri",
         artikel: [
             { judul: "Golden Ratio (Rasio Emas)", file: "Golden Ratio (Rasio Emas).html" },
-            { judul: "Cara Al-Biruni Menghitung Jari-Jari Bumi", file: "Cara Al-Biruni Menghitung Jari-Jari Bumi.html" }
+            { judul: "Cara Al-Biruni Menghitung Jari-Jari Bumi", file: "Cara Al-Biruni Menghitung Jari-Jari Bumi.html" },
+            { judul: "Perhitungan Kurvatur Bumi (Earth Curvature)", file: "Perhitungan Kurvatur Bumi.html" }
         ]
     },
     {
