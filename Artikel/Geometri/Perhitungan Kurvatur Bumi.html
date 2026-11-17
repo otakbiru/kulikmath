@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perhitungan Kurvatur Bumi (Earth Curvature) - KulikMath</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Artikel -->
+        <div class="page-header">
+            <p class="intro-text">
+                Artikel Khusus <span id="auto-level" class="level-highlight">...</span> —
+                <span class="topic-highlight">Perhitungan Kurvatur Bumi (Earth Curvature)</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Artikel -->
+        <article class="materi-card">
+            <h2>1. Tiga Besaran Penting: Drop, Jarak Cakrawala, dan Tinggi Tersembunyi</h2>
+            <p>
+                Ketika membahas kelengkungan Bumi menggunakan model bola dengan jari-jari rata-rata
+                \(R \approx 6.371\text{ km}\) (keliling \(C = 2\pi R \approx 40.030{,}17\text{ km}\)),
+                terdapat <strong>tiga besaran geometri berbeda</strong> yang sering tertukar dalam perhitungan sehari-hari:
+            </p>
+            <ol>
+                <li><strong>Curvature Drop (\(h_{\text{drop}}\)):</strong> seberapa jauh permukaan Bumi "menurun" menjauhi garis lurus mendatar (garis singgung di titik berdiri) pada jarak \(d\).</li>
+                <li><strong>Jarak Cakrawala / Horizon Distance (\(d_h\)):</strong> jarak terjauh permukaan Bumi yang masih dapat dilihat dari ketinggian mata pengamat \(h_0\).</li>
+                <li><strong>Tinggi Tersembunyi / Hidden Height (\(h_{\text{hidden}}\)):</strong> tinggi bagian bawah suatu objek jauh (berjarak total \(D \gt d_h\)) yang benar-benar terhalang oleh gundukan kelengkungan Bumi.</li>
+            </ol>
+            <p>
+                Memahami perbedaan ketiga besaran ini sangat krusial: <strong>\(h_{\text{drop}}\) diukur dari garis singgung di kaki pengamat, sedangkan \(h_{\text{hidden}}\) diukur dari garis pandang mata pengamat yang menyinggung cakrawala!</strong>
+            </p>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+
+            <h2>2. Rumus Eksak <em>Curvature Drop</em> (Metode Kosinus)</h2>
+            <p>
+                Bayangkan Anda berada tepat di permukaan Bumi pada titik \(A\), dan menarik garis singgung mendatar sepanjang permukaan.
+                Sekarang tinjau titik \(B\) lain pada permukaan Bumi yang berjarak busur (atau mendatar) \(d\) dari \(A\). Seberapa jauh titik \(B\) turun dari garis singgung Anda?
+            </p>
+
+            <div id="svg-kurvatur-drop" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+
+            <p>
+                Perhatikan penampang lingkaran Bumi yang berpusat di \(O\) dengan jari-jari \(R = OA = OB\):
+            </p>
+            <ul>
+                <li>Busur lingkaran antara \(A\) dan \(B\) memiliki panjang \(d\). Dalam keliling penuh \(C = 2\pi R\) (\(360^\circ\)), sudut pusat \(\theta = \angle AOB\) adalah:
+                    \[\theta = \frac{d}{R}\text{ radian} \quad\text{atau}\quad \theta = \frac{360^\circ}{2\pi R} \cdot d\]
+                </li>
+                <li>Proyeksikan titik \(B\) tegak lurus ke garis vertikal \(OA\) di titik \(P\). Dari segitiga siku-siku \(\triangle OPB\) (siku-siku di \(P\)), panjang \(OP = R\cos\theta\).</li>
+                <li>Besarnya penurunan permukaan Bumi (<em>curvature drop</em>), yaitu \(h_{\text{drop}} = PA = OA - OP\), adalah:
+                    \[\boxed{h_{\text{drop}} = R - R\cos\theta = R(1 - \cos\theta) = 2R\sin^2\!\left(\frac{\theta}{2}\right)}\]
+                </li>
+            </ul>
+            <p>
+                <em>(Catatan kecil pada geometri segitiga siku-siku tangen: sebagian sumber memakai garis singgung mendatar sepanjang \(d\) dan menghitung \(h = \sqrt{R^2 + d^2} - R\) sebagai jarak radial ke garis singgung; namun untuk kurvatur sepanjang permukaan Bumi \(d = R\theta\), rumus kosinus \(R(1 - \cos(d/R))\) adalah jarak vertikal sejajar jari-jari \(OA\) yang digunakan pada <a href="https://earthcurvature.com/" target="_blank" rel="noopener noreferrer" style="color: var(--teal-primary);">earthcurvature.com</a>.)</em>
+            </p>
+
+            <h3>Mengapa Rumus "8 Inci per Mil Kuadrat" (\(d^2 / 2R\)) Hanya Aproksimasi?</h3>
+            <p>
+                Menggunakan deret Taylor untuk sudut \(\theta\) kecil dalam radian, \(\cos\theta = 1 - \dfrac{\theta^2}{2!} + \dfrac{\theta^4}{4!} - \cdots\). Jika kita hanya mengambil dua suku pertama:
+                \[h_{\text{drop}} = R(1 - \cos\theta) \approx R \cdot \frac{\theta^2}{2} = R \cdot \frac{(d/R)^2}{2} = \frac{d^2}{2R}\]
+                Mari kita cek angkanya dalam satuan metrik (\(R = 6.371.000\text{ m}\) dan \(d\) dalam km \(= 1000\,d_{\text{km}}\)):
+                \[h_{\text{drop}} \approx \frac{(1000\,d_{\text{km}})^2}{2 \times 6.371.000} = \frac{1.000.000}{12.742.000}\,d_{\text{km}}^2 \approx 0{,}07848\,d_{\text{km}}^2\text{ meter} \approx 7{,}85\text{ cm} \times d_{\text{km}}^2\]
+                Dalam satuan imperial (\(1\text{ mil} = 63.360\text{ inci}\), \(R \approx 3.959\text{ mil}\)), diperoleh \(h_{\text{drop}} \approx \dfrac{63.360}{2 \times 3.959}\,d_{\text{mil}}^2 \approx 8{,}002\text{ inci} \times d_{\text{mil}}^2\) — inilah asal muasal aturan populer <strong>"8 inci dikali jarak mil kuadrat"</strong>.
+            </p>
+            <p>
+                <strong>Batas berlakunya aproksimasi parabola:</strong> Rumus \(\dfrac{d^2}{2R}\) memodelkan Bumi seakan-akan sebuah <em>parabola</em> yang terus melengkung ke bawah tanpa batas, bukan lingkaran tertutup!
+                Untuk jarak \(d \le 100\text{ km}\), galatnya sangat kecil (di bawah \(0{,}01\%\)). Namun untuk jarak sangat jauh — misalnya \(d = 10.000\text{ km}\) (seperempat keliling Bumi) — rumus parabola memberi \(7.848\text{ km}\), sedangkan rumus eksak kosinus memberi tepat \(R(1 - \cos 90^\circ) = 6.371\text{ km}\).
+            </p>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+
+            <h2>3. Jarak ke Cakrawala (<em>Horizon Distance</em>)</h2>
+            <p>
+                Jika tinggi mata pengamat dari permukaan Bumi adalah \(h_0\) (di titik \(M\)), garis pandang terjauh yang dapat melihat permukaan adalah garis singgung dari \(M\) yang menyentuh bola Bumi di cakrawala \(H\).
+                Karena garis singgung tegak lurus terhadap jari-jari di titik singgung, \(\triangle OHM\) adalah segitiga siku-siku di \(H\) dengan hipotenusa \(OM = R + h_0\) dan sisi siku-siku \(OH = R\).
+            </p>
+            <p>
+                Berdasarkan Teorema Pythagoras, <strong>jarak garis lurus ke cakrawala</strong> adalah:
+                \[\boxed{d_{\text{lurus}} = MH = \sqrt{(R + h_0)^2 - R^2} = \sqrt{2Rh_0 + h_0^2}}\]
+                Sementara itu, <strong>jarak menyusuri lengkungan permukaan Bumi</strong> dari kaki pengamat ke cakrawala adalah:
+                \[d_{\text{busur}} = R\,\theta_h, \qquad \theta_h = \arccos\!\left(\frac{R}{R + h_0}\right)\]
+                Karena dalam praktik tinggi pengamat sangat kecil dibandingkan jari-jari Bumi (\(h_0 \ll R\)), maka \(h_0^2 \ll 2Rh_0\) dan \(d_{\text{lurus}} \approx d_{\text{busur}} \approx \sqrt{2Rh_0}\).
+                Dengan \(R = 6.371.000\text{ m}\) dan \(h_0\) dalam meter:
+                \[d_h \approx \frac{\sqrt{2 \times 6.371.000 \times h_0}}{1000} \approx \mathbf{3{,}57\sqrt{h_0\text{ (m)}}}\text{ km}\]
+                Sebagai contoh, seseorang dengan tinggi mata \(h_0 = 1{,}7\text{ m}\) yang berdiri di tepi pantai memiliki cakrawala geometris sejauh \(3{,}57\sqrt{1{,}7} \approx \mathbf{4{,}65\text{ km}}\).
+            </p>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+
+            <h2>4. Tinggi Tersembunyi (<em>Hidden Height</em>)</h2>
+            <p>
+                Misalkan sebuah menara atau kapal berada pada jarak total \(D\) di permukaan Bumi yang melebihi jarak cakrawala pengamat (\(D \gt d_h\)). Bagian terbawah objek setinggi \(h_{\text{hidden}}\) terpotong oleh garis pandang singgung pengamat yang melewati cakrawala \(H\).
+            </p>
+
+            <div id="svg-kurvatur-hidden" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+
+            <p>
+                Perhatikan bagaimana menghitung \(h_{\text{hidden}}\) secara eksak dari gambar di atas:
+            </p>
+            <ol>
+                <li>Sudut pusat dari kaki pengamat \(C\) ke cakrawala \(H\) adalah \(\theta_1 = \arccos\!\left(\dfrac{R}{R + h_0}\right)\).</li>
+                <li>Sudut pusat total dari kaki pengamat \(C\) ke dasar objek \(T\) adalah \(\Theta = \dfrac{D}{R}\) radian.</li>
+                <li>Maka sudut pusat dari cakrawala \(H\) ke dasar objek \(T\) adalah \(\theta_2 = \Theta - \theta_1 = \dfrac{D}{R} - \arccos\!\left(\dfrac{R}{R + h_0}\right)\).</li>
+                <li>Pada segitiga siku-siku \(\triangle OHT'\) (siku-siku di \(H\), di mana \(T'\) adalah titik di objek yang sejajar tepat pada garis pandang cakrawala), panjang \(OT' = \dfrac{R}{\cos\theta_2}\).</li>
+            </ol>
+            <p>
+                Dengan demikian, tinggi bagian objek di atas dasar \(T\) yang masih tersembunyi di balik cakrawala adalah \(h_{\text{hidden}} = OT' - R\):
+                \[\boxed{h_{\text{hidden}} = R\left(\frac{1}{\cos\theta_2} - 1\right), \qquad \theta_2 = \frac{D}{R} - \arccos\!\left(\frac{R}{R + h_0}\right)}\]
+                Dan apabila jarak dari cakrawala ke objek \(d_2 = D - d_h\) jauh lebih kecil dari \(R\), berlaku aproksimasi yang sangat praktis dan akurat:
+                \[\boxed{h_{\text{hidden}} \approx \frac{(D - \sqrt{2Rh_0})^2}{2R} \approx 0{,}07848\,(D_{\text{km}} - d_{h,\text{km}})^2\text{ m}}\]
+            </p>
+            <p>
+                <strong>Kesalahan yang paling sering terjadi:</strong> jika kapal berjarak \(D = 10\text{ km}\) dan Anda melihat dari ketinggian pantai \(h_0 = 2\text{ m}\), bagian yang tersembunyi bukanlah \(0{,}07848 \times 10^2 = 7{,}85\text{ m}\)! Karena cakrawala Anda sudah berjarak \(d_h = 3{,}57\sqrt{2} \approx 5{,}05\text{ km}\), jarak di balik cakrawala tinggal \(10 - 5{,}05 = 4{,}95\text{ km}\), sehingga bagian bawah kapal yang tertutup Bumi hanyalah sekitar \(0{,}07848 \times (4{,}95)^2 \approx \mathbf{1{,}92\text{ m}}\).
+            </p>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+
+            <h2>5. Pengaruh Refraksi Atmosfer</h2>
+            <p>
+                Di dunia nyata, kita tidak melihat dalam ruang hampa. Kerapatan atmosfer Bumi semakin berkurang pada ketinggian yang lebih tinggi, sehingga indeks bias udara menurun ke atas. Akibatnya, berkas cahaya yang datang dari objek jauh ke mata pengamat mengalami <strong>pembiasan (refraksi) melengkung ke bawah</strong> mengikuti kelengkungan Bumi.
+            </p>
+            <p>
+                Secara standar geodesi dan navigasi laut, pembengkokan cahaya ini dimodelkan dengan memperbesar jari-jari Bumi geometris menjadi <strong>jari-jari efektif Bumi</strong> \(R_{\text{eff}}\) memakai koefisien refraksi \(k\):
+                \[R_{\text{eff}} = \frac{R}{1 - k}\]
+                Untuk kondisi atmosfer standar (\(k \approx 0{,}13\) hingga \(\frac{1}{7} \approx 0{,}143\)):
+                \[R_{\text{eff}} \approx \frac{7}{6} R \approx 7.433\text{ km}\]
+                Dampaknya terhadap pengamatan:
+            </p>
+            <ul>
+                <li>Jarak cakrawala visual bertambah sekitar \(\sqrt{7/6} \approx 1{,}08\) kali (\(\approx \mathbf{8\%}\) lebih jauh): \(d_{h,\text{visual}} \approx 3{,}86\sqrt{h_0\text{ (m)}}\text{ km}\).</li>
+                <li>Tinggi tersembunyi akibat kurvatur berkurang sekitar \(\frac{6}{7}\) (\(\approx \mathbf{14\%}\) lebih sedikit) dibandingkan perhitungan vakum murni.</li>
+            </ul>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+
+            <h2>6. Tabel Nilai Kurvatur (\(R = 6.371\text{ km}\), Tanpa Refraksi)</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jarak \(D\)</th>
+                            <th>Drop Eksak \(R(1-\cos\theta)\)</th>
+                            <th>Aproksimasi \(d^2/2R\)</th>
+                            <th>Hidden Height (\(h_0 = 2\text{ m}\))</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>\(1\text{ km}\)</td>
+                            <td>\(0{,}078\text{ m}\) (\(7{,}8\text{ cm}\))</td>
+                            <td>\(0{,}078\text{ m}\)</td>
+                            <td>\(0\text{ m}\) (masih di depan cakrawala)</td>
+                        </tr>
+                        <tr>
+                            <td>\(5\text{ km}\)</td>
+                            <td>\(1{,}96\text{ m}\)</td>
+                            <td>\(1{,}96\text{ m}\)</td>
+                            <td>\(0\text{ m}\) (\(d_h = 5{,}05\text{ km}\))</td>
+                        </tr>
+                        <tr>
+                            <td>\(10\text{ km}\)</td>
+                            <td>\(7{,}85\text{ m}\)</td>
+                            <td>\(7{,}85\text{ m}\)</td>
+                            <td>\(1{,}92\text{ m}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(20\text{ km}\)</td>
+                            <td>\(31{,}39\text{ m}\)</td>
+                            <td>\(31{,}39\text{ m}\)</td>
+                            <td>\(17{,}54\text{ m}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(50\text{ km}\)</td>
+                            <td>\(196{,}20\text{ m}\)</td>
+                            <td>\(196{,}20\text{ m}\)</td>
+                            <td>\(158{,}60\text{ m}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(100\text{ km}\)</td>
+                            <td>\(784{,}79\text{ m}\)</td>
+                            <td>\(784{,}81\text{ m}\)</td>
+                            <td>\(707{,}53\text{ m}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(500\text{ km}\)</td>
+                            <td>\(19{,}61\text{ km}\)</td>
+                            <td>\(19{,}62\text{ km}\)</td>
+                            <td>\(19{,}28\text{ km}\)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+
+            <h2>7. Kalkulator Kurvatur Interaktif</h2>
+            <p>Masukkan ketinggian mata pengamat (\(h_0\)) dan jarak ke objek (\(D\)) untuk menghitung langsung <em>curvature drop</em>, jarak cakrawala, dan tinggi tersembunyi (baik secara geometris maupun dengan koreksi refraksi standar \(R_{\text{eff}} = \frac{7}{6}R\)):</p>
+            <div style="border: 1.5px solid var(--border-color); border-radius: 12px; padding: 16px; background: var(--card-bg); margin: 12px 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 12px;">
+                    <label style="display:flex; flex-direction:column; gap:4px; font-size:0.92rem;">
+                        <strong>Tinggi Mata Pengamat \(h_0\) (meter):</strong>
+                        <input id="calc-h0" type="number" min="0" step="0.1" value="2" style="padding:8px 10px; border:1.5px solid var(--border-color); border-radius:8px; background:var(--bg-body); color:var(--text-main);">
+                    </label>
+                    <label style="display:flex; flex-direction:column; gap:4px; font-size:0.92rem;">
+                        <strong>Jarak ke Objek \(D\) (kilometer):</strong>
+                        <input id="calc-d" type="number" min="0" step="0.5" value="20" style="padding:8px 10px; border:1.5px solid var(--border-color); border-radius:8px; background:var(--bg-body); color:var(--text-main);">
+                    </label>
+                </div>
+                <label style="display:flex; align-items:center; gap:8px; font-size:0.92rem; margin-bottom: 14px; cursor:pointer;">
+                    <input id="calc-refract" type="checkbox">
+                    <span>Sertakan refraksi atmosfer standar (\(k = 1/7 \implies R_{\text{eff}} \approx 7.433\text{ km}\))</span>
+                </label>
+                <div id="calc-output" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; padding-top: 10px; border-top: 1px dashed var(--border-color); font-size:0.95rem;"></div>
+            </div>
+        </article>
+
+        <!-- Latihan Soal -->
+        <h2 class="category-heading" style="margin: 2rem 0 0.8rem;">Latihan Soal &amp; Pembahasan</h2>
+
+        <article class="soal-item" id="1">
+            <div class="soal-no">Latihan 1</div>
+            <div class="soal-teks">
+                Sebuah kapal pesiar dengan tinggi anjungan \(30\text{ m}\) di atas permukaan laut berjarak \(D = 25\text{ km}\) dari seorang pengamat di pantai yang tinggi matanya \(h_0 = 2\text{ m}\). Dengan menggunakan \(R = 6.371\text{ km}\) dan tanpa memperhitungkan refraksi atmosfer, berapakah tinggi bagian bawah kapal yang tertutup oleh lengkungan Bumi?
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Hitung terlebih dahulu jarak cakrawala pengamat dari ketinggian \(h_0 = 2\text{ m}\):</p>
+                    \[d_h \approx \sqrt{2Rh_0} = \sqrt{2(6.371.000)(2)} = \sqrt{25.484.000} \approx 5.048\text{ m} \approx 5{,}05\text{ km}\]
+                    <p>Sisa jarak dari cakrawala ke kapal adalah \(d_2 = D - d_h = 25 - 5{,}05 = 19{,}95\text{ km} = 19.950\text{ m}\). Tinggi bagian kapal yang tersembunyi adalah:</p>
+                    \[h_{\text{hidden}} \approx \frac{d_2^2}{2R} = \frac{19.950^2}{2(6.371.000)} \approx 31{,}24\text{ m}\]
+                    <p>Karena \(31{,}24\text{ m} \gt 30\text{ m}\), bahkan seluruh anjungan setinggi \(30\text{ m}\) tersebut sudah berada tepat di bawah garis pandang cakrawala geometris (hilang dari pandangan jika tanpa refraksi).</p>
+                    <div class="kesimpulan">
+                        Jadi, tinggi yang tersembunyi secara geometris adalah sekitar <strong>\(31{,}24\text{ m}\)</strong> (seluruh kapal setinggi \(30\text{ m}\) tertutup lengkungan Bumi).
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <article class="soal-item" id="2">
+            <div class="soal-no">Latihan 2</div>
+            <div class="soal-teks">
+                Sebuah jembatan lurus membentang di atas permukaan danau tenang sejauh \(d = 15\text{ km}\). Menggunakan rumus eksak kosinus dengan \(R = 6.371\text{ km}\), berapa meter selisih penurunan kelengkungan (<em>curvature drop</em>) permukaan danau dari garis singgung pada jarak tersebut?
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Sudut pusat pada jarak busur \(d = 15\text{ km}\) adalah:</p>
+                    \[\theta = \frac{15}{6371} \approx 0{,}0023544\text{ rad} \approx 0{,}1349^\circ\]
+                    <p>Substitusikan ke rumus eksak \(h_{\text{drop}} = R(1 - \cos\theta)\):</p>
+                    \[h_{\text{drop}} = 6.371.000 \times \big(1 - \cos(0{,}0023544\text{ rad})\big) \approx 6.371.000 \times 2{,}77165 \times 10^{-6} \approx 17{,}66\text{ m}\]
+                    <p>(Jika dicek dengan aproksimasi \(0{,}07848 \times 15^2 \approx 17{,}66\text{ m}\), hasilnya identik hingga dua angka desimal).</p>
+                    <div class="kesimpulan">
+                        Jadi, besar penurunan kelengkungannya adalah sekitar <strong>\(17{,}66\text{ m}\)</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>by KulikMath • <a href="https://otakbiru.github.io/kulikmath/" style="color: var(--teal-primary);">otakbiru.github.io/kulikmath/</a></p>
+        </footer>
+    </main>
+
+    <!-- Diagram GeoSVG & Logika Kalkulator -->
+    <script>
+        (function () {
+            function renderAllDiagrams() {
+                if (typeof GeoSVG === "undefined") return;
+
+                // 1. Diagram Curvature Drop
+                const elDrop = document.getElementById("svg-kurvatur-drop");
+                if (elDrop && !elDrop.querySelector("svg")) {
+                    const g1 = new GeoSVG(elDrop, { width: 340, height: 225 });
+                    const O = { x: 110, y: 210 }, R = 145;
+                    const A = { x: O.x, y: O.y - R };
+                    const theta = 0.72; // sudut visual besar agar jelas
+                    const angB = -Math.PI / 2 + theta;
+                    const B = { x: O.x + R * Math.cos(angB), y: O.y + R * Math.sin(angB) };
+                    const T = { x: B.x, y: A.y }; // titik pada garis singgung mendatar di atas B
+                    const P = { x: O.x, y: B.y }; // proyeksi B ke OA
+
+                    g1.buatLingkaran(O, R, { fill: "rgba(13, 148, 136, 0.08)", stroke: "var(--teal-primary)", strokeWidth: 2 });
+                    g1.buatSegmen(O, A, { stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    g1.buatSegmen(O, B, { stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    g1.buatSegmen(A, { x: T.x + 28, y: A.y }, { stroke: "#d97706", strokeWidth: 1.8, dashed: true });
+                    g1.buatSegmen(B, P, { stroke: "var(--text-muted)", strokeWidth: 1.4, dashed: true });
+                    g1.buatSegmen(T, B, { stroke: "#dc2626", strokeWidth: 2.5 });
+                    g1.buatSiku(O, P, B, { size: 8, stroke: "var(--text-muted)" });
+                    g1.buatSudut(B, O, A, { radius: 34, label: "θ", stroke: "var(--teal-primary)", labelOffset: 10 });
+
+                    g1.buatTitik(O, { label: "O", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    g1.buatTitik(A, { label: "A", labelPosition: "top-left", size: 3.5, color: "var(--text-main)" });
+                    g1.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 4, color: "#dc2626" });
+                    g1.buatTitik(P, { label: "P", labelPosition: "left", size: 3, color: "var(--text-muted)" });
+                    g1.buatTitik(T, { label: "T", labelPosition: "top-center", size: 3.5, color: "#d97706" });
+
+                    g1.buatTeks((A.x + T.x) / 2, A.y - 12, "garis singgung mendatar", { position: "middle-center", fontSize: 10.5, fill: "#d97706" });
+                    g1.buatTeks(T.x + 8, (T.y + B.y) / 2, "h_drop", { position: "middle-left", fontSize: 11.5, fill: "#dc2626" });
+                    g1.buatTeks(O.x - 10, (O.y + P.y) / 2 + 8, "R cos θ", { position: "middle-right", fontSize: 10.5, fill: "var(--text-main)" });
+                }
+
+                // 2. Diagram Horizon Distance & Hidden Height
+                const elHidden = document.getElementById("svg-kurvatur-hidden");
+                if (elHidden && !elHidden.querySelector("svg")) {
+                    const g2 = new GeoSVG(elHidden, { width: 350, height: 245 });
+                    const O = { x: 155, y: 235 }, R = 145;
+                    const theta1 = 0.48;
+                    const theta2 = 0.62;
+                    // Buat titik singgung H tepat di atas agak kiri agar M di kiri dan T di kanan
+                    const angH = -Math.PI / 2;
+                    const H = { x: O.x, y: O.y - R };
+                    const angC = angH - theta1;
+                    const C = { x: O.x + R * Math.cos(angC), y: O.y + R * Math.sin(angC) };
+                    const rM = R / Math.cos(theta1);
+                    const M = { x: O.x + rM * Math.cos(angC), y: O.y + rM * Math.sin(angC) };
+                    const angT = angH + theta2;
+                    const T = { x: O.x + R * Math.cos(angT), y: O.y + R * Math.sin(angT) };
+                    const rTp = R / Math.cos(theta2);
+                    const Tp = { x: O.x + rTp * Math.cos(angT), y: O.y + rTp * Math.sin(angT) };
+
+                    g2.buatLingkaran(O, R, { fill: "rgba(13, 148, 136, 0.08)", stroke: "var(--teal-primary)", strokeWidth: 2 });
+                    g2.buatSegmen(O, C, { stroke: "var(--text-muted)", strokeWidth: 1.4 });
+                    g2.buatSegmen(C, M, { stroke: "#2563eb", strokeWidth: 2.4 });
+                    g2.buatSegmen(O, H, { stroke: "var(--text-muted)", strokeWidth: 1.4, dashed: true });
+                    g2.buatSegmen(O, T, { stroke: "var(--text-muted)", strokeWidth: 1.4 });
+                    g2.buatSegmen(T, Tp, { stroke: "#dc2626", strokeWidth: 2.5 });
+                    g2.buatSegmen(M, Tp, { stroke: "#d97706", strokeWidth: 2, dashed: true });
+
+                    g2.buatSiku(O, H, Tp, { size: 8, stroke: "#d97706" });
+                    g2.buatSudut(H, O, C, { radius: 34, label: "θ₁", stroke: "#2563eb", labelOffset: 9 });
+                    g2.buatSudut(T, O, H, { radius: 42, label: "θ₂", stroke: "#dc2626", labelOffset: 10 });
+
+                    g2.buatTitik(O, { label: "O", labelPosition: "bottom-center", size: 3.5, color: "var(--text-main)" });
+                    g2.buatTitik(C, { label: "C", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    g2.buatTitik(M, { label: "M (Mata)", labelPosition: "top-left", size: 4, color: "#2563eb" });
+                    g2.buatTitik(H, { label: "H (Cakrawala)", labelPosition: "top-center", size: 4, color: "#d97706" });
+                    g2.buatTitik(T, { label: "T", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                    g2.buatTitik(Tp, { label: "T'", labelPosition: "top-right", size: 4, color: "#dc2626" });
+
+                    g2.buatTeks(M.x - 10, (M.y + C.y) / 2, "h₀", { position: "middle-right", fontSize: 11.5, fill: "#2563eb" });
+                    g2.buatTeks(Tp.x + 9, (T.y + Tp.y) / 2, "h_hidden", { position: "middle-left", fontSize: 11, fill: "#dc2626" });
+                }
+            }
+
+            function updateCalculator() {
+                const h0Input = document.getElementById("calc-h0");
+                const dInput = document.getElementById("calc-d");
+                const refInput = document.getElementById("calc-refract");
+                const out = document.getElementById("calc-output");
+                if (!h0Input || !dInput || !out) return;
+
+                const h0 = Math.max(0, parseFloat(h0Input.value) || 0); // m
+                const dKm = Math.max(0, parseFloat(dInput.value) || 0); // km
+                const dM = dKm * 1000;
+                const R = refInput && refInput.checked ? 6371000 * (7 / 6) : 6371000;
+
+                const thetaTotal = dM / R;
+                const drop = R * (1 - Math.cos(thetaTotal));
+                const dropApprox = (dM * dM) / (2 * R);
+
+                const thetaHorizon = Math.acos(R / (R + h0));
+                const dHorizonM = R * thetaHorizon;
+                const dHorizonKm = dHorizonM / 1000;
+
+                let hidden = 0;
+                if (thetaTotal > thetaHorizon) {
+                    const theta2 = thetaTotal - thetaHorizon;
+                    hidden = theta2 < Math.PI / 2 ? R * (1 / Math.cos(theta2) - 1) : Infinity;
+                }
+
+                const fmtM = val => {
+                    if (!isFinite(val)) return "Di balik kuadran";
+                    if (val >= 1000) return `${(val / 1000).toFixed(3)} km`;
+                    return `${val.toFixed(2)} m`;
+                };
+
+                out.innerHTML = `
+                    <div><strong>Jarak Cakrawala (<i>d</i><sub>h</sub>):</strong><br><span style="color:var(--teal-primary); font-size:1.1em; font-weight:bold;">${dHorizonKm.toFixed(2)} km</span></div>
+                    <div><strong>Drop Eksak (<i>h</i><sub>drop</sub>):</strong><br><span style="color:#d97706; font-size:1.1em; font-weight:bold;">${fmtM(drop)}</span><br><small style="color:var(--text-muted);">Aproksimasi: ${fmtM(dropApprox)}</small></div>
+                    <div><strong>Hidden Height (<i>h</i><sub>hidden</sub>):</strong><br><span style="color:#dc2626; font-size:1.1em; font-weight:bold;">${fmtM(hidden)}</span></div>
+                `;
+            }
+
+            function initAll() {
+                renderAllDiagrams();
+                const h0Input = document.getElementById("calc-h0");
+                const dInput = document.getElementById("calc-d");
+                const refInput = document.getElementById("calc-refract");
+                if (h0Input && dInput && refInput) {
+                    h0Input.addEventListener("input", updateCalculator);
+                    dInput.addEventListener("input", updateCalculator);
+                    refInput.addEventListener("change", updateCalculator);
+                    updateCalculator();
+                }
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", initAll);
+            } else {
+                initAll();
+            }
+        })();
+    </script>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

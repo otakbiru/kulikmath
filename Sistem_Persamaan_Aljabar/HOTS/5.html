@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Sistem Persamaan Aljabar</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Sistem Persamaan Aljabar</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan semua solusi dari sistem persamaan:
+                $$x + y + z = 6$$
+                $$x^2 + y^2 + z^2 = 12$$
+                $$x^3 + y^3 + z^3 = 24$$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN SMA 2002.html">OSN SMA 2002 (No. 3)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Cara 1 (Untuk $x, y, z \in \mathbb{R}$ — Melengkapkan Kuadrat):</strong></p>
+                    <p>Perhatikan identitas jumlah kuadrat dari $(x - 2), (y - 2), (z - 2)$:</p>
+                    $$(x - 2)^2 + (y - 2)^2 + (z - 2)^2 = (x^2 + y^2 + z^2) - 4(x + y + z) + 12 = 12 - 4(6) + 12 = 0$$
+                    <p>Karena kuadrat bilangan real tidak pernah negatif, satu-satunya cara agar jumlahnya nol adalah setiap suku bernilai nol, yakni $x = y = z = 2$. Pengecekan pada persamaan ketiga: $2^3 + 2^3 + 2^3 = 24$ (memenuhi).</p>
+
+                    <p><strong>Cara 2 (Umum untuk $x, y, z \in \mathbb{C}$ — Polinomial Simetris / Vieta):</strong></p>
+                    <ul>
+                        <li>$xy + yz + zx = \dfrac{(x + y + z)^2 - (x^2 + y^2 + z^2)}{2} = \dfrac{36 - 12}{2} = 12$.</li>
+                        <li>Dari identitas $x^3 + y^3 + z^3 - 3xyz = (x + y + z)\big((x^2 + y^2 + z^2) - (xy + yz + zx)\big)$, diperoleh:
+                            $$24 - 3xyz = 6(12 - 12) = 0 \implies xyz = 8$$
+                        </li>
+                    </ul>
+                    <p>Oleh karena itu, $x, y, z$ adalah akar-akar persamaan kubik $t^3 - 6t^2 + 12t - 8 = 0 \iff (t - 2)^3 = 0$, sehingga $x = y = z = 2$ tetap merupakan solusi tunggal bahkan pada himpunan bilangan kompleks.</p>
+                    <div class="kesimpulan">
+                        Jadi, satu-satunya solusi sistem persamaan tersebut adalah <strong>$(x, y, z) = (2, 2, 2)$</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <div class="pagination-wrapper"></div>
+
+        <footer class="footer">
+            <p>by KulikMath • <a href="https://otakbiru.github.io/kulikmath/" style="color: var(--teal-primary);">otakbiru.github.io/kulikmath/</a></p>
+        </footer>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
