@@ -207,7 +207,8 @@ const DAFTAR_ARSIP = [
         paket: [
             { judul: "OSP SMA 2003", file: "OSP SMA 2003.html" },
             { judul: "OSP SMA 2006", file: "OSP SMA 2006.html" },
-            { judul: "OSP SMA 2007", file: "OSP SMA 2007.html" }
+            { judul: "OSP SMA 2007", file: "OSP SMA 2007.html" },
+            { judul: "OSP SMA 2011", file: "OSP SMA 2011.html" }
         ]
     },
     {
@@ -243,7 +244,8 @@ const DAFTAR_ARTIKEL = [
         kategori: "Geometri",
         folder: "Artikel/Geometri",
         artikel: [
-            { judul: "Golden Ratio (Rasio Emas)", file: "Golden Ratio (Rasio Emas).html" }
+            { judul: "Golden Ratio (Rasio Emas)", file: "Golden Ratio (Rasio Emas).html" },
+            { judul: "Cara Al-Biruni Menghitung Jari-Jari Bumi", file: "Cara Al-Biruni Menghitung Jari-Jari Bumi.html" }
         ]
     },
     {

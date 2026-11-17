@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cara Al-Biruni Menghitung Jari-Jari Bumi - KulikMath</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Artikel -->
+        <div class="page-header">
+            <p class="intro-text">
+                Artikel Khusus <span id="auto-level" class="level-highlight">...</span> —
+                <span class="topic-highlight">Cara Al-Biruni Menghitung Jari-Jari Bumi</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Isi Artikel -->
+        <article class="materi-card">
+            <h2>1. Latar Belakang: Dari Unta Padang Pasir ke Satu Puncak Bukit</h2>
+            <p>
+                Sebelum abad ke-11, metode standar untuk mengukur ukuran Bumi berasal dari <strong>Eratosthenes</strong> (~240 SM) dan tim astronom Khalifah <strong>Al-Ma'mun</strong> (abad ke-9 M).
+                Kedua metode klasik tersebut mengharuskan pengukur berjalan melintasi gurun sejauh ratusan kilometer searah garis bujur (utara–selatan) sambil mengukur selisih sudut datang sinar Matahari atau tinggi bintang kutub di dua kota yang berjauhan.
+            </p>
+            <p>
+                Sekitar tahun 1018 M, ketika berada di <strong>Benteng Nandana</strong> (kini di wilayah Punjab, Pakistan), matematikawan dan astronom besar <strong>Abu Rayhan Al-Biruni</strong> (973–1048 M) merancang terobosan elegan yang dicatat dalam karyanya <em>Tahdid Nihayat al-Amakin</em> dan <em>Al-Qanun al-Mas'udi</em>.
+                Alih-alih mengirim ekspedisi lintas gurun, Al-Biruni menyadari bahwa <strong>jari-jari Bumi dapat dihitung oleh satu orang di satu lokasi</strong> hanya dengan berbekal:
+            </p>
+            <ul>
+                <li>Sebuah bukit atau gunung yang menghadap ke dataran rata yang luas,</li>
+                <li>Sebuah <strong>astrolab</strong> (alat ukur sudut presisi), dan</li>
+                <li>Hukum-hukum <strong>trigonometri</strong> pada segitiga siku-siku serta aturan sinus.</li>
+            </ul>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+
+            <h2>2. Tahap Pertama: Mengukur Tinggi Gunung (\(h\))</h2>
+            <p>
+                Langkah pertama dalam metode Al-Biruni adalah menentukan tinggi tegak lurus puncak gunung \(M\) dari permukaan dataran rata di bawahnya, yaitu \(h = MC\).
+                Tentu saja kita tidak bisa menjulurkan tali ukur menembus bagian dalam gunung. Al-Biruni menyelesaikannya dengan memilih dua titik pengamatan \(A\) dan \(B\) di dataran rata yang segaris dengan kaki gunung \(C\).
+            </p>
+
+            <div id="svg-albiruni-tinggi" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+
+            <p>
+                Prosedur pengukurannya adalah sebagai berikut:
+            </p>
+            <ol>
+                <li>Ukur jarak mendatar \(d = AB\) di antara dua titik pengamatan di tanah datar.</li>
+                <li>Dari titik \(A\) (lebih jauh), bidik puncak gunung \(M\) dengan astrolab dan catat sudut elevasinya \(\angle MAC = \theta_1\).</li>
+                <li>Dari titik \(B\) (lebih dekat), bidik kembali puncak gunung \(M\) dan catat sudut elevasinya \(\angle MBC = \theta_2\) (dengan \(\theta_2 \gt \theta_1\)).</li>
+            </ol>
+            <p>
+                Pada segitiga siku-siku \(\triangle ACM\) dan \(\triangle BCM\) (siku-siku di \(C\)), berlaku:
+                \[\cot\theta_1 = \frac{AC}{h} \implies AC = h\cot\theta_1, \qquad \cot\theta_2 = \frac{BC}{h} \implies BC = h\cot\theta_2\]
+                Kurangkan kedua persamaan tersebut menggunakan \(d = AC - BC\):
+                \[d = h(\cot\theta_1 - \cot\theta_2) \implies h = \frac{d}{\cot\theta_1 - \cot\theta_2}\]
+                Jika ditulis dalam fungsi sinus (mengingat \(\cot\theta_1 - \cot\theta_2 = \dfrac{\cos\theta_1}{\sin\theta_1} - \dfrac{\cos\theta_2}{\sin\theta_2} = \dfrac{\sin(\theta_2 - \theta_1)}{\sin\theta_1\sin\theta_2}\)), kita peroleh rumus klasik yang juga langsung didapat dari Aturan Sinus pada \(\triangle ABM\):
+                \[\boxed{h = \frac{d\sin\theta_1\sin\theta_2}{\sin(\theta_2 - \theta_1)}}\]
+            </p>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+
+            <h2>3. Tahap Kedua: Sudut Depresi Cakrawala (\(\alpha\)) &amp; Rumus Jari-Jari Bumi (\(R\))</h2>
+            <p>
+                Setelah tinggi gunung \(h\) diketahui, Al-Biruni naik ke puncak gunung \(M\). Dari puncak tersebut, ia mengarahkan astrolab ke arah garis batas langit dan dataran jauh (<strong>cakrawala / horizon</strong>) di titik \(H\).
+            </p>
+
+            <div id="svg-albiruni-bumi" style="display: flex; justify-content: center; margin: 1rem 0;"></div>
+
+            <p>
+                Perhatikan geometri penampang bola Bumi yang berpusat di \(O\) dengan jari-jari \(R = OC = OH\):
+            </p>
+            <ul>
+                <li>Garis pandang pengamat dari puncak gunung \(M\) ke cakrawala \(H\) merupakan <strong>garis singgung</strong> bola Bumi di titik \(H\). Oleh karena itu, jari-jari \(OH\) tegak lurus terhadap garis pandang \(MH\) (\(\angle OHM = 90^\circ\)).</li>
+                <li>Garis mendatar lokal di puncak gunung (\(ML\)) tegak lurus terhadap garis vertikal yang menuju pusat Bumi (\(OM\)), sehingga \(\angle OML = 90^\circ\).</li>
+                <li>Astrolab mengukur <strong>sudut depresi cakrawala</strong> \(\alpha = \angle LMH\), yaitu sudut turunnya pandangan ke cakrawala di bawah garis mendatar.</li>
+            </ul>
+            <p>
+                Karena \(\angle OML = 90^\circ\), sudut di dalam segitiga siku-siku \(\triangle OHM\) pada titik \(M\) adalah:
+                \[\angle OMH = 90^\circ - \alpha\]
+                Jumlah sudut pada \(\triangle OHM\) yang siku-siku di \(H\) memberikan \(\angle MOH = 90^\circ - \angle OMH = \alpha\).
+                Dengan menggunakan perbandingan sinus atau kosinus pada \(\triangle OHM\):
+                \[\cos\alpha = \sin(90^\circ - \alpha) = \frac{OH}{OM} = \frac{R}{R + h}\]
+                Sekarang selesaikan persamaan aljabar di atas untuk menyatakan \(R\) dalam \(h\) dan \(\alpha\):
+                \[\begin{aligned}
+                R\cos\alpha + h\cos\alpha &= R \\
+                R - R\cos\alpha &= h\cos\alpha \\
+                R(1 - \cos\alpha) &= h\cos\alpha
+                \end{aligned}\]
+                Diperolehlah <strong>Rumus Al-Biruni untuk Jari-Jari Bumi</strong>:
+                \[\boxed{R = \frac{h\cos\alpha}{1 - \cos\alpha}}\]
+                Menggunakan identitas trigonometri sudut paruh \(1 - \cos\alpha = 2\sin^2\!\left(\dfrac{\alpha}{2}\right)\), rumus ini juga sering ditulis sebagai:
+                \[R = \frac{h\cos\alpha}{2\sin^2(\alpha / 2)}\]
+            </p>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+
+            <h2>4. Data Pengukuran Asli Al-Biruni di Nandana</h2>
+            <p>
+                Dalam catatannya di Benteng Nandana, Al-Biruni memperoleh data pengamatan berikut:
+            </p>
+            <ul>
+                <li>Tinggi gunung: \(h = 652\dfrac{1}{20}\text{ hasta} = 652{,}05\text{ hasta}\) (<em>dhira'</em> / <em>cubit</em>).</li>
+                <li>Sudut depresi cakrawala: \(\alpha = 34'\) (\(34\) menit busur \(= \left(\dfrac{34}{60}\right)^\circ \approx 0{,}56667^\circ\)).</li>
+            </ul>
+            <p>
+                Mari kita substitusikan nilai-nilai tersebut ke dalam rumus Al-Biruni:
+                \[\cos(34') = \cos(0{,}56667^\circ) \approx 0{,}99995109, \qquad 1 - \cos(34') \approx 0{,}00004891\]
+                \[R = \frac{652{,}05 \times 0{,}99995109}{0{,}00004891} \approx 13.331.000\text{ hasta}\]
+                Dengan tabel sinus seksagesimal pada zamannya, Al-Biruni memperoleh nilai \(R \approx 12.851.370\text{ hasta}\) (atau keliling Bumi sekitar \(80.780.000\text{ hasta}\)).
+                Jika dikonversi menggunakan standar hasta yang dipakai dalam geodesi Abbasiyah (\(\approx 49{,}33\text{ cm}\)), nilai Al-Biruni setara dengan:
+                \[R_{\text{Al-Biruni}} \approx 6.339{,}6\text{ km}\]
+                Bandingkan dengan jari-jari rata-rata volumetrik Bumi menurut pengukuran satelit modern (\(R_{\text{modern}} \approx 6.371{,}0\text{ km}\)):
+                hasil Al-Biruni hanya berselisih sekitar \(31{,}4\text{ km}\) atau <strong>galat relatif kurang dari \(0{,}5\%\)</strong>!
+            </p>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+
+            <h2>5. Aproksimasi Sudut Kecil &amp; Tantangan Fisika</h2>
+            <p>
+                Karena tinggi gunung \(h\) jauh lebih kecil daripada jari-jari Bumi \(R\) (\(h \ll R\)), sudut depresi \(\alpha\) selalu bernilai sangat kecil (dalam satuan radian, \(\alpha \approx 0{,}01\text{ rad}\)).
+                Menggunakan deret Taylor untuk \(\alpha\) dalam radian (\(\cos\alpha \approx 1 - \dfrac{\alpha^2}{2}\)):
+                \[R = \frac{h\cos\alpha}{1 - \cos\alpha} \approx \frac{h}{\frac{1}{2}\alpha^2} = \frac{2h}{\alpha^2} \quad (\alpha \text{ dalam radian})\]
+                Atau secara ekuivalen, jarak pandang ke cakrawala \(s = MH = \sqrt{(R + h)^2 - R^2} = \sqrt{2Rh + h^2} \approx \sqrt{2Rh}\).
+            </p>
+            <p>
+                Hubungan \(R \approx \dfrac{2h}{\alpha^2}\) memperlihatkan dua catatan penting dalam eksperimen ini:
+            </p>
+            <ol>
+                <li><strong>Sensitivitas Kuadratik terhadap Sudut \(\alpha\):</strong> Melalui diferensial logaritmik \(\dfrac{dR}{R} \approx -2\dfrac{d\alpha}{\alpha}\), galat sebesar \(1'\) saja pada pengukuran \(\alpha = 34'\) (\(\approx 3\%\)) akan menggeser hasil perhitungan \(R\) sebesar \(\approx 6\%\). Ini menuntut instrumen astrolab berdiameter besar dengan skala menit busur yang sangat halus.</li>
+                <li><strong>Refraksi Atmosfer:</strong> Cahaya dari cakrawala yang merambat menembus lapisan udara dengan kerapatan berbeda mengalami pembiasan melengkung ke bawah, sehingga cakrawala tampak sedikit lebih tinggi (sudut depresi tampak \(\alpha\) mengecil sekitar \(8\%\)).</li>
+            </ol>
+        </article>
+
+        <!-- Contoh Soal Latihan -->
+        <h2 class="category-heading" style="margin: 2rem 0 0.8rem;">Latihan Soal &amp; Pembahasan</h2>
+
+        <article class="soal-item" id="1">
+            <div class="soal-no">Latihan 1</div>
+            <div class="soal-teks">
+                Seorang peneliti berdiri di puncak bukit pantai pada ketinggian \(h = 500\text{ m}\) di atas permukaan laut. Tanpa menggunakan aproksimasi, jika jari-jari Bumi adalah \(R = 6.400\text{ km}\), berapakah jarak garis lurus terjauh ke titik cakrawala laut (\(MH\)) yang dapat dilihat peneliti tersebut?
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ubah satuan ke kilometer: \(h = 0{,}5\text{ km}\) dan \(R = 6.400\text{ km}\). Pada segitiga siku-siku \(\triangle OHM\) (siku-siku di \(H\)), berlaku Teorema Pythagoras:</p>
+                    \[MH = \sqrt{(R + h)^2 - R^2} = \sqrt{2Rh + h^2}\]
+                    <p>Substitusikan \(R = 6.400\) dan \(h = 0{,}5\):</p>
+                    \[MH = \sqrt{2(6.400)(0{,}5) + (0{,}5)^2} = \sqrt{6.400 + 0{,}25} \approx 80{,}00156\text{ km} \approx 80\text{ km}\]
+                    <div class="kesimpulan">
+                        Jadi, jarak pandang ke cakrawala laut adalah sekitar <strong>\(80\text{ km}\)</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <article class="soal-item" id="2">
+            <div class="soal-no">Latihan 2</div>
+            <div class="soal-teks">
+                Untuk mengukur tinggi sebuah tebing \(MC = h\), dua titik \(A\) dan \(B\) di tanah datar dipilih segaris dengan kaki tebing \(C\) dengan jarak \(AB = 100\text{ m}\). Jika sudut elevasi puncak tebing dari \(A\) adalah \(30^\circ\) dan dari \(B\) adalah \(45^\circ\), tentukan tinggi tebing \(h\)!
+            </div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan rumus tahap pertama metode Al-Biruni dengan \(d = 100\text{ m}\), \(\theta_1 = 30^\circ\), dan \(\theta_2 = 45^\circ\):</p>
+                    \[h = \frac{d}{\cot 30^\circ - \cot 45^\circ} = \frac{100}{\sqrt{3} - 1}\]
+                    <p>Rasionalkan penyebutnya:</p>
+                    \[h = \frac{100(\sqrt{3} + 1)}{3 - 1} = 50(\sqrt{3} + 1) \approx 136{,}6\text{ m}\]
+                    <div class="kesimpulan">
+                        Jadi, tinggi tebing tersebut adalah <strong>\(50(\sqrt{3} + 1)\text{ m} \approx 136{,}6\text{ m}\)</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>by KulikMath • <a href="https://otakbiru.github.io/kulikmath/" style="color: var(--teal-primary);">otakbiru.github.io/kulikmath/</a></p>
+        </footer>
+    </main>
+
+    <!-- Render Diagram Geometri via GeoSVG.js -->
+    <script>
+        (function () {
+            function renderAllDiagrams() {
+                if (typeof GeoSVG === "undefined") return;
+
+                // 1. Diagram Pengukuran Tinggi Gunung (A, B, C, M)
+                const elTinggi = document.getElementById("svg-albiruni-tinggi");
+                if (elTinggi && !elTinggi.querySelector("svg")) {
+                    const g1 = new GeoSVG(elTinggi, { width: 340, height: 195 });
+                    const A = { x: 30, y: 155 };
+                    const B = { x: 145, y: 155 };
+                    const C = { x: 265, y: 155 };
+                    const M = { x: 265, y: 35 };
+
+                    // Siluet gunung halus di belakang MC
+                    g1.buatPoligon([
+                        { x: 195, y: 155 },
+                        M,
+                        { x: 315, y: 155 }
+                    ], { fill: "rgba(100, 116, 139, 0.12)", stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: true });
+
+                    g1.buatSegmen(A, C, { stroke: "var(--text-main)", strokeWidth: 2 });
+                    g1.buatSegmen(C, M, { stroke: "#dc2626", strokeWidth: 2.4 });
+                    g1.buatSegmen(A, M, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    g1.buatSegmen(B, M, { stroke: "#d97706", strokeWidth: 1.8 });
+
+                    g1.buatSiku(B, C, M, { size: 9, stroke: "var(--text-main)" });
+                    g1.buatSudut(C, A, M, { radius: 28, label: "θ₁", stroke: "var(--teal-primary)", labelOffset: 10 });
+                    g1.buatSudut(C, B, M, { radius: 24, label: "θ₂", stroke: "#d97706", labelOffset: 10 });
+
+                    g1.buatTitik(A, { label: "A", labelPosition: "bottom-center", size: 3.5, color: "var(--text-main)" });
+                    g1.buatTitik(B, { label: "B", labelPosition: "bottom-center", size: 3.5, color: "var(--text-main)" });
+                    g1.buatTitik(C, { label: "C", labelPosition: "bottom-center", size: 3.5, color: "var(--text-main)" });
+                    g1.buatTitik(M, { label: "M", labelPosition: "top-center", size: 4, color: "#dc2626" });
+
+                    g1.buatTeks((A.x + B.x) / 2, 173, "d", { position: "middle-center", fontSize: 12, fill: "var(--text-main)" });
+                    g1.buatTeks(278, (C.y + M.y) / 2, "h", { position: "middle-left", fontSize: 13, fill: "#dc2626" });
+                }
+
+                // 2. Diagram Geometri Bola Bumi & Sudut Depresi Cakrawala
+                const elBumi = document.getElementById("svg-albiruni-bumi");
+                if (elBumi && !elBumi.querySelector("svg")) {
+                    const g2 = new GeoSVG(elBumi, { width: 340, height: 245 });
+                    const O = { x: 145, y: 165 };
+                    const R = 95;
+                    const h = 45; // diperbesar secara visual agar jelas
+                    const C = { x: O.x, y: O.y - R };
+                    const M = { x: O.x, y: O.y - R - h };
+                    const L = { x: O.x + 135, y: M.y };
+
+                    // Sudut alpha = arccos(R / (R + h))
+                    const alpha = Math.acos(R / (R + h));
+                    // Karena M berada tepat di atas O (sudut -pi/2), titik singgung H di kanan atas memiliki sudut -pi/2 + alpha
+                    const angH = -Math.PI / 2 + alpha;
+                    const H = { x: O.x + R * Math.cos(angH), y: O.y + R * Math.sin(angH) };
+
+                    g2.buatLingkaran(O, R, { fill: "rgba(13, 148, 136, 0.08)", stroke: "var(--teal-primary)", strokeWidth: 2 });
+                    // Segmen vertikal OM (R + h)
+                    g2.buatSegmen(O, C, { stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    g2.buatSegmen(C, M, { stroke: "#dc2626", strokeWidth: 2.6 });
+                    // Jari-jari OH
+                    g2.buatSegmen(O, H, { stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    // Garis mendatar ML
+                    g2.buatSegmen(M, L, { stroke: "var(--text-muted)", strokeWidth: 1.5, dashed: true });
+                    // Garis pandang MH ke cakrawala
+                    g2.buatSegmen(M, H, { stroke: "#d97706", strokeWidth: 2 });
+
+                    g2.buatSiku(O, H, M, { size: 9, stroke: "#d97706" });
+                    g2.buatSudut(H, M, L, { radius: 34, label: "α", stroke: "#d97706", labelOffset: 10 });
+                    g2.buatSudut(H, O, M, { radius: 26, label: "α", stroke: "var(--teal-primary)", labelOffset: 9 });
+
+                    g2.buatTitik(O, { label: "O", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    g2.buatTitik(C, { label: "C", labelPosition: "left", size: 3.5, color: "var(--text-main)" });
+                    g2.buatTitik(M, { label: "M", labelPosition: "top-left", size: 4, color: "#dc2626" });
+                    g2.buatTitik(H, { label: "H (Cakrawala)", labelPosition: "right", size: 3.5, color: "#d97706" });
+                    g2.buatTitik(L, { label: "L", labelPosition: "right", size: 3, color: "var(--text-muted)" });
+
+                    g2.buatTeks(O.x - 14, (O.y + C.y) / 2, "R", { position: "middle-right", fontSize: 12, fill: "var(--text-main)" });
+                    g2.buatTeks(O.x - 14, (C.y + M.y) / 2, "h", { position: "middle-right", fontSize: 12, fill: "#dc2626" });
+                    g2.buatTeks((O.x + H.x) / 2 + 10, (O.y + H.y) / 2 + 6, "R", { position: "middle-left", fontSize: 12, fill: "var(--text-main)" });
+                }
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", renderAllDiagrams);
+            } else {
+                renderAllDiagrams();
+            }
+        })();
+    </script>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

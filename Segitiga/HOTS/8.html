@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Segitiga</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Segitiga</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <article class="soal-item" id="8">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan segitiga sama kaki $ABC$ dengan $AB = AC$. Misalkan garis bagi sudut $ABC$ memotong $AC$ di titik $D$ sehingga $BC = BD + AD$. Besar sudut $CAB$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2011.html">OSP SMA 2011 (No. 1)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osp11-1" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <div id="geo-osp11-1" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan $\angle ABD = \angle CBD = \alpha$, sehingga $\angle ABC = \angle ACB = 2\alpha$. Pilih titik $E$ pada sisi $BC$ sedemikian sehingga $BE = BD$. Karena $BC = BD + AD$, maka $EC = BC - BE = AD$.</p>
+                    <p>Karena $BD$ adalah garis bagi $\angle ABC$, berdasarkan teorema garis bagi:</p>
+                    $$\frac{AB}{BC} = \frac{AD}{CD} \implies \frac{BC}{CD} = \frac{AB}{AD} = \frac{AC}{CE}$$
+                    <p>Karena $\angle ECD = \angle ACB$, maka $\triangle CED \sim \triangle CAB$ (sisi-sudut-sisi). Akibatnya $\triangle CED$ juga sama kaki dengan $CE = DE$ dan $\angle CDE = \angle DCE = 2\alpha$, sehingga $\angle CED = 180^\circ - 4\alpha$.</p>
+                    <p>Pada segitiga sama kaki $\triangle BDE$ ($BE = BD$ dan $\angle DBE = \alpha$), besar $\angle BED = \dfrac{180^\circ - \alpha}{2}$. Karena $\angle BED + \angle CED = 180^\circ$:</p>
+                    $$\frac{180^\circ - \alpha}{2} + (180^\circ - 4\alpha) = 180^\circ \implies 4\alpha = \frac{180^\circ - \alpha}{2} \implies 9\alpha = 180^\circ \implies \alpha = 20^\circ$$
+                    <p>Maka $\angle CAB = 180^\circ - 4\alpha = 180^\circ - 80^\circ = 100^\circ$.</p>
+                    <div class="kesimpulan">
+                        Jadi, besar sudut $CAB$ adalah <strong>$100^\circ$</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <div class="pagination-wrapper"></div>
+
+        <footer class="footer">
+            <p>by KulikMath • <a href="https://otakbiru.github.io/kulikmath/" style="color: var(--teal-primary);">otakbiru.github.io/kulikmath/</a></p>
+        </footer>
+    </main>
+
+    <!-- Render Diagram Geometri via GeoSVG.js -->
+    <script>
+        (function () {
+            function renderAllDiagrams() {
+                if (typeof GeoSVG === "undefined") return;
+
+                // No. 1: Segitiga sama kaki ABC (sudut puncak 100 derajat), garis bagi BD, titik E pada BC
+                const c1 = document.getElementById("geo-osp11-1");
+                if (c1 && !c1.querySelector("svg")) {
+                    const g1 = new GeoSVG(c1, { width: 260, height: 170 });
+                    const A = { x: 130, y: 28 }, B = { x: 30, y: 140 }, C = { x: 230, y: 140 };
+                    const D = { x: 185, y: 90 }, E = { x: 178, y: 140 };
+                    g1.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    g1.buatSegmen(B, D, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    g1.buatSegmen(D, E, { stroke: "#d97706", strokeWidth: 1.8, dashed: true });
+                    g1.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                    g1.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    g1.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                    g1.buatTitik(D, { label: "D", labelPosition: "top-right", size: 3.5, color: "var(--teal-primary)" });
+                    g1.buatTitik(E, { label: "E", labelPosition: "bottom-center", size: 3.5, color: "#d97706" });
+                }
+
+                // No. 11: Segitiga ABC, E pada AC, D pada BC, BE dan AD berpotongan di F
+                const c11 = document.getElementById("geo-osp11-11");
+                if (c11 && !c11.querySelector("svg")) {
+                    const g11 = new GeoSVG(c11, { width: 250, height: 180 });
+                    const A = { x: 125, y: 22 }, B = { x: 35, y: 150 }, C = { x: 215, y: 150 };
+                    const D = { x: B.x + (C.x - B.x) / 3, y: 150 };
+                    const E = { x: A.x + (C.x - A.x) * 0.4, y: A.y + (C.y - A.y) * 0.4 };
+                    const d = (A.x - D.x) * (B.y - E.y) - (A.y - D.y) * (B.x - E.x);
+                    const F = {
+                        x: ((A.x * D.y - A.y * D.x) * (B.x - E.x) - (A.x - D.x) * (B.x * E.y - B.y * E.x)) / d,
+                        y: ((A.x * D.y - A.y * D.x) * (B.y - E.y) - (A.y - D.y) * (B.x * E.y - B.y * E.x)) / d
+                    };
+                    g11.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    g11.buatSegmen(A, D, { stroke: "#d97706", strokeWidth: 1.8 });
+                    g11.buatSegmen(B, E, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    g11.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                    g11.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    g11.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                    g11.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 3.5, color: "#d97706" });
+                    g11.buatTitik(E, { label: "E", labelPosition: "top-right", size: 3.5, color: "var(--teal-primary)" });
+                    g11.buatTitik(F, { label: "F", labelPosition: "top-left", size: 3.5, color: "var(--text-main)" });
+                }
+
+                // No. 14: Lingkaran luar segitiga ABC, tali busur AD garis bagi, DK tegak lurus AC di M
+                const c14 = document.getElementById("geo-osp11-14");
+                if (c14 && !c14.querySelector("svg")) {
+                    const g14 = new GeoSVG(c14, { width: 240, height: 220 });
+                    const O = { x: 120, y: 110 }, r = 82;
+                    const pt = deg => ({ x: O.x + r * Math.cos(deg * Math.PI / 180), y: O.y + r * Math.sin(deg * Math.PI / 180) });
+                    const A = pt(155), B = pt(-95), C = pt(-5), D = pt(-50), K = pt(50);
+                    const L = { x: (B.x + C.x) / 2.2, y: (B.y + C.y) / 2.2 };
+                    const M = { x: 173, y: 78 };
+                    g14.buatLingkaran(O, r, { fill: "rgba(100, 116, 139, 0.04)", stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                    g14.buatSegitiga(A, B, C, { fill: "none", stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    g14.buatSegmen(A, D, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    g14.buatSegmen(D, K, { stroke: "#d97706", strokeWidth: 1.8 });
+                    g14.buatTitik(A, { label: "A", labelPosition: "left", size: 3.5, color: "var(--text-main)" });
+                    g14.buatTitik(B, { label: "B", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                    g14.buatTitik(C, { label: "C", labelPosition: "right", size: 3.5, color: "var(--text-main)" });
+                    g14.buatTitik(D, { label: "D", labelPosition: "top-right", size: 3.5, color: "var(--teal-primary)" });
+                    g14.buatTitik(K, { label: "K", labelPosition: "bottom-right", size: 3.5, color: "#d97706" });
+                    g14.buatTitik(M, { label: "M", labelPosition: "bottom-left", size: 3, color: "#d97706" });
+                }
+
+                // No. 20: Segitiga ABC dengan titik dalam P dan segitiga pedal sama sisi DEF
+                const c20 = document.getElementById("geo-osp11-20");
+                if (c20 && !c20.querySelector("svg")) {
+                    const g20 = new GeoSVG(c20, { width: 250, height: 190 });
+                    const C = { x: 45, y: 155 }, A = { x: 210, y: 155 }, B = { x: 165, y: 25 };
+                    const P = { x: 145, y: 110 };
+                    const D = { x: 100, y: 95 }, E = { x: 145, y: 155 }, F = { x: 185, y: 92 };
+                    g20.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.04)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    g20.buatSegitiga(D, E, F, { fill: "rgba(13, 148, 136, 0.14)", stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    g20.buatSegmen(P, D, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: true });
+                    g20.buatSegmen(P, E, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: true });
+                    g20.buatSegmen(P, F, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: true });
+                    g20.buatSegmen(A, P, { stroke: "#d97706", strokeWidth: 1.5 });
+                    g20.buatSegmen(B, P, { stroke: "#d97706", strokeWidth: 1.5 });
+                    g20.buatTitik(A, { label: "A", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                    g20.buatTitik(B, { label: "B", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                    g20.buatTitik(C, { label: "C", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    g20.buatTitik(P, { label: "P", labelPosition: "top-left", size: 3.5, color: "#d97706" });
+                    g20.buatTitik(D, { label: "D", labelPosition: "top-left", size: 3, color: "var(--teal-primary)" });
+                    g20.buatTitik(E, { label: "E", labelPosition: "bottom-center", size: 3, color: "var(--teal-primary)" });
+                    g20.buatTitik(F, { label: "F", labelPosition: "top-right", size: 3, color: "var(--teal-primary)" });
+                }
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", renderAllDiagrams);
+            } else {
+                renderAllDiagrams();
+            }
+        })();
+    </script>
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
