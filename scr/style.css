@@ -1,4 +1,7 @@
 :root {
+    color-scheme: light;
+    scrollbar-color: #cbd5e1 transparent;
+    scrollbar-width: thin;
     --bg-body: #f8fafc;
     --bg-card: #ffffff;
     --bg-subtle: #f0fdfa;
@@ -12,6 +15,8 @@
 }
 
 [data-theme="dark"] {
+    color-scheme: dark;
+    scrollbar-color: #475569 transparent;
     --bg-body: #0f172a;
     --bg-card: #1e293b;
     --bg-subtle: #132a2e;
@@ -279,7 +284,7 @@ body {
 
 /* Kotak Pembahasan */
 .pembahasan-box {
-    display: none;
+    display: block;
     margin-top: 1.25rem;
     padding: 1.25rem;
     background-color: var(--bg-subtle);
@@ -288,9 +293,53 @@ body {
     overflow-x: auto;
 }
 
+.pembahasan-box:not(.show):not([hidden="until-found"]) {
+    display: none;
+}
+
+.pembahasan-box[hidden="until-found"] {
+    content-visibility: hidden;
+    margin-top: 0;
+    padding: 0;
+    border-width: 0;
+}
+
 .pembahasan-box.show {
     display: block;
     animation: fadeIn 0.25s ease-in-out;
+}
+
+/* Optimasi render kartu soal di bawah lipatan layar awal */
+.soal-item:nth-of-type(n + 5) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 260px;
+}
+
+/* Tipografi judul seimbang */
+h1, h2, h3, .intro-text, .topic-highlight {
+    text-wrap: balance;
+}
+
+/* Fokus keyboard jelas (Aksesibilitas) */
+.btn-solusi:focus-visible,
+.btn-tutup:focus-visible,
+.theme-btn:focus-visible,
+.home-btn:focus-visible,
+.level-pill:focus-visible,
+.page-btn:focus-visible,
+.search-box:focus-visible,
+.topic-card:focus-visible {
+    outline: 2px solid var(--teal-primary);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 @keyframes fadeIn {
@@ -1084,12 +1133,17 @@ body.print-measure-mode .container {
 }
 
 body.print-measure-mode .soal-item {
+    content-visibility: visible !important;
+    contain-intrinsic-size: auto !important;
     padding: 1rem 1.2rem !important;
     border: 1px solid #cbd5e1 !important;
 }
 
 body.print-measure-mode.is-arsip-page .pembahasan-box {
+    content-visibility: visible !important;
     display: block !important;
+    margin-top: 1.25rem !important;
+    border-width: 1px !important;
     animation: none !important;
     padding: 0.9rem 1.1rem !important;
 }
@@ -1222,6 +1276,8 @@ body.print-measure-mode .katex-display {
     }
 
     .soal-item {
+        content-visibility: visible !important;
+        contain-intrinsic-size: auto !important;
         background: #ffffff !important;
         box-shadow: none !important;
         border: 1px solid #cbd5e1 !important;
@@ -1231,6 +1287,7 @@ body.print-measure-mode .katex-display {
 
     /* Tampilkan semua kotak pembahasan pada halaman Arsip Soal saat dicetak */
     body.is-arsip-page .pembahasan-box {
+        content-visibility: visible !important;
         display: block !important;
         animation: none !important;
         background-color: #f8fafc !important;

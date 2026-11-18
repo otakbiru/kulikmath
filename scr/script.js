@@ -188,6 +188,8 @@ const DAFTAR_ARSIP = [
         folder: "Arsip_Soal/OSK",
         paket: [
             { judul: "OSK SMA 2002", file: "OSK SMA 2002.html" },
+            { judul: "OSK SMA 2003", file: "OSK SMA 2003.html" },
+            { judul: "OSK SMA 2004", file: "OSK SMA 2004.html" },
             { judul: "OSK SMA 2006", file: "OSK SMA 2006.html" },
             { judul: "OSK SMA 2007", file: "OSK SMA 2007.html" },
             { judul: "OSK SMA 2011", file: "OSK SMA 2011.html" }
@@ -446,16 +448,45 @@ function initSoalAndMateriPage() {
             const btnTutup = item.querySelector(".btn-tutup");
 
             if (btnBuka && boxSolusi) {
+                const isInitiallyShown = boxSolusi.classList.contains("show");
+                btnBuka.setAttribute("aria-expanded", isInitiallyShown ? "true" : "false");
+
+                if (!isInitiallyShown && "onbeforematch" in document.body) {
+                    boxSolusi.setAttribute("hidden", "until-found");
+                    boxSolusi.addEventListener("beforematch", () => {
+                        boxSolusi.removeAttribute("hidden");
+                        boxSolusi.classList.add("show");
+                        btnBuka.textContent = "SEMBUNYIKAN PENYELESAIAN";
+                        btnBuka.setAttribute("aria-expanded", "true");
+                    });
+                }
+
                 btnBuka.addEventListener("click", () => {
-                    const isShown = boxSolusi.classList.toggle("show");
-                    btnBuka.textContent = isShown ? "SEMBUNYIKAN PENYELESAIAN" : "LIHAT PENYELESAIAN";
+                    const willShow = !boxSolusi.classList.contains("show");
+                    if (willShow) {
+                        boxSolusi.removeAttribute("hidden");
+                        boxSolusi.classList.add("show");
+                        btnBuka.textContent = "SEMBUNYIKAN PENYELESAIAN";
+                        btnBuka.setAttribute("aria-expanded", "true");
+                    } else {
+                        boxSolusi.classList.remove("show");
+                        if ("onbeforematch" in document.body) {
+                            boxSolusi.setAttribute("hidden", "until-found");
+                        }
+                        btnBuka.textContent = "LIHAT PENYELESAIAN";
+                        btnBuka.setAttribute("aria-expanded", "false");
+                    }
                 });
             }
 
             if (btnTutup && boxSolusi && btnBuka) {
                 btnTutup.addEventListener("click", () => {
                     boxSolusi.classList.remove("show");
+                    if ("onbeforematch" in document.body) {
+                        boxSolusi.setAttribute("hidden", "until-found");
+                    }
                     btnBuka.textContent = "LIHAT PENYELESAIAN";
+                    btnBuka.setAttribute("aria-expanded", "false");
                 });
             }
         });
