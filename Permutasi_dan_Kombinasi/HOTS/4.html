@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOTS - Permutasi dan Kombinasi</title>
+    <title>HOTS - Permutasi dan Kombinasi [4]</title>
 
     <!-- KaTeX CSS & JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
@@ -37,26 +37,122 @@
 
         <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
 
-        <article class="soal-item" id="4">
+      <!-- SOAL 31 -->
+      <article class="soal-item" id="31">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Suatu susunan 10-angka $0, 1, 2, 3, 4, 5, 6, 7, 8, 9$ dikatakan <em>cantik</em> jika (i) saat dibaca dari kiri ke kanan, $0, 1, 2, 3, 4$ membentuk barisan naik, sedangkan $5, 6, 7, 8, 9$ membentuk barisan turun, dan (ii) angka $0$ tidak berada pada ujung kiri. Sebagai contoh, $9807123654$ adalah susunan cantik. Tentukan banyaknya susunan cantik.
+                Sekelompok orang akan berjabat tangan. Setiap orang hanya dapat melakukan jabat tangan sekali (dengan orang yang sama). Tidak boleh melakukan jabat tangan dengan dirinya sendiri. Jika dalam sekelompok orang terjadi $190$ jabat tangan, maka banyaknya orang dalam kelompok tersebut adalah $\cdots$
             </div>
-            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN SMA 2007.html">OSN SMA 2007 (Hari Pertama - No. 4)</a></div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK SMA 2011.html">OSK SMA 2011 (No. 18)</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    <p>Pada syarat (i), urutan relatif angka $0, 1, 2, 3, 4$ harus naik ($0 < 1 < 2 < 3 < 4$), sedangkan urutan relatif angka $5, 6, 7, 8, 9$ harus turun ($9 > 8 > 7 > 6 > 5$). Akibatnya, angka pada posisi paling kiri hanyalah mungkin $0$ atau $9$.</p>
-                    <p>Karena syarat (ii) melarang angka $0$ berada di ujung kiri, maka <strong>posisi paling kiri wajib ditempati angka $9$</strong>.</p>
-                    <p>Tersisa $9$ posisi di sebelah kanan angka $9$, yang harus diisi oleh himpunan $\{0, 1, 2, 3, 4\}$ (5 angka) dan $\{5, 6, 7, 8\}$ (4 angka). Begitu kita memilih $4$ posisi dari $9$ posisi yang ada untuk menempatkan $\{5, 6, 7, 8\}$, urutan mereka ($8, 7, 6, 5$) sudah tunggal, dan demikian pula $5$ posisi sisanya otomatis terisi oleh $0, 1, 2, 3, 4$ secara berurutan.</p>
-                    <p>Oleh karena itu, banyaknya susunan cantik adalah:</p>
-                    $$\binom{9}{4} = \frac{9 \times 8 \times 7 \times 6}{4 \times 3 \times 2 \times 1} = 126$$
+                    <p>Misalkan banyaknya orang adalah $n$. Banyaknya jabat tangan antarpasangan adalah $\dbinom{n}{2}$:</p>
+                    $\frac{n(n - 1)}{2} = 190 \implies n^2 - n - 380 = 0 \implies (n - 20)(n + 19) = 0$
+                    <p>Karena $n > 0$, diperoleh $n = 20$.</p>
                     <div class="kesimpulan">
-                        Jadi, banyaknya susunan cantik adalah <strong>$126$</strong>.
+                        Jadi, banyaknya orang dalam kelompok tersebut adalah <strong>$20$</strong>.
                     </div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+      <!-- SOAL 32 -->
+      <article class="soal-item" id="32">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Banyaknya kemungkinan bilangan asli berbeda $a, b, c,$ dan $d$ yang kurang dari $10$ dan memenuhi persamaan $a + b = c + d$ ada sebanyak $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2011.html">OSP SMA 2011 (No. 6)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Bilangan yang tersedia adalah $\{1, 2, \dots, 9\}$. Misalkan jumlahnya $a + b = c + d = k$ dengan $3 \le k \le 17$. Untuk setiap $k$, hitung banyaknya himpunan pasangan dua angka berbeda $m_k$ yang jumlahnya $k$; dua himpunan pasangan berbeda pasti saling lepas (keempat bilangan otomatis berbeda). Pemilihan $2$ pasangan dari $m_k$ pasangan memberi $\dbinom{m_k}{2} \times 2! \times 2! \times 2! = 8\dbinom{m_k}{2}$ tupel terurut $(a, b, c, d)$:</p>
+                    <ul>
+                        <li>$k = 5, 6, 14, 15$: $m_k = 2 \implies 4 \times 8\dbinom{2}{2} = 32$.</li>
+                        <li>$k = 7, 8, 12, 13$: $m_k = 3 \implies 4 \times 8\dbinom{3}{2} = 96$.</li>
+                        <li>$k = 9, 10, 11$: $m_k = 4 \implies 3 \times 8\dbinom{4}{2} = 144$.</li>
+                        <li>$k = 3, 4, 16, 17$: $m_k = 1 \implies 0$.</li>
+                    </ul>
+                    <p>Total seluruh kemungkinan $(a, b, c, d)$ adalah $32 + 96 + 144 = 272$.</p>
+                    <div class="kesimpulan">
+                        Jadi, banyaknya kemungkinan adalah <strong>$272$</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+      <!-- SOAL 33 -->
+      <article class="soal-item" id="33">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Pada ruang Cartesius kita ingin bergerak dari titik $(2, 0, 11)$ ke titik $(20, 1, 1)$ selalu pada koordinat $(x, y, z)$ dengan paling sedikit dua dari $x, y,$ dan $z$ adalah bilangan bulat, dan lintasan terpendek. Cara bergerak yang dimaksud sebanyak $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2011.html">OSP SMA 2011 (No. 9)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Syarat "paling sedikit dua dari $x, y, z$ adalah bilangan bulat" berarti lintasan hanya boleh bergerak sejajar sumbu-$x$, sumbu-$y$, atau sumbu-$z$ pada grid titik-titik bilangan bulat (karena perubahan hanya boleh terjadi pada satu koordinat dalam satu waktu). Untuk lintasan terpendek dari $(2, 0, 11)$ ke $(20, 1, 1)$:</p>
+                    <ul>
+                        <li>Arah $+x$: $20 - 2 = 18$ langkah satuan.</li>
+                        <li>Arah $+y$: $1 - 0 = 1$ langkah satuan.</li>
+                        <li>Arah $-z$: $11 - 1 = 10$ langkah satuan.</li>
+                    </ul>
+                    <p>Total ada $18 + 1 + 10 = 29$ langkah. Banyaknya cara mengurutkan langkah-langkah tersebut adalah permutasi dengan unsur sama:</p>
+                    $\frac{29!}{18!\,1!\,10!} = \frac{29 \times 28 \times \cdots \times 19}{10!} = 380.570.190$
+                    <div class="kesimpulan">
+                        Jadi, banyaknya cara bergerak adalah <strong>$380.570.190$</strong> cara.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+      <!-- SOAL 34 -->
+      <article class="soal-item" id="34">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Sebanyak $n$ orang pengurus sebuah organisasi akan dibagi ke dalam empat komisi mengikuti ketentuan berikut: (i) setiap anggota tergabung ke dalam tepat dua komisi, dan (ii) setiap dua komisi memiliki tepat satu anggota bersama. Berapakah $n$?
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2002.html">OSP SMA 2002 (Bagian Pertama - No. 11)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena ada $4$ komisi, banyaknya pasangan $2$ komisi berbeda adalah $\dbinom{4}{2} = 6$ pasang.</p>
+                    <p>Menurut syarat (i), setiap pengurus tepat memilih $1$ pasang dari $2$ komisi untuk diikuti. Menurut syarat (ii), setiap pasangan dari $2$ komisi tersebut ditempati oleh tepat $1$ pengurus bersama. Oleh karena itu, terdapat korespondensi satu-satu antara pengurus dan pasangan dua komisi, sehingga:</p>
+                    $n = \binom{4}{2} = 6$
+                    <div class="kesimpulan">
+                        Jadi, nilai $n$ adalah <strong>$6$</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+      <!-- SOAL 35 -->
+      <article class="soal-item" id="35">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Delegasi Indonesia ke suatu pertemuan pemuda internasional terdiri dari $5$ orang. Ada $7$ orang pria dan $5$ orang wanita yang mencalonkan diri untuk menjadi anggota delegasi. Jika dipersyaratkan bahwa paling sedikit seorang anggota itu harus wanita, banyaknya cara memilih anggota delegasi adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK SMA 2004.html">OSK SMA 2004 (No. 20)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan komplemen (total cara memilih $5$ orang dari $12$ calon dikurangi cara memilih semuanya pria):</p>
+                    $\binom{12}{5} - \binom{7}{5} = 792 - 21 = 771$
+                    <div class="kesimpulan">
+                        Jadi, banyaknya cara memilih anggota delegasi adalah <strong>$771$</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
             </div>
         </article>
 

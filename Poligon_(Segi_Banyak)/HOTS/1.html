@@ -122,43 +122,67 @@
             </div>
         </article>
 
-        <!-- SOAL 3 
+        <!-- SOAL 3 -->
         <article class="soal-item" id="3">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal ketiga di sini...
+                Kita gambarkan segi banyak beraturan (reguler) $R$ dengan $2002$ titik sudut beserta semua diagonalnya. Berapakah banyaknya segitiga yang terbentuk yang semua titik sudutnya adalah titik sudut $R$, tetapi tidak ada sisinya yang merupakan sisi $R$?
             </div>
-            <div class="soal-sumber"></div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2002.html">OSP SMA 2002 (Bagian Pertama - No. 19)</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan soal ketiga di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <p>Gunakan Prinsip Inklusi-Eksklusi atau langsung memilih $3$ titik sudut tak berdekatan pada lingkaran (rumus Kaplansky):</p>
+                    <ul>
+                        <li>Total segitiga dari $2002$ titik sudut: $\dbinom{2002}{3} = \dfrac{2002 \times 2001 \times 2000}{6} = 2002 \times 667 \times 1000 = 1.335.334.000$.</li>
+                        <li>Segitiga dengan tepat $1$ sisi milik $R$: pilih $1$ sisi ($2002$ cara), lalu titik ketiga bukan dua tetangganya ($2002 - 4 = 1998$ cara) $\to 2002 \times 1998 = 4.000.004$.</li>
+                        <li>Segitiga dengan tepat $2$ sisi milik $R$: tiga titik berurutan $\to 2002$ buah.</li>
+                    </ul>
+                    <p>Banyaknya segitiga yang memenuhi adalah:</p>
+                    $$2002(667.000 - 1998 - 1) = 2002 \times 665.001 = 1.331.332.002$$
+                    <div class="kesimpulan">
+                        Jadi, banyaknya segitiga yang memenuhi adalah <strong>$1.331.332.002$</strong>.
+                    </div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
             </div>
         </article>
-        -->
 
-        <!-- SOAL 4 
+        <!-- SOAL 4 -->
         <article class="soal-item" id="4">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal keempat di sini...
+                Pada sebuah segi-$6$ beraturan, rasio panjang antara diagonal terpendek terhadap diagonal terpanjang adalah $\cdots$
+                <ol class="pilgan" style="list-style-type: upper-alpha; margin-top: 0.6rem; padding-left: 1.4rem;">
+                    <li>$1 : \sqrt{3}$</li>
+                    <li>$1 : 2$</li>
+                    <li>$1 : 3$</li>
+                    <li>$2 : 3$</li>
+                    <li>$\sqrt{3} : 2$</li>
+                </ol>
             </div>
-            <div class="soal-sumber"></div>
-            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK SMA 2004.html">OSK SMA 2004 (No. 9)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan soal keempat di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <div id="geo-osk04-9" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan panjang sisi segi-$6$ beraturan $ABCDEF$ adalah $a$ dengan pusat $O$:</p>
+                    <ul>
+                        <li>Diagonal terpanjang ($AD$) melalui pusat $O$, panjangnya $AD = AO + OD = 2a$.</li>
+                        <li>Diagonal terpendek ($AE$) merupakan sisi di hadapan sudut dalam $120^\circ$ pada $\triangle AFE$ ($AF = FE = a$):
+                            $$AE = \sqrt{a^2 + a^2 - 2a^2\cos 120^\circ} = \sqrt{2a^2 + a^2} = a\sqrt{3}$$
+                        </li>
+                    </ul>
+                    <p>Rasio diagonal terpendek terhadap diagonal terpanjang adalah $a\sqrt{3} : 2a = \sqrt{3} : 2$.</p>
+                    <div class="kesimpulan">
+                        Jadi, jawabannya adalah <strong>E. $\sqrt{3} : 2$</strong>.
+                    </div>
                 </div>
-                <button class="btn-tutup">TUTUP</button>
+                <button type="button" class="btn-tutup">TUTUP</button>
             </div>
         </article>
-        -->
 
         <!-- SOAL 5 
         <article class="soal-item" id="5">
@@ -429,6 +453,25 @@
             geo.buatTitik(pts.H[0], pts.H[1], { radius: 2.5, fill: "#000", label: "H", labelPosition: "bottom-left" });
         }
 
+        function drawSoal4(containerId) {
+            const c9 = document.getElementById(containerId);
+            if (!c9 || typeof GeoSVG === "undefined" || c9.querySelector("svg")) return;
+            const g9 = new GeoSVG(c9, { width: 220, height: 195 });
+            const O = { x: 110, y: 98 }, r = 72;
+            const pt = deg => ({ x: O.x + r * Math.cos(deg * Math.PI / 180), y: O.y + r * Math.sin(deg * Math.PI / 180) });
+            const A = pt(120), B = pt(60), C = pt(0), D = pt(-60), E = pt(-120), F = pt(180);
+            g9.buatPoligon([A, B, C, D, E, F], { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+            g9.buatSegmen(A, D, { stroke: "#dc2626", strokeWidth: 1.8, dashed: true });
+            g9.buatSegmen(A, E, { stroke: "var(--teal-primary)", strokeWidth: 2 });
+            g9.buatTitik(O, { label: "O", labelPosition: "bottom-right", size: 3, color: "#dc2626" });
+            g9.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+            g9.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+            g9.buatTitik(C, { label: "C", labelPosition: "right", size: 3.5, color: "var(--text-main)" });
+            g9.buatTitik(D, { label: "D", labelPosition: "top-right", size: 3.5, color: "var(--text-main)" });
+            g9.buatTitik(E, { label: "E", labelPosition: "top-left", size: 3.5, color: "var(--text-main)" });
+            g9.buatTitik(F, { label: "F", labelPosition: "left", size: 3.5, color: "var(--text-main)" });
+        }
+
         function renderSemuaGrafik() {
             if (typeof GeoSVG === "undefined") {
                 setTimeout(renderSemuaGrafik, 100);
@@ -438,6 +481,7 @@
             drawSoal1("svg-pembahasan-1", true);
             drawSoal2("svg-soal-2", false);
             drawSoal2("svg-pembahasan-2", true);
+            drawSoal4("geo-osk04-9");
         }
 
         if (document.readyState === "loading") {
