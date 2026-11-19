@@ -285,6 +285,59 @@
             </div>
         </article>
 
+        <!-- SOAL 14 -->
+        <article class="soal-item" id="14">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Dona menyusun lima buah persegi yang kongruen menjadi sebuah bangun datar. Tidak ada persegi yang menindih persegi lainnya. Jika luas bangun yang diperoleh Dona adalah $245\text{ cm}^2$, keliling bangun tersebut paling sedikit adalah $\cdots\text{ cm}$.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2007.html">OSP SMA 2007 (Bagian 1 • No. 6)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Luas masing-masing persegi adalah $\dfrac{245}{5} = 49\text{ cm}^2$, sehingga panjang sisi setiap persegi adalah $s = \sqrt{49} = 7\text{ cm}$.</p>
+                    <p>Keliling bangun gabungan lima persegi ini akan sekecil mungkin apabila sebanyak mungkin sisi persegi saling berimpit (menempel). Dengan $5$ persegi satuan yang saling terhubung sisi-ke-sisi, banyaknya sisi yang berimpit paling banyak adalah $5$ pasang sisi (yakni susunan berbentuk blok $2 \times 2$ ditambah $1$ persegi menempel di sisinya, membentuk pentomino tipe $P$).</p>
+                    <div id="geo-osp07-b1-6" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Dari $5 \times 4 = 20$ sisi persegi, terdapat $5$ pasang ($10$ sisi) yang menempel di bagian dalam, sehingga sisi terluar yang membentuk keliling tersisa $20 - 10 = 10$ sisi.</p>
+                    $$\text{Keliling minimal} = 10 \times 7\text{ cm} = 70\text{ cm}$$
+                    <div class="kesimpulan">
+                        Jadi, keliling bangun tersebut paling sedikit adalah <strong>$70\text{ cm}$</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+            <script>
+                (function () {
+                    function gambarSoal14() {
+                        if (typeof GeoSVG === "undefined") return;
+                        const c6 = document.getElementById("geo-osp07-b1-6");
+                        if (c6 && !c6.querySelector("svg")) {
+                            const g6 = new GeoSVG(c6, { width: 180, height: 150 });
+                            const s = 36, ox = 36, oy = 20;
+                            const rects = [
+                                [0, 0], [1, 0],
+                                [0, 1], [1, 1],
+                                [0, 2]
+                            ];
+                            rects.forEach(([col, row]) => {
+                                const p1 = { x: ox + col * s, y: oy + row * s };
+                                const p2 = { x: p1.x + s, y: p1.y };
+                                const p3 = { x: p1.x + s, y: p1.y + s };
+                                const p4 = { x: p1.x, y: p1.y + s };
+                                g6.buatPoligon([p1, p2, p3, p4], { fill: "rgba(13, 148, 136, 0.12)", stroke: "var(--teal-primary)", strokeWidth: 2 });
+                            });
+                        }
+                    }
+                    if (document.readyState === "loading") {
+                        document.addEventListener("DOMContentLoaded", gambarSoal14);
+                    } else {
+                        gambarSoal14();
+                    }
+                })();
+            </script>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>

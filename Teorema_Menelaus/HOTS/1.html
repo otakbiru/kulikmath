@@ -119,6 +119,31 @@
             </div>
         </article>
 
+        <!-- SOAL 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Pada gambar di bawah ini, panjang $AE = x$, $EC = y$, dan $DC = 2BD$. Perbandingan panjang $BF$ dan $FE$ dinyatakan dalam $x$ dan $y$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2011.html">OSP SMA 2011 (No. 11)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osp11-11" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Tinjau $\triangle BCE$ yang dipotong oleh garis transversal $A - F - D$ (titik $D$ pada sisi $BC$, titik $F$ pada sisi $BE$, dan titik $A$ pada perpanjangan sisi $EC$).</p>
+                    <p>Dengan Teorema Menelaus pada $\triangle BCE$ dan garis transversal $A - F - D$:</p>
+                    $$\frac{BF}{FE} \cdot \frac{EA}{AC} \cdot \frac{CD}{DB} = 1$$
+                    <p>Substitusikan $\dfrac{EA}{AC} = \dfrac{x}{x + y}$ dan $\dfrac{CD}{DB} = 2$:</p>
+                    $$\frac{BF}{FE} \cdot \frac{x}{x + y} \cdot 2 = 1 \implies \frac{BF}{FE} = \frac{x + y}{2x}$$
+                    <div class="kesimpulan">
+                        Jadi, perbandingan panjang $BF$ dan $FE$ adalah <strong>$\dfrac{x + y}{2x}$</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -195,6 +220,28 @@
                     geo2.buatTitik(F, { label: "F", labelPosition: "top-right", size: 3.5, color: "var(--teal-primary)" });
                     geo2.buatTitik(G, { label: "G", labelPosition: "top-left", size: 3.5, color: "#dc2626" });
                     geo2.buatTitik(E, { label: "E", labelPosition: "bottom-center", size: 3.5, color: "#dc2626" });
+                });
+                tunggu(function () {
+                    const c11 = document.getElementById("geo-osp11-11");
+                    if (!c11 || c11.querySelector("svg")) return;
+                    const g11 = new GeoSVG(c11, { width: 250, height: 180 });
+                    const A = { x: 125, y: 22 }, B = { x: 35, y: 150 }, C = { x: 215, y: 150 };
+                    const D = { x: B.x + (C.x - B.x) / 3, y: 150 };
+                    const E = { x: A.x + (C.x - A.x) * 0.4, y: A.y + (C.y - A.y) * 0.4 };
+                    const d = (A.x - D.x) * (B.y - E.y) - (A.y - D.y) * (B.x - E.x);
+                    const F = {
+                        x: ((A.x * D.y - A.y * D.x) * (B.x - E.x) - (A.x - D.x) * (B.x * E.y - B.y * E.x)) / d,
+                        y: ((A.x * D.y - A.y * D.x) * (B.y - E.y) - (A.y - D.y) * (B.x * E.y - B.y * E.x)) / d
+                    };
+                    g11.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    g11.buatSegmen(A, D, { stroke: "#d97706", strokeWidth: 1.8 });
+                    g11.buatSegmen(B, E, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    g11.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                    g11.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    g11.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                    g11.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 3.5, color: "#d97706" });
+                    g11.buatTitik(E, { label: "E", labelPosition: "top-right", size: 3.5, color: "var(--teal-primary)" });
+                    g11.buatTitik(F, { label: "F", labelPosition: "top-left", size: 3.5, color: "var(--text-main)" });
                 });
             });
         })();

@@ -11,16 +11,19 @@ const { exec } = require('child_process');
 const ROOT_DIR = __dirname;
 const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 5500;
 
-// Parse CLI flags (e.g. node live-server.js --port=3000 --open)
+// Parse CLI flags (e.g. node live-server.js --port=3000 --open --no-reload)
 const args = process.argv.slice(2);
 let port = DEFAULT_PORT;
 let shouldOpen = false;
+let noReload = false;
 
 for (const arg of args) {
     if (arg.startsWith('--port=')) {
         port = parseInt(arg.split('=')[1], 10) || DEFAULT_PORT;
     } else if (arg === '--open' || arg === '-o') {
         shouldOpen = true;
+    } else if (arg === '--no-reload') {
+        noReload = true;
     }
 }
 
@@ -51,21 +54,53 @@ const LIVE_RELOAD_SCRIPT = `
 <!-- Injected by KulikMath Live Server -->
 <script>
 (() => {
-    let source;
+    let source = null;
+    let reconnectTimer = null;
+    let isUnloading = false;
+
+    function closeLiveReload() {
+        isUnloading = true;
+        if (reconnectTimer) {
+            clearTimeout(reconnectTimer);
+            reconnectTimer = null;
+        }
+        if (source) {
+            source.close();
+            source = null;
+        }
+    }
+
     function initLiveReload() {
+        if (isUnloading || source) return;
         source = new EventSource('/__live_reload__');
         source.onmessage = (event) => {
             if (event.data === 'reload') {
                 console.log('[live-server] Perubahan berkas terdeteksi. Memuat ulang...');
+                closeLiveReload();
                 location.reload();
             }
         };
         source.onerror = () => {
-            source.close();
-            setTimeout(initLiveReload, 1500);
+            if (source) {
+                source.close();
+                source = null;
+            }
+            if (!isUnloading) {
+                clearTimeout(reconnectTimer);
+                reconnectTimer = setTimeout(initLiveReload, 1500);
+            }
         };
     }
+
     if (window.EventSource) {
+        window.addEventListener('pagehide', closeLiveReload);
+        window.addEventListener('beforeunload', closeLiveReload);
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted || isUnloading) {
+                isUnloading = false;
+                initLiveReload();
+            }
+        });
         initLiveReload();
     }
 })();
@@ -93,25 +128,27 @@ let reloadTimeout = null;
 const IGNORED_DIRS = new Set(['.git', '.gemini', 'node_modules', '.vscode']);
 const WATCH_EXTS = new Set(['.html', '.htm', '.css', '.js', '.json', '.svg', '.png', '.jpg', '.jpeg', '.webp']);
 
-try {
-    fs.watch(ROOT_DIR, { recursive: true }, (eventType, filename) => {
-        if (!filename) return;
+if (!noReload) {
+    try {
+        fs.watch(ROOT_DIR, { recursive: true }, (eventType, filename) => {
+            if (!filename) return;
 
-        // Normalize path separators
-        const norm = filename.replace(/\\/g, '/');
-        const firstSegment = norm.split('/')[0];
-        if (IGNORED_DIRS.has(firstSegment)) return;
+            // Normalize path separators
+            const norm = filename.replace(/\\/g, '/');
+            const firstSegment = norm.split('/')[0];
+            if (IGNORED_DIRS.has(firstSegment)) return;
 
-        const ext = path.extname(filename).toLowerCase();
-        if (WATCH_EXTS.has(ext)) {
-            clearTimeout(reloadTimeout);
-            reloadTimeout = setTimeout(() => {
-                broadcastReload(filename);
-            }, 80);
-        }
-    });
-} catch (err) {
-    console.warn('[live-server] fs.watch recursive warning:', err.message);
+            const ext = path.extname(filename).toLowerCase();
+            if (WATCH_EXTS.has(ext)) {
+                clearTimeout(reloadTimeout);
+                reloadTimeout = setTimeout(() => {
+                    broadcastReload(filename);
+                }, 80);
+            }
+        });
+    } catch (err) {
+        console.warn('[live-server] fs.watch recursive warning:', err.message);
+    }
 }
 
 const server = http.createServer((req, res) => {
@@ -127,6 +164,14 @@ const server = http.createServer((req, res) => {
 
     // SSE Endpoint for Live Reload
     if (pathname === '/__live_reload__') {
+        if (noReload) {
+            res.writeHead(204);
+            res.end();
+            return;
+        }
+        if (req.socket) {
+            req.socket.setNoDelay(true);
+        }
         res.writeHead(200, {
             'Content-Type': 'text/event-stream',
             'Cache-Control': 'no-cache, no-transform',
@@ -138,6 +183,9 @@ const server = http.createServer((req, res) => {
 
         req.on('close', () => {
             sseClients.delete(res);
+            if (!res.writableEnded) {
+                res.end();
+            }
         });
         return;
     }
@@ -210,11 +258,14 @@ const server = http.createServer((req, res) => {
                     return;
                 }
 
-                // Inject live reload script before the final </body>, or append at the end
-                const bodyCloseIdx = content.lastIndexOf('</body>');
-                const finalHtml = bodyCloseIdx !== -1
-                    ? `${content.slice(0, bodyCloseIdx)}${LIVE_RELOAD_SCRIPT}\n${content.slice(bodyCloseIdx)}`
-                    : `${content}${LIVE_RELOAD_SCRIPT}`;
+                let finalHtml = content;
+                if (!noReload) {
+                    // Inject live reload script before the final </body>, or append at the end
+                    const bodyCloseIdx = content.lastIndexOf('</body>');
+                    finalHtml = bodyCloseIdx !== -1
+                        ? `${content.slice(0, bodyCloseIdx)}${LIVE_RELOAD_SCRIPT}\n${content.slice(bodyCloseIdx)}`
+                        : `${content}${LIVE_RELOAD_SCRIPT}`;
+                }
 
                 const buffer = Buffer.from(finalHtml, 'utf8');
                 res.writeHead(200, {
@@ -257,7 +308,7 @@ function startServer(targetPort) {
         console.log(`   KulikMath Live Server Aktif`);
         console.log(`   Lokal:    \x1b[1m\x1b[36m${localUrl}\x1b[0m`);
         console.log(`   Direktori:\x1b[33m ${ROOT_DIR}\x1b[0m`);
-        console.log('   Fitur:    Auto-Reload (SSE) aktif pada setiap perubahan');
+        console.log(`   Fitur:    ${noReload ? 'Auto-Reload dinonaktifkan (--no-reload)' : 'Auto-Reload (SSE) aktif pada setiap perubahan'}`);
         console.log('\x1b[32m=======================================================\x1b[0m\n');
 
         if (shouldOpen) {
