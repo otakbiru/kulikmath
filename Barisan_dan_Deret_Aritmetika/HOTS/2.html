@@ -154,10 +154,71 @@
       </div>
     </article>
 
+    <!-- SOAL 15 -->
+    <article class="soal-item" id="15">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Diberikan berturut-turut (dari kiri ke kanan) gambar-gambar pertama, kedua dan ketiga dari suatu barisan gambar. Berapakah banyaknya bulatan hitam pada gambar ke-$n$?
+        <div id="geo-osp04-b1-6" class="geo-wrap" style="display:flex; justify-content:center; margin: 12px 0;"></div>
+      </div>
+      <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2004.html">OSP SMA 2004 (Bagian Pertama - No. 6)</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          <p>Perhatikan pola bulatan hitam pada masing-masing gambar segitiga:</p>
+          <ul>
+            <li><strong>Gambar ke-1</strong> ($n = 1$, $3$ baris): $1 + 2 + 2 = 5$ bulatan hitam.</li>
+            <li><strong>Gambar ke-2</strong> ($n = 2$, $4$ baris): $1 + 2 + 2 + 2 = 7$ bulatan hitam.</li>
+            <li><strong>Gambar ke-3</strong> ($n = 3$, $5$ baris): $1 + 2 + 2 + 2 + 2 = 9$ bulatan hitam.</li>
+          </ul>
+          <p>Gambar ke-$n$ memiliki $n + 2$ baris, di mana baris puncak memuat $1$ bulatan hitam dan setiap baris berikutnya hingga baris ke-$(n + 2)$ memuat tepat $2$ bulatan hitam:</p>
+          $$U_n = 1 + 2(n + 1) = 2n + 3$$
+          <div class="kesimpulan">Jadi, banyaknya bulatan hitam pada gambar ke-$n$ adalah <strong>$2n + 3$</strong>.</div>
+        </div>
+        <button class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
     <!-- Pagination Bawah (Otomatis) -->
     <div class="pagination-wrapper"></div>
   </main>
 
+  <script>
+    (function () {
+      function renderPola6() {
+        if (typeof GeoSVG === "undefined") return;
+        const c6 = document.getElementById("geo-osp04-b1-6");
+        if (!c6 || c6.querySelector("svg")) return;
+        const g6 = new GeoSVG(c6, { width: 340, height: 120, margin: 10 });
+        const dx = 18, dy = 16;
+        const centers = [45, 145, 265];
+        const baseY = 92;
+        [3, 4, 5].forEach((rows, idx) => {
+          const cx = centers[idx];
+          const topY = baseY - (rows - 1) * dy;
+          for (let r = 0; r < rows; r++) {
+            const y = topY + r * dy;
+            const startX = cx - (r * dx) / 2;
+            for (let c = 0; c <= r; c++) {
+              const x = startX + c * dx;
+              const isBlack = (c === 0 || c === r);
+              g6.buatLingkaran({ x, y }, 4.2, {
+                fill: isBlack ? "var(--text-main)" : "var(--bg-card)",
+                stroke: "var(--text-main)",
+                strokeWidth: 1.6
+              });
+            }
+          }
+        });
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", renderPola6);
+      } else {
+        renderPola6();
+      }
+    })();
+  </script>
   <script src="../../scr/script.js"></script>
 </body>
 

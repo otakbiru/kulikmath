@@ -155,6 +155,30 @@
             </div>
         </article>
 
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Pada sebuah trapesium dengan tinggi $4$, kedua diagonalnya saling tegak lurus. Jika salah satu dari diagonal tersebut panjangnya $5$, berapakah luas trapesium tersebut?
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2004.html">OSP SMA 2004 (Bagian Pertama - No. 12)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osp04-b1-12" class="geo-wrap" style="display:flex; justify-content:center; margin: 12px 0;"></div>
+                    <p>Misalkan trapesium $ABCD$ memiliki sisi sejajar $AB \parallel DC$, tinggi $t = 4$, diagonal $AC = 5$, dan $AC \perp BD$. Geser diagonal $BD$ sejajar dirinya melalui titik $C$ hingga memotong perpanjangan $AB$ di titik $E$, sehingga $DBEC$ adalah jajar genjang dengan $CE = BD$ dan $BE = DC$.</p>
+                    <p>Akibatnya $\triangle ACE$ siku-siku di $C$, memiliki tinggi $CF = t = 4$ ke hipotenusa $AE = AB + DC$, serta luasnya sama dengan luas trapesium $ABCD$. Proyeksi $AC$ pada $AE$ adalah $AF = \sqrt{5^2 - 4^2} = 3$.</p>
+                    <p>Dari kesebangunan $\triangle AFC \sim \triangle CFE$, diperoleh panjang diagonal kedua $BD = CE = \dfrac{AC \cdot CF}{AF} = \dfrac{5 \times 4}{3} = \dfrac{20}{3}$. Maka luas trapesium adalah:</p>
+                    $$\text{Luas } ABCD = \frac{1}{2} \cdot AC \cdot BD = \frac{1}{2} \times 5 \times \frac{20}{3} = \frac{50}{3}$$
+                    <div class="kesimpulan">
+                        Jadi, luas trapesium tersebut adalah <strong>$\dfrac{50}{3}$</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -249,10 +273,36 @@
                 teks(g, (C[0] + D[0]) / 2, -6, '2', 'bottom-center', false);
             }
 
+            function trapesiumOSP04() {
+                var c12 = document.getElementById("geo-osp04-b1-12");
+                if (!c12 || c12.querySelector("svg")) return;
+                var g12 = new GeoSVG(c12, { width: 270, height: 175 });
+                var A = { x: 35, y: 145 }, B = { x: 235, y: 145 }, D = { x: 75, y: 35 }, C = { x: 182, y: 35 };
+                var d = (C.x - A.x) * (D.y - B.y) - (C.y - A.y) * (D.x - B.x);
+                var O = {
+                    x: ((C.x * A.y - C.y * A.x) * (D.x - B.x) - (C.x - A.x) * (D.x * B.y - D.y * B.x)) / d,
+                    y: ((C.x * A.y - C.y * A.x) * (D.y - B.y) - (C.y - A.y) * (D.x * B.y - D.y * B.x)) / d
+                };
+                var F = { x: C.x, y: 145 };
+                g12.buatPoligon([A, B, C, D], { fill: "rgba(100, 116, 139, 0.06)", stroke: "var(--text-main)", strokeWidth: 2 });
+                g12.buatSegmen(A, C, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                g12.buatSegmen(B, D, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                g12.buatSegmen(C, F, { stroke: "#dc2626", strokeWidth: 1.4, dashed: true });
+                g12.buatSiku(A, O, D, { size: 8, stroke: "var(--teal-primary)" });
+                g12.buatSiku(C, F, A, { size: 8, stroke: "#dc2626" });
+                g12.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                g12.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                g12.buatTitik(C, { label: "C", labelPosition: "top-right", size: 3.5, color: "var(--text-main)" });
+                g12.buatTitik(D, { label: "D", labelPosition: "top-left", size: 3.5, color: "var(--text-main)" });
+                g12.buatTitik(O, { label: "O", labelPosition: "middle-left", size: 3.2, color: "var(--teal-primary)" });
+                g12.buatTitik(F, { label: "F", labelPosition: "bottom-center", size: 3.2, color: "#dc2626" });
+            }
+
             siap(function () {
                 trapesium('gambar-1', 13);
                 trapesium('gambar-2', 14);
                 trapesiumDiagonal('gambar-3');
+                trapesiumOSP04();
             });
         })();
     </script>

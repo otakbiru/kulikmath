@@ -13,7 +13,7 @@
 
     <!-- GeoSVG.js -->
     <!-- Coba muat lokal terlebih dahulu, jika gagal muat CDN -->
-    <script src="./scr/GeoSVG.js"
+    <script src="../../scr/GeoSVG.js"
         onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
         </script>
 
@@ -80,24 +80,27 @@
             </div>
         </article>
 
-        <!-- SOAL 2 
+        <!-- SOAL 2 -->
         <article class="soal-item" id="2">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal kedua di sini...
+                Santi dan Tini berlari sepanjang sebuah lintasan yang berbentuk lingkaran. Keduanya mulai berlari pada saat yang sama dari titik $P$, tetapi mengambil arah berlawanan. Santi berlari $1\frac{1}{2}$ kali lebih cepat daripada Tini. Jika $PQ$ adalah garis tengah lingkaran lintasan dan keduanya berpapasan untuk pertama kalinya di titik $R$, berapa derajatkah besar $\angle RPQ$?
             </div>
-            <div class="soal-sumber"></div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2004.html">OSP SMA 2004 (Bagian Pertama - No. 14)</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan soal kedua di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <div id="geo-osp04-b1-14" class="geo-wrap" style="display:flex; justify-content:center; margin: 12px 0;"></div>
+                    <p>Karena Santi berlari $\dfrac{3}{2}$ kali lebih cepat daripada Tini, perbandingan busur yang ditempuh Santi dan Tini saat berpapasan pertama kali di titik $R$ adalah $3 : 2$ dari satu keliling penuh ($360^\circ$). Maka besar sudut pusat yang menghadap busur lintasan Tini dari $P$ ke $R$ adalah:</p>
+                    $$\angle POR = \frac{2}{3 + 2} \times 360^\circ = 144^\circ$$
+                    <p>Karena $\triangle OPR$ sama kaki ($OP = OR$) dan pusat $O$ terletak pada diameter $PQ$, diperoleh:</p>
+                    $$\angle RPQ = \angle RPO = \frac{180^\circ - 144^\circ}{2} = 18^\circ$$
+                    <div class="kesimpulan">Jadi, besar $\angle RPQ$ adalah <strong>$18^\circ$</strong>.</div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
             </div>
         </article>
--->
 
         <!-- SOAL 3
         <article class="soal-item" id="3">
@@ -124,6 +127,34 @@
         <div class="pagination-wrapper"></div>
     </main>
 
+    <script>
+        (function () {
+            function renderSudut14() {
+                if (typeof GeoSVG === "undefined") return;
+                const c14 = document.getElementById("geo-osp04-b1-14");
+                if (!c14 || c14.querySelector("svg")) return;
+                const g14 = new GeoSVG(c14, { width: 240, height: 190 });
+                const O = { x: 120, y: 95 }, r = 68;
+                const P = { x: O.x - r, y: O.y }, Q = { x: O.x + r, y: O.y };
+                const ang = 36 * Math.PI / 180;
+                const R = { x: O.x + r * Math.cos(ang), y: O.y + r * Math.sin(ang) };
+                g14.buatLingkaran(O, r, { fill: "rgba(13, 148, 136, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+                g14.buatSegmen(P, Q, { stroke: "var(--text-main)", strokeWidth: 1.7 });
+                g14.buatSegmen(P, R, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                g14.buatSegmen(O, R, { stroke: "#dc2626", strokeWidth: 1.6 });
+                g14.buatSudut(P, O, R, { radius: 18, stroke: "#dc2626", label: "144°", labelRadius: 28, labelColor: "#dc2626" });
+                g14.buatTitik(P, { label: "P", labelPosition: "middle-left", size: 3.5, color: "var(--text-main)" });
+                g14.buatTitik(Q, { label: "Q", labelPosition: "middle-right", size: 3.5, color: "var(--text-main)" });
+                g14.buatTitik(O, { label: "O", labelPosition: "top-center", size: 3.5, color: "#dc2626" });
+                g14.buatTitik(R, { label: "R", labelPosition: "bottom-right", size: 3.5, color: "var(--teal-primary)" });
+            }
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", renderSudut14);
+            } else {
+                renderSudut14();
+            }
+        })();
+    </script>
     <script src="../../scr/script.js"></script>
 </body>
 
