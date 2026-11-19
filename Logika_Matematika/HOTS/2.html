@@ -11,6 +11,10 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
 
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
 
     <!-- Style Blog -->
     <link rel="stylesheet" href="../../scr/style.css">
@@ -37,24 +41,34 @@
 
         <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
 
-        <article class="soal-item" id="2">
+        <article class="soal-item" id="11">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Diketahui sebuah bulan dengan jumlah hari $31$ memiliki jumlah hari Selasa dan Kamis yang sama banyaknya. Maka hari yang mungkin sebagai hari awal pada bulan tersebut adalah $\cdots$
+                Bangun datar pada gambar disebut <em>tetromino-T</em> (terdiri dari $3$ petak sebaris ditambah $1$ petak menempel di petak tengahnya). Misalkan setiap petak tetromino menutupi tepat satu petak pada papan catur tanpa tumpang tindih.
+                <br>(a) Tunjukkan bahwa kita dapat menutup papan catur biasa, yaitu papan catur dengan $8 \times 8$ petak, dengan menggunakan $16$ <em>tetromino-T</em>.
+                <br>(b) Tunjukkan bahwa kita tidak dapat menutup papan catur $10 \times 10$ petak dengan $25$ <em>tetromino-T</em>.
             </div>
-            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK SMA 2011.html">OSK SMA 2011 (No. 10)</a></div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP SMA 2002.html">OSP SMA 2002 (Bagian Kedua - No. 5)</a></div>
             <button class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    <p>Karena $31 = 4 \times 7 + 3$, setiap hari dalam seminggu muncul $4$ kali pada $28$ hari pertama, dan hanya $3$ hari pertama dalam bulan tersebut (tanggal $1, 2, 3$) yang muncul sebanyak $5$ kali.</p>
-                    <p>Agar banyaknya hari Selasa dan Kamis sama, kedua hari tersebut harus sama-sama muncul $5$ kali atau sama-sama muncul $4$ kali dalam $3$ hari pertama:</p>
+                    <div id="geo-osp02-b5" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p><strong>(a) Menutup papan $8 \times 8$:</strong></p>
+                    <p>Papan $8 \times 8$ dapat dibagi menjadi $4$ buah sub-papan berukuran $4 \times 4$. Satu blok $4 \times 4$ dapat ditutup sempurna oleh $4$ buah <em>tetromino-T</em> seperti pada konstruksi di bawah ini, sehingga papan $8 \times 8$ dapat ditutup oleh $4 \times 4 = 16$ <em>tetromino-T</em>.</p>
+                    <div id="geo-osp02-b5" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+
+                    <p><strong>(b) Ketidakmungkinan pada papan $10 \times 10$:</strong></p>
+                    <p>Warnai papan $10 \times 10$ secara selang-seling seperti papan catur, sehingga terdapat tepat $50$ petak hitam dan $50$ petak putih (keduanya bilangan <strong>genap</strong>).</p>
+                    <p>Perhatikan setiap buah <em>tetromino-T</em> yang diletakkan pada papan catur: petak tengahnya (yang bersinggungan dengan $3$ petak lainnya) akan berbeda warna dengan ketiga petak tetangganya. Jadi setiap <em>tetromino-T</em> selalu menutupi:</p>
                     <ul>
-                        <li><strong>Muncul $5$ kali sekaligus:</strong> pasangan $\{ \text{Selasa}, \text{Kamis} \}$ harus berada dalam $3$ hari berurutan $\implies$ $3$ hari pertama haruslah <strong>Selasa, Rabu, Kamis</strong> (tanggal $1$ = <strong>Selasa</strong>).</li>
-                        <li><strong>Muncul $4$ kali (keduanya tidak termasuk $3$ hari pertama):</strong> $3$ hari pertama harus diambil dari \{Jumat, Sabtu, Minggu, Senin\} $\implies$ bisa <strong>Jumat, Sabtu, Minggu</strong> (tanggal $1$ = <strong>Jumat</strong>) atau <strong>Sabtu, Minggu, Senin</strong> (tanggal $1$ = <strong>Sabtu</strong>).</li>
+                        <li>$3$ petak hitam dan $1$ petak putih, ATAU</li>
+                        <li>$1$ petak hitam dan $3$ petak putih.</li>
                     </ul>
+                    <p>Dalam kedua kasus, banyaknya petak hitam yang ditutupi oleh setiap <em>tetromino-T</em> selalu bernilai <strong>ganjil</strong> ($1$ atau $3$). Karena terdapat $25$ (bilangan <strong>ganjil</strong>) buah <em>tetromino-T</em>, jumlah total petak hitam yang tertutupi merupakan penjumlahan $25$ bilangan ganjil, yang hasilnya pasti <strong>ganjil</strong>.</p>
+                    <p>Hal ini kontradiksi dengan fakta bahwa papan $10 \times 10$ memiliki $50$ (<strong>genap</strong>) petak hitam. Jadi penutupan tersebut mustahil dilakukan.</p>
                     <div class="kesimpulan">
-                        Jadi, hari awal bulan yang mungkin adalah <strong>Selasa, Jumat, atau Sabtu</strong>.
+                        Terbukti bahwa papan $8 \times 8$ dapat ditutup dengan $16$ <em>tetromino-T</em>, sedangkan papan $10 \times 10$ tidak dapat ditutup dengan $25$ <em>tetromino-T</em>.
                     </div>
                 </div>
                 <button class="btn-tutup">TUTUP</button>
@@ -68,6 +82,86 @@
         </footer>
     </main>
 
+    <!-- Render Diagram Geometri via GeoSVG.js -->
+    <script>
+        (function () {
+            function renderAllDiagrams() {
+                if (typeof GeoSVG === "undefined") return;
+
+                // B1 No. 13: Setengah lingkaran diameter AB, D titik tengah AC di setengah lingkaran
+                const c13 = document.getElementById("geo-osp02-13");
+                if (c13 && !c13.querySelector("svg")) {
+                    const g13 = new GeoSVG(c13, { width: 250, height: 150 });
+                    const O = { x: 110, y: 120 }, r = 65;
+                    const A = { x: O.x - r, y: O.y }, B = { x: O.x + r, y: O.y };
+                    const ang = -125 * Math.PI / 180;
+                    const D = { x: O.x + r * Math.cos(ang), y: O.y + r * Math.sin(ang) };
+                    const C = { x: 2 * D.x - A.x, y: 2 * D.y - A.y };
+                    g13.buatBusur(O, r, 180, 360, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    g13.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    g13.buatSegmen(B, D, { stroke: "#d97706", strokeWidth: 1.5, dashed: true });
+                    g13.buatSiku(B, D, C, { size: 8, stroke: "#d97706" });
+                    g13.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    g13.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                    g13.buatTitik(C, { label: "C", labelPosition: "top-center", size: 3.5, color: "#dc2626" });
+                    g13.buatTitik(D, { label: "D", labelPosition: "top-left", size: 3.5, color: "var(--teal-primary)" });
+                }
+
+                // B2 No. 4: Segitiga sama sisi ABC dengan titik P di busur AC lingkaran luar
+                const cB4 = document.getElementById("geo-osp02-b4");
+                if (cB4 && !cB4.querySelector("svg")) {
+                    const gB4 = new GeoSVG(cB4, { width: 230, height: 210 });
+                    const O = { x: 115, y: 105 }, r = 74;
+                    const pt = deg => ({ x: O.x + r * Math.cos(deg * Math.PI / 180), y: O.y + r * Math.sin(deg * Math.PI / 180) });
+                    const A = pt(-90), B = pt(150), C = pt(30), P = pt(-25);
+                    gB4.buatLingkaran(O, r, { fill: "rgba(100, 116, 139, 0.04)", stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                    gB4.buatSegitiga(A, B, C, { fill: "rgba(13, 148, 136, 0.06)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    gB4.buatSegmen(P, A, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    gB4.buatSegmen(P, C, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    gB4.buatSegmen(P, B, { stroke: "#dc2626", strokeWidth: 1.8, dashed: true });
+                    gB4.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                    gB4.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    gB4.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                    gB4.buatTitik(P, { label: "P", labelPosition: "top-right", size: 4, color: "#dc2626" });
+                }
+
+                // B2 No. 5: Papan 4x4 diisi 4 tetromino-T
+                const cB5 = document.getElementById("geo-osp02-b5");
+                if (cB5 && !cB5.querySelector("svg")) {
+                    const gB5 = new GeoSVG(cB5, { width: 160, height: 160 });
+                    const s = 32, ox = 16, oy = 16;
+                    // 4 tetromino-T pada 4x4: warna berbeda per tetromino
+                    const grid = [
+                        [0, 0, 0, 1],
+                        [2, 0, 1, 1],
+                        [2, 2, 3, 1],
+                        [2, 3, 3, 3]
+                    ];
+                    const colors = [
+                        "rgba(13, 148, 136, 0.25)",
+                        "rgba(217, 119, 6, 0.25)",
+                        "rgba(37, 99, 235, 0.22)",
+                        "rgba(220, 38, 38, 0.22)"
+                    ];
+                    for (let r = 0; r < 4; r++) {
+                        for (let c = 0; c < 4; c++) {
+                            const x = ox + c * s, y = oy + r * s;
+                            gB5.buatPoligon(
+                                [{ x, y }, { x: x + s, y }, { x: x + s, y: y + s }, { x, y: y + s }],
+                                { fill: colors[grid[r][c]], stroke: "var(--text-main)", strokeWidth: 1.4 }
+                            );
+                        }
+                    }
+                }
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", renderAllDiagrams);
+            } else {
+                renderAllDiagrams();
+            }
+        })();
+    </script>
     <script src="../../scr/script.js"></script>
 </body>
 
