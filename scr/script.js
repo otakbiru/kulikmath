@@ -201,6 +201,7 @@ const DAFTAR_ARSIP = [
         paket: [
             { judul: "OSN SMA 2002", file: "OSN SMA 2002.html" },
             { judul: "OSN SMA 2003", file: "OSN SMA 2003.html" },
+            { judul: "OSN SMA 2004", file: "OSN SMA 2004.html" },
             { judul: "OSN SMA 2006", file: "OSN SMA 2006.html" },
             { judul: "OSN SMA 2007", file: "OSN SMA 2007.html" }
         ]

@@ -218,6 +218,29 @@
             </div>
         </article>
 
+        <!-- SOAL 48 -->
+        <article class="soal-item" id="48">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Buktikan bahwa suatu segitiga $ABC$ siku-siku di $C$ dengan $a$ menyatakan sisi di hadapan sudut $A$, $b$ menyatakan sisi di hadapan sudut $B$, dan $c$ menyatakan sisi di hadapan sudut $C$ memiliki diameter lingkaran dalam $= a + b - c$.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN SMA 2004.html">OSN SMA 2004 (Hari Kedua - No. 7)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn04-7" class="geo-wrap" style="display:flex; justify-content:center; margin: 12px 0;"></div>
+                    <p>Misalkan lingkaran dalam $\triangle ABC$ berpusat di $O$ dengan jari-jari $r$ (diameter $d = 2r$), menyinggung sisi $AB, AC, BC$ berturut-turut di $D, E, F$. Karena $\angle C = 90^\circ$ serta $OE \perp AC$ dan $OF \perp BC$, $OECF$ adalah persegi bersisi $r$, sehingga $CE = CF = r$.</p>
+                    <p>Dari sifat segmen garis singgung dari satu titik di luar lingkaran, $AD = AE = b - r$ dan $BD = BF = a - r$, sehingga:</p>
+                    $$c = AB = AD + BD = (b - r) + (a - r) = a + b - 2r \implies d = 2r = a + b - c \quad \blacksquare$$
+                    <div class="kesimpulan">
+                        Terbukti bahwa diameter lingkaran dalam segitiga siku-siku $ABC$ adalah <strong>$a + b - c$</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <div class="pagination-wrapper"></div>
 
         <footer class="footer">
@@ -305,6 +328,31 @@
                     gB2.buatTitik(E, { label: "E", labelPosition: "top-right", size: 3.5, color: "var(--teal-primary)" });
                     gB2.buatTitik(F, { label: "F", labelPosition: "top-left", size: 3.5, color: "var(--teal-primary)" });
                     gB2.buatTitik(O, { label: "O", labelPosition: "bottom-right", size: 3.5, color: "#dc2626" });
+                }
+
+                // Soal 48 (OSN 2004 No. 7): Segitiga siku-siku ABC dan lingkaran dalam berdiameter d = a + b - c
+                const c48 = document.getElementById("geo-osn04-7");
+                if (c48 && !c48.querySelector("svg")) {
+                    const g7 = new GeoSVG(c48, { width: 255, height: 200 });
+                    const C = { x: 55, y: 155 }, B = { x: 195, y: 155 }, A = { x: 55, y: 50 };
+                    const O = { x: 90, y: 120 }, r = 35;
+                    const D = { x: 111, y: 92 }, E = { x: 55, y: 120 }, F = { x: 90, y: 155 };
+                    g7.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    g7.buatLingkaran(O, r, { fill: "rgba(13, 148, 136, 0.12)", stroke: "var(--teal-primary)", strokeWidth: 1.9 });
+                    g7.buatSegmen(O, D, { stroke: "#dc2626", strokeWidth: 1.4, dashed: true });
+                    g7.buatSegmen(O, E, { stroke: "#dc2626", strokeWidth: 1.4, dashed: true });
+                    g7.buatSegmen(O, F, { stroke: "#dc2626", strokeWidth: 1.4, dashed: true });
+                    g7.buatSiku(A, C, B, { size: 9, stroke: "var(--text-main)" });
+                    g7.buatSiku(O, E, C, { size: 7, stroke: "#dc2626" });
+                    g7.buatSiku(O, F, C, { size: 7, stroke: "#dc2626" });
+                    g7.buatSiku(O, D, B, { size: 7, stroke: "#dc2626" });
+                    g7.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.5, color: "var(--text-main)" });
+                    g7.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                    g7.buatTitik(C, { label: "C", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    g7.buatTitik(O, { label: "O", labelPosition: "top-left", size: 3.2, color: "#dc2626" });
+                    g7.buatTitik(D, { label: "D", labelPosition: "top-right", size: 3.2, color: "var(--teal-primary)" });
+                    g7.buatTitik(E, { label: "E", labelPosition: "middle-left", size: 3.2, color: "var(--teal-primary)" });
+                    g7.buatTitik(F, { label: "F", labelPosition: "bottom-center", size: 3.2, color: "var(--teal-primary)" });
                 }
             }
 
