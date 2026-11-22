@@ -78,9 +78,63 @@
       </div>
     </article>
 
+    <!-- SOAL 2 -->
+    <article class="soal-item" id="2">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Diberikan segitiga $ABC$ tumpul ($\angle ABC &gt; 90^\circ$), $AD$ dan $AE$ membagi sudut $BAC$ sama besar. Panjang segmen garis $BD$, $DE$ dan $EC$ berturut-turut adalah $2$, $3$, dan $6$. Panjang terpendek dari sisi segitiga $ABC$ adalah $\cdots$
+      </div>
+      <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202009.html#A17">OSK SMA 2009 (No. 17)</a></div>
+      <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          <div id="geo-osk09-17" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+          <p>Misalkan $AB = x$, $AD = y$, dan $\angle BAD = \angle DAE = \angle EAC = \alpha$. Dari dalil garis bagi diperoleh $EA = \dfrac{3}{2}x$ dan $AC = 2y$.</p>
+          <p>Aturan Cosinus pada $\triangle ABD$ dan $\triangle ADE$ memberi $2y^2 = 3x^2 - 12$, sedangkan Aturan Cosinus pada $\triangle CAE$ memberi $4y^2 - 3x^2 = 96$. Substitusi menghasilkan $3x^2 = 120 \implies x = 2\sqrt{10}$ (lebih pendek dari $BC = 11$ dan $AC$).</p>
+          <div class="kesimpulan">Jadi, panjang sisi terpendek segitiga $ABC$ adalah <strong>$2\sqrt{10}$</strong>.</div>
+        </div>
+        <button type="button" class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
     <!-- Pagination Bawah (Otomatis) -->
     <div class="pagination-wrapper"></div>
   </main>
+
+  <script>
+    (function () {
+      function renderCos17() {
+        if (typeof GeoSVG === "undefined") {
+          setTimeout(renderCos17, 100);
+          return;
+        }
+        const c17 = document.getElementById("geo-osk09-17");
+        if (c17 && !c17.querySelector("svg")) {
+          const g17 = new GeoSVG(c17, { width: 270, height: 175 });
+          const B = { x: 112, y: 142 }, A = { x: 232, y: 142 }, C = { x: 42, y: 34 };
+          const lerp = (P, Q, u) => ({ x: P.x + u * (Q.x - P.x), y: P.y + u * (Q.y - P.y) });
+          const D = lerp(B, C, 2 / 11), E = lerp(B, C, 5 / 11);
+          g17.buatSegitiga(A, B, C, { fill: "rgba(100,116,139,0.04)", stroke: "var(--text-main)", strokeWidth: 2 });
+          g17.buatSegmen(A, D, { stroke: "var(--teal-primary)", strokeWidth: 1.5 });
+          g17.buatSegmen(A, E, { stroke: "#dc2626", strokeWidth: 1.5 });
+          g17.buatLabelSisi(B, D, "2", { position: "left", color: "var(--text-muted)" });
+          g17.buatLabelSisi(D, E, "3", { position: "left", color: "var(--text-muted)" });
+          g17.buatLabelSisi(E, C, "6", { position: "left", color: "var(--text-muted)" });
+          g17.buatTitik(A, { label: "A", labelPosition: "bottom-right", size: 3.2, color: "var(--text-main)" });
+          g17.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.2, color: "var(--text-main)" });
+          g17.buatTitik(C, { label: "C", labelPosition: "top-left", size: 3.2, color: "var(--text-main)" });
+          g17.buatTitik(D, { label: "D", labelPosition: "bottom-left", size: 3.2, color: "var(--teal-primary)" });
+          g17.buatTitik(E, { label: "E", labelPosition: "bottom-left", size: 3.2, color: "#dc2626" });
+        }
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", renderCos17);
+      } else {
+        renderCos17();
+      }
+    })();
+  </script>
 
   <script src="../../scr/script.js"></script>
 </body>

@@ -241,6 +241,63 @@
             </div>
         </article>
 
+        <!-- SOAL 49 -->
+        <article class="soal-item" id="49">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                <div id="geo-osp05-8-soal" class="geo-wrap" style="text-align:center; margin: 10px 0;"></div>
+                Jika $AB = AC$, $AD = BD$, dan besar sudut $DAC = 39^\circ$, maka besar sudut $BAD$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202005.html#A8">OSP SMA 2005 (Bagian Pertama No. 8)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osp05-8" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan $\angle BAD = \alpha$. Perhatikan sifat segitiga sama kaki pada gambar:</p>
+                    <ul>
+                        <li>Karena $AD = BD$, segitiga $\triangle ABD$ sama kaki sehingga $\angle ABD = \angle BAD = \alpha$.</li>
+                        <li>Karena $AB = AC$, segitiga $\triangle ABC$ sama kaki sehingga $\angle ACB = \angle ABC = \alpha$.</li>
+                    </ul>
+                    <p>Jumlah sudut dalam segitiga $\triangle ABC$ adalah $180^\circ$, sehingga:</p>
+                    $$\angle ABC + \angle BAC + \angle ACB = 180^\circ$$
+                    $$\alpha + (\alpha + 39^\circ) + \alpha = 180^\circ$$
+                    $$3\alpha = 141^\circ \implies \alpha = 47^\circ$$
+                    <div class="kesimpulan">
+                        Jadi, besar sudut $BAD$ adalah <strong>$47^\circ$</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 50 -->
+        <article class="soal-item" id="50">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Keliling sebuah segitiga samasisi adalah $p$. Misalkan $Q$ adalah sebuah titik di dalam segitiga tersebut. Jika jumlah jarak dari $Q$ ke ketiga sisi segitiga adalah $s$, maka, dinyatakan dalam $s$, $p = \cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202005.html#A12">OSP SMA 2005 (Bagian Pertama No. 12)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osp05-12" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan segitiga sama sisi tersebut adalah $\triangle ABC$ dengan panjang sisi $a = \dfrac{p}{3}$, dan misalkan jarak dari titik $Q$ ke sisi $BC$, $AC$, dan $AB$ berturut-turut adalah $d_1, d_2, d_3$ dengan $d_1 + d_2 + d_3 = s$.</p>
+                    <p>Luas $\triangle ABC$ dapat dihitung sebagai jumlah luas tiga segitiga yang berpuncak di $Q$:</p>
+                    $$[\triangle ABC] = [\triangle QBC] + [\triangle QAC] + [\triangle QAB] = \frac{1}{2}a(d_1 + d_2 + d_3) = \frac{1}{2}\left(\frac{p}{3}\right)s = \frac{ps}{6}$$
+                    <p>Di sisi lain, luas segitiga sama sisi dengan panjang sisi $\dfrac{p}{3}$ adalah:</p>
+                    $$[\triangle ABC] = \frac{\sqrt{3}}{4}\left(\frac{p}{3}\right)^2 = \frac{p^2\sqrt{3}}{36}$$
+                    <p>Samakan kedua ekspresi luas tersebut (dengan $p &gt; 0$):</p>
+                    $$\frac{p^2\sqrt{3}}{36} = \frac{ps}{6} \implies p = \frac{6s}{\sqrt{3}} = 2s\sqrt{3}$$
+                    <div class="kesimpulan">
+                        Jadi, dinyatakan dalam $s$, nilai $p = \mathbf{2s\sqrt{3}}$.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <div class="pagination-wrapper"></div>
 
         <footer class="footer">
@@ -353,6 +410,63 @@
                     g7.buatTitik(D, { label: "D", labelPosition: "top-right", size: 3.2, color: "var(--teal-primary)" });
                     g7.buatTitik(E, { label: "E", labelPosition: "middle-left", size: 3.2, color: "var(--teal-primary)" });
                     g7.buatTitik(F, { label: "F", labelPosition: "bottom-center", size: 3.2, color: "var(--teal-primary)" });
+                }
+
+                // Soal 49: OSP SMA 2005 No. 8
+                function drawNo8(containerId, showLabels) {
+                    const c = document.getElementById(containerId);
+                    if (!c || c.querySelector("svg")) return;
+                    const g = new GeoSVG(c, { width: 260, height: 175 });
+                    const A = { x: 112, y: 28 };
+                    const B = { x: 36, y: 145 };
+                    const C = { x: 224, y: 145 };
+                    const D = { x: 130, y: 145 };
+                    g.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    g.buatSegmen(A, D, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    if (showLabels) {
+                        g.buatSudut(D, A, C, { radius: 22, label: "39°", color: "#dc2626" });
+                        g.buatSudut(B, A, D, { radius: 20, label: "α", color: "var(--teal-primary)" });
+                        g.buatSudut(A, B, D, { radius: 20, label: "α", color: "var(--teal-primary)" });
+                        g.buatSudut(A, C, D, { radius: 20, label: "α", color: "var(--teal-primary)" });
+                    }
+                    g.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.2, color: "var(--text-main)" });
+                    g.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.2, color: "var(--text-main)" });
+                    g.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.2, color: "var(--text-main)" });
+                    g.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 3.5, color: "var(--teal-primary)" });
+                }
+                drawNo8("geo-osp05-8-soal", false);
+                drawNo8("geo-osp05-8", true);
+
+                // Soal 50: OSP SMA 2005 No. 12
+                const c12 = document.getElementById("geo-osp05-12");
+                if (c12 && !c12.querySelector("svg")) {
+                    const g12 = new GeoSVG(c12, { width: 250, height: 195 });
+                    const A = { x: 40, y: 165 };
+                    const B = { x: 210, y: 165 };
+                    const C = { x: 125, y: 18 };
+                    const Q = { x: 132, y: 118 };
+                    function proj(P, U, V) {
+                        const dx = V.x - U.x, dy = V.y - U.y;
+                        const t = ((P.x - U.x) * dx + (P.y - U.y) * dy) / (dx * dx + dy * dy);
+                        return { x: U.x + t * dx, y: U.y + t * dy };
+                    }
+                    const S = proj(Q, A, B);
+                    const P = proj(Q, B, C);
+                    const R = proj(Q, A, C);
+                    g12.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    g12.buatSegmen(Q, A, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashArray: "3,3" });
+                    g12.buatSegmen(Q, B, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashArray: "3,3" });
+                    g12.buatSegmen(Q, C, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashArray: "3,3" });
+                    g12.buatSegmen(Q, P, { stroke: "#dc2626", strokeWidth: 1.8 });
+                    g12.buatSegmen(Q, R, { stroke: "#dc2626", strokeWidth: 1.8 });
+                    g12.buatSegmen(Q, S, { stroke: "#dc2626", strokeWidth: 1.8 });
+                    g12.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 3.2, color: "var(--text-main)" });
+                    g12.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 3.2, color: "var(--text-main)" });
+                    g12.buatTitik(C, { label: "C", labelPosition: "top-center", size: 3.2, color: "var(--text-main)" });
+                    g12.buatTitik(Q, { label: "Q", labelPosition: "top-left", size: 3.5, color: "var(--teal-primary)" });
+                    g12.buatTitik(P, { label: "P", labelPosition: "top-right", size: 2.8, color: "#dc2626" });
+                    g12.buatTitik(R, { label: "R", labelPosition: "top-left", size: 2.8, color: "#dc2626" });
+                    g12.buatTitik(S, { label: "S", labelPosition: "bottom-center", size: 2.8, color: "#dc2626" });
                 }
             }
 

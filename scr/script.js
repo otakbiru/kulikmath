@@ -190,8 +190,11 @@ const DAFTAR_ARSIP = [
             { judul: "OSK SMA 2002", file: "OSK SMA 2002.html" },
             { judul: "OSK SMA 2003", file: "OSK SMA 2003.html" },
             { judul: "OSK SMA 2004", file: "OSK SMA 2004.html" },
+            { judul: "OSK SMA 2005", file: "OSK SMA 2005.html" },
             { judul: "OSK SMA 2006", file: "OSK SMA 2006.html" },
             { judul: "OSK SMA 2007", file: "OSK SMA 2007.html" },
+            { judul: "OSK SMA 2008", file: "OSK SMA 2008.html" },
+            { judul: "OSK SMA 2009", file: "OSK SMA 2009.html" },
             { judul: "OSK SMA 2011", file: "OSK SMA 2011.html" }
         ]
     },
@@ -202,8 +205,10 @@ const DAFTAR_ARSIP = [
             { judul: "OSN SMA 2002", file: "OSN SMA 2002.html" },
             { judul: "OSN SMA 2003", file: "OSN SMA 2003.html" },
             { judul: "OSN SMA 2004", file: "OSN SMA 2004.html" },
+            { judul: "OSN SMA 2005", file: "OSN SMA 2005.html" },
             { judul: "OSN SMA 2006", file: "OSN SMA 2006.html" },
-            { judul: "OSN SMA 2007", file: "OSN SMA 2007.html" }
+            { judul: "OSN SMA 2007", file: "OSN SMA 2007.html" },
+            { judul: "OSN SMA 2008", file: "OSN SMA 2008.html" }
         ]
     },
     {
@@ -213,8 +218,10 @@ const DAFTAR_ARSIP = [
             { judul: "OSP SMA 2002", file: "OSP SMA 2002.html" },
             { judul: "OSP SMA 2003", file: "OSP SMA 2003.html" },
             { judul: "OSP SMA 2004", file: "OSP SMA 2004.html" },
+            { judul: "OSP SMA 2005", file: "OSP SMA 2005.html" },
             { judul: "OSP SMA 2006", file: "OSP SMA 2006.html" },
             { judul: "OSP SMA 2007", file: "OSP SMA 2007.html" },
+            { judul: "OSP SMA 2008", file: "OSP SMA 2008.html" },
             { judul: "OSP SMA 2011", file: "OSP SMA 2011.html" }
         ]
     },

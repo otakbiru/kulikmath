@@ -209,6 +209,34 @@
             </div>
         </article>
 
+        <!-- SOAL 15 -->
+        <article class="soal-item" id="15">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Panjang sisi terbesar pada segiempat talibusur $ABCD$ adalah $a$, sedangkan jari-jari lingkaran luar $\triangle ACD$ adalah $1$. Tentukan nilai terkecil yang mungkin bagi $a$. Segiempat $ABCD$ yang bagaimana yang memberikan nilai $a$ sama dengan nilai terkecil tersebut?
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202005.html#B1">OSP SMA 2005 (Bagian Kedua No. 1)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osp05-b2-1" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Karena $ABCD$ adalah segiempat tali busur, lingkaran luar $\triangle ACD$ berimpit dengan lingkaran luar $ABCD$, dengan pusat $O$ dan jari-jari $R = 1$.</p>
+                    <p>Misalkan keempat sudut pusat yang menghadap sisi-sisi $AB, BC, CD, DA$ berturut-turut adalah $\theta_1, \theta_2, \theta_3, \theta_4$ (dalam derajat, $0^\circ &lt; \theta_i &lt; 360^\circ$). Karena jumlah keempat sudut pusat adalah $360^\circ$:</p>
+                    $$\theta_1 + \theta_2 + \theta_3 + \theta_4 = 360^\circ$$
+                    <p>Maka sedikitnya ada satu sudut pusat yang besarnya paling sedikit rata-ratanya, yakni $\max(\theta_1, \theta_2, \theta_3, \theta_4) \ge 90^\circ$.</p>
+                    <p>Panjang tali busur yang menghadap sudut pusat $\theta_i$ (dengan konfigurasi segiempat memuat pusat $O$, sehingga $0^\circ &lt; \theta_i \le 180^\circ$) pada lingkaran berjari-jari $R = 1$ adalah $2R\sin\frac{\theta_i}{2} = 2\sin\frac{\theta_i}{2}$.</p>
+                    <p>Karena fungsi $\sin\frac{\theta}{2}$ naik monoton pada $[0^\circ, 180^\circ]$, maka sisi terpanjang $a$ memenuhi:</p>
+                    $$a = \max(AB, BC, CD, DA) \ge 2\sin\left(\frac{90^\circ}{2}\right) = 2 \cdot \frac{\sqrt{2}}{2} = \sqrt{2}$$
+                    <p>Kesamaan $a = \sqrt{2}$ terjadi apabila keempat sudut pusat sama besar, yaitu $\theta_1 = \theta_2 = \theta_3 = \theta_4 = 90^\circ$. Akibatnya $AB = BC = CD = DA = \sqrt{2}$ dan kedua diagonal $AC, BD$ merupakan diameter sehingga $\angle A = \angle B = \angle C = \angle D = 90^\circ$.</p>
+                    <div class="kesimpulan">
+                        Jadi, nilai terkecil bagi $a$ adalah <strong>$\sqrt{2}$</strong>, dan segiempat $ABCD$ yang memberikannya adalah <strong>persegi</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <div class="pagination-wrapper"></div>
 
         <footer class="footer">
@@ -337,6 +365,31 @@
                     g4p.buatTitik(F4, { label: "F", labelPosition: "middle-right", size: 3.5, color: "var(--teal-primary)" });
                     g4p.buatTitik(G4, { label: "G", labelPosition: "bottom-center", size: 3.5, color: "var(--teal-primary)" });
                     g4p.buatTitik(H4, { label: "H", labelPosition: "middle-left", size: 3.5, color: "var(--teal-primary)" });
+                }
+
+                // Soal 15: OSP SMA 2005 B2 No. 1
+                const cb21 = document.getElementById("geo-osp05-b2-1");
+                if (cb21 && !cb21.querySelector("svg")) {
+                    const gb21 = new GeoSVG(cb21, { width: 240, height: 210 });
+                    const O = { x: 120, y: 105 };
+                    const R = 74;
+                    const pt = (deg) => ({
+                        x: O.x + R * Math.cos(deg * Math.PI / 180),
+                        y: O.y - R * Math.sin(deg * Math.PI / 180)
+                    });
+                    const A = pt(205), B = pt(335), C = pt(50), D = pt(130);
+                    gb21.buatLingkaran(O, R, { stroke: "var(--text-muted)", strokeWidth: 1.5, fill: "none" });
+                    gb21.buatPoligon([A, B, C, D], { fill: "rgba(13, 148, 136, 0.08)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    gb21.buatSegmen(A, C, { stroke: "var(--teal-primary)", strokeWidth: 1.4, dashArray: "4,3" });
+                    gb21.buatSegmen(O, A, { stroke: "#dc2626", strokeWidth: 1.3 });
+                    gb21.buatSegmen(O, B, { stroke: "#dc2626", strokeWidth: 1.3 });
+                    gb21.buatSegmen(O, C, { stroke: "#dc2626", strokeWidth: 1.3 });
+                    gb21.buatSegmen(O, D, { stroke: "#dc2626", strokeWidth: 1.3 });
+                    gb21.buatTitik(O, { label: "O", labelPosition: "bottom-center", size: 3.2, color: "#dc2626" });
+                    gb21.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 3.5, color: "var(--text-main)" });
+                    gb21.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
+                    gb21.buatTitik(C, { label: "C", labelPosition: "top-right", size: 3.5, color: "var(--text-main)" });
+                    gb21.buatTitik(D, { label: "D", labelPosition: "top-left", size: 3.5, color: "var(--text-main)" });
                 }
             }
 

@@ -102,24 +102,35 @@
             </div>
         </article>
 
-        <!-- SOAL 3
+        <!-- SOAL 3 -->
         <article class="soal-item" id="3">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal ketiga di sini...
+                <div id="geo-osk05-2-soal" class="geo-wrap" style="display:flex; justify-content:center; margin: 10px 0;"></div>
+                Pada gambar di atas, $a, b, c, d$ dan $e$ berturut-turut menyatakan besar sudut pada titik-titik ujung bintang lima yang terletak pada suatu lingkaran. Jumlah $a + b + c + d + e = \cdots$
+                <ol class="pilgan" style="list-style-type: upper-alpha; margin-top: 0.6rem; padding-left: 1.4rem;">
+                    <li>$135^\circ$</li>
+                    <li>$180^\circ$</li>
+                    <li>$270^\circ$</li>
+                    <li>$360^\circ$</li>
+                    <li>tidak dapat ditentukan dengan pasti</li>
+                </ol>
             </div>
-            <div class="soal-sumber"></div>
-            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK SMA 2005.html">OSK SMA 2005 (Bagian Pertama - No. 2)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan soal ketiga di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <div id="geo-osk05-2" class="geo-wrap" style="display:flex; justify-content:center; margin: 12px 0;"></div>
+                    <p>Kelima sudut $a, b, c, d, e$ masing-masing adalah sudut keliling yang menghadap busur $\widehat{CD}, \widehat{DE}, \widehat{EA}, \widehat{AB}, \widehat{BC}$ yang bersama-sama membentuk satu lingkaran penuh ($360^\circ$), sehingga:</p>
+                    $$a + b + c + d + e = \frac{1}{2}(360^\circ) = 180^\circ$$
+                    <div class="kesimpulan">
+                        Jadi, jawabannya adalah <strong>B. $180^\circ$</strong>.
+                    </div>
                 </div>
-                <button class="btn-tutup">TUTUP</button>
+                <button type="button" class="btn-tutup">TUTUP</button>
             </div>
         </article>
--->
 
         <!-- Salin blok <article class="soal-item">...</article> di atas untuk soal 4 sampai 10 -->
 
@@ -132,21 +143,73 @@
             function renderSudut14() {
                 if (typeof GeoSVG === "undefined") return;
                 const c14 = document.getElementById("geo-osp04-b1-14");
-                if (!c14 || c14.querySelector("svg")) return;
-                const g14 = new GeoSVG(c14, { width: 240, height: 190 });
-                const O = { x: 120, y: 95 }, r = 68;
-                const P = { x: O.x - r, y: O.y }, Q = { x: O.x + r, y: O.y };
-                const ang = 36 * Math.PI / 180;
-                const R = { x: O.x + r * Math.cos(ang), y: O.y + r * Math.sin(ang) };
-                g14.buatLingkaran(O, r, { fill: "rgba(13, 148, 136, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
-                g14.buatSegmen(P, Q, { stroke: "var(--text-main)", strokeWidth: 1.7 });
-                g14.buatSegmen(P, R, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
-                g14.buatSegmen(O, R, { stroke: "#dc2626", strokeWidth: 1.6 });
-                g14.buatSudut(P, O, R, { radius: 18, stroke: "#dc2626", label: "144°", labelRadius: 28, labelColor: "#dc2626" });
-                g14.buatTitik(P, { label: "P", labelPosition: "middle-left", size: 3.5, color: "var(--text-main)" });
-                g14.buatTitik(Q, { label: "Q", labelPosition: "middle-right", size: 3.5, color: "var(--text-main)" });
-                g14.buatTitik(O, { label: "O", labelPosition: "top-center", size: 3.5, color: "#dc2626" });
-                g14.buatTitik(R, { label: "R", labelPosition: "bottom-right", size: 3.5, color: "var(--teal-primary)" });
+                if (c14 && !c14.querySelector("svg")) {
+                    const g14 = new GeoSVG(c14, { width: 240, height: 190 });
+                    const O = { x: 120, y: 95 }, r = 68;
+                    const P = { x: O.x - r, y: O.y }, Q = { x: O.x + r, y: O.y };
+                    const ang = 36 * Math.PI / 180;
+                    const R = { x: O.x + r * Math.cos(ang), y: O.y + r * Math.sin(ang) };
+                    g14.buatLingkaran(O, r, { fill: "rgba(13, 148, 136, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    g14.buatSegmen(P, Q, { stroke: "var(--text-main)", strokeWidth: 1.7 });
+                    g14.buatSegmen(P, R, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    g14.buatSegmen(O, R, { stroke: "#dc2626", strokeWidth: 1.6 });
+                    g14.buatSudut(P, O, R, { radius: 18, stroke: "#dc2626", label: "144°", labelRadius: 28, labelColor: "#dc2626" });
+                    g14.buatTitik(P, { label: "P", labelPosition: "middle-left", size: 3.5, color: "var(--text-main)" });
+                    g14.buatTitik(Q, { label: "Q", labelPosition: "middle-right", size: 3.5, color: "var(--text-main)" });
+                    g14.buatTitik(O, { label: "O", labelPosition: "top-center", size: 3.5, color: "#dc2626" });
+                    g14.buatTitik(R, { label: "R", labelPosition: "bottom-right", size: 3.5, color: "var(--teal-primary)" });
+                }
+
+                // Soal 3 (OSK 2005 No. 2): Bintang lima di dalam lingkaran
+                const O2 = { x: 115, y: 100 }, r2 = 74;
+                const pt2 = deg => ({ x: O2.x + r2 * Math.cos(deg * Math.PI / 180), y: O2.y + r2 * Math.sin(deg * Math.PI / 180) });
+                const A2 = pt2(196), B2 = pt2(-93), C2 = pt2(-12), D2 = pt2(56), E2 = pt2(130);
+                const inter2 = (P1, P2, Q1, Q2) => {
+                    const d = (P2.x - P1.x) * (Q2.y - Q1.y) - (P2.y - P1.y) * (Q2.x - Q1.x);
+                    return {
+                        x: ((P2.x * P1.y - P2.y * P1.x) * (Q2.x - Q1.x) - (P2.x - P1.x) * (Q2.x * Q1.y - Q2.y * Q1.x)) / d,
+                        y: ((P2.x * P1.y - P2.y * P1.x) * (Q2.y - Q1.y) - (P2.y - P1.y) * (Q2.x * Q1.y - Q2.y * Q1.x)) / d
+                    };
+                };
+                const F2 = inter2(A2, C2, B2, E2), G2 = inter2(A2, C2, B2, D2);
+                const moveIn2 = (P, T, dist) => {
+                    const dx = T.x - P.x, dy = T.y - P.y, len = Math.hypot(dx, dy);
+                    return { x: P.x + (dx / len) * dist, y: P.y + (dy / len) * dist };
+                };
+
+                const c2s = document.getElementById("geo-osk05-2-soal");
+                if (c2s && !c2s.querySelector("svg")) {
+                    const g = new GeoSVG(c2s, { width: 230, height: 200, margin: 10 });
+                    g.buatLingkaran(O2, r2, { fill: "rgba(100, 116, 139, 0.04)", stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    g.buatPoligon([A2, C2, E2, B2, D2], { fill: "none", stroke: "var(--text-main)", strokeWidth: 1.7 });
+                    const bis = (P, Q, R, d) => {
+                        const u1x = (Q.x - P.x) / Math.hypot(Q.x - P.x, Q.y - P.y);
+                        const u1y = (Q.y - P.y) / Math.hypot(Q.x - P.x, Q.y - P.y);
+                        const u2x = (R.x - P.x) / Math.hypot(R.x - P.x, R.y - P.y);
+                        const u2y = (R.y - P.y) / Math.hypot(R.x - P.x, R.y - P.y);
+                        const bx = u1x + u2x, by = u1y + u2y, bl = Math.hypot(bx, by);
+                        return { x: P.x + (bx / bl) * d, y: P.y + (by / bl) * d };
+                    };
+                    [[bis(A2, C2, D2, 20), "a"], [bis(B2, D2, E2, 20), "b"], [bis(C2, E2, A2, 20), "c"], [bis(D2, A2, B2, 20), "d"], [bis(E2, B2, C2, 20), "e"]]
+                        .forEach(([pos, txt]) => g.buatTeks(pos.x, pos.y, txt, { position: "middle-center", fontSize: 13, fontWeight: "bold", fill: "var(--teal-primary)" }));
+                }
+
+                const c2p = document.getElementById("geo-osk05-2");
+                if (c2p && !c2p.querySelector("svg")) {
+                    const g = new GeoSVG(c2p, { width: 250, height: 210, margin: 12 });
+                    g.buatLingkaran(O2, r2, { fill: "rgba(100, 116, 139, 0.04)", stroke: "var(--text-muted)", strokeWidth: 1.5 });
+                    g.buatPoligon([A2, C2, E2, B2, D2], { fill: "none", stroke: "var(--text-main)", strokeWidth: 1.7 });
+                    g.buatPoligon([F2, G2, B2], { fill: "rgba(13, 148, 136, 0.14)", stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    g.buatTitik(A2, { label: "A", labelPosition: "top-left", size: 3.2, color: "var(--text-main)" });
+                    g.buatTitik(B2, { label: "B", labelPosition: "top-center", size: 3.2, color: "var(--text-main)" });
+                    g.buatTitik(C2, { label: "C", labelPosition: "top-right", size: 3.2, color: "var(--text-main)" });
+                    g.buatTitik(D2, { label: "D", labelPosition: "bottom-right", size: 3.2, color: "var(--text-main)" });
+                    g.buatTitik(E2, { label: "E", labelPosition: "bottom-left", size: 3.2, color: "var(--text-main)" });
+                    g.buatTitik(F2, { label: "F", labelPosition: "top-left", size: 3, color: "var(--teal-primary)" });
+                    g.buatTitik(G2, { label: "G", labelPosition: "top-right", size: 3, color: "var(--teal-primary)" });
+                    [[moveIn2(A2, O2, 18), "a"], [moveIn2(B2, O2, 20), "b"], [moveIn2(C2, O2, 18), "c"], [moveIn2(D2, O2, 18), "d"], [moveIn2(E2, O2, 18), "e"]]
+                        .forEach(([p, s]) => g.buatTeks(p.x, p.y, s, { position: "middle-center", fontSize: 12, fontWeight: "bold", fill: "#dc2626" }));
+                }
             }
             if (document.readyState === "loading") {
                 document.addEventListener("DOMContentLoaded", renderSudut14);

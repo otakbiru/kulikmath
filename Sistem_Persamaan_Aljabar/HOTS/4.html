@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Sistem Persamaan Aljabar [4]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Sistem Persamaan Aljabar</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 31 -->
+        <article class="soal-item" id="31">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Barisan bilangan asli $(a, b, c)$ dengan $a \ge b \ge c$, yang memenuhi sekaligus kedua persamaan $ab + bc = 44$ dan $ac + bc = 23$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202005.html#A13">OSP SMA 2005 (Bagian Pertama No. 13)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Faktorkan persamaan kedua:</p>
+                    $$c(a + b) = 23$$
+                    <p>Karena $a, b, c$ bilangan asli dan $23$ adalah bilangan prima, sedangkan $a + b \ge 2$, haruslah $c = 1$ dan $a + b = 23$.</p>
+                    <p>Substitusikan $c = 1$ dan $a = 23 - b$ ke persamaan pertama:</p>
+                    $$ab + b = 44 \implies (23 - b)b + b = 44$$
+                    $$b^2 - 24b + 44 = 0 \implies (b - 2)(b - 22) = 0$$
+                    <p>Diperoleh $b = 2$ (sehingga $a = 21$) atau $b = 22$ (sehingga $a = 1$). Karena disyaratkan $a \ge b \ge c$, hanya $(21, 2, 1)$ yang memenuhi.</p>
+                    <div class="kesimpulan">
+                        Jadi, barisan bilangan asli yang memenuhi adalah <strong>$(21, 2, 1)$</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 32 -->
+        <article class="soal-item" id="32">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan semua tripel bilangan bulat $(x, y, z)$ yang memenuhi sistem persamaan
+                $$\begin{cases}
+                x(y + z) = y^2 + z^2 - 2 \\
+                y(z + x) = z^2 + x^2 - 2 \\
+                z(x + y) = x^2 + y^2 - 2
+                \end{cases}$$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202005.html#6">OSN SMA 2005 (Hari Kedua No. 6)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kurangkan persamaan pertama dengan persamaan kedua:</p>
+                    $$z(x - y) = y^2 - x^2 = -(x - y)(x + y) \implies (x - y)(x + y + z) = 0$$
+                    <p>Secara simetris, pengurangan pasangan persamaan lainnya menghasilkan:</p>
+                    $$(x - z)(x + y + z) = 0 \quad \text{dan} \quad (y - z)(x + y + z) = 0$$
+                    <p>Tinjau dua kasus:</p>
+                    <ul>
+                        <li><strong>Kasus 1 ($x + y + z \ne 0$):</strong> Haruslah $x - y = x - z = y - z = 0$, sehingga $x = y = z$. Substitusi ke persamaan pertama memberi $2x^2 = 2x^2 - 2 \implies 0 = -2$, kontradiksi. Tidak ada solusi.</li>
+                        <li><strong>Kasus 2 ($x + y + z = 0$):</strong> Substitusikan $y + z = -x$ ke persamaan pertama:
+                            $$x(-x) = y^2 + z^2 - 2 \implies x^2 + y^2 + z^2 = 2$$
+                            Karena $x, y, z \in \mathbb{Z}$, satu-satunya cara agar jumlah tiga bilangan kuadrat bulat bernilai $2$ adalah dua di antaranya bernilai $\pm 1$ dan satu lainnya $0$. Agar $x + y + z = 0$, dua bilangan tak nol tersebut harus berlawanan tanda ($1$ dan $-1$).
+                        </li>
+                    </ul>
+                    <p>Semua permutasi dari $(1, -1, 0)$ memenuhi ketiga persamaan.</p>
+                    <div class="kesimpulan">
+                        Jadi, semua tripel bilangan bulat $(x, y, z)$ yang memenuhi adalah <strong>$(1, -1, 0)$, $(1, 0, -1)$, $(-1, 1, 0)$, $(-1, 0, 1)$, $(0, 1, -1)$, dan $(0, -1, 1)$</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

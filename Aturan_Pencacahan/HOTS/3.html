@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Aturan Pencacahan [3]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Aturan Pencacahan</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 21 -->
+        <article class="soal-item" id="21">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Tentukan banyaknya bilangan positif $5$-angka palindrom yang habis dibagi $3$. Palindrom adalah bilangan/kata yang sama jika dibaca dari kiri ke kanan atau sebaliknya. Sebagai contoh $35353$ adalah bilangan palindrom, sedangkan $14242$ bukan.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202008.html#B5">OSP SMA 2008 (Bagian Kedua No. 5)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Bilangan positif $5$-angka palindrom berbentuk $\overline{abcba}$ dengan $a \in \{1, 2, \dots, 9\}$ dan $b, c \in \{0, 1, \dots, 9\}$. Bilangan ini habis dibagi $3$ jika dan hanya jika jumlah digitnya habis dibagi $3$:</p>
+                    $$2(a + b) + c \equiv 0 \pmod{3}$$
+                    <p>Perhatikan pilihan $a \in \{1, \dots, 9\}$ terbagi rata ke tiga kelas sisa modulo $3$: masing-masing $3$ pilihan untuk sisa $0$ ($\{3, 6, 9\}$), sisa $1$ ($\{1, 4, 7\}$), dan sisa $2$ ($\{2, 5, 8\}$). Sedangkan untuk $b$ dan $c$ dalam $\{0, \dots, 9\}$, ada $4$ digit bersisa $0$ ($\{0, 3, 6, 9\}$), $3$ digit bersisa $1$, dan $3$ digit bersisa $2$.</p>
+                    <p>Untuk setiap pilihan $(b, c)$ (ada $10 \times 10 = 100$ pasang), nilai $2a \equiv -(2b + c) \pmod{3}$ menentukan kelas sisa $a \pmod 3$ secara tunggal, dan setiap kelas sisa $a$ selalu memiliki tepat $3$ pilihan digit valid dalam $\{1, \dots, 9\}$.</p>
+                    <p>Dengan demikian, banyaknya bilangan yang memenuhi adalah:</p>
+                    $$100 \times 3 = 300$$
+                    <div class="kesimpulan">
+                        Jadi, banyaknya bilangan positif $5$-angka palindrom yang habis dibagi $3$ adalah <strong>$300$</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 22 -->
+        <article class="soal-item" id="22">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Ada $21$ orang berhubungan secara rahasia dengan menggunakan frekuensi gelombang radio yang berbeda. Ada pasangan dua orang yang dapat berhubungan, mungkin ada yang tidak dapat. Setiap pasang yang berhubungan hanya menggunakan satu frekuensi tertentu yang berbeda dengan frekuensi yang digunakan pasangan lain. Setiap tiga orang selalu ada dua orang di antaranya yang tidak dapat berhubungan. Tentukan banyak maksimum frekuensi berbeda yang diperlukan dan jelaskan.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202008.html#6">OSN SMA 2008 (Hari Kedua No. 6)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Graf hubungan $21$ orang ini bebas segitiga ($K_3$-free). Menurut Teorema Mantel, ambil simpul $v$ berderajat maksimum $d$: tidak ada sisi di dalam himpunan tetangganya $N(v)$, sehingga setiap sisi sedikitnya memiliki satu ujung di $21 - d$ simpul sisanya. Dengan demikian $|E| \le d(21 - d) \le 10 \times 11 = 110$.</p>
+                    <p>Batas $110$ tercapai oleh graf bipartit lengkap $K_{10, 11}$ (membagi $21$ orang ke dua kelompok berisi $10$ dan $11$ orang).</p>
+                    <div class="kesimpulan">
+                        Jadi, banyak maksimum frekuensi berbeda yang diperlukan adalah <strong>$110$</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 23 -->
+        <article class="soal-item" id="23">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Suatu turnamen diikuti $20$ tim, di mana setiap tim bertemu satu kali dengan semua tim yang lain. Kemenangan memperoleh poin $1$, sedangkan kekalahan $0$. Pada klasemen akhir, $3$ tim teratas memperoleh poin yang sama, sedangkan $17$ tim yang lain memperoleh poin yang berbeda-beda. Jumlah semua bilangan yang tidak muncul pada poin yang dimiliki suatu tim pada klasemen akhir adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202009.html#A12">OSK SMA 2009 (No. 12)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Total poin ke-$20$ tim adalah $\dbinom{20}{2} = 190$. Jumlah poin minimum $17$ tim terbawah yang semuanya berbeda adalah $0 + 1 + \dots + 16 = 136$, menyisakan paling banyak $190 - 136 = 54$ poin bagi $3$ tim teratas ($18$ per tim).</p>
+                    <p>Karena $3(17) + 136 = 187 &lt; 190$, satu-satunya konfigurasi yang valid adalah $3$ tim teratas berpoin $18$ dan $17$ tim terbawah berpoin $0, 1, \dots, 16$. Bilangan pada $\{0, \dots, 19\}$ yang tidak muncul adalah $17$ dan $19$, dengan jumlah $36$.</p>
+                    <div class="kesimpulan">
+                        Jadi, jumlah semua bilangan yang tidak muncul adalah <strong>$36$</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

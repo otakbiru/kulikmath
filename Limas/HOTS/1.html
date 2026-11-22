@@ -136,24 +136,29 @@
         </article>
 
         <!-- SOAL 2 -->
-        <!--
         <article class="soal-item" id="2">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal ke-2 di sini...
+                Misalkan $ABCD$ adalah limas segitiga beraturan, yaitu bangun ruang bersisi empat yang berbentuk segitiga samasisi. Misalkan $S$ adalah titik tengah rusuk $AB$ dan $T$ titik tengah rusuk $CD$. Jika panjang rusuk $ABCD$ adalah $1$ satuan panjang, maka panjang $ST$ adalah $\cdots$
             </div>
-            <div class="soal-sumber"></div>
-            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202005.html#A19">OSP SMA 2005 (Bagian Pertama No. 19)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan soal ke-2 di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <div id="geo-osp05-19" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Karena $\triangle ABD$ dan $\triangle ABC$ merupakan segitiga sama sisi dengan panjang sisi $1$, sedangkan $S$ adalah titik tengah $AB$, maka $DS$ dan $CS$ adalah garis tinggi pada masing-masing segitiga tersebut:</p>
+                    $$DS = CS = \frac{\sqrt{3}}{2}$$
+                    <p>Akibatnya, $\triangle CDS$ adalah segitiga sama kaki dengan $DS = CS = \dfrac{\sqrt{3}}{2}$ dan alas $CD = 1$. Karena $T$ adalah titik tengah $CD$, garis berat $ST$ tegak lurus terhadap $CD$ ($DT = \dfrac{1}{2}$).</p>
+                    <p>Dengan Teorema Pythagoras pada $\triangle STD$:</p>
+                    $$ST = \sqrt{DS^2 - DT^2} = \sqrt{\left(\frac{\sqrt{3}}{2}\right)^2 - \left(\frac{1}{2}\right)^2} = \sqrt{\frac{3}{4} - \frac{1}{4}} = \sqrt{\frac{1}{2}} = \frac{1}{2}\sqrt{2}$$
+                    <div class="kesimpulan">
+                        Jadi, panjang $ST$ adalah <strong>$\dfrac{1}{2}\sqrt{2}$</strong> satuan panjang.
+                    </div>
                 </div>
-                <button class="btn-tutup">TUTUP</button>
+                <button type="button" class="btn-tutup">TUTUP</button>
             </div>
         </article>
-        -->
 
         <!-- SOAL 3 -->
         <!--
@@ -318,6 +323,49 @@
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
+
+    <script>
+        (function () {
+            function renderExtraLimas() {
+                if (typeof GeoSVG === "undefined") {
+                    setTimeout(renderExtraLimas, 100);
+                    return;
+                }
+                const c19 = document.getElementById("geo-osp05-19");
+                if (c19 && !c19.querySelector("svg")) {
+                    const g19 = new GeoSVG(c19, { width: 250, height: 195 });
+                    const D = { x: 112, y: 24 };
+                    const A = { x: 45, y: 138 };
+                    const B = { x: 158, y: 166 };
+                    const C = { x: 205, y: 98 };
+                    const S = { x: (A.x + B.x) / 2, y: (A.y + B.y) / 2 };
+                    const T = { x: (C.x + D.x) / 2, y: (C.y + D.y) / 2 };
+
+                    g19.buatSegmen(A, C, { stroke: "var(--text-muted)", strokeWidth: 1.4, dashArray: "4,4" });
+                    g19.buatSegmen(D, A, { stroke: "var(--text-main)", strokeWidth: 2 });
+                    g19.buatSegmen(D, B, { stroke: "var(--text-main)", strokeWidth: 2 });
+                    g19.buatSegmen(D, C, { stroke: "var(--text-main)", strokeWidth: 2 });
+                    g19.buatSegmen(A, B, { stroke: "var(--text-main)", strokeWidth: 2 });
+                    g19.buatSegmen(B, C, { stroke: "var(--text-main)", strokeWidth: 2 });
+                    g19.buatSegmen(D, S, { stroke: "var(--teal-primary)", strokeWidth: 1.5, dashArray: "3,3" });
+                    g19.buatSegmen(C, S, { stroke: "var(--teal-primary)", strokeWidth: 1.5, dashArray: "3,3" });
+                    g19.buatSegmen(S, T, { stroke: "#dc2626", strokeWidth: 2.2 });
+
+                    g19.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 3.2, color: "var(--text-main)" });
+                    g19.buatTitik(B, { label: "B", labelPosition: "bottom-center", size: 3.2, color: "var(--text-main)" });
+                    g19.buatTitik(C, { label: "C", labelPosition: "middle-right", size: 3.2, color: "var(--text-main)" });
+                    g19.buatTitik(D, { label: "D", labelPosition: "top-center", size: 3.2, color: "var(--text-main)" });
+                    g19.buatTitik(S, { label: "S", labelPosition: "bottom-left", size: 3.5, color: "var(--teal-primary)" });
+                    g19.buatTitik(T, { label: "T", labelPosition: "top-right", size: 3.5, color: "#dc2626" });
+                }
+            }
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", renderExtraLimas);
+            } else {
+                renderExtraLimas();
+            }
+        })();
+    </script>
 
     <script src="../../scr/script.js"></script>
 </body>

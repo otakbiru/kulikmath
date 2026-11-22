@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bilangan Asli [6]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bilangan Asli</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas -->
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- ================= DAFTAR SOAL ================= -->
+
+        <!-- SOAL 51 -->
+        <article class="soal-item" id="51">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Banyak bilangan bulat positif $n$ kurang dari $2008$ yang mempunyai tepat $\dfrac{n}{2}$ bilangan kurang dari $n$ dan relatif prima terhadap $n$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202008.html#A14">OSP SMA 2008 (Bagian Pertama No. 14)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Syarat soal ekuivalen dengan $\varphi(n) = \dfrac{n}{2}$, di mana $\varphi(n)$ adalah fungsi totien Euler. Karena $\dfrac{n}{2}$ harus bilangan bulat, $n$ genap, sehingga $n = 2^y \cdot m$ dengan $y \ge 1$ dan $m \ge 1$ ganjil.</p>
+                    <p>Dengan rumus fungsi totien Euler:</p>
+                    $$\varphi(n) = n \cdot \left(1 - \frac{1}{2}\right) \prod_{p \mid m} \left(1 - \frac{1}{p}\right) = \frac{n}{2} \prod_{p \mid m} \left(1 - \frac{1}{p}\right)$$
+                    <p>Agar $\varphi(n) = \dfrac{n}{2}$, produk atas faktor prima ganjil $p \mid m$ harus bernilai $1$, yang berarti $m$ tidak memiliki faktor prima ganjil ($m = 1$). Jadi $n = 2^y$ untuk $y \ge 1$.</p>
+                    <p>Karena $n &lt; 2008$ dan $2^{10} = 1024 &lt; 2008 &lt; 2048 = 2^{11}$, nilai $y$ yang memenuhi adalah $1, 2, \dots, 10$.</p>
+                    <div class="kesimpulan">
+                        Jadi, banyaknya bilangan bulat positif $n$ yang memenuhi adalah <strong>$10$</strong>.
+                    </div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 52 -->
+        <article class="soal-item" id="52">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Carilah semua bilangan asli yang dapat dinyatakan dalam bentuk
+                $$\frac{a + b}{c} + \frac{b + c}{a} + \frac{c + a}{b}$$
+                untuk suatu $a$, $b$, dan $c$ bilangan asli dengan $\text{FPB}(a, b) = \text{FPB}(b, c) = \text{FPB}(c, a) = 1$.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202008.html#3">OSN SMA 2008 (Hari Pertama No. 3)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan jumlah tersebut bernilai bilangan asli $k$. Dengan menyamakan penyebut menjadi $abc$ dan memanfaatkan $\text{FPB}(a, b) = \text{FPB}(b, c) = \text{FPB}(c, a) = 1$, diperoleh $c \mid (a + b)$, $b \mid (a + c)$, dan $a \mid (b + c)$.</p>
+                    <p>Misalkan $a = \max(a, b, c)$. Karena $a \le b + c \le 2a$ dan $a \mid (b + c)$, maka $b + c = 2a$ (yang memaksa $a = b = c = 1 \implies k = 6$) atau $b + c = a$ (yang memaksa $b \mid 2$ dan $c \mid 2$, sehingga $(a,b,c) = (2,1,1) \implies k = 7$ atau $(3,1,2) \implies k = 8$).</p>
+                    <div class="kesimpulan">
+                        Jadi, semua bilangan asli yang memenuhi adalah <strong>$6$, $7$, dan $8$</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 53 -->
+        <article class="soal-item" id="53">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Banyaknya bilangan asli kurang dari $1000$ yang dapat dinyatakan dalam bentuk $x^2 - y^2$ untuk suatu bilangan ganjil $x$ dan $y$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202009.html#A1">OSK SMA 2009 (No. 1)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Untuk $x = 2m + 1$ dan $y = 2n + 1$, diperoleh $x^2 - y^2 = 4m(m + 1) - 4n(n + 1)$, yang selalu kelipatan $8$. Sebaliknya, setiap kelipatan $8$ yaitu $8k = (2k + 1)^2 - (2k - 1)^2$ dapat dinyatakan sebagai selisih kuadrat dua bilangan ganjil.</p>
+                    <p>Banyaknya bilangan asli kelipatan $8$ kurang dari $1000$ adalah $\left\lfloor \dfrac{999}{8} \right\rfloor = 124$.</p>
+                    <div class="kesimpulan">
+                        Jadi, banyaknya bilangan asli yang memenuhi adalah <strong>$124$</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

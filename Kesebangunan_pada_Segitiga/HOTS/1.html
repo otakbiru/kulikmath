@@ -213,24 +213,28 @@
         -->
 
         <!-- SOAL 4 -->
-        <!--
         <article class="soal-item" id="4">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal ke-4 di sini...
+                Diketahui $AD$ adalah garis tinggi dari segitiga $ABC$, $\angle DAB = \angle ACD$, $AD = 6$, $BD = 8$. Luas segitiga $ABC$ adalah $\cdots$
             </div>
-            <div class="soal-sumber"></div>
-            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202008.html#A19">OSP SMA 2008 (Bagian Pertama No. 19)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan soal ke-4 di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <div id="geo-osp08-19" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Karena $AD \perp BC$ dan $\angle DAB = \angle ACD$, segitiga siku-siku $\triangle ABD$ sebangun dengan $\triangle CAD$ (sudut-sudut). Akibatnya:</p>
+                    $$\frac{CD}{AD} = \frac{AD}{BD} \implies \frac{CD}{6} = \frac{6}{8} \implies CD = \frac{36}{8} = \frac{9}{2}$$
+                    <p>Panjang alas $BC = BD + CD = 8 + \dfrac{9}{2} = \dfrac{25}{2}$, sehingga luas $\triangle ABC$ adalah:</p>
+                    $$[\triangle ABC] = \frac{1}{2} \cdot BC \cdot AD = \frac{1}{2} \cdot \frac{25}{2} \cdot 6 = \frac{75}{2}$$
+                    <div class="kesimpulan">
+                        Jadi, luas segitiga $ABC$ adalah <strong>$\dfrac{75}{2}$</strong> (atau $37{,}5$).
+                    </div>
                 </div>
-                <button class="btn-tutup">TUTUP</button>
+                <button type="button" class="btn-tutup">TUTUP</button>
             </div>
         </article>
-        -->
 
         <!-- SOAL 5 -->
         <!--
@@ -437,6 +441,34 @@
                 renderDiagram3();
             } else {
                 window.addEventListener("load", renderDiagram3);
+            }
+
+            function renderOsp0819() {
+                if (typeof GeoSVG === "undefined") {
+                    setTimeout(renderOsp0819, 100);
+                    return;
+                }
+                const c19 = document.getElementById("geo-osp08-19");
+                if (c19 && !c19.querySelector("svg")) {
+                    const g19 = new GeoSVG(c19, { width: 255, height: 175 });
+                    const B = { x: 35, y: 142 }, D = { x: 162, y: 142 }, C = { x: 228, y: 142 }, A = { x: 162, y: 38 };
+                    g19.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    g19.buatSegmen(A, D, { stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    g19.buatSiku(A, D, C, { size: 8, stroke: "var(--teal-primary)" });
+                    g19.buatSudut(B, A, D, { radius: 20, label: "α", color: "#dc2626" });
+                    g19.buatSudut(A, C, D, { radius: 20, label: "α", color: "#dc2626" });
+                    g19.buatLabelSisi(B, D, "8", { position: "bottom", color: "var(--text-muted)" });
+                    g19.buatLabelSisi(A, D, "6", { position: "right", color: "var(--teal-primary)" });
+                    g19.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.2, color: "var(--text-main)" });
+                    g19.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.2, color: "var(--text-main)" });
+                    g19.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.2, color: "var(--text-main)" });
+                    g19.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 3.2, color: "var(--teal-primary)" });
+                }
+            }
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", renderOsp0819);
+            } else {
+                renderOsp0819();
             }
         })();
     </script>

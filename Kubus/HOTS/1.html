@@ -165,6 +165,32 @@
             </div>
         </article>
 
+        <!-- SOAL 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Kubus $ABCDEFGH$ dipotong oleh bidang yang melalui diagonal $HF$, membentuk sudut $30^\circ$ terhadap diagonal $EG$ dan memotong rusuk $AE$ di $P$. Jika panjang rusuk kubus adalah $1$ satuan, maka panjang ruas $AP$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202008.html#B18">OSK SMA 2008 (Bagian Kedua No. 18)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osk08-18" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan $K$ adalah titik potong diagonal bidang atas $EG$ dan $HF$, sehingga $EK = \dfrac{1}{2}EG = \dfrac{\sqrt{2}}{2}$ dan $EG \perp HF$.</p>
+                    <p>Bidang irisan yang melalui $HF$ dan memotong rusuk $AE$ di $P$ adalah bidang segitiga sama kaki $PFH$. Karena $PE \perp \text{bidang } EFGH$ dan $EK \perp HF$, menurut teorema tiga garis tegak lurus berlaku $PK \perp HF$, sehingga sudut antara garis $EG$ dan bidang $PFH$ tepat adalah $\angle EKP = 30^\circ$.</p>
+                    <p>Pada segitiga siku-siku $\triangle KEP$ (siku-siku di $E$):</p>
+                    $$\tan 30^\circ = \frac{EP}{EK} \implies \frac{1}{\sqrt{3}} = \frac{EP}{\frac{1}{2}\sqrt{2}} \implies EP = \frac{\sqrt{2}}{2\sqrt{3}} = \frac{\sqrt{6}}{6}$$
+                    <p>Karena $P$ terletak pada rusuk $AE$ ($AE = 1$), maka:</p>
+                    $$AP = 1 - EP = 1 - \frac{\sqrt{6}}{6} = \frac{6 - \sqrt{6}}{6}$$
+                    <div class="kesimpulan">
+                        Jadi, panjang ruas $AP$ adalah <strong>$\dfrac{6 - \sqrt{6}}{6}$</strong> satuan.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -345,6 +371,35 @@
                     geo2.buatTitik(P, { label: "P", labelPosition: "middle-left", color: "#dc2626", size: 4 });
                     geo2.buatTitik(F, { label: "F", labelPosition: "top-center", color: "var(--teal-primary)", size: 4 });
                     geo2.buatTitik(Q, { label: "Q", labelPosition: "middle-right", color: "#dc2626", size: 4 });
+                }
+
+                // Soal 4: Kubus ABCDEFGH (OSK SMA 2008 No. 18)
+                const c18 = document.getElementById("geo-osk08-18");
+                if (c18 && !c18.querySelector("svg")) {
+                    const g18 = new GeoSVG(c18, { width: 250, height: 225 });
+                    const E = { x: 48, y: 74 }, F = { x: 158, y: 74 }, H = { x: 96, y: 34 }, G = { x: 206, y: 34 };
+                    const A = { x: 48, y: 184 }, B = { x: 158, y: 184 }, D = { x: 96, y: 144 }, C = { x: 206, y: 144 };
+                    const K = { x: (E.x + G.x) / 2, y: (E.y + G.y) / 2 };
+                    const P = { x: E.x, y: E.y + 0.41 * (A.y - E.y) };
+                    g18.buatSegmen(A, D, { stroke: "var(--text-muted)", strokeWidth: 1.4, dashArray: "4,4" });
+                    g18.buatSegmen(D, C, { stroke: "var(--text-muted)", strokeWidth: 1.4, dashArray: "4,4" });
+                    g18.buatSegmen(D, H, { stroke: "var(--text-muted)", strokeWidth: 1.4, dashArray: "4,4" });
+                    [[A, B], [B, C], [E, F], [F, G], [G, H], [H, E], [A, E], [B, F], [C, G]].forEach(([u, v]) => {
+                        g18.buatSegmen(u, v, { stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    });
+                    g18.buatSegmen(E, G, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashArray: "3,3" });
+                    g18.buatPoligon([P, F, H], { fill: "rgba(13, 148, 136, 0.14)", stroke: "var(--teal-primary)", strokeWidth: 1.8 });
+                    g18.buatSegmen(P, K, { stroke: "#dc2626", strokeWidth: 1.8 });
+                    g18.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 3, color: "var(--text-main)" });
+                    g18.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 3, color: "var(--text-main)" });
+                    g18.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3, color: "var(--text-main)" });
+                    g18.buatTitik(D, { label: "D", labelPosition: "top-left", size: 3, color: "var(--text-muted)" });
+                    g18.buatTitik(E, { label: "E", labelPosition: "middle-left", size: 3, color: "var(--text-main)" });
+                    g18.buatTitik(F, { label: "F", labelPosition: "bottom-right", size: 3, color: "var(--text-main)" });
+                    g18.buatTitik(G, { label: "G", labelPosition: "top-right", size: 3, color: "var(--text-main)" });
+                    g18.buatTitik(H, { label: "H", labelPosition: "top-center", size: 3, color: "var(--text-main)" });
+                    g18.buatTitik(K, { label: "K", labelPosition: "top-center", size: 3.3, color: "#dc2626" });
+                    g18.buatTitik(P, { label: "P", labelPosition: "middle-left", size: 3.5, color: "#dc2626" });
                 }
             }
 

@@ -443,24 +443,32 @@
         </article>
 -->
 
-        <!-- SOAL 9 
+        <!-- SOAL 9 -->
         <article class="soal-item" id="9">
             <div class="soal-no"></div>
             <div class="soal-teks">
-                Tulis teks soal kedua di sini...
+                Diberikan segitiga $ABC$, dengan $BC = 5$, $AC = 12$, dan $AB = 13$. Titik $D$ dan $E$ berturut-turut pada $AB$ dan $AC$ sedemikian rupa sehingga $DE$ membagi segitiga $ABC$ menjadi dua bagian dengan luas yang sama. Panjang minimum $DE$ adalah $\cdots$
             </div>
-            <div class="soal-sumber"></div>
-            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202008.html#A10">OSP SMA 2008 (Bagian Pertama No. 10)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
             <div class="pembahasan-box">
                 <div class="pembahasan-title">Pembahasan:</div>
                 <div class="pembahasan-isi">
-                    Tulis pembahasan soal kedua di sini...
-                    <div class="kesimpulan">Jadi, </div>
+                    <div id="geo-osp08-10" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Karena $5^2 + 12^2 = 13^2$, $\triangle ABC$ siku-siku di $C$ dengan luas $[\triangle ABC] = \dfrac{1}{2}(5)(12) = 30$, serta $\sin A = \dfrac{5}{13}$ dan $\cos A = \dfrac{12}{13}$.</p>
+                    <p>Misalkan $AD = x$ dan $AE = y$. Karena $[\triangle ADE] = \dfrac{1}{2}[\triangle ABC] = 15$:</p>
+                    $$\frac{1}{2}xy\sin A = 15 \implies \frac{1}{2}xy\left(\frac{5}{13}\right) = 15 \implies xy = 78$$
+                    <p>Terapkan Aturan Cosinus pada $\triangle ADE$ dan gunakan ketaksamaan AM-GM:</p>
+                    $$DE^2 = x^2 + y^2 - 2xy\cos A = x^2 + y^2 - 2(78)\left(\frac{12}{13}\right) = x^2 + y^2 - 144$$
+                    $$DE^2 \ge 2xy - 144 = 2(78) - 144 = 12 \implies DE \ge 2\sqrt{3}$$
+                    <p>Kesamaan tercapai saat $x = y = \sqrt{78} \approx 8{,}83 &lt; 12 &lt; 13$, yang valid berada pada sisi $AB$ dan $AC$.</p>
+                    <div class="kesimpulan">
+                        Jadi, panjang minimum $DE$ adalah <strong>$2\sqrt{3}$</strong>.
+                    </div>
                 </div>
-                <button class="btn-tutup">TUTUP</button>
+                <button type="button" class="btn-tutup">TUTUP</button>
             </div>
         </article>
--->
 
         <!-- SOAL 10 
         <article class="soal-item" id="10">
@@ -485,6 +493,40 @@
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
+
+    <script>
+        (function () {
+            function renderMaxMin() {
+                if (typeof GeoSVG === "undefined") {
+                    setTimeout(renderMaxMin, 100);
+                    return;
+                }
+                const c10 = document.getElementById("geo-osp08-10");
+                if (c10 && !c10.querySelector("svg")) {
+                    const g10 = new GeoSVG(c10, { width: 260, height: 175 });
+                    const A = { x: 35, y: 142 }, C = { x: 225, y: 142 }, B = { x: 225, y: 42 };
+                    const D = { x: A.x + 0.68 * (B.x - A.x), y: A.y + 0.68 * (B.y - A.y) };
+                    const E = { x: A.x + 0.74 * (C.x - A.x), y: A.y };
+                    g10.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    g10.buatSegmen(D, E, { stroke: "#dc2626", strokeWidth: 2 });
+                    g10.buatSiku(B, C, A, { size: 8, stroke: "var(--text-main)" });
+                    g10.buatLabelSisi(B, C, "5", { position: "right", color: "var(--text-muted)" });
+                    g10.buatLabelSisi(A, C, "12", { position: "bottom", color: "var(--text-muted)" });
+                    g10.buatLabelSisi(A, B, "13", { position: "top", color: "var(--text-muted)" });
+                    g10.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 3.2, color: "var(--text-main)" });
+                    g10.buatTitik(B, { label: "B", labelPosition: "top-right", size: 3.2, color: "var(--text-main)" });
+                    g10.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.2, color: "var(--text-main)" });
+                    g10.buatTitik(D, { label: "D", labelPosition: "top-left", size: 3.5, color: "#dc2626" });
+                    g10.buatTitik(E, { label: "E", labelPosition: "bottom-center", size: 3.5, color: "#dc2626" });
+                }
+            }
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", renderMaxMin);
+            } else {
+                renderMaxMin();
+            }
+        })();
+    </script>
 
     <script src="../../scr/script.js"></script>
 </body>
