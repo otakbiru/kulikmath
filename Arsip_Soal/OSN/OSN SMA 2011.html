@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSN SMA 2011 - Arsip Soal &amp; Pembahasan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Arsip Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Arsip Soal &amp; Pembahasan Lengkap <span id="auto-level" class="level-highlight">...</span> —
+                <span class="topic-highlight">OSN SMA 2011 (Olimpiade Sains Nasional Matematika SMA Tahun 2011)</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <h2 class="category-heading" style="margin: 1.2rem 0 0.8rem;">Hari Pertama &amp; Hari Kedua (Nomor 1–8)</h2>
+
+        <!-- No. 1 -->
+        <article class="soal-item" id="1">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Perhatikan gambar jaring-jaring dadu berbentuk kubus dengan panjang rusuk satu satuan berikut:
+                <div id="geo-osn11-1" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                Misalkan $n$ bilangan asli dan $2n$ dadu tersebut disusun membentuk balok berukuran $1 \times 2 \times n$ satuan dan diletakkan di lantai (ada enam cara peletakan). Misalkan $S$ adalah jumlah bilangan yang terlihat pada balok tersebut (bagian bawah balok tidak terlihat). Tentukan $n$ terkecil sedemikian sehingga terdapat penyusunan dadu-dadu membentuk balok dan peletakan di lantai yang memenuhi $S &gt; 2011$.
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Kubus/HOTS/1.html#5">Kubus</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Dari jaring-jaring dadu, jumlah semua sisi satu dadu adalah $1 + 2 + 6 + 8 + 16 + 32 = 65$, dengan pasangan sisi berlawanan $(1, 32)$, $(2, 16)$, dan $(6, 8)$.</p>
+                    <p>Untuk memaksimalkan $S$, kita minimalkan jumlah bilangan pada sisi yang tertutup (baik oleh lantai maupun oleh dadu lain yang menempel). Terdapat tiga jenis peletakan balok $1 \times 2 \times n$ di lantai:</p>
+                    <ul>
+                        <li><strong>Alas $1 \times 2$ (tinggi $n$):</strong> Terdapat $n$ lapisan, masing-masing $2$ dadu.
+                            <ul>
+                                <li>Pada $n - 1$ lapisan bawah ($2(n - 1)$ dadu), tiap dadu tertutup pada $3$ sisi: atas, bawah (berlawanan), dan sisi dalam yang menempel. Agar tertutup minimal, pasang sisi berlawanan (atas–bawah) diisi $(6, 8)$ (jumlah $14$, terkecil di antara $\{1+32, 2+16, 6+8\}$) dan sisi dalam diisi $1$, sehingga jumlah terlihat per dadu $= 65 - 15 = 50$.</li>
+                                <li>Pada lapisan teratas ($2$ dadu), hanya sisi bawah dan sisi dalam (bersebelahan) yang tertutup; isi dengan $1$ dan $2$, sehingga jumlah terlihat per dadu $= 65 - 3 = 62$.</li>
+                            </ul>
+                            Maksimumnya adalah $S = 2(n - 1)(50) + 2(62) = 100n + 24$.
+                        </li>
+                        <li><strong>Alas $2 \times n$ (tinggi $1$):</strong> $4$ dadu sudut terlihat $3$ sisi ($32 + 16 + 8 = 56$) dan $2n - 4$ dadu tepi terlihat $2$ sisi ($32 + 16 = 48$), sehingga $S \le 4(56) + (2n - 4)(48) = 96n + 32$.</li>
+                        <li><strong>Alas $1 \times n$ (tinggi $2$):</strong> $2(n - 2)$ dadu tengah menghasilkan $(33 + 50)(n - 2)$ dan $4$ dadu ujung menghasilkan $2(50 + 62)$, sehingga $S \le 83n + 58$.</li>
+                    </ul>
+                    <p>Nilai maksimum keseluruhan dicapai pada peletakan alas $1 \times 2$, yaitu $S_{\max} = 100n + 24$ (untuk $n \ge 1$). Syarat $100n + 24 &gt; 2011 \iff 100n &gt; 1987 \iff n \ge 20$.</p>
+                    <div class="kesimpulan">Jadi, nilai $n$ terkecil yang memenuhi adalah <strong>$20$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 2 -->
+        <article class="soal-item" id="2">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Diberikan barisan bilangan $a_0, a_1, a_2, \dots, a_{2010}$ yang memenuhi $a_0 = 1$ dan $2011$ membagi $a_{k-1}a_k - k$ untuk $k = 1, 2, 3, \dots, 2010$. Buktikan bahwa $2011$ juga membagi $a_{2010} + 1$.
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Modulo/HOTS/4.html#38">Modulo</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Perhatikan bahwa $p = 2011$ adalah bilangan prima dengan $p \equiv 3 \pmod{4}$. Dari $a_{k-1}a_k \equiv k \pmod{p}$ untuk $k = 1, 2, \dots, 2010$, jelas $p \nmid a_k$ untuk setiap $k$.</p>
+                    <p>Kalikan kekongruenan untuk indeks genap dan pisahkan dari indeks ganjil secara teleskopik:</p>
+                    $$a_{2010} \cdot \prod_{j=1}^{1005} (2j - 1) \equiv a_{2010} \prod_{j=1}^{1005} a_{2j-2}a_{2j-1} = a_0 \prod_{j=1}^{1005} a_{2j-1}a_{2j} \equiv \prod_{j=1}^{1005} 2j \pmod{p}$$
+                    <p>Kalikan kedua ruas dengan $\prod_{j=1}^{1005} 2j$:</p>
+                    $$a_{2010} \cdot 2010! \equiv \left(\prod_{j=1}^{1005} 2j\right)^2 \pmod{p}$$
+                    <p>Karena $2j \equiv -(p - 2j) \pmod{p}$, diperoleh $\prod_{j=1}^{1005} 2j \equiv (-1)^{1005} \prod_{j=1}^{1005} (p - 2j) \pmod{p}$, sehingga:</p>
+                    $$\left(\prod_{j=1}^{1005} 2j\right)^2 \equiv (-1)^{1005} \cdot 2010! \pmod{p}$$
+                    <p>Menurut Teorema Wilson, $2010! \equiv -1 \pmod{2011}$, sehingga $a_{2010}(-1) \equiv (-1)(-1) = 1 \pmod{2011}$, yang memberi $a_{2010} \equiv -1 \pmod{2011}$, yakni $2011 \mid (a_{2010} + 1)$. $\blacksquare$</p>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 3 -->
+        <article class="soal-item" id="3">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Misalkan $a, b,$ dan $c$ adalah bilangan-bilangan real positif dengan sifat $abc = 1$. Jika diketahui bahwa
+                $$a^{2011} + b^{2011} + c^{2011} &lt; \frac{1}{a^{2011}} + \frac{1}{b^{2011}} + \frac{1}{c^{2011}}$$
+                buktikan bahwa
+                $$a + b + c &lt; \frac{1}{a} + \frac{1}{b} + \frac{1}{c}$$
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Aljabar/HOTS/7.html#69">Aljabar</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Untuk sebarang bilangan real $x, y, z$ dengan $xyz = 1$, perhatikan identitas:</p>
+                    $$(x - 1)(y - 1)(z - 1) = xyz - (xy + yz + zx) + (x + y + z) - 1 = (x + y + z) - \left(\frac{1}{x} + \frac{1}{y} + \frac{1}{z}\right)$$
+                    <p>Dengan $(x, y, z) = (a^{2011}, b^{2011}, c^{2011})$, kondisi soal ekuivalen dengan:</p>
+                    $$(a^{2011} - 1)(b^{2011} - 1)(c^{2011} - 1) &lt; 0$$
+                    <p>Karena $a, b, c &gt; 0$, faktor $t^{2011} - 1 = (t - 1)(t^{2010} + t^{2009} + \dots + 1)$ selalu bertanda sama dengan $t - 1$. Akibatnya:</p>
+                    $$(a - 1)(b - 1)(c - 1) &lt; 0 \iff (a + b + c) - \left(\frac{1}{a} + \frac{1}{b} + \frac{1}{c}\right) &lt; 0$$
+                    <p>Jadi $a + b + c &lt; \dfrac{1}{a} + \dfrac{1}{b} + \dfrac{1}{c}$. Terbukti. $\blacksquare$</p>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 4 -->
+        <article class="soal-item" id="4">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Diberikan segitiga sebarang $ABC$ dan misalkan lingkaran dalam segitiga $ABC$ menyinggung sisi $BC, CA,$ dan $AB$ berturut-turut di titik $D, E,$ dan $F$. Misalkan $K$ dan $L$ berturut-turut titik pada sisi $CA$ dan $AB$ sehingga $\angle EDK = \angle ADE$ dan $\angle FDL = \angle ADF$. Buktikan bahwa lingkaran luar segitiga $AKL$ menyinggung lingkaran dalam segitiga $ABC$.
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Lingkaran/HOTS/4.html#31">Lingkaran</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn11-4" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan $\angle A = 2\alpha$, $\angle B = 2\beta$, $\angle C = 2\gamma$ (sehingga $\alpha + \beta + \gamma = 90^\circ$), dan $\angle DAK = \theta$.</p>
+                    <p>Karena $CE = CD$ dan $BF = BD$, diperoleh $\angle CDE = 90^\circ - \gamma = \alpha + \beta$ dan $\angle BDF = 90^\circ - \beta = \alpha + \gamma$. Juga $\angle ADC = \angle B + \angle BAD = 2\beta + (2\alpha - \theta) = 2\alpha + 2\beta - \theta$.</p>
+                    <p>Akibatnya $\angle ADE = \angle ADC - \angle CDE = \alpha + \beta - \theta$, sehingga $\angle EDK = \angle ADE = \alpha + \beta - \theta$ dan:</p>
+                    $$\angle ADK = 2(\alpha + \beta - \theta)$$
+                    <p>Dengan cara yang sama pada sisi $AB$, $\angle ADF = \angle ADB - \angle BDF = (2\gamma + \theta) - (\alpha + \gamma) = \gamma + \theta - \alpha$, sehingga $\angle ADL = 2(\gamma + \theta - \alpha)$.</p>
+                    <p>Jumlahkan kedua sudut untuk memperoleh sudut $\angle LDK$:</p>
+                    $$\angle LDK = \angle ADK + \angle ADL = 2\beta + 2\gamma = 180^\circ - 2\alpha = 180^\circ - \angle LAK$$
+                    <p>Jadi segiempat $ALDK$ siklis, artinya $D$ terletak pada lingkaran luar $\triangle AKL$.</p>
+                    <p>Selanjutnya, $\angle CDK = \angle ADC - \angle ADK = (2\alpha + 2\beta - \theta) - 2(\alpha + \beta - \theta) = \theta = \angle DAK = \angle LAK$. Berdasarkan sifat sudut antara tali busur $DK$ dan garis $BC$, garis $BC$ menyinggung lingkaran luar $\triangle AKL$ di titik $D$.</p>
+                    <p>Karena lingkaran dalam $\triangle ABC$ juga menyinggung garis $BC$ di titik $D$, maka lingkaran luar $\triangle AKL$ menyinggung lingkaran dalam $\triangle ABC$ di titik $D$. $\blacksquare$</p>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no">No. 5</div>
+            <div class="soal-teks">
+                Untuk suatu bilangan $n$ yang dinyatakan dalam basis sepuluh, $f(n)$ didefinisikan sebagai jumlah dari semua bilangan yang diperoleh melalui mencoreti digit-digit yang mungkin dari $n$. Sebagai contoh untuk $n = 1234$, $f(n) = 1234 + 123 + 124 + 134 + 234 + 12 + 13 + 14 + 23 + 24 + 34 + 1 + 2 + 3 + 4 = 1979$. Jika $n$ adalah bilangan yang terdiri dari $2011$ digit, buktikan bahwa $f(n) - n$ habis dibagi $9$.
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Modulo/HOTS/4.html#39">Modulo</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $n = \overline{a_1 a_2 \dots a_{2011}}$. Untuk setiap bilangan bulat $M$ dalam basis sepuluh, berlaku $M \equiv S(M) \pmod{9}$, di mana $S(M)$ adalah jumlah digit-digit $M$ (karena $10^k \equiv 1 \pmod{9}$).</p>
+                    <p>Setiap digit $a_i$ ($1 \le i \le 2011$) akan tetap muncul (tidak dicoret) pada tepat $2^{2010}$ bilangan hasil pencoretan (sebab masing-masing dari $2010$ digit lainnya bebas dicoret atau tidak).</p>
+                    <p>Oleh karena itu:</p>
+                    $$f(n) \equiv \sum_{\text{semua hasil}} S(M) = 2^{2010} \sum_{i=1}^{2011} a_i \equiv 2^{2010} \cdot n \pmod{9}$$
+                    <p>Karena $2^6 = 64 \equiv 1 \pmod{9}$ dan $2010 = 6 \times 335$, maka $2^{2010} \equiv 1 \pmod{9}$, sehingga $f(n) \equiv n \pmod{9}$, atau $9 \mid (f(n) - n)$. $\blacksquare$</p>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no">No. 6</div>
+            <div class="soal-teks">
+                Untuk setiap bilangan asli $n$, didefinisikan $S_n$ sebagai banyaknya permutasi $(a_1, a_2, a_3, \dots, a_n)$ dari $(1, 2, 3, \dots, n)$ sedemikian sehingga
+                $$\frac{a_1}{1} + \frac{a_2}{2} + \frac{a_3}{3} + \dots + \frac{a_n}{n}$$
+                merupakan bilangan asli. Buktikan bahwa $S_{2n} \ge n$ untuk setiap bilangan asli $n$.
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Permutasi_dan_Kombinasi/HOTS/5.html#50">Permutasi dan Kombinasi</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Periksa kasus kecil terlebih dahulu:</p>
+                    <ul>
+                        <li><strong>$n = 1$:</strong> Permutasi identitas $(1, 2)$ memenuhi $\frac{1}{1} + \frac{2}{2} = 2 \in \mathbb{N}$, sehingga $S_2 \ge 1$.</li>
+                        <li><strong>$n = 2$:</strong> Permutasi $(1, 2, 3, 4)$ memberi jumlah $4 \in \mathbb{N}$ dan $(4, 1, 3, 2)$ memberi $\frac{4}{1} + \frac{1}{2} + \frac{3}{3} + \frac{2}{4} = 6 \in \mathbb{N}$, sehingga $S_4 \ge 2$.</li>
+                    </ul>
+                    <p>Sekarang tinjau $n \ge 3$ pada himpunan $\{1, 2, \dots, 2n\}$. Untuk sebarang pasangan $(k, \ell)$ dengan $1 \le k &lt; \ell \le n$ dan $\ell \neq 2k$, keempat bilangan $k, 2k, \ell, 2\ell$ saling berbeda dan termuat dalam $\{1, \dots, 2n\}$. Jika kita menukar $k \leftrightarrow 2k$ serta $\ell \leftrightarrow 2\ell$ (sementara elemen lain tetap), jumlahnya adalah:</p>
+                    $$\frac{2k}{k} + \frac{k}{2k} + \frac{2\ell}{\ell} + \frac{\ell}{2\ell} + (2n - 4) = 2 + \frac{1}{2} + 2 + \frac{1}{2} + 2n - 4 = 2n + 1 \in \mathbb{N}$$
+                    <p>Setiap pasangan $(k, \ell)$ tersebut menghasilkan permutasi yang berbeda (karena posisi-posisi yang tidak tetap unik menentukan $k$ dan $\ell$). Ditambah permutasi identitas, banyaknya permutasi valid sekurang-kurangnya:</p>
+                    $$1 + \binom{n}{2} - \left\lfloor \frac{n}{2} \right\rfloor \ge 1 + \frac{n(n - 1)}{2} - \frac{n}{2} = \frac{n^2 - 2n + 2}{2}$$
+                    <p>Untuk $n = 3$, nilainya $1 + 3 - 1 = 3 \ge 3$; untuk $n \ge 4$, berlaku $\dfrac{n^2 - 2n + 2}{2} - n = \dfrac{(n - 2)^2 - 2}{2} &gt; 0$. Jadi $S_{2n} \ge n$ untuk setiap $n \in \mathbb{N}$. $\blacksquare$</p>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no">No. 7</div>
+            <div class="soal-teks">
+                Diberikan sebarang segitiga lancip $ABC$. Misalkan $l_a$ garis yang melalui $A$ dan tegak lurus $AB$, $l_b$ garis yang melalui $B$ dan tegak lurus $BC$, $l_c$ garis yang melalui $C$ dan tegak lurus $CA$. Misalkan garis $l_b$ dan $l_c$ berpotongan di titik $D$, garis $l_c$ dan $l_a$ berpotongan di titik $E$, dan terakhir garis $l_a$ dan $l_b$ berpotongan di titik $F$. Buktikan bahwa luas segitiga $DEF$ paling sedikit tiga kali luas segitiga $ABC$.
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Segitiga/HOTS/7.html#65">Segitiga</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn11-7" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Karena sisi-sisi $\triangle EFD$ berturut-turut tegak lurus dengan sisi-sisi $\triangle ABC$ ($EF \perp AB$, $FD \perp BC$, $DE \perp CA$), sudut $\angle CAB$ berkomplemen dengan $\angle CAE$ yang berkomplemen dengan $\angle DEF$, sehingga $\angle DEF = \angle CAB = A$. Dengan cara sama $\angle EFD = B$ dan $\angle FDE = C$, maka $\triangle ABC \sim \triangle EFD$.</p>
+                    <p>Cukup dibuktikan bahwa $\dfrac{EF}{AB} \ge \sqrt{3}$. Misalkan $a = BC, b = CA, c = AB$, $R$ jari-jari lingkaran luar $\triangle ABC$, dan $S = [ABC]$.</p>
+                    <p>Pada $\triangle ACE$ siku-siku di $C$, $\angle CAE = 90^\circ - A$, sehingga $AE = \dfrac{AC}{\sin A} = \dfrac{b}{\sin A}$. Pada $\triangle ABF$ siku-siku di $A$, $\angle ABF = 90^\circ - B$, sehingga $AF = c\cot B = \dfrac{c\cos B}{\sin B}$. Karena $E, A, F$ segaris (pada $l_a$) dengan $A$ di antara $E$ dan $F$:</p>
+                    $$EF = AE + AF = \frac{b}{\sin A} + \frac{c\cos B}{\sin B}$$
+                    <p>Dengan Aturan Sinus ($a = 2R\sin A, b = 2R\sin B, c = 2R\sin C$), bagi dengan $c = AB$:</p>
+                    $$\frac{EF}{AB} = \frac{b}{c\sin A} + \frac{\cos B}{\sin B} = \frac{2R\sin B}{2R\sin C\sin A} + \frac{\cos B}{\sin B} = \frac{\sin^2 B + \cos B\sin A\sin C}{\sin A\sin B\sin C}$$
+                    <p>Kalikan pembilang dan penyebut dengan $8R^2$ lalu gunakan Aturan Cosinus $b^2 = a^2 + c^2 - 2ac\cos B$ dan $4RS = abc$:</p>
+                    $$\frac{EF}{AB} = \frac{2b^2 + 2ac\cos B}{2ab\sin C} = \frac{b^2 + (a^2 + c^2 - b^2 + b^2)}{4S} = \frac{a^2 + b^2 + c^2}{4S}$$
+                    <p>Berdasarkan Ketaksamaan Weitzenböck, $a^2 + b^2 + c^2 \ge 4\sqrt{3}S$, sehingga $\dfrac{EF}{AB} \ge \sqrt{3}$ dan $[DEF] = \left(\dfrac{EF}{AB}\right)^2 [ABC] \ge 3[ABC]$. $\blacksquare$</p>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no">No. 8</div>
+            <div class="soal-teks">
+                Di sebuah pulau terdapat sepuluh kota, di mana kota-kota tersebut dihubungkan dengan ruas-ruas jalan. Ada $2$ kota yang terhubung, ada juga yang tidak. Suatu rute yang dimulai dari suatu kota mengunjungi tepat $8$ dari $9$ kota lainnya masing-masing sekali dan kembali ke kota awal dinamakan rute wisata. Tentukan banyak ruas jalan minimal yang perlu dibuat sehingga apabila diberikan sebarang kota di pulau tersebut, ada rute wisata yang tidak melewati kota tersebut.
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Prinsip_Sarang_Merpati/HOTS/2.html#15">Prinsip Sarang Merpati</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn11-8" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p><strong>1. Batas bawah ($15$ jalan):</strong> Andaikan hanya ada paling banyak $14$ ruas jalan. Maka jumlah derajat semua $10$ kota paling banyak $2 \times 14 = 28$. Menurut Prinsip Sarang Merpati, terdapat paling sedikit satu kota $X$ yang berderajat $\le 2$.</p>
+                    <ul>
+                        <li>Jika $\deg(X) \le 1$, kota $X$ tidak dapat dilalui oleh siklus mana pun, sehingga apabila kita memilih kota lain $Y \neq X$ untuk dihindari, tidak ada siklus panjang $9$ pada $9$ kota sisanya (karena $X$ harus termuat dalam siklus tersebut, mustahil).</li>
+                        <li>Jika $\deg(X) = 2$ dengan tetangga $Y$ dan $Z$, setiap rute wisata (siklus panjang $9$) yang menghindari $Y$ wajib mengunjungi $9$ kota lainnya termasuk $X$, sehingga wajib memakai kedua jalan dari $X$ yaitu $XY$ dan $XZ$ — kontradiksi karena $Y$ tidak boleh dilewati.</li>
+                    </ul>
+                    <p>Jadi diperlukan minimal $15$ ruas jalan.</p>
+                    <p><strong>2. Konstruksi ($15$ jalan):</strong> Gunakan graf Petersen: beri label $A_1, \dots, A_5$ dan $B_1, \dots, B_5$, hubungkan $(B_i, B_{i+1})$ membentuk segilima luar, $(A_i, A_{i+2})$ membentuk bintang dalam, serta $(A_i, B_i)$ untuk $i = 1, \dots, 5$ (indeks mod $5$). Rute wisata yang menghindari $B_1$ adalah $A_1 - A_3 - B_3 - B_2 - A_2 - A_5 - B_5 - B_4 - A_4 - A_1$ (siklus panjang $9$ melalui semua simpul selain $B_1$). Karena graf Petersen bersifat simetris terhadap setiap simpulnya, setiap kota lain juga dapat dihindari.</p>
+                    <div class="kesimpulan">Jadi, banyak ruas jalan minimal yang perlu dibuat adalah <strong>$15$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Render Diagram Geometri via GeoSVG.js -->
+    <script>
+        (function () {
+            function renderAllDiagrams() {
+                if (typeof GeoSVG === "undefined") return;
+
+                // No. 1: Jaring-jaring dadu
+                const c1 = document.getElementById("geo-osn11-1");
+                if (c1 && !c1.querySelector("svg")) {
+                    const g1 = new GeoSVG(c1, { width: 220, height: 155 });
+                    const s = 38, ox = 34, oy = 20;
+                    const cells = [
+                        { r: 0, c: 2, t: "6" },
+                        { r: 1, c: 0, t: "1" },
+                        { r: 1, c: 1, t: "2" },
+                        { r: 1, c: 2, t: "32" },
+                        { r: 1, c: 3, t: "16" },
+                        { r: 2, c: 2, t: "8" }
+                    ];
+                    cells.forEach(cell => {
+                        const x = ox + cell.c * s, y = oy + cell.r * s;
+                        g1.buatPersegiPanjang(x, y, s, s, { fill: "rgba(13,148,136,0.08)", stroke: "var(--text-main)", strokeWidth: 1.5 });
+                        g1.buatTeks(x + s / 2, y + s / 2, cell.t, { fontSize: 13, fontWeight: "bold", color: "var(--text-main)", position: "middle-center" });
+                    });
+                }
+
+                // No. 4: Lingkaran luar AKL menyinggung lingkaran dalam ABC di D
+                const c4 = document.getElementById("geo-osn11-4");
+                if (c4 && !c4.querySelector("svg")) {
+                    const g4 = new GeoSVG(c4, { width: 240, height: 225 });
+                    const A = { x: 112, y: 28 }, B = { x: 32, y: 185 }, C = { x: 208, y: 185 };
+                    const dist = (p, q) => Math.hypot(p.x - q.x, p.y - q.y);
+                    const a = dist(B, C), b = dist(C, A), c = dist(A, B), s = (a + b + c) / 2;
+                    const I = { x: (a * A.x + b * B.x + c * C.x) / (a + b + c), y: (a * A.y + b * B.y + c * C.y) / (a + b + c) };
+                    const r = Math.abs((B.x - A.x) * (C.y - A.y) - (C.x - A.x) * (B.y - A.y)) / (a + b + c);
+                    const D = { x: I.x, y: B.y };
+                    const proj = (P, U, V) => {
+                        const t = ((P.x - U.x) * (V.x - U.x) + (P.y - U.y) * (V.y - U.y)) / ((V.x - U.x) ** 2 + (V.y - U.y) ** 2);
+                        return { x: U.x + t * (V.x - U.x), y: U.y + t * (V.y - U.y) };
+                    };
+                    const E = proj(I, A, C), F = proj(I, A, B);
+                    // Hitung K di CA dengan _EDK = _ADE dan L di AB dengan _FDL = _ADF
+                    const reflectRay = (P, Q, R) => {
+                        const angQ = Math.atan2(Q.y - P.y, Q.x - P.x);
+                        const angR = Math.atan2(R.y - P.y, R.x - P.x);
+                        const ang = 2 * angQ - angR;
+                        return { x: P.x + Math.cos(ang), y: P.y + Math.sin(ang) };
+                    };
+                    const inter = (P1, P2, P3, P4) => {
+                        const den = (P1.x - P2.x) * (P3.y - P4.y) - (P1.y - P2.y) * (P3.x - P4.x);
+                        const t = ((P1.x - P3.x) * (P3.y - P4.y) - (P1.y - P3.y) * (P3.x - P4.x)) / den;
+                        return { x: P1.x + t * (P2.x - P1.x), y: P1.y + t * (P2.y - P1.y) };
+                    };
+                    const K = inter(D, reflectRay(D, E, A), A, C);
+                    const L = inter(D, reflectRay(D, F, A), A, B);
+                    // Lingkaran luar AKL (juga melalui D)
+                    const dd = 2 * (A.x * (K.y - L.y) + K.x * (L.y - A.y) + L.x * (A.y - K.y));
+                    const a2 = A.x * A.x + A.y * A.y, k2 = K.x * K.x + K.y * K.y, l2 = L.x * L.x + L.y * L.y;
+                    const O = {
+                        x: (a2 * (K.y - L.y) + k2 * (L.y - A.y) + l2 * (A.y - K.y)) / dd,
+                        y: (a2 * (L.x - K.x) + k2 * (A.x - L.x) + l2 * (K.x - A.x)) / dd
+                    };
+                    const RO = dist(O, A);
+                    g4.buatLingkaran(O, RO, { fill: "none", stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.5 });
+                    g4.buatLingkaran(I, r, { fill: "rgba(13,148,136,0.08)", stroke: "#dc2626", strokeWidth: 1.6 });
+                    g4.buatSegitiga(A, B, C, { fill: "none", stroke: "var(--text-main)", strokeWidth: 1.9 });
+                    g4.buatSegmen(A, D, { stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: true });
+                    g4.buatSegmen(D, E, { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+                    g4.buatSegmen(D, F, { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+                    g4.buatSegmen(D, K, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.3 });
+                    g4.buatSegmen(D, L, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.3 });
+                    g4.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3, color: "var(--text-main)" });
+                    g4.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3, color: "var(--text-main)" });
+                    g4.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3, color: "var(--text-main)" });
+                    g4.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 3.5, color: "#dc2626" });
+                    g4.buatTitik(E, { label: "E", labelPosition: "top-right", size: 3, color: "#dc2626" });
+                    g4.buatTitik(F, { label: "F", labelPosition: "top-left", size: 3, color: "#dc2626" });
+                    g4.buatTitik(K, { label: "K", labelPosition: "middle-right", size: 3.2, color: "var(--teal-primary, #0d9488)" });
+                    g4.buatTitik(L, { label: "L", labelPosition: "middle-left", size: 3.2, color: "var(--teal-primary, #0d9488)" });
+                }
+
+                // No. 7: Segitiga DEF mengelilingi segitiga lancip ABC
+                const c7 = document.getElementById("geo-osn11-7");
+                if (c7 && !c7.querySelector("svg")) {
+                    const g7 = new GeoSVG(c7, { width: 250, height: 225 });
+                    const A = { x: 118, y: 82 }, B = { x: 85, y: 145 }, C = { x: 162, y: 145 };
+                    const perpLine = (P, Q) => {
+                        const dx = -(Q.y - P.y), dy = Q.x - P.x;
+                        return [P, { x: P.x + dx, y: P.y + dy }];
+                    };
+                    const inter = ([P1, P2], [P3, P4]) => {
+                        const den = (P1.x - P2.x) * (P3.y - P4.y) - (P1.y - P2.y) * (P3.x - P4.x);
+                        const t = ((P1.x - P3.x) * (P3.y - P4.y) - (P1.y - P3.y) * (P3.x - P4.x)) / den;
+                        return { x: P1.x + t * (P2.x - P1.x), y: P1.y + t * (P2.y - P1.y) };
+                    };
+                    const la = perpLine(A, B), lb = perpLine(B, C), lc = perpLine(C, A);
+                    const D = inter(lb, lc), E = inter(lc, la), F = inter(la, lb);
+                    g7.buatSegitiga(D, E, F, { fill: "rgba(13,148,136,0.06)", stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.7 });
+                    g7.buatSegitiga(A, B, C, { fill: "rgba(220,38,38,0.12)", stroke: "#dc2626", strokeWidth: 1.9 });
+                    g7.buatSiku(B, A, F, { size: 7, stroke: "var(--text-main)" });
+                    g7.buatSiku(C, B, D, { size: 7, stroke: "var(--text-main)" });
+                    g7.buatSiku(A, C, E, { size: 7, stroke: "var(--text-main)" });
+                    g7.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3, color: "#dc2626" });
+                    g7.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3, color: "#dc2626" });
+                    g7.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3, color: "#dc2626" });
+                    g7.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 3.2, color: "var(--teal-primary, #0d9488)" });
+                    g7.buatTitik(E, { label: "E", labelPosition: "top-right", size: 3.2, color: "var(--teal-primary, #0d9488)" });
+                    g7.buatTitik(F, { label: "F", labelPosition: "top-left", size: 3.2, color: "var(--teal-primary, #0d9488)" });
+                }
+
+                // No. 8: Graf Petersen 10 kota, 15 jalan
+                const c8 = document.getElementById("geo-osn11-8");
+                if (c8 && !c8.querySelector("svg")) {
+                    const g8 = new GeoSVG(c8, { width: 220, height: 215 });
+                    const O = { x: 110, y: 112 }, rOut = 80, rIn = 40;
+                    const B = [], A = [];
+                    for (let i = 0; i < 5; i++) {
+                        const ang = -Math.PI / 2 + (2 * Math.PI * i) / 5;
+                        B.push({ x: O.x + rOut * Math.cos(ang), y: O.y + rOut * Math.sin(ang) });
+                        A.push({ x: O.x + rIn * Math.cos(ang), y: O.y + rIn * Math.sin(ang) });
+                    }
+                    for (let i = 0; i < 5; i++) {
+                        g8.buatSegmen(B[i], B[(i + 1) % 5], { stroke: "var(--text-main)", strokeWidth: 1.6 });
+                        g8.buatSegmen(A[i], A[(i + 2) % 5], { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.5 });
+                        g8.buatSegmen(A[i], B[i], { stroke: "var(--text-muted)", strokeWidth: 1.4 });
+                    }
+                    const posOut = ["top-center", "middle-right", "bottom-right", "bottom-left", "middle-left"];
+                    for (let i = 0; i < 5; i++) {
+                        g8.buatTitik(B[i], { label: "B" + (i + 1), labelPosition: posOut[i], size: 3.5, color: "var(--text-main)" });
+                        g8.buatTitik(A[i], { label: "A" + (i + 1), labelPosition: "top-right", size: 3.2, color: "var(--teal-primary, #0d9488)" });
+                    }
+                }
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", renderAllDiagrams);
+            } else {
+                renderAllDiagrams();
+            }
+        })();
+    </script>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

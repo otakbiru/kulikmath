@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permutasi dan Kombinasi - Soal HOTS (Bagian 6)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Permutasi dan Kombinasi</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+        <!-- SOAL 51 -->
+        <article class="soal-item" id="51">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan $2012$ titik berbeda $A_1, A_2, \dots, A_{2012}$ di bidang Cartesius. Untuk sebarang permutasi $B_1, B_2, \dots, B_{2012}$ dari $A_1, A_2, \dots, A_{2012}$, didefinisikan bayangan dari titik $P$ terhadap permutasi tersebut dengan merotasikan $P$ sejauh $180^\circ$ berturut-turut dengan pusat $B_1, B_2, \dots, B_{2012}$ hingga menghasilkan $P_{2012}$. Misalkan $N$ adalah banyak bayangan titik $P$ yang berbeda terhadap semua permutasi dari $A_1, A_2, \dots, A_{2012}$. Tentukanlah nilai terbesar yang mungkin bagi $N$.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202012.html#4">OSN SMA 2012 (No. 4)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Secara vektor, rotasi $180^\circ$ memberi $P_k = 2B_k - P_{k-1}$, sehingga:</p>
+                    $$P_{2012} = P + 2\sum_{i=1}^{2012} A_i - 4\sum_{j=1}^{1006} B_{2j-1}$$
+                    <p>Nilai $P_{2012}$ hanya bergantung pada pemilihan $1006$ titik di posisi ganjil, sehingga $N \le \binom{2012}{1006}$. Batas atas tercapai dengan memilih $A_k = (2^k, 0)$.</p>
+                    <div class="kesimpulan">
+                        Jadi, nilai terbesar yang mungkin bagi $N$ adalah <strong>$\dbinom{2012}{1006}$</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 52 -->
+        <article class="soal-item" id="52">
+            <div class="soal-no">No. 52</div>
+            <div class="soal-teks">
+                Enam orang siswa akan duduk pada tiga meja bundar, di mana setiap meja akan diduduki oleh minimal satu siswa. Banyaknya cara untuk melakukan hal tersebut adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2013.html#A10">OSK SMA 2013</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Partisi $6$ siswa ke $3$ meja bundar identik terbagi menjadi $3$ kasus ukuran kelompok:</p>
+                    <ul>
+                        <li><strong>$(4, 1, 1)$:</strong> $\dfrac{\binom{6}{4}\binom{2}{1} \cdot (4 - 1)!}{2!} = \dfrac{15 \cdot 2 \cdot 6}{2} = 90$ cara.</li>
+                        <li><strong>$(3, 2, 1)$:</strong> $\binom{6}{3}\binom{3}{2} \cdot (3 - 1)! \cdot (2 - 1)! = 20 \cdot 3 \cdot 2 \cdot 1 = 120$ cara.</li>
+                        <li><strong>$(2, 2, 2)$:</strong> $\dfrac{\binom{6}{2}\binom{4}{2} \cdot (2 - 1)!^3}{3!} = \dfrac{15 \cdot 6}{6} = 15$ cara.</li>
+                    </ul>
+                    <p>Totalnya $90 + 120 + 15 = 225$ cara.</p>
+                    <div class="kesimpulan">Jadi, banyaknya cara adalah <strong>$225$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 53 -->
+        <article class="soal-item" id="53">
+            <div class="soal-no">No. 53</div>
+            <div class="soal-teks">
+                Ada berapa barisan sembilan suku $a_1, a_2, \dots, a_9$ yang masing-masing sukunya adalah $0, 1, 2, 3, 4, 5, 6, 7, 8,$ atau $9$, dan memuat tepat satu urutan $a_i, a_j$ dimana $a_i$ genap dan $a_j$ ganjil?
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2013.html#A7">OSP SMA 2013</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Catatan: Sesuai naskah resmi, kesembilan suku barisan berbeda (permutasi $9$ dari $10$ angka $\{0, \dots, 9\}$) dan "urutan $a_i, a_j$" berarti dua suku bersebelahan $(a_i, a_{i+1})$ dengan $a_i$ genap dan $a_{i+1}$ ganjil.</p>
+                    <p>Karena hanya ada tepat satu transisi Genap $\to$ Ganjil, barisan terbagi menjadi empat blok berurutan dengan panjang $(a, b, c, d)$: $a$ ganjil $\to$ $b$ genap $\to$ $c$ ganjil $\to$ $d$ genap, dengan $a \ge 0$, $b \ge 1$, $c \ge 1$, $d \ge 0$.</p>
+                    <ul>
+                        <li><strong>Kasus $(a+c = 4, b+d = 5)$:</strong> pilih $4$ ganjil ($\binom{5}{4} = 5$), banyak $a \in \{0,1,2,3\}$ ada $4$ pilihan, banyak $b \in \{1,2,3,4,5\}$ ada $5$ pilihan $\implies 5 \cdot 4 \cdot 5 = 100$ konfigurasi blok.</li>
+                        <li><strong>Kasus $(a+c = 5, b+d = 4)$:</strong> pilih $4$ genap ($\binom{5}{4} = 5$), banyak $a \in \{0,1,2,3,4\}$ ada $5$ pilihan, banyak $b \in \{1,2,3,4\}$ ada $4$ pilihan $\implies 5 \cdot 5 \cdot 4 = 100$ konfigurasi blok.</li>
+                    </ul>
+                    <p>Setiap konfigurasi memiliki $4! \cdot 5! = 2880$ permutasi, sehingga totalnya $(100 + 100) \times 2880 = 576.000$.</p>
+                    <div class="kesimpulan">Jadi, banyaknya barisan adalah <strong>$576.000$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 54 -->
+        <article class="soal-item" id="54">
+            <div class="soal-no">No. 54</div>
+            <div class="soal-teks">
+                Ada enam anak TK masing-masing membawa suatu makanan. Mereka akan mengadakan kado silang, yaitu makanannya dikumpulkan dan kemudian dibagi lagi sehingga masing-masing anak menerima makanan yang bukan makanan yang dibawa semula. Banyaknya cara untuk melakukan hal tersebut adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2013.html#A11">OSP SMA 2013</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Banyaknya cara ini adalah <em>derangement</em> dari $6$ objek ($D_6$), yaitu permutasi tanpa titik tetap:</p>
+                    $$D_6 = 6!\left(1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \frac{1}{4!} - \frac{1}{5!} + \frac{1}{6!}\right)$$
+                    $$D_6 = 720 - 720 + 360 - 120 + 30 - 6 + 1 = 265$$
+                    <div class="kesimpulan">Jadi, banyaknya cara adalah <strong>$265$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

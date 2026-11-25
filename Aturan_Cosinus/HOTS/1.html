@@ -98,6 +98,47 @@
       </div>
     </article>
 
+    <!-- SOAL 3 -->
+    <article class="soal-item" id="3">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        $AB, BC,$ dan $CA$ memiliki panjang $7, 8, 9$ berturut-turut. Jika $D$ merupakan titik tinggi dari $B$, tentukan panjang $AD$.
+      </div>
+      <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202010.html#A15">OSK SMA 2010 (No. 15)</a></div>
+      <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          <div id="geo-osk10-15" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+          <p>Gunakan Aturan Cosinus pada $\triangle ABC$ untuk mencari $\cos A$ ($a = BC = 8, b = CA = 9, c = AB = 7$):</p>
+          $$\cos A = \frac{b^2 + c^2 - a^2}{2bc} = \frac{9^2 + 7^2 - 8^2}{2 \cdot 9 \cdot 7} = \frac{81 + 49 - 64}{126} = \frac{66}{126} = \frac{11}{21}$$
+          <p>Karena $BD \perp AC$, maka $AD = AB \cos A = 7 \cdot \dfrac{11}{21} = \dfrac{11}{3}$.</p>
+          <div class="kesimpulan">Jadi, panjang $AD$ adalah <strong>$\dfrac{11}{3}$</strong>.</div>
+        </div>
+        <button type="button" class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
+    <!-- SOAL 4 -->
+    <article class="soal-item" id="4">
+      <div class="soal-no"></div>
+      <div class="soal-teks">
+        Jika $a, b,$ dan $c$ menyatakan panjang sisi-sisi suatu segitiga yang memenuhi $(a + b + c)(a + b - c) = 3ab$, maka besar sudut yang menghadapi sisi dengan panjang $c$ adalah $\cdots$
+      </div>
+      <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202010.html#A5">OSP SMA 2010 (Bagian Pertama No. 5)</a></div>
+      <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          <p>Jabarkan ruas kiri lalu terapkan Aturan Cosinus:</p>
+          $$(a + b)^2 - c^2 = 3ab \implies a^2 + b^2 - c^2 = ab$$
+          $$2ab\cos C = ab \implies \cos C = \frac{1}{2} \implies C = 60^\circ$$
+          <div class="kesimpulan">Jadi, besar sudut di hadapan sisi $c$ adalah <strong>$60^\circ$</strong>.</div>
+        </div>
+        <button type="button" class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
     <!-- Pagination Bawah (Otomatis) -->
     <div class="pagination-wrapper"></div>
   </main>
@@ -126,6 +167,23 @@
           g17.buatTitik(C, { label: "C", labelPosition: "top-left", size: 3.2, color: "var(--text-main)" });
           g17.buatTitik(D, { label: "D", labelPosition: "bottom-left", size: 3.2, color: "var(--teal-primary)" });
           g17.buatTitik(E, { label: "E", labelPosition: "bottom-left", size: 3.2, color: "#dc2626" });
+        }
+
+        const c15 = document.getElementById("geo-osk10-15");
+        if (c15 && !c15.querySelector("svg")) {
+          const g15 = new GeoSVG(c15, { width: 240, height: 165 });
+          const C = { x: 35, y: 135 }, A = { x: 205, y: 135 };
+          const AD = (11 / 3) * (170 / 9), B = { x: A.x - AD, y: 32 }, D = { x: B.x, y: 135 };
+          g15.buatSegitiga(A, B, C, { fill: "rgba(100,116,139,0.05)", stroke: "var(--text-main)", strokeWidth: 2 });
+          g15.buatSegmen(B, D, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.6 });
+          g15.buatSiku(B, D, C, { size: 8, stroke: "var(--teal-primary, #0d9488)" });
+          g15.buatLabelSisi(A, B, "7", { position: "right", color: "var(--text-main)" });
+          g15.buatLabelSisi(B, C, "8", { position: "left", color: "var(--text-main)" });
+          g15.buatLabelSisi(A, C, "9", { position: "bottom", color: "var(--text-main)" });
+          g15.buatTitik(A, { label: "A", labelPosition: "bottom-right", size: 3.2, color: "var(--text-main)" });
+          g15.buatTitik(B, { label: "B", labelPosition: "top-center", size: 3.2, color: "var(--text-main)" });
+          g15.buatTitik(C, { label: "C", labelPosition: "bottom-left", size: 3.2, color: "var(--text-main)" });
+          g15.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 3.2, color: "var(--teal-primary, #0d9488)" });
         }
       }
       if (document.readyState === "loading") {

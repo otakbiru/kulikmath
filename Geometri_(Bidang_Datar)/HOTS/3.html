@@ -545,6 +545,30 @@
             </div>
         </article>
 
+        <!-- SOAL 30 -->
+        <article class="soal-item" id="30">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan segitiga lancip $ABC$ dengan $AC &gt; BC$ dan titik pusat lingkaran luar $O$. Garis tinggi segitiga $ABC$ dari $C$ memotong $AB$ dan lingkaran luar segitiga $ABC$ lagi berturut-turut di titik $D$ dan $E$. Garis melalui $O$ sejajar $AB$ memotong garis $AC$ di titik $F$. Buktikan bahwa garis $CO$, garis melalui $F$ tegak lurus $AC$, dan garis melalui $E$ sejajar $DO$ bertemu di satu titik.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202010.html#2">OSN SMA 2010 (Hari Pertama No. 2)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn10-2" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan garis $CO$ dan garis yang melalui $F$ tegak lurus $AC$ berpotongan di titik $G$. Cukup dibuktikan bahwa $GE \parallel OD$.</p>
+                    <p>Karena $O$ pusat lingkaran luar $\triangle ABC$ lancip, $\angle AOC = 2\angle ABC = 2B$, dan karena $OA = OC$, diperoleh $\angle OCA = 90^\circ - B$. Karena $FO \parallel AB$, maka $\angle CFO = \angle CAB = A$, sehingga pada $\triangle OCF$ berlaku $\angle COF = 90^\circ + B - A$.</p>
+                    <p>Dengan Aturan Sinus pada $\triangle OCF$ dan $\triangle CFG$ siku-siku di $F$ ($CG = \dfrac{CF}{\cos(90^\circ - B)} = \dfrac{CF}{\sin B}$):</p>
+                    $$\frac{CG}{CO} = \frac{\cos(B - A)}{\sin A \sin B}$$
+                    <p>Pada lingkaran luar $\triangle ABC$, $\angle ABE = \angle ACE = 90^\circ - A$ dan $\angle BEC = \angle BAC = A$, sehingga $\angle CBE = 90^\circ + B - A$. Dengan Aturan Sinus pada $\triangle BCE$ ($BC = \dfrac{CD}{\sin B}$):</p>
+                    $$\frac{CE}{CD} = \frac{\cos(B - A)}{\sin A \sin B} = \frac{CG}{CO}$$
+                    <p>Karena $\angle DCO = \angle ECG$ dan $\dfrac{CG}{CO} = \dfrac{CE}{CD}$, maka $\triangle CDO \sim \triangle CEG$, sehingga $\angle CDO = \angle CEG$, yang berarti $GE \parallel OD$. Jadi ketiga garis bertemu di titik $G$. $\blacksquare$</p>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -611,6 +635,43 @@
                     g7.buatTitik(P, { label: "P", labelPosition: "top-right", size: 3.5, color: "var(--teal-primary)" });
                     g7.buatTitik(Q, { label: "Q", labelPosition: "bottom-left", size: 3.5, color: "var(--teal-primary)" });
                     g7.buatTitik(S, { label: "S", labelPosition: "top-left", size: 3.5, color: "var(--teal-primary)" });
+                }
+
+                // Soal 30: OSN SMA 2010 No. 2
+                const c2 = document.getElementById("geo-osn10-2");
+                if (c2 && !c2.querySelector("svg")) {
+                    const g2 = new GeoSVG(c2, { width: 250, height: 240 });
+                    const O = { x: 125, y: 118 }, R = 82;
+                    const pt = deg => ({ x: O.x + R * Math.cos(deg * Math.PI / 180), y: O.y + R * Math.sin(deg * Math.PI / 180) });
+                    const A = pt(145), B = pt(35), C = pt(-75);
+                    const D = { x: C.x, y: A.y };
+                    const E = { x: C.x, y: O.y + Math.sqrt(R * R - (C.x - O.x) * (C.x - O.x)) };
+                    const tF = (O.y - C.y) / (A.y - C.y);
+                    const F = { x: C.x + tF * (A.x - C.x), y: O.y };
+                    const dx1 = O.x - C.x, dy1 = O.y - C.y;
+                    const dx2 = -(A.y - C.y), dy2 = A.x - C.x;
+                    const den = dx1 * dy2 - dy1 * dx2;
+                    const tG = ((F.x - C.x) * dy2 - (F.y - C.y) * dx2) / den;
+                    const G = { x: C.x + tG * dx1, y: C.y + tG * dy1 };
+                    g2.buatLingkaran(O, R, { fill: "none", stroke: "var(--text-muted)", strokeWidth: 1.3 });
+                    g2.buatSegitiga(A, B, C, { fill: "rgba(100,116,139,0.04)", stroke: "var(--text-main)", strokeWidth: 1.9 });
+                    g2.buatSegmen(C, E, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g2.buatSegmen(C, O, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.5 });
+                    g2.buatSegmen(O, G, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.5, dashed: true });
+                    g2.buatSegmen(O, F, { stroke: "#d97706", strokeWidth: 1.5 });
+                    g2.buatSegmen(F, G, { stroke: "#dc2626", strokeWidth: 1.6 });
+                    g2.buatSegmen(D, O, { stroke: "var(--text-muted)", strokeWidth: 1.3, dashed: true });
+                    g2.buatSegmen(E, G, { stroke: "#dc2626", strokeWidth: 1.6 });
+                    g2.buatSiku(C, D, B, { size: 7, stroke: "var(--text-main)" });
+                    g2.buatSiku(C, F, G, { size: 7, stroke: "#dc2626" });
+                    g2.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 3, color: "var(--text-main)" });
+                    g2.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 3, color: "var(--text-main)" });
+                    g2.buatTitik(C, { label: "C", labelPosition: "top-center", size: 3, color: "var(--text-main)" });
+                    g2.buatTitik(O, { label: "O", labelPosition: "top-right", size: 3.2, color: "var(--teal-primary, #0d9488)" });
+                    g2.buatTitik(D, { label: "D", labelPosition: "bottom-right", size: 3, color: "var(--text-main)" });
+                    g2.buatTitik(E, { label: "E", labelPosition: "bottom-center", size: 3, color: "var(--text-main)" });
+                    g2.buatTitik(F, { label: "F", labelPosition: "top-left", size: 3, color: "#d97706" });
+                    g2.buatTitik(G, { label: "G", labelPosition: "bottom-left", size: 3.5, color: "#dc2626" });
                 }
             }
 

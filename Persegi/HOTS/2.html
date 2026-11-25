@@ -439,6 +439,52 @@
             </div>
         </article>
 
+        <!-- SOAL 19 -->
+        <article class="soal-item" id="19">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Pada sebuah persegi panjang berukuran $25 \times 20$ akan dibuat bujursangkar sehingga menutupi seluruh bagian persegi panjang tersebut. Berapa banyak bujursangkar yang mungkin dapat dibuat?
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202010.html#A14">OSK SMA 2010 (No. 14)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Persegi panjang berukuran $25 \times 20$ dibagi menjadi grid satuan $1 \times 1$. Banyaknya bujursangkar berukuran $k \times k$ ($1 \le k \le 20$) adalah $(26 - k)(21 - k)$:</p>
+                    $$\sum_{k=1}^{20} (26 - k)(21 - k) = \sum_{j=1}^{20} j(j + 5) = \sum_{j=1}^{20} j^2 + 5\sum_{j=1}^{20} j$$
+                    $$= \frac{20 \cdot 21 \cdot 41}{6} + 5 \cdot \frac{20 \cdot 21}{2} = 2870 + 1050 = 3920$$
+                    <div class="kesimpulan">
+                        Jadi, banyaknya bujursangkar yang dapat dibuat adalah <strong>$3920$</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 20 -->
+        <article class="soal-item" id="20">
+            <div class="soal-no">No. 20</div>
+            <div class="soal-teks">
+                Diberikan bujursangkar dengan panjang sisi sama dengan $2\sqrt{3}$. Di dalam bujursangkar tersebut terdapat dua segitiga sama sisi dengan alas merupakan sisi-sisi bujursangkar yang berhadapan. Perpotongan kedua segitiga sama sisi membentuk rhombus. Luas rhombus sama dengan $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2013.html#A16">OSP SMA 2013</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osp13-16" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan bujursangkar $ABCD$ bersisi $2\sqrt{3}$, dan dua segitiga sama sisinya adalah $\triangle ABR$ dan $\triangle CDP$, dengan perpotongan kedua segitiga membentuk belah ketupat (rhombus) $PQRS$. Misalkan $N$ pertengahan $AB$ dan $K$ perpotongan $PR$ dan $SQ$.</p>
+                    <p>Tinggi $\triangle ABR$ adalah $RN = AN \tan 60^\circ = \sqrt{3} \cdot \sqrt{3} = 3$. Karena $K$ pusat simetri persegi, $KN = \sqrt{3}$, sehingga $RK = RN - KN = 3 - \sqrt{3}$.</p>
+                    <p>Karena $\triangle RSQ$ sebangun dengan $\triangle RAB$, maka:</p>
+                    $$\frac{RS}{AR} = \frac{RK}{RN} \implies \frac{RS}{2\sqrt{3}} = \frac{3 - \sqrt{3}}{3} \implies RS = 2\sqrt{3} - 2$$
+                    <p>Karena sudut lancip belah ketupat $PQRS$ adalah $60^\circ$, luasnya adalah:</p>
+                    $$[PQRS] = RS^2 \sin 60^\circ = (2\sqrt{3} - 2)^2 \cdot \frac{\sqrt{3}}{2} = (16 - 8\sqrt{3})\frac{\sqrt{3}}{2} = 8\sqrt{3} - 12$$
+                    <div class="kesimpulan">Jadi, luas rhombus adalah <strong>$8\sqrt{3} - 12$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -520,6 +566,37 @@
                     g15.buatTitik(E, { label: "E", labelPosition: "bottom-center", size: 3.2, color: "#dc2626" });
                     g15.buatTitik(F, { label: "F", labelPosition: "bottom-left", size: 3.2, color: "var(--teal-primary)" });
                     g15.buatTitik(P, { label: "P", labelPosition: "middle-right", size: 3.5, color: "#dc2626" });
+                }
+
+                // SOAL 20 (OSP SMA 2013 No. 16): Persegi ABCD dengan dua segitiga sama sisi membentuk belah ketupat PQRS
+                const c16 = document.getElementById("geo-osp13-16");
+                if (c16 && !c16.querySelector("svg")) {
+                    const g16 = new GeoSVG(c16, { width: 190, height: 190 });
+                    const s = 130, x0 = 30, y0 = 30;
+                    const D = { x: x0, y: y0 }, C = { x: x0 + s, y: y0 };
+                    const A = { x: x0, y: y0 + s }, B = { x: x0 + s, y: y0 + s };
+                    const h = s * Math.sqrt(3) / 2;
+                    const R = { x: x0 + s / 2, y: y0 + s - h };
+                    const P = { x: x0 + s / 2, y: y0 + h };
+                    const t = (s / 2) * (1 - Math.sqrt(3) / 3);
+                    const S = { x: x0 + s / 2 - t * 1.15, y: y0 + s / 2 };
+                    const Q = { x: x0 + s / 2 + t * 1.15, y: y0 + s / 2 };
+                    const K = { x: x0 + s / 2, y: y0 + s / 2 };
+                    const N = { x: x0 + s / 2, y: y0 + s };
+                    g16.buatPoligon([A, B, C, D], { fill: "rgba(100,116,139,0.04)", stroke: "var(--text-main)", strokeWidth: 1.7 });
+                    g16.buatSegitiga(A, B, R, { fill: "none", stroke: "var(--text-main)", strokeWidth: 1.3 });
+                    g16.buatSegitiga(C, D, P, { fill: "none", stroke: "var(--text-main)", strokeWidth: 1.3 });
+                    g16.buatPoligon([P, Q, R, S], { fill: "rgba(13,148,136,0.12)", stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.5 });
+                    g16.buatSegmen(R, N, { stroke: "#dc2626", strokeWidth: 1.1, dashed: true });
+                    g16.buatSegmen(S, Q, { stroke: "#dc2626", strokeWidth: 1.1, dashed: true });
+                    g16.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 2.8, color: "var(--text-main)" });
+                    g16.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 2.8, color: "var(--text-main)" });
+                    g16.buatTitik(C, { label: "C", labelPosition: "top-right", size: 2.8, color: "var(--text-main)" });
+                    g16.buatTitik(D, { label: "D", labelPosition: "top-left", size: 2.8, color: "var(--text-main)" });
+                    g16.buatTitik(R, { label: "R", labelPosition: "top-center", size: 2.8, color: "var(--teal-primary, #0d9488)" });
+                    g16.buatTitik(P, { label: "P", labelPosition: "bottom-center", size: 2.8, color: "var(--teal-primary, #0d9488)" });
+                    g16.buatTitik(N, { label: "N", labelPosition: "bottom-center", size: 2.6, color: "#dc2626" });
+                    g16.buatTitik(K, { label: "K", labelPosition: "top-right", size: 2.6, color: "#dc2626" });
                 }
             }
             if (document.readyState === "loading") {

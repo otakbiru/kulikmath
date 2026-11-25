@@ -237,6 +237,32 @@
             </div>
         </article>
 
+        <!-- SOAL 16 -->
+        <article class="soal-item" id="16">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan segitiga $ABC$ lancip. Lingkaran dalam segitiga $ABC$ menyinggung $BC, CA,$ dan $AB$ berturut-turut di $D, E,$ dan $F$. Garis bagi sudut $A$ memotong $DE$ dan $DF$ berturut-turut di $K$ dan $L$. Misalkan $AA_1$ adalah garis tinggi dan $M$ titik tengah $BC$.
+                <ol type="a" style="margin-top: 0.5rem; padding-left: 1.4rem;">
+                    <li>Buktikan bahwa $BK$ dan $CL$ tegak lurus garis bagi sudut $BAC$.</li>
+                    <li>Tunjukkan bahwa $A_1KML$ adalah segiempat talibusur.</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202009.html#8">OSN SMA 2009 (Hari Kedua No. 8)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn09-8" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p><strong>a.</strong> Karena $\angle LIC + \angle CDL = (90^\circ - \frac{1}{2}B) + (90^\circ + \frac{1}{2}B) = 180^\circ$, $CDLI$ siklik sehingga $\angle CLI = \angle CDI = 90^\circ$ ($CL \perp AK$). Secara analog $BDKI$ siklik sehingga $\angle BKI = \angle BDI = 90^\circ$ ($BK \perp AK$).</p>
+                    <p><strong>b.</strong> Misalkan $T = BC \cap KL$. Dari $\triangle CLT \sim \triangle BKT$ diperoleh $CT = \dfrac{ab}{b+c}$, $TK = \dfrac{c(c-b)\cos\frac{A}{2}}{b+c}$, dan $LT = \dfrac{b}{c}TK$. Jika $N$ titik potong kedua $(A_1LK)$ dengan $BC$, kuasa titik $T$ memberi $A_1T \cdot TN = LT \cdot TK \implies TN = \dfrac{a(c-b)}{2(b+c)}$, sehingga $CN = CT + TN = \dfrac{a}{2} \implies N = M$. $\blacksquare$</p>
+                    <div class="kesimpulan">
+                        Terbukti bahwa $BK, CL \perp AK$ dan $A_1KML$ adalah segiempat talibusur.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <div class="pagination-wrapper"></div>
 
         <footer class="footer">
@@ -390,6 +416,36 @@
                     gb21.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 3.5, color: "var(--text-main)" });
                     gb21.buatTitik(C, { label: "C", labelPosition: "top-right", size: 3.5, color: "var(--text-main)" });
                     gb21.buatTitik(D, { label: "D", labelPosition: "top-left", size: 3.5, color: "var(--text-main)" });
+                }
+
+                // Soal 16: OSN SMA 2009 No. 8
+                const c8 = document.getElementById("geo-osn09-8");
+                if (c8 && !c8.querySelector("svg")) {
+                    const g8 = new GeoSVG(c8, { width: 290, height: 225 });
+                    const B = { x: 45, y: 185 }, C = { x: 255, y: 185 }, A = { x: 115, y: 35 };
+                    const a = Math.hypot(B.x - C.x, B.y - C.y), b = Math.hypot(A.x - C.x, A.y - C.y), c = Math.hypot(A.x - B.x, A.y - B.y);
+                    const I = { x: (a * A.x + b * B.x + c * C.x) / (a + b + c), y: (a * A.y + b * B.y + c * C.y) / (a + b + c) };
+                    const s = (a + b + c) / 2, area = Math.abs((B.x - A.x) * (C.y - A.y) - (C.x - A.x) * (B.y - A.y)) / 2, r = area / s;
+                    const proj = (P, U, V) => { const dx = V.x - U.x, dy = V.y - U.y, t = ((P.x - U.x) * dx + (P.y - U.y) * dy) / (dx * dx + dy * dy); return { x: U.x + t * dx, y: U.y + t * dy }; };
+                    const inter = (P1, P2, P3, P4) => { const d = (P1.x - P2.x) * (P3.y - P4.y) - (P1.y - P2.y) * (P3.x - P4.x); return { x: ((P1.x * P2.y - P1.y * P2.x) * (P3.x - P4.x) - (P1.x - P2.x) * (P3.x * P4.y - P3.y * P4.x)) / d, y: ((P1.x * P2.y - P1.y * P2.x) * (P3.y - P4.y) - (P1.y - P2.y) * (P3.x * P4.y - P3.y * P4.x)) / d }; };
+                    const D = proj(I, B, C), E = proj(I, A, C), F = proj(I, A, B), A1 = proj(A, B, C), M = { x: (B.x + C.x) / 2, y: (B.y + C.y) / 2 };
+                    const K = inter(A, I, D, E), L = inter(A, I, D, F);
+                    g8.buatSegitiga(A, B, C, { fill: "rgba(100, 116, 139, 0.04)", stroke: "var(--text-main)", strokeWidth: 2 });
+                    g8.buatLingkaran([I.x, I.y], r, { fill: "none", stroke: "var(--text-muted)", strokeWidth: 1.2, dashed: true });
+                    g8.buatSegmen(A, A1, { stroke: "var(--text-muted)", strokeWidth: 1.2 });
+                    g8.buatSegmen(A, L, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.7 });
+                    g8.buatSegmen(D, E, { stroke: "#d97706", strokeWidth: 1.3 });
+                    g8.buatSegmen(D, F, { stroke: "#d97706", strokeWidth: 1.3 });
+                    g8.buatSegmen(B, K, { stroke: "#dc2626", strokeWidth: 1.4, dashed: true });
+                    g8.buatSegmen(C, L, { stroke: "#dc2626", strokeWidth: 1.4, dashed: true });
+                    g8.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3.2, color: "var(--text-main)" });
+                    g8.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3.2, color: "var(--text-main)" });
+                    g8.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3.2, color: "var(--text-main)" });
+                    g8.buatTitik(A1, { label: "A₁", labelPosition: "bottom-center", size: 3, color: "var(--text-muted)" });
+                    g8.buatTitik(M, { label: "M", labelPosition: "bottom-center", size: 3.2, color: "#1d4ed8" });
+                    g8.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 3, color: "#d97706" });
+                    g8.buatTitik(K, { label: "K", labelPosition: "top-right", size: 3.2, color: "#dc2626" });
+                    g8.buatTitik(L, { label: "L", labelPosition: "bottom-left", size: 3.2, color: "#dc2626" });
                 }
             }
 

@@ -131,9 +131,69 @@
       </div>
     </article>
 
+    <!-- SOAL 4 -->
+    <article class="soal-item" id="4">
+      <div class="soal-no">No. 4</div>
+      <div class="soal-teks">
+        Misalkan $\Delta_1, \Delta_2, \Delta_3, \dots$ adalah barisan segitiga sama sisi dengan panjang sisi $\Delta_1$ adalah $1$. Untuk $n \ge 1$, segitiga $\Delta_{n+1}$ didefinisikan dengan cara sebagai berikut: pertama didefinisikan $P_n$ sebagai persegi yang titik-titik sudutnya terletak pada sisi-sisi $\Delta_n$, selanjutnya didefinisikan $L_n$ sebagai lingkaran terbesar di dalam $P_n$, kemudian didefinisikan $\Delta_{n+1}$ sebagai segitiga sama sisi yang titik-titik sudutnya terletak pada keliling lingkaran. Panjang sisi dari $\Delta_{2013}$ adalah $\cdots$
+      </div>
+      <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2013.html#A14">OSP SMA 2013</a></div>
+      <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+      <div class="pembahasan-box">
+        <div class="pembahasan-title">Pembahasan:</div>
+        <div class="pembahasan-isi">
+          <div id="geo-osp13-14" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+          <p>Misalkan sisi $\Delta_n = ABC$ adalah $k$ dan sisi persegi $P_n = DEFG$ (dengan $D, E$ pada $AB$) adalah $m$. Karena $\triangle CGF$ sama sisi bersisi $m$, maka $AG = k - m$.</p>
+          <p>Pada $\triangle ADG$ siku-siku di $D$, $DG = AG \sin 60^\circ \implies m = (k - m)\frac{\sqrt{3}}{2} \implies m = \dfrac{k\sqrt{3}}{2 + \sqrt{3}}$.</p>
+          <p>Lingkaran terbesar $L_n$ di dalam persegi $P_n$ berjari-jari $R = \dfrac{m}{2} = \dfrac{k\sqrt{3}}{4 + 2\sqrt{3}}$.</p>
+          <p>Segitiga sama sisi $\Delta_{n+1}$ yang titik sudutnya di keliling $L_n$ memiliki panjang sisi $p = R\sqrt{3} = \dfrac{3k}{4 + 2\sqrt{3}}$.</p>
+          <p>Jadi, barisan panjang sisi $\Delta_n$ merupakan barisan geometri dengan $s_1 = 1$ dan rasio $r = \dfrac{3}{4 + 2\sqrt{3}}$, sehingga $s_{2013} = \left(\dfrac{3}{4 + 2\sqrt{3}}\right)^{2012}$.</p>
+          <div class="kesimpulan">Jadi, panjang sisi $\Delta_{2013}$ adalah <strong>$\left(\dfrac{3}{4 + 2\sqrt{3}}\right)^{2012}$</strong>.</div>
+        </div>
+        <button type="button" class="btn-tutup">TUTUP</button>
+      </div>
+    </article>
+
     <!-- Pagination Bawah (Otomatis) -->
     <div class="pagination-wrapper"></div>
   </main>
+
+  <script>
+    (function () {
+      function renderDiagram() {
+        if (typeof GeoSVG === "undefined") return;
+        const c14 = document.getElementById("geo-osp13-14");
+        if (c14 && !c14.querySelector("svg")) {
+          const g14 = new GeoSVG(c14, { width: 210, height: 190 });
+          const k = 160;
+          const A = { x: 25, y: 165 }, B = { x: 25 + k, y: 165 };
+          const C = { x: 25 + k / 2, y: 165 - k * Math.sqrt(3) / 2 };
+          const m = k * Math.sqrt(3) / (2 + Math.sqrt(3));
+          const d = (k - m) / 2;
+          const D = { x: A.x + d, y: 165 }, E = { x: B.x - d, y: 165 };
+          const F = { x: E.x, y: 165 - m }, G = { x: D.x, y: 165 - m };
+          const O = { x: (D.x + E.x) / 2, y: 165 - m / 2 };
+          const R = m / 2;
+          const P = { x: O.x - R * Math.sqrt(3) / 2, y: O.y + R / 2 };
+          const Q = { x: O.x + R * Math.sqrt(3) / 2, y: O.y + R / 2 };
+          const T = { x: O.x, y: O.y - R };
+          g14.buatSegitiga(A, B, C, { fill: "rgba(100,116,139,0.04)", stroke: "var(--text-main)", strokeWidth: 1.7 });
+          g14.buatPoligon([D, E, F, G], { fill: "none", stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.4 });
+          g14.buatLingkaran(O, R, { fill: "none", stroke: "var(--text-muted)", strokeWidth: 1.2 });
+          g14.buatSegitiga(P, Q, T, { fill: "rgba(220,38,38,0.08)", stroke: "#dc2626", strokeWidth: 1.4 });
+          g14.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 2.8, color: "var(--text-main)" });
+          g14.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 2.8, color: "var(--text-main)" });
+          g14.buatTitik(C, { label: "C", labelPosition: "top-center", size: 2.8, color: "var(--text-main)" });
+          g14.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 2.6, color: "var(--teal-primary, #0d9488)" });
+          g14.buatTitik(E, { label: "E", labelPosition: "bottom-center", size: 2.6, color: "var(--teal-primary, #0d9488)" });
+          g14.buatTitik(F, { label: "F", labelPosition: "top-right", size: 2.6, color: "var(--teal-primary, #0d9488)" });
+          g14.buatTitik(G, { label: "G", labelPosition: "top-left", size: 2.6, color: "var(--teal-primary, #0d9488)" });
+        }
+      }
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagram);
+      else renderDiagram();
+    })();
+  </script>
 
   <script src="../../scr/script.js"></script>
 </body>

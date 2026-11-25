@@ -195,7 +195,10 @@ const DAFTAR_ARSIP = [
             { judul: "OSK SMA 2007", file: "OSK SMA 2007.html" },
             { judul: "OSK SMA 2008", file: "OSK SMA 2008.html" },
             { judul: "OSK SMA 2009", file: "OSK SMA 2009.html" },
-            { judul: "OSK SMA 2011", file: "OSK SMA 2011.html" }
+            { judul: "OSK SMA 2010", file: "OSK SMA 2010.html" },
+            { judul: "OSK SMA 2011", file: "OSK SMA 2011.html" },
+            { judul: "OSK SMA 2012", file: "OSK SMA 2012.html" },
+            { judul: "OSK SMA 2013", file: "OSK SMA 2013.html" }
         ]
     },
     {
@@ -208,7 +211,11 @@ const DAFTAR_ARSIP = [
             { judul: "OSN SMA 2005", file: "OSN SMA 2005.html" },
             { judul: "OSN SMA 2006", file: "OSN SMA 2006.html" },
             { judul: "OSN SMA 2007", file: "OSN SMA 2007.html" },
-            { judul: "OSN SMA 2008", file: "OSN SMA 2008.html" }
+            { judul: "OSN SMA 2008", file: "OSN SMA 2008.html" },
+            { judul: "OSN SMA 2009", file: "OSN SMA 2009.html" },
+            { judul: "OSN SMA 2010", file: "OSN SMA 2010.html" },
+            { judul: "OSN SMA 2011", file: "OSN SMA 2011.html" },
+            { judul: "OSN SMA 2012", file: "OSN SMA 2012.html" }
         ]
     },
     {
@@ -222,13 +229,24 @@ const DAFTAR_ARSIP = [
             { judul: "OSP SMA 2006", file: "OSP SMA 2006.html" },
             { judul: "OSP SMA 2007", file: "OSP SMA 2007.html" },
             { judul: "OSP SMA 2008", file: "OSP SMA 2008.html" },
-            { judul: "OSP SMA 2011", file: "OSP SMA 2011.html" }
+            { judul: "OSP SMA 2009", file: "OSP SMA 2009.html" },
+            { judul: "OSP SMA 2010", file: "OSP SMA 2010.html" },
+            { judul: "OSP SMA 2011", file: "OSP SMA 2011.html" },
+            { judul: "OSP SMA 2012", file: "OSP SMA 2012.html" },
+            { judul: "OSP SMA 2013", file: "OSP SMA 2013.html" }
         ]
     },
     {
         kategori: "SNBT",
         folder: "Arsip_Soal/SNBT",
         paket: []
+    },
+    {
+        kategori: "TKA",
+        folder: "Arsip_Soal/TKA",
+        paket: [
+            { judul: "TKA Matematika SMP 2025", file: "TKA Matematika SMP 2025.html" }
+        ]
     },
     {
         kategori: "UAS",

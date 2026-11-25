@@ -242,10 +242,108 @@
             </div>
         </article>
 
+        <!-- SOAL 9 -->
+        <article class="soal-item" id="9">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan segitiga $ABC$; $AC : CB = 3 : 4$. Garis bagi luar sudut $C$ memotong perpanjangan $BA$ di $P$ ($A$ terletak antara $P$ dan $B$). Perbandingan $PA : AB$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202010.html#A11">OSK SMA 2010 (No. 11)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osk10-11" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Menurut dalil garis bagi luar sudut $C$ pada $\triangle ABC$, berlaku:</p>
+                    $$\frac{PA}{PB} = \frac{AC}{CB} = \frac{3}{4}$$
+                    <p>Misalkan $PA = 3k$ dan $PB = 4k$. Karena $A$ terletak di antara $P$ dan $B$, maka $AB = PB - PA = 4k - 3k = k$.</p>
+                    <p>Dengan demikian, $PA : AB = 3k : k = 3 : 1$.</p>
+                    <div class="kesimpulan">
+                        Jadi, perbandingan $PA : AB$ adalah <strong>$3 : 1$</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 10 -->
+        <article class="soal-item" id="10">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Diberikan jajar genjang $ABCD$. Titik $M$ pada $AB$ sedemikian rupa sehingga $\dfrac{AM}{AB} = 0{,}017$, dan titik $N$ pada $AD$ sehingga $\dfrac{AN}{AD} = \dfrac{17}{2009}$. Misalkan $AC \cap MN = P$, maka $\dfrac{AC}{AP} = \cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202012.html#A8">OSP SMA 2012 (No. 8)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osp12-8" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Dengan $\frac{AC}{AP} = t$, berlaku $\overrightarrow{AP} = \frac{1000}{17t}\overrightarrow{AM} + \frac{2009}{17t}\overrightarrow{AN}$. Karena $P \in MN$, maka $\frac{1000 + 2009}{17t} = 1 \implies t = \frac{3009}{17} = 177$.</p>
+                    <div class="kesimpulan">
+                        Jadi, nilai $\dfrac{AC}{AP}$ adalah <strong>$177$</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
 
         <div class="pagination-wrapper"></div>
     </main>
+
+    <script>
+        (function () {
+            function loadAndRender() {
+                if (typeof GeoSVG === "undefined") {
+                    var s = document.createElement("script");
+                    s.src = "../../scr/GeoSVG.js";
+                    s.onload = renderDiag;
+                    document.head.appendChild(s);
+                    return;
+                }
+                renderDiag();
+            }
+            function renderDiag() {
+                if (typeof GeoSVG === "undefined") return;
+                const c11 = document.getElementById("geo-osk10-11");
+                if (c11 && !c11.querySelector("svg")) {
+                    const g11 = new GeoSVG(c11, { width: 260, height: 155 });
+                    const P = { x: 30, y: 120 }, A = { x: 140, y: 120 }, B = { x: 225, y: 120 }, C = { x: 115, y: 35 };
+                    g11.buatSegmen(P, B, { stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    g11.buatSegmen(C, A, { stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    g11.buatSegmen(C, B, { stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    g11.buatSegmen(C, P, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.8, dashed: true });
+                    g11.buatTitik(P, { label: "P", labelPosition: "bottom-left", size: 3.2, color: "var(--teal-primary, #0d9488)" });
+                    g11.buatTitik(A, { label: "A", labelPosition: "bottom-center", size: 3.2, color: "var(--text-main)" });
+                    g11.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 3.2, color: "var(--text-main)" });
+                    g11.buatTitik(C, { label: "C", labelPosition: "top-center", size: 3.2, color: "var(--text-main)" });
+                }
+                const c8 = document.getElementById("geo-osp12-8");
+                if (c8 && !c8.querySelector("svg")) {
+                    const g8 = new GeoSVG(c8, { width: 240, height: 145 });
+                    const A = { x: 35, y: 115 }, B = { x: 165, y: 115 }, D = { x: 75, y: 30 }, C = { x: 205, y: 30 };
+                    const M = { x: A.x + 0.28 * (B.x - A.x), y: 115 };
+                    const N = { x: A.x + 0.25 * (D.x - A.x), y: A.y + 0.25 * (D.y - A.y) };
+                    const den = (C.x - A.x) * (N.y - M.y) - (C.y - A.y) * (N.x - M.x);
+                    const t = ((M.x - A.x) * (N.y - M.y) - (M.y - A.y) * (N.x - M.x)) / den;
+                    const P = { x: A.x + t * (C.x - A.x), y: A.y + t * (C.y - A.y) };
+                    g8.buatPoligon([A, B, C, D], { fill: "rgba(100,116,139,0.04)", stroke: "var(--text-main)", strokeWidth: 1.8 });
+                    g8.buatSegmen(A, C, { stroke: "var(--text-main)", strokeWidth: 1.4 });
+                    g8.buatSegmen(M, N, { stroke: "#dc2626", strokeWidth: 1.6 });
+                    g8.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 3, color: "var(--text-main)" });
+                    g8.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 3, color: "var(--text-main)" });
+                    g8.buatTitik(C, { label: "C", labelPosition: "top-right", size: 3, color: "var(--text-main)" });
+                    g8.buatTitik(D, { label: "D", labelPosition: "top-left", size: 3, color: "var(--text-main)" });
+                    g8.buatTitik(M, { label: "M", labelPosition: "bottom-center", size: 3, color: "#dc2626" });
+                    g8.buatTitik(N, { label: "N", labelPosition: "top-left", size: 3, color: "#dc2626" });
+                    g8.buatTitik(P, { label: "P", labelPosition: "bottom-right", size: 3.3, color: "var(--teal-primary, #0d9488)" });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", loadAndRender);
+            else loadAndRender();
+        })();
+    </script>
 
     <script src="../../scr/script.js"></script>
 </body>

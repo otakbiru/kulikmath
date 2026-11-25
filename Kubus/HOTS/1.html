@@ -191,9 +191,71 @@
             </div>
         </article>
 
+        <!-- SOAL 5 -->
+        <article class="soal-item" id="5">
+            <div class="soal-no"></div>
+            <div class="soal-teks">
+                Perhatikan gambar jaring-jaring dadu berbentuk kubus dengan panjang rusuk satu satuan berikut:
+                <div id="geo-osn11-1" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                Misalkan $n$ bilangan asli dan $2n$ dadu tersebut disusun membentuk balok berukuran $1 \times 2 \times n$ satuan dan diletakkan di lantai (ada enam cara peletakan). Misalkan $S$ adalah jumlah bilangan yang terlihat pada balok tersebut (bagian bawah balok tidak terlihat). Tentukan $n$ terkecil sedemikian sehingga terdapat penyusunan dadu-dadu membentuk balok dan peletakan di lantai yang memenuhi $S &gt; 2011$.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202011.html#1">OSN SMA 2011 (No. 1)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Dari jaring-jaring dadu, jumlah semua sisi satu dadu adalah $1 + 2 + 6 + 8 + 16 + 32 = 65$, dengan pasangan sisi berlawanan $(1, 32)$, $(2, 16)$, dan $(6, 8)$.</p>
+                    <p>Untuk memaksimalkan $S$, peletakan paling optimal adalah alas $1 \times 2$ (tinggi $n$): pada $n - 1$ lapisan bawah ($2(n - 1)$ dadu), sisi atas–bawah yang berlawanan diisi $(6, 8)$ dan sisi dalam diisi $1$ sehingga terlihat $65 - 15 = 50$ per dadu; pada lapisan teratas ($2$ dadu), sisi bawah dan dalam diisi $1$ dan $2$ sehingga terlihat $65 - 3 = 62$ per dadu.</p>
+                    <p>Total maksimum adalah $S_{\max} = 2(n - 1)(50) + 2(62) = 100n + 24$ (lebih besar dari alas $2 \times n$ yang memberi $96n + 32$ dan alas $1 \times n$ yang memberi $83n + 58$ untuk $n \ge 1$). Syarat $100n + 24 &gt; 2011 \iff n \ge 20$.</p>
+                    <div class="kesimpulan">
+                        Jadi, nilai $n$ terkecil yang memenuhi adalah <strong>$20$</strong>.
+                    </div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
+
+    <script>
+        (function () {
+            function loadAndRender() {
+                if (typeof GeoSVG === "undefined") {
+                    var s = document.createElement("script");
+                    s.src = "../../scr/GeoSVG.js";
+                    s.onload = renderDiag;
+                    document.head.appendChild(s);
+                    return;
+                }
+                renderDiag();
+            }
+            function renderDiag() {
+                if (typeof GeoSVG === "undefined") return;
+                const c1 = document.getElementById("geo-osn11-1");
+                if (c1 && !c1.querySelector("svg")) {
+                    const g1 = new GeoSVG(c1, { width: 220, height: 155 });
+                    const s = 38, ox = 34, oy = 20;
+                    const cells = [
+                        { r: 0, c: 2, t: "6" },
+                        { r: 1, c: 0, t: "1" },
+                        { r: 1, c: 1, t: "2" },
+                        { r: 1, c: 2, t: "32" },
+                        { r: 1, c: 3, t: "16" },
+                        { r: 2, c: 2, t: "8" }
+                    ];
+                    cells.forEach(cell => {
+                        const x = ox + cell.c * s, y = oy + cell.r * s;
+                        g1.buatPersegiPanjang(x, y, s, s, { fill: "rgba(13,148,136,0.08)", stroke: "var(--text-main)", strokeWidth: 1.5 });
+                        g1.buatTeks(x + s / 2, y + s / 2, cell.t, { fontSize: 13, fontWeight: "bold", color: "var(--text-main)", position: "middle-center" });
+                    });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", loadAndRender);
+            else loadAndRender();
+        })();
+    </script>
 
     <!-- Footer -->
     <footer>
