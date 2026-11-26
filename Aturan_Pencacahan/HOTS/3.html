@@ -11,6 +11,11 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
 
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
     <!-- Style Blog -->
     <link rel="stylesheet" href="../../scr/style.css">
 </head>
@@ -223,9 +228,90 @@
             </div>
         </article>
 
+        <!-- SOAL 29 -->
+        <article class="soal-item" id="29">
+            <div class="soal-no">No. 29</div>
+            <div class="soal-teks">
+                Diketahui bangun persegi panjang berukuran $4 \times 6$ dengan beberapa ruas garis, seperti pada gambar.
+                <div id="geo-osn13-1" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                Dengan menggunakan ruas garis yang sudah ada, tentukan banyak jajaran genjang tanpa sudut siku-siku pada gambar tersebut!
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2013.html#A1">OSN SMA 2013</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ruas garis miring pada gambar memiliki gradien $+1$ dan $-1$ yang saling tegak lurus. Oleh karena itu, jajaran genjang yang dibentuk oleh dua pasang garis miring pasti bersudut siku-siku (persegi panjang), sehingga jajaran genjang tanpa sudut siku-siku harus memiliki tepat sepasang sisi horizontal atau vertikal dan sepasang sisi miring.</p>
+                    <p>Setiap persegi panjang pembatas berukuran $h \times w$ ($1 \le h \le 4, 1 \le w \le 6$) dengan $w \neq h$ memuat tepat $2$ jajaran genjang tanpa sudut siku-siku terbesar di dalamnya, sedangkan persegi ($w = h$) tidak memuatnya:</p>
+                    <ul>
+                        <li>Banyak seluruh persegi panjang pada grid $4 \times 6$: $\binom{5}{2}\binom{7}{2} = 10 \times 21 = 210$.</li>
+                        <li>Banyak persegi ($w = h$): $4\cdot 6 + 3\cdot 5 + 2\cdot 4 + 1\cdot 3 = 50$.</li>
+                    </ul>
+                    <p>Banyak jajaran genjang tanpa sudut siku-siku adalah $2 \times (210 - 50) = 320$.</p>
+                    <div class="kesimpulan">Jadi, banyaknya jajaran genjang tanpa sudut siku-siku adalah <strong>$320$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 30 -->
+        <article class="soal-item" id="30">
+            <div class="soal-no">No. 30</div>
+            <div class="soal-teks">
+                Misalkan $S$ adalah himpunan bilangan asli yang digitnya tidak berulang dan dipilih dari $1, 3, 5, 7$. Jumlah digit satuan dari semua anggota $S$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2014.html#A6">OSK SMA 2014</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Setiap digit $d \in \{1, 3, 5, 7\}$ muncul pada posisi satuan sebanyak:</p>
+                    <ul>
+                        <li>Bilangan $1$ digit: $1$ kali.</li>
+                        <li>Bilangan $2$ digit: $3$ kali.</li>
+                        <li>Bilangan $3$ digit: $3 \times 2 = 6$ kali.</li>
+                        <li>Bilangan $4$ digit: $3 \times 2 \times 1 = 6$ kali.</li>
+                    </ul>
+                    <p>Total kemunculan tiap digit di posisi satuan adalah $1 + 3 + 6 + 6 = 16$ kali. Oleh karena itu, jumlah seluruh digit satuannya adalah:</p>
+                    $$16 \times (1 + 3 + 5 + 7) = 16 \times 16 = 256$$
+                    <div class="kesimpulan">Jadi, jumlah digit satuan dari semua anggota $S$ adalah <strong>$256$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
+
+    <script>
+        (function () {
+            function renderDiagram() {
+                if (typeof GeoSVG === "undefined") return;
+                const c1 = document.getElementById("geo-osn13-1");
+                if (c1 && !c1.querySelector("svg")) {
+                    const g1 = new GeoSVG(c1, { width: 250, height: 175 });
+                    const s = 34, ox = 23, oy = 19;
+                    for (let r = 0; r <= 4; r++) {
+                        g1.buatSegmen(ox, oy + r * s, ox + 6 * s, oy + r * s, { stroke: "var(--text-main)", strokeWidth: 1.2 });
+                    }
+                    for (let c = 0; c <= 6; c++) {
+                        g1.buatSegmen(ox + c * s, oy, ox + c * s, oy + 4 * s, { stroke: "var(--text-main)", strokeWidth: 1.2 });
+                    }
+                    for (let r = 0; r < 4; r++) {
+                        for (let c = 0; c < 6; c++) {
+                            const x1 = ox + c * s, y1 = oy + r * s;
+                            const x2 = x1 + s, y2 = y1 + s;
+                            g1.buatSegmen(x1, y1, x2, y2, { stroke: "var(--text-muted)", strokeWidth: 0.9 });
+                            g1.buatSegmen(x2, y1, x1, y2, { stroke: "var(--text-muted)", strokeWidth: 0.9 });
+                        }
+                    }
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagram);
+            else renderDiagram();
+        })();
+    </script>
 
     <script src="../../scr/script.js"></script>
 </body>
