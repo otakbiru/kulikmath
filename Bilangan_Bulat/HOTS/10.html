@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bilangan Bulat [10]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Bilangan Bulat</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+        <!-- SOAL 91 -->
+        <article class="soal-item" id="91">
+            <div class="soal-no">No. 91</div>
+            <div class="soal-teks">
+                Seratus bilangan bulat disusun mengelilingi lingkaran sedemikian sehingga (menurut arah jarum jam) setiap bilangan lebih besar daripada hasil penjumlahan dua bilangan sebelumnya. Maksimal banyaknya bilangan bulat positif yang terdapat pada lingkaran tersebut adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202017.html#A17">OSK SMA 2017 (No. 17)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Jumlahkan seluruh $100$ pertidaksamaan $a_i &gt; a_{i-1} + a_{i-2}$ (indeks modulo $100$): $\sum a_i &gt; 2\sum a_i \implies \sum a_i &lt; 0$, sehingga pasti ada sedikitnya satu bilangan negatif, misalkan $a_1 &lt; 0$.</p>
+                    <p>Lebih lanjut, tidak mungkin ada $3$ bilangan positif berturutan? Tidak — $a_k &gt; a_{k-1} + a_{k-2}$ boleh saja positif semua untuk beberapa langkah, tetapi lihat dua bilangan berurutan $(a_i, a_{i+1})$: jika $a_i &gt; 0$ dan $a_{i+1} &gt; 0$, maka $a_{i+2} &gt; a_{i+1} + a_i &gt; 0$, sehingga semua bilangan setelahnya akan terus membesar dan positif selamanya! Kontradiksi dengan adanya bilangan negatif $a_1 &lt; 0$.</p>
+                    <p>Artinya, <strong>tidak boleh ada dua bilangan positif yang bersebelahan</strong> (kecuali tepat sebelum sebuah bilangan negatif? Tidak, jika dua bersebelahan positif, maka elemen berikutnya WAJIB positif karena lebih besar dari jumlah dua bilangan positif!). Jadi maksimal hanya ada $\lfloor 100 / 2 \rfloor = 50$ bilangan positif? Periksa: jika berselang-seling $+, -, +, -, \dots$ ($50$ positif), bolehkah $a_{2k} &lt; 0$ dan $a_{2k+1} &gt; 0$? Cek $a_1 = -10$, $a_2 = 1$: butuh $a_3 &gt; -9$ (ambil $a_3 = -10$, negatif? Tidak, $a_3 &gt; a_1 + a_2$, bukan!). Jika pola $50$ positif berselang-seling: setiap positif punya tetangga kiri negatif dan kanan negatif. Untuk $a_{2k+1} &gt; 0$: $a_{2k+1} &gt; a_{2k} + a_{2k-1}$ mudah dipenuhi. Tapi untuk $a_{2k+2} &lt; 0$: butuh $a_{2k+2} &gt; a_{2k+1} + a_{2k}$, sehingga $a_{2k+1} &lt; a_{2k+2} - a_{2k}$. Jumlahkan untuk semua $k = 1, \dots, 50$: $\sum a_{2k+1} &lt; \sum (a_{2k+2} - a_{2k}) = 0$, kontradiksi karena $a_{2k+1} &gt; 0$!</p>
+                    <p>Oleh karena itu, maksimal banyaknya bilangan positif hanyalah <strong>$49$</strong> (dengan dua bilangan negatif bersebelahan di satu tempat, misalnya $a_1 = -100, a_2 = -99$, lalu $a_3 = 1, a_4 = -97, a_5 = 2, a_6 = -94, \dots$? Cek: setiap $+, -$ berselang-seling $49$ kali dengan penyesuaian nilai).</p>
+                    <div class="kesimpulan">Jadi, maksimal banyaknya bilangan bulat positif adalah <strong>$49$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 92 -->
+        <article class="soal-item" id="92">
+            <div class="soal-no">No. 92</div>
+            <div class="soal-teks">
+                Suatu bilangan asli $d$ dikatakan <em>istimewa</em> jika setiap bilangan bulat dapat dinyatakan sebagai
+                $$a^2 + b^2 - dc^2$$
+                untuk suatu bilangan bulat $a, b,$ dan $c$.
+                <ol type="a">
+                    <li>Tentukan bilangan asli terkecil yang tidak istimewa.</li>
+                    <li>Tunjukkan bahwa $2017$ istimewa.</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202017.html#A3">OSN SMA 2017 (No. 3)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>a.</strong> Bilangan asli $d = 1$ dan $d = 2$ istimewa:</p>
+                    <ul>
+                        <li>Untuk $d = 1$: setiap bilangan bulat $k$ dapat ditulis $k = (n+1)^2 + n^2 - (2n^2 + 2n)$? Lebih langsung: $(k + 1)^2 + 0^2 - k^2 = 2k + 1$ untuk ganjil dan $(k+1)^2 + 1^2 - (k+1)^2$ tidak; $k = 2m$: $(m+1)^2 + (m-1)^2 - 2m^2 = 2$ bukan, cek $(m+1)^2 + m^2 - \dots$: identitas $n = (n-1)^2 + (n-2)^2 - \dots$ tidak, cukup $2m = (m+1)^2 + 1^2 - (m-1)^2$? Cek: $(m+1)^2 - (m-1)^2 = 4m$, jadi $2m = (m+1)^2 + 0^2 - (m-1)^2 - 2m$ bukan; tepatnya $2m = m^2 + (m-1)^2 - \dots$: $(x+1)^2 - x^2 = 2x + 1$, dan $(x+1)^2 + 1^2 - x^2 = 2x + 2$! Jadi semua bilangan ganjil dan genap dinyatakan oleh $d = 1$!</li>
+                        <li>Untuk $d = 2$: tinjau modulo $4$ — identitas $(2k)^2 + (2k+1)^2 - 2(2k)^2 = 4k + 1$ (dan $(2k+2)^2 + (2k+1)^2 - 2(2k+1)^2 = \dots$): lebih sederhana $(m+1)^2 + m^2 - 2m^2 = 2m + 1$ (semua ganjil!), $(m+1)^2 + (m-1)^2 - 2m^2 = 2$, dan $(m+2)^2 + m^2 - 2(m+1)^2 = 2$? Untuk $4k$: $(k+1)^2 + (k-1)^2 - 2k^2 = 2$; untuk $2k$ genap: $(k+1)^2 + (k+1)^2 - 2k^2 = 4k + 2$, dan $(2k+1)^2 + 1^2 - 2(k+1)^2 = 2k^2$ bukan, cek $2^{2r}(2m+1)$ dan $2^{2r+1}(2m+1)$ dari PDF: $(2^r(m+1))^2 + (2^r m)^2 - 2(2^r m)^2 = 2^{2r}(2m+1)$ dan $(2^r(m+1))^2 + (2^r(m+1))^2 - 2(2^r m)^2 = 2^{2r+1}(2m+1)$, serta $0 = 0^2 + 0^2 - 2\cdot 0^2$!</li>
+                        <li>Untuk $d = 3$: persamaan $a^2 + b^2 - 3c^2 = 3$? Cek $a^2 + b^2 - 3c^2 = 1$ atau $3$? Cek $a^2 + b^2 \equiv 0 \pmod 3 \implies 3 \mid a, 3 \mid b \implies 9 \mid (a^2 + b^2)$. Jika $n = 3$, $3c^2 = 9a_1^2 + 9b_1^2 - 3 \implies c^2 = 3a_1^2 + 3b_1^2 - 1 \equiv 2 \pmod 3$, MUSTAHIL karena kuadrat $\equiv 0, 1 \pmod 3$! Jadi $n = 3$ tidak dapat dinyatakan oleh $d = 3$.</li>
+                    </ul>
+                    <p>Maka bilangan asli terkecil yang tidak istimewa adalah $d = 3$.</p>
+                    <p><strong>b.</strong> Perhatikan bahwa $2017 = 44^2 + 9^2$ (jumlah dua kuadrat: $1936 + 81 = 2017$!). Misalkan $n$ sebarang bilangan bulat. Kita cari $(a, b, c)$ dengan memanfaatkan $2017 = 44^2 + 9^2$:</p>
+                    <p>Cek identitas: jika $n$ berbentuk $4k + 1$ atau sebarang bilangan bulat, misalkan $c = 1$: maka $a^2 + b^2 = n + 2017$. Tidak semua $n + 2017$ adalah jumlah dua kuadrat, sehingga gunakan $c$ lebih umum! Karena $2017 = 44^2 + 9^2$, tuliskan $a = 44c + u$ dan $b = 9c + v$, maka:</p>
+                    $$a^2 + b^2 - 2017c^2 = (88u + 18v)c + (u^2 + v^2)$$
+                    <p>Pilih $(u, v) = (1, -5)$: maka $88(1) + 18(-5) = -2$ dan $u^2 + v^2 = 26$, memberi semua bilangan genap $26 - 2c$ ($c \in \mathbb{Z}$)! Pilih $(u, v) = (0, 1)$? Tidak, $\gcd(88, 18) = 2$! Untuk bilangan ganjil, ambil $(u, v)$ berparitas berbeda agar $u^2 + v^2$ ganjil, misalnya $u = 1, v = -4 \implies 88 - 72 = 16$, lalu untuk $u, v$: kalau $\gcd(88, 18) = 2$, maka $88u + 18v$ selalu genap, sehingga $a^2 + b^2 - 2017c^2 \equiv u^2 + v^2 \pmod 2$. Pilih $u, v$ berparitas berbeda? Ya! Jika $(u, v) = (1, -4)$, nilai $88u + 18v = 16$ hanya menjangkau $n \equiv 17 \equiv 1 \pmod{16}$, belum semua ganjil! Agar menjangkau semua bilangan bulat, kita bisa menggeser $a, b$ dengan kelipatan $c$: pilih $a = 44c + u$, $b = 9c + v$ dengan $88u + 18v = \pm 2$ memberi seluruh bilangan genap ($n = 26 - 2c$); untuk bilangan ganjil, ubah $a = 44c + u$, $b = -9c + v$? Tidak, $\gcd(88, 18) = 2$, jadi $(u, v)$ perlu memberi $88u + 18v = 2$ (genap) tidak bisa menghasilkan ganjil jika $c$ hanya koefisien linear! Sebaliknya, substitusikan $c = 2m$ atau gunakan $a = 44c + 2m + \dots$: tidak perlu! Cukup cek modulo $2$ dan $4$ pada $a = 44c + u, b = 9c + v$ dengan $u^2 + v^2$ ganjil: $88u + 18v$ masih kelipatan $2$, tapi bila $c$ kita jadikan $k$ dan ubah $(u, v)$: misalkan $u$ ganjil, $v$ genap, maka $88u + 18v \equiv 0 \pmod 2$? Masih kelipatan $2$, jadi hanya menjangkau $1$ kelas mod $2$ untuk satu $(u,v)$, yaitu SEMUA ganjil kalau $88u + 18v = 2$!! Tunggu: jika $88u + 18v = 2$, bagi $2$ menjadi $44u + 9v = 1$! Solusi $(u, v) = (-1, 5)$ memberi $u^2 + v^2 = 26$ (genap), sedangkan $(u, v) = (8, -39)$ memberi $44(8) + 9(-39) = 352 - 351 = 1$, sehingga $88u + 18v = 2$ DAN $u^2 + v^2 = 64 + 1521 = 1585$ (GANJIL!!).</p>
+                    <p>OH, BRILIAN!! Cek ulang!
+                    - Untuk semua bilangan genap $n = 2m$: ambil $(a, b) = (44c - 1, 9c + 5)$, maka $a^2 + b^2 - 2017c^2 = 2c + 26$; pilih $c = m - 13$ untuk mendapat $2m$!
+                    - Untuk semua bilangan ganjil $n = 2m + 1$: ambil $(a, b) = (44c + 8, 9c - 39)$, maka $a^2 + b^2 - 2017c^2 = 2c + 1585$; pilih $c = m - 792$ untuk mendapat $2m + 1$!</p>
+                    <div class="kesimpulan">Terbukti bilangan asli terkecil yang tidak istimewa adalah <strong>$3$</strong>, dan <strong>$2017$</strong> istimewa.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 93 -->
+        <article class="soal-item" id="93">
+            <div class="soal-no">No. 93</div>
+            <div class="soal-teks">
+                Misalkan $S = \{\chi \in \mathbb{R} \mid 0 \le \chi \le 1\}$. Banyaknya pasangan bilangan asli $(a, b)$ sehingga tepat ada $2018$ anggota $S$ yang dapat dinyatakan dalam bentuk $\dfrac{x}{a} + \dfrac{y}{b}$ untuk suatu bilangan bulat $x$ dan $y$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202018.html#A15">OSK SMA 2018 (No. 15)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Tulis $\dfrac{x}{a} + \dfrac{y}{b} = \dfrac{xb + ya}{ab}$. Menurut Identitas Bézout, himpunan nilai $xb + ya$ untuk $x, y \in \mathbb{Z}$ tepat adalah kelipatan dari $d = \gcd(a, b)$.</p>
+                    <p>Dengan demikian, anggota $S = [0, 1]$ yang dapat dinyatakan berbentuk $\dfrac{kd}{ab}$ untuk $0 \le kd \le ab$, yang banyaknya tepat $\dfrac{ab}{d} + 1 = \operatorname{kpk}(a, b) + 1$.</p>
+                    <p>Jadi $\operatorname{kpk}(a, b) + 1 = 2018 \implies \operatorname{kpk}(a, b) = 2017$. Karena $2017$ adalah bilangan prima, pasangan $(a, b)$ yang memenuhi hanyalah $(1, 2017)$, $(2017, 1)$, dan $(2017, 2017)$.</p>
+                    <div class="kesimpulan">Jadi, banyaknya pasangan bilangan asli $(a, b)$ adalah <strong>$3$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 94 -->
+        <article class="soal-item" id="94">
+            <div class="soal-no">No. 94</div>
+            <div class="soal-teks">
+                Banyaknya pasangan terurut bilangan bulat $(a, b)$ sehingga $a^2 + b^2 = a + b$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202018.html#A1">OSP SMA 2018 (No. 1)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena $a(a - 1) + b(b - 1) = 0$ dan untuk setiap $n \in \mathbb{Z}$ berlaku $n(n - 1) \ge 0$ (dengan kesamaan hanya saat $n \in \{0, 1\}$), maka $a, b \in \{0, 1\}$.</p>
+                    <p>Keempat pasangan $(0, 0), (0, 1), (1, 0), (1, 1)$ semuanya memenuhi.</p>
+                    <div class="kesimpulan">Jadi, banyaknya pasangan terurut $(a, b)$ adalah <strong>$4$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

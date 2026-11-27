@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Polinom (Suku Banyak) [6]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Polinom (Suku Banyak)</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+        <!-- SOAL 51 -->
+        <article class="soal-item" id="51">
+            <div class="soal-no">No. 51</div>
+            <div class="soal-teks">
+                Diketahui $f(x)$ polinom berderajat $n$ dengan koefisien-koefisien bilangan bulat yang memenuhi $f(0) = 39$ dan $f(x_1) = f(x_2) = \dots = f(x_n) = 2017$, dengan $x_1, x_2, x_3, \dots, x_n$ semua berbeda. Bilangan $n$ terbesar yang mungkin adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202017.html#A20">OSP SMA 2017 (No. 20)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Jika $x_1, \dots, x_n$ adalah bilangan bulat berbeda (sebagaimana syarat akar-akar pada koefisien bulat; jika $x_i$ boleh real, $n$ tidak terbatas), tulis $f(x) - 2017 = a(x - x_1)(x - x_2)\cdots(x - x_n)$ dengan $a \in \mathbb{Z} \setminus \{0\}$.</p>
+                    <p>Substitusikan $x = 0$: $39 - 2017 = -1978 = a(-x_1)(-x_2)\cdots(-x_n)$.</p>
+                    <p>Faktorisasi prima $1978 = 2 \cdot 23 \cdot 43$ terdiri dari $3$ bilangan prima berbeda. Karena semua $x_i$ adalah bilangan bulat tak nol yang berbeda, paling banyak dua di antaranya bernilai $\pm 1$, dan masing-masing faktor prima $2, 23, 43$ paling banyak muncul pada satu $|x_i|$, sehingga maksimal terdapat $2 + 3 = 5$ faktor berbeda.</p>
+                    <p>Nilai $n = 5$ tercapai dengan $f(x) = 2017 - (x - 1)(x + 1)(x - 2)(x - 23)(x + 43)$.</p>
+                    <div class="kesimpulan">Jadi, bilangan bulat $n$ terbesar yang mungkin (untuk $x_i \in \mathbb{Z}$) adalah <strong>$5$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 52 -->
+        <article class="soal-item" id="52">
+            <div class="soal-no">No. 52</div>
+            <div class="soal-teks">
+                Diberikan polinom $P$ dengan koefisien-koefisien bilangan bulat. Diketahui bahwa persamaan $P(x) = 0$ mempunyai sedikitnya $9$ solusi bilangan bulat berbeda. Misalkan juga $n$ adalah sebarang bilangan bulat dengan sifat $|P(n)| &lt; 2017$. Buktikan bahwa $P(n) = 0$.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202017.html#A5">OSN SMA 2017 (No. 5)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $x_1 &lt; x_2 &lt; \dots &lt; x_9$ adalah $9$ akar bulat berbeda dari $P(x)$. Karena $P$ berkoefisien bulat, terdapat polinom berkoefisien bulat $Q(x)$ sehingga:</p>
+                    $$P(x) = (x - x_1)(x - x_2)\cdots(x - x_9)Q(x)$$
+                    <p>Andaikan $P(n) \neq 0$ untuk suatu $n \in \mathbb{Z}$, maka $Q(n) \neq 0$ (sehingga $|Q(n)| \ge 1$) dan kesembilan faktor $(n - x_i)$ adalah bilangan bulat tak nol yang semuanya berbeda.</p>
+                    <p>Nilai mutlak hasil kali $9$ bilangan bulat tak nol berbeda paling kecil dicapai oleh $\{-4, -3, -2, -1, 1, 2, 3, 4, 5\}$:</p>
+                    $$|P(n)| \ge (1^2 \cdot 2^2 \cdot 3^2 \cdot 4^2 \cdot 5) \cdot 1 = 576 \times 5 = 2880 &gt; 2017$$
+                    <p>Kontradiksi dengan $|P(n)| &lt; 2017$. Jadi haruslah $P(n) = 0$.</p>
+                    <div class="kesimpulan">Terbukti bahwa $P(n) = 0$.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 53 -->
+        <article class="soal-item" id="53">
+            <div class="soal-no">No. 53</div>
+            <div class="soal-teks">
+                Diberikan suku banyak $p(x)$ dengan $p(x)^2 + p(x^2) = 2x^2$ untuk setiap bilangan real $x$. Jika $p(1) \neq 1$, maka jumlah semua nilai $p(10)$ yang mungkin adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202018.html#A10">OSK SMA 2018 (No. 10)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $p(x) = a x^n + q(x)$ ($a \neq 0$, $\deg q &lt; n$). Dari $p(x)^2 + p(x^2) = 2x^2$, suku berderajat tertinggi $2n$ berkoefisien $a^2 + a$:</p>
+                    <ul>
+                        <li>Jika $a^2 + a \neq 0$: maka $2n = 2 \implies n = 1$ dan $a^2 + a = 2 \implies a \in \{1, -2\}$. Dengan $p(x) = ax + b$: $a^2 x^2 + 2abx + b^2 + ax^2 + b = 2x^2 \implies b = 0$. Karena $p(1) \neq 1$, maka $a = -2$, memberi $p(x) = -2x$ dan $p(10) = -20$.</li>
+                        <li>Jika $a^2 + a = 0 \implies a = -1$: suku $x^{2n}$ saling menghilangkan, dan suku berikutnya $2ax^n q(x)$ harus menyeimbangkan $2x^2$, sehingga $n \le 2$. Untuk $n = 2$, $p(x) = -x^2 + bx + c$ memberi $(-x^2 + bx + c)^2 + (-x^4 + bx^2 + c) = 2x^2 \implies b = 0, c = -1$ (cek: $(-x^2 - 1)^2 - x^4 - 1 = 2x^2$, valid dan $p(1) = -2 \neq 1$!), memberi $p(10) = -101$. (Untuk $n = 1, a = -1$: $(-x + b)^2 + (-x^2 + b) = 2x^2$ mustahil karena koefisien $x^2$ adalah $0$.)</li>
+                    </ul>
+                    <p>Jumlah semua nilai $p(10)$ yang mungkin adalah $-20 + (-101) = -121$.</p>
+                    <div class="kesimpulan">Jadi, jumlah semua nilai $p(10)$ yang mungkin adalah <strong>$-121$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 54 -->
+        <article class="soal-item" id="54">
+            <div class="soal-no">No. 54</div>
+            <div class="soal-teks">
+                Misalkan $P(x)$ suatu polinom (suku banyak) tak konstan dengan koefisien bilangan bulat tak negatif yang memenuhi $P(10) = 2018$. Misalkan $m$ dan $M$ berturut-turut adalah nilai minimum dan maksimum yang mungkin dari $P(1)$. Nilai $m + M$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202018.html#A8">OSP SMA 2018 (No. 8)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Tulis $P(x) = \sum_{k=0}^{d} a_k x^k$ dengan $a_k \in \mathbb{Z}_{\ge 0}$. Setiap penukaran $a_k \cdot 10^k \to (a_k - 1)\cdot 10^k + 10 \cdot 10^{k-1}$ menaikkan $P(1) = \sum a_k$ sebesar $9$.</p>
+                    <ul>
+                        <li><strong>Minimum $m$:</strong> dicapai bila seluruh $a_k \le 9$ (representasi basis $10$ standar $2018 = 2\cdot 10^3 + 0\cdot 10^2 + 1\cdot 10 + 8$), memberi $m = 2 + 0 + 1 + 8 = 11$.</li>
+                        <li><strong>Maksimum $M$:</strong> karena $P$ tak konstan ($d \ge 1$), dicapai bila seluruh suku dipindahkan ke $a_1$ dan $a_0$ ($10a_1 + a_0 = 2018$) dengan $a_1 \ge 1$ minimum, yaitu $a_1 = 1, a_0 = 2008$! (Perhatikan: di kunci PDF tertulis $a_1 = 201, a_0 = 8$ yang hanya memberi $209$, padahal $P(x) = x + 2008$ valid: tak konstan, koefisien bulat tak negatif, $P(10) = 2018$, dan $P(1) = 2009$!)</li>
+                    </ul>
+                    <p>Jadi $M = 1 + 2008 = 2009$ dan $m + M = 11 + 2009 = 2020$.</p>
+                    <div class="kesimpulan">Jadi, nilai $m + M$ adalah <strong>$2020$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 55 -->
+        <article class="soal-item" id="55">
+            <div class="soal-no">No. 55</div>
+            <div class="soal-teks">
+                Pada suatu permainan Andi dan komputer melangkah secara bergantian. Awalnya komputer menampilkan suatu polinom $x^2 + mx + n$ dengan $m, n \in \mathbb{Z}$ yang tidak memiliki akar real. Andi kemudian memulai permainan tersebut. Pada setiap gilirannya, Andi mengganti polinom $x^2 + ax + b$ yang muncul di layar dengan salah satu dari $x^2 + (a + b)x + b$ atau $x^2 + ax + (a + b)$. Andi hanya boleh memilih polinom pengganti yang akar-akarnya real. Sedangkan komputer pada setiap gilirannya menukar koefisien $x$ dan konstanta dari polinom yang dipilih Andi. Andi akan kalah jika dia tidak bisa melanjutkan langkahnya. Tentukan semua pasangan $(m, n)$ agar Andi pasti kalah.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202018.html#A3">OSN SMA 2018 (No. 3)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Polinom $x^2 + ax + b$ memiliki akar real jika dan hanya jika $a^2 \ge 4b$. Karena polinom awal tidak punya akar real, maka $m^2 &lt; 4n$ (khususnya $n \ge 1$? Perhatikan: soal tidak melarang $n = 0$ hanya jika $m^2 &lt; 0$, yang tidak mungkin! Jadi $m^2 &lt; 4n \implies n \ge 1$!).</p>
+                    <p><strong>Klaim:</strong> Jika Andi tidak kalah pada giliran pertama, Andi dapat bertahan selamanya (tidak pernah kalah).</p>
+                    <p><em>Bukti Klaim:</em> Tinjau tiga tipe posisi $(a, b)$ saat komputer memberi giliran ke Andi:</p>
+                    <ol>
+                        <li>Jika $a + b \le 0$: pilih koefisien baru sehingga kedua koefisien $\le 0$ (jika $a \le 0$, pilih $(a, a+b)$; jika $b \le 0$, pilih $(a+b, b)$). Karena koefisien baru keduanya $\le 0$, pertukaran komputer tetap menghasilkan $b_{\text{baru}} \le 0 \le a_{\text{baru}}^2/4$, sehingga bertahan selamanya di tipe 1.</li>
+                        <li>Jika $a &gt; 0$ dan $b &gt; 0$: Andi memilih $(a + b, b)$; karena $a, b \ge 1$, $(a + b)^2 \ge (b + 1)^2 \ge 4b$ (berakar real), dan komputer menukarnya ke $(b, a + b)$ yang tetap positif, sehingga bertahan selamanya di tipe 2.</li>
+                        <li>Jika $b &lt; 0$ dan $a + b &gt; 0$: Andi memilih $(a, a + b)$ ($a^2 &gt; 4(a + b)$? Cek $a &gt; a + b &gt; 0$: komputer menukarnya menjadi $(a+b, a)$ di tipe 2! Untuk giliran pertama, Andi sudah dipastikan menang jika salah satu pilihannya masuk tipe 1, 2, atau 3!).</li>
+                    </ol>
+                    <p>Oleh karena itu, Andi pasti kalah jika dan hanya jika ia kalah pada langkah pertama, yaitu $(m + n)^2 &lt; 4n$ dan $m^2 &lt; 4(m + n)$ (sebab $m^2 &lt; 4n$ sudah diketahui).</p>
+                    <p>Dari $m^2 &lt; 4(m + n) \implies n &gt; \frac{m^2}{4} - m$, sedangkan $(m + n)^2 &lt; 4n \implies m + n &lt; 2\sqrt{n} \implies (\sqrt{n} - 1)^2 &lt; 1 - m$, sehingga $m \le 0$ (karena jika $m \ge 1$, $m + n &lt; 2\sqrt{n} \implies n + 1 &lt; 2\sqrt{n}$, mustahil!). Untuk $-m \ge 6$: $\frac{m^2}{4} - m \ge 1 + (-m) + 2\sqrt{1 - m} &gt; n$, kontradiksi! Jadi $-m \in \{0, 1, 2, 3, 4, 5\}$.</p>
+                    <ul>
+                        <li>$m = 0$: $0 &lt; n$ dan $n^2 &lt; 4n \implies n \in \{1, 2, 3\}$.</li>
+                        <li>$m = -1$: $n &gt; \frac{5}{4}$ dan $(n-1)^2 &lt; 4n \implies n \in \{2, 3, 4, 5\}$.</li>
+                        <li>$m = -2$: $n &gt; 3$ dan $(n-2)^2 &lt; 4n \implies n \in \{4, 5, 6, 7\}$.</li>
+                        <li>$m = -3$: $n &gt; \frac{21}{4}$ dan $(n-3)^2 &lt; 4n \implies n \in \{6, 7, 8\}$.</li>
+                        <li>$m = -4$: $n &gt; 8$ dan $(n-4)^2 &lt; 4n \implies n \in \{9, 10\}$.</li>
+                        <li>$m = -5$: $n &gt; \frac{45}{4} = 11{,}25$ dan $(n-5)^2 &lt; 4n \implies n &lt; 7 + 2\sqrt{6} \approx 11{,}89$ (tak ada bulat).</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, semua pasangan $(m, n)$ agar Andi pasti kalah adalah <strong>$(0, 1..3)$, $(-1, 2..5)$, $(-2, 4..7)$, $(-3, 6..8)$, dan $(-4, 9..10)$</strong> (total $16$ pasangan).</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

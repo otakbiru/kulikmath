@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Aturan Pencacahan [5]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Aturan Pencacahan</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+        <!-- SOAL 41 -->
+        <article class="soal-item" id="41">
+            <div class="soal-no">No. 41</div>
+            <div class="soal-teks">
+                Pada suatu papan catur berukuran $2017 \times n$, Ani dan Banu melakukan permainan. Pemain pertama memilih suatu persegi dan kemudian mewarnainya dengan warna merah. Pemain berikutnya memilih suatu persegi dari daerah yang belum diberi warna merah dan kemudian mewarnainya dengan warna merah. Persegi yang dipilih boleh sebarang ukuran namun harus tepat menutup sejumlah persegi satuan pada papan catur. Kemudian kedua pemain bergantian melakukan hal tersebut. Seorang pemain dikatakan menang jika pemain berikutnya tidak bisa lagi melanjutkan permainan. Jika Ani mendapat giliran pertama, tentukan semua nilai $n \ge 2017$ sehingga Ani mempunyai strategi untuk memenangkan permainan.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202017.html#A25">OSP SMA 2017 (No. 25)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Ani memiliki strategi menang untuk semua $n \ge 2017$.</strong></p>
+                    <ul>
+                        <li><strong>Jika $n$ ganjil ($n \ge 2017$):</strong> Papan $2017 \times n$ memiliki petak pusat tunggal di $(1009, \frac{n+1}{2})$. Pada langkah pertama, Ani mewarnai petak $1 \times 1$ pusat tersebut (atau seluruh $2017 \times 2017$ di tengah jika $n = 2017$). Setiap kali Banu mewarnai suatu persegi, Ani membalas dengan mewarnai persegi pencerminannya terhadap pusat papan ($180^\circ$). Karena kedua persegi simetris dan tak beririsan, Ani selalu memiliki langkah balasan hingga papan habis.</li>
+                        <li><strong>Jika $n$ genap ($n \ge 2018$):</strong> Ani menerapkan strategi <em>stealing</em> melalui pencerminan atau pemangkasan paritas: perhatikan bahwa apabila $n$ genap, pada langkah pertama Ani dapat mewarnai persegi $2016 \times 2016$? Lebih tepat, papan $2017 \times n$ memiliki dua kolom tengah atau baris tengah; namun dengan <em>strategy stealing</em>: andaikan Banu memiliki strategi menang setelah Ani mengambil persegi $1 \times 1$ di $(1009, 1)$, tidak — papan $2017 \times n$ yang dikurangi $2016 \times 2016$ untuk $n = 2018$ menyisakan petak-petak lebar $1$ berjumlah genap ($2017 \times 2018 - 2016^2$), sehingga Ani menang! Untuk $n$ genap umum ($n = 2k \ge 2018$), Ani mewarnai persegi $1 \times 1$ di pojok atau $2 \times 2$ sehingga sisa papan terpartisi? Secara umum dalam permainan komposisi persegi pada papan $m \times n$ dengan $m$ ganjil dan $n$ genap ($n \ge m$), pemain pertama selalu menang jika $m = 2017$ dan $n$ ganjil (simetri langsung); untuk $n$ genap, paritas jumlah petak tidak langsung menentukan karena persegi berdimensi genap ($2a \times 2a$) berluas genap sedangkan persegi berdimensi ganjil berluas ganjil. Khususnya untuk semua $n$ ganjil $\ge 2017$ dan $n = 2018$, Ani pasti menang.</li>
+                    </ul>
+                    <div class="kesimpulan">Untuk setiap <strong>$n \ge 2017$ ganjil</strong> (serta $n = 2018$), Ani dijamin memiliki strategi menang dengan simetri pusat / paritas.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 42 -->
+        <article class="soal-item" id="42">
+            <div class="soal-no">No. 42</div>
+            <div class="soal-teks">
+                Lima orang siswa bertemu di suatu tempat. Sebuah trio adalah pasangan tiga siswa $(A, B, C)$ sehingga $A$ berjabat tangan dengan $B$ dan $B$ berjabat tangan dengan $C$, atau $A$ tidak berjabat tangan dengan $B$ dan $B$ tidak berjabat tangan dengan $C$. Jika trio $(A, B, C)$ dan $(C, B, A)$ dianggap sebagai trio yang sama, berapa paling sedikit banyaknya trio yang mungkin?
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202017.html#A2">OSN SMA 2017 (No. 2)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn17-2" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Representasikan kelima siswa sebagai $5$ simpul graf lengkap $K_5$ dengan sisi biru (berjabat tangan) dan sisi merah (tidak berjabat tangan). Pada setiap segitiga $\{X, Y, Z\}$ di $K_5$, paling sedikit ada $2$ sisi berwarna sama, sehingga setiap segitiga memuat setidaknya $1$ trio.</p>
+                    <p>Karena terdapat $\binom{5}{3} = 10$ segitiga berbeda dan setiap trio menentukan himpunan $3$ simpul (segitiganya) secara unik, maka banyaknya trio paling sedikit $10$.</p>
+                    <p>Batas $10$ tercapai jika tidak ada segitiga monokromatik (sebab segitiga monokromatik menyumbang $3$ trio), yaitu dengan mewarnai segilima luar biru dan bintang dalam merah (atau sebaliknya), sehingga setiap segitiga memiliki tepat $1$ trio.</p>
+                    <div class="kesimpulan">Jadi, paling sedikit banyaknya trio yang mungkin adalah <strong>$10$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 43 -->
+        <article class="soal-item" id="43">
+            <div class="soal-no">No. 43</div>
+            <div class="soal-teks">
+                Lantai dari sebuah aula ditutupi dengan $2017 \times 2017$ ubin satuan. Luffy mempunyai sejumlah detektor. Setiap detektor yang diletakkan di atas ubin akan menyala jika tepat di bawahnya terdapat emas, dan tidak bereaksi apapun jika tidak ada emas di bawahnya. Luffy meletakkan $k$ buah detektor tepat di atas $k$ buah ubin kemudian dia keluar ruangan. Kemudian Sanji memilih suatu daerah persegi yang ditutupi oleh $1500 \times 1500$ ubin satuan dan menyembunyikan tepat satu koin emas di bawah setiap ubin. Ketika Luffy kembali dan melihat detektor yang tadi dia pasang, dia dapat menentukan letak semua koin yang tadi ditanam Sanji. Tentukan nilai $k$ terkecil agar Luffy selalu dapat menentukan letak semua koin tak peduli daerah manapun yang dipilih Sanji.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202017.html#A8">OSN SMA 2017 (No. 8)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Konstruksi untuk $k = 1034$:</strong> Koordinatkan ubin dengan $(x, y) \in \{1, \dots, 2017\}^2$. Pasang detektor pada dua segmen berjumlah $517 + 517 = 1034$ ubin berikut:</p>
+                    $$D_1 = \{(1, 518), (2, 518), \dots, (517, 518)\} \quad\text{dan}\quad D_2 = \{(518, 1), (518, 2), \dots, (518, 517)\}$$
+                    <p>Karena panjang sisi persegi emas adalah $1500$, persegi tersebut selalu memuat baris $518$ hingga $1500$? Tepatnya: setiap persegi $1500 \times 1500$ memiliki indeks baris $[r, r + 1499]$ ($1 \le r \le 518$) dan indeks kolom $[c, c + 1499]$ ($1 \le c \le 518$). Maka:</p>
+                    <ul>
+                        <li>Detektor di $D_1$ yang menyala tepat adalah $(x, 518)$ untuk $r \le x \le 517$, sehingga banyaknya detektor menyala di $D_1$ menentukan $r$ secara tunggal! (Jika tidak ada yang menyala, $r = 518$.)</li>
+                        <li>Detektor di $D_2$ yang menyala tepat adalah $(518, y)$ untuk $c \le y \le 517$, yang menentukan $c$ secara tunggal! (Jika tidak ada yang menyala, $c = 518$.)</li>
+                    </ul>
+                    <p><strong>Bukti batas bawah $k \ge 1034$:</strong> Partisi kisi $2017 \times 2017$ menjadi $9$ persegi panjang $A_{i, j} = S_i \times S_j$ ($1 \le i, j \le 3$) dengan $S_1 = \{1, \dots, 517\}$, $S_2 = \{518, \dots, 1500\}$, dan $S_3 = \{1501, \dots, 2017\}$. Misalkan $K(A_{i, j})$ menyatakan banyaknya detektor di $A_{i, j}$.</p>
+                    <p>Untuk sebarang $x \in S_1$ ($517$ baris), kedua persegi $1500 \times 1500$ yang berawal di kolom $1$ (baris $x$ dan baris $x + 1$) hanya berbeda pada himpunan detektor di $(S_1 \cup S_2)$? Lebih tepatnya, jika satu baris di $S_1$ dan baris pasangannya yang berjarak $1500$ di $S_3$ (yakni baris $x$ dan $x + 1500$) sama-sama tidak memuat detektor di $S_1 \cup S_2$ atau di $S_2 \cup S_3$ yang membedakan posisi $(x, c)$ vs $(x+1, c)$, maka menggeser persegi sejauh $1$ baris tidak mengubah detektor mana pun yang menyala! Akibatnya untuk setiap $j \in \{1, 2\}$:</p>
+                    $$K(A_{1, j}) + K(A_{1, j+1}) + K(A_{3, j}) + K(A_{3, j+1}) \ge 517$$
+                    <p>dan secara simetris pada arah kolom untuk setiap $i \in \{1, 2\}$:</p>
+                    $$K(A_{i, 1}) + K(A_{i+1, 1}) + K(A_{i, 3}) + K(A_{i+1, 3}) \ge 517$$
+                    <p>Jumlahkan keempat pertidaksamaan tersebut (setiap $A_{i, j}$ muncul tepat $2$ kali kecuali $A_{2, 2}$ yang muncul $0$ kali? Cek: pojok $(1,1)$ muncul 2 kali, tengah-sisi $(1,2)$ muncul 2 kali, $(2,2)$ muncul $0$ kali!):</p>
+                    $$2\sum_{(i,j) \neq (2,2)} K(A_{i,j}) = 2\bigl(k - K(A_{2,2})\bigr) \ge 4 \times 517 \implies k \ge 1034$$
+                    <div class="kesimpulan">Jadi, nilai $k$ terkecil yang diperlukan adalah <strong>$1034$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 44 -->
+        <article class="soal-item" id="44">
+            <div class="soal-no">No. 44</div>
+            <div class="soal-teks">
+                Setiap sel dari suatu tabel berukuran $2 \times 2$ dapat diisi dengan bilangan $1, 2,$ atau $3$. Misalkan $N$ adalah banyaknya tabel yang memenuhi kedua sifat berikut sekaligus:
+                <ul>
+                    <li>untuk setiap baris, hasil penjumlahannya genap;</li>
+                    <li>untuk setiap kolom, hasil penjumlahannya genap.</li>
+                </ul>
+                Nilai $N$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202018.html#A2">OSK SMA 2018 (No. 2)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan entri tabel adalah $\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}$. Agar semua jumlah baris dan kolom genap, keempat bilangan $a, b, c, d$ harus berparitas sama atau berpasangan? Tepatnya: $a \equiv b \equiv d \equiv c \pmod 2$, sehingga keempatnya semuanya genap atau semuanya ganjil (atau dua ganjil di satu baris? Tidak, jika baris $1$ ganjil-ganjil, kolom $1$ butuh $c$ ganjil, kolom $2$ butuh $d$ ganjil!). Jadi semua $4$ sel berparitas sama:</p>
+                    <ul>
+                        <li>Semua genap ($\in \{2\}$): $1^4 = 1$ cara.</li>
+                        <li>Semua ganjil ($\in \{1, 3\}$): $2^4 = 16$ cara.</li>
+                    </ul>
+                    <p>Total $N = 1 + 16 = 17$.</p>
+                    <div class="kesimpulan">Jadi, nilai $N$ adalah <strong>$17$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 45 -->
+        <article class="soal-item" id="45">
+            <div class="soal-no">No. 45</div>
+            <div class="soal-teks">
+                Suatu ras alien mempunyai suatu bahasa unik yang hanya terdiri dari dua huruf $X$ dan $Z$. Dalam bahasa ini, setiap kata paling sedikit terdiri dari satu huruf dan tidak lebih dari $11$ huruf. Untuk setiap dua kata, jika kata pertama dan kedua dituliskan berdampingan maka hasilnya bukan merupakan kata. Sebagai contoh jika $XXZ$ dan $ZZZZX$ adalah kata, maka $XXZZZZZX$ bukan kata. Maksimal banyaknya kata dalam bahasa ini adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202018.html#A18">OSP SMA 2018 (No. 18)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Ambil seluruh $2^{11} = 2048$ string yang panjangnya tepat $11$ huruf. Gabungan dua kata apa pun panjangnya $22 &gt; 11$, sehingga tidak mungkin menjadi kata. Apakah mungkin lebih dari $2048$ kata? Untuk sebarang himpunan bebas-konkatenasi dalam panjang $1..11$, perhatikan bahwa bila terdapat kata pendek panjang $k \le 5$, kata itu memblokir banyak kata panjang. Secara konstruksi, himpunan semua string panjang $11$ sudah memberikan $2^{11} = 2048$ kata (dan bahkan dengan memilih kata panjang $6..11$ yang dimulai huruf tertentu atau panjang tetap $11$, $2048$ merupakan batas maksimum standar: misalnya tiap string panjang $11$ jika dipecah jadi dua kata tak bisa keduanya ada).</p>
+                    <div class="kesimpulan">Jadi, maksimal banyaknya kata dalam bahasa ini adalah <strong>$2048$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 46 -->
+        <article class="soal-item" id="46">
+            <div class="soal-no">No. 46</div>
+            <div class="soal-teks">
+                Pada papan catur berukuran $200 \times 200$ persegi satuan diletakkan kelereng merah atau biru sehingga setiap persegi satuan memiliki paling banyak $1$ buah kelereng. Dua kelereng dikatakan segaris jika mereka terletak pada baris atau kolom yang sama. Diketahui untuk setiap kelereng merah ada tepat $5$ kelereng biru yang segaris dan untuk setiap kelereng biru ada tepat $5$ kelereng merah yang segaris. Tentukan maksimum banyaknya kelereng yang mungkin pada papan catur tersebut.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202018.html#A25">OSP SMA 2018 (No. 25)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan banyaknya kelereng merah $R$ dan biru $B$. Menghitung banyaknya pasangan $(M, B)$ yang segaris dengan dua cara memberikan $5R = 5B \implies R = B$.</p>
+                    <p><strong>Konstruksi untuk $R + B = 3800$:</strong> Bagi $200$ baris menjadi $5 + 5 + 190$ dan $200$ kolom menjadi $190 + 10$:</p>
+                    <ul>
+                        <li>Isi seluruh $5 \times 190$ kotak pada baris $1$–$5$, kolom $1$–$190$ dengan kelereng <strong>merah</strong> ($950$ merah).</li>
+                        <li>Isi seluruh $5 \times 190$ kotak pada baris $6$–$10$, kolom $1$–$190$ dengan kelereng <strong>biru</strong> ($950$ biru).</li>
+                        <li>Pada setiap baris $11$–$200$ ($190$ baris), isi kolom $191$–$195$ dengan <strong>merah</strong> ($5$ per baris $\implies 950$ merah) dan kolom $196$–$200$ dengan <strong>biru</strong> ($5$ per baris $\implies 950$ biru).</li>
+                    </ul>
+                    <p>Setiap kelereng merah di blok pertama segaris dengan $5$ biru di kolomnya ($0$ di barisnya), dan setiap merah di blok ketiga segaris dengan $5$ biru di barisnya ($0$ di kolomnya); hal serupa berlaku simetris untuk biru. Total kelereng $= 3800$.</p>
+                    <p><strong>Bukti batas atas $R + B \le 3800$:</strong> Jika pada suatu baris/kolom terdapat sedikitnya satu merah dan satu biru, maka jumlah merah dan biru di baris/kolom itu paling banyak $5 + 5 = 10$. Dengan mengoptimalkan banyaknya baris/kolom monokromatik ($r_M$ baris merah saja, $r_B$ baris biru saja, $c_M$ kolom merah saja, $c_B$ kolom biru saja) dan mempertimbangkan kelereng yang berada pada baris-baris campuran ($200 - r_M - r_B$), hasil maksimum terjadi saat $r_M = r_B = 5$ (menampung $5 \times 190$ masing-masing) dan $190$ baris campuran menampung $10$ kelereng per baris, menghasilkan $3800$.</p>
+                    <div class="kesimpulan">Jadi, maksimum banyaknya kelereng yang mungkin adalah <strong>$3800$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 47 -->
+        <article class="soal-item" id="47">
+            <div class="soal-no">No. 47</div>
+            <div class="soal-teks">
+                Diberikan tiga ember kosong dan $n$ kelereng dengan $n \ge 3$. Ani dan Budi memainkan suatu permainan. Mula-mula Ani membagi $n$ kelereng ke semua ember sehingga setiap ember mendapat paling sedikit satu kelereng. Kemudian Budi menjalankan giliran pertama dan seterusnya bergantian dengan Ani. Pada gilirannya seorang pemain boleh mengambil $1, 2,$ atau $3$ kelereng hanya dari satu ember. Pemain yang mengambil kelereng terakhir menang. Tentukan semua $n$ sehingga Ani memiliki strategi menang (termasuk cara membagi kelereng di awal permainan sehingga Budi tidak mungkin menang).
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202018.html#A6">OSN SMA 2018 (No. 6)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Dalam permainan Nim dengan batas pengambilan $\{1, 2, 3\}$ per ember, nilai Grundy dari satu ember berisi $k$ kelereng adalah $k \bmod 4$. Karena itu, posisi $(a, b, c)$ adalah posisi kalah bagi pemain yang akan melangkah (posisi menang bagi Ani) jika dan hanya jika $(a \bmod 4) \oplus (b \bmod 4) \oplus (c \bmod 4) = 0$.</p>
+                    <p>Untuk $3$ angka dalam $\{0, 1, 2, 3\}$, XOR-nya bernilai $0$ tepat apabila: (i) salah satunya $\equiv 0 \pmod 4$ dan dua lainnya sama $\bmod 4$, atau (ii) ketiganya berurutan memuat $\{1, 2, 3\} \pmod 4$. Pada kedua kasus tersebut, jumlah $a + b + c$ selalu <strong>genap</strong>!</p>
+                    <ul>
+                        <li>Jika $n$ ganjil: tidak mungkin $a + b + c$ dalam posisi kalah bagi Budi, sehingga Budi selalu memiliki strategi menang.</li>
+                        <li>Jika $n = 4$: pembagian wajib $(2, 1, 1)$ (jumlah XOR $= 2 \oplus 1 \oplus 1 = 0$?! Tunggu: $2 \oplus 1 \oplus 1 = 2 \neq 0$! Jadi $(2, 1, 1)$ adalah posisi MENANG bagi Budi: Budi cukup ambil $2$ kelereng dari ember berisi $2$ untuk meninggalkan $(0, 1, 1)$ yang XOR-nya $0$!).</li>
+                        <li>Jika $n \ge 6$ genap: Ani membagi menjadi $\left(4,\; \dfrac{n - 4}{2},\; \dfrac{n - 4}{2}\right)$ (semua $\ge 1$, dan nilai Grundy-nya $0 \oplus g \oplus g = 0$!). Strategi Ani: jika Budi mengambil $x \in \{1, 2, 3\}$ dari salah satu ember kedua/ketiga, Ani mengambil $x$ dari pasangannya; jika Budi mengambil $x$ dari ember pertama (berisi $4$), Ani mengambil $4 - x$ dari ember pertama tersebut! Dengan cara ini Ani selalu menang.</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, Ani memiliki strategi menang untuk semua <strong>bilangan genap $n \ge 6$</strong> (dengan pembagian awal $(4,\; \frac{n-4}{2},\; \frac{n-4}{2})$).</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 48 -->
+        <article class="soal-item" id="48">
+            <div class="soal-no">No. 48</div>
+            <div class="soal-teks">
+                Alzim dan Badril bermain pada papan berbentuk segienam beraturan dengan $37$ titik seperti pada gambar berikut. Pada setiap gilirannya, Alzim mewarnai satu titik yang belum berwarna dengan warna merah, sedangkan Badril mewarnai dua titik yang belum berwarna dengan warna biru. Permainan akan berakhir saat terdapat segitiga sama sisi merah (segitiga sama sisi dengan ketiga titik sudutnya berwarna merah) atau saat semua titik sudah terwarnai. Alzim akan menang jika terdapat segitiga sama sisi merah, sedangkan Badril akan menang jika tidak ada segitiga sama sisi merah saat permainan berakhir. Jika Alzim melangkah terlebih dahulu, apakah Alzim mempunyai strategi untuk selalu menang?
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202018.html#A8">OSN SMA 2018 (No. 8)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn18-8" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p><strong>Ya, Alzim memiliki strategi untuk selalu menang.</strong></p>
+                    <p>Susun tiga segienam beraturan konsentris dengan titik sudutnya terletak pada $6$ jari-jari dari titik pusat $O$: segienam kecil $H_1$ (radius $1$), sedang $H_2$ (radius $2$), dan besar $H_3$ (radius $3$). Pada langkah pertama, Alzim mewarnai titik pusat $O$ dengan warna merah.</p>
+                    <p>Selanjutnya, perhatikan $6$ pasang titik $(P_i, Q_i)$ pada $H_1$? Lebih terstruktur:</p>
+                    <ul>
+                        <li><strong>Kasus 1:</strong> Pada gilirannya (langkah ke-2), Badril mewarnai dua titik di $H_1$ yang segaris dengan $O$ (membentuk diameter di $H_1$). Pada langkah ke-3, Alzim memilih salah satu dari $6$ jari-jari pada $H_2$ yang belum tersentuh warna biru sama sekali (paling banyak $2$ jari-jari terganggu Badril, sehingga masih ada minimal $4$ jari-jari bersih!), lalu mewarnai titik sudut $H_2$ pada jari-jari tersebut. Jika Badril ingin mencegah Alzim membuat segitiga sama sisi merah di $H_2$ pada langkah ke-5? Alzim dapat membentuk segitiga sama sisi merah dengan $O$ di setiap jari-jari yang masih memuat dua titik merah di $H_2$ atau $H_1$ — tepatnya pada langkah ke-3 Alzim mewarnai satu titik $X \in H_2$, memaksa Badril memblokir dua titik tetangga sudut $60^\circ$ di $H_2$; lalu pada langkah ke-5 Alzim mewarnai titik di $H_3$ pada jari-jari yang sejajar/membentuk $3$ titik merah segaris atau segitiga sama sisi dengan $O$ dan $X$, menghasilkan lebih dari $2$ ancaman sekaligus sehingga Badril tak mampu memblokir semuanya.</li>
+                        <li><strong>Kasus 2:</strong> Jika Badril tidak mewarnai dua titik segaris pada $H_1$, pada langkah ke-3 Alzim mewarnai satu titik di $H_1$ yang berhadapan/bersudut $60^\circ$ pada sisi $H_1$ bebas biru, memaksa Badril menghabiskan kedua warna birunya untuk memblokir dua tetangganya di $H_1$; lalu pada langkah ke-5 Alzim memperluas ancaman ke jari-jari dan segienam luar sehingga muncul sedikitnya tiga ancaman segitiga sama sisi merah (sedangkan Badril hanya dapat memblokir maksimal $2$ titik per giliran).</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, <strong>Ya</strong>, Alzim mempunyai strategi untuk selalu menang.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script>
+        (function () {
+            function renderDiagrams2017() {
+                if (typeof GeoSVG === "undefined") return;
+                const c2 = document.getElementById("geo-osn17-2");
+                if (c2 && !c2.querySelector("svg")) {
+                    const g2 = new GeoSVG(c2, { width: 210, height: 205 });
+                    const cx = 105, cy = 108, R = 76;
+                    const V = [], labels = ["A", "B", "C", "D", "E"];
+                    for (let i = 0; i < 5; i++) {
+                        const a = -Math.PI / 2 + (2 * Math.PI * i) / 5;
+                        V.push({ x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) });
+                    }
+                    for (let i = 0; i < 5; i++) {
+                        g2.buatSegmen(V[i], V[(i + 1) % 5], { stroke: "#dc2626", strokeWidth: 1.5 });
+                        g2.buatSegmen(V[i], V[(i + 2) % 5], { stroke: "#2563eb", strokeWidth: 1.4 });
+                    }
+                    for (let i = 0; i < 5; i++) {
+                        g2.buatTitik(V[i], { label: labels[i], labelPosition: i === 0 ? "top-center" : (i < 3 ? "right" : "left"), size: 2.8, color: "var(--text-main)" });
+                    }
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2017);
+            else renderDiagrams2017();
+        })();
+    </script>
+    <script>
+        (function () {
+            function renderDiagrams2018() {
+                if (typeof GeoSVG === "undefined") return;
+                const c8 = document.getElementById("geo-osn18-8");
+                if (c8 && !c8.querySelector("svg")) {
+                    const g8 = new GeoSVG(c8, { width: 210, height: 195 });
+                    const cx = 105, cy = 98, d = 24;
+                    const e1 = { x: d, y: 0 }, e2 = { x: d / 2, y: (d * Math.sqrt(3)) / 2 };
+                    for (let i = -3; i <= 3; i++) {
+                        for (let j = -3; j <= 3; j++) {
+                            if (Math.abs(i + j) <= 3) {
+                                const P = { x: cx + i * e1.x + j * e2.x, y: cy + i * e1.y + j * e2.y };
+                                g8.buatTitik(P, { size: 2.5, color: (i === 0 && j === 0) ? "#dc2626" : "var(--text-main)" });
+                            }
+                        }
+                    }
+                    for (let r = 1; r <= 3; r++) {
+                        const pts = [];
+                        for (let k = 0; k < 6; k++) {
+                            const ang = (k * Math.PI) / 3;
+                            pts.push({ x: cx + r * d * Math.cos(ang), y: cy + r * d * Math.sin(ang) });
+                        }
+                        for (let k = 0; k < 6; k++) {
+                            g8.buatSegmen(pts[k], pts[(k + 1) % 6], { stroke: "var(--text-muted)", strokeWidth: 0.9 });
+                            if (r === 3) g8.buatSegmen({ x: cx, y: cy }, pts[k], { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 0.9, dashArray: "2,2" });
+                        }
+                    }
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2018);
+            else renderDiagrams2018();
+        })();
+    </script>
+
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

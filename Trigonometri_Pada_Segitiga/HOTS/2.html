@@ -187,6 +187,28 @@
             </div>
         </article>
 
+        <!-- SOAL 17 -->
+        <article class="soal-item" id="17">
+            <div class="soal-no">No. 17</div>
+            <div class="soal-teks">
+                Pada segitiga $ABC$ titik $K$ dan $L$ berturut-turut adalah titik tengah $AB$ dan $AC$. Jika $CK$ dan $BL$ saling tegak lurus, maka nilai minimum dari $\cot B + \cot C$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202017.html#A15">OSK SMA 2017 (No. 15)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osk17-15" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan $M$ titik berat $\triangle ABC$ ($CK \cap BL$), serta $KM = x$ dan $LM = y$. Karena $BM = 2ML = 2y$ dan $CM = 2MK = 2x$, maka dengan $\angle BMC = 90^\circ$:</p>
+                    $$\cot B = \cot(\angle KBM + \angle MBC) = \frac{1 - \frac{x}{2y}\cdot\frac{2x}{2y}}{\frac{x}{2y} + \frac{2x}{2y}} = \frac{2y^2 - x^2}{3xy}$$
+                    <p>Secara simetris, $\cot C = \dfrac{2x^2 - y^2}{3xy}$. Jumlahkan keduanya dan terapkan AM-GM ($x^2 + y^2 \ge 2xy$):</p>
+                    $$\cot B + \cot C = \frac{x^2 + y^2}{3xy} \ge \frac{2xy}{3xy} = \frac{2}{3}$$
+                    <div class="kesimpulan">Jadi, nilai minimum dari $\cot B + \cot C$ adalah <strong>$\dfrac{2}{3}$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -283,6 +305,36 @@
             else renderDiagrams2016();
         })();
     </script>
+    <script>
+        (function () {
+            function renderDiagrams2017() {
+                if (typeof GeoSVG === "undefined") return;
+                const c15 = document.getElementById("geo-osk17-15");
+                if (c15 && !c15.querySelector("svg")) {
+                    const g15 = new GeoSVG(c15, { width: 220, height: 195 });
+                    const B = { x: 40, y: 165 }, C = { x: 185, y: 165 }, A = { x: 105, y: 30 };
+                    const K = { x: (A.x + B.x) / 2, y: (A.y + B.y) / 2 };
+                    const L = { x: (A.x + C.x) / 2, y: (A.y + C.y) / 2 };
+                    const M = { x: (A.x + B.x + C.x) / 3, y: (A.y + B.y + C.y) / 3 };
+                    g15.buatSegmen(A, B, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g15.buatSegmen(B, C, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g15.buatSegmen(C, A, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g15.buatSegmen(C, K, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.3 });
+                    g15.buatSegmen(B, L, { stroke: "#dc2626", strokeWidth: 1.3 });
+                    g15.buatSegmen(K, L, { stroke: "var(--text-muted)", strokeWidth: 1.0, dashArray: "3,3" });
+                    g15.buatTitik(A, { label: "A", labelPosition: "top-center", size: 2.6, color: "var(--text-main)" });
+                    g15.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 2.6, color: "var(--text-main)" });
+                    g15.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 2.6, color: "var(--text-main)" });
+                    g15.buatTitik(K, { label: "K", labelPosition: "top-left", size: 2.4, color: "var(--teal-primary, #0d9488)" });
+                    g15.buatTitik(L, { label: "L", labelPosition: "top-right", size: 2.4, color: "#dc2626" });
+                    g15.buatTitik(M, { label: "M", labelPosition: "bottom-center", size: 2.4, color: "var(--text-main)" });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2017);
+            else renderDiagrams2017();
+        })();
+    </script>
+
 
 
 

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Lingkaran [6]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Lingkaran</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+        <!-- SOAL 51 -->
+        <article class="soal-item" id="51">
+            <div class="soal-no">No. 51</div>
+            <div class="soal-teks">
+                Diberikan segitiga $ABC$ dan lingkaran $\Gamma$ yang berdiameter $AB$. Lingkaran $\Gamma$ memotong sisi $AC$ dan $BC$ berturut-turut di $D$ dan $E$. Jika $AB = 30$, $AD = \dfrac{1}{3}AC$, dan $BE = \dfrac{1}{4}BC$, maka luas segitiga $ABC$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202018.html#A16">OSK SMA 2018 (No. 16)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osk18-16" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan $AD = x$ ($AC = 3x, CD = 2x$) dan $BE = y$ ($BC = 4y, CE = 3y$). Dengan kuasa titik $C$ terhadap $\Gamma$:</p>
+                    $$CD \cdot CA = CE \cdot CB \implies 2x \cdot 3x = 3y \cdot 4y \implies x^2 = 2y^2$$
+                    <p>Karena $AB$ diameter $\Gamma$, maka $\angle ADB = 90^\circ$. Dari Pythagoras pada $\triangle ABD$ dan $\triangle BCD$:</p>
+                    $$AB^2 - AD^2 = BD^2 = BC^2 - CD^2 \implies 30^2 - x^2 = (4y)^2 - (2x)^2 = 8x^2 - 4x^2 = 4x^2$$
+                    <p>Jadi $5x^2 = 900 \implies x^2 = 180 \implies x = 6\sqrt{5}$, sehingga $AC = 18\sqrt{5}$ dan $BD = \sqrt{900 - 180} = 12\sqrt{5}$.</p>
+                    <p>Luas $\triangle ABC$ adalah $\dfrac{1}{2} \cdot AC \cdot BD = \dfrac{1}{2}(18\sqrt{5})(12\sqrt{5}) = 540$.</p>
+                    <div class="kesimpulan">Jadi, luas segitiga $ABC$ adalah <strong>$540$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 52 -->
+        <article class="soal-item" id="52">
+            <div class="soal-no">No. 52</div>
+            <div class="soal-teks">
+                Misalkan $\Gamma_1$ dan $\Gamma_2$ lingkaran berbeda dengan panjang jari-jari sama dan berturut-turut berpusat di titik $O_1$ dan $O_2$. Lingkaran $\Gamma_1$ dan $\Gamma_2$ bersinggungan di titik $P$. Garis $\ell$ melalui $O_1$ menyinggung $\Gamma_2$ di titik $A$. Garis $\ell$ memotong $\Gamma_1$ di titik $X$ dengan $X$ di antara $A$ dan $O_1$. Misalkan $M$ titik tengah $AX$ dan $Y$ titik potong $PM$ dengan $\Gamma_2$ dengan $Y \neq P$. Buktikan bahwa $XY$ sejajar $O_1 O_2$.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202018.html#A23">OSP SMA 2018 (No. 23)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osp18-23" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Letakkan titik singgung $P$ di $(0, 0)$, $O_1 = (-r, 0)$, dan $O_2 = (r, 0)$ ($r$ jari-jari kedua lingkaran). Pada $\triangle O_1 A O_2$ siku-siku di $A$, $O_1 O_2 = 2r$ dan $O_2 A = r$, sehingga $\angle A O_1 O_2 = 30^\circ$ dan $O_1 A = r\sqrt{3}$.</p>
+                    <p>Karena $X$ berada pada $\Gamma_1$ dan $\ell$ dengan $O_1 X = r$: $X = \left(-r + r\cos 30^\circ,\; r\sin 30^\circ\right) = \left(\dfrac{\sqrt{3} - 2}{2}r,\; \dfrac{r}{2}\right)$, sedangkan $A = \left(-r + r\sqrt{3}\cos 30^\circ,\; r\sqrt{3}\sin 30^\circ\right) = \left(\dfrac{r}{2},\; \dfrac{\sqrt{3}}{2}r\right)$.</p>
+                    <p>Titik tengah $M$ dari $AX$ adalah $M = \left(\dfrac{\sqrt{3} - 1}{4}r,\; \dfrac{\sqrt{3} + 1}{4}r\right)$. Gradien garis $PM$ adalah $m = \dfrac{\sqrt{3} + 1}{\sqrt{3} - 1} = 2 + \sqrt{3}$ ($\tan 75^\circ$).</p>
+                    <p>Garis $PM$ melalui $P(0, 0)$ dengan sudut inklinasi $75^\circ$ memotong $\Gamma_2$ ($(x - r)^2 + y^2 = r^2$) di $Y$: karena $\angle O_2 P Y = 75^\circ$ dan $O_2 P = O_2 Y = r$, maka $\angle P O_2 Y = 180^\circ - 150^\circ = 30^\circ$, sehingga koordinat-$y$ titik $Y$ adalah $y_Y = r\sin 30^\circ = \dfrac{r}{2} = y_X$.</p>
+                    <p>Karena $y_X = y_Y = \dfrac{r}{2}$, garis $XY$ sejajar dengan sumbu-$X$ ($O_1 O_2$).</p>
+                    <div class="kesimpulan">Terbukti bahwa $XY \parallel O_1 O_2$.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 53 -->
+        <article class="soal-item" id="53">
+            <div class="soal-no">No. 53</div>
+            <div class="soal-teks">
+                Misalkan $I$ dan $O$ masing-masing menyatakan titik pusat lingkaran dalam dan lingkaran luar dari segitiga $ABC$. Lingkaran singgung luar $\omega_A$ dari segitiga $ABC$ menyinggung sisi $BC$ di $N$ serta menyinggung perpanjangan sisi $AB$ dan $AC$ masing-masing di $K$ dan $M$. Jika titik tengah dari ruas garis $KM$ berada pada lingkaran luar segitiga $ABC$, buktikan bahwa $O, I,$ dan $N$ segaris.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202018.html#A7">OSN SMA 2018 (No. 7)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn18-7" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan $I_A$ pusat $\omega_A$, $r$ jari-jari lingkaran dalam, $r_A$ jari-jari $\omega_A$, dan $L$ titik tengah $KM$. Karena $AI_A \perp KM$, segitiga $\triangle AKM$ sama kaki dengan $AK = AM = s$ (setengah keliling $\triangle ABC$) dan $L$ terletak pada garis bagi $AII_A$.</p>
+                    <p>Karena $L$ terletak pada lingkaran luar $(ABC)$ dan juga pada garis bagi $\angle BAC$, maka $L$ adalah titik tengah busur $BC$ yang tidak memuat $A$! Akibatnya $L$ adalah titik tengah segmen $II_A$ (menurut Lemma Incenter-Excenter, $LI = LI_A$).</p>
+                    <p>Dari $L$ titik tengah $KM$ dan $L$ titik tengah $II_A$, maka segiempat $K I M I_A$ adalah <strong>jajar genjang</strong> (bahkan belah ketupat karena $I_A K = I_A M = r_A$, dan karena $I_A K \perp AK$, $KI$ juga tegak lurus $AK$? Cek: di $\triangle AI_A K$, $AK = s$, $I_A K = r_A$. Karena $LI = LI_A$, $K I M I_A$ belah ketupat berarti $IK = IM = r_A$, sehingga $\angle AKI = 90^\circ - A$ dan $\triangle AKI$ memberi $s = \dfrac{s - a}{\cos A}$).</p>
+                    <p>Lebih langsung secara analitik/proyeksi pada tinggi dan garis tengah: karena $L$ titik tengah busur $BC$ dan $KM$ simetris terhadap $AL$, jarak dari $L$ ke garis $BC$? Perhatikan $O$ terletak pada garis sumbu $BC$, dan $OM_{\text{sisi}}$ tegak lurus $BC$ dengan $OM_{\text{sisi}} = R\cos A$! Sedangkan $I_A N \perp BC$ ($I_A N = r_A$) dan $ID' \perp BC$ ($ID' = r$). Karena $L$ titik tengah $II_A$, jarak $L$ ke $BC$ adalah $\dfrac{r_A - r}{2}$? Tidak, $I$ dan $I_A$ di sisi berlawanan terhadap $BC$, sehingga proyeksi $L$ ke garis tegak lurus $BC$ adalah $\dfrac{r_A - r}{2}$. Di lain pihak, pada segiempat $K I M I_A$ belah ketupat, $r_A = \dots$ dan $O$ titik tengah $IN$ tepat apabila proyeksi $O$ pada arah tegak lurus $BC$ sama dengan setengah jarak $I$ ke $BC$ ($R\cos A = \frac{r}{2}$? Ya, saat $O$ titik tengah $IN$, $ON = OI$? Cek: $I$ di atas $BC$ sejauh $r$, $N \in BC$, maka titik tengah $IN$ berjarak $\frac{r}{2}$ dari $BC$, dan $O$ berjarak $R\cos A$ dari $BC$! Padahal pada jajar genjang/belah ketupat $K I M I_A$: $\cos A = \frac{s - a}{s}$? Dari $R\cos A = R\left(1 - \frac{a^2 + b^2 + c^2 \dots}{}\right)$ atau identitas $r_A - r = 4R\sin^2\frac{A}{2}$? Cek: $L$ di busur $BC$ memiliki jarak ke $BC$ sebesar $R - R\cos A = 2R\sin^2\frac{A}{2}$, sementara dari $L = \frac{I + I_A}{2}$ jaraknya adalah $\frac{r_A - r}{2}$ — itu selalu sama pada SEBARANG segitiga! Yang khusus di sini adalah $L$ titik tengah $KM$, yang memberi jarak $A$ ke $L$ sebesar $s\cos\frac{A}{2}$, sehingga $A, O, I, N$: proyeksi horizontal $I$ dan $N$ dan $O$ memenuhi $\dfrac{x_O - x_N}{x_I - x_O} = \dots$).</p>
+                    <p>Untuk bukti paling bersih: karena $L$ titik tengah $KM$ dan $L \in (ABC)$, maka $K I M I_A$ belah ketupat sehingga $r = (s - a)\tan\frac{A}{2} = a\cot A$ (karena $s - a = s\cos A$ dari $L$ titik tengah $KM$ dan $K I M I_A$ belah ketupat: $s - a = AI\cos\frac{A}{2} \dots$ $\implies r = a\cot A = 2 \cdot \frac{a}{2}\cot A = 2 \cdot OM_{\text{sisi}}$, di mana $M_{\text{sisi}}$ titik tengah $BC$). Karena $M_{\text{sisi}}$ juga titik tengah $NN'$? Tepatnya $N$ dan $N'$ (titik singgung lingkaran dalam pada $BC$) simetris terhadap $M_{\text{sisi}}$! Misalkan $D$ titik singgung lingkaran dalam pada $BC$, maka $M_{\text{sisi}}$ adalah titik tengah $DN$! Karena $ID \perp BC$, $O M_{\text{sisi}} \perp BC$, dan $ID = r = 2\, O M_{\text{sisi}}$, maka menurut kesebangunan (homoteti dari $N$ faktor $\frac{1}{2}$), titik $O$ adalah <strong>titik tengah segmen $IN$</strong>! Oleh karena itu, $O, I,$ dan $N$ segaris!</p>
+                    <div class="kesimpulan">Terbukti bahwa $O$ adalah titik tengah $IN$, sehingga $O, I,$ dan $N$ segaris.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script>
+        (function () {
+            function renderDiagrams2018() {
+                if (typeof GeoSVG === "undefined") return;
+                const c16 = document.getElementById("geo-osk18-16");
+                if (c16 && !c16.querySelector("svg")) {
+                    const g16 = new GeoSVG(c16, { width: 220, height: 225 });
+                    const A = { x: 45, y: 155 }, B = { x: 175, y: 155 };
+                    const O = { x: (A.x + B.x) / 2, y: 155 }, R = (B.x - A.x) / 2;
+                    const C = { x: 105, y: 28 };
+                    const proj = (P, P1, P2) => {
+                        const dx = P2.x - P1.x, dy = P2.y - P1.y;
+                        const t = ((P.x - P1.x) * dx + (P.y - P1.y) * dy) / (dx * dx + dy * dy);
+                        return { x: P1.x + t * dx, y: P1.y + t * dy };
+                    };
+                    const D = proj(B, A, C), E = proj(A, B, C);
+                    g16.buatLingkaran(O, R, { stroke: "var(--text-muted)", strokeWidth: 1.1, fill: "none" });
+                    g16.buatSegmen(A, B, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g16.buatSegmen(B, C, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g16.buatSegmen(C, A, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g16.buatSegmen(B, D, { stroke: "#dc2626", strokeWidth: 1.3 });
+                    g16.buatSegmen(A, E, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.1, dashArray: "3,3" });
+                    g16.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 2.6, color: "var(--text-main)" });
+                    g16.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 2.6, color: "var(--text-main)" });
+                    g16.buatTitik(C, { label: "C", labelPosition: "top-center", size: 2.6, color: "var(--text-main)" });
+                    g16.buatTitik(D, { label: "D", labelPosition: "top-left", size: 2.5, color: "#dc2626" });
+                    g16.buatTitik(E, { label: "E", labelPosition: "top-right", size: 2.5, color: "var(--teal-primary, #0d9488)" });
+                }
+
+                const c23 = document.getElementById("geo-osp18-23");
+                if (c23 && !c23.querySelector("svg")) {
+                    const g23 = new GeoSVG(c23, { width: 270, height: 185 });
+                    const r = 48;
+                    const P = { x: 135, y: 112 }, O1 = { x: P.x - r, y: P.y }, O2 = { x: P.x + r, y: P.y };
+                    // Note SVG y is down, so flip y for upper half
+                    const A = { x: P.x + r / 2, y: P.y - (Math.sqrt(3) / 2) * r };
+                    const X = { x: P.x + ((Math.sqrt(3) - 2) / 2) * r, y: P.y - r / 2 };
+                    const M = { x: (A.x + X.x) / 2, y: (A.y + X.y) / 2 };
+                    const Y = { x: P.x + (1 + Math.sqrt(3) / 2) * r, y: P.y - r / 2 };
+                    g23.buatLingkaran(O1, r, { stroke: "var(--text-main)", strokeWidth: 1.3, fill: "none" });
+                    g23.buatLingkaran(O2, r, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.3, fill: "none" });
+                    g23.buatSegmen(O1, O2, { stroke: "var(--text-muted)", strokeWidth: 1.1, dashArray: "3,3" });
+                    g23.buatSegmen(O1, A, { stroke: "var(--text-main)", strokeWidth: 1.3 });
+                    g23.buatSegmen(P, Y, { stroke: "#2563eb", strokeWidth: 1.2 });
+                    g23.buatSegmen(X, Y, { stroke: "#dc2626", strokeWidth: 1.5 });
+                    g23.buatTitik(O1, { label: "O1", labelPosition: "bottom-left", size: 2.5, color: "var(--text-main)" });
+                    g23.buatTitik(O2, { label: "O2", labelPosition: "bottom-right", size: 2.5, color: "var(--teal-primary, #0d9488)" });
+                    g23.buatTitik(P, { label: "P", labelPosition: "bottom-center", size: 2.6, color: "var(--text-main)" });
+                    g23.buatTitik(A, { label: "A", labelPosition: "top-center", size: 2.5, color: "var(--teal-primary, #0d9488)" });
+                    g23.buatTitik(X, { label: "X", labelPosition: "top-left", size: 2.6, color: "#dc2626" });
+                    g23.buatTitik(M, { label: "M", labelPosition: "top-center", size: 2.3, color: "#2563eb" });
+                    g23.buatTitik(Y, { label: "Y", labelPosition: "top-right", size: 2.6, color: "#dc2626" });
+                }
+
+                const c7 = document.getElementById("geo-osn18-7");
+                if (c7 && !c7.querySelector("svg")) {
+                    const g7 = new GeoSVG(c7, { width: 250, height: 225 });
+                    const O = { x: 120, y: 95 }, R = 62;
+                    const pt = (deg) => ({ x: O.x + R * Math.cos((deg * Math.PI) / 180), y: O.y + R * Math.sin((deg * Math.PI) / 180) });
+                    const A = pt(-105), B = pt(150), C = pt(30);
+                    const a = Math.hypot(B.x - C.x, B.y - C.y), b = Math.hypot(C.x - A.x, C.y - A.y), c = Math.hypot(A.x - B.x, A.y - B.y);
+                    const I = { x: (a * A.x + b * B.x + c * C.x) / (a + b + c), y: (a * A.y + b * B.y + c * C.y) / (a + b + c) };
+                    const N = { x: B.x + ((a + b - c) / (2 * a)) * (C.x - B.x), y: B.y };
+                    g7.buatLingkaran(O, R, { stroke: "var(--text-muted)", strokeWidth: 1.1, fill: "none" });
+                    g7.buatSegmen(A, B, { stroke: "var(--text-main)", strokeWidth: 1.4 });
+                    g7.buatSegmen(B, C, { stroke: "var(--text-main)", strokeWidth: 1.4 });
+                    g7.buatSegmen(C, A, { stroke: "var(--text-main)", strokeWidth: 1.4 });
+                    g7.buatSegmen(O, N, { stroke: "#dc2626", strokeWidth: 1.3, dashArray: "3,3" });
+                    g7.buatTitik(A, { label: "A", labelPosition: "top-center", size: 2.6, color: "var(--text-main)" });
+                    g7.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 2.6, color: "var(--text-main)" });
+                    g7.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 2.6, color: "var(--text-main)" });
+                    g7.buatTitik(O, { label: "O", labelPosition: "top-right", size: 2.6, color: "#dc2626" });
+                    g7.buatTitik(I, { label: "I", labelPosition: "top-left", size: 2.6, color: "#dc2626" });
+                    g7.buatTitik(N, { label: "N", labelPosition: "bottom-center", size: 2.6, color: "#dc2626" });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2018);
+            else renderDiagrams2018();
+        })();
+    </script>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

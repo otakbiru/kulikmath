@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Segiempat Siklik [3]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Segiempat Siklik</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+        <!-- SOAL 21 -->
+        <article class="soal-item" id="21">
+            <div class="soal-no">No. 21</div>
+            <div class="soal-teks">
+                Misalkan $\Gamma_1$ dan $\Gamma_2$ dua lingkaran yang bersinggungan di titik $A$ dengan $\Gamma_2$ di dalam $\Gamma_1$. Misalkan $B$ titik pada $\Gamma_2$ dan garis $AB$ memotong $\Gamma_1$ di titik $C$. Misalkan $D$ titik pada $\Gamma_1$ dan $P$ sebarang titik pada garis $CD$ (boleh pada perpanjangan segmen $CD$). Garis $BP$ memotong $\Gamma_2$ di titik $Q$. Tunjukkan bahwa $A, D, P, Q$ terletak pada satu lingkaran.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202018.html#A2">OSN SMA 2018 (No. 2)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn18-2" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Gambar garis singgung persekutuan $XY$ di $A$ (dengan $X$ di sisi $B, Q$ dan $Y$ di sisi $D$). Menggunakan sudut antara tali busur dan garis singgung (dengan sudut berarah modulo $180^\circ$):</p>
+                    $$\measuredangle ADP = \measuredangle ADC = \measuredangle XAC = \measuredangle XAB = \measuredangle XQB = \measuredangle AQP$$
+                    <p>Secara langsung (dalam konfigurasi standar), $\angle YAD = \angle ACD = \angle BCP$ dan $\angle XAQ = \angle QBA = \angle CBP$, sehingga dengan menjumlahkan keduanya:</p>
+                    $$180^\circ - \angle QAD = \angle YAD + \angle XAQ = \angle BCP + \angle CBP = 180^\circ - \angle BPC = 180^\circ - \angle QPD$$
+                    <p>Jadi $\angle QAD + \angle QPD = 180^\circ$, yang membuktikan $A, D, P, Q$ terletak pada satu lingkaran.</p>
+                    <div class="kesimpulan">Terbukti bahwa $A, D, P, Q$ konsiklis.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script>
+        (function () {
+            function renderDiagrams2018() {
+                if (typeof GeoSVG === "undefined") return;
+                const c2 = document.getElementById("geo-osn18-2");
+                if (c2 && !c2.querySelector("svg")) {
+                    const g2 = new GeoSVG(c2, { width: 250, height: 215 });
+                    const O1 = { x: 125, y: 115 }, R1 = 80;
+                    const A = { x: 45, y: 115 };
+                    const O2 = { x: 95, y: 115 }, R2 = 50;
+                    const pt1 = (deg) => ({ x: O1.x + R1 * Math.cos((deg * Math.PI) / 180), y: O1.y + R1 * Math.sin((deg * Math.PI) / 180) });
+                    const pt2 = (deg) => ({ x: O2.x + R2 * Math.cos((deg * Math.PI) / 180), y: O2.y + R2 * Math.sin((deg * Math.PI) / 180) });
+                    const C = pt1(-35), D = pt1(55);
+                    // B is intersection of AC with Gamma2: homothety factor R2/R1 = 50/80 = 0.625 from A
+                    const B = { x: A.x + 0.625 * (C.x - A.x), y: A.y + 0.625 * (C.y - A.y) };
+                    const P = { x: C.x + 0.55 * (D.x - C.x), y: C.y + 0.55 * (D.y - C.y) };
+                    // Q is intersection of BP with Gamma2
+                    const dx = P.x - B.x, dy = P.y - B.y, a = dx * dx + dy * dy;
+                    const b = 2 * ((B.x - O2.x) * dx + (B.y - O2.y) * dy);
+                    const c = (B.x - O2.x) ** 2 + (B.y - O2.y) ** 2 - R2 * R2;
+                    const t = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);
+                    const Q = { x: B.x + t * dx, y: B.y + t * dy };
+                    g2.buatLingkaran(O1, R1, { stroke: "var(--text-main)", strokeWidth: 1.3, fill: "none" });
+                    g2.buatLingkaran(O2, R2, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.3, fill: "none" });
+                    g2.buatSegmen(A, C, { stroke: "var(--text-main)", strokeWidth: 1.2 });
+                    g2.buatSegmen(C, D, { stroke: "var(--text-main)", strokeWidth: 1.2 });
+                    g2.buatSegmen(B, P, { stroke: "#dc2626", strokeWidth: 1.2 });
+                    g2.buatSegmen(A, D, { stroke: "#2563eb", strokeWidth: 1.0, dashArray: "3,3" });
+                    g2.buatSegmen(A, Q, { stroke: "#2563eb", strokeWidth: 1.0, dashArray: "3,3" });
+                    g2.buatTitik(A, { label: "A", labelPosition: "left", size: 2.6, color: "var(--text-main)" });
+                    g2.buatTitik(B, { label: "B", labelPosition: "top-left", size: 2.5, color: "var(--teal-primary, #0d9488)" });
+                    g2.buatTitik(C, { label: "C", labelPosition: "top-right", size: 2.5, color: "var(--text-main)" });
+                    g2.buatTitik(D, { label: "D", labelPosition: "bottom-right", size: 2.5, color: "#2563eb" });
+                    g2.buatTitik(P, { label: "P", labelPosition: "right", size: 2.5, color: "#dc2626" });
+                    g2.buatTitik(Q, { label: "Q", labelPosition: "bottom-center", size: 2.5, color: "#dc2626" });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2018);
+            else renderDiagrams2018();
+        })();
+    </script>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>
