@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Permutasi dan Kombinasi [7]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Permutasi dan Kombinasi</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+        <!-- SOAL 61 -->
+        <article class="soal-item" id="61">
+            <div class="soal-no">No. 61</div>
+            <div class="soal-teks">
+                Misalkan $(a, b, c, d, e, f)$ adalah sebarang pengurutan dari $(1, 2, 3, 4, 5, 6)$. Banyaknya pengurutan sehingga $a + c + e &gt; b + d + f$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202016.html#A9">OSK SMA 2016 (No. 9)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Jumlah seluruh elemen $(a + c + e) + (b + d + f) = 1 + 2 + 3 + 4 + 5 + 6 = 21$ (ganjil), sehingga tidak mungkin $a + c + e = b + d + f$.</p>
+                    <p>Dengan simetri menukar $(a, c, e) \leftrightarrow (b, d, f)$, tepat setengah dari seluruh $6! = 720$ pengurutan memenuhi $a + c + e &gt; b + d + f$, yaitu $\dfrac{720}{2} = 360$.</p>
+                    <div class="kesimpulan">Jadi, banyaknya pengurutan adalah <strong>$360$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 62 -->
+        <article class="soal-item" id="62">
+            <div class="soal-no">No. 62</div>
+            <div class="soal-teks">
+                Misalkan $a_1, a_2, \dots, a_{120}$ adalah $120$ permutasi dari kata $\text{MEDAN}$ yang diurutkan berdasarkan abjad seperti di kamus, misalnya $a_1 = \text{ADEMN}$, $a_2 = \text{ADENM}$, $a_3 = \text{ADMEN}$, dan seterusnya. Hasil jumlah semua indeks $k$ sehingga huruf $A$ merupakan huruf ketiga pada permutasi $a_k$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202016.html#A15">OSP SMA 2016 (No. 15)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Huruf pertama $H_1 \in \{D, E, M, N\}$ masing-masing menempati blok berukuran $4! = 24$ (indeks $25$–$48$, $49$–$72$, $73$–$96$, $97$–$120$).</p>
+                    <p>Untuk setiap $H_1$ tersebut, ada $3$ pilihan $H_2 \in \{D, E, M, N\} \setminus \{H_1\}$, dan pada tiap pasangan $H_1 H_2$ (yang berukuran $3! = 6$), kata berbentuk $H_1 H_2 A H_4 H_5$ menempati tepat $2$ indeks pertama (karena $A$ huruf paling awal). Dengan demikian, pada setiap blok $24$ indeksnya adalah $\{25+6j, 25+6j+1\}$? Lebih tepatnya: awalan blok $H_1$ berawal di $25, 49, 73, 97$, dan untuk $H_2$ di urutan ke-$2, 3, 4$ (setelah $H_2 = A$ yang menempati $6$ indeks pertama di tiap blok), posisi awalnya adalah:</p>
+                    $$I = \{31, 37, 43,\; 55, 61, 67,\; 79, 85, 91,\; 103, 109, 115\}$$
+                    <p>Setiap awal $I_j$ menyumbang $I_j + (I_j + 1) = 2I_j + 1$. Dengan $\sum I_j = 6(31 + 115) = 876$, total jumlah indeks adalah $2(876) + 12 = 1764$.</p>
+                    <div class="kesimpulan">Jadi, hasil jumlah semua indeks $k$ adalah <strong>$1764$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 63 -->
+        <article class="soal-item" id="63">
+            <div class="soal-no">No. 63</div>
+            <div class="soal-teks">
+                Tentukan dengan bukti, banyaknya permutasi $a_1, a_2, a_3, \dots, a_{2016}$ dari $1, 2, 3, \dots, 2016$ sedemikian rupa sehingga nilai $|a_i - i|$ tetap untuk semua $i = 1, 2, 3, \dots, 2016$, dan nilainya merupakan kelipatan bilangan bulat $3$.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202016.html#A8">OSN SMA 2016 (No. 8)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $|a_i - i| = d$ untuk semua $i = 1, \dots, 2016$, dengan $3 \mid d$. Tulis $d = 3k$ ($k \ge 0$).</p>
+                    <ul>
+                        <li><strong>Jika $d = 0$:</strong> $a_i = i$ untuk semua $i$, memberi tepat <strong>$1$</strong> permutasi.</li>
+                        <li><strong>Jika $d \ge 1$:</strong> Untuk $1 \le i \le d$, $i - d \le 0$ sehingga wajib $a_i = i + d$. Akibatnya nilai $d + 1, \dots, 2d$ sudah terpakai oleh indeks $1, \dots, d$, sehingga untuk $d + 1 \le i \le 2d$, nilai $a_i$ tidak boleh $i + d$? Salah — nilai $1, \dots, d$ hanya bisa diisi oleh $i = d + 1, \dots, 2d$ (sebab tak ada $i \le 0$), sehingga wajib $a_i = i - d$ untuk $d + 1 \le i \le 2d$!</li>
+                        <li>Dengan induksi blok berukuran $2d$, blok $[1, 2d]$ memetakan $[1, d] \leftrightarrow [d + 1, 2d]$, lalu sisa indeks adalah $[2d + 1, 2016]$ yang mengulang pola sama secara unik.</li>
+                    </ul>
+                    <p>Oleh karena itu, setiap nilai $d &gt; 0$ menghasilkan paling banyak $1$ permutasi, dan permutasi itu ada jika dan hanya jika $2016$ terpartisi sempurna menjadi blok-blok berukuran $2d$, yaitu $2d \mid 2016 \iff d \mid 1008$.</p>
+                    <p>Karena $3 \mid d$ dan $1008 = 2^4 \cdot 3^2 \cdot 7$, tuliskan $d = 3m$ dengan $m \mid \dfrac{1008}{3} = 336 = 2^4 \cdot 3 \cdot 7$. Banyaknya pembagi positif dari $336$ adalah $(4 + 1)(1 + 1)(1 + 1) = 20$.</p>
+                    <p>Ditambah kasus $d = 0$ ($1$ permutasi), total permutasi yang memenuhi adalah $20 + 1 = 21$.</p>
+                    <div class="kesimpulan">Jadi, banyaknya permutasi yang memenuhi adalah <strong>$21$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

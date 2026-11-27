@@ -329,6 +329,39 @@
             </div>
         </article>
 
+        <!-- SOAL 20 -->
+        <article class="soal-item" id="20">
+            <div class="soal-no">No. 20</div>
+            <div class="soal-teks">
+                Diberikan segiempat talibusur $ABCD$ dengan kedua diagonalnya saling tegak lurus dan berpotongan di titik $O$. Garis tegak lurus dari $O$ pada $AB$, memotong $AB$ di $E$. Garis tegak lurus dari $O$ pada $BC$, memotong $BC$ di $F$. Garis tegak lurus dari $O$ pada $CD$, memotong $CD$ di $G$. Garis tegak lurus $O$ pada $DA$, memotong $DA$ di $H$.
+                <ol type="a">
+                    <li>Buktikan bahwa $\angle EFG + \angle GHE = 180^\circ$.</li>
+                    <li>Buktikan bahwa $OE$ merupakan garis bagi sudut $FEH$.</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202016.html#A1">OSN SMA 2016 (No. 1)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn16-1" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Karena $AC \perp BD$ dan $OE \perp AB, OF \perp BC, OG \perp CD, OH \perp DA$, maka segiempat $OEBF$, $OFCG$, $OGDH$, dan $OHAE$ masing-masing memiliki dua sudut siku-siku berhadapan, sehingga keempatnya adalah segiempat siklik.</p>
+                    <p><strong>a.</strong> Menggunakan sifat segiempat siklik di atas serta $ABCD$ siklik ($AC \perp BD \implies \angle CAB + \angle ABD = 90^\circ$):</p>
+                    $$\begin{aligned}
+                    \angle EHG + \angle EFG &= (\angle EHO + \angle GHO) + (\angle EFO + \angle GFO) \\
+                    &= \angle EAO + \angle GDO + \angle EBO + \angle GCO \\
+                    &= \angle CAB + \angle BDC + \angle ABD + \angle ACD \\
+                    &= 2(\angle CAB + \angle ABD) = 2(90^\circ) = 180^\circ
+                    \end{aligned}$$
+                    <p><strong>b.</strong> Menggunakan segiempat siklik $OHAE$, $ABCD$, dan $OEBF$:</p>
+                    $$\angle HEO = \angle HAO = \angle DAC = \angle DBC = \angle OBF = \angle OEF$$
+                    <p>Jadi $OE$ membagi $\angle FEH$ menjadi dua sama besar.</p>
+                    <div class="kesimpulan">Terbukti $\angle EFG + \angle GHE = 180^\circ$ dan $OE$ garis bagi $\angle FEH$.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <div class="pagination-wrapper"></div>
 
         <footer class="footer">
@@ -611,6 +644,53 @@
             else renderDiagrams2015();
         })();
     </script>
+    <script>
+        (function () {
+            function renderDiagrams2016() {
+                if (typeof GeoSVG === "undefined") return;
+                const c1 = document.getElementById("geo-osn16-1");
+                if (c1 && !c1.querySelector("svg")) {
+                    const g1 = new GeoSVG(c1, { width: 280, height: 220 });
+                    const O = { x: 130, y: 115 };
+                    // Orthodiagonal cyclic quad: choose OA, OB, OC, OD with OA*OC = OB*OD
+                    const A = { x: 130, y: 40 }, C = { x: 130, y: 195 }; // OA=75, OC=80 -> 6000
+                    const B = { x: 70, y: 115 }, D = { x: 230, y: 115 }; // OB=60, OD=100 -> 6000
+                    const proj = (P, P1, P2) => {
+                        const dx = P2.x - P1.x, dy = P2.y - P1.y;
+                        const t = ((P.x - P1.x) * dx + (P.y - P1.y) * dy) / (dx * dx + dy * dy);
+                        return { x: P1.x + t * dx, y: P1.y + t * dy };
+                    };
+                    const E = proj(O, A, B), F = proj(O, B, C), G = proj(O, C, D), H = proj(O, D, A);
+                    g1.buatSegmen(A, B, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g1.buatSegmen(B, C, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g1.buatSegmen(C, D, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g1.buatSegmen(D, A, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g1.buatSegmen(A, C, { stroke: "var(--text-muted)", strokeWidth: 1.0, dashArray: "3,3" });
+                    g1.buatSegmen(B, D, { stroke: "var(--text-muted)", strokeWidth: 1.0, dashArray: "3,3" });
+                    g1.buatSegmen(E, F, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.3 });
+                    g1.buatSegmen(F, G, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.3 });
+                    g1.buatSegmen(G, H, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.3 });
+                    g1.buatSegmen(H, E, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.3 });
+                    g1.buatSegmen(O, E, { stroke: "#dc2626", strokeWidth: 1.3 });
+                    g1.buatSegmen(O, F, { stroke: "#2563eb", strokeWidth: 1.0, dashArray: "3,3" });
+                    g1.buatSegmen(O, G, { stroke: "#2563eb", strokeWidth: 1.0, dashArray: "3,3" });
+                    g1.buatSegmen(O, H, { stroke: "#2563eb", strokeWidth: 1.0, dashArray: "3,3" });
+                    g1.buatTitik(A, { label: "A", labelPosition: "top-center", size: 2.6, color: "var(--text-main)" });
+                    g1.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 2.6, color: "var(--text-main)" });
+                    g1.buatTitik(C, { label: "C", labelPosition: "bottom-center", size: 2.6, color: "var(--text-main)" });
+                    g1.buatTitik(D, { label: "D", labelPosition: "bottom-right", size: 2.6, color: "var(--text-main)" });
+                    g1.buatTitik(O, { label: "O", labelPosition: "top-right", size: 2.5, color: "#dc2626" });
+                    g1.buatTitik(E, { label: "E", labelPosition: "top-left", size: 2.5, color: "#dc2626" });
+                    g1.buatTitik(F, { label: "F", labelPosition: "bottom-left", size: 2.5, color: "var(--teal-primary, #0d9488)" });
+                    g1.buatTitik(G, { label: "G", labelPosition: "bottom-right", size: 2.5, color: "var(--teal-primary, #0d9488)" });
+                    g1.buatTitik(H, { label: "H", labelPosition: "top-right", size: 2.5, color: "var(--teal-primary, #0d9488)" });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2016);
+            else renderDiagrams2016();
+        })();
+    </script>
+
 
     <script src="../../scr/script.js"></script>
 </body>

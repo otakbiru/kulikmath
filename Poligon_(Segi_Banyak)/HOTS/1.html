@@ -327,6 +327,29 @@
             </div>
         </article>
 
+        <!-- SOAL 7 -->
+        <article class="soal-item" id="7">
+            <div class="soal-no">No. 7</div>
+            <div class="soal-teks">
+                Misalkan $ABCDE$ adalah suatu segilima beraturan dengan luas $2$. Titik-titik $P, Q, R, S, T$ adalah perpotongan antara diagonal-diagonal dari segilima $ABCDE$ sedemikian hingga $PQRST$ adalah suatu segilima beraturan. Jika luas $PQRST$ ditulis dalam bentuk $a - \sqrt{b}$ dengan $a$ dan $b$ bilangan asli, maka nilai $a + b$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202016.html#A16">OSP SMA 2016 (No. 16)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osp16-16" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Pada segilima beraturan bersisi $s$, panjang diagonalnya adalah $\phi s$ (dengan $\phi = \frac{1 + \sqrt{5}}{2}$). Diagonal membagi diagonal lain dalam rasio emas $\phi$, sehingga sisi segilima dalam $s_{\text{dalam}} = \frac{s}{\phi^2}$? Cek! Jika sisi segilima luar $1$, diagonalnya $\phi$. Dua diagonal dari titik bersebelahan memotong diagonal di hadapannya menjadi tiga ruas: $\frac{1}{\phi}, \frac{1}{\phi^2}, \frac{1}{\phi}$? Cek: $\frac{1}{\phi} + \frac{1}{\phi^2} + \frac{1}{\phi} = \frac{2\phi + 1}{\phi^2} = \frac{2\phi + 1}{\phi + 1} \neq \phi$! Cek yang benar: ruas-ruas pada diagonal panjang $\phi$ adalah $1$? Tidak, segitiga antara dua titik berdekatan dan perpotongan diagonalnya sama kaki dengan sudut $36^\circ, 72^\circ, 72^\circ$ atau $36^\circ, 36^\circ, 108^\circ$: ruas dari ujung ke titik potong pertama panjangnya $\frac{1}{\phi}$ (karena $1 : \phi = \frac{1}{\phi} : 1$, ya!). Maka ruas tengah (sisi segilima dalam) adalah $\phi - 2 \cdot \frac{1}{\phi} = \phi - 2(\phi - 1) = 2 - \phi = \frac{1}{\phi^2}$!!</p>
+                    <p>WAIT A SECOND! Cek rasio sisi $s_{\text{dalam}} / s_{\text{luar}} = \frac{1}{\phi^2}$, sehingga rasio luasnya adalah $\left(\frac{1}{\phi^2}\right)^2 = \frac{1}{\phi^4}$!</p>
+                    <p>Hitung $\frac{1}{\phi^4} = (\phi - 1)^4 = \left(\frac{\sqrt{5}-1}{2}\right)^4 = \left(\frac{6 - 2\sqrt{5}}{4}\right)^2 = \left(\frac{3 - \sqrt{5}}{2}\right)^2 = \frac{14 - 6\sqrt{5}}{4} = \frac{7 - 3\sqrt{5}}{2}$.</p>
+                    <p>Karena luas $ABCDE = 2$, maka luas $PQRST = 2 \cdot \dfrac{7 - 3\sqrt{5}}{2} = 7 - 3\sqrt{5} = 7 - \sqrt{45}$!</p>
+                    <p>Dengan $a = 7$ dan $b = 45$, diperoleh $a + b = 7 + 45 = 52$.</p>
+                    <div class="kesimpulan">Jadi, nilai $a + b$ adalah <strong>$52$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -365,6 +388,41 @@
             else renderDiagrams2015();
         })();
     </script>
+    <script>
+        (function () {
+            function renderDiagrams2016() {
+                if (typeof GeoSVG === "undefined") return;
+                const c16 = document.getElementById("geo-osp16-16");
+                if (c16 && !c16.querySelector("svg")) {
+                    const g16 = new GeoSVG(c16, { width: 220, height: 210 });
+                    const cx = 110, cy = 108, R = 82;
+                    const V = [], P = [];
+                    for (let i = 0; i < 5; i++) {
+                        const a = -Math.PI / 2 + (2 * Math.PI * i) / 5;
+                        V.push({ x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) });
+                    }
+                    const rIn = R / (Math.pow((1 + Math.sqrt(5)) / 2, 2));
+                    for (let i = 0; i < 5; i++) {
+                        const a = -Math.PI / 2 + Math.PI / 5 + (2 * Math.PI * i) / 5;
+                        P.push({ x: cx + rIn * Math.cos(a), y: cy + rIn * Math.sin(a) });
+                    }
+                    const labelsV = ["A", "B", "C", "D", "E"], labelsP = ["P", "Q", "R", "S", "T"];
+                    for (let i = 0; i < 5; i++) {
+                        g16.buatSegmen(V[i], V[(i + 1) % 5], { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                        g16.buatSegmen(V[i], V[(i + 2) % 5], { stroke: "var(--text-muted)", strokeWidth: 1.1 });
+                        g16.buatSegmen(P[i], P[(i + 1) % 5], { stroke: "#dc2626", strokeWidth: 1.5 });
+                    }
+                    for (let i = 0; i < 5; i++) {
+                        g16.buatTitik(V[i], { label: labelsV[i], labelPosition: i === 0 ? "top-center" : (i < 3 ? "right" : "left"), size: 2.5, color: "var(--text-main)" });
+                        g16.buatTitik(P[i], { label: labelsP[i], labelPosition: "top-center", size: 2.2, color: "#dc2626" });
+                    }
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2016);
+            else renderDiagrams2016();
+        })();
+    </script>
+
 
 
     <script src="../../scr/script.js"></script>

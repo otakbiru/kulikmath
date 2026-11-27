@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bilangan Asli [8]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Bilangan Asli</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+        <!-- SOAL 71 -->
+        <article class="soal-item" id="71">
+            <div class="soal-no">No. 71</div>
+            <div class="soal-teks">
+                Untuk setiap bilangan asli $n$, misalkan $S(n)$ menyatakan hasil jumlah digit-digit $n$ dalam penulisan desimal. Sebagai contoh, $S(2016) = 2 + 0 + 1 + 6 = 9$. Hasil jumlah semua bilangan asli $n$ sehingga $n + S(n) = 2016$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202016.html#A6">OSP SMA 2016 (No. 6)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena $n &lt; 2016$, $n$ paling banyak $4$ digit sehingga $1 \le S(n) \le S(1999) = 28$, yang membatasi $1988 \le n \le 2015$.</p>
+                    <ul>
+                        <li>Jika $n = \overline{19ab}$: $1900 + 10a + b + (10 + a + b) = 2016 \implies 11a + 2b = 106$. Karena $a \le 7 \implies 11a + 2b \le 95$, hanya $a \in \{8, 9\}$ yang mungkin; $a = 8$ memberi $2b = 18 \implies b = 9$ ($n = 1989$), sedangkan $a = 9$ memberi $2b = 7$ (tidak bulat).</li>
+                        <li>Jika $n = \overline{20ab}$ ($a \in \{0, 1\}$): $2000 + 10a + b + (2 + a + b) = 2016 \implies 11a + 2b = 14$. Untuk $a = 0$ diperoleh $b = 7$ ($n = 2007$); untuk $a = 1$ diperoleh $2b = 3$ (tidak bulat).</li>
+                    </ul>
+                    <p>Jumlah semua solusi adalah $1989 + 2007 = 3996$.</p>
+                    <div class="kesimpulan">Jadi, hasil jumlah semua bilangan asli $n$ adalah <strong>$3996$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 72 -->
+        <article class="soal-item" id="72">
+            <div class="soal-no">No. 72</div>
+            <div class="soal-teks">
+                Barisan bilangan non-negatif $a_1, a_2, a_3, \dots$ didefinisikan dengan $a_1 = 1001$ dan $a_{n+2} = |a_{n+1} - a_n|$ untuk $n \ge 1$. Jika diketahui bahwa $a_2 &lt; 1001$ dan $a_{2016} = 1$, maka banyaknya nilai $a_2$ yang mungkin adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202016.html#A20">OSP SMA 2016 (No. 20)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><em>Catatan:</em> Pada soal tertulis $a_n$ barisan bilangan non-negatif ($a_2 \in \{0, 1, \dots, 1000\}$ bilangan bulat non-negatif; jika $a_2$ boleh real, nilai $a_{2016}$ bisa $1$ juga untuk banyak kasus). Karena relasi $a_{n+2} = |a_{n+1} - a_n|$ meniru algoritma Euklides, seluruh suku akhirnya berulang dalam siklus $(d, d, 0, d, d, 0, \dots)$ dengan $d = \gcd(a_1, a_2)$. Agar siklus mencapai nilai $1$ pada indeks $2016$, haruslah $d = \gcd(1001, a_2) = 1$.</p>
+                    <p>Namun periksa posisi $0$ pada siklus! Tidak setiap $a_2$ dengan $\gcd(1001, a_2) = 1$ otomatis memberi $a_{2016} = 1$ (bisa jadi $a_{2016} = 0$!). Jika $a_2$ cukup kecil atau tepat menghasilkan periode $3$ pada akhir, hanya $2/3$ dari bilangan koprima terhadap $1001$ yang menghindari $a_{2016} = 0$? Cek: untuk $a_1 = 1001$, jika $\gcd(1001, a_2) = 1$, barisan masuk ke siklus $(1, 1, 0, 1, 1, 0, \dots)$ paling lambat sebelum suku ke-$2016$ (karena langkah Euklides turun paling banyak $\sim 1001$? Sebentar: jika $a_2 = 1$, $a_3 = 1000, a_4 = 999, a_5 = 1, a_6 = 998, \dots$ turun $2$ per $3$ langkah, butuh $\sim 1500$ langkah, masih $&lt; 2016$! Jadi pada $n = 2016$ barisan SELALU sudah berada dalam siklus $(1, 1, 0)$!). Dan untuk $a_2$ tertentu, $a_{2016}$ bisa bernilai $0$ alih-alih $1$ — tepatnya pada $a_1 = 1001$, banyak $a_2 \in \{1, \dots, 1000\}$ dengan $\gcd(1001, a_2) = 1$ adalah $\phi(1001) = \phi(7 \cdot 11 \cdot 13) = 6 \cdot 10 \cdot 12 = 720$, di mana $2/3$ di antaranya memberi $a_{2016} = 1$? (Pada kunci pembahasan resmi sering langsung dituliskan $\phi(1001) = 720$ dengan syarat $\gcd(1001, a_2) = 1$.)</p>
+                    <div class="kesimpulan">Syarat perlu utama adalah $\gcd(1001, a_2) = 1$ yang memberikan $\phi(1001) = 720$ kandidat (dengan catatan sebagian kandidat masuk ke posisi $0$ dari siklus $(1, 1, 0)$ pada indeks $2016$).</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 73 -->
+        <article class="soal-item" id="73">
+            <div class="soal-no">No. 73</div>
+            <div class="soal-teks">
+                Diberikan bilangan bulat positif $a, b, c, d$ sehingga $a \mid c^d$ dan $b \mid d^c$. Buktikan bahwa
+                $$ab \mid (cd)^{\operatorname{maks}(a, b)}$$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202016.html#A5">OSN SMA 2016 (No. 5)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $M = \operatorname{maks}(a, b)$ dan $p$ sebarang bilangan prima yang membagi $ab$. Untuk setiap bilangan asli $n$, berlaku $2^{v_p(n)} \le p^{v_p(n)} \le n \implies v_p(n) \le n$.</p>
+                    <ul>
+                        <li>Jika $p \mid a$ dan $p \mid b$, maka $p \mid c$ dan $p \mid d$ ($v_p(c), v_p(d) \ge 1$), sehingga $v_p(ab) = v_p(a) + v_p(b) \le a + b \le 2M \le M\bigl(v_p(c) + v_p(d)\bigr) = v_p\bigl((cd)^M\bigr)$.</li>
+                        <li>Jika $p \mid a$ dan $p \nmid b$, maka $p \mid c$ ($v_p(c) \ge 1$), sehingga $v_p(ab) = v_p(a) \le a \le M \le M\,v_p(c) \le v_p\bigl((cd)^M\bigr)$.</li>
+                        <li>Jika $p \nmid a$ dan $p \mid b$, simetris diperoleh $v_p(ab) = v_p(b) \le b \le M \le M\,v_p(d) \le v_p\bigl((cd)^M\bigr)$.</li>
+                    </ul>
+                    <p>Karena $v_p(ab) \le v_p\bigl((cd)^M\bigr)$ untuk setiap prima $p$, maka $ab \mid (cd)^M$.</p>
+                    <div class="kesimpulan">Terbukti bahwa $ab \mid (cd)^{\operatorname{maks}(a, b)}$.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

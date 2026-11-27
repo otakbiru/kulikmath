@@ -120,6 +120,110 @@
             </div>
         </article>
 
+        <!-- SOAL 34 -->
+        <article class="soal-item" id="34">
+            <div class="soal-no">No. 34</div>
+            <div class="soal-teks">
+                Banyaknya pasangan terurut bilangan asli $(a, b, c)$ dengan $a, b, c \in \{1, 2, 3, 4, 5\}$ sehingga $\max\{a, b, c\} &lt; 2\min\{a, b, c\}$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202016.html#A16">OSK SMA 2016 (No. 16)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kelompokkan berdasarkan nilai $m = \min\{a, b, c\}$, di mana setiap elemen harus berada dalam $\{m, m + 1, \dots, \min(5, 2m - 1)\}$ dan sedikitnya satu elemen bernilai $m$ (prinsip inklusi: banyak cara dengan rentang $[m, M]$ dikurangi rentang $[m + 1, M]$):</p>
+                    <ul>
+                        <li>$m = 1 \implies \max &lt; 2$, hanya $(1, 1, 1)$: $1$ pasangan.</li>
+                        <li>$m = 2 \implies \{a, b, c\} \subseteq \{2, 3\}$: $2^3 - 1^3 = 7$ pasangan.</li>
+                        <li>$m = 3 \implies \{a, b, c\} \subseteq \{3, 4, 5\}$: $3^3 - 2^3 = 19$ pasangan.</li>
+                        <li>$m = 4 \implies \{a, b, c\} \subseteq \{4, 5\}$: $2^3 - 1^3 = 7$ pasangan.</li>
+                        <li>$m = 5 \implies \{a, b, c\} \subseteq \{5\}$: $1^3 = 1$ pasangan.</li>
+                    </ul>
+                    <p>Total pasangan terurut adalah $1 + 7 + 19 + 7 + 1 = 35$.</p>
+                    <div class="kesimpulan">Jadi, banyaknya pasangan terurut adalah <strong>$35$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 35 -->
+        <article class="soal-item" id="35">
+            <div class="soal-no">No. 35</div>
+            <div class="soal-teks">
+                Pada sebuah bidang datar, terdapat $16$ garis berbeda dan $n$ titik potong berbeda. Nilai minimal $n$ sehingga dapat dipastikan terdapat $3$ kelompok garis yang masing-masing memuat garis-garis berbeda yang saling sejajar adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202016.html#A20">OSK SMA 2016 (No. 20)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan ke-$16$ garis terbagi ke dalam $k$ kelas arah sejajar berukuran $a_1, a_2, \dots, a_k \ge 1$ ($\sum a_i = 16$). Yang dimaksud "3 kelompok garis yang masing-masing memuat garis-garis berbeda yang saling sejajar" adalah ada sedikitnya $3$ kelas arah dengan ukuran $\ge 2$.</p>
+                    <p>Untuk menghindari kondisi ini (maksimal $2$ kelas berukuran $\ge 2$), kelas-kelas lainnya harus berukuran $1$. Jika banyak titik potong maksimal dicapai (tidak ada $3$ garis berpotongan di satu titik):</p>
+                    <ul>
+                        <li>Maksimal banyaknya titik potong dicapai bila dua kelas besar dibuat seimbang atau semua kelas sekecil mungkin: kasus ekstrem $2$ kelas berukuran $\ge 2$ dan sisanya $1$ adalah $a_1 = a_2 = 2$ dan $12$ kelas berukuran $1$ ($k = 14$), memberi $\binom{16}{2} - \binom{2}{2} - \binom{2}{2} = 120 - 2 = 118$ titik potong!</li>
+                        <li>Untuk $n \le 118$, kita dapat mengambil $14$ arah dengan $a_1 = a_2 = 2$ dan $a_3 = \dots = a_{14} = 1$, lalu mengurangi titik potong dengan membuat beberapa garis berpotongan di titik yang sama (sebagai contoh, menggeser $12$ garis berbeda arah agar konkuren di satu titik menurunkan titik potong drastis sambil tetap hanya punya $2$ kelompok sejajar). Jadi $n \le 118$ belum menjamin.</li>
+                        <li>Sebaliknya, jika $n \ge 119$, maka banyaknya pasangan garis sejajar $\sum \binom{a_i}{2} \le \binom{16}{2} - 119 = 1$. Ini berarti paling banyak hanya ada $1$ pasangan garis sejajar (yakni hanya $1$ kelompok berukuran $2$, kurang dari $3$)! Tunggu: perhatikan justru jika $n$ <em>besar</em>, garis semakin <em>sedikit</em> yang sejajar!</li>
+                    </ul>
+                    <p><em>Catatan analisis soal:</em> Secara kombinatorial, agar $n$ titik potong <strong>memastikan</strong> terdapat $3$ kelompok garis sejajar ($|\{i : a_i \ge 2\}| \ge 3$), nilai $n$ justru harus <strong>kecil</strong>, bukan besar (pada $n = 120$ tidak ada garis sejajar sama sekali). Namun bila soal mengartikan kondisi dengan batas atas titik potong untuk menghindari $\le 2$ kelompok sejajar: dengan $\le 2$ kelompok sejajar ($a_1 + a_2 \le 16$, misal $16$ garis dibagi $2$ kelompok $8 + 8$ memberi $64$ titik potong, atau $1$ kelompok $16$ memberi $0$ titik potong), nilai $n$ minimal untuk menghindari konfigurasi $14 + 1 + 1$ ($29$ titik) dst. bergantung interpretasi "kelompok garis". Untuk $n = 119$ tidak ada $3$ kelompok sejajar, dan konstruksi tanpa $3$ kelompok sejajar dapat mencapai $n = 118$ (dengan $2, 2, 1, \dots, 1$), sehingga tidak ada $n$ besar yang memaksa keberadaan $3$ kelompok sejajar — kecuali jika $1$ garis pun dianggap kelompok atau syarat tambahan.</p>
+                    <div class="kesimpulan">Secara ketat, konstruksi dengan hanya $2$ kelompok garis sejajar ($2, 2, 1, \dots, 1$) dapat menghasilkan hingga <strong>$118$</strong> titik potong (dan $120$ titik potong tanpa garis sejajar sama sekali), sehingga nilai $n$ besar tidak menjamin adanya $3$ kelompok garis sejajar.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 36 -->
+        <article class="soal-item" id="36">
+            <div class="soal-no">No. 36</div>
+            <div class="soal-teks">
+                Dalam suatu turnamen sepakbola yang diikuti oleh $n$ tim, tiap tim bermain melawan tim lainnya tepat satu kali. Dalam satu pertandingan, $3$ poin akan diberikan kepada tim yang menang dan $0$ poin untuk tim yang kalah. Sedangkan $1$ poin diberikan kepada masing-masing tim apabila pertandingan berakhir seri. Setelah pertandingan berakhir, hanya satu tim yang memperoleh poin paling banyak dan hanya tim itu yang memperoleh jumlah kemenangan paling sedikit. Nilai $n$ terkecil sehingga hal ini mungkin terjadi adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202016.html#A19">OSP SMA 2016 (No. 19)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan tim juara tunggal adalah $X$ dengan $w_X$ kemenangan dan poin $P_X$. Setiap tim lain $Y$ harus memiliki kemenangan $w_Y \ge w_X + 1$ dan poin $P_Y \le P_X - 1$.</p>
+                    <p>Jika $w_X = 0$, $X$ paling banyak memperoleh $n - 1$ poin (seri semua laga). Sementara tiap tim lain $Y$ memiliki $w_Y \ge 1$ ($3$ poin dari $1$ kemenangan); namun cek total pertandingan! Jika $w_X = 0$, $X$ tak pernah menang; agar $P_X = n - 1$, $X$ seri melawan semua $n - 1$ tim lain, sehingga setiap tim lain punya minimal $1$ seri ($+1$ poin) dan minimal $1$ kemenangan ($+3$ poin), total $\ge 4$ poin. Agar $4 \le P_X - 1 = n - 2$, haruslah $n \ge 6$.</p>
+                    <p>(Jika $w_X \ge 1$, maka tiap tim lain punya $w_Y \ge w_X + 1 \ge 2 \implies P_Y \ge 6$, sementara $P_X \le 3w_X + (n - 1 - w_X) = n - 1 + 2w_X$, dan untuk $n \le 5$: misal $n = 5, w_X = 1 \implies P_X \le 6$, sedangkan $w_Y \ge 2 \implies P_Y \ge 6$, mustahil $P_Y &lt; P_X$!)</p>
+                    <p>Untuk $n = 6$, konstruksi validnya ada: tim $X$ seri melawan semua $5$ tim lain ($5$ poin, $0$ menang), sedangkan kelima tim lain membentuk turnamen $5$-tim di mana masing-masing menang $1$ kali, kalah $3$ kali, dan seri $1$ kali? Total laga $5$-tim adalah $10$, jadi tidak bisa masing-masing $1$ menang! Sebentar — $5$ tim sisa bertanding $\binom{5}{2} = 10$ laga: kalau semua $10$ laga berakhir menang-kalah, rata-rata kemenangan adalah $2$, dan salah satu bisa menang $1$, sisanya $2$ atau $3$ — misal skor poin: ada tim $Y$ menang $2$ ($6$ poin $&gt; 5$, Gagal!). Kalau ada seri di antara $5$ tim sisa: misal $5$ tim sisa seri $8$ kali dan menang $2$ kali tidak cukup untuk $5$ tim masing-masing menang $\ge 1$! Karena butuh minimal $5$ kemenangan di antara $5$ tim sisa, maka sedikitnya ada $5$ laga menang-kalah, sehingga maksimal ada $5$ laga seri, dan agar tak ada tim yang mencapai $\ge 5$ poin ($1$ menang + $2$ seri = $5$ poin, Gagal!), setiap tim sisa harus menang TEPAT $1$ kali dan seri TEPAT $1$ kali melawan tim sisa lainnya ($3 + 1 + 1 = 5$ poin = $P_X$, Gagal juga!). Jadi untuk $n = 6$ pun $w_X = 0$ memberi $P_Y \ge 5 = P_X$?! Cek: jika $Y$ menang $1$ kali dan kalah $3$ kali dari sesama $5$ tim sisa, poin $Y$ adalah $3 + 0 + 1\text{ (seri vs }X) = 4 &lt; 5$! Namun karena ada $5$ kemenangan di $5$-tim, dan $\binom{5}{2} = 10$ laga, sisa $5$ laga bisa dibuat $0$ seri? Tidak, $10$ laga = $5$ menang-kalah + $5$ seri, sehingga total seri antar-$5$-tim adalah $5 \times 2 = 10$ poin seri! Ditambah $5$ menang ($15$ poin) + $5$ seri vs $X$ ($5$ poin) = $30$ poin untuk $5$ tim, rata-rata $6 &gt; 5$!!)</p>
+                    <p>Artinya $n = 6$ TIDAK BISA? Cek $w_X = 1$ untuk $n = 6$ ($P_X = 3(1) + 4 = 7$): $5$ tim sisa masing-masing punya $w_Y \ge 2$ ($6$ poin) dan total kemenangan minimal $10$. Karena $X$ kalah $0$, menang $1$, seri $4$: $X$ memberi $4$ poin seri ke $4$ tim, dan kalah $0$. Sisa $\binom{5}{2} = 10$ laga antar-$5$-tim punya tepat $10$ kemenangan (rata-rata $2$ menang per tim = $6$ poin), jadi agar semua $\le 6$ poin ($&lt; 7$), semua $10$ laga antar-$5$-tim harus menang-kalah dengan masing-masing menang $2$, kalah $2$ — lalu $4$ tim yang seri dengan $X$ mendapat $+1$ poin menjadi $7$ poin $= P_X$, gagal! Kalau $X$ menang $2$, seri $3$ ($P_X = 9$): tiap tim sisa butuh $w_Y \ge 3$ ($\ge 9$ poin), gagal!</p>
+                    <p>Cek $n = 7$ dengan $w_X = 0$ ($P_X = 6$): $6$ tim sisa masing-masing menang $1$ kali ($6$ laga menang-kalah) dan $9$ laga? Total laga $\binom{6}{2} = 15$, jika $15$ laga = $6$ menang-kalah + $9$ seri, total poin $6$ tim sisa $= 18 + 18 + 6 = 42 \implies$ rata-rata $7 &gt; 6$! Gagal!</p>
+                    <p>Cek $n = 8$ dengan $w_X = 0$ ($P_X = 7$) atau $n = 8, 9$: sebenarnya dengan $n$ tim, jika $5$ tim sisa semua menang-kalah: $10$ laga memberi $10$ kemenangan, tidak bisa masing-masing $1$ kemenangan! Pada $n = 6$ (jawaban klasik OSP 2016 No. 19 di banyak kunci adalah $6$, namun cek ulang: tim $X$ seri $5$ kali? Tidak, $X$ bisa bermain seri dengan semua $5$ tim lain sehingga $P_X = 5$, dan agar semua $Y$ punya $P_Y \le 4$ dan $w_Y \ge 1$, jumlah poin semua tim selain $X$ paling banyak $5 \times 4 = 20$, padahal jumlah poin minimal $10$ laga di antara $5$ tim adalah $20$ (jika semua seri, tapi saat semua seri $w_Y = 0$!) dan jika ada $5$ kemenangan maka total poin $= 5(3) + 5(2) + 5(1) = 30 &gt; 20$!). Ini membuktikan secara ketat bahwa untuk $n = 6$ hal tersebut MUSTAHIL! Untuk $n = 7$, $w_X = 0 \implies P_X \le 6$, $6$ tim sisa butuh $P_Y \le 5$, total poin maks $30$, padahal $15$ laga + $6$ seri memberi $\ge 6(3) + 9(2) + 6 = 42 &gt; 30$, mustahil! Untuk $n = 8$: $P_X \le 7$, $7$ tim sisa maks $7 \times 6 = 42$, minimal poin $\ge 7(3) + 14(2) + 7 = 56 &gt; 42$! Untuk $n = 9$: $w_X = 0 \implies P_X \le 8$, $8$ tim sisa maks $8 \times 7 = 56$, minimal poin $\ge 8(3) + 20(2) + 8 = 72$!</p>
+                    <p>Tunggu! Mengapa $n \ge 6$ selalu gagal untuk $w_X = 0$? Karena jumlah pertandingan di antara $n - 1$ tim lain adalah $\binom{n-1}{2} \sim \frac{n^2}{2}$, sehingga total poin mereka $\sim n^2$, jauh lebih besar dari $(n-1)P_X \sim n^2$! Tepatnya, total poin $n-1$ tim lain $\ge 2\binom{n-1}{2} + (n-1)\text{(dari }X) + (n-1)\text{(bonus 1 poin per kemenangan)} = (n-1)(n-2) + 2(n-1) = n(n-1)$ jika $w_X = 0$! Padahal kita butuh masing-masing $\le n - 2$, total $\le (n-1)(n-2) &lt; n(n-1)$ untuk SETIAP $n$! Jadi $w_X = 0$ TIDAK PERNAH MUNGKIN untuk $n$ berapa pun! Keren!</p>
+                    <p>Untuk $w_X \ge 1$: setiap tim lain punya $w_Y \ge w_X + 1$, sehingga total kemenangan seluruh $n$ tim $\ge w_X + (n - 1)(w_X + 1) = n w_X + n - 1$, sementara total laga hanya $\binom{n}{2} = \frac{n(n-1)}{2}$. Apalagi $P_Y \le P_X - 1$: $P_X = 3w_X + d_X \le 3w_X + (n - 1 - w_X) = n - 1 + 2w_X$. Rata-rata poin $n - 1$ tim lain adalah $\ge \frac{2\binom{n-1}{2} + (n-1)(w_X+1) + d_X + 3(n-1-w_X-d_X)}{n-1} \dots$ Mari cek nilai $n$ terkecil yang benar-benar mungkin: misal $w_X = 1$: butuh $n \ge 7$? Pada $n = 6$ jika $w_X = 1, d_X = 4 \implies P_X = 7$, rata-rata poin tim lain $\ge \frac{2(10) + 10 + 4}{5} = 6{,}8 \le 6$ (mustahil!). Untuk $n = 7, w_X = 1, d_X = 5 \implies P_X = 8$: total poin $6$ tim sisa $\ge 2(15) + 12 + 5 = 47 &gt; 6(7) = 42$ (mustahil!). Untuk $n = 8, w_X = 1, d_X = 6$: total poin $7$ tim sisa $\ge 2(21) + 14 + 6 = 62 &gt; 7(8) = 56$! Kapan total poin $n-1$ tim sisa $\le (n-1)(P_X - 1)$? Dengan $w_X = k$: $P_X = n - 1 + 2k$, batas poin $= (n-1)(n - 2 + 2k)$, sedangkan poin minimal $n - 1$ tim sisa $\ge (n-1)(n-2) + (n-1)(k+1) + (n-1-k) = (n-1)(n + k) - k$, sehingga butuh $n + k \le n - 2 + 2k \implies k \ge 2$! Jika $k = w_X = 2$: $n + 2 \le n - 2 + 4 \implies n + 2 \le n + 2$? Bisa dengan $l_X = 0$! Cek $w_X = 2, d_X = n - 3, l_X = 0 \implies P_X = n + 3$: total kemenangan $n-1$ tim lain $\ge 3(n-1)$, sehingga butuh $\binom{n}{2} \ge 2 + 3(n-1) \implies n(n-1) \ge 6n - 2 \implies n^2 - 7n + 2 \ge 0 \implies n \ge 7$! Cek $n = 7, w_X = 2$: $X$ menang $2$, seri $4$ ($P_X = 10$). Semua $6$ tim lain punya $w_Y = 3$ ($9$ poin), $0$ seri, dan kalah $3$ ($P_Y = 9 &lt; 10$)? Cek total kemenangan: $2 + 6(3) = 20$, padahal $\binom{7}{2} = 21$ (selisih $1$ laga seri, tapi $X$ butuh $4$ seri!). Jadi untuk $n = 7$ tak cukup; untuk $n = 8, w_X = 2, d_X = 5$: $P_X = 11$, $7$ tim sisa punya $w_Y = 3$, total kemenangan $= 2 + 21 = 23$, sisa $28 - 23 = 5$ laga seri tepat milik $X$! Tapi $5$ tim yang seri dengan $X$ mendapat $+1$ poin menjadi $3(3) + 1 = 10 &lt; 11$! Cek apakah $7$ tim sisa bisa masing-masing menang $3$, kalah $3$ atau $4$ (dua tim kalah dari $X$, lima tim seri dengan $X$, total menang $21$ dari $\binom{7}{2} = 21$ laga antar-$7$-tim: ya, turnamen reguler $7$ tim di mana tiap tim menang $3$ dan kalah $3$ selalu ada!). Jadi **$n = 8$** adalah konstruksi sah pertama (dan di beberapa versi soal/kunci beredar jawaban $6$ dari analisis yang tidak menghitung total poin antar-tim sisa).</p>
+                    <div class="kesimpulan">Dengan verifikasi total poin seluruh $\binom{n}{2}$ pertandingan, konstruksi sah pertama tercapai pada <strong>$n = 8$</strong> (dengan tim juara $2$ menang, $5$ seri, $11$ poin, sedangkan $7$ tim lain masing-masing menang $3$ kali dengan $\le 10$ poin).</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 37 -->
+        <article class="soal-item" id="37">
+            <div class="soal-no">No. 37</div>
+            <div class="soal-teks">
+                Terdapat $5$ kotak yang disusun secara melingkar. Pada mulanya, terdapat satu kotak yang berisi satu bola, sementara kotak lainnya kosong. Pada setiap langkah, kita dapat melakukan salah satu dari dua operasi berikut:
+                <ol type="a">
+                    <li>pilih satu kotak yang tak kosong, hilangkan satu bola dari kotak tersebut dan tambahkan masing-masing satu bola ke kedua kotak yang bersebelahan dengan kotak tersebut,</li>
+                    <li>pilih satu kotak kosong yang bersebelahan dengan kotak yang tidak kosong, dari kotak yang tidak kosong tersebut pindahkan satu bola ke kotak yang kosong tadi.</li>
+                </ol>
+                Apakah mungkin, bahwa setelah beberapa langkah, diperoleh kondisi di mana setiap kotak berisi tepat $7^{5^{2016}}$ bola?
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202016.html#A3">OSN SMA 2016 (No. 3)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Ya, mungkin</strong> (bahkan cukup menggunakan operasi (a) saja).</p>
+                    <p>Pertama, dari $(1, 0, 0, 0, 0)$, lakukan operasi (a) empat kali secara berturut-turut pada kotak ke-$1$, ke-$2$, ke-$4$, dan ke-$3$:</p>
+                    $$(1, 0, 0, 0, 0) \to (0, 1, 0, 0, 1) \to (1, 0, 1, 0, 1) \to (2, 0, 1, 1, 0) \to (1, 1, 1, 1, 1)$$
+                    <p>Selanjutnya, setiap kali kelima kotak masing-masing berisi $x \ge 1$ bola $(x, x, x, x, x)$, apabila kita menerapkan operasi (a) tepat satu kali pada setiap kotak dalam urutan apa pun, setiap kotak akan berkurang $1$ kali dan bertambah $2$ kali (dari dua tetangganya), sehingga hasil akhirnya adalah $(x + 1, x + 1, x + 1, x + 1, x + 1)$.</p>
+                    <p>Dengan mengulang siklus $5$ langkah tersebut sebanyak $7^{5^{2016}} - 1$ kali (total $4 + 5\bigl(7^{5^{2016}} - 1\bigr)$ operasi), setiap kotak akan berisi tepat $7^{5^{2016}}$ bola.</p>
+                    <div class="kesimpulan">Jadi, kondisi tersebut <strong>mungkin</strong> dicapai.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>

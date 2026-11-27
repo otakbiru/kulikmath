@@ -88,6 +88,30 @@
             </div>
         </article>
 
+        <!-- SOAL 23 -->
+        <article class="soal-item" id="23">
+            <div class="soal-no">No. 23</div>
+            <div class="soal-teks">
+                Diberikan persegi $ABCD$ dengan panjang sisi $1$. Titik $K$ dan $L$ berturut-turut terletak pada segmen garis $BC$ dan $DC$ sehingga keliling dari $\triangle KCL$ adalah $2$. Luas minimum dari $\triangle AKL$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202016.html#A15">OSK SMA 2016 (No. 15)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osk16-15" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan $CK = a$ dan $CL = b$ dengan $0 &lt; a, b \le 1$, serta $x = a + b$ dan $y = ab$. Dari keliling $\triangle KCL = 2$:</p>
+                    $$a + b + \sqrt{a^2 + b^2} = 2 \implies \sqrt{x^2 - 2y} = 2 - x \implies y = 2x - 2$$
+                    <p>Karena $x = a + b \ge 2\sqrt{ab} = 2\sqrt{y}$, maka $x^2 \ge 4(2x - 2) \implies x^2 - 8x + 8 \ge 0$. Karena $x \le 2$, haruslah $x \le 4 - 2\sqrt{2}$.</p>
+                    <p>Selanjutnya, luas $\triangle AKL$ adalah:</p>
+                    $$[\triangle AKL] = 1 - \frac{1}{2}(1 - a) - \frac{1}{2}ab - \frac{1}{2}(1 - b) = \frac{1}{2}(a + b - ab) = \frac{1}{2}(x - y) = \frac{1}{2}(2 - x) \ge \frac{1}{2}\bigl(2 - (4 - 2\sqrt{2})\bigr) = \sqrt{2} - 1$$
+                    <p>Kesamaan tercapai saat $a = b = 2 - \sqrt{2}$.</p>
+                    <div class="kesimpulan">Jadi, luas minimum dari $\triangle AKL$ adalah <strong>$\sqrt{2} - 1$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -151,6 +175,36 @@
             else renderDiagram();
         })();
     </script>
+    <script>
+        (function () {
+            function renderDiagrams2016() {
+                if (typeof GeoSVG === "undefined") return;
+                const c15 = document.getElementById("geo-osk16-15");
+                if (c15 && !c15.querySelector("svg")) {
+                    const g15 = new GeoSVG(c15, { width: 200, height: 195 });
+                    const A = { x: 35, y: 165 }, B = { x: 165, y: 165 }, C = { x: 165, y: 35 }, D = { x: 35, y: 35 };
+                    const t = 130 * (2 - Math.SQRT2);
+                    const K = { x: 165, y: 35 + t }, L = { x: 165 - t, y: 35 };
+                    g15.buatSegmen(A, B, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g15.buatSegmen(B, C, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g15.buatSegmen(C, D, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g15.buatSegmen(D, A, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g15.buatSegmen(A, K, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.4 });
+                    g15.buatSegmen(A, L, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.4 });
+                    g15.buatSegmen(K, L, { stroke: "#dc2626", strokeWidth: 1.4 });
+                    g15.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 2.7, color: "var(--text-main)" });
+                    g15.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 2.7, color: "var(--text-main)" });
+                    g15.buatTitik(C, { label: "C", labelPosition: "top-right", size: 2.7, color: "var(--text-main)" });
+                    g15.buatTitik(D, { label: "D", labelPosition: "top-left", size: 2.7, color: "var(--text-main)" });
+                    g15.buatTitik(K, { label: "K", labelPosition: "middle-right", size: 2.6, color: "#dc2626" });
+                    g15.buatTitik(L, { label: "L", labelPosition: "top-center", size: 2.6, color: "#dc2626" });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2016);
+            else renderDiagrams2016();
+        })();
+    </script>
+
 
     <script src="../../scr/script.js"></script>
 </body>

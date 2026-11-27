@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Barisan dan Deret [4]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Barisan dan Deret</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+        <!-- SOAL 31 -->
+        <article class="soal-item" id="31">
+            <div class="soal-no">No. 31</div>
+            <div class="soal-teks">
+                Barisan $x_0, x_1, x_2, \dots, x_n$ didefinisikan dengan $x_0 = 10$, $x_1 = 5$, dan $x_{k+1} = x_{k-1} - \dfrac{1}{x_k}$ untuk $k = 1, 2, 3, \dots, n - 1$ dan diperoleh $x_n = 0$. Nilai $n$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202016.html#A18">OSP SMA 2016 (No. 18)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kalikan relasi rekursif dengan $x_k$: $x_k x_{k+1} = x_{k-1} x_k - 1$.</p>
+                    <p>Karena $x_0 x_1 = 10 \times 5 = 50$, dengan induksi diperoleh $x_{k-1} x_k = 51 - k$ untuk setiap $k \ge 1$.</p>
+                    <p>Saat $x_n = 0$, $x_{n-1} x_n = 0 \implies 51 - n = 0 \implies n = 51$ (dan sebelum $k = 51$, semua $x_k \neq 0$ sehingga terdefinisi).</p>
+                    <div class="kesimpulan">Jadi, nilai $n$ adalah <strong>$51$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 32 -->
+        <article class="soal-item" id="32">
+            <div class="soal-no">No. 32</div>
+            <div class="soal-teks">
+                Diberikan tripel bilangan asli berbeda $(x_0, y_0, z_0)$ yang memenuhi $x_0 + y_0 + z_0 = 2016$. Setiap jam ke-$i$, dengan $i \ge 1$, dibentuk tripel baru
+                $$(x_i, y_i, z_i) = (y_{i-1} + z_{i-1} - x_{i-1},\; z_{i-1} + x_{i-1} - y_{i-1},\; x_{i-1} + y_{i-1} - z_{i-1})$$
+                Tentukan bilangan asli $n$ terkecil sehingga pada jam ke-$n$ pasti ditemukan minimal satu di antara $x_n, y_n,$ atau $z_n$ merupakan bilangan negatif.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202016.html#A25">OSP SMA 2016 (No. 25)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Jumlah $x_i + y_i + z_i = 2016$ selalu tetap untuk setiap $i \ge 0$, sehingga $x_i = 2016 - 2x_{i-1}$, $y_i = 2016 - 2y_{i-1}$, dan $z_i = 2016 - 2z_{i-1}$.</p>
+                    <p>Misalkan $a_i = \max\{x_i, y_i, z_i\}$ dan $b_i = \min\{x_i, y_i, z_i\}$. Maka $a_i = 2016 - 2b_{i-1}$ dan $b_i = 2016 - 2a_{i-1}$, sehingga untuk $i \ge 2$ berlaku:</p>
+                    $$a_i = 2016 - 2(2016 - 2a_{i-2}) = 4a_{i-2} - 2016 \implies (a_i - 672) = 4(a_{i-2} - 672)$$
+                    <p>Tulis $c_i = a_i - 672$, maka $c_{2k} = 4^k c_0$ dan $c_{2k+1} = 4^k c_1$. Karena $x_0, y_0, z_0$ bilangan asli berbeda yang berjumlah $2016 = 3 \times 672$, maka $a_0 \ge 673$ ($c_0 \ge 1$) dan $b_0 \le 671 \implies a_1 = 2016 - 2b_0 \ge 674$ ($c_1 \ge 2$).</p>
+                    <p>Salah satu dari $(x_n, y_n, z_n)$ negatif jika dan hanya jika $b_n &lt; 0 \iff 2016 - 2a_{n-1} &lt; 0 \iff a_{n-1} \ge 1009 \iff c_{n-1} \ge 337$.</p>
+                    <ul>
+                        <li>Untuk $n = 10$: $c_9 = 4^4 c_1 \ge 256 \times 2 = 512 &gt; 337$ (dan $c_{10} \ge 4^5 \cdot 1 = 1024 &gt; 337$), sehingga $n = 10$ pasti menghasilkan bilangan negatif!</li>
+                        <li>Untuk $n = 9$ belum cukup: ambil $(x_0, y_0, z_0) = (671, 672, 673)$. Barisannya adalah $(674, 672, 670), (668, 672, 676), \dots, (416, 672, 928), (1184, 672, 160)$ pada jam ke-$9$, yang semuanya masih $\ge 0$ (dan baru menjadi negatif pada jam ke-$10$: $(-352, 672, 1696)$).</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, bilangan asli $n$ terkecil adalah <strong>$10$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

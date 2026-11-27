@@ -96,6 +96,30 @@
             </div>
         </article>
 
+        <!-- SOAL 33 -->
+        <article class="soal-item" id="33">
+            <div class="soal-no">No. 33</div>
+            <div class="soal-teks">
+                Diberikan segiempat $ABCD$ yang kedua diagonalnya tidak saling tegak lurus. Suatu persegi dikatakan <em>fantastik</em> jika masing-masing garis sisi persegi tersebut memuat tepat satu titik yang berbeda di antara $A, B, C, D$. Buktikan bahwa sebarang segiempat $ABCD$ memiliki paling sedikit $6$ persegi fantastik.
+                <br><em>Catatan:</em> garis sisi adalah sisi dan perpanjangannya.
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202016.html#A6">OSN SMA 2016 (No. 6)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn16-6" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Buat lingkaran satuan $\omega$ berpusat di $A$. Untuk sebarang arah garis $\ell(\theta)$ yang melalui titik $R(\theta)$ pada $\omega$, kita dapat membentuk persegi panjang yang memuat $A, B, C, D$ pada keempat garis sisinya dalam $3$ cara penempatan pasangan sisi berhadapan: pasangan $\{A, C\}$ berhadapan dengan $\{B, D\}$, atau $\{A, B\}$ dengan $\{C, D\}$, atau $\{A, D\}$ dengan $\{B, C\}$.</p>
+                    <p>Tinjau salah satu pasangan, misalnya garis sisi pertama dan ketiga (sejajar arah $\ell(\theta)$) memuat $A$ dan $C$, sedangkan kedua garis sisi tegak lurusnya memuat $B$ dan $D$. Panjang kedua sisi persegi panjang berturut-turut adalah proyeksi segmen $AC$ pada arah normal $\ell(\theta)$ dan proyeksi $BD$ pada arah $\ell(\theta)$, yaitu $|AC \sin(\theta - \alpha)|$ dan $|BD \cos(\theta - \beta)|$, dengan $\alpha, \beta$ sudut arah $AC$ dan $BD$.</p>
+                    <p>Fungsi rasio bertanda $r(\theta) = \dfrac{AC \sin(\theta - \alpha)}{BD \cos(\theta - \beta)}$ bernilai $0$ saat $\ell(\theta) \parallel AC$ dan menuju $\pm\infty$ saat $\ell(\theta) \perp BD$. Karena diagonal tidak saling tegak lurus ($\alpha - \beta \not\equiv 90^\circ \pmod{180^\circ}$), kedua titik $\theta = \alpha$ dan $\theta = \beta + 90^\circ$ tidak berimpit, sehingga membagi setengah lingkaran $\omega$ (arah $\theta \in [0^\circ, 180^\circ)$) menjadi dua busur terbuka.</p>
+                    <p>Pada masing-masing busur tersebut, $r(\theta)$ kontinu dan menempuh nilai dari $0$ hingga $+\infty$ (dan dari $0$ hingga $-\infty$), sehingga menurut Teorema Nilai Antara terdapat sedikitnya satu arah di mana $r(\theta) = 1$ dan satu arah di mana $r(\theta) = -1$ — masing-masing menghasilkan sebuah persegi (non-degenerasi karena $|AC \sin(\theta-\alpha)| = |BD \cos(\theta-\beta)| &gt; 0$).</p>
+                    <p>Karena terdapat $3$ cara memasangkan $\{A, B, C, D\}$ menjadi dua pasangan titik berhadapan (yakni diagonal $AC$–$BD$, sisi $AB$–$CD$, dan sisi $AD$–$BC$), masing-masing menghasilkan sedikitnya $2$ persegi fantastik yang berbeda (total sedikitnya $3 \times 2 = 6$ persegi fantastik).</p>
+                    <div class="kesimpulan">Terbukti bahwa sebarang segiempat $ABCD$ dengan diagonal tak saling tegak lurus memiliki paling sedikit <strong>$6$</strong> persegi fantastik.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -188,6 +212,39 @@
             else renderDiagram();
         })();
     </script>
+    <script>
+        (function () {
+            function renderDiagrams2016() {
+                if (typeof GeoSVG === "undefined") return;
+                const c6 = document.getElementById("geo-osn16-6");
+                if (c6 && !c6.querySelector("svg")) {
+                    const g6 = new GeoSVG(c6, { width: 270, height: 210 });
+                    const A = { x: 95, y: 65 }, B = { x: 80, y: 145 }, C = { x: 185, y: 150 }, D = { x: 175, y: 75 };
+                    // Fantastic square tilted at ~18 deg around A..D
+                    const th = 0.32, u = { x: Math.cos(th), y: Math.sin(th) }, v = { x: -Math.sin(th), y: Math.cos(th) };
+                    const dot = (P, w) => P.x * w.x + P.y * w.y;
+                    const uA = dot(A, u), uC = dot(C, u), vB = dot(B, v), vD = dot(D, v);
+                    const ptUV = (uu, vv) => ({ x: uu * u.x + vv * v.x, y: uu * u.y + vv * v.y });
+                    const P1 = ptUV(uA, vD), P2 = ptUV(uC, vD), P3 = ptUV(uC, vB), P4 = ptUV(uA, vB);
+                    g6.buatSegmen(A, B, { stroke: "var(--text-muted)", strokeWidth: 1.0, dashArray: "3,3" });
+                    g6.buatSegmen(B, C, { stroke: "var(--text-muted)", strokeWidth: 1.0, dashArray: "3,3" });
+                    g6.buatSegmen(C, D, { stroke: "var(--text-muted)", strokeWidth: 1.0, dashArray: "3,3" });
+                    g6.buatSegmen(D, A, { stroke: "var(--text-muted)", strokeWidth: 1.0, dashArray: "3,3" });
+                    g6.buatSegmen(P1, P2, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.5 });
+                    g6.buatSegmen(P2, P3, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.5 });
+                    g6.buatSegmen(P3, P4, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.5 });
+                    g6.buatSegmen(P4, P1, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.5 });
+                    g6.buatTitik(A, { label: "A", labelPosition: "top-left", size: 2.7, color: "#dc2626" });
+                    g6.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 2.7, color: "#dc2626" });
+                    g6.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 2.7, color: "#dc2626" });
+                    g6.buatTitik(D, { label: "D", labelPosition: "top-right", size: 2.7, color: "#dc2626" });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2016);
+            else renderDiagrams2016();
+        })();
+    </script>
+
 
     <script src="../../scr/script.js"></script>
 </body>
