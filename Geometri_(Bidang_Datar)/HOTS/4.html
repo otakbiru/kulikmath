@@ -73,6 +73,29 @@
             </div>
         </article>
 
+        <!-- SOAL 32 -->
+        <article class="soal-item" id="32">
+            <div class="soal-no">No. 32</div>
+            <div class="soal-teks">
+                Diberikan trapesium $ABCD$ dengan $AB$ sejajar $CD$ dan $AB &lt; CD$. Misalkan diagonal $AC$ dan $BD$ bertemu di $E$ dan misalkan garis $AD$ dan $BC$ bertemu di titik $F$. Bangun jajar genjang $AEDK$ dan $BECL$. Buktikan bahwa garis $EF$ melalui titik tengah segmen $KL$.
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2014.html#A3">OSN SMA 2014</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn14-3" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Gunakan koordinat dengan $F = (0, 0)$, garis $AB$ pada $x = 1$, dan garis $CD$ pada $x = k$ ($k &gt; 1$). Tulis $A = (1, a)$, $B = (1, b)$, $D = (k, ka)$, dan $C = (k, kb)$ ($a \neq b$).</p>
+                    <p>Perpotongan diagonal $BD$ dan $AC$ adalah $E = \left(\dfrac{2k}{k + 1},\ \dfrac{k(a + b)}{k + 1}\right)$.</p>
+                    <p>Dari $K = A + D - E$ dan $L = B + C - E$, titik tengah $M = \dfrac{K + L}{2}$ adalah:</p>
+                    $$M = \left(\frac{k^2 + 1}{k + 1},\ \frac{(k^2 + 1)(a + b)}{2(k + 1)}\right)$$
+                    <p>Gradien $FE$ dan $FM$ keduanya sama dengan $\dfrac{a + b}{2}$, sehingga $F, E, M$ segaris.</p>
+                    <div class="kesimpulan">Terbukti bahwa garis $EF$ melalui titik tengah segmen $KL$.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -120,6 +143,45 @@
                     g7.buatTitik(OB, { label: "OB", labelPosition: "bottom-right", size: 2.8, color: "#dc2626" });
                     g7.buatTitik(OC, { label: "OC", labelPosition: "top-right", size: 2.8, color: "#dc2626" });
                     g7.buatTitik(OD, { label: "OD", labelPosition: "top-left", size: 2.8, color: "#dc2626" });
+                }
+
+                // SOAL 32 (OSN SMA 2014 No. 3): Trapesium ABCD, E = AC x BD, F = AD x BC, jajar genjang AEDK dan BECL
+                const c3 = document.getElementById("geo-osn14-3");
+                if (c3 && !c3.querySelector("svg")) {
+                    const g3 = new GeoSVG(c3, { width: 250, height: 195 });
+                    const F = { x: 25, y: 120 };
+                    const A = { x: 85, y: 102 }, B = { x: 85, y: 138 };
+                    const D = { x: 165, y: 78 }, C = { x: 165, y: 162 };
+                    const inter = (P1, P2, Q1, Q2) => {
+                        const a1 = P2.y - P1.y, b1 = P1.x - P2.x, c1 = a1 * P1.x + b1 * P1.y;
+                        const a2 = Q2.y - Q1.y, b2 = Q1.x - Q2.x, c2 = a2 * Q1.x + b2 * Q1.y;
+                        const det = a1 * b2 - a2 * b1;
+                        return { x: (b2 * c1 - b1 * c2) / det, y: (a1 * c2 - a2 * c1) / det };
+                    };
+                    const E = inter(A, C, B, D);
+                    const K = { x: A.x + D.x - E.x, y: A.y + D.y - E.y };
+                    const L = { x: B.x + C.x - E.x, y: B.y + C.y - E.y };
+                    const M = { x: (K.x + L.x) / 2, y: (K.y + L.y) / 2 };
+                    g3.buatPoligon([A, B, C, D], { fill: "rgba(100,116,139,0.05)", stroke: "var(--text-main)", strokeWidth: 1.6 });
+                    g3.buatSegmen(F, D, { stroke: "var(--text-muted)", strokeWidth: 1.1 });
+                    g3.buatSegmen(F, C, { stroke: "var(--text-muted)", strokeWidth: 1.1 });
+                    g3.buatSegmen(A, C, { stroke: "var(--text-muted)", strokeWidth: 1.1 });
+                    g3.buatSegmen(B, D, { stroke: "var(--text-muted)", strokeWidth: 1.1 });
+                    g3.buatSegmen(A, K, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.2 });
+                    g3.buatSegmen(D, K, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.2 });
+                    g3.buatSegmen(B, L, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.2 });
+                    g3.buatSegmen(C, L, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.2 });
+                    g3.buatSegmen(K, L, { stroke: "#dc2626", strokeWidth: 1.2, dashed: true });
+                    g3.buatSegmen(F, M, { stroke: "#dc2626", strokeWidth: 1.4 });
+                    g3.buatTitik(F, { label: "F", labelPosition: "middle-left", size: 2.8, color: "var(--text-main)" });
+                    g3.buatTitik(A, { label: "A", labelPosition: "top-left", size: 2.6, color: "var(--text-main)" });
+                    g3.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 2.6, color: "var(--text-main)" });
+                    g3.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 2.6, color: "var(--text-main)" });
+                    g3.buatTitik(D, { label: "D", labelPosition: "top-right", size: 2.6, color: "var(--text-main)" });
+                    g3.buatTitik(E, { label: "E", labelPosition: "top-center", size: 2.8, color: "#dc2626" });
+                    g3.buatTitik(K, { label: "K", labelPosition: "top-center", size: 2.8, color: "var(--teal-primary, #0d9488)" });
+                    g3.buatTitik(L, { label: "L", labelPosition: "bottom-center", size: 2.8, color: "var(--teal-primary, #0d9488)" });
+                    g3.buatTitik(M, { label: "M", labelPosition: "middle-right", size: 2.8, color: "#dc2626" });
                 }
             }
             if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagram);

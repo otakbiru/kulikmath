@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSN SMA 2015 - Arsip Soal &amp; Pembahasan</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Arsip Soal -->
+        <div class="page-header">
+            <p class="intro-text">
+                Arsip Soal &amp; Pembahasan Lengkap <span id="auto-level" class="level-highlight">...</span> —
+                <span class="topic-highlight">OSN SMA 2015 (Olimpiade Sains Nasional Tingkat Nasional Tahun 2015)</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <h2 class="category-heading" style="margin: 1.2rem 0 0.8rem;">Soal OSN SMA 2015 (Hari Pertama &amp; Kedua, Nomor 1–8)</h2>
+
+        <!-- No. 1 -->
+        <article class="soal-item" id="A1">
+            <div class="soal-no">No. 1</div>
+            <div class="soal-teks">
+                Albert, Bernard, dan Cheryl sedang bermain kelereng. Di awal permainan masing-masing membawa $5$ kelereng merah, $7$ kelereng hijau, dan $13$ kelereng biru, sedangkan di kotak kelereng ada tak berhingga banyaknya kelereng. Pada satu langkah setiap anak diberi kebebasan membuang dua kelereng yang berbeda warna, kemudian menggantinya dengan dua kelereng dengan warna ketiga. Setelah serangkaian langkah (banyaknya langkah yang dilakukan masing-masing anak boleh berbeda) terjadilah percakapan berikut.
+                <ul>
+                    <li>Albert: "Saya hanya membawa kelereng berwarna merah."</li>
+                    <li>Bernard: "Saya hanya membawa kelereng berwarna biru."</li>
+                    <li>Cheryl: "Saya hanya membawa kelereng berwarna hijau."</li>
+                </ul>
+                Siapa sajakah yang pasti berkata bohong?
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Modulo/HOTS/5.html#45">Modulo</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $(r, g, b)$ menyatakan banyaknya kelereng merah, hijau, dan biru. Pada setiap langkah, dua warna berkurang $1$ dan warna ketiga bertambah $2$, sehingga selisih antardua warna berubah sebesar $\pm 3$ atau $0$.</p>
+                    <p>Jadi $(r - g, g - b, b - r) \pmod 3$ adalah invarian. Dari keadaan awal $(5, 7, 13)$:</p>
+                    $$r - g \equiv 5 - 7 \equiv 1 \pmod 3, \qquad g - b \equiv 7 - 13 \equiv 0 \pmod 3, \qquad b - r \equiv 13 - 5 \equiv 2 \pmod 3$$
+                    <p>Karena total kelereng selalu $25$, periksa tiga klaim tersebut:</p>
+                    <ul>
+                        <li><strong>Albert $(25, 0, 0)$:</strong> $r - g = 25 \equiv 1$, $g - b = 0 \equiv 0$, $b - r = -25 \equiv 2 \pmod 3$ (konsisten). Contoh barisan langkahnya: $(5,7,13) \to (4,9,12) \to (3,11,11) \to (5,10,10) \to \dots \to (25,0,0)$.</li>
+                        <li><strong>Bernard $(0, 0, 25)$:</strong> $g - b = -25 \equiv 2 \not\equiv 0 \pmod 3$ (mustahil $\implies$ berbohong).</li>
+                        <li><strong>Cheryl $(0, 25, 0)$:</strong> $g - b = 25 \equiv 1 \not\equiv 0 \pmod 3$ (mustahil $\implies$ berbohong).</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, yang pasti berkata bohong adalah <strong>Bernard dan Cheryl</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 2 -->
+        <article class="soal-item" id="A2">
+            <div class="soal-no">No. 2</div>
+            <div class="soal-teks">
+                Untuk setiap bilangan asli $a, b$ notasikan dengan $[a, b]$ kelipatan persekutuan terkecil dari $a$ dan $b$ dan notasikan dengan $(a, b)$ faktor persekutuan terbesar dari $a$ dan $b$. Tentukan semua bilangan asli $n$ sehingga
+                $$4\sum_{k=1}^{n} [n, k] = 1 + \sum_{k=1}^{n} (n, k) + 2n^2 \sum_{k=1}^{n} \frac{1}{(n, k)}$$
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Bilangan_Prima/HOTS/4.html#34">Bilangan Prima</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan $[n, k] = \dfrac{nk}{(n, k)}$, sehingga persamaan menjadi:</p>
+                    $$1 + \sum_{k=1}^{n} (n, k) + \sum_{k=1}^{n} \frac{2n(n - 2k)}{(n, k)} = 0$$
+                    <p>Untuk $k = 1, \dots, n - 1$, pasangkan $k$ dengan $n - k$: karena $(n, n - k) = (n, k)$ dan $2n(n - 2(n - k)) = -2n(n - 2k)$, semua suku ke-$1$ hingga ke-$(n-1)$ pada penjumlahan terakhir saling meniadakan (dan bila $n$ genap, suku $k = n/2$ bernilai $0$). Tersisa suku $k = n$, yaitu $\dfrac{2n(n - 2n)}{n} = -2n$, sehingga persamaan tereduksi menjadi:</p>
+                    $$1 + \sum_{k=1}^{n} (n, k) = 2n$$
+                    <p>Untuk $n = 1$: ruas kiri $1 + (1, 1) = 2 = 2(1)$ (terpenuhi; cek langsung: $4[1,1] = 4 = 1 + 1 + 2$).</p>
+                    <p>Untuk $n \ge 2$: pisahkan suku $k = n$ sehingga diperoleh $1 + \sum_{k=1}^{n-1} (n, k) = n$. Karena $(n, k) \ge 1$ untuk semua $1 \le k \le n - 1$, maka $\sum_{k=1}^{n-1} (n, k) \ge n - 1$, dengan kesamaan jika dan hanya jika $(n, k) = 1$ untuk semua $1 \le k \le n - 1$, yakni tepat apabila $n$ bilangan prima.</p>
+                    <div class="kesimpulan">Jadi, semua bilangan asli $n$ yang memenuhi adalah <strong>$n = 1$ dan semua bilangan prima</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 3 -->
+        <article class="soal-item" id="A3">
+            <div class="soal-no">No. 3</div>
+            <div class="soal-teks">
+                Diberikan segitiga lancip $ABC$. Lingkaran $\Gamma_B$ dengan pusat $O_B$, adalah lingkaran yang melalui titik $A$ dan $B$, serta menyinggung $AC$ di titik $A$. Dengan cara yang sama didefinisikan lingkaran $\Gamma_C$ dengan pusat $O_C$. Misalkan garis tinggi segitiga $ABC$ melalui $B$ dan $C$, berturut-turut memotong lingkaran luar $ABC$ di titik $X$ dan $Y$. Buktikan bahwa titik $A$, titik tengah segmen $XY$, dan titik tengah segmen $O_B O_C$, ketiganya terletak pada satu garis lurus.
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Lingkaran/HOTS/5.html#45">Lingkaran</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn15-3" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Misalkan $O$ pusat lingkaran luar $\triangle ABC$, $M$ titik tengah $XY$, dan $N$ titik tengah $O_B O_C$. Kita buktikan $A, M, O$ segaris dan $A, N, O$ segaris.</p>
+                    <p><strong>1. Membuktikan $A, M, O$ segaris:</strong> Karena $BX \perp AC$ dan $CY \perp AB$, maka $\angle XYA = \angle XBA = 90^\circ - A = \angle YCA = \angle YXA$, sehingga $\triangle AXY$ sama kaki ($AX = AY$) dan $AM \perp XY$. Maka $\angle YAM = 90^\circ - \angle XYA = A$. Karena $\angle YAB = \angle YCB = 90^\circ - B$, diperoleh $\angle BAM = \angle YAM - \angle YAB = A - (90^\circ - B) = 90^\circ - C = \angle BAO$. Jadi $AM$ berimpit dengan $AO$.</p>
+                    <p><strong>2. Membuktikan $A, N, O$ segaris:</strong> Karena $\Gamma_B$ menyinggung $AC$ di $A$ dan melalui $B$, maka $\angle O_B A C = 90^\circ \implies \angle O_B A B = \angle O_B B A = 90^\circ - A$. Demikian pula $\angle O_C A C = \angle O_C C A = 90^\circ - A$, sehingga $\triangle A O_B B \sim \triangle A O_C C$ dan $\dfrac{AO_B}{AO_C} = \dfrac{AB}{AC}$.</p>
+                    <p>Perpanjang $BA$ ke $S$ sehingga $AS = AB$, maka $\dfrac{AO_B}{AO_C} = \dfrac{AS}{AC}$ dan $\angle O_B A O_C = (90^\circ - A) + A + (90^\circ - A) = 180^\circ - A = \angle SAC$, sehingga $\triangle O_B A O_C \sim \triangle SAC$. Jika $T$ titik tengah $CS$, kesebangunan memberi $\angle O_B A N = \angle SAT$. Karena $AT$ adalah garis tengah $\triangle BCS$, $AT \parallel BC$, sehingga $\angle SAT = B$. Maka $\angle BAN = \angle O_B A N - \angle O_B A B = B - (90^\circ - A) = 90^\circ - C = \angle BAO$, sehingga $AN$ berimpit dengan $AO$.</p>
+                    <div class="kesimpulan">Terbukti bahwa titik $A$, titik tengah $XY$, dan titik tengah $O_B O_C$ segaris (terletak pada garis $AO$).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 4 -->
+        <article class="soal-item" id="A4">
+            <div class="soal-no">No. 4</div>
+            <div class="soal-teks">
+                Misalkan pasangan fungsi $f, g : \mathbb{R}^+ \to \mathbb{R}^+$ memenuhi persamaan fungsi
+                $$f(g(x)y + f(y)) = (y + 2015)f(x)$$
+                untuk setiap $x, y \in \mathbb{R}^+$.
+                <ol type="a">
+                    <li>Buktikan bahwa $g(x) = \dfrac{f(x)}{2015}$ untuk setiap $x \in \mathbb{R}^+$.</li>
+                    <li>Berikan contoh pasangan fungsi yang memenuhi persamaan di atas dan $f(x), g(x) \le 1$ untuk setiap $x \in \mathbb{R}^+$.</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Fungsi/HOTS/4.html#35">Fungsi</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><em>Catatan atas naskah soal:</em> Pada naskah soal tercetak syarat $f(x), g(x) \le 1$ dan suku $f(y)$ di ruas kiri. Jika $f(x) \le 1$ untuk semua $x \in \mathbb{R}^+$, maka untuk $x = 1$ dan $y \to \infty$ diperoleh $(y + 2015)f(1) \to \infty$ sehingga tidak mungkin $f(\dots) \le 1$. Pada pembahasan resmi yang dimaksud, persamaan fungsinya adalah $f(g(x)y + f(x)) = (y + 2015)f(x)$ (tanpa batas atas $\le 1$).</p>
+                    <p><strong>a.</strong> Untuk sebarang $x, y, z \in \mathbb{R}^+$, selisih nilai di $y + z$ dan $y$ pada bentuk $f(g(x)y + f(x)) = (y + 2015)f(x)$ memberikan:</p>
+                    $$f(g(x)y + f(x) + z\,g(x)) - f(g(x)y + f(x)) = z\,f(x)$$
+                    <p>Tulis $T = g(x)y + f(x)$ dan $Z = z\,g(x)$, sehingga untuk setiap $T &gt; f(x)$ dan $Z &gt; 0$ berlaku $f(T + Z) - f(T) = \dfrac{Z f(x)}{g(x)}$. Untuk sebarang $a, b \in \mathbb{R}^+$, pilih $K &gt; \max\{f(a), f(b)\}$, maka $\dfrac{Z f(a)}{g(a)} = f(K + Z) - f(K) = \dfrac{Z f(b)}{g(b)}$, sehingga $f(x) = c\,g(x)$ untuk suatu konstanta $c &gt; 0$.</p>
+                    <p>Substitusi ke persamaan memberi $g((y + c)g(x)) = (y + 2015)g(x)$. Dari sini, menghitung $g((y + c)(z + 2015)g(x))$ dengan dua cara (mengganti $x \mapsto (z + 2015)g(x)$ dan mengganti $y \mapsto (y + c)(z + 2015) - c$) menghasilkan:</p>
+                    $$(y + 2015)(z + 2015)g(x) = \bigl((y + c)(z + 2015) - c + 2015\bigr)g(x)$$
+                    <p>Dengan $y = z = 1$ dan $g(x) &gt; 0$ diperoleh $(1 + 2015)^2 = (1 + c)(1 + 2015) - c + 2015 \implies c = 2015$, sehingga $g(x) = \dfrac{f(x)}{2015}$.</p>
+                    <p><strong>b.</strong> Untuk bentuk $f(g(x)y + f(x)) = (y + 2015)f(x)$ (tanpa batas $\le 1$), contoh pasangan fungsinya adalah:</p>
+                    $$g(x) = \begin{cases} 1, &amp; 0 &lt; x &lt; 1 \\ x, &amp; x \ge 1 \end{cases} \qquad\text{dan}\qquad f(x) = 2015\,g(x)$$
+                    <p>Karena $(y + 2015)g(x) &gt; 2015 \ge 1$ untuk setiap $x, y \in \mathbb{R}^+$, berlaku $g((y + 2015)g(x)) = (y + 2015)g(x)$ sehingga persamaan terpenuhi. (Untuk syarat $f(x), g(x) \le 1$ seperti tercetak di PDF, tidak ada fungsi yang memenuhi.)</p>
+                    <div class="kesimpulan">Terbukti $g(x) = \dfrac{f(x)}{2015}$ pada bentuk persamaan yang dimaksud, beserta catatan batas $\le 1$ pada naskah soal.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 5 -->
+        <article class="soal-item" id="A5">
+            <div class="soal-no">No. 5</div>
+            <div class="soal-teks">
+                Misalkan $a, b, c, d$ adalah bilangan asli sehingga $a \mid c^d$ dan $b \mid d^c$. Buktikan bahwa $ab \mid (cd)^{\operatorname{maks}\{a, b\}}$.
+                <br><em>Catatan:</em> $\operatorname{maks}\{a, b\}$ menyatakan nilai terbesar dari $a$ atau $b$.
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Bilangan_Asli/HOTS/7.html#69">Bilangan Asli</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $M = \operatorname{maks}\{a, b\}$ dan $p$ sebarang faktor prima dari $ab$. Kita bandingkan pangkat $p$ ($v_p$) pada $ab$ dan $(cd)^M$.</p>
+                    <p>Pertama, untuk setiap bilangan asli $n$ dan prima $p \ge 2$, berlaku $2^{v_p(n)} \le p^{v_p(n)} \le n$, sehingga $v_p(n) \le n$.</p>
+                    <ul>
+                        <li><strong>Kasus 1 ($p \mid a$ dan $p \mid b$):</strong> Karena $a \mid c^d$ dan $b \mid d^c$, maka $p \mid c$ dan $p \mid d$, sehingga $v_p(c) \ge 1$ dan $v_p(d) \ge 1$. Diperoleh:
+                        $$v_p(ab) = v_p(a) + v_p(b) \le a + b \le 2M \le M\bigl(v_p(c) + v_p(d)\bigr) = v_p\bigl((cd)^M\bigr)$$</li>
+                        <li><strong>Kasus 2 ($p \mid a$ dan $p \nmid b$):</strong> Maka $v_p(b) = 0$ dan $p \mid c \implies v_p(c) \ge 1$. Diperoleh:
+                        $$v_p(ab) = v_p(a) \le a \le M \le M\,v_p(c) \le v_p\bigl((cd)^M\bigr)$$</li>
+                        <li><strong>Kasus 3 ($p \nmid a$ dan $p \mid b$):</strong> Simetris dengan Kasus 2, $v_p(ab) = v_p(b) \le b \le M \le M\,v_p(d) \le v_p\bigl((cd)^M\bigr)$.</li>
+                    </ul>
+                    <p>Karena $v_p(ab) \le v_p\bigl((cd)^M\bigr)$ untuk setiap bilangan prima $p$, maka $ab \mid (cd)^M$.</p>
+                    <div class="kesimpulan">Terbukti bahwa $ab \mid (cd)^{\operatorname{maks}\{a, b\}}$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 6 -->
+        <article class="soal-item" id="A6">
+            <div class="soal-no">No. 6</div>
+            <div class="soal-teks">
+                Diberikan segitiga lancip $ABC$ dengan titik pusat lingkaran luar $O$. Garis $AO$ memotong lingkaran luar segitiga $ABC$ lagi di titik $D$. Misalkan $P$ titik pada sisi $BC$. Garis melalui $P$ tegak lurus $AP$ memotong garis $DB$ dan $DC$ berturut-turut di $E$ dan $F$. Garis melalui $D$ tegak lurus $BC$ memotong $EF$ di titik $Q$. Buktikan bahwa $EQ = FQ$ jika dan hanya jika $BP = CP$.
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Segiempat_Siklik/HOTS/2.html#19">Segiempat Siklik</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osn15-6" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p><strong>1. $AEDF$ segiempat siklik:</strong> Karena $AD$ diameter lingkaran luar $\triangle ABC$, maka $\angle ABD = \angle ACD = 90^\circ$, sehingga $\angle ABE = \angle ACF = 90^\circ$. Karena $\angle APE = \angle APF = 90^\circ$, maka $A, B, P, E$ siklik dan $A, C, P, F$ siklik. Akibatnya $\angle AEF = \angle AEP = \angle ABP = \angle ABC = \angle ADC = \angle ADF$, sehingga $AEDF$ adalah segiempat siklik.</p>
+                    <p><strong>2. Kesebangunan &amp; Dalil Menelaus:</strong> Dari $AEDF$ siklik didapat $\angle AEB = \angle AFC$, dan karena $\angle ABE = \angle ACF = 90^\circ$, maka $\triangle ABE \sim \triangle ACF$, sehingga $\dfrac{AB}{AC} = \dfrac{AE}{AF} = \dfrac{BE}{CF}$. Selanjutnya terapkan Dalil Menelaus pada $\triangle DEF$ dengan garis transversal $B$-$P$-$C$:</p>
+                    $$\frac{DF}{FC} \cdot \frac{CP}{PB} \cdot \frac{BE}{ED} = 1 \iff \frac{CP}{PB} = \frac{CF}{BE} \cdot \frac{ED}{DF} = \frac{AF}{AE} \cdot \frac{ED}{DF}$$
+                    <p>Dengan demikian, $BP = CP \iff AE \cdot DF = AF \cdot DE$, yakni tepat apabila $AEDF$ merupakan <em>segiempat harmonik</em>.</p>
+                    <p><strong>3. Garis isogonal pada $\triangle EDF$:</strong> Karena $DQ \perp BC$ dan $DC \perp AC$, maka $\angle QDC = 90^\circ - \angle DCB = \angle ACB = \angle ADB$. Artinya $\angle QDF = \angle ADE$, sehingga $DQ$ dan $DA$ merupakan garis isogonal pada $\angle EDF$. Dalam segiempat siklik $AEDF$, $DA$ adalah $D$-simedian dari $\triangle EDF$ jika dan hanya jika $AEDF$ harmonik; karena $DQ$ isogonal dengan $DA$, kondisi tersebut ekivalen dengan $DQ$ menjadi garis berat $\triangle EDF$, yaitu $EQ = FQ$.</p>
+                    <div class="kesimpulan">Terbukti bahwa $EQ = FQ$ jika dan hanya jika $BP = CP$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 7 -->
+        <article class="soal-item" id="A7">
+            <div class="soal-no">No. 7</div>
+            <div class="soal-teks">
+                Misalkan $a, b, c$ bilangan real positif. Buktikan ketaksamaan
+                $$\sqrt{\frac{a}{b + c} + \frac{b}{c + a}} + \sqrt{\frac{b}{c + a} + \frac{c}{a + b}} + \sqrt{\frac{c}{a + b} + \frac{a}{b + c}} \ge 3$$
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Pertidaksamaan_Bentuk_Aljabar/HOTS/1.html#9">Pertidaksamaan Bentuk Aljabar</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Untuk sebarang bilangan real positif $x, y, z$, kita buktikan ketaksamaan kunci:</p>
+                    $$\sqrt{\frac{y}{z + x} + \frac{z}{x + y}} \ge \frac{2(y + z)(z + 2x + y)}{(z + x)(2y + z + x) + (x + y)(2z + x + y)}$$
+                    <p>Kuadratkan dan kalikan kedua ruas; perhatikan identitas berikut:</p>
+                    $$\left(\frac{y}{z+x} + \frac{z}{x+y}\right)\frac{\bigl((z+x)(2y+z+x)+(x+y)(2z+x+y)\bigr)^2}{(y+z)^2(z+2x+y)^2} - 8\frac{y^2+z^2+xy+xz}{(y+z)(z+2x+y)} = \frac{(y^2+z^2+xy+xz)(2x^2-y^2-z^2)^2}{(z+x)(x+y)(y+z)^2(z+2x+y)^2} \ge 0$$
+                    <p>Padahal, $2\dfrac{y^2 + z^2 + xy + xz}{(y + z)(z + 2x + y)} - 1 = \dfrac{(y - z)^2}{(y + z)(z + 2x + y)} \ge 0$, sehingga suku pengurang $8\dfrac{y^2 + z^2 + xy + xz}{(y + z)(z + 2x + y)} \ge 4$. Ini membuktikan ketaksamaan kunci.</p>
+                    <p>Selanjutnya, misalkan $N(x, y, z) = 2(y + z)(z + 2x + y)$ dan $D(x, y, z) = (z + x)(2y + z + x) + (x + y)(2z + x + y)$. Penjabaran langsung memberi $N(x, y, z) - D(x, y, z) = y^2 + z^2 - 2x^2$, sehingga:</p>
+                    $$\sum_{\text{siklik}} \frac{N(a, b, c)}{D(a, b, c)} = 3 + \sum_{\text{siklik}} \frac{b^2 + c^2 - 2a^2}{D(a, b, c)}$$
+                    <p>Karena $D(a, b, c) = 2a^2 + b^2 + c^2 + 4(ab + bc + ca)$, apabila $a \ge b \ge c$ maka baik $b^2 + c^2 - 2a^2$ maupun $\dfrac{1}{D(a, b, c)}$ terurut sama (menaik/membalik searah). Dengan Ketaksamaan Chebyshev:</p>
+                    $$\sum_{\text{siklik}} \frac{b^2 + c^2 - 2a^2}{D(a, b, c)} \ge \frac{1}{3}\left(\sum_{\text{siklik}} (b^2 + c^2 - 2a^2)\right)\left(\sum_{\text{siklik}} \frac{1}{D(a, b, c)}\right) = 0$$
+                    <div class="kesimpulan">Terbukti bahwa $\displaystyle \sum_{\text{siklik}} \sqrt{\frac{a}{b + c} + \frac{b}{c + a}} \ge 3$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- No. 8 -->
+        <article class="soal-item" id="A8">
+            <div class="soal-no">No. 8</div>
+            <div class="soal-teks">
+                Diketahui ada $3$ gedung berbentuk sama yang lokasinya membentuk segitiga sama sisi. Masing-masing gedung memiliki $2015$ lantai dengan setiap lantainya tepat memiliki $1$ jendela. Pada ketiga gedung, setiap lantai $1$ tidak berpenghuni, sedangkan masing-masing lantai yang lain mempunyai tepat satu penghuni.
+                <br><br>
+                Semua jendela akan diwarnai dengan salah satu dari warna merah, hijau, atau biru. Sang penghuni masing-masing lantai pada suatu gedung dapat melihat warna jendela pada kedua gedung yang lain untuk lantai yang sama dan satu lantai tepat di bawahnya, tetapi dia tidak bisa melihat warna jendela-jendela yang lain pada kedua gedung tersebut. Selain itu, sang penghuni tidak dapat melihat warna jendela dari lantai manapun pada gedungnya sendiri.
+                <br><br>
+                Kita ingin mewarnai jendela-jendela tersebut agar setiap penghuni dapat melihat paling sedikit $1$ jendela dari setiap warna. Ada berapa cara mewarnai jendela-jendela tersebut?
+            </div>
+            <div class="soal-sumber"><strong>Topik:</strong> <a href="../../Aturan_Pencacahan/HOTS/4.html#33">Aturan Pencacahan</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan kode warna $1 = \text{merah}$, $2 = \text{hijau}$, $3 = \text{biru}$, dan nyatakan triplet warna jendela pada lantai $k$ di gedung $A, B, C$ sebagai $T_k = (a_k, b_k, c_k)$ untuk $1 \le k \le 2015$. Penghuni lantai $k + 1$ ($1 \le k \le 2014$) dapat melihat tepat tiga pasang pasangan dua jendela: $(b_k, c_k, b_{k+1}, c_{k+1})$ untuk penghuni $A$, $(a_k, c_k, a_{k+1}, c_{k+1})$ untuk penghuni $B$, dan $(a_k, b_k, a_{k+1}, b_{k+1})$ untuk penghuni $C$, yang masing-masing harus memuat ketiga warna $\{1, 2, 3\}$.</p>
+                    <p>Analisis pilihan $T_{k+1}$ berdasarkan banyaknya warna berbeda pada $T_k$:</p>
+                    <ul>
+                        <li><strong>Kasus 1 ($T_k$ memakai $1$ warna):</strong> Misal $T_k = (1, 1, 1)$. Setiap pasang $(b_{k+1}, c_{k+1})$, $(a_{k+1}, c_{k+1})$, $(a_{k+1}, b_{k+1})$ harus memuat warna $2$ dan $3$, yang mustahil karena hanya ada $2$ posisi per pasang. Jadi $0$ cara.</li>
+                        <li><strong>Kasus 2 ($T_k$ memakai $2$ warna):</strong> Misal $T_k = (1, 1, 2)$. Penghuni $B$ dan $C$ sudah melihat $\{1, 2\}$, sehingga $a_{k+1}, c_{k+1}$ wajib memuat $3$ dan $a_{k+1}, b_{k+1}$ wajib memuat $3$. Sementara penghuni $A$ (melihat $1, 2$ di lantai $k$) juga butuh $3$, sehingga tepat dua dari $(a_{k+1}, b_{k+1}, c_{k+1})$ harus $3$? Tepatnya: jika $a_{k+1} = 3$, maka penghuni $A$ tetap butuh $3$ di $(b_{k+1}, c_{k+1})$, sedangkan penghuni $B$ dan $C$ sudah mendapat $3$ dari $a_{k+1}$. Agar penghuni $A$ mendapat $3$ dan tak ada kontradiksi, satu-satunya solusi adalah $T_{k+1} \in \{(2, 3, 3), (3, 2, 3)\}$? Cek: untuk $T_{k+1} = (2, 3, 3)$, penghuni $A$ melihat $\{1, 2, 3\}$, $B$ melihat $\{1, 2, 2, 3\}$, $C$ melihat $\{1, 1, 2, 3\}$ (valid!). Untuk $T_{k+1} = (3, 2, 3)$: $A$ melihat $\{1, 2, 2, 3\}$, $B$ melihat $\{1, 2, 3, 3\}$, $C$ melihat $\{1, 1, 3, 2\}$ (valid!). Dan jika $b_{k+1} = 3, c_{k+1} = 3$, apakah $(1, 3, 3)$ valid? Penghuni $C$ melihat $\{1, 1, 1, 3\}$ (kurang warna $2$!). Jadi tepat <strong>$2$</strong> pilihan valid untuk $T_{k+1}$, dan masing-masing tetap memakai $2$ warna!</li>
+                        <li><strong>Kasus 3 ($T_k$ memakai $3$ warna):</strong> Misal $T_k = (1, 2, 3)$. Penghuni $A$ butuh $1$ di $(b_{k+1}, c_{k+1})$, $B$ butuh $2$ di $(a_{k+1}, c_{k+1})$, dan $C$ butuh $3$ di $(a_{k+1}, b_{k+1})$. Hal ini memaksa $T_{k+1}$ merupakan derangement dari $(1, 2, 3)$, yakni tepat <strong>$2$</strong> pilihan: $(2, 3, 1)$ atau $(3, 1, 2)$ (keduanya tetap memakai $3$ warna).</li>
+                    </ul>
+                    <p>Untuk lantai $1$, $T_1$ harus memakai $2$ atau $3$ warna. Banyaknya $T_1$ dengan $2$ warna adalah $3 \times 2 \times \binom{3}{1} = 18$, dan dengan $3$ warna adalah $3! = 6$, sehingga ada $n_1 = 18 + 6 = 24$ pilihan valid untuk $T_1$. Setiap langkah $T_k \to T_{k+1}$ ($1 \le k \le 2014$) selalu mempunyai tepat $2$ pilihan.</p>
+                    <p>Jadi total cara pewarnaan adalah $24 \times 2^{2014} = 3 \times 2^{2017}$.</p>
+                    <div class="kesimpulan">Jadi, banyaknya cara mewarnai jendela-jendela tersebut adalah <strong>$3 \times 2^{2017}$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script>
+        (function () {
+            function renderDiagrams() {
+                if (typeof GeoSVG === "undefined") return;
+
+                if (document.getElementById("geo-osn15-3")) {
+                    const g3 = new GeoSVG("geo-osn15-3", { width: 320, height: 240, viewBox: [-160, -120, 320, 240] });
+                    const O = { x: 0, y: 10 }, R = 82;
+                    const A = { x: O.x + R * Math.cos(-1.85), y: O.y + R * Math.sin(-1.85) };
+                    const B = { x: O.x + R * Math.cos(2.45), y: O.y + R * Math.sin(2.45) };
+                    const C = { x: O.x + R * Math.cos(0.45), y: O.y + R * Math.sin(0.45) };
+                    const proj = (P, P1, P2) => {
+                        const dx = P2.x - P1.x, dy = P2.y - P1.y;
+                        const t = ((P.x - P1.x) * dx + (P.y - P1.y) * dy) / (dx * dx + dy * dy);
+                        return { x: P1.x + t * dx, y: P1.y + t * dy };
+                    };
+                    const E = proj(B, A, C), F = proj(C, A, B);
+                    const rayCircle = (P, Q) => {
+                        const dx = Q.x - P.x, dy = Q.y - P.y;
+                        const a = dx * dx + dy * dy;
+                        const b = 2 * ((P.x - O.x) * dx + (P.y - O.y) * dy);
+                        const c = (P.x - O.x) ** 2 + (P.y - O.y) ** 2 - R * R;
+                        const t = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);
+                        return { x: P.x + t * dx, y: P.y + t * dy };
+                    };
+                    const X = rayCircle(B, E), Y = rayCircle(C, F);
+                    const M = { x: (X.x + Y.x) / 2, y: (X.y + Y.y) / 2 };
+                    g3.buatLingkaran(O, R, { stroke: "var(--text-muted)", strokeWidth: 1.1, fill: "none" });
+                    g3.buatSegmen(A, B, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g3.buatSegmen(B, C, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g3.buatSegmen(C, A, { stroke: "var(--text-main)", strokeWidth: 1.5 });
+                    g3.buatSegmen(B, X, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.1, dashArray: "3,3" });
+                    g3.buatSegmen(C, Y, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.1, dashArray: "3,3" });
+                    g3.buatSegmen(X, Y, { stroke: "#dc2626", strokeWidth: 1.2 });
+                    g3.buatSegmen(A, O, { stroke: "#2563eb", strokeWidth: 1.3 });
+                    g3.buatTitik(A, { label: "A", labelPosition: "top-center", size: 2.8, color: "var(--text-main)" });
+                    g3.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 2.8, color: "var(--text-main)" });
+                    g3.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 2.8, color: "var(--text-main)" });
+                    g3.buatTitik(X, { label: "X", labelPosition: "top-right", size: 2.5, color: "#dc2626" });
+                    g3.buatTitik(Y, { label: "Y", labelPosition: "top-left", size: 2.5, color: "#dc2626" });
+                    g3.buatTitik(M, { label: "M", labelPosition: "top-center", size: 2.6, color: "#2563eb" });
+                    g3.buatTitik(O, { label: "O", labelPosition: "bottom-center", size: 2.6, color: "#2563eb" });
+                }
+
+                if (document.getElementById("geo-osn15-6")) {
+                    const g6 = new GeoSVG("geo-osn15-6", { width: 320, height: 245, viewBox: [-160, -115, 320, 245] });
+                    const O = { x: 0, y: 0 }, R = 74;
+                    const A = { x: O.x + R * Math.cos(-1.85), y: O.y + R * Math.sin(-1.85) };
+                    const D = { x: 2 * O.x - A.x, y: 2 * O.y - A.y };
+                    const B = { x: O.x + R * Math.cos(2.4), y: O.y + R * Math.sin(2.4) };
+                    const C = { x: O.x + R * Math.cos(0.45), y: O.y + R * Math.sin(0.45) };
+                    const P = { x: (B.x + C.x) / 2, y: (B.y + C.y) / 2 };
+                    const lineInt = (P1, P2, P3, P4) => {
+                        const a1 = P2.y - P1.y, b1 = P1.x - P2.x, c1 = a1 * P1.x + b1 * P1.y;
+                        const a2 = P4.y - P3.y, b2 = P3.x - P4.x, c2 = a2 * P3.x + b2 * P3.y;
+                        const det = a1 * b2 - a2 * b1;
+                        return { x: (b2 * c1 - b1 * c2) / det, y: (a1 * c2 - a2 * c1) / det };
+                    };
+                    const Pperp = { x: P.x - (P.y - A.y), y: P.y + (P.x - A.x) };
+                    const E = lineInt(P, Pperp, D, B);
+                    const F = lineInt(P, Pperp, D, C);
+                    const Dperp = { x: D.x - (C.y - B.y), y: D.y + (C.x - B.x) };
+                    const Q = lineInt(D, Dperp, E, F);
+                    g6.buatLingkaran(O, R, { stroke: "var(--text-muted)", strokeWidth: 1.1, fill: "none" });
+                    g6.buatSegmen(A, B, { stroke: "var(--text-main)", strokeWidth: 1.4 });
+                    g6.buatSegmen(B, C, { stroke: "var(--text-main)", strokeWidth: 1.4 });
+                    g6.buatSegmen(C, A, { stroke: "var(--text-main)", strokeWidth: 1.4 });
+                    g6.buatSegmen(A, D, { stroke: "var(--text-muted)", strokeWidth: 1.0, dashArray: "3,3" });
+                    g6.buatSegmen(D, E, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.1 });
+                    g6.buatSegmen(D, F, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.1 });
+                    g6.buatSegmen(E, F, { stroke: "#dc2626", strokeWidth: 1.3 });
+                    g6.buatSegmen(A, P, { stroke: "#2563eb", strokeWidth: 1.1, dashArray: "3,3" });
+                    g6.buatSegmen(D, Q, { stroke: "#2563eb", strokeWidth: 1.2 });
+                    g6.buatTitik(A, { label: "A", labelPosition: "top-center", size: 2.7, color: "var(--text-main)" });
+                    g6.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 2.7, color: "var(--text-main)" });
+                    g6.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 2.7, color: "var(--text-main)" });
+                    g6.buatTitik(D, { label: "D", labelPosition: "bottom-center", size: 2.7, color: "var(--teal-primary, #0d9488)" });
+                    g6.buatTitik(P, { label: "P", labelPosition: "top-right", size: 2.5, color: "#2563eb" });
+                    g6.buatTitik(E, { label: "E", labelPosition: "bottom-left", size: 2.5, color: "#dc2626" });
+                    g6.buatTitik(F, { label: "F", labelPosition: "top-right", size: 2.5, color: "#dc2626" });
+                    g6.buatTitik(Q, { label: "Q", labelPosition: "bottom-right", size: 2.5, color: "#2563eb" });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams);
+            else renderDiagrams();
+        })();
+    </script>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

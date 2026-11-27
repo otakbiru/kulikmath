@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+
 
     <!-- Style Blog -->
     <link rel="stylesheet" href="../../scr/style.css">
@@ -177,9 +183,114 @@
             </div>
         </article>
 
+        <!-- SOAL 57 -->
+        <article class="soal-item" id="57">
+            <div class="soal-no">No. 57</div>
+            <div class="soal-teks">
+                Suatu permutasi $a_1, a_2, \dots, a_{10}$ dari $\{1, 2, \dots, 10\}$ dikatakan sebagai suatu permutasi yang <em>hampir naik</em> jika terdapat tepat satu indeks $i$ sehingga $a_{i-1} &gt; a_i$. Banyaknya permutasi hampir naik yang mungkin adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202015.html#A18">OSK SMA 2015 (No. 18)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Permutasi hampir naik terdiri dari dua blok menaik yang dipisahkan oleh tepat satu penurunan $(a_{i-1}, a_i)$.</p>
+                    <p>Setiap permutasi demikian ditentukan secara unik dengan memilih himpunan bagian $A$ untuk blok kiri ($|A| = t$, $1 \le t \le 9$, dengan $A \neq \{1, 2, \dots, t\}$ agar ada penurunan), lalu mengurutkan $A$ menaik dan komplemennya menaik:</p>
+                    $$\sum_{t=1}^{9} \left(\binom{10}{t} - 1\right) = (2^{10} - 2) - 9 = 1022 - 9 = 1013$$
+                    <div class="kesimpulan">Jadi, banyaknya permutasi hampir naik adalah <strong>$1013$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 58 -->
+        <article class="soal-item" id="58">
+            <div class="soal-no">No. 58</div>
+            <div class="soal-teks">
+                Diketahui susunan $4 \times 5$ titik yang jarak ke kanan sama dan jarak ke bawah sama. Ada berapa segitiga (dengan luas positif) yang titik-titik sudutnya adalah ketiga titik pada susunan tersebut?
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202015.html#A20">OSK SMA 2015 (No. 20)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osk15-20" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Total cara memilih $3$ titik dari $20$ titik adalah $\binom{20}{3} = 1140$. Kurangi dengan tripel titik yang segaris:</p>
+                    <ul>
+                        <li>Horizontal ($4$ baris $\times 5$ titik): $4\binom{5}{3} = 40$.</li>
+                        <li>Vertikal ($5$ kolom $\times 4$ titik): $5\binom{4}{3} = 20$.</li>
+                        <li>Diagonal $\pm 1$ ($2$ garis $3$-titik dan $2$ garis $4$-titik per arah): $2 \times \left(2\binom{3}{3} + 2\binom{4}{3}\right) = 20$.</li>
+                        <li>Gradien $\pm \frac{1}{2}$ dan $\pm 2$: hanya ada $4$ garis yang memuat tepat $3$ titik (masing-masing bergradien $\frac{1}{2}, -\frac{1}{2}, 2, -2$? Cek: pada grid $4 \times 5$, yaitu lebar $4$, tinggi $3$: langkah $(2,1)$ butuh lebar $4$, tinggi $2 \to$ ada $2$ garis gradien $+\frac{1}{2}$ dan $2$ garis gradien $-\frac{1}{2}$; langkah $(1,2)$ butuh tinggi $4$ yang tidak cukup pada $4$ baris!). Jadi ada $4$ tripel segaris.</li>
+                    </ul>
+                    <p>Banyaknya segitiga adalah $1140 - (40 + 20 + 20 + 4) = 1056$.</p>
+                    <div class="kesimpulan">Jadi, banyaknya segitiga adalah <strong>$1056$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 59 -->
+        <article class="soal-item" id="59">
+            <div class="soal-no">No. 59</div>
+            <div class="soal-teks">
+                Dalam suatu pesta, setiap pria berjabat tangan dengan pria lain hanya sekali. Demikian juga, setiap wanita hanya berjabat tangan sekali dengan wanita lain yang hadir dalam pesta tersebut. Tidak ada yang berjabat tangan antara pria dan wanita dalam pesta tersebut. Jika banyaknya pria yang hadir dalam pesta lebih banyak dari wanita dan jumlah jabat tangan antara pria atau wanita ada $7$ jabat tangan. Banyaknya pria yang hadir dalam pesta tersebut adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202015.html#A3">OSP SMA 2015 (No. 3)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan banyaknya pria $x$ dan wanita $y$ ($x &gt; y$). Maka $\binom{x}{2} + \binom{y}{2} = 7$.</p>
+                    <p>Karena $x &gt; y$, maka $4 \le \binom{x}{2} \le 7$, dan nilai $\binom{x}{2}$ yang mungkin hanyalah $\binom{4}{2} = 6$, yang memberi $\binom{y}{2} = 1 \implies y = 2$.</p>
+                    <div class="kesimpulan">Jadi, banyaknya pria yang hadir adalah <strong>$4$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 60 -->
+        <article class="soal-item" id="60">
+            <div class="soal-no">No. 60</div>
+            <div class="soal-teks">
+                Ada $10$ orang, lima laki-laki dan lima perempuan, termasuk sepasang pengantin. Seorang tukang foto yang bukan salah satu di antara $10$ orang tersebut akan mengambil gambar enam orang di antara mereka, termasuk kedua pengantin, dengan tidak ada dua laki-laki maupun dua perempuan yang berdekatan. Banyaknya cara adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202015.html#A7">OSP SMA 2015 (No. 7)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena $6$ orang disusun bergantian (<code>LPLPLP</code> atau <code>PLPLPL</code>), harus terpilih $3$ laki-laki dan $3$ perempuan. Kedua pengantin sudah termasuk, sehingga perlu memilih $2$ laki-laki dari $4$ dan $2$ perempuan dari $4$: $\binom{4}{2}\binom{4}{2} = 36$ cara.</p>
+                    <p>Untuk setiap pilihan, ada $2$ pola selang-seling, dan masing-masing memberi $3! \cdot 3! = 36$ susunan:</p>
+                    $$36 \times 2 \times 36 = 2592$$
+                    <div class="kesimpulan">Jadi, banyaknya cara adalah <strong>$2592$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
+    <script>
+        (function () {
+            function renderDiagrams2015() {
+                if (typeof GeoSVG === "undefined") return;
+                const c20 = document.getElementById("geo-osk15-20");
+                if (c20 && !c20.querySelector("svg")) {
+                    const g20 = new GeoSVG(c20, { width: 200, height: 155 });
+                    const s = 34, ox = 32, oy = 26;
+                    for (let r = 0; r < 4; r++) {
+                        for (let c = 0; c < 5; c++) {
+                            g20.buatTitik({ x: ox + c * s, y: oy + r * s }, { size: 3.2, color: "var(--text-main)" });
+                        }
+                    }
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2015);
+            else renderDiagrams2015();
+        })();
+    </script>
+
 
     <script src="../../scr/script.js"></script>
 </body>

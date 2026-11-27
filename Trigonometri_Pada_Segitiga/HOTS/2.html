@@ -88,6 +88,50 @@
             </div>
         </article>
 
+        <!-- SOAL 13 -->
+        <article class="soal-item" id="13">
+            <div class="soal-no">No. 13</div>
+            <div class="soal-teks">
+                Panjang sisi-sisi segitiga merupakan bilangan bulat berurutan, dan sudut terbesar dua kali sudut terkecil. Nilai cosinus sudut terkecil adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202015.html#A8">OSP SMA 2015 (No. 8)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan sisi-sisinya $n - 1, n, n + 1$ ($n \ge 3$), sudut terkecil $\alpha$, dan sudut terbesar $2\alpha$. Dengan Aturan Sinus:</p>
+                    $$\frac{n + 1}{\sin 2\alpha} = \frac{n - 1}{\sin\alpha} \implies \cos\alpha = \frac{n + 1}{2(n - 1)}$$
+                    <p>Dengan Aturan Cosinus untuk sudut $\alpha$:</p>
+                    $$(n - 1)^2 = n^2 + (n + 1)^2 - 2n(n + 1)\left(\frac{n + 1}{2(n - 1)}\right) \implies (n + 1)^2 = (n + 4)(n - 1) \implies n = 5$$
+                    <p>Jadi segitiga bersisi $4, 5, 6$ dan $\cos\alpha = \dfrac{5 + 1}{2(5 - 1)} = \dfrac{3}{4}$.</p>
+                    <div class="kesimpulan">Jadi, nilai cosinus sudut terkecil adalah <strong>$\dfrac{3}{4}$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 14 -->
+        <article class="soal-item" id="14">
+            <div class="soal-no">No. 14</div>
+            <div class="soal-teks">
+                Diberikan segitiga sama kaki $ABC$, dengan $AB = AC = b$, $BC = a$, dan $\angle BAC = 100^\circ$. Jika $BL$ garis bagi $\angle ABC$, maka nilai $AL + BL$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202015.html#A20">OSP SMA 2015 (No. 20)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osp15-20" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Karena $\triangle ABC$ sama kaki dengan $\angle A = 100^\circ$, maka $\angle B = \angle C = 40^\circ$, $\angle ABL = 20^\circ$, dan $\angle ALB = 60^\circ$. Dengan Aturan Sinus pada $\triangle ABC$ dan $\triangle ABL$:</p>
+                    $$b = \frac{a \sin 40^\circ}{\sin 100^\circ} = \frac{a \sin 40^\circ}{\cos 10^\circ}, \qquad AL = \frac{b \sin 20^\circ}{\sin 60^\circ}, \qquad BL = \frac{b \sin 100^\circ}{\sin 60^\circ}$$
+                    <p>Jumlahkan $AL + BL$ menggunakan identitas $\sin 20^\circ + \sin 100^\circ = 2\sin 60^\circ \cos 40^\circ$:</p>
+                    $$AL + BL = \frac{b(\sin 20^\circ + \sin 100^\circ)}{\sin 60^\circ} = 2b\cos 40^\circ = \frac{a \cdot 2\sin 40^\circ \cos 40^\circ}{\cos 10^\circ} = \frac{a\sin 80^\circ}{\cos 10^\circ} = a$$
+                    <div class="kesimpulan">Jadi, nilai $AL + BL$ adalah <strong>$a$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -131,6 +175,28 @@
             else renderDiagram();
         })();
     </script>
+    <script>
+        (function () {
+            function renderDiagrams2015() {
+                if (typeof GeoSVG === "undefined") return;
+                const c20 = document.getElementById("geo-osp15-20");
+                if (c20 && !c20.querySelector("svg")) {
+                    const g20 = new GeoSVG(c20, { width: 230, height: 130 });
+                    const A = { x: 115, y: 26 }, B = { x: 35, y: 98 }, C = { x: 195, y: 98 };
+                    const L = { x: A.x + 0.38 * (C.x - A.x), y: A.y + 0.38 * (C.y - A.y) };
+                    g20.buatSegitiga(A, B, C, { fill: "rgba(100,116,139,0.04)", stroke: "var(--text-main)", strokeWidth: 1.7 });
+                    g20.buatSegmen(B, L, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.5 });
+                    g20.buatTitik(A, { label: "A", labelPosition: "top-center", size: 3, color: "var(--text-main)" });
+                    g20.buatTitik(B, { label: "B", labelPosition: "bottom-left", size: 3, color: "var(--text-main)" });
+                    g20.buatTitik(C, { label: "C", labelPosition: "bottom-right", size: 3, color: "var(--text-main)" });
+                    g20.buatTitik(L, { label: "L", labelPosition: "top-right", size: 3, color: "var(--teal-primary, #0d9488)" });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2015);
+            else renderDiagrams2015();
+        })();
+    </script>
+
 
     <script src="../../scr/script.js"></script>
 </body>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS - Bilangan Prima [4]</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah soal tingkat <span id="auto-level" class="level-highlight">...</span>
+                materi <span class="topic-highlight">Bilangan Prima</span>
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <div class="pagination-wrapper" style="margin-top: 0; margin-bottom: 1.5rem;"></div>
+
+        <!-- SOAL 31 -->
+        <article class="soal-item" id="31">
+            <div class="soal-no">No. 31</div>
+            <div class="soal-teks">
+                Suatu bilangan asli disebut <em>cantik</em> jika dapat dinyatakan dalam bentuk $\dfrac{x^2 + y^2}{x + y}$ untuk suatu bilangan asli $x$ dan $y$ yang berbeda.
+                <ol type="a">
+                    <li>Tunjukkan bahwa $2014$ dapat dituliskan sebagai perkalian bilangan cantik dan bilangan tidak cantik.</li>
+                    <li>Buktikan bahwa hasil perkalian dua bilangan tidak cantik tetap tidak cantik.</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2014.html#A8">OSN SMA 2014</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Karakterisasi bilangan cantik:</strong> Misalkan $d = \operatorname{FPB}(x, y)$, $x = da$, $y = db$ dengan $\operatorname{FPB}(a, b) = 1$ dan $(a, b) \neq (1, 1)$. Syarat $(a + b) \mid d(a^2 + b^2)$:</p>
+                    <ul>
+                        <li>Jika $a, b$ berbeda paritas, $\operatorname{FPB}(a + b, a^2 + b^2) = 1 \implies d = e(a + b)$, sehingga $\dfrac{x^2 + y^2}{x + y} = e(a^2 + b^2)$.</li>
+                        <li>Jika $a, b$ keduanya ganjil, $\operatorname{FPB}(a + b, a^2 + b^2) = 2 \implies d = \frac{1}{2}e(a + b)$, sehingga $\dfrac{x^2 + y^2}{x + y} = e\left(\left(\frac{a+b}{2}\right)^2 + \left(\frac{a-b}{2}\right)^2\right)$.</li>
+                    </ul>
+                    <p>Jadi $n$ cantik jika dan hanya jika $n = e(a^2 + b^2)$ dengan $a, b$ koprima berbeda paritas, yakni <strong>$n$ memiliki faktor prima $p \equiv 1 \pmod 4$</strong>.</p>
+                    <p><strong>a.</strong> $2014 = 2 \cdot 19 \cdot 53$. Karena $53 \equiv 1 \pmod 4$ cantik ($\frac{18^2 + 63^2}{18 + 63} = 53$) dan $38 = 2 \cdot 19$ tidak cantik, $2014 = 53 \times 38$.</p>
+                    <p><strong>b.</strong> Jika $A$ dan $B$ tidak cantik, keduanya tidak memiliki faktor prima $\equiv 1 \pmod 4$, sehingga $AB$ juga tidak memiliki faktor prima $\equiv 1 \pmod 4$ dan tetap tidak cantik.</p>
+                    <div class="kesimpulan">Terbukti bahwa $2014 = 53 \times 38$ dan hasil kali dua bilangan tidak cantik tetap tidak cantik.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 32 -->
+        <article class="soal-item" id="32">
+            <div class="soal-no">No. 32</div>
+            <div class="soal-teks">
+                Banyaknya bilangan asli $n \le 2015$ yang dapat dinyatakan dalam bentuk $n = a + b$ dengan $a, b$ bilangan asli yang memenuhi $a - b$ bilangan prima dan $ab$ bilangan kuadrat sempurna adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202015.html#A14">OSK SMA 2015 (No. 14)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena $a - b = p$ prima, maka $\operatorname{FPB}(a, b) = 1$. Karena $ab$ kuadrat sempurna dan $\operatorname{FPB}(a, b) = 1$, maka $a = k^2$ dan $b = m^2$ ($k &gt; m \ge 1$).</p>
+                    <p>Dari $(k - m)(k + m) = p$ dengan $p$ prima, wajib $k - m = 1$ dan $k + m = p$ (sehingga $p$ ganjil), yakni $k = \dfrac{p+1}{2}$ dan $m = \dfrac{p-1}{2}$.</p>
+                    <p>Maka $n = a + b = \left(\dfrac{p+1}{2}\right)^2 + \left(\dfrac{p-1}{2}\right)^2 = \dfrac{p^2 + 1}{2} \le 2015 \implies p^2 \le 4029 \implies p \le 63$.</p>
+                    <p>Banyaknya bilangan prima ganjil $p \le 63$ ($3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61$) adalah $17$.</p>
+                    <div class="kesimpulan">Jadi, banyaknya bilangan asli $n \le 2015$ adalah <strong>$17$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 33 -->
+        <article class="soal-item" id="33">
+            <div class="soal-no">No. 33</div>
+            <div class="soal-teks">
+                Misalkan $p_1, p_2, \dots, p_n$ barisan aritmetika dengan beda $b &gt; 0$ dan $p_i$ prima untuk setiap $i = 1, 2, \dots, n$.
+                <ol type="a">
+                    <li>Jika $p_1 &gt; n$, tunjukkan bahwa setiap bilangan prima $p$ dengan $p \le n$ membagi habis $b$.</li>
+                    <li>Berikan contoh barisan aritmetika $p_1, p_2, \dots, p_{10}$, dengan beda positif dan $p_i$ prima untuk $i = 1, 2, \dots, 10$.</li>
+                </ol>
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSP/OSP%20SMA%202015.html#A24">OSP SMA 2015 (No. 24)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>a.</strong> Ambil sebarang bilangan prima $p \le n$. Karena semua $p_i \ge p_1 &gt; n \ge p$ adalah prima, tidak ada $p_i$ yang habis dibagi $p$. Dengan Prinsip Sarang Merpati pada $p$ suku pertama $p_1, \dots, p_p$ terhadap $p - 1$ sisa tak nol modulo $p$, terdapat $1 \le j &lt; k \le p$ sehingga $p_k \equiv p_j \pmod p$.</p>
+                    <p>Jadi $p \mid (p_k - p_j) = (k - j)b$. Karena $0 &lt; k - j &lt; p$ dan $p$ prima, wajib $p \mid b$.</p>
+                    <p><strong>b.</strong> Contoh barisan aritmetika $10$ bilangan prima dengan beda $b = 210 = 2 \cdot 3 \cdot 5 \cdot 7$ dan $p_1 = 199$:</p>
+                    $$199,\ 409,\ 619,\ 829,\ 1039,\ 1249,\ 1459,\ 1669,\ 1879,\ 2089$$
+                    <div class="kesimpulan">Terbukti $p \mid b$ untuk setiap prima $p \le n$, dengan contoh untuk $n = 10$ di atas.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 34 -->
+        <article class="soal-item" id="34">
+            <div class="soal-no">No. 34</div>
+            <div class="soal-teks">
+                Untuk setiap bilangan asli $a, b$ notasikan dengan $[a, b]$ kelipatan persekutuan terkecil dari $a$ dan $b$ dan notasikan dengan $(a, b)$ faktor persekutuan terbesar dari $a$ dan $b$. Tentukan semua bilangan asli $n$ sehingga
+                $$4\sum_{k=1}^{n} [n, k] = 1 + \sum_{k=1}^{n} (n, k) + 2n^2 \sum_{k=1}^{n} \frac{1}{(n, k)}$$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSN/OSN%20SMA%202015.html#A2">OSN SMA 2015 (No. 2)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan $[n, k] = \dfrac{nk}{(n, k)}$, sehingga persamaan menjadi:</p>
+                    $$1 + \sum_{k=1}^{n} (n, k) + \sum_{k=1}^{n} \frac{2n(n - 2k)}{(n, k)} = 0$$
+                    <p>Untuk $k = 1, \dots, n - 1$, pasangkan $k$ dengan $n - k$: karena $(n, n - k) = (n, k)$ dan $2n(n - 2(n - k)) = -2n(n - 2k)$, semua suku ke-$1$ hingga ke-$(n-1)$ pada penjumlahan terakhir saling meniadakan (dan bila $n$ genap, suku $k = n/2$ bernilai $0$). Tersisa suku $k = n$, yaitu $\dfrac{2n(n - 2n)}{n} = -2n$, sehingga persamaan tereduksi menjadi:</p>
+                    $$1 + \sum_{k=1}^{n} (n, k) = 2n$$
+                    <p>Untuk $n = 1$: ruas kiri $1 + (1, 1) = 2 = 2(1)$ (terpenuhi; cek langsung: $4[1,1] = 4 = 1 + 1 + 2$).</p>
+                    <p>Untuk $n \ge 2$: pisahkan suku $k = n$ sehingga diperoleh $1 + \sum_{k=1}^{n-1} (n, k) = n$. Karena $(n, k) \ge 1$ untuk semua $1 \le k \le n - 1$, maka $\sum_{k=1}^{n-1} (n, k) \ge n - 1$, dengan kesamaan jika dan hanya jika $(n, k) = 1$ untuk semua $1 \le k \le n - 1$, yakni tepat apabila $n$ bilangan prima.</p>
+                    <div class="kesimpulan">Jadi, semua bilangan asli $n$ yang memenuhi adalah <strong>$n = 1$ dan semua bilangan prima</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- Pagination Bawah (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

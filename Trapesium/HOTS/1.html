@@ -259,6 +259,27 @@
             </div>
         </article>
 
+        <!-- SOAL 8 -->
+        <article class="soal-item" id="8">
+            <div class="soal-no">No. 8</div>
+            <div class="soal-teks">
+                Diberikan trapesium $ABCD$ dengan $AB$ sejajar $DC$ dan $AB = 84$ serta $DC = 25$. Jika trapesium $ABCD$ memiliki lingkaran dalam yang menyinggung keempat sisinya, keliling trapesium $ABCD$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202015.html#A4">OSK SMA 2015 (No. 4)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osk15-4" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Karena lingkaran dalam menyinggung keempat sisi di $E, F, G, H$, menurut sifat dua garis singgung dari titik luar berlaku $AE = AH$, $BE = BF$, $CG = CF$, dan $DG = DH$.</p>
+                    <p>Akibatnya $AD + BC = AB + DC$, sehingga keliling trapesium adalah:</p>
+                    $$K = 2(AB + DC) = 2(84 + 25) = 218$$
+                    <div class="kesimpulan">Jadi, keliling trapesium $ABCD$ adalah <strong>$218$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
@@ -427,6 +448,28 @@
             });
         })();
     </script>
+    <script>
+        (function () {
+            function renderDiagrams2015() {
+                if (typeof GeoSVG === "undefined") return;
+                const c4 = document.getElementById("geo-osk15-4");
+                if (c4 && !c4.querySelector("svg")) {
+                    const g4 = new GeoSVG(c4, { width: 230, height: 155 });
+                    const O = { x: 115, y: 82 }, r = 46;
+                    const A = { x: 40, y: 128 }, B = { x: 190, y: 128 }, C = { x: 150, y: 36 }, D = { x: 75, y: 36 };
+                    g4.buatPoligon([A, B, C, D], { fill: "rgba(100,116,139,0.04)", stroke: "var(--text-main)", strokeWidth: 1.7 });
+                    g4.buatLingkaran(O, r, { fill: "rgba(13,148,136,0.08)", stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.5 });
+                    g4.buatTitik(A, { label: "A", labelPosition: "bottom-left", size: 2.8, color: "var(--text-main)" });
+                    g4.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 2.8, color: "var(--text-main)" });
+                    g4.buatTitik(C, { label: "C", labelPosition: "top-right", size: 2.8, color: "var(--text-main)" });
+                    g4.buatTitik(D, { label: "D", labelPosition: "top-left", size: 2.8, color: "var(--text-main)" });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2015);
+            else renderDiagrams2015();
+        })();
+    </script>
+
 
     <script src="../../scr/script.js"></script>
 </body>

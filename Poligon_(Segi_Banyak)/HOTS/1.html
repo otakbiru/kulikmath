@@ -303,9 +303,69 @@
         </article>
         -->
 
+        <!-- SOAL 6 -->
+        <article class="soal-item" id="6">
+            <div class="soal-no">No. 6</div>
+            <div class="soal-teks">
+                Pada segilima beraturan $ABCDE$, diagonal-diagonalnya berpotongan di $F, G, H, I,$ dan $J$. Misalkan $S_1$ menyatakan luas segilima $ABCDE$ dan $S_2$ menyatakan luas segilima $FGHIJ$. Jika $\dfrac{S_1}{S_2} = \dfrac{m + \sqrt{n}}{k}$ (tertulis $m - \sqrt{n}$ pada naskah) dengan $k, m, n$ bilangan bulat positif dan $n$ tidak memiliki faktor kuadrat selain $1$, maka nilai dari $\dfrac{S_1}{S_2}$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber">Sumber: <a href="../../Arsip_Soal/OSK/OSK%20SMA%202015.html#A17">OSK SMA 2015 (No. 17)</a></div>
+            <button type="button" class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <div id="geo-osk15-17" class="geo-wrap" style="text-align:center; margin: 12px 0;"></div>
+                    <p>Karena segilima beraturan $ABCDE$ dan $FGHIJ$ sebangun, perbandingan luasnya adalah $\dfrac{S_1}{S_2} = \left(\dfrac{AB}{FG}\right)^2$.</p>
+                    <p>Pada bintang segilima beraturan, sudut-sudut segitiga kecilnya adalah $36^\circ, 72^\circ, 72^\circ$, sehingga perbandingan panjang sisi terhadap segmen diagonalnya memenuhi rasio emas $\varphi = \dfrac{1 + \sqrt{5}}{2}$:</p>
+                    $$\frac{AB}{FG} = \varphi^2 = \left(\frac{1 + \sqrt{5}}{2}\right)^2 = \frac{3 + \sqrt{5}}{2}$$
+                    <p>Oleh karena itu:</p>
+                    $$\frac{S_1}{S_2} = \left(\frac{3 + \sqrt{5}}{2}\right)^2 = \frac{14 + 6\sqrt{5}}{4} = \frac{7 + 3\sqrt{5}}{2}$$
+                    <p><em>Catatan:</em> Pada naskah soal terdapat salah cetak tanda ($\frac{m-\sqrt{n}}{k}$), sedangkan nilai kebalikannya $\dfrac{S_2}{S_1} = \dfrac{7 - 3\sqrt{5}}{2} = \dfrac{7 - \sqrt{45}}{2}$ (dengan $45$ memiliki faktor kuadrat $9$). Untuk bentuk baku $\dfrac{7 + 3\sqrt{5}}{2}$, rasio pastinya adalah $\dfrac{7 + 3\sqrt{5}}{2}$.</p>
+                    <div class="kesimpulan">Jadi, perbandingan $\dfrac{S_1}{S_2}$ adalah <strong>$\dfrac{7 + 3\sqrt{5}}{2}$</strong>.</div>
+                </div>
+                <button type="button" class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
     </main>
+    <script>
+        (function () {
+            function renderDiagrams2015() {
+                if (typeof GeoSVG === "undefined") return;
+                const c17 = document.getElementById("geo-osk15-17");
+                if (c17 && !c17.querySelector("svg")) {
+                    const g17 = new GeoSVG(c17, { width: 200, height: 195 });
+                    const O = { x: 100, y: 102 }, R = 74;
+                    const pt = i => {
+                        const a = (-90 + i * 72) * Math.PI / 180;
+                        return { x: O.x + R * Math.cos(a), y: O.y + R * Math.sin(a) };
+                    };
+                    const E = pt(0), A = pt(1), B = pt(2), C = pt(3), D = pt(4);
+                    const r2 = R * (3 - Math.sqrt(5)) / 2;
+                    const pt2 = i => {
+                        const a = (-54 + i * 72) * Math.PI / 180;
+                        return { x: O.x + r2 * Math.cos(a), y: O.y + r2 * Math.sin(a) };
+                    };
+                    const V = [0, 1, 2, 3, 4].map(pt2);
+                    g17.buatPoligon([E, A, B, C, D], { fill: "rgba(100,116,139,0.04)", stroke: "var(--text-main)", strokeWidth: 1.6 });
+                    for (const [P, Q] of [[E, B], [E, C], [A, C], [A, D], [B, D]]) {
+                        g17.buatSegmen(P, Q, { stroke: "var(--teal-primary, #0d9488)", strokeWidth: 1.2 });
+                    }
+                    g17.buatPoligon(V, { fill: "rgba(220,38,38,0.12)", stroke: "#dc2626", strokeWidth: 1.4 });
+                    g17.buatTitik(E, { label: "E", labelPosition: "top-center", size: 2.8, color: "var(--text-main)" });
+                    g17.buatTitik(A, { label: "A", labelPosition: "middle-right", size: 2.8, color: "var(--text-main)" });
+                    g17.buatTitik(B, { label: "B", labelPosition: "bottom-right", size: 2.8, color: "var(--text-main)" });
+                    g17.buatTitik(C, { label: "C", labelPosition: "bottom-left", size: 2.8, color: "var(--text-main)" });
+                    g17.buatTitik(D, { label: "D", labelPosition: "middle-left", size: 2.8, color: "var(--text-main)" });
+                }
+            }
+            if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderDiagrams2015);
+            else renderDiagrams2015();
+        })();
+    </script>
+
 
     <script src="../../scr/script.js"></script>
 
