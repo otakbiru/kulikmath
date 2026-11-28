@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polinom (Suku Banyak) - Soal HOTS (Bagian 7)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Polinom (Suku Banyak)</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+
+
+        <!-- SOAL 61 -->
+        <article class="soal-item" id="61">
+            <div class="soal-no">No. 61</div>
+            <div class="soal-teks">
+                Misalkan $P(x) = ax^2 + bx + c$ dengan $a, b, c$ real. Jika $P(a) = bc$, $P(b) = ca$, dan $P(c) = ab$, buktikan bahwa
+                $$(a - b)(b - c)(c - a)(a + b + c) = 0$$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2020.html#A2">OSN SMA 2020 (No. 2)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Andaikan $a, b, c$ saling berbeda (sehingga $a, b, c \neq 0$, karena jika salah satu $0$ misal $c = 0$, maka $P(0) = ab \implies c = ab \implies ab = 0$, melanggar perbedaan). Tinjau polinom kubik:</p>
+                    $$Q(x) = xP(x) - abc = ax^3 + bx^2 + cx - abc$$
+                    <p>Karena $Q(a) = aP(a) - abc = a(bc) - abc = 0$, dan serupa $Q(b) = Q(c) = 0$, maka $a, b, c$ adalah ketiga akar berbeda dari $Q(x)$, sehingga:</p>
+                    $$ax^3 + bx^2 + cx - abc = a(x - a)(x - b)(x - c)$$
+                    <p>Perbandingan konstanta memberi $-abc = -a \cdot abc \implies a = 1$ (karena $abc \neq 0$). Selanjutnya dari koefisien $x^2$, $x$, dan $1$ dengan $a = 1$:</p>
+                    $$b = -(1 + b + c) \implies 2b + c + 1 = 0, \qquad c = b + c + bc \implies b(c + 1) = 0$$
+                    <p>Karena $b \neq 0$, haruslah $c = -1$, sehingga $2b - 1 + 1 = 0 \implies b = 0$, kontradiksi! (Atau $a + b + c = 1 + 0 - 1 = 0$.)</p>
+                    <div class="kesimpulan"><strong>Terbukti</strong> bahwa $(a - b)(b - c)(c - a)(a + b + c) = 0$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 62 -->
+        <article class="soal-item" id="62">
+            <div class="soal-no">No. 62</div>
+            <div class="soal-teks">
+                Bilangan asli $n$ dikatakan <em>menarik</em> jika terdapat suku banyak (polinom) dengan koefisien bilangan bulat $P(x)$ sehingga $P(7) = 2021$ dan $P(n) = 2045$. Banyaknya bilangan prima menarik adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2021.html#A5">OSK SMA 2021 (No. 5)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Untuk setiap polinom berkoefisien bulat $P$, berlaku $(n - 7) \mid P(n) - P(7) = 2045 - 2021 = 24$.</p>
+                    <p>Sebaliknya, untuk setiap pembagi $d$ dari $24$, polinom linear $P(x) = \frac{24}{d}(x - 7) + 2021$ berkoefisien bulat dan memenuhi $P(7) = 2021, P(7 + d) = 2045$.</p>
+                    <p>Faktor bulat dari $24$ adalah $\pm 1, \pm 2, \pm 3, \pm 4, \pm 6, \pm 8, \pm 12, \pm 24$. Nilai $n = 7 + d$ yang merupakan bilangan prima adalah:</p>
+                    $$7 - 4 = 3,\quad 7 - 2 = 5,\quad 7 + 4 = 11,\quad 7 + 6 = 13,\quad 7 + 12 = 19,\quad 7 + 24 = 31$$
+                    <p>Ada $6$ bilangan prima menarik.</p>
+                    <div class="kesimpulan">Jadi, banyaknya bilangan prima menarik adalah <strong>$6$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 63 -->
+        <article class="soal-item" id="63">
+            <div class="soal-no">No. 63</div>
+            <div class="soal-teks">
+                Jika sisa pembagian $x^{2023} + x^{1012} + x^{506} + x^{253} + x^{127}$ oleh $x^2 - 1$ adalah $Ax + B$, maka nilai dari $3A + 4B = \cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2022.html#A5">OSK SMA 2022 (No. 5)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $P(x) = x^{2023} + x^{1012} + x^{506} + x^{253} + x^{127}$. Substitusi akar-akar $x^2 - 1 = 0$, yaitu $x = 1$ dan $x = -1$:</p>
+                    $$A + B = P(1) = 1 + 1 + 1 + 1 + 1 = 5$$
+                    $$-A + B = P(-1) = -1 + 1 + 1 - 1 - 1 = -1$$
+                    <p>Jumlahkan kedua persamaan: $2B = 4 \implies B = 2$, dan $A = 5 - 2 = 3$.</p>
+                    $$3A + 4B = 3(3) + 4(2) = 17$$
+                    <div class="kesimpulan">Jadi, nilai dari $3A + 4B$ adalah <strong>$17$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 64 -->
+        <article class="soal-item" id="64">
+            <div class="soal-no">No. 64</div>
+            <div class="soal-teks">
+                Misalkan $P(x)$ adalah sebuah polinomial dengan koefisien bilangan bulat sedemikian sehingga $P(6)P(38)P(57) + 19$ habis dibagi $114$. Jika $P(-13) = 479$ dan $P(0) \ge 0$, nilai terkecil yang mungkin dari $P(0)$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2022.html#A6">OSP SMA 2022 (No. 6)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena $114 = 2 \times 3 \times 19$ dan $P(x) \equiv P(y) \pmod{|x - y|}$:</p>
+                    <ul>
+                        <li>Modulo $13$: $P(0) \equiv P(-13) = 479 \equiv 11 \pmod{13}$.</li>
+                        <li>Modulo $19$: $P(6) \equiv P(-13) = 479 \equiv 4 \not\equiv 0$, dan $P(38) \equiv P(57) \equiv P(0) \pmod{19}$. Dari $19 \mid P(6)P(0)^2 + 19$, haruslah $19 \mid P(0)$.</li>
+                        <li>Modulo $3$: $P(6) \equiv P(57) \equiv P(0)$ dan $P(38) \equiv P(-13) \equiv 2 \pmod 3$. Dari $3 \mid 2P(0)^2 + 1$, diperoleh $P(0) \not\equiv 0 \pmod 3$.</li>
+                        <li>Modulo $2$: $P(6) \equiv P(38) \equiv P(0)$ dan $P(57) \equiv P(-13) \equiv 1 \pmod 2$. Dari $2 \mid P(0)^2 + 1$, diperoleh $P(0) \equiv 1 \pmod 2$.</li>
+                    </ul>
+                    <p>Kelipatan $19$ terkecil $\ge 0$ yang $\equiv 11 \pmod{13}$ (cek $19k \equiv 11 \pmod{13} \implies 6k \equiv 11 \implies k \equiv 4 \pmod{13}$): untuk $k = 4$, $19 \times 4 = 76$ (genap); untuk $k = 17$, $19 \times 17 = 323$ ($323 \equiv 1 \pmod 2$ dan $323 \equiv 2 \not\equiv 0 \pmod 3$). Contoh polinomnya $P(x) = -12x + 323$.</p>
+                    <div class="kesimpulan">Jadi, nilai terkecil yang mungkin dari $P(0)$ adalah <strong>$323$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 65 -->
+        <article class="soal-item" id="65">
+            <div class="soal-no">No. 65</div>
+            <div class="soal-teks">
+                Diketahui $P(x)$ suku banyak dengan koefisien bilangan bulat yang memenuhi $P(1) = 10$ dan $P(-1) = 22$.
+                <ol type="a">
+                    <li>Berikan contoh $P(x)$ sehingga $P(x) = 0$ memiliki suatu akar bilangan bulat.</li>
+                    <li>Jika $P(0) = 4$, tunjukkan bahwa $P(x) = 0$ tidak memiliki akar bilangan bulat.</li>
+                </ol>
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2022.html#A2">OSN SMA 2022 (No. 2)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>(a)</strong> Pilih $P(x) = x(16x - 6) = 16x^2 - 6x$, yang memenuhi $P(1) = 10$, $P(-1) = 22$, dan memiliki akar bulat $x = 0$.</p>
+                    <p><strong>(b)</strong> Andaikan $P(x) = 0$ memiliki akar bulat $r$. Karena $P(0) = 4, P(1) = 10, P(-1) = 22$, maka $r \notin \{0, 1, -1\}$. Sifat $(a - b) \mid P(a) - P(b)$ memberi:</p>
+                    $$r \mid P(r) - P(0) = -4, \qquad r - 1 \mid P(r) - P(1) = -10, \qquad r + 1 \mid P(r) - P(-1) = -22$$
+                    <p>Karena $r \mid 4$ dan $r \neq \pm 1$, maka $r \in \{\pm 2, \pm 4\}$ (genap). Cek keempatnya: tidak ada yang memenuhi $r - 1 \mid 10$ sekaligus $r + 1 \mid 22$ ($r = 2 \to r+1=3 \nmid 22$; $r = -2 \to r-1=-3 \nmid 10$; $r = 4 \to 3 \nmid 10$; $r = -4 \to -3 \nmid 22$).</p>
+                    <div class="kesimpulan"><strong>Terbukti</strong> pada (b) bahwa $P(x) = 0$ tidak memiliki akar bilangan bulat.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 66 -->
+        <article class="soal-item" id="66">
+            <div class="soal-header">
+                <div class="soal-no">No. 66</div>
+                <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2023.html#A9">OSK SMA 2023 (No. 9)</a></div>
+            </div>
+            <div class="soal-teks">
+                <p>Diketahui suku banyak $P(x)$ berkoefisien bilangan bulat memenuhi $P(r_1) = P(r_2) = 200$, di mana $r_1$ dan $r_2$ adalah akar-akar dari persamaan kuadrat $x^2 + x - 23 = 0$. Sisa pembagian $P(1)$ oleh $21$ adalah $\dots$</p>
+            </div>
+            <details class="pembahasan-box">
+                <summary>Pembahasan (Jawaban: $11$)</summary>
+                <div class="pembahasan-content">
+                    <p>Karena $P(r_1) - 200 = 0$ dan $P(r_2) - 200 = 0$, dan $x^2 + x - 23$ adalah polinomial kuadrat monik berkoefisien bulat dengan akar $r_1 \neq r_2$, maka $(x^2 + x - 23)$ membagi $P(x) - 200$ di $\mathbb{Z}[x]$.</p>
+                    <p>Artinya terdapat polinomial berkoefisien bulat $Q(x)$ sehingga:
+                    $$P(x) - 200 = (x^2 + x - 23)Q(x).$$
+                    Substitusikan $x = 1$:
+                    $$P(1) - 200 = (1^2 + 1 - 23)Q(1) = -21 Q(1).$$
+                    Karena $Q(1) \in \mathbb{Z}$, maka $P(1) \equiv 200 \pmod{21}$. Karena $200 = 21 \times 9 + 11$, sisa pembagian $P(1)$ oleh $21$ adalah $\mathbf{11}$.</p>
+                </div>
+            </details>
+        </article>
+
+        <!-- SOAL 67 -->
+        <article class="soal-item" id="67">
+            <div class="soal-header">
+                <div class="soal-no">No. 67</div>
+                <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2023.html#A12">OSP SMA 2023 (No. 12)</a></div>
+            </div>
+            <div class="soal-teks">
+                <p>Tentukan semua bilangan irasional $\alpha$ sedemikian sehingga $\alpha^3 - 15\alpha$ dan $\alpha^4 - 56\alpha$ keduanya merupakan bilangan rasional.</p>
+            </div>
+            <details class="pembahasan-box">
+                <summary>Pembahasan (Jawaban: $\alpha = 2 \pm \sqrt{3}$)</summary>
+                <div class="pembahasan-content">
+                    <p>Misalkan $p = \alpha^3 - 15\alpha \in \mathbb{Q}$ dan $q = \alpha^4 - 56\alpha \in \mathbb{Q}$. Maka $\alpha^3 = 15\alpha + p$, sehingga:
+                    $$\alpha^4 = \alpha(15\alpha + p) = 15\alpha^2 + p\alpha.$$
+                    Substitusi ke $q = \alpha^4 - 56\alpha$:
+                    $$15\alpha^2 + (p - 56)\alpha - q = 0.$$
+                    Karena $\alpha$ irasional dan memenuhi polinomial kuadrat berkoefisien rasional di atas, derajat polinomial minimal $\alpha$ atas $\mathbb{Q}$ adalah $2$. Bagi $x^3 - 15x - p$ oleh $x^2 + ax + b$ (di mana $a = \frac{p - 56}{15}, b = -\frac{q}{15}$, harus habis dibagi):
+                    $$x^3 - 15x - p = (x^2 + ax + b)(x - a) + (a^2 - b - 15)x + (ab - p).$$
+                    Karena $\alpha$ irasional, kedua koefisien sisanya harus $0$:
+                    $$b = a^2 - 15 \quad \text{dan} \quad p = ab = a(a^2 - 15).$$
+                    Padahal $p = 15a + 56$, sehingga:
+                    $$a^3 - 15a = 15a + 56 \iff a^3 - 30a - 56 = 0.$$
+                    Faktorkan dengan menguji pembagi $56$: coba $a = -4$: $(-4)^3 - 30(-4) - 56 = -64 + 120 - 56 = 0$. Jadi:
+                    $$(a + 4)(a^2 - 4a - 14) = 0.$$
+                    Karena $a = \frac{p - 56}{15} \in \mathbb{Q}$ sedangkan akar dari $a^2 - 4a - 14 = 0$ adalah $2 \pm 3\sqrt{2} \notin \mathbb{Q}$, haruslah $a = -4$.</p>
+                    <p>Maka $b = (-4)^2 - 15 = 1$, sehingga $\alpha$ adalah akar dari $x^2 - 4x + 1 = 0$, yaitu $\alpha = \mathbf{2 + \sqrt{3}}$ atau $\mathbf{2 - \sqrt{3}}$.</p>
+                </div>
+            </details>
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

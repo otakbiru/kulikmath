@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floor Function - Soal HOTS (Bagian 4)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Floor Function</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+
+
+        <!-- SOAL 31 -->
+        <article class="soal-item" id="31">
+            <div class="soal-no">No. 31</div>
+            <div class="soal-teks">
+                Untuk bilangan real $x$, simbol $\lceil x \rceil$ menyatakan bilangan bulat terkecil yang tidak lebih kecil daripada $x$, dan $\lfloor x \rfloor$ menyatakan bilangan bulat terbesar yang tidak lebih besar daripada $x$. Tentukan semua bilangan bulat tak negatif $k$ sehingga dapat ditemukan bilangan real positif tak bulat $x$ yang memenuhi sifat
+                $$\lfloor x + k \rfloor^{\lfloor x + k \rfloor} = \lceil x \rceil^{\lfloor x \rfloor} + \lfloor x \rfloor^{\lceil x \rceil}$$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2019.html#A19">OSP SMA 2019 (No. 19)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena $x &gt; 0$ bukan bilangan bulat, misalkan $n = \lfloor x \rfloor \ge 0$, sehingga $\lceil x \rceil = n + 1$ dan $\lfloor x + k \rfloor = n + k$. Persamaan menjadi:</p>
+                    $$(n + k)^{n + k} = (n + 1)^n + n^{n + 1}$$
+                    <ul>
+                        <li>Jika $n = 0$ ($0 &lt; x &lt; 1$), maka $k^k = 1^0 + 0^1 = 1$, yang dipenuhi oleh $k = 0$ (dengan konvensi $0^0 = 1$) maupun $k = 1$ ($1^1 = 1$). Namun pada $k = 0$, apakah $0^0$ didefinisikan? Biasanya $k = 1$ selalu valid ($1^1 = 1^0 + 0^1$), dan jika $0^0$ tidak terdefinisi maka hanya $k = 1$.</li>
+                        <li>Jika $n \ge 1$, perhatikan bahwa $n^{n+1} &lt; (n+1)^n + n^{n+1} &lt; 2(n+1)^{n+1} \le (n+2)^{n+1} &lt; (n+2)^{n+2}$? Cek $k = 0$: $n^n &lt; (n+1)^n + n^{n+1}$. Cek $k = 1$: $(n+1)^{n+1} = (n+1) \cdot (n+1)^n$, sedangkan $(n+1)^n + n^{n+1} &lt; (n+1)^n + n(n+1)^n = (n+1)^{n+1}$ untuk $n \ge 1$! Dan untuk $k \ge 2$: $(n+k)^{n+k} \ge (n+2)^{n+2} &gt; (n+1)^{n+1} &gt; (n+1)^n + n^{n+1}$. Jadi tidak ada solusi untuk $n \ge 1$.</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, bilangan bulat tak negatif $k$ yang memenuhi adalah <strong>$k = 1$</strong> (atau juga $k = 0$ jika $0^0 = 1$ dipakai).</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 32 -->
+        <article class="soal-item" id="32">
+            <div class="soal-no">No. 32</div>
+            <div class="soal-teks">
+                Banyaknya bilangan asli $n &lt; 800$ sehingga $8$ membagi $\left\lfloor \dfrac{n}{5} \right\rfloor$, namun $8$ tidak membagi $n$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2020.html#A1">OSP SMA 2020 (No. 1)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Tulis $n = 5p + q$ dengan $p \ge 0$ bulat dan $q \in \{0, 1, 2, 3, 4\}$, sehingga $\lfloor \frac{n}{5} \rfloor = p$. Karena $8 \mid p$, tulis $p = 8r$ ($r \ge 0$ bulat), sehingga $n = 40r + q$.</p>
+                    <p>Karena $n &lt; 800$, maka $0 \le r \le 19$ ($20$ nilai $r$). Syarat $8 \nmid n$ membuang $q = 0$, menyisakan $q \in \{1, 2, 3, 4\}$ ($4$ nilai $q$ untuk tiap $r$).</p>
+                    $$\text{Total} = 20 \times 4 = 80$$
+                    <div class="kesimpulan">Jadi, banyaknya bilangan asli $n$ yang memenuhi adalah <strong>$80$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 33 -->
+        <article class="soal-item" id="33">
+            <div class="soal-no">No. 33</div>
+            <div class="soal-teks">
+                Tentukan semua polinom dengan koefisien bilangan real $P(x)$ yang memenuhi
+                $$P(\lfloor x \rfloor) = \lfloor P(x) \rfloor$$
+                untuk setiap bilangan real $x$.
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2020.html#A7">OSN SMA 2020 (No. 7)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Untuk setiap $n \in \mathbb{Z}$, substitusi $x = n$ memberi $P(n) = \lfloor P(n) \rfloor \in \mathbb{Z}$. Selain itu, untuk $x \in [n, n + 1)$ berlaku $\lfloor P(x) \rfloor = P(n)$, yaitu $P(n) \le P(x) &lt; P(n) + 1$ pada $[n, n + 1)$.</p>
+                    <ul>
+                        <li>Jika $\deg P = 0$: $P(x) = c$ dengan $c = P(0) \in \mathbb{Z}$, selalu memenuhi.</li>
+                        <li>Jika $\deg P = 1$: tulis $P(x) = ax + b$. Maka $b = P(0) \in \mathbb{Z}$ dan $a = P(1) - P(0) \in \mathbb{Z}$. Syarat $b \le P(0{,}5) &lt; b + 1 \implies 0 \le 0{,}5a &lt; 1 \implies a = 1$, sehingga $P(x) = x + c$ ($c \in \mathbb{Z}$).</li>
+                        <li>Jika $\deg P \ge 2$: maka $|P(n + 1) - P(n)| \to \infty$ saat $n \to \infty$. Ambil $n$ cukup besar sehingga $|P(n + 1) - P(n)| &gt; 2$. Karena $P$ kontinu, menurut Teorema Nilai Antara terdapat $\delta \in (n, n + 1)$ dengan $|P(\delta) - P(n)| = 1{,}5$, sehingga $\lfloor P(\delta) \rfloor \neq P(n) = P(\lfloor \delta \rfloor)$, kontradiksi!</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, semua polinom yang memenuhi adalah <strong>$P(x) = c$ atau $P(x) = x + c$ dengan $c \in \mathbb{Z}$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 34 -->
+        <article class="soal-item" id="34">
+            <div class="soal-no">No. 34</div>
+            <div class="soal-teks">
+                Jika $a &gt; 1$ suatu bilangan asli sehingga hasil penjumlahan semua bilangan real $x$ yang memenuhi persamaan
+                $$\lfloor x \rfloor^2 - 2ax + a = 0$$
+                adalah $51$, maka $a$ adalah $\cdots$
+                <br><small>Catatan: $\lfloor x \rfloor$ menyatakan bilangan bulat terbesar yang tidak lebih dari $x$.</small>
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2021.html#A11">OSK SMA 2021 (No. 11)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Tulis $x = k + r$ dengan $k = \lfloor x \rfloor \in \mathbb{Z}$ dan $0 \le r &lt; 1$. Dari persamaan, $2ax = k^2 + a$, atau:</p>
+                    $$2ak + 2ar = k^2 + a \implies 2ar = k^2 - 2ak + a$$
+                    <p>Untuk setiap $k$, solusi $x$ ada jika dan hanya jika $0 \le k^2 - 2ak + a &lt; 2a$, yakni:</p>
+                    $$-a \le (k - a)^2 - a^2 &lt; a \iff a^2 - a \le (k - a)^2 &lt; a^2 + a$$
+                    <p>Karena $a \ge 2$ bulat, $(a - 1)^2 &lt; a^2 - a &lt; a^2 &lt; a^2 + a &lt; (a + 1)^2$, sehingga satu-satunya bilangan kuadrat sempurna $(k - a)^2$ di selang tersebut adalah $a^2$, yang dicapai saat $k - a = \pm a$, yaitu $k = 0$ atau $k = 2a$!</p>
+                    <p>Dengan $k \in \{0, 2a\}$, nilai $x = \frac{k^2 + a}{2a}$ adalah $x_1 = \frac{1}{2}$ (untuk $k = 0$) dan $x_2 = 2a + \frac{1}{2}$ (untuk $k = 2a$).</p>
+                    <p>Jumlah kedua solusi adalah $x_1 + x_2 = 2a + 1 = 51 \implies a = 25$.</p>
+                    <div class="kesimpulan">Jadi, nilai $a$ adalah <strong>$25$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 35 -->
+        <article class="soal-item" id="35">
+            <div class="soal-no">No. 35</div>
+            <div class="soal-teks">
+                Tentukanlah semua bilangan asli $n &gt; 3$ sehingga $\lfloor \sqrt{n} \rfloor - 1$ habis membagi $n + 1$ dan $\lfloor \sqrt{n} \rfloor + 1$ habis membagi $n - 1$.
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2021.html#A7">OSP SMA 2021 (No. 7)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $k = \lfloor \sqrt{n} \rfloor \ge 2$, sehingga $k^2 \le n \le k^2 + 2k$.</p>
+                    <p>Dari $k + 1 \mid n - 1$: karena $k^2 - 1 = (k - 1)(k + 1)$ dan $k^2 + k = k(k + 1)$ habis dibagi $k + 1$, sedangkan $k^2 + 2k + 1 &gt; k^2 + 2k \ge n$, satu-satunya kelipatan $k + 1$ yang mungkin bagi $n - 1$ memberi $n = k^2$ atau $n = k^2 + k + 1$.</p>
+                    <ul>
+                        <li><strong>Kasus $n = k^2$:</strong> $k - 1 \mid k^2 + 1 = (k - 1)(k + 1) + 2 \implies k - 1 \mid 2 \implies k \in \{2, 3\} \implies n \in \{4, 9\}$.</li>
+                        <li><strong>Kasus $n = k^2 + k + 1$:</strong> $k - 1 \mid k^2 + k + 2 = (k - 1)(k + 2) + 4 \implies k - 1 \mid 4 \implies k \in \{2, 3, 5\} \implies n \in \{7, 13, 31\}$.</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, semua bilangan asli $n &gt; 3$ yang memenuhi adalah <strong>$4, 7, 9, 13,$ dan $31$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

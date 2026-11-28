@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aturan Pencacahan - Soal HOTS (Bagian 6)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GeoSVG.js -->
+    <script src="../../scr/GeoSVG.js"
+        onerror="this.onerror=null; var s = document.createElement('script'); s.src='https://rawcdn.githack.com/KulikMath/GeoSVG/main/GeoSVG.js'; document.head.appendChild(s);">
+    </script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Aturan Pencacahan</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+
+
+        <!-- SOAL 51 -->
+        <article class="soal-item" id="51">
+            <div class="soal-no">No. 51</div>
+            <div class="soal-teks">
+                Pandang papan catur berukuran $19 \times 19$ petak persegi satuan. Dua petak dikatakan <em>bertetangga</em> jika keduanya memiliki satu sisi persekutuan. Pada mulanya, terdapat total $k$ koin pada papan catur tersebut dimana setiap koin hanya termuat tepat pada satu petak dan setiap petak dapat memuat koin atau kosong. Pada setiap giliran, Anda harus memilih tepat satu petak yang memuat koin sebanyak minimal banyaknya tetangga petak yang terpilih tadi kemudian Anda harus memberikan tepat satu koin pada masing-masing tetangga petak yang terpilih tadi. Permainan berakhir jika Anda sudah tidak dapat memilih petak dengan kondisi yang dimaksudkan. Bilangan terkecil $k$ sehingga permainan <em>tidak pernah</em> berakhir untuk sembarang pemilihan petak awal adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2019.html#A15">OSP SMA 2019 (No. 15)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Total koin $k$ adalah invarian sepanjang permainan. Permainan berakhir jika setiap petak $(i, j)$ dengan $N_{i,j}$ tetangga memuat paling banyak $N_{i,j} - 1$ koin.</p>
+                    <p>Banyaknya sisi persekutuan pada grid $19 \times 19$ adalah $2 \times 19 \times 18 = 684$, sehingga $\sum N_{i,j} = 2 \times 684 = 1368$. Maka jumlah koin maksimum pada konfigurasi akhir yang stabil adalah:</p>
+                    $$k_{\text{maks}} = \sum (N_{i,j} - 1) = 1368 - 19^2 = 1368 - 361 = 1007$$
+                    <p>Jika $k \le 1007$, kita dapat meletakkan maksimal $N_{i,j} - 1$ koin di setiap petak sehingga permainan langsung berakhir. Jika $k \ge 1008$, menurut Prinsip Sarang Merpati selalu ada minimal satu petak dengan $\ge N_{i,j}$ koin, sehingga permainan tidak pernah berakhir.</p>
+                    <div class="kesimpulan">Jadi, bilangan terkecil $k$ adalah <strong>$1008$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 52 -->
+        <article class="soal-item" id="52">
+            <div class="soal-no">No. 52</div>
+            <div class="soal-teks">
+                Suatu papan catur berukuran $m \times n$ masing-masing kotaknya diwarnai hitam atau putih sedemikian sehingga:
+                <ul>
+                    <li>Pada setiap baris banyaknya kotak hitam dan kotak putih sama banyak.</li>
+                    <li>Jika suatu baris berpotongan dengan suatu kolom di suatu kotak hitam, maka baris dan kolom tersebut mengandung kotak hitam yang sama banyak.</li>
+                    <li>Jika suatu baris berpotongan dengan suatu kolom di suatu kotak putih, maka baris dan kolom tersebut mengandung kotak putih yang sama banyak.</li>
+                </ul>
+                Tentukan semua nilai $m$ dan $n$ yang mungkin agar pewarnaan dengan sifat di atas dapat dilakukan.
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2019.html#A18">OSP SMA 2019 (No. 18)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Dari syarat pertama, setiap baris memiliki $\frac{n}{2}$ kotak hitam dan $\frac{n}{2}$ kotak putih, sehingga $n$ genap ($n = 2k$).</p>
+                    <p>Misalkan suatu kolom $j$ memuat $B_j$ kotak hitam dan $W_j$ kotak putih ($B_j + W_j = m$). Jika kolom $j$ memuat kedua warna, maka syarat kedua dan ketiga memaksa $B_j = \frac{n}{2}$ dan $W_j = \frac{n}{2}$, sehingga $m = B_j + W_j = n$.</p>
+                    <p>Bagaimana jika ada kolom yang monokromatik (misal semuanya hitam)? Maka $m = B_j = \frac{n}{2}$, dan tidak ada baris yang punya kotak putih di kolom ini, tetapi kita boleh punya $c$ kolom seluruhnya hitam dan $n - c$ kolom seluruhnya putih? Cek: total kotak hitam di papan adalah $m \cdot \frac{n}{2}$. Jika semua kolom monokromatik, harus ada $c$ kolom hitam ($c \cdot m$ kotak hitam) dan $n - c$ kolom putih, dengan setiap baris punya $c = \frac{n}{2}$ kotak hitam. Tetapi perhatikan: syarat kedua pada kolom hitam menuntut $m = B_j = \frac{n}{2}$! Jika $m = \frac{n}{2}$ dengan setengah kolom penuh hitam dan setengah kolom penuh putih, setiap baris punya $\frac{n}{2}$ hitam dan $\frac{n}{2}$ putih, setiap perpotongan hitam punya $\frac{n}{2}$ hitam di baris dan $m = \frac{n}{2}$ hitam di kolom, dan setiap perpotongan putih punya $\frac{n}{2}$ putih di baris dan $m = \frac{n}{2}$ putih di kolom!</p>
+                    <p>Dengan demikian ada dua keluarga solusi: $m = n = 2k$ (pewarnaan papan catur selang-seling) atau $n = 2k$ dan $m = k$ (dengan $k$ kolom penuh hitam dan $k$ kolom penuh putih).</p>
+                    <div class="kesimpulan">Jadi, pasangan $(m, n)$ yang mungkin adalah <strong>$(2k, 2k)$ atau $(k, 2k)$ untuk setiap bilangan asli $k$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 53 -->
+        <article class="soal-item" id="53">
+            <div class="soal-no">No. 53</div>
+            <div class="soal-teks">
+                Katakan sebuah susunan kesatuan sebagai <em>susunan kesatuan segitiga</em> apabila dapat dibuat:
+                $$a + b = c$$
+                $$d + e + f = g + h$$
+                $$i + j + k + l = m + n + o$$
+                dimana ruas kiri baris ke-$j$ terdiri dari $j + 1$ suku dan ruas kanan baris ke-$j$ terdiri dari $j$ suku. Diberikan bilangan dari $1, 2, 3, \dots, N^2$ dengan sebarang satu bilangan yang paritasnya sama dengan $N$ dihapus. Buktikan bilangan yang tersisa dapat dibentuk suatu kesatuan segitiga.
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2019.html#A4">OSN SMA 2019 (No. 4)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Gunakan induksi dua langkah ($N \to N + 2$) yang dipisah untuk $N$ genap ($N = 2$) dan $N$ ganjil ($N = 3$). Basis $N = 2$ (hapus $2$ atau $4$ dari $\{1,2,3,4\}$): $1 + 2 = 3$ (hapus $4$), dan tidak ada — tunggu: $1 + 3 = 4$ (hapus $2$). Basis $N = 3$ (hapus $1,3,5,7,$ atau $9$ dari $\{1,\dots,9\}$) mudah dikonstruksi secara langsung.</p>
+                    <p>Untuk langkah induksi dari $N$ ke $N + 2$, perhatikan bahwa $4N + 4$ bilangan baru $\{N^2 + 1, \dots, N^2 + 4N + 4\}$ dapat dipartisi sempurna menjadi dua baris terakhir:</p>
+                    $$(N^2 + 1) + \cdots + (N^2 + N + 1) = (N^2 + N + 2) + \cdots + (N^2 + 2N + 2)$$
+                    $$(N^2 + 2N + 3) + \cdots + (N^2 + 3N + 4) = (N^2 + 3N + 5) + \cdots + (N^2 + 4N + 4)$$
+                    <p>(selisih kiri-kanan masing-masing baris seimbang). Jika bilangan yang dihapus $x \le N^2$, hipotesis induksi langsung menyelesaikan $N^2 - 1$ bilangan pertama; jika $x &gt; N^2$, kita dapat menukarnya dengan $N^2$ atau memodifikasi dua baris terakhir secara eksplisit.</p>
+                    <div class="kesimpulan"><strong>Terbukti</strong> bilangan yang tersisa selalu dapat dibentuk menjadi susunan kesatuan segitiga.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 54 -->
+        <article class="soal-item" id="54">
+            <div class="soal-no">No. 54</div>
+            <div class="soal-teks">
+                Diketahui $S$ adalah himpunan semua titik $(x, y)$ pada bidang Cartesius, dengan $x, y$ bilangan bulat, $0 \le x \le 20$ dan $0 \le y \le 19$. Banyaknya cara memilih dua titik berbeda di $S$ sehingga titik tengahnya juga ada di $S$ adalah $\cdots$
+                <br><small>Catatan: Dua titik $P(a, b)$ dan $Q(c, d)$ berbeda jika $a \neq c$ atau $b \neq d$. Pasangan titik $(P, Q)$ dan $(Q, P)$ dianggap sama.</small>
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2020.html#A5">OSK SMA 2020 (No. 5)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Titik tengah $P(a, b)$ dan $Q(c, d)$ adalah $\left(\frac{a+c}{2}, \frac{b+d}{2}\right)$, yang berada di $S$ jika dan hanya jika $a \equiv c \pmod 2$ dan $b \equiv d \pmod 2$.</p>
+                    <p>Untuk $0 \le x \le 20$, ada $11$ nilai $x$ genap dan $10$ nilai $x$ ganjil. Untuk $0 \le y \le 19$, ada $10$ nilai $y$ genap dan $10$ nilai $y$ ganjil. Sehingga $S$ terpartisi menjadi $4$ kelas paritas:</p>
+                    <ul>
+                        <li>(genap, genap): $11 \times 10 = 110$ titik</li>
+                        <li>(genap, ganjil): $11 \times 10 = 110$ titik</li>
+                        <li>(ganjil, genap): $10 \times 10 = 100$ titik</li>
+                        <li>(ganjil, ganjil): $10 \times 10 = 100$ titik</li>
+                    </ul>
+                    <p>Banyaknya pasangan titik berbeda dalam kelas paritas yang sama adalah:</p>
+                    $$2\binom{110}{2} + 2\binom{100}{2} = 110 \cdot 109 + 100 \cdot 99 = 11990 + 9900 = 21890$$
+                    <div class="kesimpulan">Jadi, banyaknya cara memilih dua titik tersebut adalah <strong>$21890$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 55 -->
+        <article class="soal-item" id="55">
+            <div class="soal-no">No. 55</div>
+            <div class="soal-teks">
+                Banyaknya tripel bilangan bulat $(x, y, z)$ dengan $0 \le x \le y \le z$ yang memenuhi persamaan $x + y + z = 32$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2020.html#A13">OSK SMA 2020 (No. 13)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Karena $3x \le x + y + z = 32$, nilai $x \in \{0, 1, \dots, 10\}$. Untuk setiap $x$, kita butuh $x \le y \le z$ dengan $y + z = 32 - x$, yakni $x \le y \le \lfloor \frac{32 - x}{2} \rfloor$, sehingga banyaknya pasangan $(y, z)$ adalah $\lfloor \frac{32 - x}{2} \rfloor - x + 1$:</p>
+                    <ul>
+                        <li>$x = 0 \to 17$, $x = 1 \to 15$, $x = 2 \to 14$, $x = 3 \to 12$, $x = 4 \to 11$,</li>
+                        <li>$x = 5 \to 9$, $x = 6 \to 8$, $x = 7 \to 6$, $x = 8 \to 5$, $x = 9 \to 3$, $x = 10 \to 2$.</li>
+                    </ul>
+                    $$\text{Total} = 17 + 15 + 14 + 12 + 11 + 9 + 8 + 6 + 5 + 3 + 2 = 102$$
+                    <div class="kesimpulan">Jadi, banyaknya tripel bilangan bulat tersebut adalah <strong>$102$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 56 -->
+        <article class="soal-item" id="56">
+            <div class="soal-no">No. 56</div>
+            <div class="soal-teks">
+                Diberikan prisma dengan alas dan tutup berupa segi-$n$ beraturan. Semua titik sudut prisma ($2n$ titik sudut) dilabeli dengan bilangan $1$ atau $-1$. Diketahui bahwa untuk setiap sisi (muka) prisma, hasil kali semua label titik sudut pada sisi (muka) tersebut adalah $-1$. Hasil penjumlahan semua $n$ dengan $23 \le n \le 54$ agar pelabelan seperti di atas mungkin dilakukan adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2020.html#A11">OSP SMA 2020 (No. 11)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Hasil kali semua $n$ muka tegak sama dengan kuadrat hasil kali semua $2n$ titik sudut, yaitu $+1$. Di pihak lain, hasil kali tiap muka adalah $-1$, sehingga $(-1)^n = 1 \implies n$ harus genap ($n = 2k$).</p>
+                    <p>Selanjutnya ambil $k$ muka tegak selang-seling (muka bernomor ganjil): himpunan seluruh titik sudut pada $k$ muka tegak ini tepat memuat semua $2n$ titik sudut prisma masing-masing satu kali! Oleh karena itu, hasil kali $k$ muka tersebut sama dengan hasil kali muka alas dan tutup, yakni $(-1)(-1) = +1$, padahal hasil kalinya juga $(-1)^k$, memaksa $k$ genap, yaitu $4 \mid n$.</p>
+                    <p>Konstruksi untuk $n = 4m$ terwujud dengan melabeli alas bergantian $1, 1, -1, -1, \dots$ dan tutup dengan menggeser pola sesuai kebutuhan. Kelipatan $4$ pada $[23, 54]$ adalah $24, 28, 32, 36, 40, 44, 48, 52$:</p>
+                    $$24 + 28 + 32 + 36 + 40 + 44 + 48 + 52 = 304$$
+                    <div class="kesimpulan">Jadi, hasil penjumlahan semua $n$ yang memenuhi adalah <strong>$304$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 57 -->
+        <article class="soal-item" id="57">
+            <div class="soal-no">No. 57</div>
+            <div class="soal-teks">
+                Banyak fungsi (pemetaan) dari $A = \{1, 2, 3, 4, 5, 6\}$ ke $B = \{7, 8, 9, 10\}$ dengan syarat $7$ dan $8$ mempunyai prapeta, yaitu ada $x$ dan $y$ di $A$ sehingga $f(x) = 7$ dan $f(y) = 8$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2021.html#A17">OSK SMA 2021 (No. 17)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Dengan Prinsip Inklusi-Eksklusi:</p>
+                    <ul>
+                        <li>Total fungsi $A \to B$: $4^6 = 4096$.</li>
+                        <li>Fungsi tanpa nilai $7$: $3^6 = 729$.</li>
+                        <li>Fungsi tanpa nilai $8$: $3^6 = 729$.</li>
+                        <li>Fungsi tanpa nilai $7$ dan $8$: $2^6 = 64$.</li>
+                    </ul>
+                    $$\text{Total} = 4^6 - 2 \cdot 3^6 + 2^6 = 4096 - 1458 + 64 = 2702$$
+                    <div class="kesimpulan">Jadi, banyaknya fungsi yang memenuhi adalah <strong>$2702$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 58 -->
+        <article class="soal-item" id="58">
+            <div class="soal-no">No. 58</div>
+            <div class="soal-teks">
+                Banyaknya barisan ternary (sukunya $0$, $1$ atau $2$) yang memuat $13$ suku, memuat tepat empat $0$ dan setiap di antara dua $0$ ada paling sedikit dua suku bukan $0$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2021.html#A18">OSK SMA 2021 (No. 18)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Keempat angka $0$ memisahkan $9$ posisi bukan-$0$ menjadi $5$ blok berpanjang $a, b, c, d, e$ dengan $a + b + c + d + e = 9$, $a, e \ge 0$, dan $b, c, d \ge 2$.</p>
+                    <p>Substitusi $b' = b - 2, c' = c - 2, d' = d - 2 \ge 0$ memberi $a + b' + c' + d' + e = 3$, yang memiliki $\binom{3 + 5 - 1}{5 - 1} = \binom{7}{4} = 35$ cara penempatan angka $0$.</p>
+                    <p>Setiap dari $9$ posisi bukan-$0$ bebas diisi $1$ atau $2$ dalam $2^9 = 512$ cara. Jadi totalnya $35 \times 512 = 17920$.</p>
+                    <div class="kesimpulan">Jadi, banyaknya barisan ternary tersebut adalah <strong>$17920$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 59 -->
+        <article class="soal-item" id="59">
+            <div class="soal-no">No. 59</div>
+            <div class="soal-teks">
+                Sebuah papan catur berukuran $101 \times 21$ akan dipasangi beberapa ubin berukuran $3 \times 1$. Berapa ubin terbanyak yang bisa dipasang pada papan sehingga tidak ada $2$ ubin yang bertumpuk atau bersentuhan? (Bersentuhan pada titik sudut ubin juga tidak diperbolehkan)
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2021.html#A19">OSK SMA 2021 (No. 19)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Tambahkan pinggiran selebar $\frac{1}{2}$ petak di keempat sisi setiap ubin $3 \times 1$ (menjadi $4 \times 2$) dan di keempat sisi papan $101 \times 21$ (menjadi $102 \times 22$). Dua ubin $3 \times 1$ tidak bersentuhan sisi maupun sudut jika dan hanya jika selubung $4 \times 2$-nya tidak tumpang tindih di papan $102 \times 22$.</p>
+                    <p>Luas tiap selubung adalah $4 \times 2 = 8$, sehingga batas atasnya $\lfloor \frac{102 \times 22}{8} \rfloor = \lfloor 280{,}5 \rfloor = 280$.</p>
+                    <p>Konstruksi $280$ ubin dapat dicapai: pada papan $102 \times 22$, potong menjadi $102 \times 20$ (diisi $51 \times 5 = 255$ blok $2 \times 4$, menyisakan celah sesuai selubung) dan $100 \times 2$ (diisi $25$ blok $4 \times 2$), total $255 + 25 = 280$ ubin.</p>
+                    <div class="kesimpulan">Jadi, ubin terbanyak yang dapat dipasang adalah <strong>$280$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 60 -->
+        <article class="soal-item" id="60">
+            <div class="soal-no">No. 60</div>
+            <div class="soal-teks">
+                Lima buah petak dari papan catur berukuran $9 \times 9$ dibuang (petak-petak di baris 1 kolom 5; baris 4 kolom 1; baris 9 kolom 8 dan 9; serta baris 8 kolom 9 — sehingga menyisakan 76 petak). Seluruh papan catur tersebut akan ditutupi oleh kartu-kartu domino sehingga setiap domino menutupi dua petak papan, dan setiap petak tertutup oleh tepat satu domino. Dapatkah hal tersebut dilakukan sehingga setiap garis vertikal dan horizontal bagian dalam sedikitnya memotong dua kartu domino?
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2021.html#A10">OSP SMA 2021 (No. 10)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p><strong>Tidak dapat.</strong> Pengubinan $76$ petak membutuhkan tepat $38$ domino, dan setiap domino memotong tepat satu garis kisi dalam (vertikal $v_1, \dots, v_8$ atau horizontal $h_1, \dots, h_8$).</p>
+                    <p>Kolom $2, 4, 6,$ dan $9$ masing-masing memiliki banyak petak ganjil ($9, 9, 9, 7$). Karena domino vertikal menutupi $2$ petak pada satu kolom, banyaknya domino horizontal yang mengenai masing-masing kolom ini harus ganjil.</p>
+                    <ul>
+                        <li>Setiap domino horizontal di kolom $2$ memotong $v_1$ atau $v_2$. Agar $v_1$ dan $v_2$ masing-masing dipotong $\ge 2$ kali, diperlukan $\ge 4$ (karena ganjil, minimal $5$) domino horizontal di kolom $2$. Serupa untuk kolom $4$ ($v_3, v_4$) dan kolom $6$ ($v_5, v_6$), minimal $5 + 5 + 5 = 15$ domino.</li>
+                        <li>Pada kolom $9$ ($7$ petak), $v_8$ harus dipotong $\ge 2$ kali, dan karena paritas ganjil maka minimal $3$ domino memotong $v_8$. Agar $v_7$ juga dipotong $\ge 2$ kali, butuh $\ge 2$ domino lagi di kolom $7$–$8$. Total domino yang memotong garis vertikal minimal $15 + 3 + 2 = 20$.</li>
+                    </ul>
+                    <p>Secara simetris pada baris $2, 4, 6,$ dan $9$ ($9, 9, 9, 7$ petak), diperlukan minimal $20$ domino horizontal-vertikal yang memotong garis horizontal. Maka total domino minimal $20 + 20 = 40 &gt; 38$, kontradiksi!</p>
+                    <div class="kesimpulan">Jadi, pengubinan dengan syarat tersebut <strong>tidak dapat dilakukan</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

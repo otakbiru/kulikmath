@@ -203,7 +203,12 @@ const DAFTAR_ARSIP = [
             { judul: "OSK SMA 2015", file: "OSK SMA 2015.html" },
             { judul: "OSK SMA 2016", file: "OSK SMA 2016.html" },
             { judul: "OSK SMA 2017", file: "OSK SMA 2017.html" },
-            { judul: "OSK SMA 2018", file: "OSK SMA 2018.html" }
+            { judul: "OSK SMA 2018", file: "OSK SMA 2018.html" },
+            { judul: "OSK SMA 2019", file: "OSK SMA 2019.html" },
+            { judul: "OSK SMA 2020", file: "OSK SMA 2020.html" },
+            { judul: "OSK SMA 2021", file: "OSK SMA 2021.html" },
+            { judul: "OSK SMA 2022", file: "OSK SMA 2022.html" },
+            { judul: "OSK SMA 2023", file: "OSK SMA 2023.html" }
         ]
     },
     {
@@ -226,7 +231,12 @@ const DAFTAR_ARSIP = [
             { judul: "OSN SMA 2015", file: "OSN SMA 2015.html" },
             { judul: "OSN SMA 2016", file: "OSN SMA 2016.html" },
             { judul: "OSN SMA 2017", file: "OSN SMA 2017.html" },
-            { judul: "OSN SMA 2018", file: "OSN SMA 2018.html" }
+            { judul: "OSN SMA 2018", file: "OSN SMA 2018.html" },
+            { judul: "OSN SMA 2019", file: "OSN SMA 2019.html" },
+            { judul: "OSN SMA 2020", file: "OSN SMA 2020.html" },
+            { judul: "OSN SMA 2021", file: "OSN SMA 2021.html" },
+            { judul: "OSN SMA 2022", file: "OSN SMA 2022.html" },
+            { judul: "OSN SMA 2023", file: "OSN SMA 2023.html" }
         ]
     },
     {
@@ -249,7 +259,12 @@ const DAFTAR_ARSIP = [
             { judul: "OSP SMA 2015", file: "OSP SMA 2015.html" },
             { judul: "OSP SMA 2016", file: "OSP SMA 2016.html" },
             { judul: "OSP SMA 2017", file: "OSP SMA 2017.html" },
-            { judul: "OSP SMA 2018", file: "OSP SMA 2018.html" }
+            { judul: "OSP SMA 2018", file: "OSP SMA 2018.html" },
+            { judul: "OSP SMA 2019", file: "OSP SMA 2019.html" },
+            { judul: "OSP SMA 2020", file: "OSP SMA 2020.html" },
+            { judul: "OSP SMA 2021", file: "OSP SMA 2021.html" },
+            { judul: "OSP SMA 2022", file: "OSP SMA 2022.html" },
+            { judul: "OSP SMA 2023", file: "OSP SMA 2023.html" }
         ]
     },
     {

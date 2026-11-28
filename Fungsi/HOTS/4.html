@@ -224,6 +224,57 @@
 
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
+
+
+        <!-- SOAL 39 -->
+        <article class="soal-item" id="39">
+            <div class="soal-no">No. 39</div>
+            <div class="soal-teks">
+                Misalkan $f(x) = 1 + \dfrac{90}{x}$. Nilai terbesar $x$ yang memenuhi
+                $$\underbrace{f(f(\cdots(f(x))\cdots))}_{2019\text{ kali}} = x$$
+                adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2019.html#A14">OSK SMA 2019 (No. 14)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Titik tetap $f(x) = x$ memenuhi $1 + \frac{90}{x} = x \iff x^2 - x - 90 = 0 \iff (x - 10)(x + 9) = 0$, sehingga $x = 10$ adalah titik tetap terbesar.</p>
+                    <p>Untuk membuktikan tidak ada solusi $x &gt; 10$ pada $f^{2019}(x) = x$: jika $x &gt; 10$, perhatikan bahwa $f$ memetakan $(0, \infty)$ ke $(1, \infty)$ dan bersifat turun monoton pada $(0, \infty)$. Selain itu, untuk sebarang $t &gt; 0$ dengan $t \neq 10$:</p>
+                    $$|f(t) - 10| = \left|\frac{90}{t} - 9\right| = \frac{9}{t}|t - 10|$$
+                    <p>Akibatnya, pada dua langkah berurutan $f(f(t)) = 1 + \frac{90t}{t + 90}$:</p>
+                    $$|f(f(t)) - 10| = \left|\frac{81t - 810}{t + 90}\right| = \frac{81}{t + 90}|t - 10| &lt; \frac{81}{90}|t - 10| = 0{,}9|t - 10|$$
+                    <p>Untuk $x &gt; 10$, maka $f(x) \in (1, 10)$, sehingga $f^2(x) \in (10, x)$, dan iterasi ganjil $f^{2019}(x)$ selalu bernilai kurang dari $10$ (tidak mungkin sama dengan $x &gt; 10$).</p>
+                    <div class="kesimpulan">Jadi, nilai terbesar $x$ yang memenuhi adalah <strong>$10$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 40 -->
+        <article class="soal-item" id="40">
+            <div class="soal-no">No. 40</div>
+            <div class="soal-teks">
+                Tentukan semua fungsi $f : \mathbb{N} \to \mathbb{N}$ sehingga $n^2 + f(n)f(m)$ merupakan bilangan kelipatan $f(n) + m$ untuk setiap bilangan asli $n, m$.
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2020.html#A3">OSN SMA 2020 (No. 3)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $P(n, m)$ menyatakan $f(n) + m \mid n^2 + f(n)f(m)$. Perhatikan bahwa:</p>
+                    $$n^2 + f(n)f(m) \equiv n^2 - mf(m) \pmod{f(n) + m}$$
+                    <p>Substitusi $P(1, 1)$ memberi $f(1) + 1 \mid 1 + f(1)^2$. Karena $f(1)^2 + 1 = (f(1) + 1)(f(1) - 1) + 2$, haruslah $f(1) + 1 \mid 2 \implies f(1) = 1$.</p>
+                    <p>Selanjutnya kita buktikan $f(n) = n$ dengan induksi. Basis $n = 1$ benar. Andaikan $f(n - 1) = n - 1$ untuk suatu $n \ge 2$. Terapkan $P(n, n - 1)$:</p>
+                    $$f(n) + n - 1 \mid n^2 + f(n)(n - 1) - (n - 1)(f(n) + n - 1) = 2n - 1$$
+                    <p>Jadi $f(n) + n - 1 \le 2n - 1 \implies f(n) \le n$. Untuk batas bawah, terapkan $P(n - 1, f(n))$? Tidak, langsung dari $P(m, n)$ atau ambil $m$ besar: dengan $m$ sebarang, $f(n) + m \mid n^2 - mf(m)$? Tidak, tinjau $P(n - 1, 1)$? Cukup lihat $P(n, m)$ dengan $f(n) \le n$: ambil $p$ prima besar sehingga $f(n) + m = p$ (yaitu $m = p - f(n)$), atau cek $P(1, n)$: $1 + n \mid 1 + f(n)$! Karena $1 + n \mid 1 + f(n)$ dan $f(n) \le n$ dengan $f(n) \ge 1$, maka $1 + f(n) = 1 + n \implies f(n) = n$!</p>
+                    <p>Verifikasi: untuk $f(n) = n$, $n + m \mid n^2 + nm = n(n + m)$, selalu terpenuhi.</p>
+                    <div class="kesimpulan">Jadi, satu-satunya fungsi yang memenuhi adalah <strong>$f(n) = n$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
     </main>
 
     <script src="../../scr/script.js"></script>

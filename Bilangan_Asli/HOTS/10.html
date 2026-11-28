@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilangan Asli - Soal HOTS (Bagian 10)</title>
+
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Style Blog -->
+    <link rel="stylesheet" href="../../scr/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="home-btn">🏠 HOME</a>
+            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Header Topik -->
+        <div class="page-header">
+            <p class="intro-text">
+                Berikut adalah latihan soal <span id="auto-level" class="level-highlight">...</span> untuk topik
+                <span class="topic-highlight">Bilangan Asli</span>. Klik tombol penyelesaian untuk melihat pembahasan langkah demi langkah.
+            </p>
+            <div id="level-nav" class="level-nav"></div>
+        </div>
+
+        <!-- Pagination Atas (Otomatis) -->
+        <div class="pagination-wrapper"></div>
+
+
+
+        <!-- SOAL 91 -->
+        <article class="soal-item" id="91">
+            <div class="soal-no">No. 91</div>
+            <div class="soal-teks">
+                Tentukan bilangan asli terkecil $n &gt; 2$, atau buktikan bahwa tidak ada bilangan asli $n$ yang memenuhi sifat berikut: Terdapat bilangan asli $a_1, a_2, a_3, \dots, a_n$ sehingga
+                $$\operatorname{FPB}(a_1, a_2, \dots, a_n) = \sum_{k=1}^{n-1} \left(\frac{1}{\operatorname{FPB}(a_k, a_{k+1})} + \frac{1}{\operatorname{FPB}(a_k, a_{k+2})} + \cdots + \frac{1}{\operatorname{FPB}(a_k, a_n)}\right)$$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2020.html#A8">OSN SMA 2020 (No. 8)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Pertama, buktikan $n = 3$ tidak mungkin. Misalkan $d = \gcd(a_1, a_2, a_3)$, $x = \gcd(a_1, a_2)$, $y = \gcd(a_1, a_3)$, $z = \gcd(a_2, a_3)$ dengan $x \le y \le z$. Karena $d \mid x, y, z$, maka $d \le \frac{3}{d} \implies d = 1$, sehingga:</p>
+                    $$\frac{1}{x} + \frac{1}{y} + \frac{1}{z} = 1$$
+                    <p>Dari $1 &lt; x \le y \le z$ dan $\frac{3}{x} \ge 1$, nilai $x \in \{2, 3\}$:</p>
+                    <ul>
+                        <li>Jika $x = 3$: harus $x = y = z = 3$, kontradiksi dengan $\gcd(a_1, a_2, a_3) = 1$ (karena $3 \mid a_1, a_2, a_3$).</li>
+                        <li>Jika $x = 2$: maka $\frac{1}{y} + \frac{1}{z} = \frac{1}{2} \implies (y, z) \in \{(4, 4), (3, 6)\}$. Jika $(4, 4)$, maka $4 \mid a_1, a_2 \implies 4 \mid x = 2$ (kontradiksi). Jika $(3, 6)$, maka $2 \mid a_1, a_3 \implies 2 \mid y = 3$ (kontradiksi).</li>
+                    </ul>
+                    <p>Untuk $n = 4$, pilih $(a_1, a_2, a_3, a_4) = (2, 6, 6, 6)$ (atau $(2, 6, 15, 30)$? Cek $(2, 6, 6, 6)$: $\gcd = 2$, dan jumlah kebalikan FPB semua $6$ pasang adalah $\frac{1}{2} + \frac{1}{2} + \frac{1}{2} + \frac{1}{6} + \frac{1}{6} + \frac{1}{6} = \frac{3}{2} + \frac{1}{2} = 2$, tepat sama!).</p>
+                    <div class="kesimpulan">Jadi, bilangan asli terkecil $n &gt; 2$ adalah <strong>$n = 4$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 92 -->
+        <article class="soal-item" id="92">
+            <div class="soal-no">No. 92</div>
+            <div class="soal-teks">
+                Bilangan $1, 2, 3, \dots, 999$ digit-digitnya disusun membentuk angka baru $m$ dengan menuliskan semua digit bilangan-bilangan tadi dari kiri ke kanan. Jadi, $m = 1234\dots 91011\dots 999$. Hasil penjumlahan digit ke-$2021$, $2022$, $2023$ dari $m$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2021.html#A8">OSK SMA 2021 (No. 8)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Bilangan $1$–$9$ menyumbang $9$ digit, dan bilangan $10$–$99$ menyumbang $90 \times 2 = 180$ digit (total $189$ digit).</p>
+                    <p>Sisa posisi hingga digit ke-$2022$ adalah $2022 - 189 = 1833$ digit. Karena $1833 = 3 \times 611$, digit ke-$2022$ adalah digit terakhir dari bilangan $3$-digit ke-$611$, yaitu $99 + 611 = 710$.</p>
+                    <p>Jadi sekitar posisi tersebut tertulis $\dots 7\mathbf{1}\mathbf{0}\mathbf{7}11\dots$, sehingga digit ke-$2021, 2022, 2023$ adalah $1, 0, 7$ dengan jumlah $1 + 0 + 7 = 8$.</p>
+                    <div class="kesimpulan">Jadi, hasil penjumlahannya adalah <strong>$8$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 93 -->
+        <article class="soal-item" id="93">
+            <div class="soal-no">No. 93</div>
+            <div class="soal-teks">
+                Diberikan $x, y$ dan $n$ bilangan asli yang memenuhi
+                $$x^2 + (y + 2)x + (n + 1)y = n^2 + 252$$
+                Nilai $y$ terbesar yang mungkin adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2021.html#A13">OSK SMA 2021 (No. 13)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Tambahkan $1$ pada kedua ruas dan faktorkan:</p>
+                    $$(x + 1)^2 - n^2 + (x + 1 + n)y = 253 \implies (x + 1 + n)(x + y + 1 - n) = 253 = 11 \times 23$$
+                    <p>Karena $x, y, n \ge 1$, faktor $A = x + 1 + n \ge 3$ membagi $253$, sehingga $A \in \{11, 23, 253\}$. Selisih kedua faktor adalah $B - A = y - 2n$, dengan $n = x_{\text{maks}} \implies n \le A - 2$ (karena $x \ge 1$):</p>
+                    <ul>
+                        <li>$A = 11, B = 23 \implies y = 12 + 2n \le 12 + 2(9) = 30$.</li>
+                        <li>$A = 23, B = 11 \implies y = -12 + 2n \le -12 + 2(21) = 30$.</li>
+                        <li>$A = 253, B = 1 \implies y = -252 + 2n \le -252 + 2(251) = 250$ (tercapai saat $x = 1, n = 251, y = 250$).</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, nilai $y$ terbesar yang mungkin adalah <strong>$250$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 94 -->
+        <article class="soal-item" id="94">
+            <div class="soal-no">No. 94</div>
+            <div class="soal-teks">
+                Bilangan asli ganjil $b$ terbesar sehingga barisan bilangan asli $a_n = n^2 + 19n + b$ memenuhi $\operatorname{FPB}(a_n, a_{n+1}) = \operatorname{FPB}(a_{n+2}, a_{n+1})$ untuk setiap bilangan asli $n$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2021.html#A15">OSK SMA 2021 (No. 15)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Perhatikan $a_{n+1} - a_n = 2n + 20 = 2(n + 10)$. Karena $b$ ganjil dan $n(n + 19)$ selalu genap, semua $a_n$ bernilai ganjil, sehingga:</p>
+                    $$\operatorname{FPB}(a_n, a_{n+1}) = \operatorname{FPB}(a_n, 2(n + 10)) = \operatorname{FPB}(n^2 + 19n + b, n + 10)$$
+                    <p>Karena $n^2 + 19n + b = (n + 10)(n + 9) + (b - 90)$, diperoleh:</p>
+                    $$\operatorname{FPB}(a_n, a_{n+1}) = \operatorname{FPB}(b - 90, n + 10)$$
+                    <p>Agar $\operatorname{FPB}(b - 90, n + 10) = \operatorname{FPB}(b - 90, n + 11)$ untuk semua $n \ge 1$ (padahal $n + 10$ dan $n + 11$ relatif prima serta setiap pembagi prima ganjil $p$ dari $b - 90$ pasti membagi salah satu dari $n + 10$ untuk suatu $n$, dan tidak membagi $n + 11$), nilai $|b - 90|$ harus $1$ (jika $b &gt; 90$ maka $b - 90 = 1 \implies b = 91$).</p>
+                    <div class="kesimpulan">Jadi, bilangan asli ganjil $b$ terbesar adalah <strong>$91$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 95 -->
+        <article class="soal-item" id="95">
+            <div class="soal-no">No. 95</div>
+            <div class="soal-teks">
+                Suta menuliskan $2021$ bilangan asli pertama di papan tulis, sehingga setiap bilangan ditulis tepat sekali. Ia kemudian melingkari beberapa bilangan di antaranya, kemudian menjumlahkan seluruh bilangan yang ia lingkari dan mendapatkan nilai $K$. Kemudian, Suta juga menjumlahkan seluruh bilangan yang tidak ia lingkari dan mendapatkan nilai $L$. Tunjukkan Suta dapat memilih bilangan yang ia lingkari di awal, sehingga $K - L = 2021$.
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2021.html#A6">OSP SMA 2021 (No. 6)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Jumlah seluruh bilangan adalah $K + L = \frac{2021 \times 2022}{2} = 2021 \times 1011$.</p>
+                    <p>Kita ingin $K - L = 2021$, yang ekuivalen dengan $K = 2021 \times 506$ dan $L = 2021 \times 505$.</p>
+                    <p>Suta cukup melingkari bilangan $2021$ serta $505$ pasang bilangan $(x, 2021 - x)$ untuk $x = 1, 2, \dots, 505$, sehingga:</p>
+                    $$K = 2021 + 505 \times 2021 = 2021 \times 506 \implies K - L = 2021$$
+                    <div class="kesimpulan"><strong>Terbukti</strong> Suta dapat memilih bilangan sehingga $K - L = 2021$.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 96 -->
+        <article class="soal-item" id="96">
+            <div class="soal-no">No. 96</div>
+            <div class="soal-teks">
+                Pada papan tulis tertulis secara berurutan angka-angka berikut:
+                $$1\;\;2\;\;3\;\;4\;\;5\;\;6\;\;7\;\;8\;\;9$$
+                Andi harus menempatkan tanda $+$ atau $-$ di antara setiap dua angka yang berurutan dan menghitung nilai dari ekspresi yang dihasilkan. Sebagai contoh, Andi bisa menempatkan tanda $+$ dan $-$ sebagai berikut: $1 + 2 - 3 + 4 + 5 + 6 + 7 - 8 - 9 = 5$. Tentukan bilangan positif ganjil terkecil yang tidak mungkin bisa diperoleh oleh Andi.
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2021.html#A1">OSN SMA 2021 (No. 1)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Jumlah $1 + 2 + \cdots + 9 = 45$. Jika himpunan bilangan bertanda $-$ adalah $S \subseteq \{2, 3, \dots, 9\}$ dengan jumlah $s$, maka nilai ekspresinya adalah $45 - 2s$.</p>
+                    <p>Karena himpunan $\{2, 3, \dots, 9\}$ dapat menghasilkan setiap jumlah $s \in \{0, 2, 3, \dots, 44\}$ kecuali $s = 1$ (dan $s = 43$ karena $44 - 1 = 43$), nilai $45 - 2s$ dapat mencapai semua bilangan ganjil positif kecuali:</p>
+                    <ul>
+                        <li>$s = 1 \implies 45 - 2(1) = 43$ (mustahil, karena $1$ tidak boleh diberi tanda $-$).</li>
+                    </ul>
+                    <p>Sedangkan $1, 3, 5, \dots, 41$ semuanya tercapai (karena $s = 22, 21, \dots, 2$ mudah dibentuk dari $\{2, \dots, 9\}$).</p>
+                    <div class="kesimpulan">Jadi, bilangan positif ganjil terkecil yang tidak mungkin diperoleh adalah <strong>$43$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 97 -->
+        <article class="soal-item" id="97">
+            <div class="soal-no">No. 97</div>
+            <div class="soal-teks">
+                Di papan tulis dituliskan $n$ bilangan asli. Pada setiap langkah kita dapat menghapus dua bilangan $a$ dan $b$ dan menggantinya dengan $\operatorname{FPB}(a, b)$ dan $\operatorname{KPK}(a, b) - \operatorname{FPB}(a, b)$ (asumsikan $a \neq b$ agar hasilnya bilangan asli, atau jika nol tidak dipilih). Buktikan semua bilangan dapat dibuat sama dalam berhingga langkah.
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2021.html#A6">OSN SMA 2021 (No. 6)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $d = \operatorname{FPB}(a_1, a_2, \dots, a_n)$. Bagi semua bilangan dengan $d$, operasi menjadi identik dengan masalah untuk FPB total sama dengan $1$. Jadi cukup dibuktikan semua bilangan dapat dibuat menjadi $1$ saat $\operatorname{FPB}(a_1, \dots, a_n) = 1$.</p>
+                    <ul>
+                        <li>Jika sudah ada angka $1$ di papan: untuk sembarang $x &gt; 1$, operasi pada $(x, 1)$ mengganti $(x, 1)$ dengan $(1, x - 1)$. Ulangi hingga semua menjadi $1$.</li>
+                        <li>Jika belum ada $1$: kita dapat memunculkan $1$ dengan mengurangi jumlah pembagi prima dari FPB dua bilangan secara bertahap. Ambil $a, b$ dengan $\operatorname{FPB}(a, b) = g &gt; 1$; karena FPB global $1$, ada bilangan $c$ dengan $\operatorname{FPB}(g, c) &lt; g$. Operasi pada $(a, b)$ menghasilkan $g$; lalu operasi pada $(g, c)$ menghasilkan $\operatorname{FPB}(g, c) &lt; g$. Ulangi proses ini hingga muncul $1$.</li>
+                    </ul>
+                    <p>Setelah semua menjadi $1$ (pada versi ternormalisasi), pada masalah asal semua bilangan menjadi $d$.</p>
+                    <div class="kesimpulan"><strong>Terbukti</strong> semua bilangan dapat dibuat sama dalam berhingga langkah.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 98 -->
+        <article class="soal-item" id="98">
+            <div class="soal-no">No. 98</div>
+            <div class="soal-teks">
+                Banyaknya bilangan bulat dari $1001$ sampai dengan $2022$ yang habis dibagi $12$ atau $18$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2022.html#A2">OSK SMA 2022 (No. 2)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Dengan Prinsip Inklusi-Eksklusi pada rentang $[1001, 2022]$:</p>
+                    <ul>
+                        <li>Kelipatan $12$: dari $1008 = 12 \times 84$ hingga $2016 = 12 \times 168$, ada $168 - 84 + 1 = 85$.</li>
+                        <li>Kelipatan $18$: dari $1008 = 18 \times 56$ hingga $2016 = 18 \times 112$, ada $112 - 56 + 1 = 57$.</li>
+                        <li>Kelipatan $\operatorname{KPK}(12, 18) = 36$: dari $1008 = 36 \times 28$ hingga $2016 = 36 \times 56$, ada $56 - 28 + 1 = 29$.</li>
+                    </ul>
+                    $$\text{Total} = 85 + 57 - 29 = 113$$
+                    <div class="kesimpulan">Jadi, banyaknya bilangan bulat tersebut adalah <strong>$113$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 99 -->
+        <article class="soal-item" id="99">
+            <div class="soal-no">No. 99</div>
+            <div class="soal-teks">
+                Misalkan $m$ dan $n$ bilangan-bilangan asli. Jika $\operatorname{FPB}(m, n) = 3$ dan $\operatorname{FPB}(2m, 5n) = 30$, maka $\operatorname{FPB}(15m, 6n)$ adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2022.html#A16">OSK SMA 2022 (No. 16)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Tulis $m = 3a$ dan $n = 3b$ dengan $\gcd(a, b) = 1$. Dari $\gcd(6a, 15b) = 30$, kita punya $10 \mid \gcd(2a, 5b)$, sehingga $5 \mid a$ dan $2 \mid b$. Tulis $a = 5c$ dan $b = 2d$ dengan $\gcd(c, d) = 1$ (bahkan $\gcd(2c, 5d) = 1$ karena $\gcd(30c, 30d) = 30$).</p>
+                    <p>Maka $m = 15c$ dan $n = 6d$, sehingga:</p>
+                    $$\operatorname{FPB}(15m, 6n) = \operatorname{FPB}(225c, 36d) = 9\operatorname{FPB}(25c, 4d) = 9$$
+                    <p><em>(Sebab $\gcd(c, d) = 1$, $2 \nmid c$, dan $5 \nmid d$.)</em></p>
+                    <div class="kesimpulan">Jadi, nilai $\operatorname{FPB}(15m, 6n)$ adalah <strong>$9$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 100 -->
+        <article class="soal-item" id="100">
+            <div class="soal-no">No. 100</div>
+            <div class="soal-teks">
+                Jumlah semua bilangan asli $b$ sehingga terdapat bilangan asli $a$ yang memenuhi
+                $$\sqrt{a + \frac{15}{b}} = a\sqrt{\frac{15}{b}}$$
+                adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSP/OSP SMA 2022.html#A4">OSP SMA 2022 (No. 4)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kuadratkan kedua ruas:</p>
+                    $$a + \frac{15}{b} = \frac{15a^2}{b} \implies b = \frac{15(a^2 - 1)}{a} = 15a - \frac{15}{a}$$
+                    <p>Agar $b$ bilangan asli, $a$ harus membagi $15$ ($a \in \{1, 3, 5, 15\}$) dan $b &gt; 0$:</p>
+                    <ul>
+                        <li>$a = 1 \implies b = 0$ (bukan asli).</li>
+                        <li>$a = 3 \implies b = 45 - 5 = 40$.</li>
+                        <li>$a = 5 \implies b = 75 - 3 = 72$.</li>
+                        <li>$a = 15 \implies b = 225 - 1 = 224$.</li>
+                    </ul>
+                    <p>Jumlah semua nilai $b$ adalah $40 + 72 + 224 = 336$.</p>
+                    <div class="kesimpulan">Jadi, jumlah semua bilangan asli $b$ adalah <strong>$336$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+    </main>
+
+    <script src="../../scr/script.js"></script>
+</body>
+
+</html>

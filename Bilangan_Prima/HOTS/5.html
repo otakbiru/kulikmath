@@ -66,6 +66,220 @@
 
         <!-- Pagination Bawah (Otomatis) -->
         <div class="pagination-wrapper"></div>
+
+
+        <!-- SOAL 42 -->
+        <article class="soal-item" id="42">
+            <div class="soal-no">No. 42</div>
+            <div class="soal-teks">
+                Banyaknya tripel bilangan bulat $(m, n, p)$ dengan $p$ prima yang memenuhi
+                $$p^2n^2 - 3mn = 21p - m^2$$
+                adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2019.html#A19">OSK SMA 2019 (No. 19)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Susun ulang persamaan menjadi $p^2n^2 + m^2 = 3(mn + 7p)$, sehingga $(pn)^2 + m^2 \equiv 0 \pmod 3$. Karena kuadrat modulo $3$ hanya $0$ atau $1$, haruslah $3 \mid m$ dan $3 \mid pn$.</p>
+                    <p>Tulis $m = 3a$. Jika $p \neq 3$, maka $3 \mid n$, tulis $n = 3b$, sehingga $9p^2b^2 + 9a^2 - 27ab = 21p \implies 3 \mid 7p$, kontradiksi! Jadi haruslah $p = 3$.</p>
+                    <p>Untuk $p = 3$, persamaan menjadi $9n^2 - 3mn + m^2 = 63$. Kalikan $4$ dan lengkapi kuadrat:</p>
+                    $$(2m - 3n)^2 + 27n^2 = 252$$
+                    <p>Karena $27n^2 \le 252 \implies n^2 \le 9$, sehingga $n \in \{-3, -2, -1, 0, 1, 2, 3\}$:</p>
+                    <ul>
+                        <li>$n = 0 \implies (2m)^2 = 252$ (tidak ada solusi bulat).</li>
+                        <li>$n = \pm 1 \implies (2m \mp 3)^2 = 225 \implies 2m \mp 3 = \pm 15$ ($4$ solusi: $(-9,-1), (6,-1), (-6,1), (9,1)$).</li>
+                        <li>$n = \pm 2 \implies (2m \mp 6)^2 = 144 \implies 2m \mp 6 = \pm 12$ ($4$ solusi: $(-9,-2), (3,-2), (-3,2), (9,2)$).</li>
+                        <li>$n = \pm 3 \implies (2m \mp 9)^2 = 9 \implies 2m \mp 9 = \pm 3$ ($4$ solusi: $(-6,-3), (-3,-3), (3,3), (6,3)$).</li>
+                    </ul>
+                    <p>Total ada $4 + 4 + 4 = 12$ tripel bilangan bulat $(m, n, p)$.</p>
+                    <div class="kesimpulan">Jadi, banyaknya tripel yang memenuhi adalah <strong>$12$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 43 -->
+        <article class="soal-item" id="43">
+            <div class="soal-no">No. 43</div>
+            <div class="soal-teks">
+                Tentukan semua solusi dari $x, y, m, n$ bilangan asli dan $p$ prima yang memenuhi
+                $$x + y^2 = p^m, \qquad x^2 + y = p^n$$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2019.html#A7">OSN SMA 2019 (No. 7)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Jika $x = y$, maka $m = n$ dan $x(x + 1) = p^m$. Karena $\gcd(x, x + 1) = 1$, haruslah $x = 1$, sehingga $p = 2, m = n = 1$, menghasilkan $(1, 1, 2, 1, 1)$.</p>
+                    <p>Tanpa mengurangi keumuman, misalkan $x &gt; y$, sehingga $p^n &gt; p^m$ ($n &gt; m$). Kurangkan kedua persamaan:</p>
+                    $$(x - y)(x + y - 1) = p^m(p^{n - m} - 1)$$
+                    <p>Perhatikan bahwa $0 &lt; x - y &lt; x + y^2 = p^m$ dan $0 &lt; x + y - 1 &lt; x + y^2 = p^m$, sehingga $p^m$ tidak dapat membagi salah satu faktor saja; artinya $p$ harus membagi $\gcd(x - y, x + y - 1)$.</p>
+                    <ul>
+                        <li>Jika $p = 2$: $x - y$ dan $x + y - 1$ berbeda paritas, kontradiksi dengan $2$ membagi keduanya.</li>
+                        <li>Jika $p$ ganjil: $p \mid (x + y - 1) - (x - y) = 2y - 1$ dan $p \mid (x + y - 1) + (x - y) = 2x - 1$. Dari $x \equiv y \pmod p$ dan $p \mid x + y^2$, substitusi $2y \equiv 1 \pmod p$ memberi $y(y + 1) \equiv \frac{3}{4} \equiv 0 \pmod p$, sehingga haruslah $p = 3$ dan $x \equiv y \equiv 2 \pmod 3$.</li>
+                    </ul>
+                    <p>Untuk $p = 3$, misalkan $a = v_3(x - y) \ge 1$ dan $b = v_3(x + y - 1) \ge 1$ dengan $a + b \ge m$. Jika $a \ge 2$ dan $b \ge 2$, maka $9 \mid 2y - 1 \implies x \equiv y \equiv 5 \pmod 9$, sehingga $x + y^2 \equiv 30 \equiv 3 \pmod 9 \implies m = 1$, mustahil karena $x + y^2 \ge 2 + 1 = 3$ tidak memenuhi $x \equiv y \equiv 2 \pmod 3$. Jadi $a = 1$ atau $b = 1$:</p>
+                    <ul>
+                        <li>Jika $a = 1$: $3^{m-1} \mid x + y - 1 &lt; 3^m \implies x + y - 1 = c \cdot 3^{m-1}$ ($c \in \{1, 2\}$), sehingga $y^2 - y + 1 = (3 - c)3^{m-1}$. Karena $y \equiv 2 \pmod 3$, selalu $v_3(y^2 - y + 1) = 1$, memaksa $m = 2$.</li>
+                        <li>Jika $b = 1$: $3^{m-1} \mid x - y &lt; 3^m \implies y^2 + y = (3 - c)3^{m-1}$, sehingga $3^{m-1} \mid y + 1 \implies y \ge 3^{m-1} - 1$, yang mustahil untuk $m \ge 3$ karena $y^2 + y &gt; 2 \cdot 3^{m-1}$. Jadi $m = 2$.</li>
+                    </ul>
+                    <p>Dengan $m = 2$, $x + y^2 = 9$ dan $x &gt; y \ge 1$ hanya memberi $(x, y) = (5, 2)$ dengan $5^2 + 2 = 27 = 3^3$.</p>
+                    <div class="kesimpulan">Jadi, semua solusi $(x, y, p, m, n)$ adalah <strong>$(1, 1, 2, 1, 1)$, $(5, 2, 3, 2, 3)$, dan $(2, 5, 3, 3, 2)$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 44 -->
+        <article class="soal-item" id="44">
+            <div class="soal-no">No. 44</div>
+            <div class="soal-teks">
+                Misalkan $n \ge 2$ bilangan asli sedemikian sehingga untuk setiap bilangan asli $a, b$ dengan $a + b = n$ berlaku $a^2 + b^2$ merupakan bilangan prima. Hasil penjumlahan semua bilangan asli $n$ semacam itu adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2020.html#A8">OSK SMA 2020 (No. 8)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Untuk $n \ge 6$, tinjau $a^2 + (n - a)^2 = 2a^2 - 2an + n^2$ untuk $1 \le a \le n - 1$:</p>
+                    <ul>
+                        <li>Jika $n \equiv 0 \pmod 5$, pilih $a = 5$: $5 \mid a^2 + (n-a)^2 &gt; 5$, bukan prima.</li>
+                        <li>Jika $n \equiv 1 \pmod 5$, pilih $a = 4$: $4^2 + (n-4)^2 \equiv 16 + (-3)^2 = 25 \equiv 0 \pmod 5$.</li>
+                        <li>Jika $n \equiv 2 \pmod 5$, pilih $a = 3$: $3^2 + (n-3)^2 \equiv 9 + (-1)^2 = 10 \equiv 0 \pmod 5$.</li>
+                        <li>Jika $n \equiv 3 \pmod 5$, pilih $a = 1$: $1^2 + (n-1)^2 \equiv 1 + 4 = 5 \equiv 0 \pmod 5$.</li>
+                        <li>Jika $n \equiv 4 \pmod 5$, pilih $a = 1$: $1^2 + (n-1)^2 \equiv 1 + 9 = 10 \equiv 0 \pmod 5$.</li>
+                    </ul>
+                    <p>Karena untuk $n \ge 6$, pilihan $a \in \{1, 3, 4, 5\}$ selalu membuat $1 \le a \le n - 1$ dan $a^2 + b^2 &gt; 5$ kelipatan $5$, haruslah $n \le 5$. Uji $n \in \{2, 3, 4, 5\}$:</p>
+                    <ul>
+                        <li>$n = 2$: $1^2 + 1^2 = 2$ (prima).</li>
+                        <li>$n = 3$: $1^2 + 2^2 = 5$ (prima).</li>
+                        <li>$n = 4$: $2^2 + 2^2 = 8$ (bukan prima).</li>
+                        <li>$n = 5$: $1^2 + 4^2 = 17$, $2^2 + 3^2 = 13$ (keduanya prima).</li>
+                    </ul>
+                    <p>Jadi nilai $n$ yang memenuhi adalah $2, 3, 5$, dan jumlahnya $2 + 3 + 5 = 10$.</p>
+                    <div class="kesimpulan">Jadi, hasil penjumlahannya adalah <strong>$10$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+        <!-- SOAL 45 -->
+        <article class="soal-item" id="45">
+            <div class="soal-no">No. 45</div>
+            <div class="soal-teks">
+                Misalkan $p$ suatu bilangan prima sehingga terdapat pasangan bilangan asli $(m, n)$ dengan $n &gt; 1$ yang memenuhi
+                $$mn^2 + mnp + m + n + p = mn + mp + np + n^2 + 2020$$
+                Semua nilai $p$ yang mungkin adalah $\cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2020.html#A11">OSK SMA 2020 (No. 11)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Kelompokkan suku-suku untuk memfaktorkan ruas kiri:</p>
+                    $$(m - 1)(n + p)(n - 1) = 2020 - m$$
+                    <p>Karena $m - 1$ membagi $2020 - m = (2019) - (m - 1)$, haruslah $(m - 1) \mid 2019 = 3 \times 673$, sehingga $m - 1 \in \{1, 3, 673, 2019\}$ atau $m \in \{2, 4, 674, 2020\}$:</p>
+                    <ul>
+                        <li>$m = 2 \implies (n + p)(n - 1) = 2018 = 2 \cdot 1009$: karena $n + p &gt; n - 1$, $n - 1 \in \{1, 2\} \implies p \in \{2016, 1006\}$ (bukan prima).</li>
+                        <li>$m = 4 \implies (n + p)(n - 1) = 672 = 2^5 \cdot 3 \cdot 7$: menguji faktor $n - 1$ dengan $n - 1 &lt; n + p$ menghasilkan solusi prima $p$ pada:
+                            <ul>
+                                <li>$n - 1 = 4 \implies n = 5, p = 168 - 5 = 163$ (prima);</li>
+                                <li>$n - 1 = 12 \implies n = 13, p = 56 - 13 = 43$ (prima);</li>
+                                <li>$n - 1 = 24 \implies n = 25, p = 28 - 25 = 3$ (prima).</li>
+                            </ul>
+                        </li>
+                        <li>$m = 674 \implies (n + p)(n - 1) = 2 \implies n - 1 = 1, n + p = 2 \implies p = 0$ (tidak memenuhi).</li>
+                        <li>$m = 2020 \implies (n + p)(n - 1) = 0 \implies n = 1$ (melanggar $n &gt; 1$).</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, semua nilai $p$ yang mungkin adalah <strong>$3, 43,$ dan $163$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 46 -->
+        <article class="soal-item" id="46">
+            <div class="soal-no">No. 46</div>
+            <div class="soal-teks">
+                Sebuah bilangan asli disebut <em>prima berpangkat</em> jika bilangan tersebut dapat dituliskan dalam bentuk $p^k$, dengan $p$ prima dan $k$ bilangan bulat positif. Tentukan nilai $n$ terbesar yang mungkin sehingga ada barisan bilangan prima berpangkat $a_1, a_2, \dots, a_n$ dengan $a_i = a_{i-1} + a_{i-2}$ untuk semua $3 \le i \le n$.
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSN/OSN SMA 2021.html#A3">OSN SMA 2021 (No. 3)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Untuk $n = 7$, barisan $5, 2, 7, 9, 16, 25, 41$ semuanya merupakan prima berpangkat ($5^1, 2^1, 7^1, 3^2, 2^4, 5^2, 41^1$).</p>
+                    <p>Andaikan ada barisan berpanjang $n \ge 8$. Tiga suku berurutan tidak bisa semuanya ganjil (karena ganjil + ganjil = genap), sehingga setiap $3$ suku berturut-turut memuat minimal satu perpangkatan $2$. Jadi ada dua perpangkatan $2$, sebut $2^a &lt; 2^b$:</p>
+                    <ul>
+                        <li>Jika bersebelahan, semua suku berikutnya genap (pangkat $2$): $2^k + 2^m = 2^r$ memaksa $k = m$, dan suku berikutnya $2^k + 2^{k+1} = 3 \cdot 2^k$ bukan pangkat prima ($\le 3$ suku).</li>
+                        <li>Jadi jaraknya tepat $3$: empat suku berurutan adalah $2^a, p^s, q^t, 2^b$ dengan $p, q$ prima ganjil.</li>
+                    </ul>
+                    <p>Jika $a \ge 2$, $4 \mid 2^a = q^t - p^s$ dan $4 \mid 2^b = q^t + p^s \implies 4 \mid 2q^t$, mustahil. Jadi $a = 1$, dan $q^t = p^s + 2$, $2^b = 2p^s + 2 \implies 2^{b-1} = p^s + 1$.</p>
+                    <ul>
+                        <li>Jika $3 \mid p^s$: $p = 3$, $2^{b-1} = 3^s + 1 \implies (s, b) = (1, 3)$ ($q^t = 5$). Barisan menjadi $\dots, 1, 2, 3, 5, 8, 13, 21, \dots$ ($1$ dan $21$ bukan prima berpangkat, maksimal $5$ suku).</li>
+                        <li>Jika $p^s \equiv 1 \pmod 3$: $3 \mid q^t \implies q = 3$, $2^{b-1} = 3^t - 1 \implies (t, b) \in \{(1, 2), (2, 4)\}$. $(1,2)$ memberi $p^s = 1$ (mustahil); $(2,4)$ memberi $p^s = 7$ dan barisan $\dots, -3, 5, 2, 7, 9, 16, 25, 41, 66, \dots$ ($-3$ dan $66$ bukan prima berpangkat, maksimal $7$ suku).</li>
+                        <li>Jika $p^s \equiv 2 \pmod 3$: $3 \mid 2p^s + 2 = 2^b$, mustahil.</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, nilai $n$ terbesar yang mungkin adalah <strong>$7$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 47 -->
+        <article class="soal-item" id="47">
+            <div class="soal-no">No. 47</div>
+            <div class="soal-teks">
+                Jika $x$ adalah bilangan asli sehingga $x^2 + 42x$ merupakan pangkat tiga dari suatu bilangan prima, maka $x = \cdots$
+            </div>
+            <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2022.html#A10">OSK SMA 2022 (No. 10)</a></div>
+            <button class="btn-solusi">LIHAT PENYELESAIAN</button>
+            <div class="pembahasan-box">
+                <div class="pembahasan-title">Pembahasan:</div>
+                <div class="pembahasan-isi">
+                    <p>Misalkan $x(x + 42) = p^3$ dengan $p$ prima. Untuk $x = 1$, $43$ bukan pangkat tiga prima. Jadi $x &gt; 1$, sehingga $p \mid x$ dan $p \mid x + 42 \implies p \mid 42 \implies p \in \{2, 3, 7\}$.</p>
+                    <ul>
+                        <li>$p = 2$: $x(x + 42) = 8$ (tidak ada $x \ge 1$).</li>
+                        <li>$p = 3$: $x(x + 42) = 27$ (tidak ada $x \ge 1$).</li>
+                        <li>$p = 7$: $x(x + 42) = 343 \iff (x - 7)(x + 49) = 0 \implies x = 7$.</li>
+                    </ul>
+                    <div class="kesimpulan">Jadi, nilai $x$ adalah <strong>$7$</strong>.</div>
+                </div>
+                <button class="btn-tutup">TUTUP</button>
+            </div>
+        </article>
+
+
+        <!-- SOAL 48 -->
+        <article class="soal-item" id="48">
+            <div class="soal-header">
+                <div class="soal-no">No. 48</div>
+                <div class="soal-sumber"><strong>Sumber:</strong> <a href="../../Arsip_Soal/OSK/OSK SMA 2023.html#A20">OSK SMA 2023 (No. 20)</a></div>
+            </div>
+            <div class="soal-teks">
+                <p>Diketahui $p$ adalah bilangan prima yang kurang dari $200$ dan $n$ adalah bilangan bulat positif sedemikian sehingga $p \mid n^2 + 4$ dan $n \mid p^2 + 4$. Nilai terbesar yang mungkin untuk $n$ adalah $\dots$</p>
+            </div>
+            <details class="pembahasan-box">
+                <summary>Pembahasan (Jawaban: $169$)</summary>
+                <div class="pembahasan-content">
+                    <p>Karena $p \mid n^2 + 4$ dan $n \mid p^2 + 4$ serta $\gcd(n, p) \mid 4$, tinjau $np \mid n^2 + p^2 + 4$? Lebih tepatnya: karena $p \mid n^2 + 4$ dan $n \mid p^2 + 4$, jika $\gcd(n, p) = 1$, maka $np \mid n^2 + p^2 + 4$. Misalkan $n^2 + p^2 + 4 = k np$ untuk suatu $k \in \mathbb{Z}^+$.</p>
+                    <p>(Jika $\gcd(n, p) &gt; 1$, maka $p \mid n$, sehingga $p \mid 4 \implies p = 2$, lalu $n \mid 8 \implies n \le 8$.)</p>
+                    <p>Untuk $\gcd(n, p) = 1$, kita gunakan <em>Vieta jumping</em> pada $n^2 - kpn + (p^2 + 4) = 0$. Tinjau pasangan $(n, p)$ dengan $n + p$ minimum untuk suatu $k$ tetap. Jika $n = p$, maka $2p^2 + 4 = kp^2 \implies p^2 \mid 4 \implies p = 2$, tidak mungkin karena $\gcd(n, p) = 1$. Jadi boleh diasumsikan $n &gt; p$ pada pasangan minimal? Jika pasangan minimal memenuhi $n &gt; p$, akar kedua $n' = kp - n = \frac{p^2 + 4}{n}$ merupakan bilangan bulat positif. Agar minimalitas tidak dilanggar, haruslah $n' \ge n \implies p^2 + 4 \ge n^2$, kontradiksi dengan $n &gt; p$ kecuali $n = p + 1$ atau $n \le p$? Cek $n = p + 1$: $(p+1)^2 + p^2 + 4 = 2p^2 + 2p + 5$ harus habis dibagi $p(p+1)$, berarti $p \mid 5 \implies p = 5$, tetapi $5 \cdot 6 = 30 \nmid 65$. Jadi semua solusi dasar memenuhi $n \le p$ atau diperoleh dengan lompatan Vieta dari $n' &lt; p$.</p>
+                    <p>Solusi dengan $n' \le p$ yang memenuhi $n' \mid p^2 + 4$ dan $p \mid (n')^2 + 4$:</p>
+                    <ul>
+                        <li>Jika $n' = 1$: $p \mid 5 \implies p = 5$, memberi $k = \frac{1 + 25 + 4}{5} = 6$. Lompatan Vieta: $(1, 5) \to (5, 29) \to (29, 169) \to \dots$. Di sini untuk $p = 29 &lt; 200$, $n = 169$ memenuhi $29 \mid 169^2 + 4$ dan $169 \mid 29^2 + 4 = 845 = 5 \times 169$. Untuk $p = 169$, bukan prima. Untuk $p = 5$, $n = 29$.</li>
+                        <li>Jika $n' = 2$: $p \mid 8 \implies p = 2$ (bukan $\gcd = 1$).</li>
+                        <li>Jika $n' = 5$: dari $(5, 29)$ kita sudah mencakupnya; bisa juga $k = \frac{25 + p^2 + 4}{5p}$, untuk $p = 29$ didapat $k = 6$ (sama), untuk $p = 1$, bukan prima.</li>
+                        <li>Bisakah $n &gt; p$ dengan $p$ lebih besar dari $29$, misalnya $p \in (100, 200)$? Jika $n &gt; p$, maka $n' = \frac{p^2 + 4}{n} &lt; p + \frac{4}{p}$, jadi $n' \le p$. Karena $n' &lt; p$ dan $p \mid (n')^2 + 4$, haruslah $n' \ge \sqrt{p - 4}$. Cek $k = 3$ misalnya: dari $(1, 1)$? $k = \frac{1+1+4}{1} = 6$. Dari $n' = 2, p$ ganjil? Tidak. Untuk $k = 6$, barisan solusi adalah $1, 5, 29, 169, 985, \dots$, dan pasangan prima yang kurang dari $200$ hanyalah $p = 5$ ($n = 29$) dan $p = 29$ ($n = 169$). Untuk $k$ lain, nilai $n = kp - n'$ dengan $n' \ge 2$ dan $p$ prima $&lt; 200$: agar $n$ maksimal, coba $n' \mid p^2 + 4$. Bila $p$ prima ganjil dan $n$ juga prima atau komposit, cek $k = 3$: $n^2 - 3pn + p^2 + 4 = 0 \implies (2n - 3p)^2 - 5p^2 = -16$. Karena $(2n-3p)^2 \equiv 5p^2 - 16$, cek untuk $n'=1$: $p^2 - 3p + 5 = 0$ tidak ada solusi. Untuk $k = 4$: $p \mid (n')^2+4$, $(n')^2 - 4pn' + p^2 + 4 = 0$. Discriminant $12p^2 - 16$ harus kuadrat? Tidak, itu kuadrat sempurna untuk $3p^2 - 4 = m^2$: $p = 2$ ($m$ genap), atau $3p^2 - m^2 = 4 \implies p = 2, n' = 2$. Jadi untuk $k=4$ tak ada solusi ganjil. Untuk $k=5$: $5p^2 - 4 \dots$ hanya $n'=1 \implies p=5, k=6$.</li>
+                    </ul>
+                    <p>Maka nilai terbesar yang mungkin untuk $n$ dengan $p &lt; 200$ adalah $\mathbf{169}$ (saat $p = 29$).</p>
+                </div>
+            </details>
+        </article>
     </main>
 
     <script src="../../scr/script.js"></script>
